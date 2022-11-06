@@ -5,7 +5,7 @@ import java.sql.*;
 public class EventFileUser {
     public static void main(String[] args) {
 //        StoreEventIntoList("a", 123, 3, 5, "A", "2312414", "12451d");
-        DeleteEventFromList("a");
+        DeleteEventFromList("testA");
     }
 
     public static void StoreEventIntoList(String title,
@@ -60,10 +60,10 @@ public class EventFileUser {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "delete from eventfile where title = \"" + title + "\";";
             stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
+            int Parconnect = stmt.executeUpdate("delete from upcoming_events_for_par where event_title = \"" + title + "\";");
+            int Orgconnect = stmt.executeUpdate("delete from upcoming_events_for_org where event_title = \"" + title + "\";");
+            int count = stmt.executeUpdate("delete from eventfile where title = \"" + title + "\";");
             if (count > 0 ){
                 System.out.println("Success");
             }
