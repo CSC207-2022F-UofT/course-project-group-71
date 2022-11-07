@@ -4,16 +4,10 @@ import java.sql.*;
 
 public class ParFileUser {
     public static void main(String[] args) {
-//        System.out.println(GetPassword("A"));
-//        System.out.println(CheckIfUsernameExist("H"));
-//        String username = "Abe";
-//        String password = "wo4124";
-//        String sql = "insert into parfile(username, password) values(\"" + username + "\",\"" + password + "\");" ;
-//        System.out.println(sql);
-//        StoreParIntoList("A", "123145");
-        DeleteParFromList("A");
+        UtilDeleteParUpcomingevent("dg", "A");
     }
-    public static void StoreParIntoList(String username, String password){
+
+    public static void UtilStorePar(String username, String password){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -51,8 +45,10 @@ public class ParFileUser {
             }
 
         }
+
     }
-    public static void DeleteParFromList(String username){
+
+    public static void UtilDeletePar(String username){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -91,6 +87,277 @@ public class ParFileUser {
 
         }
     }
+
+    public static void UtilAddParFollowing(String par_username, String org_username){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "insert into follow_org_par(par_username, org_username) values('" + par_username + "','" + org_username + "');" ;
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0 ){
+                System.out.println("Success");
+            }
+            else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+
+    }
+
+    public static void UtilDeleteParFollowOrg(String par_username, String org_username) {
+            Statement stmt = null;
+            Connection conn = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+                String sql = "delete from follow_org_par where par_username = '" + par_username + "' and org_username = '" + org_username + "';";
+                stmt = conn.createStatement();
+                int count = stmt.executeUpdate(sql);
+                System.out.println(sql);
+                if (count > 0) {
+                    System.out.println("Success");
+                } else {
+                    System.out.println("Failure");
+                }
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                if (stmt != null) {
+                    try {
+                        stmt.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (conn != null) {
+                    try {
+                        conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+        }
+
+    public static void UtilAddParPastevent(String par_username, String event_title){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "insert into past_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0 ){
+                System.out.println("Success");
+            }
+            else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+
+    }
+    public static void UtilDeleteParPastevent(String par_username, String event_title){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "delete from past_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+
+
+    }
+
+    public static void UtilAddParUpcomingEvent(String par_username, String event_title){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "insert into upcoming_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0 ){
+                System.out.println("Success");
+            }
+            else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+
+    }
+
+    public static void UtilDeleteParUpcomingevent(String par_username, String event_title){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "delete from upcoming_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static int GetPassword(String username){
         Statement stmt = null;
         Connection conn = null;
