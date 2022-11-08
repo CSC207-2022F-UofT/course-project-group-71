@@ -3,8 +3,9 @@ package screens;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class LoginScreen {
+public class LoginScreen extends JFrame implements ActionListener {
     JRadioButton isParticipant = new JRadioButton();
     JRadioButton isOrganization = new JRadioButton();
     JTextField username = new JTextField(15);
@@ -12,11 +13,16 @@ public class LoginScreen {
      * The password
      */
     JPasswordField password = new JPasswordField(15);
-    public LoginScreen() {
 
+    UserLoginController userLoginController;
+
+    public LoginScreen(UserLoginController controller) {
+        this.userLoginController = controller;
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        LabelTextPanel userTypeInfo = new LabelTextPanel(
+                new JLabel("Choose user type"), type);
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username"), username);
         LabelTextPanel passwordInfo = new LabelTextPanel(
