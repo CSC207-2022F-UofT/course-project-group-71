@@ -1,9 +1,9 @@
-package tutorial;
+package database;
 
 import java.util.ArrayList;
 
 public interface ParDsGateway {
-    public int getPassword(String username);
+    public String getPassword(String username);
 
     public String getNotification(String username);
 

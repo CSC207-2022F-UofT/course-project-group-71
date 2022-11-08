@@ -1,32 +1,57 @@
-package tutorial;
+package database;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class EventFileUser {
-    public static void main(String[] args) {
-        EventFileUser b =new EventFileUser();
-        b.utilStoreEvent("D", 123, 3, "5", "A", "2312414",2004,5,1,3,4);
-    }
-
-    public void utilStoreEvent(String title,
-                               int status,
-                               int event_type,
-                               String description,
-                               String location,
-                               String image_path,
-                               int year,
-                               int month,
-                               int day,
-                               int hour,
-                               int minute){
+public class ParFileUser {
+    public void utilStorePar(String username, String password){
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "insert into eventfile(title,status,event_type,description,location,image_path,year,month,day,hour,minute) values('" +
-                    title + "'," + status + "," + event_type + ",'" + description + "','" + location + "','" + image_path + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            String sql = "insert into parfile(username, password) values('" + username + "','" + password + "');" ;
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0 ){
+                System.out.println("Success");
+            }
+            else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+    }
+
+    public void utilDeletePar(String username){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "delete from parfile where username = '" + username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -59,13 +84,14 @@ public class EventFileUser {
 
         }
     }
-    public void utilDeleteEvent(String title){
+
+    public void utiladdparfollowing(String par_username, String org_username){
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "delete from eventfile where title = '" + title + "';";
+            String sql = "insert into follow_org_par(par_username, org_username) values('" + par_username + "','" + org_username + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -97,36 +123,65 @@ public class EventFileUser {
             }
 
         }
+
+
     }
 
-    public String utilGetOrganizer(String title){
+    public void utilDeleteParFollowOrg(String par_username, String org_username) {
+            Statement stmt = null;
+            Connection conn = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+                String sql = "delete from follow_org_par where par_username = '" + par_username + "' and org_username = '" + org_username + "';";
+                stmt = conn.createStatement();
+                int count = stmt.executeUpdate(sql);
+                System.out.println(sql);
+                if (count > 0) {
+                    System.out.println("Success");
+                } else {
+                    System.out.println("Failure");
+                }
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                if (stmt != null) {
+                    try {
+                        stmt.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (conn != null) {
+                    try {
+                        conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+        }
+
+    public void utilAddParPastevent(String par_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
-        ResultSet rs = null;
-        String organizer = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "insert into past_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
-            try (ResultSet unpublished_organizer = stmt.executeQuery("select org_username from unpublished_events_for_org where event_title = '" + title + "';")){
-                if (unpublished_organizer.next()){
-                    organizer = unpublished_organizer.getString(1);
-                    unpublished_organizer.close();
-                };
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0 ){
+                System.out.println("Success");
             }
-            try (ResultSet past_organizer = stmt.executeQuery("select org_username from past_events_for_org where event_title = '" + title + "';")){
-                if (past_organizer.next()){
-                    organizer = past_organizer.getString(1);
-                    past_organizer.close();
-
-                };
-            }
-
-            try (ResultSet upcoming_organizer = stmt.executeQuery("select org_username from past_events_for_org where event_title = '" + title + "';")){
-                if (upcoming_organizer.next()){
-                    organizer = upcoming_organizer.getString(1);
-                    upcoming_organizer.close();
-                }
+            else {
+                System.out.println("Failure");
             }
 
         } catch (ClassNotFoundException e) {
@@ -134,13 +189,6 @@ public class EventFileUser {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
             if (stmt != null){
                 try {
                     stmt.close();
@@ -157,15 +205,134 @@ public class EventFileUser {
             }
 
         }
-        return organizer;
 
+
+    }
+    public void utilDeleteParPastevent(String par_username, String event_title){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "delete from past_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
 
 
 
     }
 
+    public void utilAddParUpcomingEvent(String par_username, String event_title){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "insert into upcoming_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0 ){
+                System.out.println("Success");
+            }
+            else {
+                System.out.println("Failure");
+            }
 
-    public ArrayList<String> utilGetAllPastEventParticipant(String title){
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+
+    }
+
+    public void utilDeleteParUpcomingevent(String par_username, String event_title){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "delete from upcoming_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+    }
+
+    public ArrayList<String> utilGetAllFollowing(String par_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -173,8 +340,11 @@ public class EventFileUser {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "select org_username from follow_org_par where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select par_username from past_events_for_par where event_title = '" + title + "';");
+            rs = stmt.executeQuery(sql);
+            System.out.println(sql);
+//            rs.next();
             while (rs.next()){
                 l.add(rs.getString(1));
             }
@@ -209,8 +379,10 @@ public class EventFileUser {
         return l;
 
 
+
     }
-    public ArrayList<String> utilGetAllUpcomingEventParticipant(String title){
+
+    public ArrayList<String> utilGetAllPastEvent(String par_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -218,8 +390,10 @@ public class EventFileUser {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "select event_title from past_events_for_par where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select par_username from upcoming_events_for_par where event_title = '" + title + "';");
+            rs = stmt.executeQuery(sql);
+            System.out.println(sql);
             while (rs.next()){
                 l.add(rs.getString(1));
             }
@@ -253,293 +427,129 @@ public class EventFileUser {
         }
         return l;
 
-
     }
-
-
-
-
-
-    public int getStatus(String title){
+    public ArrayList<String> utilGetAllUpcomingEvent(String par_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        int status = -1;
+        ArrayList l = new ArrayList<String>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select status from eventfile where title = '" + title + "';";
+            String sql = "select event_title from upcoming_events_for_par where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            rs.next();
-            status = rs.getInt("status");
+            System.out.println(sql);
+            while (rs.next()){
+                l.add(rs.getString(1));
+            }
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
             e.printStackTrace();
         } catch (SQLException e) {
-            System.out.println("SQL");
             e.printStackTrace();
         }finally {
-            if(rs != null){
+            if (rs != null){
                 try {
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-            if(stmt != null){
+            if (stmt != null){
                 try {
                     stmt.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-            if(conn != null){
+            if (conn != null){
                 try {
                     conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-        }
-        return status;
 
-    }
-
-    public int getType(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        int type = -1;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select event_type from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            type = rs.getInt("event_type");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return type;
-
-
-    }
-
-    public String getDescription(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String description = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select description from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            description = rs.getString("description");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return description;
-
-
-    }
-
-    public String getLocation(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String location = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select description from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            location = rs.getString("location");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return location;
-
-
-
-    }
-
-    public String getImagePath(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String image_path = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select image_path from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            image_path = rs.getString("image_path");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return image_path;
-    }
-
-    public ArrayList<Integer> getTime(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<Integer> l = new ArrayList<Integer>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select year,month,day,hour,minute from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            l.add(rs.getInt("year"));
-            l.add(rs.getInt("month"));
-            l.add(rs.getInt("day"));
-            l.add(rs.getInt("hour"));
-            l.add(rs.getInt("minute"));
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return l;
+
+    }
+
+    public void utilPasswordUpdating(String par_username, String new_password){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "update parfile set password = '" + new_password + "' where username = '" + par_username + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+    public void utilNotificationUpdating(String par_username, String new_notification){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "update parfile set notification = '" + new_notification + "' where username = '" + par_username + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
 
@@ -561,7 +571,133 @@ public class EventFileUser {
 
 
 
-    public boolean checkIfEventnameExist(String eventname){
+
+
+
+
+    public int getPassword(String username){
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        int password = -1;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "select password from parfile where username = '" + username + "';";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            rs.next();
+            password = rs.getInt("password");
+        } catch (ClassNotFoundException e) {
+            System.out.println("NotFound");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("SQL");
+            e.printStackTrace();
+        }finally {
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return password;
+    }
+    public String getNotification(String username){
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String notification = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "select notification from parfile where username = '" + username + "';";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            rs.next();
+            notification = rs.getString("notification");
+        } catch (ClassNotFoundException e) {
+            System.out.println("NotFound");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("SQL");
+            e.printStackTrace();
+        }finally {
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return notification;
+    }
+
+    public ArrayList<String> getUpcomingEvents(String username){
+        return utilGetAllUpcomingEvent(username);
+    }
+
+    public ArrayList<String> getPastEvents(String username){
+        return utilGetAllPastEvent(username);
+    }
+
+    public ArrayList<String> getFollowedOrg(String username){
+        return utilGetAllFollowing(username);
+    }
+
+    public void setPassword(String username, String new_password){
+        utilPasswordUpdating(username, new_password);
+    }
+
+    public void setNofication(String username, String new_notification){
+        utilNotificationUpdating(username,new_notification);
+    }
+
+    public void followOrg(String par_username, String org_username){
+        utiladdparfollowing(par_username,org_username);
+    }
+
+    public void registerEvent(String par_username, String title){
+        utilAddParUpcomingEvent(par_username,title);
+    }
+
+    public void leaveEvent(String par_username, String title){
+        utilDeleteParUpcomingevent(par_username,title);
+    }
+
+
+    public boolean checkIfUsernameExist(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -569,7 +705,7 @@ public class EventFileUser {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select exists(select * from eventfile where title = '" + eventname + "');";
+            String sql = "select exists(select * from parfile where username = '" + username + "');";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rs.next();
@@ -608,28 +744,33 @@ public class EventFileUser {
         return WhetherExist;
     }
 
-    public void deleteEvent(String event_title){
-        //First break relationships of the event with the organizer
-        //Then break relationships of the event with all the participants
-        //Then delete the event itself
-        OrgDsFileUser temp_orgfileuser = new OrgDsFileUser();
-        ParFileUser temp_parfileuser = new ParFileUser();
-        ArrayList<String> All_past_participants = utilGetAllPastEventParticipant(event_title);
-        for (int i = 0; i < All_past_participants.size(); i ++){
-            temp_parfileuser.utilDeleteParPastevent(All_past_participants.get(i),event_title);
+    public void createPar(String username, String password){
+        utilStorePar(username, password);
+    }
+
+    public void deletePar(String username){
+        //First delete relationships with events
+        //Then delete relationships with organizers
+        //Then delete itself
+
+        //First breaking relationship with past events
+        ArrayList<String> All_past_events = utilGetAllPastEvent(username);
+        for (int i=0;i<All_past_events.size();i++){
+            utilDeleteParPastevent(username,All_past_events.get(i));
         }
-        ArrayList<String> All_upcoming_participants = utilGetAllUpcomingEventParticipant(event_title);
-        for (int i = 0; i < All_upcoming_participants.size(); i ++){
-            temp_parfileuser.utilDeleteParUpcomingevent(All_upcoming_participants.get(i),event_title);
+        ArrayList<String> All_upcoming_events = utilGetAllUpcomingEvent(username);
+        for (int i=0;i<All_upcoming_events.size();i++){
+            utilDeleteParUpcomingevent(username, All_upcoming_events.get(i));
         }
 
+        //Then break relationship with followings
+        ArrayList<String> All_following = utilGetAllFollowing(username);
+        for (int i=0;i<All_following.size();i++){
+            utilDeleteParFollowOrg(username, All_following.get(i));
+        }
 
-        String organizer = utilGetOrganizer(event_title);
-        temp_orgfileuser.utilDeleteOrgPastEvent(organizer,event_title);
-        temp_orgfileuser.utilDeleteOrgUnpublishedEvent(organizer,event_title);
-        temp_orgfileuser.utilDeleteOrgUpcomingevent(organizer,event_title);
-
-        utilDeleteEvent(event_title);
+        utilDeletePar(username);
 
     }
+
 }

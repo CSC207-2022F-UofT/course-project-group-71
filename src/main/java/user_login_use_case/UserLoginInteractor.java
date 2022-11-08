@@ -1,5 +1,7 @@
 package user_login_use_case;
 
+import database.ParDsGateway;
+import database.OrgDsGateway;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
 
@@ -22,7 +24,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
         if (requestModel.getUserType().equals("P")) {
             String username = requestModel.getUsername();
-            if (!parDsGateway.existsByUsername(username)) {
+            if (!parDsGateway.checkIfUsernameExist(username)) {
                 return userLoginPresenter.prepareFailView("Participant does not exist.");
             } else if (!parDsGateway.getPassword(username).equals(requestModel.getPassword())) {
                 return userLoginPresenter.prepareFailView("Password doesn't match.");
@@ -34,7 +36,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         }
         else if (requestModel.getUserType().equals("O")) {
             String username = requestModel.getUsername();
-            if (!orgDsGateway.existsByUsername(username)) {
+            if (!orgDsGateway.checkIfUsernameExist(username)) {
                 return userLoginPresenter.prepareFailView("Organization does not exist.");
             } else if (!orgDsGateway.getPassword(username).equals(requestModel.getPassword())) {
                 return userLoginPresenter.prepareFailView("Password doesn't match.");

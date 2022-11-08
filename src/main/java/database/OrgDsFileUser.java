@@ -1,13 +1,10 @@
-package tutorial;
+package database;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class OrgDsFileUser implements OrgDsGateway {
-    public static void main(String[] args) {
-        OrgDsFileUser a = new OrgDsFileUser();
-        System.out.println(a.organizerSearch("s"));
-    }
+
     public void utilStoreOrg(String username, String password){
         Statement stmt = null;
         Connection conn = null;
