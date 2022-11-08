@@ -683,7 +683,7 @@ public class ParFileUser implements ParDsGateway {
         utilPasswordUpdating(username, new_password);
     }
 
-    public void setNofication(String username, String new_notification){
+    public void setNotification(String username, String new_notification){
         utilNotificationUpdating(username,new_notification);
     }
 
