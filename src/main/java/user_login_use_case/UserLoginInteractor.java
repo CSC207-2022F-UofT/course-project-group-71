@@ -1,14 +1,13 @@
 package user_login_use_case;
 
-import java.time.LocalDateTime;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
 
-    final UserLoginPresenter userLoginPresenter;
-    final ParDsGateway parDsGateway;
-    final ParHomePresenter parHomePresenter;
-    final OrgDsGateway orgDsGateway;
-    final OrgHomePresenter orgHomePresenter;
+    private UserLoginPresenter userLoginPresenter;
+    private ParDsGateway parDsGateway;
+    private ParHomePresenter parHomePresenter;
+    private OrgDsGateway orgDsGateway;
+    private OrgHomePresenter orgHomePresenter;
 
     public UserLoginInteractor(ParDsGateway parDsGateway, ParHomePresenter parHomePresenter) {
         this.parDsGateway = parDsGateway;
@@ -22,23 +21,26 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
         if (requestModel.getUserType().equals("P")) {
-            if (!parDsGateway.existsByUsername(requestModel.getName())) {
+            String username = requestModel.getUsername();
+            if (!parDsGateway.existsByUsername(username)) {
                 return userLoginPresenter.prepareFailView("Participant does not exist.");
-            } else if (!parDsGateway.checkPassword(requestModel.getRepeatPassword())) {
+            } else if (!parDsGateway.getPassword(username).equals(requestModel.getPassword())) {
                 return userLoginPresenter.prepareFailView("Password doesn't match.");
             }
 
-            ParPageResponseModel accountResponseModel = new ParPageResponseModel(requestModel.getUsername());
+            UserLoginResponseModel accountResponseModel = new UserLoginResponseModel(username,
+                    parDsGateway.getNotification(username));
             return parHomePresenter.prepareHomePageView(accountResponseModel);
         }
         else if (requestModel.getUserType().equals("O")) {
-            if (!orgDsGateway.existsByUsername(requestModel.getName())) {
+            String username = requestModel.getUsername();
+            if (!orgDsGateway.existsByUsername(username)) {
                 return userLoginPresenter.prepareFailView("Organization does not exist.");
-            } else if (!orgDsGateway.checkPassword(requestModel.getRepeatPassword())) {
+            } else if (!orgDsGateway.getPassword(username).equals(requestModel.getPassword())) {
                 return userLoginPresenter.prepareFailView("Password doesn't match.");
             }
 
-            OrgPageResponseModel accountResponseModel = new OrgPageResponseModel(requestModel.getUsername());
+            UserLoginResponseModel accountResponseModel = new UserLoginResponseModel(username);
             return orgHomePresenter.prepareHomePageView(accountResponseModel);
         }
         else {

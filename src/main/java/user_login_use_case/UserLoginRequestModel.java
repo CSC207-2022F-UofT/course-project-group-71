@@ -14,41 +14,22 @@ public class UserLoginRequestModel {
         this.password = password;
     }
 
-    String getUserType() {
-        if (isParticipant) {return "P";}
-        if (isOrganization) {return "O";}
+    public String getUserType() {
+        if (isParticipant) {
+            return "P";
+        }
+        if (isOrganization) {
+            return "O";
+        }
         return "N/A";
     }
 
-    String getUserame() {
+    public String getUsername() {
         return username;
     }
 
-    void setUsername(String username) {
-        this.username = username;
-    }
-
-    String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    void setPassword(String password) {
-        this.password = password;
-    }
-
-    String getUserame() {
-        return username;
-    }
-
-    void setUsername(String username) {
-        this.username = username;
-    }
-
-    String getPassword() {
-        return password;
-    }
-
-    void setPassword(String password) {
-        this.password = password;
-    }
 }
