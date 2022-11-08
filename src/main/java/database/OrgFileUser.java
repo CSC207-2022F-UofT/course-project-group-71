@@ -4,7 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class OrgFileUser implements OrgDsGateway {
-
+    public static void main(String[] args) {
+        OrgFileUser a = new OrgFileUser();
+        System.out.println(a.organizerSearch("s"));
+    }
     public void utilStoreOrg(String username, String password){
         Statement stmt = null;
         Connection conn = null;
@@ -738,7 +741,7 @@ public class OrgFileUser implements OrgDsGateway {
         temp_eventfileuser.deleteEvent(title);
     }
 
-    public boolean checkIfUsernameExist(String username){
+    public boolean checkIfUserNameExist(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;

@@ -3,7 +3,10 @@ package database;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ParFileUser implements ParDsGateway{
+public class ParFileUser implements ParDsGateway {
+    public static void main(String[] args) {
+    }
+
     public void utilStorePar(String username, String password){
         Statement stmt = null;
         Connection conn = null;
@@ -575,11 +578,11 @@ public class ParFileUser implements ParDsGateway{
 
 
 
-    public int getPassword(String username){
+    public String getPassword(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        int password = -1;
+        String password = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
@@ -587,7 +590,7 @@ public class ParFileUser implements ParDsGateway{
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rs.next();
-            password = rs.getInt("password");
+            password = rs.getString("password");
         } catch (ClassNotFoundException e) {
             System.out.println("NotFound");
             e.printStackTrace();
@@ -680,7 +683,7 @@ public class ParFileUser implements ParDsGateway{
         utilPasswordUpdating(username, new_password);
     }
 
-    public void setNofication(String username, String new_notification){
+    public void setNotification(String username, String new_notification){
         utilNotificationUpdating(username,new_notification);
     }
 
