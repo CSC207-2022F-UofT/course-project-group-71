@@ -11,9 +11,9 @@ public class UserLoginController {
         this.userInput = accountGateway;
     }
 
-    UserLoginResponseModel login(String userType, String username, String password) {
+    UserLoginResponseModel login(String isParticipant, String isOrganization, String username, String password) {
         UserLoginRequestModel requestModel = new UserLoginRequestModel(
-                userType, username, password);
+                isParticipant, isOrganization, username, password);
 
         return userInput.login(requestModel);
     }

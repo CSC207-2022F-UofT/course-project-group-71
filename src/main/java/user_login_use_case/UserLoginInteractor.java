@@ -11,12 +11,12 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     private OrgDsGateway orgDsGateway;
     private OrgHomePresenter orgHomePresenter;
 
-    public UserLoginInteractor(ParDsGateway parDsGateway, ParHomePresenter parHomePresenter) {
+    public UserLoginInteractor(UserLoginPresenter userLoginPresenter, ParDsGateway parDsGateway,
+                               ParHomePresenter parHomePresenter, OrgDsGateway orgDsGateway,
+                               OrgHomePresenter orgHomePresenter) {
+        this.userLoginPresenter = userLoginPresenter;
         this.parDsGateway = parDsGateway;
         this.parHomePresenter = parHomePresenter;
-    }
-
-    public UserLoginInteractor(OrgDsGateway orgDsGateway, OrgHomePresenter orgHomePresenter) {
         this.orgDsGateway = orgDsGateway;
         this.orgHomePresenter = orgHomePresenter;
     }

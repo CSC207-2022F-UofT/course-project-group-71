@@ -3,7 +3,7 @@ package database;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ParFileUser {
+public class ParFileUser implements ParDsGateway{
     public void utilStorePar(String username, String password){
         Statement stmt = null;
         Connection conn = null;

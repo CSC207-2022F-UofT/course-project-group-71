@@ -5,25 +5,27 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginScreen extends JFrame implements ActionListener {
-    ButtonGroup userType = new ButtonGroup();
+public class LoginPage extends JFrame implements ActionListener {
+
+    JRadioButton parButton = new JRadioButton();
+
+    JRadioButton orgButton = new JRadioButton();
+
     JTextField username = new JTextField(15);
-    /**
-     * The password
-     */
+
     JPasswordField password = new JPasswordField(15);
 
     UserLoginController userLoginController;
 
-    public LoginScreen(UserLoginController controller) {
+    public LoginPage(UserLoginController controller) {
         this.userLoginController = controller;
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JRadioButton parButton = new JRadioButton("Participant");
-        parButton.setActionCommand("Participant");
+        parButton.setActionCommand("P");
         JRadioButton orgButton = new JRadioButton("Organization");
-        orgButton.setActionCommand("Organization");
+        orgButton.setActionCommand("O");
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username"), username);
@@ -63,10 +65,11 @@ public class LoginScreen extends JFrame implements ActionListener {
 
         this.pack();
     }
-    public void actionPerformed(ActionEvent evt) {
+    public void actionPerformed(ActionEvent selectType) {
         try {
             userLoginController.login(
-                    userType.getActionCommand(),
+                    parButton.getActionCommand(),
+                    orgButton.getActionCommand(),
                     username.getText(),
                     String.valueOf(password.getPassword()));
             JOptionPane.showMessageDialog(this, username.getText()+" created.");

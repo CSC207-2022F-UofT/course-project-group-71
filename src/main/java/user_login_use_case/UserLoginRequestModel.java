@@ -2,12 +2,12 @@ package user_login_use_case;
 
 public class UserLoginRequestModel {
 
-    private boolean isParticipant;
-    private boolean isOrganization;
+    private String isParticipant;
+    private String isOrganization;
     private String username;
     private String password;
 
-    public UserLoginRequestModel(boolean isParticipant, boolean isOrganization, String username, String password) {
+    public UserLoginRequestModel(String isParticipant, String isOrganization, String username, String password) {
         this.isParticipant = isParticipant;
         this.isOrganization = isOrganization;
         this.username = username;
@@ -15,13 +15,9 @@ public class UserLoginRequestModel {
     }
 
     public String getUserType() {
-        if (isParticipant) {
-            return "P";
-        }
-        if (isOrganization) {
-            return "O";
-        }
-        return "N/A";
+        if (isParticipant.equals("P")) { return isParticipant; }
+        else if (isOrganization.equals("O")) { return isOrganization; }
+        else { return "N/A"; }
     }
 
     public String getUsername() {

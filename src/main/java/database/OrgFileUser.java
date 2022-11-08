@@ -3,7 +3,7 @@ package database;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class OrgDsFileUser implements OrgDsGateway {
+public class OrgFileUser implements OrgDsGateway {
 
     public void utilStoreOrg(String username, String password){
         Statement stmt = null;

@@ -608,7 +608,7 @@ public class EventFileUser {
         //First break relationships of the event with the organizer
         //Then break relationships of the event with all the participants
         //Then delete the event itself
-        OrgDsFileUser temp_orgfileuser = new OrgDsFileUser();
+        OrgFileUser temp_orgfileuser = new OrgFileUser();
         ParFileUser temp_parfileuser = new ParFileUser();
         ArrayList<String> All_past_participants = utilGetAllPastEventParticipant(event_title);
         for (int i = 0; i < All_past_participants.size(); i ++){
