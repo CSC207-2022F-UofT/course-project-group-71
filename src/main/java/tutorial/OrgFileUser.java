@@ -6,6 +6,8 @@ import java.util.List;
 
 public class OrgFileUser implements OrgGateway{
     public static void main(String[] args) {
+//        OrgFileUser a = new OrgFileUser();
+//        a.CreateAnEvent("D",123,3,5,"A","23515",2004,5,9,71,23);
     }
     public void UtilStoreOrg(String username, String password){
         Statement stmt = null;
@@ -531,6 +533,45 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
+    public void UtilPasswordUpdating(String org_username, String new_password){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "update orgfile set password = '" + new_password + "' where username = '" + org_username + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
 
 
 
@@ -591,6 +632,11 @@ public class OrgFileUser implements OrgGateway{
         return password;
     }
 
+    public void SetPassword(String username, String new_password){
+        UtilPasswordUpdating(username, new_password);
+    }
+
+
     public ArrayList<String> GetUnpublishedEvents(String username){
         return UtilGetUnpublishedEvents(username);
     }
@@ -613,9 +659,14 @@ public class OrgFileUser implements OrgGateway{
                                      int event_type,
                                      String description,
                                      String location,
-                                     String image_path){
+                                     String image_path,
+                                     int year,
+                                     int month,
+                                     int day,
+                                     int hour,
+                                     int minute){
         EventFileUser temp_eventfileuser = new EventFileUser();
-        temp_eventfileuser.UtilStoreEvent(title, status, event_type, description, location, image_path);
+        temp_eventfileuser.UtilStoreEvent(title, status, event_type, description, location, image_path, year, month, day, hour, minute);
         if (status == 0){
             //Unpublished
             UtilAddOrgUnpublishedEvent(org_username,title);

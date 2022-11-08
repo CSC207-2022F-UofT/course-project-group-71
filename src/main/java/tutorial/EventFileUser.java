@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class EventFileUser {
     public static void main(String[] args) {
-//        UtilStoreEvent("C", 123, 3, "5", "A", "2312414");
+        EventFileUser b =new EventFileUser();
+        b.UtilStoreEvent("D", 123, 3, "5", "A", "2312414",2004,5,1,3,4);
     }
 
     public void UtilStoreEvent(String title,
@@ -13,14 +14,19 @@ public class EventFileUser {
                                       int event_type,
                                       String description,
                                       String location,
-                                      String image_path){
+                                      String image_path,
+                                      int year,
+                                      int month,
+                                      int day,
+                                      int hour,
+                                      int minute){
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "insert into eventfile(title,status,event_type,description,location,image_path) values('" +
-                    title + "'," + status + "," + event_type + ",'" + description + "','" + location + "','" + image_path + "');";
+            String sql = "insert into eventfile(title,status,event_type,description,location,image_path,year,month,day,hour,minute) values('" +
+                    title + "'," + status + "," + event_type + ",'" + description + "','" + location + "','" + image_path + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -206,6 +212,8 @@ public class EventFileUser {
         return l;
 
     }
+
+
 
 
 
