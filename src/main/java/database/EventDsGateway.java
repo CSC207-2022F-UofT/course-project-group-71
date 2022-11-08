@@ -1,4 +1,4 @@
-package tutorial;
+package database;
 
 import java.util.ArrayList;
 
