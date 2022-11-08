@@ -2,14 +2,13 @@ package tutorial;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class OrgFileUser implements OrgGateway{
     public static void main(String[] args) {
 //        OrgFileUser a = new OrgFileUser();
 //        a.CreateAnEvent("D",123,3,5,"A","23515",2004,5,9,71,23);
     }
-    public void UtilStoreOrg(String username, String password){
+    public void utilStoreOrg(String username, String password){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -50,7 +49,7 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
-    public void UtilDeleteOrg(String username){
+    public void utilDeleteOrg(String username){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -90,7 +89,7 @@ public class OrgFileUser implements OrgGateway{
         }
     }
 
-    public void UtilAddOrgPastEvent(String org_username, String event_title){
+    public void utilAddOrgPastEvent(String org_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -132,7 +131,7 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
-    public void UtilDeleteOrgPastEvent(String org_username, String event_title) {
+    public void utilDeleteOrgPastEvent(String org_username, String event_title) {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -172,7 +171,7 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
-    public void UtilAddOrgUnpublishedEvent(String org_username, String event_title){
+    public void utilAddOrgUnpublishedEvent(String org_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -214,7 +213,7 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
-    public void UtilDeleteOrgUnpublishedEvent(String org_username, String event_title){
+    public void utilDeleteOrgUnpublishedEvent(String org_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -254,7 +253,7 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
-    public void UtilAddOrgUpcomingEvent(String org_username, String event_title){
+    public void utilAddOrgUpcomingEvent(String org_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -296,7 +295,7 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
-    public void UtilDeleteOrgUpcomingevent(String org_username, String event_title){
+    public void utilDeleteOrgUpcomingevent(String org_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -336,7 +335,7 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
-    public ArrayList<String> UtilGetAllFollowers(String org_username){
+    public ArrayList<String> utilGetAllFollowers(String org_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -385,7 +384,7 @@ public class OrgFileUser implements OrgGateway{
 
 
     }
-    public ArrayList<String> UtilGetUnpublishedEvents(String org_username){
+    public ArrayList<String> utilGetUnpublishedEvents(String org_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -434,7 +433,7 @@ public class OrgFileUser implements OrgGateway{
 
 
     }
-    public ArrayList<String> UtilGetPastEvents(String org_username){
+    public ArrayList<String> utilGetPastEvents(String org_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -483,7 +482,7 @@ public class OrgFileUser implements OrgGateway{
 
 
     }
-    public ArrayList<String> UtilGetUpcomingEvents(String org_username){
+    public ArrayList<String> utilGetUpcomingEvents(String org_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -533,7 +532,7 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
-    public void UtilPasswordUpdating(String org_username, String new_password){
+    public void utilPasswordUpdating(String org_username, String new_password){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -587,7 +586,7 @@ public class OrgFileUser implements OrgGateway{
 
 
 
-    public String GetPassword(String username) {
+    public String getPassword(String username) {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -632,61 +631,61 @@ public class OrgFileUser implements OrgGateway{
         return password;
     }
 
-    public void SetPassword(String username, String new_password){
-        UtilPasswordUpdating(username, new_password);
+    public void setPassword(String username, String new_password){
+        utilPasswordUpdating(username, new_password);
     }
 
 
-    public ArrayList<String> GetUnpublishedEvents(String username){
-        return UtilGetUnpublishedEvents(username);
+    public ArrayList<String> getUnpublishedEvents(String username){
+        return utilGetUnpublishedEvents(username);
     }
 
-    public ArrayList<String> GetPastEvent(String username){
-        return UtilGetPastEvents(username);
+    public ArrayList<String> getPastEvent(String username){
+        return utilGetPastEvents(username);
     }
 
-    public ArrayList<String> GetUpcomingEvents(String username){
-        return UtilGetUpcomingEvents(username);
+    public ArrayList<String> getUpcomingEvents(String username){
+        return utilGetUpcomingEvents(username);
     }
 
-    public ArrayList<String> GetFollowers(String username){
-        return UtilGetAllFollowers(username);
+    public ArrayList<String> getFollowers(String username){
+        return utilGetAllFollowers(username);
     }
 
-    public void CreateAnEvent(String org_username,
-                                     String title,
-                                     int status,
-                                     int event_type,
-                                     String description,
-                                     String location,
-                                     String image_path,
-                                     int year,
-                                     int month,
-                                     int day,
-                                     int hour,
-                                     int minute){
+    public void createAnEvent(String org_username,
+                              String title,
+                              int status,
+                              int event_type,
+                              String description,
+                              String location,
+                              String image_path,
+                              int year,
+                              int month,
+                              int day,
+                              int hour,
+                              int minute){
         EventFileUser temp_eventfileuser = new EventFileUser();
-        temp_eventfileuser.UtilStoreEvent(title, status, event_type, description, location, image_path, year, month, day, hour, minute);
+        temp_eventfileuser.utilStoreEvent(title, status, event_type, description, location, image_path, year, month, day, hour, minute);
         if (status == 0){
             //Unpublished
-            UtilAddOrgUnpublishedEvent(org_username,title);
+            utilAddOrgUnpublishedEvent(org_username,title);
         }
         else if(status == 1){
             //Past
-            UtilAddOrgPastEvent(org_username,title);
+            utilAddOrgPastEvent(org_username,title);
         }
         else{
             //Upcoming
-            UtilAddOrgUpcomingEvent(org_username,title);
+            utilAddOrgUpcomingEvent(org_username,title);
 
         }
     }
-    public void DeleteAnEvent(String username, String title){
+    public void deleteAnEvent(String username, String title){
         EventFileUser temp_eventfileuser = new EventFileUser();
-        temp_eventfileuser.DeleteEvent(title);
+        temp_eventfileuser.deleteEvent(title);
     }
 
-    public boolean CheckIfUsernameExist(String username){
+    public boolean checkIfUsernameExist(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -733,33 +732,33 @@ public class OrgFileUser implements OrgGateway{
         return WhetherExist;
     }
 
-    public void CreateOrg(String username, String password){
-        UtilStoreOrg(username,password);
+    public void createOrg(String username, String password){
+        utilStoreOrg(username,password);
     }
-    public void DeleteOrg(String username){
+    public void deleteOrg(String username){
         //First delete relationships with events
         //Then delete relationships with participants
         //Then delete itself
         ParFileUser temp_parfileuser = new ParFileUser();
-        ArrayList<String> All_Unpublished = UtilGetUnpublishedEvents(username);
+        ArrayList<String> All_Unpublished = utilGetUnpublishedEvents(username);
         for (int i=0; i<All_Unpublished.size();i++){
-            UtilDeleteOrgUnpublishedEvent(username, All_Unpublished.get(i));
+            utilDeleteOrgUnpublishedEvent(username, All_Unpublished.get(i));
         }
-        ArrayList<String> All_Past = UtilGetPastEvents(username);
+        ArrayList<String> All_Past = utilGetPastEvents(username);
         for (int i=0; i<All_Past.size();i++){
-            UtilDeleteOrgPastEvent(username, All_Past.get(i));
+            utilDeleteOrgPastEvent(username, All_Past.get(i));
         }
-        ArrayList<String> All_upcoming = UtilGetUpcomingEvents(username);
+        ArrayList<String> All_upcoming = utilGetUpcomingEvents(username);
         for (int i=0; i<All_Past.size();i++){
-            UtilDeleteOrgUpcomingevent(username, All_upcoming.get(i));
+            utilDeleteOrgUpcomingevent(username, All_upcoming.get(i));
         }
 
-        ArrayList<String> All_followers = UtilGetAllFollowers(username);
+        ArrayList<String> All_followers = utilGetAllFollowers(username);
         for (int i=0; i<All_followers.size();i++){
-            temp_parfileuser.UtilDeleteParFollowOrg(All_followers.get(i), username);
+            temp_parfileuser.utilDeleteParFollowOrg(All_followers.get(i), username);
         }
 
-        UtilDeleteOrg(username);
+        utilDeleteOrg(username);
     }
 
 }
