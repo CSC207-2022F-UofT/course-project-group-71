@@ -7,7 +7,7 @@ public class ParFileUser {
     public static void main(String[] args) {
     }
 
-    public void UtilStorePar(String username, String password){
+    public void utilStorePar(String username, String password){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -48,7 +48,7 @@ public class ParFileUser {
 
     }
 
-    public void UtilDeletePar(String username){
+    public void utilDeletePar(String username){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -88,7 +88,7 @@ public class ParFileUser {
         }
     }
 
-    public void UtilAddParFollowing(String par_username, String org_username){
+    public void utiladdparfollowing(String par_username, String org_username){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -130,7 +130,7 @@ public class ParFileUser {
 
     }
 
-    public void UtilDeleteParFollowOrg(String par_username, String org_username) {
+    public void utilDeleteParFollowOrg(String par_username, String org_username) {
             Statement stmt = null;
             Connection conn = null;
             try {
@@ -170,7 +170,7 @@ public class ParFileUser {
 
         }
 
-    public void UtilAddParPastevent(String par_username, String event_title){
+    public void utilAddParPastevent(String par_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -211,7 +211,7 @@ public class ParFileUser {
 
 
     }
-    public void UtilDeleteParPastevent(String par_username, String event_title){
+    public void utilDeleteParPastevent(String par_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -253,7 +253,7 @@ public class ParFileUser {
 
     }
 
-    public void UtilAddParUpcomingEvent(String par_username, String event_title){
+    public void utilAddParUpcomingEvent(String par_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -295,7 +295,7 @@ public class ParFileUser {
 
     }
 
-    public void UtilDeleteParUpcomingevent(String par_username, String event_title){
+    public void utilDeleteParUpcomingevent(String par_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -335,7 +335,7 @@ public class ParFileUser {
 
     }
 
-    public ArrayList<String> UtilGetAllFollowing(String par_username){
+    public ArrayList<String> utilGetAllFollowing(String par_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -385,7 +385,7 @@ public class ParFileUser {
 
     }
 
-    public ArrayList<String> UtilGetAllPastEvent(String par_username){
+    public ArrayList<String> utilGetAllPastEvent(String par_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -431,7 +431,7 @@ public class ParFileUser {
         return l;
 
     }
-    public ArrayList<String> UtilGetAllUpcomingEvent(String par_username){
+    public ArrayList<String> utilGetAllUpcomingEvent(String par_username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -478,7 +478,7 @@ public class ParFileUser {
 
     }
 
-    public void UtilPasswordUpdating(String par_username, String new_password){
+    public void utilPasswordUpdating(String par_username, String new_password){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -516,7 +516,7 @@ public class ParFileUser {
 
         }
     }
-    public void UtilNotificationUpdating(String par_username, String new_notification){
+    public void utilNotificationUpdating(String par_username, String new_notification){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -578,7 +578,7 @@ public class ParFileUser {
 
 
 
-    public int GetPassword(String username){
+    public int getPassword(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -622,7 +622,7 @@ public class ParFileUser {
         }
         return password;
     }
-    public String GetNotification(String username){
+    public String getNotification(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -667,40 +667,40 @@ public class ParFileUser {
         return notification;
     }
 
-    public ArrayList<String> GetUpcomingEvents(String username){
-        return UtilGetAllUpcomingEvent(username);
+    public ArrayList<String> getUpcomingEvents(String username){
+        return utilGetAllUpcomingEvent(username);
     }
 
-    public ArrayList<String> GetPastEvents(String username){
-        return UtilGetAllPastEvent(username);
+    public ArrayList<String> getPastEvents(String username){
+        return utilGetAllPastEvent(username);
     }
 
-    public ArrayList<String> GetFollowedOrg(String username){
-        return UtilGetAllFollowing(username);
+    public ArrayList<String> getFollowedOrg(String username){
+        return utilGetAllFollowing(username);
     }
 
-    public void SetPassword(String username, String new_password){
-        UtilPasswordUpdating(username, new_password);
+    public void setPassword(String username, String new_password){
+        utilPasswordUpdating(username, new_password);
     }
 
-    public void SetNofication(String username, String new_notification){
-        UtilNotificationUpdating(username,new_notification);
+    public void setNofication(String username, String new_notification){
+        utilNotificationUpdating(username,new_notification);
     }
 
-    public void FollowOrg(String par_username, String org_username){
-        UtilAddParFollowing(par_username,org_username);
+    public void followOrg(String par_username, String org_username){
+        utiladdparfollowing(par_username,org_username);
     }
 
-    public void RegisterEvent(String par_username, String title){
-        UtilAddParUpcomingEvent(par_username,title);
+    public void registerEvent(String par_username, String title){
+        utilAddParUpcomingEvent(par_username,title);
     }
 
-    public void LeaveEvent(String par_username, String title){
-        UtilDeleteParUpcomingevent(par_username,title);
+    public void leaveEvent(String par_username, String title){
+        utilDeleteParUpcomingevent(par_username,title);
     }
 
 
-    public boolean CheckIfUsernameExist(String username){
+    public boolean checkIfUsernameExist(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -747,28 +747,32 @@ public class ParFileUser {
         return WhetherExist;
     }
 
-    public void DeletePar(String username){
+    public void createPar(String username, String password){
+        utilStorePar(username, password);
+    }
+
+    public void deletePar(String username){
         //First delete relationships with events
         //Then delete relationships with organizers
         //Then delete itself
 
         //First breaking relationship with past events
-        ArrayList<String> All_past_events = UtilGetAllPastEvent(username);
+        ArrayList<String> All_past_events = utilGetAllPastEvent(username);
         for (int i=0;i<All_past_events.size();i++){
-            UtilDeleteParPastevent(username,All_past_events.get(i));
+            utilDeleteParPastevent(username,All_past_events.get(i));
         }
-        ArrayList<String> All_upcoming_events = UtilGetAllPastEvent(username);
+        ArrayList<String> All_upcoming_events = utilGetAllUpcomingEvent(username);
         for (int i=0;i<All_upcoming_events.size();i++){
-            UtilDeleteParUpcomingevent(username, All_upcoming_events.get(i));
+            utilDeleteParUpcomingevent(username, All_upcoming_events.get(i));
         }
 
         //Then break relationship with followings
-        ArrayList<String> All_following = UtilGetAllFollowing(username);
+        ArrayList<String> All_following = utilGetAllFollowing(username);
         for (int i=0;i<All_following.size();i++){
-            UtilDeleteParFollowOrg(username, All_following.get(i));
+            utilDeleteParFollowOrg(username, All_following.get(i));
         }
 
-        UtilDeletePar(username);
+        utilDeletePar(username);
 
     }
 
