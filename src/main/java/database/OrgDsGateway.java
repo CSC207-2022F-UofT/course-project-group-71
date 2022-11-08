@@ -24,7 +24,7 @@ public interface OrgDsGateway {
     //This might be abundant
     public void deleteAnEvent(String username, String title);
 
-    public boolean checkIfUserNameExist(String username);
+    public boolean checkIfUsernameExist(String username);
 
     public void createOrg(String username, String password);
 

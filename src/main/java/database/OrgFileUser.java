@@ -741,7 +741,7 @@ public class OrgFileUser implements OrgDsGateway {
         temp_eventfileuser.deleteEvent(title);
     }
 
-    public boolean checkIfUserNameExist(String username){
+    public boolean checkIfUsernameExist(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
