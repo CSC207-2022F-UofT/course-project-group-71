@@ -15,7 +15,7 @@ public interface EventDsGateway {
 
     public ArrayList<Integer> getTime(String title);
 
-    public boolean checkIfEventnameExist(String eventname);
+    public boolean checkIfEventNameExist(String eventname);
 
     //Should Delete All relationships with events and the event itself
     public void deleteEvent(String event_title);
