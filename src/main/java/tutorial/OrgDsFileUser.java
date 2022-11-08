@@ -3,10 +3,10 @@ package tutorial;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class OrgFileUser implements OrgGateway{
+public class OrgDsFileUser implements OrgDsGateway {
     public static void main(String[] args) {
-//        OrgFileUser a = new OrgFileUser();
-//        a.CreateAnEvent("D",123,3,5,"A","23515",2004,5,9,71,23);
+        OrgDsFileUser a = new OrgDsFileUser();
+        System.out.println(a.organizerSearch("s"));
     }
     public void utilStoreOrg(String username, String password){
         Statement stmt = null;
@@ -532,6 +532,52 @@ public class OrgFileUser implements OrgGateway{
 
     }
 
+    public String utilGetPassword(String username) {
+        //Return the password of the entered organizer user
+        //Used for login password check
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String password = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select password from orgfile where username = \"" + username + "\";");
+            rs.next();
+            password = rs.getString("password");
+        } catch (ClassNotFoundException e) {
+            System.out.println("NotFound");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("SQL");
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return password;
+    }
+
     public void utilPasswordUpdating(String org_username, String new_password){
         Statement stmt = null;
         Connection conn = null;
@@ -571,34 +617,21 @@ public class OrgFileUser implements OrgGateway{
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public String getPassword(String username) {
+    public ArrayList<String> utilOrganizerSearch(String about_name){
+        //This is method is used for searching method of the website
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        String password = null;
+        ArrayList<String> l = new ArrayList<String>(0);
         try {
+
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select password from orgfile where username = \"" + username + "\";";
             stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            password = rs.getString("password");
+            rs = stmt.executeQuery("select username from orgfile where username like \"%" + about_name + "%\";");
+            while (rs.next()) {
+                l.add(rs.getString("username"));
+            }
         } catch (ClassNotFoundException e) {
             System.out.println("NotFound");
             e.printStackTrace();
@@ -628,10 +661,33 @@ public class OrgFileUser implements OrgGateway{
                 }
             }
         }
-        return password;
+        return l;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public ArrayList<String> organizerSearch(String about_name){
+        return utilOrganizerSearch(about_name);
+    }
+
+
+    public String getPassword(String username) {
+        return utilGetPassword(username);
     }
 
     public void setPassword(String username, String new_password){
+        //
         utilPasswordUpdating(username, new_password);
     }
 
