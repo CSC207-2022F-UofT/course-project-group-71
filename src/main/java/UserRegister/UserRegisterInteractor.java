@@ -4,6 +4,8 @@ package UserRegister;
 import database.OrgDsGateway;
 import database.ParDsGateway;
 
+import java.util.Objects;
+
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
     final ParDsGateway parDsGateway;
     final OrgDsGateway orgDsGateway;
@@ -27,7 +29,9 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return;
 
             }
-            if (requestModel.getPassword() != requestModel.getRe_password()){
+            if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
+                System.out.println(requestModel.getPassword());
+                System.out.println(requestModel.getRe_password());
                 UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Two Passwords are different.");
                 userRegisterPresenter.prepareFailView(failureresponse);
                 System.out.println(2);
@@ -49,7 +53,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 System.out.println(4);
                 return;
             }
-            if (requestModel.getPassword() != requestModel.getRe_password()){
+            if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
                 UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Two Passwords are different.");
 
                 userRegisterPresenter.prepareFailView(failureresponse);
