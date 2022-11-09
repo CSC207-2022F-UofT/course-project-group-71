@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginPage extends JFrame implements ActionListener {
+public class LoginPage extends JPanel implements ActionListener {
 
     JRadioButton parButton = new JRadioButton();
 
@@ -17,6 +17,9 @@ public class LoginPage extends JFrame implements ActionListener {
 
     UserLoginController userLoginController;
 
+    boolean P = false;
+    boolean O = false;
+
     public LoginPage(UserLoginController controller) {
         this.userLoginController = controller;
         JLabel title = new JLabel("Login Screen");
@@ -26,6 +29,21 @@ public class LoginPage extends JFrame implements ActionListener {
         parButton.setActionCommand("P");
         JRadioButton orgButton = new JRadioButton("Organization");
         orgButton.setActionCommand("O");
+
+        parButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                P = !P;
+                if (O) { O = false; }
+            }
+        });
+        orgButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                O = !O;
+                if (P) { P = false; }
+            }
+        });
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username"), username);
@@ -43,33 +61,33 @@ public class LoginPage extends JFrame implements ActionListener {
         typeInfo.add(parButton);
         typeInfo.add(orgButton);
 
-        parButton.addActionListener(this);
-        orgButton.addActionListener(this);
-
         JPanel buttons = new JPanel();
         buttons.add(logIn);
         buttons.add(cancel);
 
         logIn.addActionListener(this);
-        cancel.addActionListener(this);
 
-        JPanel main = new JPanel();
-        main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JOptionPane.showMessageDialog(cancel.getParent(), "Clicked cancel");
+            }
+        });
 
-        main.add(title);
-        main.add(typeInfo);
-        main.add(usernameInfo);
-        main.add(passwordInfo);
-        main.add(buttons);
-        this.setContentPane(main);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.pack();
+        this.add(title);
+        this.add(typeInfo);
+        this.add(usernameInfo);
+        this.add(passwordInfo);
+        this.add(buttons);
     }
     public void actionPerformed(ActionEvent selectType) {
+        ///System.out.println(username.getText());
         try {
             userLoginController.login(
-                    parButton.getActionCommand(),
-                    orgButton.getActionCommand(),
+                    P?"P":"",
+                    O?"O":"",
                     username.getText(),
                     String.valueOf(password.getPassword()));
             JOptionPane.showMessageDialog(this, username.getText()+" created.");
