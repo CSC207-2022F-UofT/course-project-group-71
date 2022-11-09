@@ -1,3 +1,5 @@
+package UserRegister;
+
 public interface UserRegisterInputBoundary {
-    UserRegisterResponseModel create(UserRegisterRequestModel requestModel);
+    void create(UserRegisterRequestModel requestModel);
 }

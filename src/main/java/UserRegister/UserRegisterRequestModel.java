@@ -1,3 +1,5 @@
+package UserRegister;
+
 public class UserRegisterRequestModel {
 
     private String name;
