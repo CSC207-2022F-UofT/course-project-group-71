@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class ParFileUser implements ParDsGateway {
     public static void main(String[] args) {
+        ParFileUser a =new ParFileUser();
+        System.out.println(a.getPassword("dg"));
     }
 
     public void utilStorePar(String username, String password){
