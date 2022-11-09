@@ -1,3 +1,5 @@
+package tutorial;
+
 import database.OrgDsGateway;
 import database.ParDsGateway;
 import database.ParFileUser;
@@ -7,9 +9,8 @@ import user_login_use_case.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
-public class Main {
+public class HelloWorld {
     public static void main(String[] args) {
 
         // Build the main program window
@@ -20,22 +21,12 @@ public class Main {
 
         UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
 
-        ParDsGateway parDsGateway;
-        try {
-            parDsGateway = new ParFileUser();//should we in take any argument???
-        } catch (IOException e) {
-            throw new RuntimeException("Could not create file.");
-        }
+        ParDsGateway parDsGateway = new ParFileUser();//should we in take any argument???
 
         ParHomePresenter parHomePresenter =  new ParHomeResponseFormatter();
 
-        OrgDsGateway orgDsGateway;
-        try {
-            orgDsGateway = new OrgFileUser();//should we in take any argument???
-        } catch (IOException e) {
-            throw new RuntimeException("Could not create file.");
-        }
-
+        OrgDsGateway orgDsGateway= new OrgFileUser();//should we in take any argument???
+        
         OrgHomePresenter orgHomePresenter =  new OrgHomeResponseFormatter();
 
         UserLoginInputBoundary interactor = new UserLoginInteractor(
