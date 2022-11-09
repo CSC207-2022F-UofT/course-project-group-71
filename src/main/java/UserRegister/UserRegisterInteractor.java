@@ -1,6 +1,9 @@
 package UserRegister;
 
 
+import database.OrgDsGateway;
+import database.ParDsGateway;
+
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
     final ParDsGateway parDsGateway;
     final OrgDsGateway orgDsGateway;
@@ -26,7 +29,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 userRegisterPresenter.prepareFailView(failureresponse);
             }
             orgDsGateway.createOrg(requestModel.getName(),requestModel.getPassword());
-            UserRegisterResponseModel successresponse = new UserRegisterResponseModel();
+            UserRegisterResponseModel successresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "User Register Successful.");
             userRegisterPresenter.prepareSuccessView(successresponse);
 
         }else{
@@ -40,8 +43,8 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
                 userRegisterPresenter.prepareFailView(failureresponse);
             }
-            parDsGateway.createOrg(requestModel.getName(),requestModel.getPassword());
-            UserRegisterResponseModel successresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Two Passwords are different.");
+            parDsGateway.createPar(requestModel.getName(),requestModel.getPassword());
+            UserRegisterResponseModel successresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "User Register Successful.");
             userRegisterPresenter.prepareSuccessView(successresponse);
 
         }
