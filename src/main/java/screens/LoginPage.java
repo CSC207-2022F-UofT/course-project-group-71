@@ -90,7 +90,7 @@ public class LoginPage extends JPanel implements ActionListener {
                     O?"O":"",
                     username.getText(),
                     String.valueOf(password.getPassword()));
-            JOptionPane.showMessageDialog(this, username.getText()+" created.");
+            JOptionPane.showMessageDialog(this, username.getText()+" logged in.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
