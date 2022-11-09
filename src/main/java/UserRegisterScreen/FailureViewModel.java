@@ -14,7 +14,7 @@ public class FailureViewModel {
         this.message = message;
     }
 
-    void GeneratePage(){
+    public void GeneratePage(){
         JFrame jf = new JFrame();
         jf.setBounds(400,300,200,200);
 
