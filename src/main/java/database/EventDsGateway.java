@@ -20,5 +20,5 @@ public interface EventDsGateway {
     //Should Delete All relationships with events and the event itself
     public void deleteEvent(String event_title);
 
-    public ArrayList<String> getPaticipants(String title);
+    public ArrayList<String> getParticipants(String title);
 }
