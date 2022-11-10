@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 
 public class LoginPage extends JFrame implements ActionListener {
 
-    JPanel jPanel;
-
     JTextField username = new JTextField(15);
 
     JPasswordField password = new JPasswordField(15);
@@ -19,15 +17,12 @@ public class LoginPage extends JFrame implements ActionListener {
     boolean O = false;
 
     public LoginPage(UserLoginController controller) {
+
         this.setLayout(null);
 
         this.setSize(500,500);
 
         this.setLocationRelativeTo(null);
-
-        jPanel = new JPanel();
-
-        jPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.userLoginController = controller;
         JLabel title = new JLabel("Login Screen");
@@ -54,7 +49,6 @@ public class LoginPage extends JFrame implements ActionListener {
             }
         });
 
-
         JButton logIn = new JButton("Log in");
         JButton cancel = new JButton("Cancel");
 
@@ -66,7 +60,6 @@ public class LoginPage extends JFrame implements ActionListener {
         typeInfo.add(parButton);
         typeInfo.add(orgButton);
         typeInfo.setBounds (0,50, 500, 50);
-
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username"), username);
@@ -90,18 +83,11 @@ public class LoginPage extends JFrame implements ActionListener {
             }
         });
 
-       /* jPanel.add(title);
-        jPanel.add(typeInfo);
-        jPanel.add(usernameInfo);
-        jPanel.add(passwordInfo);
-        jPanel.add(buttons);*/
-
         this.add(title);
         this.add(typeInfo);
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(buttons);
-       // this.add(jPanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -116,7 +102,9 @@ public class LoginPage extends JFrame implements ActionListener {
                     O?"O":"",
                     username.getText(),
                     String.valueOf(password.getPassword()));
-            JOptionPane.showMessageDialog(this, username.getText()+" logged in.");
+            this.dispose();
+            if (P) { new ParHomePage();}
+            else { new OrgHomePage();}
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
