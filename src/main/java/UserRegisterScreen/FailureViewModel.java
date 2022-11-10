@@ -5,10 +5,7 @@ import javax.swing.*;
 public class FailureViewModel {
     private String message;
 
-    public static void main(String[] args) {
-        FailureViewModel b = new FailureViewModel("sss");
-        b.GeneratePage();
-    }
+
 
     public FailureViewModel(String message) {
         this.message = message;
