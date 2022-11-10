@@ -5,11 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginPage extends JPanel implements ActionListener {
+public class LoginPage extends JFrame implements ActionListener {
 
-    JRadioButton parButton = new JRadioButton();
-
-    JRadioButton orgButton = new JRadioButton();
+    JPanel jPanel;
 
     JTextField username = new JTextField(15);
 
@@ -21,9 +19,20 @@ public class LoginPage extends JPanel implements ActionListener {
     boolean O = false;
 
     public LoginPage(UserLoginController controller) {
+        this.setLayout(null);
+
+        this.setSize(500,500);
+
+        this.setLocationRelativeTo(null);
+
+        jPanel = new JPanel();
+
+        jPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         this.userLoginController = controller;
         JLabel title = new JLabel("Login Screen");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setBounds (0,0, 500, 50);
+        title.setHorizontalAlignment(JLabel.CENTER);
 
         JRadioButton parButton = new JRadioButton("Participant");
         parButton.setActionCommand("P");
@@ -45,10 +54,6 @@ public class LoginPage extends JPanel implements ActionListener {
             }
         });
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel("Username"), username);
-        LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel("Password"), password);
 
         JButton logIn = new JButton("Log in");
         JButton cancel = new JButton("Cancel");
@@ -60,10 +65,21 @@ public class LoginPage extends JPanel implements ActionListener {
         JPanel typeInfo = new JPanel();
         typeInfo.add(parButton);
         typeInfo.add(orgButton);
+        typeInfo.setBounds (0,50, 500, 50);
+
+
+        LabelTextPanel usernameInfo = new LabelTextPanel(
+                new JLabel("Username"), username);
+        usernameInfo.setBounds (0,100, 500, 50);
+
+        LabelTextPanel passwordInfo = new LabelTextPanel(
+                new JLabel("Password"), password);
+        passwordInfo.setBounds (0,150, 500, 50);
 
         JPanel buttons = new JPanel();
         buttons.add(logIn);
         buttons.add(cancel);
+        buttons.setBounds (0,200, 500, 50);
 
         logIn.addActionListener(this);
 
@@ -74,13 +90,23 @@ public class LoginPage extends JPanel implements ActionListener {
             }
         });
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+       /* jPanel.add(title);
+        jPanel.add(typeInfo);
+        jPanel.add(usernameInfo);
+        jPanel.add(passwordInfo);
+        jPanel.add(buttons);*/
 
         this.add(title);
         this.add(typeInfo);
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(buttons);
+       // this.add(jPanel);
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.setVisible(true);
+
     }
     public void actionPerformed(ActionEvent selectType) {
         ///System.out.println(username.getText());

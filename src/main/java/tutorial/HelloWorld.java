@@ -13,12 +13,12 @@ import java.awt.*;
 public class HelloWorld {
     public static void main(String[] args) {
 
-        // Build the main program window
+        /* Build the main program window
         JFrame application = new JFrame("Login Example");
         CardLayout cardLayout = new CardLayout();
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
-
+*/
         UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
 
         ParDsGateway parDsGateway = new ParFileUser();//should we in take any argument???
@@ -34,11 +34,12 @@ public class HelloWorld {
         UserLoginController userLoginController = new UserLoginController(interactor);
 
         // Build the GUI, plugging in the parts
-        LoginPage loginPage = new LoginPage(userLoginController);
-        screens.add(loginPage, "welcome");
+      //  LoginPage loginPage =
+        new LoginPage(userLoginController);
+     /*   screens.add(loginPage, "welcome");
         cardLayout.show(screens, "login");
         application.pack();
-        application.setVisible(true);
+        application.setVisible(true);*/
 
         // Unused screens; we'll uncomment this later
 //        WelcomeScreen welcomeScreen = new WelcomeScreen();
