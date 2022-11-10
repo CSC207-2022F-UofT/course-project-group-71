@@ -2,20 +2,20 @@ package LeaveTheEventScreen;
 
 import javax.swing.*;
 
-public class SuccessfulViewModule {
+public class FaliureViewModel {
 
     private String message;
 
     public static void main(String[] args) {
-        FaliureViewModel b = new FaliureViewModel("you have succeed in leaving this event");
+        FaliureViewModel b = new FaliureViewModel("you did not succeed in leaving this event");
         b.GeneratePage();
     }
 
-    public SuccessfulViewModule(String message){
+    public FaliureViewModel(String message){
         this.message = message;
     }
 
-    public void GeneratePage(){
+        public void GeneratePage(){
         JFrame jf = new JFrame(" ");
         jf.setBounds(500, 250, 400, 300);
 
@@ -26,4 +26,3 @@ public class SuccessfulViewModule {
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }
-
