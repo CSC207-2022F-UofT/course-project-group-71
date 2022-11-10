@@ -1,4 +1,4 @@
 package participant_leave_the_event;
 
-public interface EventLeavePresenter {
+public class EventLeavePresenter implements EventLeaveOutputBoundary{
 }

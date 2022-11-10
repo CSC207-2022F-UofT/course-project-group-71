@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class FaliureViewModule {
     public static void main(String[] args) {
+
         JFrame jf = new JFrame(" ");
         jf.setBounds(500, 250, 400, 300);
 
