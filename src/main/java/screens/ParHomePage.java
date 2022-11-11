@@ -36,11 +36,16 @@ public class ParHomePage extends JFrame {
         followedOrg.addActionListener(new ParHomeActionListener(this));
         followedOrg.setBounds (0,240, 150, 30);
 
+        JButton logOut = new JButton("Log Out");
+        account.addActionListener(new ParHomeActionListener(this));
+        account.setBounds (350,0, 150, 30);
+
         this.add(title);
         this.add(account);
         this.add(upcomingEvent);
         this.add(pastEvent);
         this.add(followedOrg);
+        this.add(logOut);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

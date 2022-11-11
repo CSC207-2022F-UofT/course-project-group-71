@@ -40,12 +40,17 @@ public class OrgHomePage extends JFrame {
         follower.addActionListener(new OrgHomeActionListener(this));
         follower.setBounds (0,240, 150, 30);
 
+        JButton logOut = new JButton("Log Out");
+        account.addActionListener(new OrgHomeActionListener(this));
+        account.setBounds (350,0, 150, 30);
+
         this.add(title);
         this.add(account);
         this.add(unpublishedEvent);
         this.add(upcomingEvent);
         this.add(pastEvent);
         this.add(follower);
+        this.add(logOut);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

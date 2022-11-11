@@ -1,9 +1,14 @@
 package screens;
+import database.OrgDsGateway;
+import database.OrgFileUser;
+import database.ParDsGateway;
+import database.ParFileUser;
 import screens.org_account.OrgAccountPage;
 import screens.org_follower.OrgFollowerPage;
 import screens.org_past_event.OrgPastEventPage;
 import screens.org_unpublished_event.OrgUnpublishedEventPage;
 import screens.org_upcoming_event.OrgUpcomingEventPage;
+import user_login_use_case.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,8 +36,26 @@ public class OrgHomeActionListener implements ActionListener {
         else if (page.equals("Past Event")) {
             new OrgPastEventPage(this.orgHomePage.getOrgUsername());
         }
-        else {
+        else if (page.equals(("Follower"))){
             new OrgFollowerPage(this.orgHomePage.getOrgUsername());
+        }
+        else {
+            UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
+
+            ParDsGateway parDsGateway = new ParFileUser();
+
+            ParHomePresenter parHomePresenter =  new ParHomeResponseFormatter();
+
+            OrgDsGateway orgDsGateway= new OrgFileUser();
+
+            OrgHomePresenter orgHomePresenter =  new OrgHomeResponseFormatter();
+
+            UserLoginInputBoundary interactor = new UserLoginInteractor(
+                    userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+
+            UserLoginController userLoginController = new UserLoginController(interactor);
+
+            new LoginPage(userLoginController);
         }
     }
 }
