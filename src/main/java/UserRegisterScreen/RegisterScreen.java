@@ -6,10 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class LoginScreen extends JPanel {
+public class RegisterScreen extends JPanel {
     private UserRegisterController registercontroller;
 
-    public LoginScreen(UserRegisterController controller){
+    public RegisterScreen(UserRegisterController controller){
         this.registercontroller = controller;
 
         JFrame jf = new JFrame("Register");

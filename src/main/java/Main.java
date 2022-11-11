@@ -2,7 +2,7 @@ import UserRegister.UserRegisterController;
 import UserRegister.UserRegisterInputBoundary;
 import UserRegister.UserRegisterInteractor;
 import UserRegister.UserRegisterPresenter;
-import UserRegisterScreen.LoginScreen;
+import UserRegisterScreen.RegisterScreen;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
@@ -25,7 +25,7 @@ public class Main {
                 par, org, presenter);
         UserRegisterController userRegisterController = new UserRegisterController(interactor);
 
-        new LoginScreen(userRegisterController);
+        new RegisterScreen(userRegisterController);
 
         // Build the GUI, plugging in the parts
 //        LoginScreen loginScreen = new LoginScreen(userRegisterController);
