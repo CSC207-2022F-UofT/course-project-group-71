@@ -1,15 +1,15 @@
 package UserRegister;
 
 
-import UserRegisterScreen.FailureViewModel;
-import UserRegisterScreen.SuccessViewModel;
+import UserRegisterScreen.RegisterFailureViewModel;
+import UserRegisterScreen.RegisterSuccessViewModel;
 
 public class UserRegisterPresenter implements UserRegisterOutputBoundary {
     public void prepareFailView(UserRegisterResponseModel failureresponse){
         String name = failureresponse.getName();
         String password = failureresponse.getPassword();
         String message = failureresponse.getMessage();
-        FailureViewModel f = new FailureViewModel(message);
+        RegisterFailureViewModel f = new RegisterFailureViewModel(message);
         f.GeneratePage();
     }
 
@@ -17,7 +17,7 @@ public class UserRegisterPresenter implements UserRegisterOutputBoundary {
         String name = successresponse.getName();
         String password = successresponse.getPassword();
         String message = successresponse.getMessage();
-        SuccessViewModel f = new SuccessViewModel(message);
+        RegisterSuccessViewModel f = new RegisterSuccessViewModel(message);
         f.GeneratePage();
     }
 }

@@ -2,15 +2,12 @@ package UserRegisterScreen;
 
 import javax.swing.*;
 
-public class SuccessViewModel {
+public class RegisterFailureViewModel {
     private String message;
 
-    public static void main(String[] args) {
-        SuccessViewModel b = new SuccessViewModel("sss");
-        b.GeneratePage();
-    }
 
-    public SuccessViewModel(String message) {
+
+    public RegisterFailureViewModel(String message) {
         this.message = message;
     }
 
