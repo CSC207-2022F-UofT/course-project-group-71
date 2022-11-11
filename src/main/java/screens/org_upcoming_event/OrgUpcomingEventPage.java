@@ -29,16 +29,17 @@ public class OrgUpcomingEventPage extends JFrame {
         back.setBounds(0, 100, 150, 30);
 
         JPanel events = new JPanel();
-        events.setLayout(null);
+        events.setBounds(150, 100, 350, 100);
+        events.setLayout(new GridLayout(0,1,0,10));
 
         OrgDsGateway orgDsGateway = new OrgFileUser();
         EventDsGateway eventDsGateway = new EventFileUser();
 
         ArrayList<String> upcomingEvents = orgDsGateway.getUpcomingEvents(orgUsername);
 
-        int numberOfEvent = upcomingEvents.size();
+    //    int numberOfEvent = upcomingEvents.size();
 
-        events.setBounds(150, 100, 350, 100*numberOfEvent);
+       // events.setBounds(150, 100, 350, 100*numberOfEvent);
 
         int eventx = 0;
         int eventy = 0;
@@ -54,6 +55,7 @@ public class OrgUpcomingEventPage extends JFrame {
             JButton eventTitle = new JButton(upcomingEventTitle);
             eventTitle.addActionListener(new OrgUpcomingEventActionListener(this));
             eventTitle.setBounds (x, y, 250, 30);
+            eventTitle.setVisible(true);
 
             ArrayList<Integer> times = eventDsGateway.getTime(upcomingEventTitle);
             String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
@@ -61,21 +63,25 @@ public class OrgUpcomingEventPage extends JFrame {
 
             JLabel eventTime = new JLabel(time);
             eventTime.setBounds (x+20, y+40, 250, 30);
+            eventTime.setVisible(true);
 
             String location = eventDsGateway.getLocation(upcomingEventTitle);
             System.out.println(location);
             JLabel eventLocation = new JLabel(location);
             eventLocation.setBounds (x+20, y+70, 250, 30);
+            eventLocation.setVisible(true);
 
             JButton notify = new JButton("Notify");
             notify.setActionCommand(upcomingEventTitle + "Notify");
             notify.addActionListener(new OrgUpcomingEventActionListener(this));
             notify.setBounds (x+250, y+15, 100, 30);
+            notify.setVisible(true);
 
             JButton delete = new JButton("Delete");
             delete.setActionCommand(upcomingEventTitle + "Delete");
             delete.addActionListener(new OrgUpcomingEventActionListener(this));
             delete.setBounds (x+250, y+55, 100, 30);
+            delete.setVisible(true);
 
             event.add(eventTitle);
             event.add(eventTime);
@@ -84,14 +90,15 @@ public class OrgUpcomingEventPage extends JFrame {
             event.add(delete);
 
             event.setBorder(BorderFactory.createLineBorder(Color.white));
+            event.setVisible(true);
 
             events.add(event);
             eventy += 100;
         }
 
-        JScrollPane eventScroll = new JScrollPane();
-        eventScroll.setViewportView(events);
+        JScrollPane eventScroll = new JScrollPane(events);
         eventScroll.setBounds(150,100,350,400);
+        eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
 
         this.add(title);
         this.add(back);
