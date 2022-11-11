@@ -33,7 +33,7 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
         String time = times.get(1) + "-" + times.get(2) + " " + times.get(3) + ":" + times.get(4);
         for (String username : parUsernames) {
             String newNotification = "Event " + eventName + " is about to happen at " + time + "!";
-            parDsGateway.setNotification(username, newNotification);
+            parDsGateway.addNotification(username, newNotification);
         }
         return orgNotifyEventPresenter.prepareSuccessView(notificationResponseModel);
     }

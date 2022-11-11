@@ -31,7 +31,8 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
             }
 
             UserLoginResponseModel accountResponseModel = new UserLoginResponseModel(username,
-                    parDsGateway.getNotification(username));
+                    parDsGateway.getNotifications(username));
+            parDsGateway.clearNotifications(username);
             return parHomePresenter.prepareHomePageView(accountResponseModel);
         }
         else if (requestModel.getUserType().equals("O")) {

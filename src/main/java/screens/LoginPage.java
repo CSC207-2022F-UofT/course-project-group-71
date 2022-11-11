@@ -1,9 +1,12 @@
 package screens;
 
+import user_login_use_case.UserLoginResponseModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class LoginPage extends JFrame implements ActionListener {
 
@@ -97,13 +100,19 @@ public class LoginPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent selectType) {
         ///System.out.println(username.getText());
         try {
-            userLoginController.login(
+            UserLoginResponseModel responseModel = userLoginController.login(
                     P?"P":"",
                     O?"O":"",
                     username.getText(),
                     String.valueOf(password.getPassword()));
             this.dispose();
-            if (P) { new ParHomePage(username.getText());}
+            if (P) {
+                new ParHomePage(username.getText());
+                ArrayList<String> notifications = responseModel.getNotifications();
+                for (String notification : notifications) {
+                    JOptionPane.showMessageDialog(this, notification);
+                }
+            }
             else { new OrgHomePage(username.getText());}
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

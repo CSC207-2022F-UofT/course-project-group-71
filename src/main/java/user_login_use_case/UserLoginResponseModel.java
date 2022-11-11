@@ -1,22 +1,24 @@
 package user_login_use_case;
 
+import java.util.ArrayList;
+
 public class UserLoginResponseModel {
     String username;
-    String notification;
+    ArrayList<String> notifications;
 
     public UserLoginResponseModel(String username) {
         this.username = username;
     }
 
-    public UserLoginResponseModel(String username, String notification) {
+    public UserLoginResponseModel(String username, ArrayList<String> notifications) {
         this.username = username;
-        this.notification = notification;
+        this.notifications = notifications;
     }
     public String getUsername() {
         return username;
     }
 
-    public String getNotification() {
-        return notification;
+    public ArrayList<String> getNotifications() {
+        return notifications;
     }
 }
