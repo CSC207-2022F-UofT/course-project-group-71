@@ -19,6 +19,7 @@ public class OrgUpcomingEventPage extends JFrame {
         this.setSize(500, 500);
 
         this.setLocationRelativeTo(null);
+
         JLabel title = new JLabel(this.orgUsername + "'s Upcoming Event Page");
         title.setBounds(0, 0, 500, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
@@ -39,13 +40,16 @@ public class OrgUpcomingEventPage extends JFrame {
 
         events.setBounds(150, 100, 350, 100*numberOfEvent);
 
+        int eventx = 0;
+        int eventy = 0;
         int x = 0;
         int y = 0;
 
         for (String upcomingEventTitle : upcomingEvents) {
             JPanel event = new JPanel();
             event.setLayout(null);
-            event.setBounds (x, y, 300, 100);
+            event.setBounds (eventx, eventy, 350, 100);
+
 
             JButton eventTitle = new JButton(upcomingEventTitle);
             eventTitle.addActionListener(new OrgUpcomingEventActionListener(this));
@@ -58,8 +62,10 @@ public class OrgUpcomingEventPage extends JFrame {
             JLabel eventTime = new JLabel(time);
             eventTime.setBounds (x, y+40, 250, 30);
 
-         //   JLabel eventLocation = new JLabel(eventDsGateway.getLocation(upcomingEventTitle));
-         //   eventLocation.setBounds (x, y+70, 250, 30);
+            String location = eventDsGateway.getLocation(upcomingEventTitle);
+            System.out.println(location);
+            JLabel eventLocation = new JLabel(location);
+            eventLocation.setBounds (x, y+70, 250, 30);
 
             JButton notify = new JButton("Notify");
             notify.setActionCommand(upcomingEventTitle + "Notify");
@@ -73,11 +79,12 @@ public class OrgUpcomingEventPage extends JFrame {
 
             event.add(eventTitle);
             event.add(eventTime);
-           // event.add(eventLocation);
+            event.add(eventLocation);
             event.add(notify);
             event.add(delete);
 
-            y += 100;
+            events.add(event);
+            eventy += 100;
         }
 
         JScrollPane eventScroll = new JScrollPane();
@@ -87,6 +94,7 @@ public class OrgUpcomingEventPage extends JFrame {
         this.add(title);
         this.add(back);
         this.add(eventScroll);
+        //this.add(events);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

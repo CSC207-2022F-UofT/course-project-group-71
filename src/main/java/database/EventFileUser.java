@@ -410,7 +410,7 @@ public class EventFileUser implements EventDsGateway{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
-            String sql = "select description from eventfile where title = '" + title + "';";
+            String sql = "select location from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rs.next();
