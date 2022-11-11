@@ -101,7 +101,7 @@ public class EventFileUser implements EventDsGateway{
         }
     }
 
-    public String utilGetOrganizer(String title){
+    public String utilGetOrganization(String title){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -553,8 +553,8 @@ public class EventFileUser implements EventDsGateway{
         return l;
     }
 
-    public String getOrganizer(String title){
-        return utilGetOrganizer(title);
+    public String getOrganization(String title){
+        return utilGetOrganization(title);
     }
 
 
@@ -640,7 +640,7 @@ public class EventFileUser implements EventDsGateway{
         }
 
 
-        String organizer = utilGetOrganizer(event_title);
+        String organizer = utilGetOrganization(event_title);
         temp_orgfileuser.utilDeleteOrgPastEvent(organizer,event_title);
         temp_orgfileuser.utilDeleteOrgUnpublishedEvent(organizer,event_title);
         temp_orgfileuser.utilDeleteOrgUpcomingevent(organizer,event_title);
