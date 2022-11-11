@@ -553,6 +553,11 @@ public class EventFileUser implements EventDsGateway{
         return l;
     }
 
+    public String getOrganizer(String title){
+        return utilGetOrganizer(title);
+    }
+
+
 
 
 
