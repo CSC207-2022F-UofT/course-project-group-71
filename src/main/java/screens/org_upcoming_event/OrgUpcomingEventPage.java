@@ -65,7 +65,6 @@ public class OrgUpcomingEventPage extends JFrame {
             eventTime.setVisible(true);
 
             String location = eventDsGateway.getLocation(upcomingEventTitle);
-            System.out.println(location);
             JLabel eventLocation = new JLabel(location);
             eventLocation.setBounds (x+20, y+70, 250, 30);
             eventLocation.setVisible(true);
@@ -95,31 +94,6 @@ public class OrgUpcomingEventPage extends JFrame {
             eventy += 100;
         }
 
-        JPanel view=new JPanel(); //普通面板
-
-        this.setLayout(null);
-
-        this.setSize(500,500);
-
-        view.setBounds(100, 100, 150, 350);
-        //将要插入到滚动面板中，定义位置及大小
-        view.setLayout(new GridLayout(100,0,10,10));
-        int y=0, i=0;
-        for (;i<=99;i++)     {
-            JButton button_link=new JButton();
-            button_link.setText("连接按钮"+i);
-            view.add(button_link);
-            button_link.setBounds(0, y, 75, 50);
-
-            JLabel text=new JLabel("连接按钮"+i);
-            view.add(text);
-            text.setBounds(75, y, 75, 50);
-
-            y=y+50;//x=x+10;
-            button_link.setVisible(true);
-            text.setVisible(true);
-        }
-        /*
         JScrollPane eventScroll = new JScrollPane(events);
         eventScroll.setBounds(150, 100, 500, 300);
         eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
@@ -129,16 +103,8 @@ public class OrgUpcomingEventPage extends JFrame {
 
 
         this.add(title);
-        this.add(back);*/
-        JScrollPane jscrollpane=new JScrollPane(view);
-
-
-        jscrollpane.setBounds(50, 50, 200, 300);//控制滚动区域的起始位置和宽度
-        // jscrollpane.setPreferredSize(new Dimension(140,300));
-//        jscrollpane.setViewportView(view);
-        jscrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
-        this.add(jscrollpane);
-     //   this.add(eventScroll);
+        this.add(back);
+        this.add(eventScroll);
         //this.add(events);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
