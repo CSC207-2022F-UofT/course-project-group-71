@@ -544,6 +544,15 @@ public class EventFileUser implements EventDsGateway{
         return l;
     }
 
+    public ArrayList<String> getParticipants(String title){
+        ArrayList<String> l1 = utilGetAllPastEventParticipant(title);
+        ArrayList<String> l2 = utilGetAllUpcomingEventParticipant(title);
+        ArrayList<String> l = new ArrayList<String>(0);
+        l.addAll(l1);
+        l.addAll(l2);
+        return l;
+    }
+
 
 
 
