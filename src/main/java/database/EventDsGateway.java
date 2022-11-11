@@ -21,4 +21,6 @@ public interface EventDsGateway {
     public void deleteEvent(String event_title);
 
     public ArrayList<String> getParticipants(String title);
+
+    public String getOrganization(String title);
 }
