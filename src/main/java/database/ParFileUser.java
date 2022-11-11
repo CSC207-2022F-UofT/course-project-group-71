@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class ParFileUser implements ParDsGateway {
     public static void main(String[] args) {
         ParFileUser a =new ParFileUser();
-        System.out.println(a.getNotification("chengben"));
+        System.out.println(a.getNotifications("chengben"));
     }
 
     public void utilStorePar(String username, String password){
@@ -604,6 +604,46 @@ public class ParFileUser implements ParDsGateway {
         }
         return l;}
 
+    public void UtilClearNotifications(String par_username){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "delete from par_notification where par_username = '" + par_username + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+
 
 
 
@@ -671,7 +711,7 @@ public class ParFileUser implements ParDsGateway {
         return password;
     }
 
-    public ArrayList<String> getNotification(String username){
+    public ArrayList<String> getNotifications(String username){
         return UtilGetNotifications(username);
     }
 
@@ -780,8 +820,15 @@ public class ParFileUser implements ParDsGateway {
             utilDeleteParFollowOrg(username, All_following.get(i));
         }
 
+        UtilClearNotifications(username);
+
         utilDeletePar(username);
 
+    }
+
+    @Override
+    public void clearNotifications(String username) {
+        UtilClearNotifications(username);
     }
 
 }
