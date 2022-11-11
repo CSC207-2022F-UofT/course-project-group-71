@@ -1,5 +1,11 @@
 package screens;
 
+import screens.org_account.OrgAccountPage;
+import screens.org_follower.OrgFollowerPage;
+import screens.org_past_event.OrgPastEventPage;
+import screens.org_unpublished_event.OrgUnpublishedEventPage;
+import screens.org_upcoming_event.OrgUpcomingEventPage;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

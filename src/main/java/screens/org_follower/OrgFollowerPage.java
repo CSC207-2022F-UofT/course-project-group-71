@@ -1,16 +1,16 @@
-package screens;
+package screens.org_follower;
 
 import javax.swing.*;
 
-public class OrgUpcomingEventPage extends JFrame {
+public class OrgFollowerPage extends JFrame {
 
-    public OrgUpcomingEventPage(){
+    public OrgFollowerPage(){
         this.setLayout(null);
 
         this.setSize(500,500);
 
         this.setLocationRelativeTo(null);
-        JLabel title = new JLabel("Org Upcoming Event Page");
+        JLabel title = new JLabel("Org Account Page");
         title.setBounds (0,0, 500, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 

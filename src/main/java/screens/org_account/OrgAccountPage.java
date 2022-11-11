@@ -1,4 +1,4 @@
-package screens;
+package screens.org_account;
 
 import javax.swing.*;
 

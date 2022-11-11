@@ -1,16 +1,16 @@
-package screens;
+package screens.org_unpublished_event;
 
 import javax.swing.*;
 
-public class OrgPastEventPage extends JFrame {
+public class OrgUnpublishedEventPage extends JFrame {
 
-    public OrgPastEventPage(){
+    public OrgUnpublishedEventPage(){
         this.setLayout(null);
 
         this.setSize(500,500);
 
         this.setLocationRelativeTo(null);
-        JLabel title = new JLabel("Org Past Event Page");
+        JLabel title = new JLabel("Org Unpublished Event Page");
         title.setBounds (0,0, 500, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
