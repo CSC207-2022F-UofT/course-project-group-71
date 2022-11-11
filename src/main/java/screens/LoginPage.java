@@ -103,7 +103,7 @@ public class LoginPage extends JFrame implements ActionListener {
                     username.getText(),
                     String.valueOf(password.getPassword()));
             this.dispose();
-            if (P) { new ParHomePage();}
+            if (P) { new ParHomePage(username.getText());}
             else { new OrgHomePage(username.getText());}
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

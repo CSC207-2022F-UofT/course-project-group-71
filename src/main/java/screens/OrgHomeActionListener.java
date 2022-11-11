@@ -20,19 +20,19 @@ public class OrgHomeActionListener implements ActionListener {
         this.orgHomePage.dispose();
 
         if (page.equals("Account")) {
-            new OrgAccountPage();
+            new OrgAccountPage(this.orgHomePage.getOrgUsername());
         }
         else if (page.equals("Unpublished Event")) {
-            new OrgUnpublishedEventPage();
+            new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
         }
         else if (page.equals("Upcoming Event")) {
             new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
         }
         else if (page.equals("Past Event")) {
-            new OrgPastEventPage();
+            new OrgPastEventPage(this.orgHomePage.getOrgUsername());
         }
         else {
-            new OrgFollowerPage();
+            new OrgFollowerPage(this.orgHomePage.getOrgUsername());
         }
     }
 }

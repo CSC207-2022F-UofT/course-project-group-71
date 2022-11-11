@@ -60,12 +60,12 @@ public class OrgUpcomingEventPage extends JFrame {
                     times.get(3) + ":" + times.get(4);
 
             JLabel eventTime = new JLabel(time);
-            eventTime.setBounds (x, y+40, 250, 30);
+            eventTime.setBounds (x+20, y+40, 250, 30);
 
             String location = eventDsGateway.getLocation(upcomingEventTitle);
             System.out.println(location);
             JLabel eventLocation = new JLabel(location);
-            eventLocation.setBounds (x, y+70, 250, 30);
+            eventLocation.setBounds (x+20, y+70, 250, 30);
 
             JButton notify = new JButton("Notify");
             notify.setActionCommand(upcomingEventTitle + "Notify");
@@ -82,6 +82,8 @@ public class OrgUpcomingEventPage extends JFrame {
             event.add(eventLocation);
             event.add(notify);
             event.add(delete);
+
+            event.setBorder(BorderFactory.createLineBorder(Color.white));
 
             events.add(event);
             eventy += 100;

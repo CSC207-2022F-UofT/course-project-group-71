@@ -1,11 +1,6 @@
 package screens.org_upcoming_event;
 
 import screens.OrgHomePage;
-import screens.ParHomePage;
-import screens.org_account.OrgAccountPage;
-import screens.org_follower.OrgFollowerPage;
-import screens.org_past_event.OrgPastEventPage;
-import screens.org_unpublished_event.OrgUnpublishedEventPage;
 import database.*;
 import org_notify_event_use_case.*;
 
@@ -52,15 +47,4 @@ public class OrgUpcomingEventActionListener implements ActionListener {
 
         }
     }
-    /*
-
-            EventDsGateway eventDsGateway = new EventFileUser();
-            ParDsGateway parDsGateway = new ParFileUser();
-
-            OrgNotifyEventPresenter orgNotifyEventPresenter = new OrgNotifyEventResponseFormatter();
-
-            OrgNotifyEventInputBoundary interactor = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway, orgNotifyEventPresenter)
-
-            OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor);
-     */
 }
