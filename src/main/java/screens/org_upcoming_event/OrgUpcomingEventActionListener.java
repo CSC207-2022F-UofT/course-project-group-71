@@ -1,0 +1,66 @@
+package screens.org_upcoming_event;
+
+import screens.OrgHomePage;
+import screens.ParHomePage;
+import screens.org_account.OrgAccountPage;
+import screens.org_follower.OrgFollowerPage;
+import screens.org_past_event.OrgPastEventPage;
+import screens.org_unpublished_event.OrgUnpublishedEventPage;
+import database.*;
+import org_notify_event_use_case.*;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class OrgUpcomingEventActionListener implements ActionListener {
+    public OrgUpcomingEventPage orgUpcomingEventPage;
+
+    public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage){
+        this.orgUpcomingEventPage = orgUpcomingEventPage;
+    }
+
+    public void actionPerformed(ActionEvent arg0){
+        String actionCommand = arg0.getActionCommand();
+
+        if (actionCommand.equals("Back")) {
+            this.orgUpcomingEventPage.dispose();
+            new OrgHomePage(this.orgUpcomingEventPage.getOrgUsername());
+        }
+        else if (actionCommand.contains("Notify")) {
+            EventDsGateway eventDsGateway = new EventFileUser();
+
+            ParDsGateway parDsGateway = new ParFileUser();
+
+            OrgNotifyEventPresenter orgNotifyEventPresenter = new OrgNotifyEventResponseFormatter();
+
+            OrgNotifyEventInputBoundary interactor = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway, orgNotifyEventPresenter);
+
+            OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor);
+
+            try {
+                OrgNotifyEventResponseModel responseModel = orgNotifyEventController.sendNotification(this.orgUpcomingEventPage.getOrgUsername());
+                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
+            }
+        }
+        else if (actionCommand.contains("Delete")) {
+
+        }
+        else {
+
+        }
+    }
+    /*
+
+            EventDsGateway eventDsGateway = new EventFileUser();
+            ParDsGateway parDsGateway = new ParFileUser();
+
+            OrgNotifyEventPresenter orgNotifyEventPresenter = new OrgNotifyEventResponseFormatter();
+
+            OrgNotifyEventInputBoundary interactor = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway, orgNotifyEventPresenter)
+
+            OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor);
+     */
+}

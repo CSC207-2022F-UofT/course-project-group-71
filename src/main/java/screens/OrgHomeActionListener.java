@@ -1,5 +1,4 @@
 package screens;
-
 import screens.org_account.OrgAccountPage;
 import screens.org_follower.OrgFollowerPage;
 import screens.org_past_event.OrgPastEventPage;
@@ -27,7 +26,7 @@ public class OrgHomeActionListener implements ActionListener {
             new OrgUnpublishedEventPage();
         }
         else if (page.equals("Upcoming Event")) {
-            new OrgUpcomingEventPage();
+            new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
         }
         else if (page.equals("Past Event")) {
             new OrgPastEventPage();

@@ -10,6 +10,8 @@ public class OrgHomePage extends JFrame {
     private String orgUsername;
     public OrgHomePage(String orgUsername){
 
+        this.orgUsername = orgUsername;
+
         this.setLayout(null);
 
         this.setSize(500,500);
@@ -17,7 +19,7 @@ public class OrgHomePage extends JFrame {
         this.setLocationRelativeTo(null);
 
 
-        JLabel title = new JLabel(orgUsername + "'s Home Page");
+        JLabel title = new JLabel(this.orgUsername + "'s Home Page");
         title.setBounds (0,0, 500, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
@@ -52,6 +54,8 @@ public class OrgHomePage extends JFrame {
 
         this.setVisible(true);
     }
+
+    public String getOrgUsername() { return this.orgUsername;}
 /*
     public class OrgHomePage extends JPanel implements ActionListener {
 
