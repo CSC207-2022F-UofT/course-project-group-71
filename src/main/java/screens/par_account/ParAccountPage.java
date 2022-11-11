@@ -22,6 +22,7 @@ public class ParAccountPage extends JFrame {
         back.setBounds(0, 100, 150, 30);
 
         this.add(title);
+        this.add(back);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

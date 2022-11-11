@@ -16,7 +16,7 @@ public class OrgUpcomingEventPage extends JFrame {
 
         this.setLayout(null);
 
-        this.setSize(500, 500);
+        this.setSize(800, 800);
 
         this.setLocationRelativeTo(null);
 
@@ -29,17 +29,16 @@ public class OrgUpcomingEventPage extends JFrame {
         back.setBounds(0, 100, 150, 30);
 
         JPanel events = new JPanel();
-        events.setBounds(150, 100, 350, 100);
-        events.setLayout(new GridLayout(0,1,0,10));
+        events.setBounds(150,100,500,300);
 
         OrgDsGateway orgDsGateway = new OrgFileUser();
         EventDsGateway eventDsGateway = new EventFileUser();
 
         ArrayList<String> upcomingEvents = orgDsGateway.getUpcomingEvents(orgUsername);
 
-    //    int numberOfEvent = upcomingEvents.size();
+        int numberOfEvent = upcomingEvents.size();
 
-       // events.setBounds(150, 100, 350, 100*numberOfEvent);
+        events.setLayout(new GridLayout(numberOfEvent,0,0,10));
 
         int eventx = 0;
         int eventy = 0;
@@ -96,13 +95,50 @@ public class OrgUpcomingEventPage extends JFrame {
             eventy += 100;
         }
 
+        JPanel view=new JPanel(); //普通面板
+
+        this.setLayout(null);
+
+        this.setSize(500,500);
+
+        view.setBounds(100, 100, 150, 350);
+        //将要插入到滚动面板中，定义位置及大小
+        view.setLayout(new GridLayout(100,0,10,10));
+        int y=0, i=0;
+        for (;i<=99;i++)     {
+            JButton button_link=new JButton();
+            button_link.setText("连接按钮"+i);
+            view.add(button_link);
+            button_link.setBounds(0, y, 75, 50);
+
+            JLabel text=new JLabel("连接按钮"+i);
+            view.add(text);
+            text.setBounds(75, y, 75, 50);
+
+            y=y+50;//x=x+10;
+            button_link.setVisible(true);
+            text.setVisible(true);
+        }
+        /*
         JScrollPane eventScroll = new JScrollPane(events);
-        eventScroll.setBounds(150,100,350,400);
+        eventScroll.setBounds(150, 100, 500, 300);
         eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+        eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        eventScroll.setVisible(true);
+
+
 
         this.add(title);
-        this.add(back);
-        this.add(eventScroll);
+        this.add(back);*/
+        JScrollPane jscrollpane=new JScrollPane(view);
+
+
+        jscrollpane.setBounds(50, 50, 200, 300);//控制滚动区域的起始位置和宽度
+        // jscrollpane.setPreferredSize(new Dimension(140,300));
+//        jscrollpane.setViewportView(view);
+        jscrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+        this.add(jscrollpane);
+     //   this.add(eventScroll);
         //this.add(events);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
