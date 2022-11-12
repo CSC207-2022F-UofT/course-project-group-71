@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class ParFileUser implements ParDsGateway {
     public static void main(String[] args) {
         ParFileUser a =new ParFileUser();
-        a.addNotification("chengben","sss");
+        a.addNotification("sss","111");
     }
 
     public void utilStorePar(String username, String password){
