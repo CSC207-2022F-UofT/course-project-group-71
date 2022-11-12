@@ -1,9 +1,9 @@
-package org_delete_use_case;
+package org_delete_event_use_case;
 
-public class EventDeleteRequestModel {
+public class OrgDeleteEventRequestModel {
 
     private String eventName;
-    public EventDeleteRequestModel(String eventName) {
+    public OrgDeleteEventRequestModel(String eventName) {
         this.eventName = eventName;
     }
     public String getEventName() {

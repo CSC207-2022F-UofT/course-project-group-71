@@ -1,10 +1,10 @@
-package org_delete_use_case;
+package org_delete_event_use_case;
 
-public class EventDeleteResponseModel {
+public class OrgDeleteEventResponseModel {
     String eventName;
     String message;
 
-    public EventDeleteResponseModel(String eventName) {
+    public OrgDeleteEventResponseModel(String eventName) {
         this.eventName = eventName;
     }
 

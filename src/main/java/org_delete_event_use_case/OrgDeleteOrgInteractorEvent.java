@@ -1,29 +1,29 @@
-package org_delete_use_case;
+package org_delete_event_use_case;
 
 import database.*;
 
 import java.util.ArrayList;
 
-public class EventDeleteInteractor implements EventDeleteInputBoundary {
+public class OrgDeleteOrgInteractorEvent implements OrgDeleteEventInputBoundary {
 
     private EventDsGateway eventDsGateway;
     private OrgDsGateway orgDsGateway;
     private ParDsGateway parDsGateway;
-    private EventDeletePresenter eventDeletePresenter;
+    private OrgDeleteEventPresenter orgDeleteEventPresenter;
 
-    public EventDeleteInteractor(EventDsGateway eventDsGateway,
-                                 OrgDsGateway orgDsGateway,
-                                 ParDsGateway parDsGateway,
-                                 EventDeletePresenter eventDeletePresenter) {
+    public OrgDeleteOrgInteractorEvent(EventDsGateway eventDsGateway,
+                                       OrgDsGateway orgDsGateway,
+                                       ParDsGateway parDsGateway,
+                                       OrgDeleteEventPresenter orgDeleteEventPresenter) {
         this.eventDsGateway = eventDsGateway;
         this.orgDsGateway = orgDsGateway;
         this.parDsGateway = parDsGateway;
-        this.eventDeletePresenter = eventDeletePresenter;
+        this.orgDeleteEventPresenter = orgDeleteEventPresenter;
     }
 
     @Override
-    public EventDeleteResponseModel delete(EventDeleteRequestModel eventDeleteRequestModel) {
-        String eventName = eventDeleteRequestModel.getEventName();
+    public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) {
+        String eventName = orgDeleteEventRequestModel.getEventName();
         String orgUsername = eventDsGateway.getOrganization(eventName);
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
         String newNotification = "Event " + eventName + " is canceled";
@@ -37,7 +37,7 @@ public class EventDeleteInteractor implements EventDeleteInputBoundary {
         orgDsGateway.deleteAnEvent(orgUsername, eventName);
         eventDsGateway.deleteEvent(eventName);
 
-        EventDeleteResponseModel eventDeleteResponseModel = new EventDeleteResponseModel(eventName);
-        return eventDeletePresenter.prepareSuccessView(eventDeleteResponseModel);
+        OrgDeleteEventResponseModel orgDeleteEventResponseModel = new OrgDeleteEventResponseModel(eventName);
+        return orgDeleteEventPresenter.prepareSuccessView(orgDeleteEventResponseModel);
     }
 }
