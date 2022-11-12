@@ -4,17 +4,17 @@ import database.*;
 
 import java.util.ArrayList;
 
-public class OrgDeleteOrgInteractorEvent implements OrgDeleteEventInputBoundary {
+public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
 
     private EventDsGateway eventDsGateway;
     private OrgDsGateway orgDsGateway;
     private ParDsGateway parDsGateway;
     private OrgDeleteEventPresenter orgDeleteEventPresenter;
 
-    public OrgDeleteOrgInteractorEvent(EventDsGateway eventDsGateway,
-                                       OrgDsGateway orgDsGateway,
-                                       ParDsGateway parDsGateway,
-                                       OrgDeleteEventPresenter orgDeleteEventPresenter) {
+    public OrgDeleteEventInteractor(EventDsGateway eventDsGateway,
+                                    OrgDsGateway orgDsGateway,
+                                    ParDsGateway parDsGateway,
+                                    OrgDeleteEventPresenter orgDeleteEventPresenter) {
         this.eventDsGateway = eventDsGateway;
         this.orgDsGateway = orgDsGateway;
         this.parDsGateway = parDsGateway;
