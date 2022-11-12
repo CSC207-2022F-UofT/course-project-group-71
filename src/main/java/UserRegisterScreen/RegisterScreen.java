@@ -14,7 +14,7 @@ public class RegisterScreen extends JPanel {
 
         JFrame jf = new JFrame("Register");
         jf.setLayout(new FlowLayout(FlowLayout.LEFT));
-        jf.setBounds(460,300,300,200);
+        jf.setBounds(460,300,300,500);
 
         JLabel title = new JLabel("Register A user");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
