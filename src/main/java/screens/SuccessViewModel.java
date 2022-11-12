@@ -13,7 +13,7 @@ public class SuccessViewModel {
     public void generatePage() {
         JFrame frame= new JFrame();
         JPanel panelMain= new JPanel();
-        panelMain.add(new JLabel("You Are Following Organizer:"+ this.orgName ));
+        panelMain.add(new JLabel("You Are Following Organizer:"+ this.orgName, SwingConstants.CENTER));
         frame.setContentPane(panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("System Message");
