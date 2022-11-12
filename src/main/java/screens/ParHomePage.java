@@ -27,7 +27,6 @@ public class ParHomePage extends JFrame implements ActionListener {
 
         this.setLocationRelativeTo(null);
 
-
         JLabel title = new JLabel(this.parUsername + "'s Home Page");
         title.setBounds (0,0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);

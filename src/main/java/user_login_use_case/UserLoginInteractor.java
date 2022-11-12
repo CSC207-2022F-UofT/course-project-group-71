@@ -30,9 +30,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
                 return userLoginPresenter.prepareFailView("Password doesn't match.");
             }
 
-            UserLoginResponseModel accountResponseModel = new UserLoginResponseModel(username,
-                    parDsGateway.getNotifications(username));
-            parDsGateway.clearNotifications(username);
+            UserLoginResponseModel accountResponseModel = new UserLoginResponseModel(username);
             return parHomePresenter.prepareHomePageView(accountResponseModel);
         }
         else if (requestModel.getUserType().equals("O")) {
