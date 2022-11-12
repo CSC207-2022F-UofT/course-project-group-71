@@ -2,6 +2,9 @@ package screens;
 
 import javax.swing.*;
 
+import static tutorial.HelloWorld.getConstantX;
+import static tutorial.HelloWorld.getConstantY;
+
 public class OrgHomePage extends JFrame {
 
     private String orgUsername;
@@ -11,13 +14,13 @@ public class OrgHomePage extends JFrame {
 
         this.setLayout(null);
 
-        this.setSize(500,500);
+        this.setSize(getConstantX(),getConstantY());
 
         this.setLocationRelativeTo(null);
 
 
         JLabel title = new JLabel(this.orgUsername + "'s Home Page");
-        title.setBounds (0,0, 500, 50);
+        title.setBounds (0,0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
         JButton account = new JButton("Account");
@@ -41,8 +44,8 @@ public class OrgHomePage extends JFrame {
         follower.setBounds (0,240, 150, 30);
 
         JButton logOut = new JButton("Log Out");
-        account.addActionListener(new OrgHomeActionListener(this));
-        account.setBounds (350,0, 150, 30);
+        logOut.addActionListener(new OrgHomeActionListener(this));
+        logOut.setBounds (0,320, 150, 30);
 
         this.add(title);
         this.add(account);

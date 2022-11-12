@@ -33,8 +33,9 @@ public class OrgUpcomingEventActionListener implements ActionListener {
 
             OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor);
 
+            String eventName = actionCommand.substring(0,actionCommand.length()-6);
             try {
-                OrgNotifyEventResponseModel responseModel = orgNotifyEventController.sendNotification(this.orgUpcomingEventPage.getOrgUsername());
+                OrgNotifyEventResponseModel responseModel = orgNotifyEventController.sendNotification(eventName);
                 JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());

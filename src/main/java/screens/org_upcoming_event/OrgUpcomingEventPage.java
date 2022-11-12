@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static tutorial.HelloWorld.getConstantX;
+import static tutorial.HelloWorld.getConstantY;
+
 public class OrgUpcomingEventPage extends JFrame {
 
     private String orgUsername;
@@ -16,12 +19,12 @@ public class OrgUpcomingEventPage extends JFrame {
 
         this.setLayout(null);
 
-        this.setSize(800, 800);
+        this.setSize(getConstantX(), getConstantY());
 
         this.setLocationRelativeTo(null);
 
         JLabel title = new JLabel(this.orgUsername + "'s Upcoming Event Page");
-        title.setBounds(0, 0, 500, 50);
+        title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
         JButton back = new JButton("Back");
@@ -29,7 +32,7 @@ public class OrgUpcomingEventPage extends JFrame {
         back.setBounds(0, 100, 150, 30);
 
         JPanel events = new JPanel();
-        events.setBounds(150,100,500,300);
+        events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
         OrgDsGateway orgDsGateway = new OrgFileUser();
         EventDsGateway eventDsGateway = new EventFileUser();
@@ -38,18 +41,12 @@ public class OrgUpcomingEventPage extends JFrame {
 
         int numberOfEvent = upcomingEvents.size();
 
-        events.setLayout(new GridLayout(numberOfEvent,0,0,10));
+        events.setLayout(new GridLayout(numberOfEvent,0,10,10));
 
-        int eventx = 0;
-        int eventy = 0;
         int x = 0;
         int y = 0;
 
         for (String upcomingEventTitle : upcomingEvents) {
-            JPanel event = new JPanel();
-            event.setLayout(null);
-            event.setBounds (eventx, eventy, 350, 100);
-
 
             JButton eventTitle = new JButton(upcomingEventTitle);
             eventTitle.addActionListener(new OrgUpcomingEventActionListener(this));
@@ -81,31 +78,23 @@ public class OrgUpcomingEventPage extends JFrame {
             delete.setBounds (x+250, y+55, 100, 30);
             delete.setVisible(true);
 
-            event.add(eventTitle);
-            event.add(eventTime);
-            event.add(eventLocation);
-            event.add(notify);
-            event.add(delete);
-
-            event.setBorder(BorderFactory.createLineBorder(Color.white));
-            event.setVisible(true);
-
-            events.add(event);
-            eventy += 100;
+            events.add(eventTitle);
+            events.add(eventTime);
+            events.add(eventLocation);
+            events.add(notify);
+            events.add(delete);
+            y += 100;
         }
 
         JScrollPane eventScroll = new JScrollPane(events);
-        eventScroll.setBounds(150, 100, 500, 300);
-        eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+        eventScroll.setBounds(150, 100, getConstantX()-170,getConstantY()-150);
         eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         eventScroll.setVisible(true);
-
-
 
         this.add(title);
         this.add(back);
         this.add(eventScroll);
-        //this.add(events);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

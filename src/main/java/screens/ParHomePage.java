@@ -1,24 +1,41 @@
 package screens;
 
+import par_show_notification_use_case.ParShowNotificationResponseModel;
+import user_login_use_case.UserLoginResponseModel;
+
 import javax.swing.*;
 
-public class ParHomePage extends JFrame {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import static tutorial.HelloWorld.getConstantX;
+import static tutorial.HelloWorld.getConstantY;
+
+public class ParHomePage extends JFrame implements ActionListener {
 
     private String parUsername;
+    ParShowNotificationController parShowNotificationController;
+
     public ParHomePage(String parUsername){
 
         this.parUsername = parUsername;
 
         this.setLayout(null);
 
-        this.setSize(500,500);
+        this.setSize(getConstantX(),getConstantY());
 
         this.setLocationRelativeTo(null);
 
 
         JLabel title = new JLabel(this.parUsername + "'s Home Page");
-        title.setBounds (0,0, 500, 50);
+        title.setBounds (0,0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
+
+        JButton showNotifications = new JButton("Show Notifications");
+        showNotifications.addActionListener(this);
+        showNotifications.setBounds (0,0, 150, 30);
+        showNotifications.setHorizontalAlignment(getConstantX()/2);
 
         JButton account = new JButton("Account");
         account.addActionListener(new ParHomeActionListener(this));
@@ -37,10 +54,11 @@ public class ParHomePage extends JFrame {
         followedOrg.setBounds (0,240, 150, 30);
 
         JButton logOut = new JButton("Log Out");
-        account.addActionListener(new ParHomeActionListener(this));
-        account.setBounds (350,0, 150, 30);
+        logOut.addActionListener(new ParHomeActionListener(this));
+        logOut.setBounds (0,320, 150, 30);
 
         this.add(title);
+        this.add(showNotifications);
         this.add(account);
         this.add(upcomingEvent);
         this.add(pastEvent);
@@ -54,4 +72,12 @@ public class ParHomePage extends JFrame {
 
     public String getParUsername() { return this.parUsername;}
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            parShowNotificationController.showNotification(this.getParUsername());
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, exception.getMessage());
+        }
+    }
 }

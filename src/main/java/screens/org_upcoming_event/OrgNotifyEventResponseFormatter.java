@@ -6,7 +6,7 @@ import org_notify_event_use_case.OrgNotifyEventResponseModel;
 public class OrgNotifyEventResponseFormatter implements OrgNotifyEventPresenter {
     @Override
     public OrgNotifyEventResponseModel prepareSuccessView(OrgNotifyEventResponseModel response) {
-        response.setMessage("Notification sent for" + response.getEventName() + "!");
+        response.setMessage("Notification sent for " + response.getEventName() + "!");
         return response;
     }
 

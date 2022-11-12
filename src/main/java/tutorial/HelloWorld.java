@@ -7,7 +7,12 @@ import database.OrgFileUser;
 import screens.*;
 import user_login_use_case.*;
 
+
+
 public class HelloWorld {
+
+    static int CONSTANT_X = 800;
+    static int CONSTANT_Y = 800;
     public static void main(String[] args) {
 
         UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
@@ -28,5 +33,8 @@ public class HelloWorld {
         new LoginPage(userLoginController);
 
     }
+
+    public static int getConstantX(){return CONSTANT_X;}
+    public static int getConstantY(){return CONSTANT_Y;}
 
 }

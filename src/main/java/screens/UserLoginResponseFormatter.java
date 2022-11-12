@@ -9,6 +9,6 @@ public class UserLoginResponseFormatter implements UserLoginPresenter {
     @Override
 
     public UserLoginResponseModel prepareFailView(String error) {
-        throw new UserLoginFailedView(error);
+        throw new ShowMessageView(error);
     }
 }

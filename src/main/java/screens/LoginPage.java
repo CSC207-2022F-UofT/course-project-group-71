@@ -1,5 +1,5 @@
 package screens;
-
+import tutorial.*;
 import user_login_use_case.UserLoginResponseModel;
 
 import javax.swing.*;
@@ -19,17 +19,20 @@ public class LoginPage extends JFrame implements ActionListener {
     boolean P = false;
     boolean O = false;
 
+    int x = 300;
+    int y = 300;
+
     public LoginPage(UserLoginController controller) {
 
         this.setLayout(null);
 
-        this.setSize(500,500);
+        this.setSize(x,y);
 
         this.setLocationRelativeTo(null);
 
         this.userLoginController = controller;
         JLabel title = new JLabel("Login Screen");
-        title.setBounds (0,0, 500, 50);
+        title.setBounds (0,0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
         JRadioButton parButton = new JRadioButton("Participant");
@@ -62,27 +65,27 @@ public class LoginPage extends JFrame implements ActionListener {
         JPanel typeInfo = new JPanel();
         typeInfo.add(parButton);
         typeInfo.add(orgButton);
-        typeInfo.setBounds (0,50, 500, 50);
+        typeInfo.setBounds (0,50, x, 50);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username"), username);
-        usernameInfo.setBounds (0,100, 500, 50);
+        usernameInfo.setBounds (0,100, x, 50);
 
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Password"), password);
-        passwordInfo.setBounds (0,150, 500, 50);
+        passwordInfo.setBounds (0,150, x, 50);
 
         JPanel buttons = new JPanel();
         buttons.add(logIn);
         buttons.add(cancel);
-        buttons.setBounds (0,200, 500, 50);
+        buttons.setBounds (0,200, x, 50);
 
         logIn.addActionListener(this);
 
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(cancel.getParent(), "Clicked cancel");
+               JOptionPane.showMessageDialog(cancel.getParent(), "Clicked cancel");
             }
         });
 
@@ -108,10 +111,6 @@ public class LoginPage extends JFrame implements ActionListener {
             this.dispose();
             if (P) {
                 new ParHomePage(username.getText());
-                ArrayList<String> notifications = responseModel.getNotifications();
-                for (String notification : notifications) {
-                    JOptionPane.showMessageDialog(this, notification);
-                }
             }
             else { new OrgHomePage(username.getText());}
         } catch (Exception e) {
