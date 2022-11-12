@@ -8,7 +8,7 @@ import database.ParFileUser;
 import user_register_use_case.UserRegisterController;
 import user_register_use_case.UserRegisterInputBoundary;
 import user_register_use_case.UserRegisterInteractor;
-import user_register_use_case.UserRegisterPresenter;
+import user_register_use_case.UserRegisterResponseFormatter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +22,7 @@ public class RegisterActionListener implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         ParDsGateway par = new ParFileUser();
         OrgDsGateway org = new OrgFileUser();
-        UserRegisterPresenter presenter = new UserRegisterPresenter();
+        UserRegisterResponseFormatter presenter = new UserRegisterResponseFormatter();
         UserRegisterInputBoundary interactor = new UserRegisterInteractor(
                 par, org, presenter);
         UserRegisterController userRegisterController = new UserRegisterController(interactor);

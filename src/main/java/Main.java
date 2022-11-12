@@ -1,7 +1,7 @@
 import user_register_use_case.UserRegisterController;
 import user_register_use_case.UserRegisterInputBoundary;
 import user_register_use_case.UserRegisterInteractor;
-import user_register_use_case.UserRegisterPresenter;
+import user_register_use_case.UserRegisterResponseFormatter;
 import UserRegisterScreen.RegisterScreen;
 import database.OrgDsGateway;
 import database.OrgFileUser;
@@ -20,7 +20,7 @@ public class Main {
         // Create the parts to plug into the Use Case+Entities engine
         ParDsGateway par = new ParFileUser();
         OrgDsGateway org = new OrgFileUser();
-        UserRegisterPresenter presenter = new UserRegisterPresenter();
+        UserRegisterResponseFormatter presenter = new UserRegisterResponseFormatter();
         UserRegisterInputBoundary interactor = new UserRegisterInteractor(
                 par, org, presenter);
         UserRegisterController userRegisterController = new UserRegisterController(interactor);

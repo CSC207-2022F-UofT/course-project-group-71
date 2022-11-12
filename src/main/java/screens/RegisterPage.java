@@ -3,14 +3,17 @@ package screens;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import user_register_use_case.*;
 
-public class LoginPage extends JFrame implements ActionListener {
+public class RegisterPage extends JFrame implements ActionListener {
 
     JTextField username = new JTextField(15);
 
     JPasswordField password = new JPasswordField(15);
+    
+    JPasswordField retypePassword = new JPasswordField(15);
 
-    UserLoginController userLoginController;
+    UserRegisterController userRegisterController;
 
     boolean P = false;
     boolean O = false;
@@ -18,7 +21,7 @@ public class LoginPage extends JFrame implements ActionListener {
     int x = 300;
     int y = 300;
 
-    public LoginPage(UserLoginController controller) {
+    public RegisterPage(UserRegisterController controller) {
 
         this.setLayout(null);
 
@@ -26,8 +29,8 @@ public class LoginPage extends JFrame implements ActionListener {
 
         this.setLocationRelativeTo(null);
 
-        this.userLoginController = controller;
-        JLabel title = new JLabel("Login Screen");
+        this.userRegisterController = controller;
+        JLabel title = new JLabel("Register Screen");
         title.setBounds (0,0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
@@ -51,9 +54,9 @@ public class LoginPage extends JFrame implements ActionListener {
             }
         });
 
-        JButton logIn = new JButton("Log in");
-        JButton cancel = new JButton("Cancel");
         JButton register = new JButton("Register");
+        JButton cancel = new JButton("Cancel");
+        JButton login = new JButton("Login");
 
         ButtonGroup userType = new ButtonGroup();
         userType.add(parButton);
@@ -72,16 +75,20 @@ public class LoginPage extends JFrame implements ActionListener {
                 new JLabel("Password"), password);
         passwordInfo.setBounds (0,150, x, 50);
 
+        LabelTextPanel retypePasswordInfo = new LabelTextPanel(
+                new JLabel("Retype Password"), retypePassword);
+        passwordInfo.setBounds (0,150, x, 50);
+
         JPanel buttons = new JPanel();
 
+        buttons.add(login);
         buttons.add(register);
-        buttons.add(logIn);
         buttons.add(cancel);
         buttons.setBounds (0,200, x, 50);
 
         register.addActionListener(new RegisterActionListener(this));
 
-        logIn.addActionListener(this);
+        login.addActionListener(this);
 
         cancel.addActionListener(new ActionListener() {
             @Override
@@ -104,11 +111,12 @@ public class LoginPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent selectType) {
         ///System.out.println(username.getText());
         try {
-            userLoginController.login(
+            userRegisterController.create(
                     P?"P":"",
                     O?"O":"",
                     username.getText(),
-                    String.valueOf(password.getPassword()));
+                    String.valueOf(password.getPassword()),
+                    String.valueOf(retypePassword.getPassword()));
             this.dispose();
             if (P) {new ParHomePage(username.getText());}
             else { new OrgHomePage(username.getText());}

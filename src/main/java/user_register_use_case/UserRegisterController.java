@@ -1,16 +1,20 @@
 package user_register_use_case;
 
+import user_login_use_case.UserRegisterRequestModel;
+import user_login_use_case.UserRegisterResponseModel;
+
 public class UserRegisterController {
     final UserRegisterInputBoundary interactor;
-    public UserRegisterController(UserRegisterInputBoundary potential_interactor){
+
+    public UserRegisterController(UserRegisterInputBoundary potential_interactor) {
         this.interactor = potential_interactor;
 
     }
 
-    public void create(String username, String password, String re_password, boolean whether_org){
-        UserRegisterRequestModel requestmodel = new UserRegisterRequestModel(username, password, re_password, whether_org);
+    UserRegisterResponseModel create(String isParticipant, String isOrganization, String username, String password, String retypePassword) {
+        UserRegisterRequestModel requestModel = new UserRegisterRequestModel(
+                isParticipant, isOrganization, username, password, retypePassword);
 
-        interactor.create(requestmodel);
+        return interactor.create(requestModel);
     }
-
 }

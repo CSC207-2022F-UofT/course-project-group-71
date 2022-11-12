@@ -19,55 +19,45 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
     }
 
-    public void create(UserRegisterRequestModel requestModel){
-        if (requestModel.isWhether_org()){
+    public UserRegisterResponseModel create(UserRegisterRequestModel requestModel){
+        if (requestModel.getUserType().equals("O")){
             //Then proceed as organizer
             if (orgDsGateway.checkIfUsernameExist(requestModel.getName()) == true){
                 UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Organizer already exists.");
-                userRegisterPresenter.prepareFailView(failureresponse);
-                System.out.println(1);
-                return;
+                return userRegisterPresenter.prepareFailView(failureresponse);
 
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
                 System.out.println(requestModel.getPassword());
                 System.out.println(requestModel.getRe_password());
                 UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Two Passwords are different.");
-                userRegisterPresenter.prepareFailView(failureresponse);
-                System.out.println(2);
-                return;
+                return userRegisterPresenter.prepareFailView(failureresponse);
 
             }
             orgDsGateway.createOrg(requestModel.getName(),requestModel.getPassword());
             UserRegisterResponseModel successresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "User Register Successful.");
-            userRegisterPresenter.prepareSuccessView(successresponse);
-            System.out.println(3);
-            return;
+            return userRegisterPresenter.prepareSuccessView(successresponse);
 
 
-        }else{
+        }else if (requestModel.getUserType().equals("P")){
             //Proceed as participant
             if (parDsGateway.checkIfUsernameExist(requestModel.getName()) == true){
                 UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Participant already exists.");
-                userRegisterPresenter.prepareFailView(failureresponse);
-                System.out.println(4);
-                return;
+                return userRegisterPresenter.prepareFailView(failureresponse);
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
                 UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Two Passwords are different.");
-
-                userRegisterPresenter.prepareFailView(failureresponse);
-                System.out.println(5);
-                return;
+                return userRegisterPresenter.prepareFailView(failureresponse);
 
             }
             parDsGateway.createPar(requestModel.getName(),requestModel.getPassword());
             UserRegisterResponseModel successresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "User Register Successful.");
-            userRegisterPresenter.prepareSuccessView(successresponse);
-            System.out.println(6);
-            return;
+            return userRegisterPresenter.prepareSuccessView(successresponse);
 
 
+        }
+        else {
+            return userRegisterPresenter.prepareFailView("Please select your account type.");
         }
 
     }

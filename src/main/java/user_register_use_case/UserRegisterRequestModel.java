@@ -2,18 +2,20 @@ package user_register_use_case;
 
 public class UserRegisterRequestModel {
 
+    private String isParticipant;
+
+    private  String isOrganization;
+
     private String name;
     private String password;
     private String re_password;
 
-    //If organizer, set to true, if participant, set to false
-    private boolean whether_org;
-
-    public UserRegisterRequestModel(String name, String password, String re_password, boolean whether_org){
+    public UserRegisterRequestModel(String isParticipant, String isOrganization, String name, String password, String re_password){
+        this.isParticipant = isParticipant;
+        this.isOrganization = isOrganization;
         this.name = name;
         this.password = password;
         this.re_password = re_password;
-        this.whether_org = whether_org;
     }
 
     public String getName() {
@@ -39,13 +41,9 @@ public class UserRegisterRequestModel {
     public void setRe_password(String re_password) {
         this.re_password = re_password;
     }
-
-    public boolean isWhether_org() {
-        return whether_org;
+    public String getUserType() {
+        if (isParticipant.equals("P")) { return isParticipant; }
+        else if (isOrganization.equals("O")) { return isOrganization; }
+        else { return "N/A"; }
     }
-
-    public void setWhether_org(boolean whether_org) {
-        this.whether_org = whether_org;
-    }
-
 }
