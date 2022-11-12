@@ -6,7 +6,9 @@ import java.util.ArrayList;
 public class ParFileUser implements ParDsGateway {
     public static void main(String[] args) {
         ParFileUser a =new ParFileUser();
-        System.out.println(a.getNotifications("chengben"));
+        ParFileUser b =new ParFileUser();
+        a.addNotification("sss","111");
+
     }
 
     public void utilStorePar(String username, String password){
@@ -525,7 +527,7 @@ public class ParFileUser implements ParDsGateway {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
 //            String sql = "update parfile set notification = '" + new_notification + "' where username = '" + par_username + "';";
-            String sql = "insert into par_notification(par_username, notification) values(" + par_username + "," + new_notification + ")";
+            String sql = "insert into par_notification(par_username, notification) values('" + par_username + "','" + new_notification + "')";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -731,8 +733,9 @@ public class ParFileUser implements ParDsGateway {
         utilPasswordUpdating(username, new_password);
     }
 
-    public void addNotification(String username, String new_notification){
+    public boolean addNotification(String username, String new_notification){
         utilNotificationUpdating(username,new_notification);
+        return false;
     }
 
     public void followOrg(String par_username, String org_username){
