@@ -6,13 +6,12 @@ import screens.EventCreationFailed;
 public class EventCreatePresenter implements EventCreateOutputBoundary {
 
     @Override
-    public EventCreateResponseModel prepareSuccessView(EventCreateResponseModel responseModel) {
-        // TODO: What exactly needs to be returned here? Is it really the response model?
-        return responseModel;
+    public void prepareSuccessView(EventCreateResponseModel responseModel) {
+        // TODO: What exactly needs to be returned here?
     }
 
     @Override
-    public EventCreateResponseModel prepareFailView(String error) {
+    public void prepareFailView(String error) {
         throw new EventCreationFailed(error);
     }
 }

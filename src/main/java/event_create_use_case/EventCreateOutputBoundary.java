@@ -1,7 +1,7 @@
 package event_create_use_case;
 
 public interface EventCreateOutputBoundary {
-    EventCreateResponseModel prepareSuccessView(EventCreateResponseModel responseModel);
+    void prepareSuccessView(EventCreateResponseModel responseModel);
 
-    EventCreateResponseModel prepareFailView(String error);
+    void prepareFailView(String error);
 }

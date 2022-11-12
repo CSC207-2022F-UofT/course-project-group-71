@@ -12,7 +12,7 @@ public class EventCreateController {
         this.userInput = userInput;
     }
 
-    EventCreateResponseModel create(String title,
+    public void create(String title,
                                     int status,
                                     int eventType,
                                     String description,
