@@ -9,23 +9,19 @@ public class FollowOrgRequestModel {
         this.org_username=org_username;
     }
 
-    public String getParUsername(){
-        return this.par_username;
+    public String getPar_username() {
+        return par_username;
     }
 
-    public void setParUsername(String new_par_name){
-        this.par_username= new_par_name;
+    public void setPar_username(String par_username) {
+        this.par_username = par_username;
     }
 
-    public String getOrgUsername(){
-        return this.org_username;
+    public void setOrg_username(String org_username) {
+        this.org_username = org_username;
     }
 
-    public void setOrgUsername(String new_org_name){
-        this.org_username= new_org_name;
+    public String getOrg_username() {
+        return org_username;
     }
-
-
-
-
 }
