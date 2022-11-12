@@ -103,7 +103,7 @@ public class LoginPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent selectType) {
         ///System.out.println(username.getText());
         try {
-            UserLoginResponseModel responseModel = userLoginController.login(
+            userLoginController.login(
                     P?"P":"",
                     O?"O":"",
                     username.getText(),

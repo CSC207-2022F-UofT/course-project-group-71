@@ -1,4 +1,4 @@
-package screens;
+package screens.par_show_notification;
 
 import par_show_notification_use_case.*;
 
@@ -9,7 +9,7 @@ public class ParShowNotificationController {
         this.userInput = accountGateway;
     }
 
-    ParShowNotificationResponseModel showNotification(String username) {
+    public ParShowNotificationResponseModel showNotification(String username) {
         ParShowNotificationRequestModel requestModel = new ParShowNotificationRequestModel(username);
 
         return userInput.showNotification(requestModel);

@@ -24,6 +24,7 @@ public class ParShowNotificationInteractor implements ParShowNotificationInputBo
             for (String n : notifications) {
                 notification += n+"\n";
             }
+            parDsGateway.clearNotifications(requestModel.getUsername());
             return parShowNotificationPresenter.prepareView(notification);
         }
         else {

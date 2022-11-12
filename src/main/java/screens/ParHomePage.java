@@ -1,7 +1,13 @@
 package screens;
 
+import database.OrgDsGateway;
+import database.OrgFileUser;
+import database.ParDsGateway;
+import database.ParFileUser;
 import par_show_notification_use_case.ParShowNotificationResponseModel;
-import user_login_use_case.UserLoginResponseModel;
+import screens.par_show_notification.ParShowNotificationController;
+import screens.par_show_notification.ParShowNotificationResponseFormatter;
+import user_login_use_case.*;
 
 import javax.swing.*;
 
@@ -11,11 +17,18 @@ import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
+import par_show_notification_use_case.*;
 
 public class ParHomePage extends JFrame implements ActionListener {
 
     private String parUsername;
-    ParShowNotificationController parShowNotificationController;
+
+    ParShowNotificationPresenter parShowNotificationPresenter =  new ParShowNotificationResponseFormatter();
+
+    ParDsGateway parDsGateway = new ParFileUser();
+
+    ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor( parShowNotificationPresenter, parDsGateway);
+    ParShowNotificationController parShowNotificationController = new ParShowNotificationController(interactor);
 
     public ParHomePage(String parUsername){
 
@@ -34,7 +47,6 @@ public class ParHomePage extends JFrame implements ActionListener {
         JButton showNotifications = new JButton("Show Notifications");
         showNotifications.addActionListener(this);
         showNotifications.setBounds (0,0, 150, 30);
-        showNotifications.setHorizontalAlignment(getConstantX()/2);
 
         JButton account = new JButton("Account");
         account.addActionListener(new ParHomeActionListener(this));
