@@ -15,7 +15,7 @@ public class SuccessViewModel {
         JPanel panelMain= new JPanel();
         panelMain.add(new JLabel("You Are Following Organizer:"+ this.orgName, SwingConstants.CENTER));
         frame.setContentPane(panelMain);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setTitle("System Message");
         frame.setBounds(600,300,250,200);
         frame.setVisible(true);
