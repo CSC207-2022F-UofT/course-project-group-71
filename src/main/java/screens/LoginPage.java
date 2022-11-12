@@ -1,18 +1,17 @@
 package screens;
+import UserRegisterScreen.RegisterScreen;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import tutorial.*;
-import user_login_use_case.UserLoginResponseModel;
+import user_register_use_case.UserRegisterController;
+import user_register_use_case.UserRegisterInputBoundary;
 import user_register_use_case.UserRegisterInteractor;
 import user_register_use_case.UserRegisterPresenter;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class LoginPage extends JFrame implements ActionListener {
 
@@ -89,18 +88,7 @@ public class LoginPage extends JFrame implements ActionListener {
         buttons.add(cancel);
         buttons.setBounds (0,200, x, 50);
 
-        register.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                ParDsGateway parDsGateway = new ParFileUser();
-                OrgDsGateway orgDsGateway = new OrgFileUser();
-                UserRegisterPresenter userRegisterPresenter = new UserRegisterPresenter();
-                UserRegisterInteractor interactor = new UserRegisterInteractor(parDsGateway, orgDsGateway,
-                        userRegisterPresenter);
-                User
-
-            }
-        });
+        register.addActionListener(new RegisterActionListener(this));
 
         logIn.addActionListener(this);
 
