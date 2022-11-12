@@ -15,4 +15,7 @@ public class OrgDeleteEventResponseModel {
     public String getEventName() {
         return eventName;
     }
+
+    public String getMessage() { return message; }
+
 }
