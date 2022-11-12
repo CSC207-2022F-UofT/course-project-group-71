@@ -15,7 +15,7 @@ public interface ParDsGateway {
 
     public void setPassword(String username, String new_password);
 
-    public void addNotification(String username, String new_notification);
+    public boolean addNotification(String username, String new_notification);
 
     public void followOrg(String par_username, String org_username);
 
