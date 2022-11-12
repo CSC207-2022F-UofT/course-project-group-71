@@ -1,4 +1,4 @@
-package UserRegister;
+package user_register_use_case;
 
 public class UserRegisterController {
     final UserRegisterInputBoundary interactor;

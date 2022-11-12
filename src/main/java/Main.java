@@ -1,7 +1,7 @@
-import UserRegister.UserRegisterController;
-import UserRegister.UserRegisterInputBoundary;
-import UserRegister.UserRegisterInteractor;
-import UserRegister.UserRegisterPresenter;
+import user_register_use_case.UserRegisterController;
+import user_register_use_case.UserRegisterInputBoundary;
+import user_register_use_case.UserRegisterInteractor;
+import user_register_use_case.UserRegisterPresenter;
 import UserRegisterScreen.RegisterScreen;
 import database.OrgDsGateway;
 import database.OrgFileUser;

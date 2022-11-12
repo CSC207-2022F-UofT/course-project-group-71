@@ -1,6 +1,6 @@
 package UserRegisterScreen;
 
-import UserRegister.UserRegisterController;
+import user_register_use_case.UserRegisterController;
 
 import javax.swing.*;
 import java.awt.*;
