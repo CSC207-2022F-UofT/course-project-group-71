@@ -19,7 +19,7 @@ public class EventCreateInteractor implements EventCreateInputBoundary {
     }
 
     @Override
-    public void create(EventCreateRequestModel requestModel) {
+    public EventCreateResponseModel create(EventCreateRequestModel requestModel) {
         if (eventDsGateway.checkIfEventNameExists(requestModel.getTitle())) {
             return userOutput.prepareFailView("Title already exists.");
         }
