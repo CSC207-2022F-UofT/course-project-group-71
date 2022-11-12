@@ -6,7 +6,7 @@ import screens.ShowMessageView;
 public class OrgDeleteEventResponseFormatter implements OrgDeleteEventPresenter{
     @Override
     public OrgDeleteEventResponseModel prepareSuccessView(OrgDeleteEventResponseModel response) {
-        response.setMessage("Event" + response.getEventName() + "deleted");
+        response.setMessage("Event" + response.getEventName() + "is deleted");
         throw new ShowMessageView(response.getMessage());
     }
 

@@ -1,5 +1,9 @@
 package screens.org_upcoming_event;
 
+import org_delete_event_use_case.OrgDeleteEventInputBoundary;
+import org_delete_event_use_case.OrgDeleteEventInteractor;
+import org_delete_event_use_case.OrgDeleteEventPresenter;
+import org_delete_event_use_case.OrgDeleteEventResponseModel;
 import screens.OrgHomePage;
 import database.*;
 import org_notify_event_use_case.*;
@@ -42,7 +46,24 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             }
         }
         else if (actionCommand.contains("Delete")) {
+            EventDsGateway eventDsGateway = new EventFileUser();
 
+            OrgDsGateway orgDsGateway = new OrgFileUser();
+
+            ParDsGateway parDsGateway = new ParFileUser();
+
+            OrgDeleteEventPresenter orgDeleteEventPresenter = new OrgDeleteEventResponseFormatter();
+
+            OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
+                    parDsGateway,orgDeleteEventPresenter);
+
+            OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
+
+            String eventName = actionCommand.substring(0,actionCommand.length()-6);
+
+            OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
+
+            JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
         }
         else {
 

@@ -26,7 +26,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
         String eventName = orgDeleteEventRequestModel.getEventName();
         String orgUsername = eventDsGateway.getOrganization(eventName);
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
-        String newNotification = "Event " + eventName + " is canceled";
+        String newNotification = "Event " + eventName + " is canceled.";
 
         if (!parUsernames.isEmpty()) {
             for (String username : parUsernames) {
