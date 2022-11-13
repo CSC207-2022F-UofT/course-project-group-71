@@ -6,7 +6,9 @@ import java.util.ArrayList;
 public class ParFileUser implements ParDsGateway {
     public static void main(String[] args) {
         ParFileUser a =new ParFileUser();
-        System.out.println(a.getPassword("dg"));
+        ParFileUser b =new ParFileUser();
+        a.addNotification("sss","111");
+
     }
 
     public void utilStorePar(String username, String password){
@@ -524,7 +526,93 @@ public class ParFileUser implements ParDsGateway {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "update parfile set notification = '" + new_notification + "' where username = '" + par_username + "';";
+//            String sql = "update parfile set notification = '" + new_notification + "' where username = '" + par_username + "';";
+            String sql = "insert into par_notification(par_username, notification) values('" + par_username + "','" + new_notification + "')";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    public ArrayList<String> UtilGetNotifications(String par_username){
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        ArrayList l = new ArrayList<String>(0);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "select notification from par_notification where par_username = '" + par_username + "';";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            System.out.println(sql);
+//            rs.next();
+            while (rs.next()){
+                l.add(rs.getString(1));
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return l;}
+
+    public void UtilClearNotifications(String par_username){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "delete from par_notification where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -624,49 +712,9 @@ public class ParFileUser implements ParDsGateway {
         }
         return password;
     }
-    public String getNotification(String username){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String notification = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select notification from parfile where username = '" + username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            notification = rs.getString("notification");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return notification;
+
+    public ArrayList<String> getNotifications(String username){
+        return UtilGetNotifications(username);
     }
 
     public ArrayList<String> getUpcomingEvents(String username){
@@ -685,8 +733,9 @@ public class ParFileUser implements ParDsGateway {
         utilPasswordUpdating(username, new_password);
     }
 
-    public void setNotification(String username, String new_notification){
+    public boolean addNotification(String username, String new_notification){
         utilNotificationUpdating(username,new_notification);
+        return false;
     }
 
     public void followOrg(String par_username, String org_username){
@@ -774,8 +823,15 @@ public class ParFileUser implements ParDsGateway {
             utilDeleteParFollowOrg(username, All_following.get(i));
         }
 
+        UtilClearNotifications(username);
+
         utilDeletePar(username);
 
+    }
+
+    @Override
+    public void clearNotifications(String username) {
+        UtilClearNotifications(username);
     }
 
 }

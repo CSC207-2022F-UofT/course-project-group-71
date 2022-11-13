@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public interface ParDsGateway {
     public String getPassword(String username);
 
-    public String getNotification(String username);
+    public ArrayList<String> getNotifications(String username);
 
     public ArrayList<String> getUpcomingEvents(String username);
 
@@ -15,7 +15,7 @@ public interface ParDsGateway {
 
     public void setPassword(String username, String new_password);
 
-    public void setNotification(String username, String new_notification);
+    public boolean addNotification(String username, String new_notification);
 
     public void followOrg(String par_username, String org_username);
 
@@ -28,4 +28,6 @@ public interface ParDsGateway {
     public void createPar(String username, String password);
 
     public void deletePar(String username);
+
+    public void clearNotifications(String usename);
 }

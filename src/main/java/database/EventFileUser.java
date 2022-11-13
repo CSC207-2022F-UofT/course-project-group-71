@@ -101,7 +101,7 @@ public class EventFileUser implements EventDsGateway{
         }
     }
 
-    public String utilGetOrganizer(String title){
+    public String utilGetOrganization(String title){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -124,7 +124,7 @@ public class EventFileUser implements EventDsGateway{
                 };
             }
 
-            try (ResultSet upcoming_organizer = stmt.executeQuery("select org_username from past_events_for_org where event_title = '" + title + "';")){
+            try (ResultSet upcoming_organizer = stmt.executeQuery("select org_username from upcoming_events_for_org where event_title = '" + title + "';")){
                 if (upcoming_organizer.next()){
                     organizer = upcoming_organizer.getString(1);
                     upcoming_organizer.close();
@@ -258,8 +258,44 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
+    public void utilChangeStatus(String title, int new_status){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            String sql = "update eventfile set status = '" + new_status + "' where title = '" + title + "';";
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
+            }
 
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
 
+        }
+    }
 
 
     public int getStatus(String title){
@@ -410,7 +446,7 @@ public class EventFileUser implements EventDsGateway{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "select description from eventfile where title = '" + title + "';";
+            String sql = "select location from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rs.next();
@@ -544,7 +580,7 @@ public class EventFileUser implements EventDsGateway{
         return l;
     }
 
-    public ArrayList<String> getPaticipants(String title){
+    public ArrayList<String> getParticipants(String title){
         ArrayList<String> l1 = utilGetAllPastEventParticipant(title);
         ArrayList<String> l2 = utilGetAllUpcomingEventParticipant(title);
         ArrayList<String> l = new ArrayList<String>(0);
@@ -552,6 +588,24 @@ public class EventFileUser implements EventDsGateway{
         l.addAll(l2);
         return l;
     }
+
+    public String getOrganization(String title){
+        return utilGetOrganization(title);
+    }
+
+    public void ChangeToUnpublished(String title){
+        utilChangeStatus(title, 0);
+    }
+    public void ChangeToPast(String title){
+        utilChangeStatus(title, 1);
+    }
+    public void ChangeToUpcoming(String title){
+        utilChangeStatus(title, 2);
+    }
+
+
+
+
 
 
 
@@ -635,7 +689,7 @@ public class EventFileUser implements EventDsGateway{
         }
 
 
-        String organizer = utilGetOrganizer(event_title);
+        String organizer = utilGetOrganization(event_title);
         temp_orgfileuser.utilDeleteOrgPastEvent(organizer,event_title);
         temp_orgfileuser.utilDeleteOrgUnpublishedEvent(organizer,event_title);
         temp_orgfileuser.utilDeleteOrgUpcomingevent(organizer,event_title);
