@@ -64,6 +64,8 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
 
             JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
+
+            this.
         }
         else {
 

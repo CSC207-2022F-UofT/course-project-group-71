@@ -9,7 +9,7 @@ public class OrgDeleteEventController {
         this.userInput = accountGateway;
     }
 
-    OrgDeleteEventResponseModel delete(String eventName) {
+    public OrgDeleteEventResponseModel delete(String eventName) {
         OrgDeleteEventRequestModel requestModel = new OrgDeleteEventRequestModel(eventName);
         return userInput.delete(requestModel);
     }
