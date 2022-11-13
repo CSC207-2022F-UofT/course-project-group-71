@@ -1,6 +1,6 @@
 package screens.org_account;
 
-import screens.OrgHomePage;
+import screens.org_home.OrgHomePage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

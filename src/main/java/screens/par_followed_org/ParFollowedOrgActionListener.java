@@ -1,6 +1,6 @@
 package screens.par_followed_org;
 
-import screens.ParHomePage;
+import screens.par_home.ParHomePage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

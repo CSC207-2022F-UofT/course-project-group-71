@@ -4,7 +4,7 @@ import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
 import org_delete_event_use_case.OrgDeleteEventPresenter;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
-import screens.OrgHomePage;
+import screens.org_home.OrgHomePage;
 import database.*;
 import org_notify_event_use_case.*;
 

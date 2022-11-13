@@ -1,13 +1,7 @@
 package screens.par_upcoming_event;
 
-import database.EventDsGateway;
-import database.EventFileUser;
-import database.ParDsGateway;
-import database.ParFileUser;
-import screens.ParHomePage;
-import screens.par_upcoming_event.ParUpcomingEventPage;
+import screens.par_home.ParHomePage;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

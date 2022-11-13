@@ -1,4 +1,4 @@
-package screens;
+package screens.org_home;
 
 import javax.swing.*;
 

@@ -16,7 +16,18 @@ public class OrgResetPasswordInteractor implements OrgResetPasswordInputBoundary
     }
 
     public OrgResetPasswordResponseModel resetPassword(OrgResetPasswordRequestModel requestModel) {
-        orgDsGateway.setPassword(requestModel.getUsername(), requestModel.getPassword());
-        return orgResetPasswordPresenter.prepareSuccessView("Password reset successfully");
+
+        if (!requestModel.getOldPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
+            return orgResetPasswordPresenter.prepareView("Old password is not correct.");
+        }
+        else {
+            if (requestModel.getNewPassword().equals(requestModel.getRetypeNewPassword())) {
+                orgDsGateway.setPassword(requestModel.getUsername(), requestModel.getNewPassword());
+                return orgResetPasswordPresenter.prepareView("Password reset successfully!");
+            }
+            else {
+                return orgResetPasswordPresenter.prepareView("New Passwords do not match.");
+            }
+        }
     }
 }

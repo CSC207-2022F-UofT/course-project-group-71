@@ -1,4 +1,4 @@
-package screens;
+package screens.org_home;
 
 import user_login_use_case.OrgHomePresenter;
 import user_login_use_case.UserLoginResponseModel;

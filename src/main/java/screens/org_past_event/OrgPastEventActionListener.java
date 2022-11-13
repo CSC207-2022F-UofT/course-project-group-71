@@ -1,9 +1,7 @@
 package screens.org_past_event;
 
-import database.*;
-import screens.OrgHomePage;
+import screens.org_home.OrgHomePage;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

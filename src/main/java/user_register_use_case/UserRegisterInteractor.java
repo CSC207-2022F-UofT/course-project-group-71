@@ -23,38 +23,24 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         if (requestModel.getUserType().equals("O")){
             //Then proceed as organizer
             if (orgDsGateway.checkIfUsernameExist(requestModel.getName()) == true){
-                UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Organizer already exists.");
-                return userRegisterPresenter.prepareFailView(failureresponse);
-
+                return userRegisterPresenter.prepareFailView("Organization already exists.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
-                System.out.println(requestModel.getPassword());
-                System.out.println(requestModel.getRe_password());
-                UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Two Passwords are different.");
-                return userRegisterPresenter.prepareFailView(failureresponse);
-
+                return userRegisterPresenter.prepareFailView("Two Passwords are different.");
             }
             orgDsGateway.createOrg(requestModel.getName(),requestModel.getPassword());
-            UserRegisterResponseModel successresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "User Register Successful.");
-            return userRegisterPresenter.prepareSuccessView(successresponse);
-
-
-        }else if (requestModel.getUserType().equals("P")){
+            return userRegisterPresenter.prepareSuccessView("Organization Registered Successfully!");
+        }
+        else if (requestModel.getUserType().equals("P")){
             //Proceed as participant
             if (parDsGateway.checkIfUsernameExist(requestModel.getName()) == true){
-                UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Participant already exists.");
-                return userRegisterPresenter.prepareFailView(failureresponse);
+                return userRegisterPresenter.prepareFailView("Participant already exists.");
             }
-            if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
-                UserRegisterResponseModel failureresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "Two Passwords are different.");
-                return userRegisterPresenter.prepareFailView(failureresponse);
-
+            if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
+                return userRegisterPresenter.prepareFailView("Two Passwords are different.");
             }
             parDsGateway.createPar(requestModel.getName(),requestModel.getPassword());
-            UserRegisterResponseModel successresponse = new UserRegisterResponseModel(requestModel.getName(), requestModel.getPassword(), "User Register Successful.");
-            return userRegisterPresenter.prepareSuccessView(successresponse);
-
-
+            return userRegisterPresenter.prepareSuccessView("Participant Registered Successfully.");
         }
         else {
             return userRegisterPresenter.prepareFailView("Please select your account type.");

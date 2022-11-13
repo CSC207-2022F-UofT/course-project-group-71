@@ -1,19 +1,14 @@
-package screens;
+package screens.par_home;
 
-import database.OrgDsGateway;
-import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import par_show_notification_use_case.ParShowNotificationResponseModel;
 import screens.par_show_notification.ParShowNotificationController;
 import screens.par_show_notification.ParShowNotificationResponseFormatter;
-import user_login_use_case.*;
 
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;

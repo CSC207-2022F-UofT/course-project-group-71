@@ -1,4 +1,4 @@
-package screens;
+package screens.par_home;
 
 import user_login_use_case.ParHomePresenter;
 import user_login_use_case.UserLoginResponseModel;

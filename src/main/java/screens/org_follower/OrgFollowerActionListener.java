@@ -1,10 +1,7 @@
 package screens.org_follower;
 
-import database.ParDsGateway;
-import database.ParFileUser;
-import screens.OrgHomePage;
+import screens.org_home.OrgHomePage;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

@@ -3,6 +3,14 @@ package screens;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import database.OrgDsGateway;
+import database.OrgFileUser;
+import database.ParDsGateway;
+import database.ParFileUser;
+import screens.org_home.OrgHomeResponseFormatter;
+import screens.par_home.ParHomeResponseFormatter;
+import user_login_use_case.*;
 import user_register_use_case.*;
 
 public class RegisterPage extends JFrame implements ActionListener {
@@ -18,8 +26,8 @@ public class RegisterPage extends JFrame implements ActionListener {
     boolean P = false;
     boolean O = false;
 
-    int x = 300;
-    int y = 300;
+    int x = 500;
+    int y = 500;
 
     public RegisterPage(UserRegisterController controller) {
 
@@ -56,7 +64,7 @@ public class RegisterPage extends JFrame implements ActionListener {
 
         JButton register = new JButton("Register");
         JButton cancel = new JButton("Cancel");
-        JButton login = new JButton("Login");
+        JButton login = new JButton("To Login Page");
 
         ButtonGroup userType = new ButtonGroup();
         userType.add(parButton);
@@ -77,30 +85,26 @@ public class RegisterPage extends JFrame implements ActionListener {
 
         LabelTextPanel retypePasswordInfo = new LabelTextPanel(
                 new JLabel("Retype Password"), retypePassword);
-        passwordInfo.setBounds (0,150, x, 50);
+        retypePasswordInfo.setBounds (0,200, x, 50);
 
         JPanel buttons = new JPanel();
 
         buttons.add(login);
         buttons.add(register);
         buttons.add(cancel);
-        buttons.setBounds (0,200, x, 50);
+        buttons.setBounds (0,250, x, 50);
 
-        register.addActionListener(new RegisterActionListener(this));
+        register.addActionListener(this);
 
-        login.addActionListener(this);
+        login.addActionListener(new RegisterPageActionListener(this));
 
-        cancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-               JOptionPane.showMessageDialog(cancel.getParent(), "Clicked cancel");
-            }
-        });
+        cancel.addActionListener(new RegisterPageActionListener(this));
 
         this.add(title);
         this.add(typeInfo);
         this.add(usernameInfo);
         this.add(passwordInfo);
+        this.add(retypePasswordInfo);
         this.add(buttons);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,7 +113,6 @@ public class RegisterPage extends JFrame implements ActionListener {
 
     }
     public void actionPerformed(ActionEvent selectType) {
-        ///System.out.println(username.getText());
         try {
             userRegisterController.create(
                     P?"P":"",
@@ -118,8 +121,22 @@ public class RegisterPage extends JFrame implements ActionListener {
                     String.valueOf(password.getPassword()),
                     String.valueOf(retypePassword.getPassword()));
             this.dispose();
-            if (P) {new ParHomePage(username.getText());}
-            else { new OrgHomePage(username.getText());}
+            UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
+
+            ParDsGateway parDsGateway = new ParFileUser();
+
+            ParHomePresenter parHomePresenter =  new ParHomeResponseFormatter();
+
+            OrgDsGateway orgDsGateway= new OrgFileUser();
+
+            OrgHomePresenter orgHomePresenter =  new OrgHomeResponseFormatter();
+
+            UserLoginInputBoundary interactor = new UserLoginInteractor(
+                    userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+
+            UserLoginController userLoginController = new UserLoginController(interactor);
+
+            new LoginPage(userLoginController);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

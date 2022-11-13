@@ -1,5 +1,8 @@
 package screens;
 
+import screens.org_home.OrgHomePage;
+import screens.par_home.ParHomePage;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +18,8 @@ public class LoginPage extends JFrame implements ActionListener {
     boolean P = false;
     boolean O = false;
 
-    int x = 300;
-    int y = 300;
+    int x = 500;
+    int y = 500;
 
     public LoginPage(UserLoginController controller) {
 
@@ -53,7 +56,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
         JButton logIn = new JButton("Log in");
         JButton cancel = new JButton("Cancel");
-        JButton register = new JButton("Register");
+        JButton register = new JButton("To Register Page");
 
         ButtonGroup userType = new ButtonGroup();
         userType.add(parButton);
@@ -79,16 +82,11 @@ public class LoginPage extends JFrame implements ActionListener {
         buttons.add(cancel);
         buttons.setBounds (0,200, x, 50);
 
-        register.addActionListener(new RegisterActionListener(this));
+        register.addActionListener(new LoginPageActionListener(this));
 
         logIn.addActionListener(this);
 
-        cancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-               JOptionPane.showMessageDialog(cancel.getParent(), "Clicked cancel");
-            }
-        });
+        cancel.addActionListener(new LoginPageActionListener(this));
 
         this.add(title);
         this.add(typeInfo);
