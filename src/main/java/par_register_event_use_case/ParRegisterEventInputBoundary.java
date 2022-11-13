@@ -1,5 +1,5 @@
 package par_register_event_use_case;
 
 public interface ParRegisterEventInputBoundary {
-    ParRegisterEventResponseModel create(ParRegisterEventRequestModel var1);
+    ParRegisterEventResponseModel Register(ParRegisterEventRequestModel var1);
 }
