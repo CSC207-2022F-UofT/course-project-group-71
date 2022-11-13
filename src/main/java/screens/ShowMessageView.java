@@ -1,7 +1,7 @@
 package screens;
 
 public class ShowMessageView extends RuntimeException {
-    public ShowMessageView(String error) {
-        super(error);
+    public ShowMessageView(String message) {
+        super(message);
     }
 }
