@@ -16,7 +16,7 @@ public class OrgSearchController {
 
     OrgSearchResponseModel orgSearch(String query) {
         OrgSearchRequestModel requestModel = new OrgSearchRequestModel(separateWords(query));
-        return useInput.orgSearch(requestModel);
+        return userInput.orgSearch(requestModel);
     }
 
     private ArrayList<String> separateWords(String query) {
@@ -33,5 +33,6 @@ public class OrgSearchController {
         if (!(word.isBlank())) {
             separateWordQuery.add(word);
         }
+        return separateWordQuery;
     }
 }
