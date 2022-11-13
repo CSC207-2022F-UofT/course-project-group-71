@@ -108,7 +108,7 @@ public class EventFileUser implements EventDsGateway{
         String organizer = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", );
             stmt = conn.createStatement();
             try (ResultSet unpublished_organizer = stmt.executeQuery("select org_username from unpublished_events_for_org where event_title = '" + title + "';")){
                 if (unpublished_organizer.next()){
