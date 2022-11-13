@@ -3,6 +3,7 @@ package database;
 import java.sql.*;
 import java.util.ArrayList;
 
+import static tutorial.HelloWorld.getDatabasePassword;
 public class OrgFileUser implements OrgDsGateway {
     public static void main(String[] args) {
         OrgFileUser a = new OrgFileUser();
@@ -13,7 +14,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "insert into orgfile(username, password) values('" + username + "','" + password + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -54,7 +55,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "delete from orgfile where username = '" + username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -94,7 +95,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "insert into past_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -136,7 +137,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "delete from follow_org_par where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -176,7 +177,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "insert into unpublished_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -218,7 +219,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "delete from unpublished_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -258,7 +259,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "insert into upcoming_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -300,7 +301,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "delete from upcoming_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -342,7 +343,7 @@ public class OrgFileUser implements OrgDsGateway {
         ArrayList l = new ArrayList<String>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "select par_username from follow_org_par where org_username = '" + org_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -391,7 +392,7 @@ public class OrgFileUser implements OrgDsGateway {
         ArrayList l = new ArrayList<String>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "select event_title from unpublished_events_for_org where org_username = '" + org_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -440,7 +441,7 @@ public class OrgFileUser implements OrgDsGateway {
         ArrayList l = new ArrayList<String>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "select event_title from past_events_for_org where org_username = '" + org_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -489,7 +490,7 @@ public class OrgFileUser implements OrgDsGateway {
         ArrayList l = new ArrayList<String>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "select event_title from upcoming_events_for_org where org_username = '" + org_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -541,7 +542,7 @@ public class OrgFileUser implements OrgDsGateway {
         String password = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select password from orgfile where username = \"" + username + "\";");
             rs.next();
@@ -583,7 +584,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "update orgfile set password = '" + new_password + "' where username = '" + org_username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -626,7 +627,7 @@ public class OrgFileUser implements OrgDsGateway {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select username from orgfile where username like \"%" + about_name + "%\";");
             while (rs.next()) {
@@ -748,7 +749,7 @@ public class OrgFileUser implements OrgDsGateway {
         boolean WhetherExist = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "vvks1309");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             String sql = "select exists(select * from orgfile where username = '" + username + "');";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
