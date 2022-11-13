@@ -28,14 +28,14 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
         String newNotification = "Event " + eventName + " is canceled";
 
+        orgDsGateway.deleteAnEvent(orgUsername, eventName);
+        eventDsGateway.deleteEvent(eventName);
         if (!parUsernames.isEmpty()) {
             for (String username : parUsernames) {
                 parDsGateway.leaveEvent(username, eventName);//LEAVE BEHAVES THE SAME WAY HERE! BUT WATCH OUT!
                 parDsGateway.setNotification(username, newNotification);
             }
         }
-        orgDsGateway.deleteAnEvent(orgUsername, eventName);
-        eventDsGateway.deleteEvent(eventName);
 
         OrgDeleteEventResponseModel orgDeleteEventResponseModel = new OrgDeleteEventResponseModel(eventName);
         return orgDeleteEventPresenter.prepareSuccessView(orgDeleteEventResponseModel);
