@@ -43,9 +43,17 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
-            OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
+            try{
+                OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
+                JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, e.getMessage());
+            }
+            this.orgUnpublishedEventPage.dispose();
+            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+        }
+        else if (actionCommand.contains("Edit")){
 
-            JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
         }
     }
 }

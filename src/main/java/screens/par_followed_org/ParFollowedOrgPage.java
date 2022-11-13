@@ -1,8 +1,13 @@
 package screens.par_followed_org;
 
+import database.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
-import javax.swing.*;
 
 public class ParFollowedOrgPage extends JFrame {
     private String parUsername;
@@ -22,6 +27,54 @@ public class ParFollowedOrgPage extends JFrame {
         JButton back = new JButton("Back");
         back.addActionListener(new ParFollowedOrgActionListener(this));
         back.setBounds(0, 100, 150, 30);
+
+        JPanel events = new JPanel();
+        events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
+
+        OrgDsGateway orgDsGateway = new OrgFileUser();
+        EventDsGateway eventDsGateway = new EventFileUser();
+        ParDsGateway parDsGateway = new ParFileUser();
+
+        ArrayList<String> followedOrg = parDsGateway.getFollowedOrg(parUsername);
+
+        int numberOfEvent = followedOrg.size();
+
+        if (numberOfEvent != 0) {
+
+            events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
+
+            int x = 0;
+            int y = 0;
+
+            for (String orgname : followedOrg) {
+
+                JButton organization = new JButton(orgname);
+                organization.addActionListener(new ParFollowedOrgActionListener(this));
+                organization.setBounds(x, y, 250, 30);
+                organization.setVisible(true);
+
+                JButton unFollow = new JButton("UnFollow");
+                unFollow.setActionCommand(orgname + "UnFollow");
+                unFollow.addActionListener(new ParFollowedOrgActionListener(this));
+                unFollow.setBounds(x + 250, y + 55, 100, 30);
+                unFollow.setVisible(true);
+
+                events.add(organization);
+//                events.add(eventTime);
+//                events.add(eventLocation);
+//                events.add(notify);
+//                events.add(delete);
+                events.add(unFollow);
+                y += 100;
+            }
+
+            JScrollPane followerscroll = new JScrollPane(events);
+            followerscroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
+            followerscroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+            followerscroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            followerscroll.setVisible(true);
+            this.add(followerscroll);
+        }
 
         this.add(title);
         this.add(back);

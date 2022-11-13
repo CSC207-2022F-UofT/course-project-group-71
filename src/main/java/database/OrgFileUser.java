@@ -697,7 +697,7 @@ public class OrgFileUser implements OrgDsGateway {
         return utilGetUnpublishedEvents(username);
     }
 
-    public ArrayList<String> getPastEvent(String username){
+    public ArrayList<String> getPastEvents(String username){
         return utilGetPastEvents(username);
     }
 

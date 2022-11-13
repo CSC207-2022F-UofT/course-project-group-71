@@ -19,8 +19,8 @@ public class ParPastEventActionListener implements ActionListener {
             this.parPastEventPage.dispose();
             new ParHomePage(this.parPastEventPage.getParUsername());
         }
-        else {
-
-        }
+//        else if (actionCommand.contains("Delete")) {
+//
+//        }
     }
 }

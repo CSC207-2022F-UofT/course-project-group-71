@@ -1,8 +1,13 @@
 package screens.par_past_event;
 
+import database.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
-import javax.swing.*;
 
 public class ParPastEventPage extends JFrame {
     private String parUsername;
@@ -22,6 +27,67 @@ public class ParPastEventPage extends JFrame {
         JButton back = new JButton("Back");
         back.addActionListener(new ParPastEventActionListener(this));
         back.setBounds(0, 100, 150, 30);
+
+        JPanel events = new JPanel();
+        events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
+
+        OrgDsGateway orgDsGateway = new OrgFileUser();
+        EventDsGateway eventDsGateway = new EventFileUser();
+        ParDsGateway parDsGateway = new ParFileUser();
+
+        ArrayList<String> pastEvents = parDsGateway.getPastEvents(parUsername);
+
+        int numberOfEvent = pastEvents.size();
+
+        if (numberOfEvent != 0) {
+
+            events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
+
+            int x = 0;
+            int y = 0;
+
+            for (String pastEventTitle : pastEvents) {
+
+                JButton eventTitle = new JButton(pastEventTitle);
+                eventTitle.addActionListener(new ParPastEventActionListener(this));
+                eventTitle.setBounds(x, y, 250, 30);
+                eventTitle.setVisible(true);
+
+                ArrayList<Integer> times = eventDsGateway.getTime(pastEventTitle);
+                String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
+                        times.get(3) + ":" + times.get(4);
+
+                JLabel eventTime = new JLabel(time);
+                eventTime.setBounds(x + 20, y + 40, 250, 30);
+                eventTime.setVisible(true);
+
+                String location = eventDsGateway.getLocation(pastEventTitle);
+                JLabel eventLocation = new JLabel(location);
+                eventLocation.setBounds(x + 20, y + 70, 250, 30);
+                eventLocation.setVisible(true);
+
+//                JButton delete = new JButton("Delete");
+//                delete.setActionCommand(unpublishedEventTitle + "Delete");
+//                delete.addActionListener(new ParPastEventActionListener(this));
+//                delete.setBounds(x + 250, y + 55, 100, 30);
+//                delete.setVisible(true);
+
+                events.add(eventTitle);
+                events.add(eventTime);
+                events.add(eventLocation);
+//                events.add(notify);
+//                events.add(delete);
+                y += 100;
+            }
+
+            JScrollPane eventScroll = new JScrollPane(events);
+            eventScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
+            eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+            eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            eventScroll.setVisible(true);
+            this.add(eventScroll);
+        }
+
 
         this.add(title);
         this.add(back);

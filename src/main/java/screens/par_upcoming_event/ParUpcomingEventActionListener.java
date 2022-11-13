@@ -19,6 +19,9 @@ public class ParUpcomingEventActionListener implements ActionListener {
             this.parUpcomingEventPage.dispose();
             new ParHomePage(this.parUpcomingEventPage.getParUsername());
         }
+        else if (actionCommand.contains("Leave")){
+
+        }
         /*
         else if (actionCommand.contains("Notify")) {
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -38,11 +41,9 @@ public class ParUpcomingEventActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.parUpcomingEventPage, e.getMessage());
             }
         }
-        else if (actionCommand.contains("Delete")) {
+//        else if (actionCommand.contains("Delete")) {
+//
+//        }*/
 
-        }*/
-        else {
-
-        }
     }
 }

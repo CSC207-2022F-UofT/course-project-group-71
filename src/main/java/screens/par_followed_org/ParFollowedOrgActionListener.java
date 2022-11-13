@@ -19,7 +19,7 @@ public class ParFollowedOrgActionListener implements ActionListener {
             this.parFollowerPage.dispose();
             new ParHomePage(this.parFollowerPage.getParUsername());
         }
-        else {
+        else if (actionCommand.equals("UnFollow")) {
 
         }
     }

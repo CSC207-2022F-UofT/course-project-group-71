@@ -11,7 +11,7 @@ public interface OrgDsGateway {
 
     public ArrayList<String> getUnpublishedEvents(String username);
 
-    public ArrayList<String> getPastEvent(String username);
+    public ArrayList<String> getPastEvents(String username);
 
     public ArrayList<String> getUpcomingEvents(String username);
 

@@ -69,8 +69,8 @@ public class OrgUnpublishedEventPage extends JFrame {
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);
 
-                JButton notify = new JButton("Notify");
-                notify.setActionCommand(unpublishedEventTitle + "Notify");
+                JButton notify = new JButton("Edit");
+                notify.setActionCommand(unpublishedEventTitle + "Edit");
                 notify.addActionListener(new OrgUnpublishedEventActionListener(this));
                 notify.setBounds(x + 250, y + 15, 100, 30);
                 notify.setVisible(true);
