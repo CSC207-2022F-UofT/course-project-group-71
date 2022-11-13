@@ -1,12 +1,16 @@
 package screens.org_upcoming_event;
 
+import database.*;
 import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
 import org_delete_event_use_case.OrgDeleteEventPresenter;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
+import org_notify_event_use_case.OrgNotifyEventInputBoundary;
+import org_notify_event_use_case.OrgNotifyEventInteractor;
+import org_notify_event_use_case.OrgNotifyEventPresenter;
+import org_notify_event_use_case.OrgNotifyEventResponseModel;
 import screens.org_home.OrgHomePage;
-import database.*;
-import org_notify_event_use_case.*;
+import screens.org_unpublished_event.OrgUnpublishedEventPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +18,7 @@ import java.awt.event.ActionListener;
 
 public class OrgUpcomingEventActionListener implements ActionListener {
     public OrgUpcomingEventPage orgUpcomingEventPage;
+    public String orgUsername;
 
     public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage){
         this.orgUpcomingEventPage = orgUpcomingEventPage;
@@ -46,6 +51,7 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             }
         }
         else if (actionCommand.contains("Delete")) {
+
             EventDsGateway eventDsGateway = new EventFileUser();
 
             OrgDsGateway orgDsGateway = new OrgFileUser();
@@ -58,14 +64,16 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                     parDsGateway,orgDeleteEventPresenter);
 
             OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
-
+            System.out.println("1");
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
             OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
 
             JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
+            System.out.println("Hi");
+            this.orgUpcomingEventPage.dispose();
+            new OrgUnpublishedEventPage(this.orgUpcomingEventPage.getOrgUsername());
 
-            this.
         }
         else {
 

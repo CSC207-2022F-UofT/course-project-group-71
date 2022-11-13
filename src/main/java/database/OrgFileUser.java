@@ -138,7 +138,7 @@ public class OrgFileUser implements OrgDsGateway {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
-            String sql = "delete from follow_org_par where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
+            String sql = "delete from past_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
