@@ -11,8 +11,7 @@ public class EventCreateInteractor implements EventCreateInputBoundary {
     final EventCreateOutputBoundary userOutput;
 
     public EventCreateInteractor(EventFileUser eventDsGateway,
-                                 EventCreateOutputBoundary userOutput,
-                                 EventCreateResponseModel responseModel) {
+                                 EventCreateOutputBoundary userOutput) {
         this.eventDsGateway = eventDsGateway;
         this.userOutput = userOutput;
     }
