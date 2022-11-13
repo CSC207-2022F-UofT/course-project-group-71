@@ -11,13 +11,12 @@ public class ParRegisterEventRequestModel {
     public String getPar_username() {
         return par_username;
     }
+    public String getEvent_name() {
+        return event_name;
+    }
 
     public void setPar_username(String par_username) {
         this.par_username = par_username;
-    }
-
-    public String getEvent_name() {
-        return event_name;
     }
 
     public void setEvent_name(String event_name) {
