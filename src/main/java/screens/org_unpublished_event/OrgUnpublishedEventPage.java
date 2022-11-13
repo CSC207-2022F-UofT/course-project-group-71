@@ -17,7 +17,7 @@ public class OrgUnpublishedEventPage extends JFrame {
 
         this.setLocationRelativeTo(null);
 
-        JLabel title = new JLabel(this.orgUsername + "'s Past Event Page");
+        JLabel title = new JLabel(this.orgUsername + "'s Unpublished Event Page");
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 

@@ -15,7 +15,7 @@ public class ParFollowedOrgPage extends JFrame {
 
         this.setLocationRelativeTo(null);
 
-        JLabel title = new JLabel(this.parUsername + "'s Follower Page");
+        JLabel title = new JLabel(this.parUsername + "'s Followed Organization Page");
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
