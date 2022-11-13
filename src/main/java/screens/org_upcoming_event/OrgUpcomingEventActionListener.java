@@ -10,7 +10,6 @@ import org_notify_event_use_case.OrgNotifyEventInteractor;
 import org_notify_event_use_case.OrgNotifyEventPresenter;
 import org_notify_event_use_case.OrgNotifyEventResponseModel;
 import screens.org_home.OrgHomePage;
-import screens.org_unpublished_event.OrgUnpublishedEventPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,8 +19,9 @@ public class OrgUpcomingEventActionListener implements ActionListener {
     public OrgUpcomingEventPage orgUpcomingEventPage;
     public String orgUsername;
 
-    public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage){
+    public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage, String orgUsername){
         this.orgUpcomingEventPage = orgUpcomingEventPage;
+        this.orgUsername = orgUsername;
     }
 
     public void actionPerformed(ActionEvent arg0){
@@ -51,7 +51,6 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             }
         }
         else if (actionCommand.contains("Delete")) {
-
             EventDsGateway eventDsGateway = new EventFileUser();
 
             OrgDsGateway orgDsGateway = new OrgFileUser();
@@ -64,16 +63,17 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                     parDsGateway,orgDeleteEventPresenter);
 
             OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
-            System.out.println("1");
+
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
-            OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
-
-            JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
-            System.out.println("Hi");
+            try{
+                OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
+                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
+            }
             this.orgUpcomingEventPage.dispose();
-            new OrgUnpublishedEventPage(this.orgUpcomingEventPage.getOrgUsername());
-
+            new OrgUpcomingEventPage(this.orgUsername);
         }
         else {
 
