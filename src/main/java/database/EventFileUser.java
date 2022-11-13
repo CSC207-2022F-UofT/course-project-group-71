@@ -7,7 +7,7 @@ public class EventFileUser implements EventDsGateway{
     public static void main(String[] args) {
         EventFileUser b =new EventFileUser();
 //        b.utilStoreEvent("E", 123, 3, "5", "A", "2312414",2004,5,1,3,4);
-        System.out.println(b.checkIfEventNameExist("A"));
+        b.deleteEvent("A");
 
     }
 
