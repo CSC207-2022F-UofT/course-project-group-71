@@ -15,7 +15,6 @@ public class EventCreateInteractor implements EventCreateInputBoundary {
                                  EventCreateResponseModel responseModel) {
         this.eventDsGateway = eventDsGateway;
         this.userOutput = userOutput;
-        this.responseModel = responseModel;
     }
 
     @Override
