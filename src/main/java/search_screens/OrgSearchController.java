@@ -2,7 +2,6 @@ package search_screens;
 
 import org_search_use_case.OrgSearchInputBoundary;
 import org_search_use_case.OrgSearchRequestModel;
-import org_search_use_case.OrgSearchResponseModel;
 
 import java.util.ArrayList;
 
