@@ -2,7 +2,6 @@ package screens;
 
 import event_create_use_case.EventCreateInputBoundary;
 import event_create_use_case.EventCreateRequestModel;
-import event_create_use_case.EventCreateResponseModel;
 
 public class EventCreateController {
 
