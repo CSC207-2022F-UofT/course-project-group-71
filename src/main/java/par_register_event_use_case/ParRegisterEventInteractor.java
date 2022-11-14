@@ -16,14 +16,7 @@ public class ParRegisterEventInteractor implements ParRegisterEventInputBoundary
         this.ParRegisterEventPresenter = parRegisterEventPresenter;
     }
 
-    @Override
-    public void register(ParRegisterEventRequestModel request_Model) {
-        parDsGateway.registerEvent(requestModel.getPar_username(),request_Model.getEvent_name());
-        EventRegisterResponseModel succesresponse = new EventRegisterResponseModel(request_Model.getPar_username(), request_Model.getEvent_name(),"Registered the event succesfully");
-        ParRegisterEventPresenter.success_view(succesresponse);
-        System.out.println(1);
-        return;
-    }
+
 
 
 
