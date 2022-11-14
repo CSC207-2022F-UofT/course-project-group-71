@@ -4,9 +4,9 @@ import database.OrgDsGateway;
 import user_login_use_case.*;
 
 public class OrgResetPasswordInteractor implements OrgResetPasswordInputBoundary{
-    private OrgResetPasswordPresenter orgResetPasswordPresenter;
-    private OrgDsGateway orgDsGateway;
-    private OrgHomePresenter orgHomePresenter;
+    final OrgResetPasswordPresenter orgResetPasswordPresenter;
+    final OrgDsGateway orgDsGateway;
+    final OrgHomePresenter orgHomePresenter;
 
     public OrgResetPasswordInteractor(OrgResetPasswordPresenter orgResetPasswordPresenter, OrgDsGateway orgDsGateway,
                                OrgHomePresenter orgHomePresenter) {
@@ -17,7 +17,7 @@ public class OrgResetPasswordInteractor implements OrgResetPasswordInputBoundary
 
     public OrgResetPasswordResponseModel resetPassword(OrgResetPasswordRequestModel requestModel) {
 
-        if (!requestModel.getOldPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
+        if (requestModel.getOldPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
             return orgResetPasswordPresenter.prepareView("Old password is not correct.");
         }
         else {
