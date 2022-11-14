@@ -13,8 +13,15 @@ public class ParRegisterEventInteractor implements ParRegisterEventInputBoundary
     public ParRegisterEventInteractor(ParDsGateway parDsGateway, EventDsGateway eventDsGateway, ParRegisterEventPresenter parRegisterEventPresenter) {
         this.parDsGateway = parDsGateway;
         this.eventDsGateway = eventDsGateway;
-        this.ParRegisterEventPresenter = parRegisterEventPresenter;
+        this.parRegisterEventPresenter = parRegisterEventPresenter;
     }
+
+    @Override
+    public ParRegisterEventResponseModel register(ParRegisterEventRequestModel request_Model) {
+        parDsGateway.registerEvent(request_Model.getPar_username(),request_Model.getEvent_name());
+        return parRegisterEventPresenter.prepareRegisterSuccess()
+    }
+
 
 
 
