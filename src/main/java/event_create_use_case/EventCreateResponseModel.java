@@ -2,6 +2,7 @@ package event_create_use_case;
 
 public class EventCreateResponseModel {
 
+    private String orgUsername;
     private String title;
     private int status;
     private int eventType;
@@ -14,7 +15,8 @@ public class EventCreateResponseModel {
     private int hour;
     private int minute;
 
-    public EventCreateResponseModel(String title,
+    public EventCreateResponseModel(String orgUsername,
+                                   String title,
                                    int status,
                                    int eventType,
                                    String description,
@@ -25,6 +27,7 @@ public class EventCreateResponseModel {
                                    int day,
                                    int hour,
                                    int minute) {
+        this.orgUsername = orgUsername;
         this.title = title;
         this.status = status;
         this.eventType = eventType;
@@ -36,6 +39,14 @@ public class EventCreateResponseModel {
         this.day = day;
         this.hour = hour;
         this.minute = minute;
+    }
+
+    public String getOrgUsername() {
+        return this.orgUsername;
+    }
+
+    public void setOrgUsername() {
+        this.orgUsername = orgUsername;
     }
 
     public String getTitle() {

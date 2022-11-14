@@ -1,34 +1,38 @@
 package event_create_use_case;
 
-// TODO: Remove dependencies on EventFileUser
 import database.EventDsGateway;
-import database.EventFileUser;
+import database.OrgDsGateway;
 
 public class EventCreateInteractor implements EventCreateInputBoundary {
 
-    // TODO: Change to EventDsGateway
-    final EventFileUser eventDsGateway;
+    final EventDsGateway eventDsGateway;
+    final OrgDsGateway orgDsGateway;
     final EventCreateOutputBoundary userOutput;
 
-    public EventCreateInteractor(EventFileUser eventDsGateway,
+    public EventCreateInteractor(EventDsGateway eventDsGateway,
+                                 OrgDsGateway orgDsGateway,
                                  EventCreateOutputBoundary userOutput) {
         this.eventDsGateway = eventDsGateway;
+        this.orgDsGateway = orgDsGateway;
         this.userOutput = userOutput;
     }
 
     @Override
-    public EventCreateResponseModel create(EventCreateRequestModel requestModel) {
+    public void create(EventCreateRequestModel requestModel) {
         if (eventDsGateway.checkIfEventNameExists(requestModel.getTitle())) {
-            return userOutput.prepareFailView("Title already exists.");
+            userOutput.prepareFailView("Title already exists.");
+        } else {
+            orgDsGateway.createAnEvent(requestModel.getOrgUsername(), requestModel.getTitle(), requestModel.getStatus(),
+                    requestModel.getEventType(), requestModel.getDescription(), requestModel.getLocation(),
+                    requestModel.getImagePath(), requestModel.getYear(), requestModel.getMonth(), requestModel.getDay(),
+                    requestModel.getHour(), requestModel.getMinute());
+            EventCreateResponseModel responseModel = new EventCreateResponseModel(requestModel.getOrgUsername(),
+                    requestModel.getTitle(), requestModel.getStatus(), requestModel.getEventType(),
+                    requestModel.getDescription(), requestModel.getLocation(), requestModel.getImagePath(),
+                    requestModel.getYear(), requestModel.getMonth(), requestModel.getDay(), requestModel.getHour(),
+                    requestModel.getMinute());
+            userOutput.prepareSuccessView(responseModel);
+
         }
-        eventDsGateway.utilStoreEvent(requestModel.getTitle(), requestModel.getStatus(), requestModel.getEventType(),
-                requestModel.getDescription(), requestModel.getLocation(), requestModel.getImagePath(),
-                requestModel.getYear(), requestModel.getMonth(), requestModel.getDay(), requestModel.getHour(),
-                requestModel.getMinute());
-        EventCreateResponseModel responseModel = new EventCreateResponseModel(requestModel.getTitle(),
-                requestModel.getStatus(), requestModel.getEventType(), requestModel.getDescription(),
-                requestModel.getLocation(), requestModel.getImagePath(), requestModel.getYear(),
-                requestModel.getMonth(), requestModel.getDay(), requestModel.getHour(), requestModel.getMinute());
-        return userOutput.prepareSuccessView(responseModel);
     }
 }

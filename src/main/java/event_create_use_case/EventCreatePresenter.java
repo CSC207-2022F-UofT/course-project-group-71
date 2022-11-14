@@ -14,14 +14,12 @@ public class EventCreatePresenter implements EventCreateOutputBoundary {
     }
 
     @Override
-    public EventCreateResponseModel prepareSuccessView(EventCreateResponseModel responseModel) {
-        // TODO: What exactly needs to be returned here? Is it really the response model?
+    public void prepareSuccessView(EventCreateResponseModel responseModel) {
         this.viewModel.setSuccessMessage(responseModel.getTitle());
-        return responseModel;
     }
 
     @Override
-    public EventCreateResponseModel prepareFailView(String error) {
+    public void prepareFailView(String error) {
         throw new EventCreationFailed(error);
     }
 }
