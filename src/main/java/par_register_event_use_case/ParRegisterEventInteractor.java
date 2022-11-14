@@ -6,8 +6,8 @@ import database.EventDsGateway;
 
 public class ParRegisterEventInteractor implements ParRegisterEventInputBoundary{
     private ParRegisterEventPresenter parRegisterEventPresenter;
-    private ParDsGateway parDsGateway;
-    private EventDsGateway eventDsGateway;
+    private final ParDsGateway parDsGateway;
+    private final EventDsGateway eventDsGateway;
     private ParRegisterEventPresenter parRegisterEventPresenter;
 
     public ParRegisterEventInteractor(ParDsGateway parDsGateway, EventDsGateway eventDsGateway, ParRegisterEventPresenter parRegisterEventPresenter) {
@@ -17,10 +17,10 @@ public class ParRegisterEventInteractor implements ParRegisterEventInputBoundary
     }
 
     @Override
-    public void leave(EventLeaveRequestModel requestModel) {
-        parDsGateway.leaveEvent(requestModel.getPar_username(),requestModel.getEvent_title());
-        EventLeaveResponseModel succesresponse = new EventLeaveResponseModel(requestModel.getPar_username(), requestModel.getEvent_title(),"Success to leave the event");
-        EventLeavePresenter.success_view_preparation(succesresponse);
+    public void register(ParRegisterEventRequestModel request_Model) {
+        parDsGateway.registerEvent(requestModel.getPar_username(),request_Model.getEvent_name());
+        EventRegisterResponseModel succesresponse = new EventRegisterResponseModel(request_Model.getPar_username(), request_Model.getEvent_name(),"Registered the event succesfully");
+        ParRegisterEventPresenter.success_view(succesresponse);
         System.out.println(1);
         return;
     }
