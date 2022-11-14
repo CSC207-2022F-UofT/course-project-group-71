@@ -259,17 +259,19 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    public void utilChangeStatus(String title, int new_status){
+    public void utilChangeFromUnpublishedToUpcoming(String title){
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-            String sql = "update eventfile set status = '" + new_status + "' where title = '" + title + "';";
+//            String sql = "update eventfile set status = '" + new_status + "' where title = '" + title + "';";
             stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
+            String orgname = getOrganization(title);
+            int count1 = stmt.executeUpdate("delete from unpublished_events_for_org where org_name = '" + orgname + "';" );
+            int count2 = stmt.executeUpdate("insert into upcoming_events_for_org(org_username, event_title) values + '" + orgname + "','" + title + "';");
+//            System.out.println(sql);
+            if (count1 > 0 && count2 > 0) {
                 System.out.println("Success");
             } else {
                 System.out.println("Failure");
@@ -297,7 +299,6 @@ public class EventFileUser implements EventDsGateway{
 
         }
     }
-
 
     public int getStatus(String title){
         Statement stmt = null;
@@ -594,14 +595,8 @@ public class EventFileUser implements EventDsGateway{
         return utilGetOrganization(title);
     }
 
-    public void ChangeToUnpublished(String title){
-        utilChangeStatus(title, 0);
-    }
-    public void ChangeToPast(String title){
-        utilChangeStatus(title, 1);
-    }
-    public void ChangeToUpcoming(String title){
-        utilChangeStatus(title, 2);
+    public void UnpublishedToUpcoming(String title){
+        utilChangeFromUnpublishedToUpcoming(title);
     }
 
 

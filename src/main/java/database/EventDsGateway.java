@@ -23,4 +23,7 @@ public interface EventDsGateway {
     public ArrayList<String> getParticipants(String title);
 
     public String getOrganization(String title);
+
+
+    public void UnpublishedToUpcoming(String title);
 }
