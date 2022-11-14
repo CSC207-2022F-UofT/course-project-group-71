@@ -14,6 +14,7 @@ public class SearchPage extends JFrame implements ActionListener {
     ButtonGroup group;
     JPanel buttons1, buttons2, panelMain;
 
+
     public SearchPage() {
 
         this.title = new JLabel("Search Screen");
@@ -65,10 +66,9 @@ public class SearchPage extends JFrame implements ActionListener {
         if (e.getActionCommand().equals("Search")) {
             if (org.isSelected()) {
                 dispose();
-                OrganizerSearch orgSearch = new OrganizerSearch();
+                //c
             } else {
                 dispose();
-                EventSearch eveSearch= new EventSearch();
             }
         } else {
             dispose();

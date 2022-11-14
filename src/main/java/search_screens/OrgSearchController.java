@@ -1,4 +1,4 @@
-package screens;
+package search_screens;
 
 import org_search_use_case.OrgSearchInputBoundary;
 import org_search_use_case.OrgSearchRequestModel;
