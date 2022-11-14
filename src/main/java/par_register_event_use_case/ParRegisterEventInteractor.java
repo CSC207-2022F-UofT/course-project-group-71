@@ -19,7 +19,7 @@ public class ParRegisterEventInteractor implements ParRegisterEventInputBoundary
     @Override
     public ParRegisterEventResponseModel register(ParRegisterEventRequestModel request_Model) {
         parDsGateway.registerEvent(request_Model.getPar_username(),request_Model.getEvent_name());
-        return parRegisterEventPresenter.prepareRegisterSuccess()
+        return parRegisterEventPresenter.prepareRegisterSuccess();
     }
 
 
