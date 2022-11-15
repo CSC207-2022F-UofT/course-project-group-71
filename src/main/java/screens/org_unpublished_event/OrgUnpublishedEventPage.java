@@ -32,6 +32,10 @@ public class OrgUnpublishedEventPage extends JFrame {
         back.addActionListener(new OrgUnpublishedEventActionListener(this));
         back.setBounds(0, 100, 150, 30);
 
+        JButton create = new JButton("Create");
+//        create.addActionListener();
+        create.setBounds(0,150,150,30);
+
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
@@ -69,6 +73,12 @@ public class OrgUnpublishedEventPage extends JFrame {
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);
 
+                JButton publish = new JButton("Publish");
+                publish.setActionCommand(unpublishedEventTitle + "Publish");
+                publish.addActionListener(new OrgUnpublishedEventActionListener(this));
+                publish.setBounds(x + 250, y + 15, 100, 30);
+                publish.setVisible(true);
+
                 JButton notify = new JButton("Edit");
                 notify.setActionCommand(unpublishedEventTitle + "Edit");
                 notify.addActionListener(new OrgUnpublishedEventActionListener(this));
@@ -84,6 +94,7 @@ public class OrgUnpublishedEventPage extends JFrame {
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
+                events.add(publish);
                 events.add(notify);
                 events.add(delete);
                 y += 100;
@@ -99,6 +110,7 @@ public class OrgUnpublishedEventPage extends JFrame {
 
         this.add(title);
         this.add(back);
+        this.add(create);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

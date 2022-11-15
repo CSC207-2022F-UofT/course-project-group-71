@@ -5,9 +5,11 @@ import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
 import org_delete_event_use_case.OrgDeleteEventPresenter;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
+import org_publish_event_use_case.*;
 import screens.org_home.OrgHomePage;
 import screens.org_upcoming_event.OrgDeleteEventController;
 import screens.org_upcoming_event.OrgDeleteEventResponseFormatter;
+import screens.org_upcoming_event.OrgUpcomingEventPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +17,7 @@ import java.awt.event.ActionListener;
 
 public class OrgUnpublishedEventActionListener implements ActionListener {
     public OrgUnpublishedEventPage orgUnpublishedEventPage;
+
 
     public OrgUnpublishedEventActionListener(OrgUnpublishedEventPage orgUnpublishedEventPage){
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
@@ -50,9 +53,36 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, e.getMessage());
             }
             this.orgUnpublishedEventPage.dispose();
-            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+            new OrgUpcomingEventPage(this.orgUnpublishedEventPage.getOrgUsername());
         }
-        else if (actionCommand.contains("Edit")){
+        else if (actionCommand.contains("Publish")){
+            EventDsGateway eventDsGateway = new EventFileUser();
+
+            OrgDsGateway orgDsGateway = new OrgFileUser();
+
+            ParDsGateway parDsGateway = new ParFileUser();
+
+            OrgPublishEventPresenter orgPublishEventPresenter = new OrgPublishEventResponseFormatter();
+
+            OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgDsGateway,
+                    parDsGateway,orgPublishEventPresenter);
+
+            OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
+            System.out.println((actionCommand.substring(0)));
+            String eventName = actionCommand.substring(0,actionCommand.length()-7);
+            System.out.println(eventName + "A");
+
+            try{
+                OrgPublishEventResponseModel responseModel = orgPublishEventController.publish(eventName);
+                JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, e.getMessage());
+            }
+            this.orgUnpublishedEventPage.dispose();
+            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+
+        }
+        else if (actionCommand.contains("Create")){
 
         }
     }
