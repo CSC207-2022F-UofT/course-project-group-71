@@ -17,6 +17,7 @@ import par_show_notification_use_case.*;
 public class ParHomePage extends JFrame implements ActionListener {
 
     private String parUsername;
+    JRadioButton org,eve;
 
     ParShowNotificationPresenter parShowNotificationPresenter =  new ParShowNotificationResponseFormatter();
 
@@ -66,14 +67,16 @@ public class ParHomePage extends JFrame implements ActionListener {
 
         JTextField searchbox= new JTextField(20);
         searchbox.setBounds(200,100,500,50);
-        JRadioButton org = new JRadioButton("Organizer");
-        JRadioButton eve = new JRadioButton("Event");
+        org = new JRadioButton("Organizer");
+        eve = new JRadioButton("Event");
 
         ButtonGroup group = new ButtonGroup();
         group.add(org);
         group.add(eve);
 
         JButton search= new JButton("Search");
+        search.addActionListener(new ParHomeActionListener(this));
+
         JPanel buttons1 = new JPanel();
         buttons1.add(org);
         buttons1.add(eve);

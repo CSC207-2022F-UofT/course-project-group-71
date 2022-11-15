@@ -43,6 +43,17 @@ public class ParHomeActionListener implements ActionListener {
             this.parHomePage.dispose();
             new ParFollowedOrgPage(this.parHomePage.getParUsername());
         }
+        else if( page.equals("Search")){
+            this.parHomePage.dispose();
+            if(this.parHomePage.org.isSelected()){
+
+            }
+            else{
+
+            }
+        }
+
+
         else {
             this.parHomePage.dispose();
             UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
