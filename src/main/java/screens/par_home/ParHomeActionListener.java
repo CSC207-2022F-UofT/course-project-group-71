@@ -41,15 +41,17 @@ public class ParHomeActionListener implements ActionListener {
         } else if (page.equals("Followed Org")) {
             this.parHomePage.dispose();
             new ParFollowedOrgPage(this.parHomePage.getParUsername());
-//        } else if (page.equals("Search")) {
-//            if (this.parHomePage.org.isSelected()) {
-//                OrgDsGateway org = new OrgFileUser();
-//                OrgSearchOutputBoundary presenter = new OrgSearchPresenter(); //minor issue
-//                OrgSearchInputBoundary interactor = new OrgSearchInteractor(org, presenter);
-//                OrgSearchController controller = new OrgSearchController(interactor);
-//                String query = this.parHomePage.searchBox.getText(); //code smell (i.e. tight coupling)
-//                this.parHomePage.dispose();
-//                controller.orgSearch(query);
+        } else if (page.equals("Search")) {
+            if (this.parHomePage.org.isSelected()) {
+                OrgDsGateway org = new OrgFileUser();
+                OrgSearchOutputBoundary presenter = new OrgSearchPresenter();
+                OrgSearchInputBoundary interactor = new OrgSearchInteractor(org, presenter);
+                OrgSearchController controller = new OrgSearchController(interactor);
+                String query = this.parHomePage.searchBox.getText();
+                controller.orgSearch(query); //draw screen
+                this.parHomePage.dispose();
+
+
 //            } else {
 //                EventDsGateway eve = new EventFileUser();
 //                EventOutputBoundary presenter = new EventSearchPresenter(); //minor issue
@@ -60,24 +62,25 @@ public class ParHomeActionListener implements ActionListener {
 //                controller.eventSearch(query);
 //
 //            }
-        } else {
-            this.parHomePage.dispose();
-            UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
+            } else {
+                this.parHomePage.dispose();
+                UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
 
-            ParDsGateway parDsGateway = new ParFileUser();
+                ParDsGateway parDsGateway = new ParFileUser();
 
-            ParHomePresenter parHomePresenter = new ParHomeResponseFormatter();
+                ParHomePresenter parHomePresenter = new ParHomeResponseFormatter();
 
-            OrgDsGateway orgDsGateway = new OrgFileUser();
+                OrgDsGateway orgDsGateway = new OrgFileUser();
 
-            OrgHomePresenter orgHomePresenter = new OrgHomeResponseFormatter();
+                OrgHomePresenter orgHomePresenter = new OrgHomeResponseFormatter();
 
-            UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+                UserLoginInputBoundary interactor = new UserLoginInteractor(
+                        userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
 
-            UserLoginController userLoginController = new UserLoginController(interactor);
+                UserLoginController userLoginController = new UserLoginController(interactor);
 
-            new LoginPage(userLoginController);
+                new LoginPage(userLoginController);
+            }
         }
     }
 }

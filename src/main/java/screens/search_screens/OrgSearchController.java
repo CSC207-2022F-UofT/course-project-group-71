@@ -2,6 +2,7 @@ package screens.search_screens;
 
 import org_search_use_case.OrgSearchInputBoundary;
 import org_search_use_case.OrgSearchRequestModel;
+import org_search_use_case.OrgSearchResponseModel;
 
 import java.util.ArrayList;
 
@@ -13,8 +14,8 @@ public class OrgSearchController {
         this.userInput = userInput;
     }
 
-    public void orgSearch(String query) {
+    public OrgSearchResponseModel orgSearch(String query) {
         OrgSearchRequestModel requestModel = new OrgSearchRequestModel(query);
-        userInput.orgSearch(requestModel);
+        return userInput.orgSearch(requestModel);
     }
 }

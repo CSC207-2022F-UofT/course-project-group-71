@@ -1,7 +1,7 @@
 package org_search_use_case;
 
 public interface OrgSearchOutputBoundary {
-    void prepareSuccessView(OrgSearchResponseModel responseModel);
+    OrgSearchResponseModel prepareSuccessView(OrgSearchResponseModel results );
+    OrgSearchResponseModel prepareFailView(String error);
 
-    void prepareFailView(String error);
 }

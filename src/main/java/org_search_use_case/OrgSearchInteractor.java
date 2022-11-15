@@ -15,13 +15,13 @@ public class OrgSearchInteractor implements OrgSearchInputBoundary {
     }
 
     @Override
-    public void orgSearch(OrgSearchRequestModel userInput) {
+    public OrgSearchResponseModel orgSearch(OrgSearchRequestModel userInput) {
         ArrayList<String> searchResults = orgDsGateway.organizerSearch(userInput.getQuery());
         if (searchResults.isEmpty()) {
-            userOutput.prepareFailView("No organizers found.");
+            return userOutput.prepareFailView("No organizers found.");
         } else {
             OrgSearchResponseModel responseModel = new OrgSearchResponseModel(searchResults);
-            userOutput.prepareSuccessView(responseModel);
+            return userOutput.prepareSuccessView(responseModel);
         }
     }
 }
