@@ -1,16 +1,16 @@
 package user_register_use_case;
 
 public class UserRegisterResponseModel {
-    private String message;
-    public UserRegisterResponseModel(String message){
-        this.message = message;
+    private String username;
+    public UserRegisterResponseModel(String username){
+        this.username = username;
     }
 
-    public String getMessage() {
-        return message;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

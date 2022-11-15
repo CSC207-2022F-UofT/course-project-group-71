@@ -6,7 +6,8 @@ public class UserRegisterResponseFormatter implements UserRegisterPresenter {
         throw new ShowMessageView(failureresponse);
     }
 
-    public UserRegisterResponseModel prepareSuccessView(String successresponse){
+    public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel responseModel){
+        String successresponse = responseModel.getUsername() + ", you can login now!";
         throw new ShowMessageView(successresponse);
     }
 }

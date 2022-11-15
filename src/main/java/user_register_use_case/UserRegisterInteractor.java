@@ -29,7 +29,8 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return userRegisterPresenter.prepareFailView("Two Passwords are different.");
             }
             orgDsGateway.createOrg(requestModel.getName(),requestModel.getPassword());
-            return userRegisterPresenter.prepareSuccessView("Organization Registered Successfully!");
+            UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
+            return userRegisterPresenter.prepareSuccessView(responseModel);
         }
         else if (requestModel.getUserType().equals("P")){
             //Proceed as participant
@@ -40,7 +41,8 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return userRegisterPresenter.prepareFailView("Two Passwords are different.");
             }
             parDsGateway.createPar(requestModel.getName(),requestModel.getPassword());
-            return userRegisterPresenter.prepareSuccessView("Participant Registered Successfully.");
+            UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
+            return userRegisterPresenter.prepareSuccessView(responseModel);
         }
         else {
             return userRegisterPresenter.prepareFailView("Please select your account type.");
