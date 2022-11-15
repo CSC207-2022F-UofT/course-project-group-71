@@ -63,6 +63,30 @@ public class ParHomePage extends JFrame implements ActionListener {
         logOut.addActionListener(new ParHomeActionListener(this));
         logOut.setBounds (0,320, 150, 30);
 
+
+        JTextField searchbox= new JTextField(20);
+        searchbox.setBounds(200,100,500,50);
+        JRadioButton org = new JRadioButton("Organizer");
+        JRadioButton eve = new JRadioButton("Event");
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(org);
+        group.add(eve);
+
+        JButton search= new JButton("Search");
+        JPanel buttons1 = new JPanel();
+        buttons1.add(org);
+        buttons1.add(eve);
+        buttons1.setBounds(300,180,200,50);
+
+        JPanel buttons2 = new JPanel();
+        buttons2.add(search);
+        buttons2.setBounds(310,230,200,50);
+
+        JLabel searchLable= new JLabel("Type:");
+        searchLable.setBounds(160,100,50,50);
+
+
         this.add(title);
         this.add(showNotifications);
         this.add(account);
@@ -70,6 +94,10 @@ public class ParHomePage extends JFrame implements ActionListener {
         this.add(pastEvent);
         this.add(followedOrg);
         this.add(logOut);
+        this.add(searchbox);
+        this.add(buttons1);
+        this.add(buttons2);
+        this.add(searchLable);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
