@@ -1,21 +1,26 @@
-package org_search_use_case;
-
-public class OrgSearchPresenter implements OrgSearchOutputBoundary {
-
-    final OrgSearchViewModel viewModel;
-
-    public OrgSearchPresenter(OrgSearchViewModel viewModel) {
-        this.viewModel = viewModel;
-    }
-
-    @Override
-    public void prepareSuccessView(OrgSearchResponseModel responseModel) {
-        // TODO: Create success view
-    }
-
-    @Override
-    public void prepareFailView(String error) {
-        // TODO: Create OrgSearchFailed
-        throw new OrgSearchFailed(error);
-    }
-}
+//package org_search_use_case;
+//
+//import screens.search_screens.OrganizerResultsPage;
+//
+//import java.util.ArrayList;
+//
+//public class OrgSearchPresenter implements OrgSearchOutputBoundary {
+//
+//    final OrganizerResultsPage viewModel;
+//
+//    public OrgSearchPresenter(OrganizerResultsPage viewModel) {
+//        this.viewModel = viewModel;
+//    }
+//
+//    @Override
+//    public void prepareSuccessView(OrgSearchResponseModel responseModel) {
+//        ArrayList<String> orgNames= responseModel.getSearchResults();
+//        OrganizerResultsPage page = new OrganizerResultsPage(orgNames);
+//    }
+//
+//    @Override
+//    public void prepareFailView(String error) {
+//        // TODO: Create OrgSearchFailed
+//        throw new OrgSearchFailed(error);
+//    }
+//}

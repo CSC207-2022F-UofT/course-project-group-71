@@ -1,4 +1,4 @@
-package search_screens;
+package screens.search_screens;
 
 import event_search_use_case.EventSearchInputBoundary;
 import event_search_use_case.EventSearchRequestModel;

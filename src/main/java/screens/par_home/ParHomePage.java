@@ -18,6 +18,7 @@ public class ParHomePage extends JFrame implements ActionListener {
 
     private String parUsername;
     JRadioButton org,eve;
+    JTextField searchBox;
 
     ParShowNotificationPresenter parShowNotificationPresenter =  new ParShowNotificationResponseFormatter();
 
@@ -65,8 +66,8 @@ public class ParHomePage extends JFrame implements ActionListener {
         logOut.setBounds (0,320, 150, 30);
 
 
-        JTextField searchbox= new JTextField(20);
-        searchbox.setBounds(200,100,500,50);
+        searchBox= new JTextField(20);
+        searchBox.setBounds(200,100,500,50);
         org = new JRadioButton("Organizer");
         eve = new JRadioButton("Event");
 
@@ -97,7 +98,7 @@ public class ParHomePage extends JFrame implements ActionListener {
         this.add(pastEvent);
         this.add(followedOrg);
         this.add(logOut);
-        this.add(searchbox);
+        this.add(searchBox);
         this.add(buttons1);
         this.add(buttons2);
         this.add(searchLable);
@@ -117,4 +118,7 @@ public class ParHomePage extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }
     }
+
+
+
 }
