@@ -1,4 +1,4 @@
-package screens;
+package ParRegisterEventScreens;
 
 import javax.swing.*;
 
