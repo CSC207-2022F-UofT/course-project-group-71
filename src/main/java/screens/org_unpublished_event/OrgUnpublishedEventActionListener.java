@@ -68,8 +68,9 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                     parDsGateway,orgPublishEventPresenter);
 
             OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
-
-            String eventName = actionCommand.substring(0,actionCommand.length()-6);
+            System.out.println((actionCommand.substring(0)));
+            String eventName = actionCommand.substring(0,actionCommand.length()-7);
+            System.out.println(eventName + "A");
 
             try{
                 OrgPublishEventResponseModel responseModel = orgPublishEventController.publish(eventName);
@@ -78,7 +79,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, e.getMessage());
             }
             this.orgUnpublishedEventPage.dispose();
-            new OrgUpcomingEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
 
         }
         else if (actionCommand.contains("Create")){

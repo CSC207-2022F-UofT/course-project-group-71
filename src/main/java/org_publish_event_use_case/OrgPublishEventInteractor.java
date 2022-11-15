@@ -19,10 +19,11 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     @Override
     public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) {
         String eventName = requestModel.getEventName();
+        System.out.println("publish method" + eventName);
         String orgUsername = eventDsGateway.getOrganization(eventName);
 
 
-        eventDsGateway.ChangeToUpcoming(eventName);
+        eventDsGateway.UnpublishedToUpcoming(eventName);
 
         OrgPublishEventResponseModel orgPublishEventResponseModel = new OrgPublishEventResponseModel(eventName);
         return orgPublishEventPresenter.prepareSuccessView(orgPublishEventResponseModel);

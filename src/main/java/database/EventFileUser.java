@@ -8,7 +8,7 @@ public class EventFileUser implements EventDsGateway{
     public static void main(String[] args) {
         EventFileUser b =new EventFileUser();
 //        b.utilStoreEvent("E", 123, 3, "5", "A", "2312414",2004,5,1,3,4);
-        System.out.println(b.checkIfEventNameExist("A"));
+        b.utilUnpublishedToUpcoming("1");
 
     }
 
@@ -259,18 +259,23 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    public void utilChangeFromUnpublishedToUpcoming(String title){
+    public void utilUnpublishedToUpcoming(String title){
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", "1234");
-//            String sql = "update eventfile set status = '" + new_status + "' where title = '" + title + "';";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
             stmt = conn.createStatement();
-            String orgname = getOrganization(title);
-            int count1 = stmt.executeUpdate("delete from unpublished_events_for_org where org_name = '" + orgname + "';" );
-            int count2 = stmt.executeUpdate("insert into upcoming_events_for_org(org_username, event_title) values + '" + orgname + "','" + title + "';");
-//            System.out.println(sql);
+            String orgName = getOrganization(title);
+            System.out.println(orgName);
+            System.out.println(title);
+            String sql1 = "delete from unpublished_events_for_org where event_title = '" + title + "';";
+            int count1 = stmt.executeUpdate(sql1);
+            System.out.println(sql1);
+            String sql2 = "insert into upcoming_events_for_org(org_username, event_title) values('" + orgName + "','" + title + "');";
+            System.out.println(sql2);
+            int count2 = stmt.executeUpdate(sql2);
+            System.out.println(count2);
             if (count1 > 0 && count2 > 0) {
                 System.out.println("Success");
             } else {
@@ -299,6 +304,7 @@ public class EventFileUser implements EventDsGateway{
 
         }
     }
+
 
     public int getStatus(String title){
         Statement stmt = null;
@@ -596,7 +602,7 @@ public class EventFileUser implements EventDsGateway{
     }
 
     public void UnpublishedToUpcoming(String title){
-        utilChangeFromUnpublishedToUpcoming(title);
+        utilUnpublishedToUpcoming(title);
     }
 
 
