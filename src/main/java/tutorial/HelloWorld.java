@@ -16,7 +16,11 @@ public class HelloWorld {
     static int CONSTANT_X = 800;
     static int CONSTANT_Y = 800;
 
-    static String databasePassword = "Feng703902!";
+
+    static String databaseUrl = "jdbc:mysql://localhost:3306/db2";
+
+    static String databaseUsername = "root";
+    static String databasePassword = "1234";
     public static void main(String[] args) {
 
         UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
@@ -40,6 +44,10 @@ public class HelloWorld {
 
     public static int getConstantX(){return CONSTANT_X;}
     public static int getConstantY(){return CONSTANT_Y;}
+
+    public static String getDatabaseUrl() {return databaseUrl;}
+
+    public static String getDatabaseUsername() {return databaseUsername;}
     public static String getDatabasePassword(){return databasePassword;}
 
 }
