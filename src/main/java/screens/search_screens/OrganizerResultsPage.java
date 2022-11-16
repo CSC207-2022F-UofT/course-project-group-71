@@ -14,10 +14,11 @@ import static tutorial.HelloWorld.getConstantY;
 public class OrganizerResultsPage extends JFrame {
 
      private ArrayList<String> orgNames;
-
-    public OrganizerResultsPage(ArrayList<String> orgNames) {
+     private String parUsername;
+    public OrganizerResultsPage(ArrayList<String> orgNames, String parUsername) {
 
         this.orgNames = orgNames;
+        this.parUsername=parUsername;
 
         this.setLayout(null);
 
@@ -31,7 +32,7 @@ public class OrganizerResultsPage extends JFrame {
 
 
         JButton back = new JButton("Back");
-        //back.addActionListener(new OrganizerResultsPageActionListener(this));
+        back.addActionListener(new OrganizerResultsPageActionListener(this));
         back.setBounds(0, 100, 150, 30);
 
         JPanel organizers = new JPanel();
@@ -48,7 +49,7 @@ public class OrganizerResultsPage extends JFrame {
             for (String nextOrg : this.orgNames ) {
 
                 JButton orgName = new JButton(nextOrg);
-//                orgName.addActionListener(new ParUpcomingEventActionListener(this));
+//                orgName.addActionListener(new OrganizerResultsPageActionListener(this));
                 orgName.setBounds(x, y, 250, 30);
                 orgName.setVisible(true);
 
@@ -91,15 +92,8 @@ public class OrganizerResultsPage extends JFrame {
 
     }
 
-
-
-
-
-
-
-
-
-
-
+    public String getParUsername() {
+        return parUsername;
+    }
 
 }
