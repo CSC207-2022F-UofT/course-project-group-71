@@ -1,16 +1,16 @@
 package screens.org_account;
 
-import org_reset_password_use_case.*;
+import user_reset_password_use_case.*;
 
 public class OrgResetPasswordController {
-    final OrgResetPasswordInputBoundary userInput;
+    final UserResetPasswordInputBoundary userInput;
 
-    public OrgResetPasswordController(OrgResetPasswordInputBoundary accountGateway) {
+    public OrgResetPasswordController(UserResetPasswordInputBoundary accountGateway) {
         this.userInput = accountGateway;
     }
 
-    OrgResetPasswordResponseModel resetPassword(String username, String oldPassword, String newPassword, String retypeNewPassword) {
-        OrgResetPasswordRequestModel requestModel = new OrgResetPasswordRequestModel(username, oldPassword, newPassword, retypeNewPassword);
+    UserResetPasswordResponseModel resetPassword(String username, String oldPassword, String newPassword, String retypeNewPassword) {
+        UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, oldPassword, newPassword, retypeNewPassword);
 
         return userInput.resetPassword(requestModel);
     }

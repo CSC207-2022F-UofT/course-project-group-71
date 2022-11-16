@@ -1,13 +1,13 @@
-package org_reset_password_use_case;
+package user_reset_password_use_case;
 
-public class OrgResetPasswordRequestModel {
+public class UserResetPasswordRequestModel {
 
     private String username;
     private String oldPassword;
     private String newPassword;
     private String retypeNewPassword;
 
-    public OrgResetPasswordRequestModel(String username, String oldPassword, String newPassword, String retypeNewPassword) {
+    public UserResetPasswordRequestModel(String username, String oldPassword, String newPassword, String retypeNewPassword) {
         this.username = username;
         this.oldPassword = oldPassword;
         this.newPassword = newPassword;

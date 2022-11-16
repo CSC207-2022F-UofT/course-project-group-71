@@ -1,9 +1,7 @@
 package screens.org_account;
 
-import org_delete_event_use_case.OrgDeleteEventResponseModel;
-import org_reset_password_use_case.OrgResetPasswordResponseModel;
+import user_reset_password_use_case.UserResetPasswordResponseModel;
 import screens.LabelTextPanel;
-import user_login_use_case.UserLoginResponseModel;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
@@ -72,7 +70,7 @@ public class OrgAccountPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        OrgResetPasswordResponseModel responseModel = orgResetPasswordController.resetPassword(
+        UserResetPasswordResponseModel responseModel = orgResetPasswordController.resetPassword(
                 this.orgUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
                 String.valueOf(retypeNewPassword.getPassword()));
         JOptionPane.showMessageDialog(this, responseModel.getMessage());
