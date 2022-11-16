@@ -305,6 +305,53 @@ public class EventFileUser implements EventDsGateway{
         }
     }
 
+    public ArrayList<String> utilEventSearch(String about_name){
+        //This is method is used for searching method of the website
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        ArrayList<String> l = new ArrayList<String>(0);
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select title from eventfile where title like \"%" + about_name + "%\";");
+            while (rs.next()) {
+                l.add(rs.getString("title"));
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("NotFound");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("SQL");
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return l;
+    }
+
 
     public int getStatus(String title){
         Statement stmt = null;
@@ -605,6 +652,9 @@ public class EventFileUser implements EventDsGateway{
         utilUnpublishedToUpcoming(title);
     }
 
+    public ArrayList<String> eventSearch(String about_name){
+        return utilEventSearch(about_name);
+    }
 
 
 
