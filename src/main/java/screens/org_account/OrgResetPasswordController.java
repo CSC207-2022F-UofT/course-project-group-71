@@ -9,8 +9,8 @@ public class OrgResetPasswordController {
         this.userInput = accountGateway;
     }
 
-    UserResetPasswordResponseModel resetPassword(String username, String oldPassword, String newPassword, String retypeNewPassword) {
-        UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, oldPassword, newPassword, retypeNewPassword);
+    UserResetPasswordResponseModel resetPassword( String orgUsername, String oldPassword, String newPassword, String retypeNewPassword) {
+        UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(orgUsername, oldPassword, newPassword, retypeNewPassword);
 
         return userInput.resetPassword(requestModel);
     }

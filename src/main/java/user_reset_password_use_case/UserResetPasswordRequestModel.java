@@ -2,25 +2,31 @@ package user_reset_password_use_case;
 
 public class UserResetPasswordRequestModel {
 
-    private String username;
+    private String parUsername;
+    private String orgUsername;
     private String oldPassword;
     private String newPassword;
     private String retypeNewPassword;
 
-    public UserResetPasswordRequestModel(String username, String oldPassword, String newPassword, String retypeNewPassword) {
-        this.username = username;
+    public UserResetPasswordRequestModel(String parUsername, String orgUsername, String oldPassword, String newPassword) {
+        this.parUsername = parUsername;
+        this.orgUsername = orgUsername;
         this.oldPassword = oldPassword;
         this.newPassword = newPassword;
         this.retypeNewPassword = retypeNewPassword;
     }
 
     public String getUsername() {
-        return username;
+        return parUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String parUsername) {
+        this.parUsername = parUsername;
     }
+
+    public String getOrgUsername() {return orgUsername;}
+
+    public void setOrgUsername(String orgUsername) {this.orgUsername = orgUsername;}
 
     public String getOldPassword() {
         return oldPassword;
