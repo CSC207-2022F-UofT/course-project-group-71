@@ -4,6 +4,8 @@ import database.EventDsGateway;
 import database.OrgDsGateway;
 import database.ParDsGateway;
 
+import java.util.ArrayList;
+
 public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     private EventDsGateway eventDsGateway;
     private OrgDsGateway orgDsGateway;
@@ -19,9 +21,11 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     @Override
     public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) {
         String eventName = requestModel.getEventName();
-        System.out.println("publish method" + eventName);
         String orgUsername = eventDsGateway.getOrganization(eventName);
+        if (!eventDsGateway.getDescription(eventName).isEmpty() && !eventDsGateway.getLocation(eventName).isEmpty()){
+            ArrayList<Integer> times = eventDsGateway.getTime(eventName);
 
+        }
 
         eventDsGateway.UnpublishedToUpcoming(eventName);
 

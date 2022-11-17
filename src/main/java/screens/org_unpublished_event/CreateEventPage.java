@@ -3,23 +3,26 @@ package screens.org_unpublished_event;
 import screens.LabelTextPanel;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class CreateEventPage extends JFrame {
+public class CreateEventPage extends JFrame implements ActionListener {
 
     OrgCreateEventController controller;
+    OrgUnpublishedEventPage orgUnpublishedEventPage;
 
     JTextField eventTitle = new JTextField(15);
     JTextField description = new JTextField(15);
-    JTextField year = new JTextField(15);
-    JTextField month = new JTextField(15);
-    JTextField day = new JTextField(15);
-    JTextField hour = new JTextField(15);
-    JTextField minute = new JTextField(15);
+    JTextField year = new JTextField(4);
+    JTextField month = new JTextField(2);
+    JTextField day = new JTextField(2);
+    JTextField hour = new JTextField(2);
+    JTextField minute = new JTextField(2);
     JTextField location = new JTextField(15);
 
-    public CreateEventPage(OrgCreateEventController controller){
+    public CreateEventPage(OrgCreateEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage){
         this.controller = controller;
+        this.orgUnpublishedEventPage = orgUnpublishedEventPage;
         
         int x = 500;
         int y = 500;
@@ -38,9 +41,9 @@ public class CreateEventPage extends JFrame {
                 new JLabel("Title"), eventTitle);
         eventTitleInfo.setBounds (0,100, x, 50);
 
-        LabelTextPanel DescriptionInfo = new LabelTextPanel(
+        LabelTextPanel descriptionInfo = new LabelTextPanel(
                 new JLabel("Description"), description);
-        DescriptionInfo.setBounds (0,150, x, 50);
+        descriptionInfo.setBounds (0,150, x, 50);
 
         LabelTextPanel yearInfo = new LabelTextPanel(
                 new JLabel("Year"), year);
@@ -60,17 +63,17 @@ public class CreateEventPage extends JFrame {
 
         LabelTextPanel minuteInfo = new LabelTextPanel(
                 new JLabel("Minute"), minute);
-        minuteInfo.setBounds (3*x/5,200, x/5, 50);
+        minuteInfo.setBounds (4*x/5,200, x/5, 50);
 
         LabelTextPanel locationInfo = new LabelTextPanel(
-                new JLabel("Month"), location);
-        locationInfo.setBounds (4*x/5,250, x, 50);
+                new JLabel("Location"), location);
+        locationInfo.setBounds (0,250, x, 50);
 
         JButton cancel = new JButton("Cancel");
         cancel.addActionListener(new CreateEventPageActionListener(this));
 
         JButton create = new JButton("Create");
-        create.addActionListener(new CreateEventPageActionListener(this));
+        create.addActionListener(this);
 
         JPanel buttons = new JPanel();
         buttons.add(cancel);
@@ -78,6 +81,15 @@ public class CreateEventPage extends JFrame {
         buttons.setBounds (0,300, x, 50);
 
         this.add(title);
+        this.add(eventTitleInfo);
+        this.add(descriptionInfo);
+        this.add(yearInfo);
+        this.add(monthInfo);
+        this.add(dayInfo);
+        this.add(hourInfo);
+        this.add(minuteInfo);
+        this.add(locationInfo);
+        this.add(buttons);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -85,6 +97,20 @@ public class CreateEventPage extends JFrame {
 
     }
 
+    public String getOrgUsername() { return this.orgUnpublishedEventPage.getOrgUsername(); }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            controller.create(getOrgUsername(), eventTitle.getText(), description.getText(), location.getText(),
+                    year.getText(), month.getText(), day.getText(), hour.getText(), minute.getText());
+            this.dispose();
+            this.orgUnpublishedEventPage.dispose();
+            new OrgUnpublishedEventPage(getOrgUsername());
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, exception.getMessage());
+        }
+    }
 }
 
 

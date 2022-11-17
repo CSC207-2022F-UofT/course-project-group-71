@@ -85,7 +85,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
 
         }
-        else if (actionCommand.contains("Create")){
+        else if (actionCommand.contains("Create An Event")){
             EventDsGateway eventDsGateway = new EventFileUser();
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
@@ -96,7 +96,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgCreateEventController orgCreateEventController = new OrgCreateEventController(interactor);
 
-            new CreateEventPage(orgCreateEventController);
+            new CreateEventPage(orgCreateEventController, this.orgUnpublishedEventPage);
         }
     }
 }

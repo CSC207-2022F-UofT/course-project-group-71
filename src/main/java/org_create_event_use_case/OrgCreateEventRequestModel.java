@@ -4,28 +4,25 @@ public class OrgCreateEventRequestModel {
 
     private String orgUsername;
     private String title;
-    private int status;
     private String description;
     private String location;
-    private int year;
-    private int month;
-    private int day;
-    private int hour;
-    private int minute;
+    private String year;
+    private String month;
+    private String day;
+    private String hour;
+    private String minute;
 
     public OrgCreateEventRequestModel(String orgUsername,
                                       String title,
-                                      int status,
                                       String description,
                                       String location,
-                                      int year,
-                                      int month,
-                                      int day,
-                                      int hour,
-                                      int minute) {
+                                      String year,
+                                      String month,
+                                      String day,
+                                      String hour,
+                                      String minute) {
         this.orgUsername = orgUsername;
         this.title = title;
-        this.status = status;
         this.description = description;
         this.location = location;
         this.year = year;
@@ -51,14 +48,6 @@ public class OrgCreateEventRequestModel {
         this.title = title;
     }
 
-    public int getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     public String getDescription() {
         return this.description;
     }
@@ -75,43 +64,43 @@ public class OrgCreateEventRequestModel {
         this.location = location;
     }
 
-    public int getYear() {
+    public String getYear() {
         return this.year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public int getMonth() {
+    public String getMonth() {
         return this.month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(String month) {
         this.month = month;
     }
 
-    public int getDay() {
+    public String getDay() {
         return this.day;
     }
 
-    public void setDay(int day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
-    public int getHour() {
+    public String getHour() {
         return this.hour;
     }
 
-    public void setHour(int hour) {
+    public void setHour(String hour) {
         this.hour = hour;
     }
 
-    public int getMinute() {
+    public String getMinute() {
         return this.minute;
     }
 
-    public void setMinute(int minute) {
+    public void setMinute(String minute) {
         this.minute = minute;
     }
 }

@@ -19,14 +19,6 @@ public class CreateEventPageActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String actionCommand = e.getActionCommand();
-
-        if (actionCommand.equals("Back")) {
-            this.createEventPage.dispose();
-        }
-        else if (actionCommand.equals("Create")){
-
-
-        }
+        this.createEventPage.dispose();
     }
 }

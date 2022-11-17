@@ -32,7 +32,7 @@ public class OrgUnpublishedEventPage extends JFrame {
         back.addActionListener(new OrgUnpublishedEventActionListener(this));
         back.setBounds(0, 100, 150, 30);
 
-        JButton create = new JButton("Create");
+        JButton create = new JButton("Create An Event");
         create.addActionListener(new OrgUnpublishedEventActionListener(this));
         create.setBounds(0,150,150,30);
 

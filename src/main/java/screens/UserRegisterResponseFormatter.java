@@ -1,5 +1,7 @@
-package user_register_use_case;
+package screens;
 import screens.ShowMessageView;
+import user_register_use_case.UserRegisterPresenter;
+import user_register_use_case.UserRegisterResponseModel;
 
 public class UserRegisterResponseFormatter implements UserRegisterPresenter {
     public UserRegisterResponseModel prepareFailView(String failureresponse){

@@ -23,6 +23,7 @@ public interface EventDsGateway {
     // It will return the organization that runs the event
     public String getOrganization(String title);
 
+    public String getLocation(String title);
 
 
     // It will check if the event name of exists

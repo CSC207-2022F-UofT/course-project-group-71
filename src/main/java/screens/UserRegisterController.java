@@ -1,4 +1,8 @@
-package user_register_use_case;
+package screens;
+
+import user_register_use_case.UserRegisterInputBoundary;
+import user_register_use_case.UserRegisterRequestModel;
+import user_register_use_case.UserRegisterResponseModel;
 
 public class UserRegisterController {
     final UserRegisterInputBoundary interactor;

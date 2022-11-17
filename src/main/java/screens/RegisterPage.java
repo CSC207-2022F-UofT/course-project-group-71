@@ -11,7 +11,6 @@ import database.ParFileUser;
 import screens.org_home.OrgHomeResponseFormatter;
 import screens.par_home.ParHomeResponseFormatter;
 import user_login_use_case.*;
-import user_register_use_case.*;
 
 public class RegisterPage extends JFrame implements ActionListener {
 
