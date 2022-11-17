@@ -10,10 +10,12 @@ import static tutorial.HelloWorld.getConstantY;
 public class EventResultsPage extends JFrame {
 
     private ArrayList<String> eventNames;
+    private String parUsername;
 
-    public EventResultsPage( ArrayList<String> eventNames){
+    public EventResultsPage( ArrayList<String> eventNames, String parUserName){
 
         this.eventNames=eventNames;
+        this.parUsername= parUserName;
 
         this.setLayout(null);
 
@@ -27,7 +29,7 @@ public class EventResultsPage extends JFrame {
 
 
         JButton back = new JButton("Back");
-        //back.addActionListener(new OrganizerResultsPageActionListener(this));
+        back.addActionListener(new EventResultsPageActionListener(this));
         back.setBounds(0, 100, 150, 30);
 
         JPanel events = new JPanel();
@@ -55,7 +57,7 @@ public class EventResultsPage extends JFrame {
                 join.setVisible(true);
 
 
-                JButton leave = new JButton("Unfollow");
+                JButton leave = new JButton("Leave");
 //                leave.addActionListener(new OrganizerResultsPageActionListener(this));
                 leave.setBounds(x + 250, y + 15, 100, 30);
                 leave.setVisible(true);
@@ -88,8 +90,12 @@ public class EventResultsPage extends JFrame {
     }
 
 
+    public String getParUsername() {
+        return parUsername;
+    }
 
 }
+
 
 
 

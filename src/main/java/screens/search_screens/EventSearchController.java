@@ -13,8 +13,8 @@ public class EventSearchController {
         this.userInput = userInput;
     }
 
-    public EventSearchResponseModel eventSearch(String query) {
-        EventSearchRequestModel requestModel = new EventSearchRequestModel(query);
+    public EventSearchResponseModel eventSearch(String query, String parUserName) {
+        EventSearchRequestModel requestModel = new EventSearchRequestModel(query,parUserName);
         return userInput.eventSearch(requestModel);
     }
 

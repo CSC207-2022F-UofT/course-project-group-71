@@ -1,6 +1,5 @@
 package event_search_use_case;
 
-import event_search_use_case.EventSearchResponseModel;
 import screens.ShowMessageView;
 import screens.search_screens.EventResultsPage;
 
@@ -12,7 +11,8 @@ public class EventSearchPresenter implements EventSearchOutputBoundary {
     @Override
     public EventSearchResponseModel prepareSuccessView(EventSearchResponseModel results) {
         ArrayList<String> eventNames= results.getSearchResults();
-        new EventResultsPage(eventNames);
+        String parUserName= results.getParUserName();
+        new EventResultsPage(eventNames,parUserName);
         return results;
     }
 
