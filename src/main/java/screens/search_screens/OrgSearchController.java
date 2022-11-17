@@ -14,8 +14,8 @@ public class OrgSearchController {
         this.userInput = userInput;
     }
 
-    public OrgSearchResponseModel orgSearch(String query) {
-        OrgSearchRequestModel requestModel = new OrgSearchRequestModel(query);
+    public OrgSearchResponseModel orgSearch(String query,String parUserName) {
+        OrgSearchRequestModel requestModel = new OrgSearchRequestModel(query,parUserName);
         return userInput.orgSearch(requestModel);
     }
 }

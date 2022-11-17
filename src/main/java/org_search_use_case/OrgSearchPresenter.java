@@ -11,7 +11,8 @@ public class OrgSearchPresenter implements OrgSearchOutputBoundary {
     @Override
     public OrgSearchResponseModel prepareSuccessView(OrgSearchResponseModel results) {
         ArrayList<String> orgNames= results.getSearchResults();
-        new OrganizerResultsPage(orgNames);
+        String parUserName= results.getParUserName();
+        new OrganizerResultsPage(orgNames,parUserName);
         return results;
     }
 

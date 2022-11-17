@@ -1,11 +1,9 @@
-package org_reset_password_use_case;
+package user_reset_password_use_case;
 
-import java.util.ArrayList;
-
-public class OrgResetPasswordResponseModel {
+public class UserResetPasswordResponseModel {
     private String message;
 
-    public OrgResetPasswordResponseModel(String message) {
+    public UserResetPasswordResponseModel(String message) {
         this.message = message;
     }
 

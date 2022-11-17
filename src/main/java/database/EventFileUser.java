@@ -2,7 +2,8 @@ package database;
 
 import java.sql.*;
 import java.util.ArrayList;
-import static tutorial.HelloWorld.getDatabasePassword;
+
+import static tutorial.HelloWorld.*;
 
 public class EventFileUser implements EventDsGateway{
     public static void main(String[] args) {
@@ -27,7 +28,7 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "insert into eventfile(title,status,event_type,description,location,image_path,year,month,day,hour,minute) values('" +
                     title + "'," + status + "," + event_type + ",'" + description + "','" + location + "','" + image_path + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
             stmt = conn.createStatement();
@@ -67,7 +68,7 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "delete from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -109,7 +110,7 @@ public class EventFileUser implements EventDsGateway{
         String organizer = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             stmt = conn.createStatement();
             try (ResultSet unpublished_organizer = stmt.executeQuery("select org_username from unpublished_events_for_org where event_title = '" + title + "';")){
                 if (unpublished_organizer.next()){
@@ -175,7 +176,7 @@ public class EventFileUser implements EventDsGateway{
         ArrayList l = new ArrayList<String>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select par_username from past_events_for_par where event_title = '" + title + "';");
             while (rs.next()){
@@ -220,7 +221,7 @@ public class EventFileUser implements EventDsGateway{
         ArrayList l = new ArrayList<String>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select par_username from upcoming_events_for_par where event_title = '" + title + "';");
             while (rs.next()){
@@ -264,7 +265,7 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             stmt = conn.createStatement();
             String orgName = getOrganization(title);
             System.out.println(orgName);
@@ -305,6 +306,53 @@ public class EventFileUser implements EventDsGateway{
         }
     }
 
+    public ArrayList<String> utilEventSearch(String about_name){
+        //This is method is used for searching method of the website
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        ArrayList<String> l = new ArrayList<String>(0);
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select title from eventfile where title like \"%" + about_name + "%\";");
+            while (rs.next()) {
+                l.add(rs.getString("title"));
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("NotFound");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("SQL");
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return l;
+    }
+
 
     public int getStatus(String title){
         Statement stmt = null;
@@ -313,7 +361,7 @@ public class EventFileUser implements EventDsGateway{
         int status = -1;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select status from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -359,7 +407,7 @@ public class EventFileUser implements EventDsGateway{
         int type = -1;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select event_type from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -406,7 +454,7 @@ public class EventFileUser implements EventDsGateway{
         String description = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select description from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -453,7 +501,7 @@ public class EventFileUser implements EventDsGateway{
         String location = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select location from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -501,7 +549,7 @@ public class EventFileUser implements EventDsGateway{
         String image_path = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select image_path from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -546,7 +594,7 @@ public class EventFileUser implements EventDsGateway{
         ArrayList<Integer> l = new ArrayList<Integer>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select year,month,day,hour,minute from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -605,6 +653,9 @@ public class EventFileUser implements EventDsGateway{
         utilUnpublishedToUpcoming(title);
     }
 
+    public ArrayList<String> eventSearch(String about_name){
+        return utilEventSearch(about_name);
+    }
 
 
 

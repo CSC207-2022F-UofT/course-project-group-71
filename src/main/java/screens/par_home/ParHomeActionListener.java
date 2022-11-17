@@ -48,7 +48,8 @@ public class ParHomeActionListener implements ActionListener {
                 OrgSearchInputBoundary interactor = new OrgSearchInteractor(org, presenter);
                 OrgSearchController controller = new OrgSearchController(interactor);
                 String query = this.parHomePage.searchBox.getText();
-                controller.orgSearch(query); //draw screen
+                String parUserName= this.parHomePage.getParUsername();
+                controller.orgSearch(query,parUserName); //draw screen
                 this.parHomePage.dispose();
 
 
