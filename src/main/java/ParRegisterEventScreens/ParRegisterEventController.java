@@ -1,4 +1,4 @@
-package par_register_event_use_case;
+package ParRegisterEventScreens;
 
 import par_register_event_use_case.ParRegisterEventInputBoundary;
 import par_register_event_use_case.ParRegisterEventRequestModel;
