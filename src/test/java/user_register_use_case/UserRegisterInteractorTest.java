@@ -17,7 +17,7 @@ class UserRegisterInteractorTest {
         OrgDsGateway org = new OrgFileUser();
         UserRegisterPresenter presenter = new UserRegisterPresenter() {
             @Override
-            public UserRegisterResponseModel prepareFailView(String failureresponse) {
+            public UserRegisterResponseModel prepareFailView(String failureResponse) {
                 fail("Use case failure is unexpected.");
                 return null;
             }
