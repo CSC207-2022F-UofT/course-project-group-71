@@ -7,15 +7,13 @@ import user_login_use_case.*;
 public class UserResetPasswordInteractor implements UserResetPasswordInputBoundary {
     final UserResetPasswordPresenter userResetPasswordPresenter;
     final OrgDsGateway orgDsGateway;
-    final OrgHomePresenter orgHomePresenter;
-    private ParDsGateway parDsGateway;
+    private final ParDsGateway parDsGateway;
 
-    public UserResetPasswordInteractor(UserResetPasswordPresenter userResetPasswordPresenter, OrgDsGateway orgDsGateway, ParDsGateway parDsGateway,
-                                       OrgHomePresenter orgHomePresenter) {
+
+    public UserResetPasswordInteractor(UserResetPasswordPresenter userResetPasswordPresenter, OrgDsGateway orgDsGateway, ParDsGateway parDsGateway) {
         this.userResetPasswordPresenter = userResetPasswordPresenter;
         this.orgDsGateway = orgDsGateway;
         this.parDsGateway = parDsGateway;
-        this.orgHomePresenter = orgHomePresenter;
     }
 
     public UserResetPasswordResponseModel resetPassword(UserResetPasswordRequestModel requestModel) {
