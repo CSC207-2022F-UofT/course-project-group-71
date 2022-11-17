@@ -7,6 +7,8 @@ import static tutorial.HelloWorld.*;
 
 public class EventFileUser implements EventDsGateway{
     public static void main(String[] args) {
+        EventFileUser n = new EventFileUser();
+        n.utilEditEvent("1",1,"2","1",1,1,1,1,1);
     }
 
     /**This is a tool method that is called by other method to create an event.
@@ -30,8 +32,63 @@ public class EventFileUser implements EventDsGateway{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "insert into eventfile(title,status,,description,location,year,month,day,hour,minute) values('" +
-                    title + "'," + status + ",'" + description + "','" + location + "',," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            String sql = "insert into eventfile(title,status,description,location,year,month,day,hour,minute) values('" +
+                    title + "'," + status + ",'" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            System.out.println(sql);
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0 ){
+                System.out.println("Success");
+            }
+            else {
+                System.out.println("Failure");
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    /**This is a tool method used to edit the event information
+     *
+     * @param title The title of the event
+     * @param status The status of the event (We are considering deleting it)
+     * @param description The description of the event
+     * @param location The location of the event (It could be a zoom link)
+     * @param year The time (year) of the event
+     * @param month The time (month) of the event
+     * @param day The time (day) of the event
+     * @param hour The time (hour) of the event
+     * @param minute The time (minute) of the event
+     */
+
+    public void utilEditEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            String sql =  "update eventfile set status = " + status + ", description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
+
+            System.out.println(sql);
+            System.out.println(sql);
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -927,6 +984,10 @@ public class EventFileUser implements EventDsGateway{
 
         utilDeleteEvent(event_title);
 
+    }
+
+    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+        utilEditEvent(title,status,description,location,year,month,day,hour,minute);
     }
 
 }
