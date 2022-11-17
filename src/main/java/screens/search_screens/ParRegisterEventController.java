@@ -1,4 +1,4 @@
-package ParRegisterEventScreens;
+package screens.search_screens;
 
 import par_register_event_use_case.ParRegisterEventInputBoundary;
 import par_register_event_use_case.ParRegisterEventRequestModel;
