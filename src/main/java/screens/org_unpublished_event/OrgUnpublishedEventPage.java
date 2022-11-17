@@ -33,7 +33,7 @@ public class OrgUnpublishedEventPage extends JFrame {
         back.setBounds(0, 100, 150, 30);
 
         JButton create = new JButton("Create");
-//        create.addActionListener();
+        create.addActionListener(new OrgUnpublishedEventActionListener(this));
         create.setBounds(0,150,150,30);
 
         JPanel events = new JPanel();

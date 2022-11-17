@@ -1,6 +1,6 @@
-package event_create_use_case;
+package org_create_event_use_case;
 
-public class EventCreateResponseModel {
+public class OrgCreateEventRequestModel {
 
     private String orgUsername;
     private String title;
@@ -13,16 +13,16 @@ public class EventCreateResponseModel {
     private int hour;
     private int minute;
 
-    public EventCreateResponseModel(String orgUsername,
-                                    String title,
-                                    int status,
-                                    String description,
-                                    String location,
-                                    int year,
-                                    int month,
-                                    int day,
-                                    int hour,
-                                    int minute) {
+    public OrgCreateEventRequestModel(String orgUsername,
+                                      String title,
+                                      int status,
+                                      String description,
+                                      String location,
+                                      int year,
+                                      int month,
+                                      int day,
+                                      int hour,
+                                      int minute) {
         this.orgUsername = orgUsername;
         this.title = title;
         this.status = status;

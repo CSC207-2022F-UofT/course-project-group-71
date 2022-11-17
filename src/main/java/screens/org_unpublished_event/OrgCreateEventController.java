@@ -1,13 +1,13 @@
-package screens;
+package screens.org_unpublished_event;
 
-import event_create_use_case.EventCreateInputBoundary;
-import event_create_use_case.EventCreateRequestModel;
+import org_create_event_use_case.OrgCreateEventInputBoundary;
+import org_create_event_use_case.OrgCreateEventRequestModel;
 
-public class EventCreateController {
+public class OrgCreateEventController {
 
-    final EventCreateInputBoundary userInput;
+    final OrgCreateEventInputBoundary userInput;
 
-    public EventCreateController(EventCreateInputBoundary userInput) {
+    public OrgCreateEventController(OrgCreateEventInputBoundary userInput) {
         this.userInput = userInput;
     }
 
@@ -16,13 +16,12 @@ public class EventCreateController {
                        int status,
                        String description,
                        String location,
-                       String imagePath,
                        int year,
                        int month,
                        int day,
                        int hour,
                        int minute){
-        EventCreateRequestModel requestModel = new EventCreateRequestModel(
+        OrgCreateEventRequestModel requestModel = new OrgCreateEventRequestModel(
                 orgUsername, title, status, description, location, year, month, day, hour,
                 minute);
         userInput.create(requestModel);
