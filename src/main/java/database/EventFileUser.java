@@ -429,7 +429,6 @@ public class EventFileUser implements EventDsGateway{
         }
     }
 
-
     /**This is a tool method used for searching event.
      * It should return an arraylist containing all relevant event titles.
      * If there's no event that have title relevant to the entered keyword, it should return an empty arraylist.
@@ -564,246 +563,6 @@ public class EventFileUser implements EventDsGateway{
     }
 
 
-    /**This is a method used to get the current status of the event(upcoming, past or unpublished).
-     * It calls a tool method calls utilGetStatus.
-     *
-     * @param title The title of the event that need to know the status
-     * @return The status of the input event
-     */
-    public String getStatus(String title){
-        return utilGetStatus(title);
-    }
-
-    /**This is a tool method used to get the type of the event.
-     * The type is currently just integer (considering it to be String).
-     *
-     * @param title The title of event that need the type returned
-     * @return The type of the event
-     */
-    public int utilGetType(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        int type = -1;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "select event_type from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            type = rs.getInt("event_type");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return type;
-    }
-
-    /**This is a method to get the type of the event.
-     * It calls a tool method called utilGetType.
-     *
-     * @param title The title of event that need the type returned
-     * @return The type of the event
-     */
-    public int getType(String title){
-        return utilGetType(title);
-    }
-
-    /**This is a tool method used to get the description of the event.
-     *
-     * @param title The title of event that need the description returned
-     * @return The description of the event
-     */
-    public String utilGetDescription(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String description = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "select description from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            description = rs.getString("description");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return description;
-    }
-
-    /**This is a method used to get the event description.
-     * It calls a tool method called getType.
-     *
-     * @param title The title of event that need the description returned
-     * @return The description of the event
-     */
-    public String getDescription(String title){
-        return utilGetDescription(title);
-    }
-
-    /**It's a tool method that is used to obtain the location of the event.
-     * Potentially return a zoom link.
-     *
-     * @param title The title of the event that need the location returned
-     * @return The location of the event
-     */
-    public String utilGetLocation(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String location = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "select location from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            location = rs.getString("location");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return location;
-    }
-
-    /**It's a method used to get the event location.
-     * Potentially return a zoom link.
-     * It calls a tool method called utilGetLocation.
-     *
-     * @param title The title of the event that need the location returned
-     * @return The location of the event
-     */
-    public String getLocation(String title){
-        return utilGetLocation(title);
-    }
-
-    public String utilGetImagePath(String title){
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String image_path = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "select image_path from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            image_path = rs.getString("image_path");
-        } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
-        }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return image_path;
-    }
-    public String getImagePath(String title){
-        return utilGetImagePath(title);
-    }
 
     /**A tool method used to get the time of the method.
      * The time is returned as an Arraylist.
@@ -859,16 +618,108 @@ public class EventFileUser implements EventDsGateway{
         }
         return l;
     }
-    /**A method that returned the time of the input event.
-     * The method called a tool method called utilGetTime.
-     * The time is returned as an Arraylist .
+
+    /**This is a tool method used to get the description of the event.
      *
-     * @param title The title of the event that need the time returned
-     * @return The time of the event as [year,month,day,hour,minute]
+     * @param title The title of event that need the description returned
+     * @return The description of the event
      */
-    public ArrayList<Integer> getTime(String title){
-        return utilGetTime(title);
+    public String utilGetDescription(String title){
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String description = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            String sql = "select description from eventfile where title = '" + title + "';";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            rs.next();
+            description = rs.getString("description");
+        } catch (ClassNotFoundException e) {
+            System.out.println("NotFound");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("SQL");
+            e.printStackTrace();
+        }finally {
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return description;
     }
+
+    /**It's a tool method that is used to obtain the location of the event.
+     * Potentially return a zoom link.
+     *
+     * @param title The title of the event that need the location returned
+     * @return The location of the event
+     */
+    public String utilGetLocation(String title){
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String location = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            String sql = "select location from eventfile where title = '" + title + "';";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            rs.next();
+            location = rs.getString("location");
+        } catch (ClassNotFoundException e) {
+            System.out.println("NotFound");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("SQL");
+            e.printStackTrace();
+        }finally {
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return location;
+    }
+
 
     /**A tool method that returned the participant list of the event.
      *
@@ -883,58 +734,7 @@ public class EventFileUser implements EventDsGateway{
         l.addAll(l2);
         return l;
     }
-    /**A method that returned the participant list of the event.
-     * It should call a tool method called utilGetParticipants.
-     *
-     * @param title The title of the event that need all the participants returned
-     * @return An Arraylist containing all the participants
-     */
-    public ArrayList<String> getParticipants(String title){
-        return utilGetParticipants(title);
-    }
 
-    /**This is a method returning the organizer who create the event.
-     * It calls a tool method called utilGetOrganization.
-     *
-     * @param title The title of the event that need the organizer who create the event returned
-     * @return The organizer of the event
-     */
-    public String getOrganization(String title){
-        return utilGetOrganization(title);
-    }
-
-    /**The method calls a tool method called utilUnpublishedToUpcomingForOrg to change the status of the event.
-     * The event currently have no participants so no need to worry about participant relationships.
-     * the event must be unpublished and should only have one status
-     *
-     * @param title The title of the event that's unpublished and need to turn to upcoming
-     */
-    public void UnpublishedToUpcoming(String title){
-        utilUnpublishedToUpcomingForOrg(title);
-    }
-
-    /**The method calls two tool method called utilUpcomingToPastForOrg and utilUpcomingToPastForPar to change the status of the event.
-     * The event should only have one state and must be upcoming
-     *
-     * @param title The title of the event that's upcoming and need to turn to past
-     */
-    @Override
-    public void UpcomingToPast(String title) {
-        utilUpcomingToPastForOrg(title);
-        utilUpcomingToPastForPar(title);
-    }
-
-    /**This method is used for searching event.
-     * This is method called a tool method called utilEventSearch.
-     * It should return an arraylist containing all relevant event titles.
-     * If there's no event that have title relevant to the entered keyword, it should return an empty arraylist.
-     *
-     * @param about_name The keyword entered by user to search relevant event name
-     * @return An arraylist containing all relevant event names
-     */
-    public ArrayList<String> eventSearch(String about_name){
-        return utilEventSearch(about_name);
-    }
 
     /**This is a tool method returning whether the event exist.
      * If not found, returned false, which is the default value of the boolean stored in the method.
@@ -990,6 +790,102 @@ public class EventFileUser implements EventDsGateway{
     }
 
 
+
+
+    /**This is a method used to get the current status of the event(upcoming, past or unpublished).
+     * It calls a tool method calls utilGetStatus.
+     *
+     * @param title The title of the event that need to know the status
+     * @return The status of the input event
+     */
+    public String getStatus(String title){
+        return utilGetStatus(title);
+    }
+
+    /**This is a method used to get the event description.
+     * It calls a tool method called getType.
+     *
+     * @param title The title of event that need the description returned
+     * @return The description of the event
+     */
+    public String getDescription(String title){
+        return utilGetDescription(title);
+    }
+
+    /**It's a method used to get the event location.
+     * Potentially return a zoom link.
+     * It calls a tool method called utilGetLocation.
+     *
+     * @param title The title of the event that need the location returned
+     * @return The location of the event
+     */
+    public String getLocation(String title){
+        return utilGetLocation(title);
+    }
+
+    /**A method that returned the time of the input event.
+     * The method called a tool method called utilGetTime.
+     * The time is returned as an Arraylist .
+     *
+     * @param title The title of the event that need the time returned
+     * @return The time of the event as [year,month,day,hour,minute]
+     */
+    public ArrayList<Integer> getTime(String title){
+        return utilGetTime(title);
+    }
+
+    /**A method that returned the participant list of the event.
+     * It should call a tool method called utilGetParticipants.
+     *
+     * @param title The title of the event that need all the participants returned
+     * @return An Arraylist containing all the participants
+     */
+    public ArrayList<String> getParticipants(String title){
+        return utilGetParticipants(title);
+    }
+
+    /**This is a method returning the organizer who create the event.
+     * It calls a tool method called utilGetOrganization.
+     *
+     * @param title The title of the event that need the organizer who create the event returned
+     * @return The organizer of the event
+     */
+    public String getOrganization(String title){
+        return utilGetOrganization(title);
+    }
+
+    /**The method calls a tool method called utilUnpublishedToUpcomingForOrg to change the status of the event.
+     * The event currently have no participants so no need to worry about participant relationships.
+     * the event must be unpublished and should only have one status
+     *
+     * @param title The title of the event that's unpublished and need to turn to upcoming
+     */
+    public void UnpublishedToUpcoming(String title){
+        utilUnpublishedToUpcomingForOrg(title);
+    }
+
+    /**The method calls two tool method called utilUpcomingToPastForOrg and utilUpcomingToPastForPar to change the status of the event.
+     * The event should only have one state and must be upcoming
+     *
+     * @param title The title of the event that's upcoming and need to turn to past
+     */
+    public void UpcomingToPast(String title) {
+        utilUpcomingToPastForOrg(title);
+        utilUpcomingToPastForPar(title);
+    }
+
+    /**This method is used for searching event.
+     * This is method called a tool method called utilEventSearch.
+     * It should return an arraylist containing all relevant event titles.
+     * If there's no event that have title relevant to the entered keyword, it should return an empty arraylist.
+     *
+     * @param about_name The keyword entered by user to search relevant event name
+     * @return An arraylist containing all relevant event names
+     */
+    public ArrayList<String> eventSearch(String about_name){
+        return utilEventSearch(about_name);
+    }
+
     /**This is a method returning whether the event exist.
      * It calls a method called utilCheckIfEventNameExist.
      * If not found, returned false, which is the default value of boolean stored in the method.
@@ -1003,10 +899,10 @@ public class EventFileUser implements EventDsGateway{
 
     /**This is a method that delete that event and all the relationships with it
      * including participants and organizers.
-     * It calls utilDeleteParPastevent, utilDeleteParUpcomingevent, utilDeleteOrgPastEvent, utilDeleteOrgUnpublishedEvent, utilDeleteOrgUpcomingevent
+     * It calls utilDeleteParPastEvent, utilDeleteParUpcomingEvent, utilDeleteOrgPastEvent, utilDeleteOrgUnpublishedEvent, utilDeleteOrgUpcomingEvent
      * to break all the potential relationships.
      * And it calls utilGetOrganization to get the organizer name.
-     * The existance of the event should be wiped out of the database.
+     * The existence of the event should be wiped out of the database.
      *
      * @param event_title The title of the event that need to be deleted
      */
@@ -1032,4 +928,5 @@ public class EventFileUser implements EventDsGateway{
         utilDeleteEvent(event_title);
 
     }
+
 }
