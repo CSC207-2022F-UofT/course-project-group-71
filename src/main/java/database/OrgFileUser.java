@@ -27,11 +27,9 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (stmt != null){
                 try {
                     stmt.close();
@@ -68,11 +66,9 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (stmt != null){
                 try {
                     stmt.close();
@@ -108,11 +104,9 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (stmt != null){
                 try {
                     stmt.close();
@@ -149,9 +143,7 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
             if (stmt != null) {
@@ -190,11 +182,9 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (stmt != null){
                 try {
                     stmt.close();
@@ -231,9 +221,7 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
             if (stmt != null) {
@@ -272,11 +260,9 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (stmt != null){
                 try {
                     stmt.close();
@@ -313,9 +299,7 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
             if (stmt != null) {
@@ -341,7 +325,7 @@ public class OrgFileUser implements OrgDsGateway {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        ArrayList l = new ArrayList<String>(0);
+        ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
@@ -353,11 +337,9 @@ public class OrgFileUser implements OrgDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (rs != null){
                 try {
                     rs.close();
@@ -390,7 +372,7 @@ public class OrgFileUser implements OrgDsGateway {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        ArrayList l = new ArrayList<String>(0);
+        ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
@@ -402,11 +384,9 @@ public class OrgFileUser implements OrgDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (rs != null){
                 try {
                     rs.close();
@@ -439,7 +419,7 @@ public class OrgFileUser implements OrgDsGateway {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        ArrayList l = new ArrayList<String>(0);
+        ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
@@ -451,11 +431,9 @@ public class OrgFileUser implements OrgDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (rs != null){
                 try {
                     rs.close();
@@ -488,7 +466,7 @@ public class OrgFileUser implements OrgDsGateway {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        ArrayList l = new ArrayList<String>(0);
+        ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
@@ -500,11 +478,9 @@ public class OrgFileUser implements OrgDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } finally {
             if (rs != null){
                 try {
                     rs.close();
@@ -596,9 +572,7 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
             if (stmt != null) {
@@ -624,7 +598,7 @@ public class OrgFileUser implements OrgDsGateway {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<String>(0);
+        ArrayList<String> l = new ArrayList<>(0);
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -799,12 +773,12 @@ public class OrgFileUser implements OrgDsGateway {
         //Then delete itself
         ParFileUser temp_parfileuser = new ParFileUser();
         ArrayList<String> All_Unpublished = utilGetUnpublishedEvents(username);
-        for (int i=0; i<All_Unpublished.size();i++){
-            utilDeleteOrgUnpublishedEvent(username, All_Unpublished.get(i));
+        for (String s : All_Unpublished) {
+            utilDeleteOrgUnpublishedEvent(username, s);
         }
         ArrayList<String> All_Past = utilGetPastEvents(username);
-        for (int i=0; i<All_Past.size();i++){
-            utilDeleteOrgPastEvent(username, All_Past.get(i));
+        for (String s : All_Past) {
+            utilDeleteOrgPastEvent(username, s);
         }
         ArrayList<String> All_upcoming = utilGetUpcomingEvents(username);
         for (int i=0; i<All_Past.size();i++){
@@ -812,8 +786,8 @@ public class OrgFileUser implements OrgDsGateway {
         }
 
         ArrayList<String> All_followers = utilGetAllFollowers(username);
-        for (int i=0; i<All_followers.size();i++){
-            temp_parfileuser.utilDeleteParFollowOrg(All_followers.get(i), username);
+        for (String all_follower : All_followers) {
+            temp_parfileuser.utilDeleteParFollowOrg(all_follower, username);
         }
 
         utilDeleteOrg(username);
