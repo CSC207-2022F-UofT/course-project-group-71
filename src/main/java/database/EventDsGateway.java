@@ -25,4 +25,6 @@ public interface EventDsGateway {
     public boolean checkIfEventNameExist(String eventName);
 
     public void deleteEvent(String event_title);
+
+    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
 }
