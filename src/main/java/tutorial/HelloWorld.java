@@ -16,7 +16,7 @@ public class HelloWorld {
     static int CONSTANT_X = 800;
     static int CONSTANT_Y = 800;
 
-    static String databasePassword = "Feng703902!";
+    static String databasePassword = "vvks1309";
     public static void main(String[] args) {
 
         UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
