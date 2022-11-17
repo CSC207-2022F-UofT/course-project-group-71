@@ -1,8 +1,8 @@
 package screens.par_home;
 
 import database.*;
-import event_search_use_case.EventSearchInputBoundary;
 import org_search_use_case.*;
+import event_search_use_case.*;
 import screens.LoginPage;
 import screens.org_home.OrgHomeResponseFormatter;
 import screens.UserLoginController;
@@ -53,16 +53,17 @@ public class ParHomeActionListener implements ActionListener {
                 this.parHomePage.dispose();
 
 
-//            } else {
-//                EventDsGateway eve = new EventFileUser();
-//                EventOutputBoundary presenter = new EventSearchPresenter(); //minor issue
-//                EventSearchInputBoundary interactor = new EventSearchInputBoundary(eve, presenter);
-//                EventSearchController controller = new EventSearchController(interactor);
-//                String query = this.parHomePage.searchBox.getText();
-//                this.parHomePage.dispose();
-//                controller.eventSearch(query);
-//
-//            }
+            } else {
+                EventDsGateway eve = new EventFileUser();
+                EventSearchOutputBoundary presenter = new EventSearchPresenter(); //minor issue
+                EventSearchInputBoundary interactor = new EventSearchInteractor(eve, presenter);
+                EventSearchController controller = new EventSearchController(interactor);
+                String query = this.parHomePage.searchBox.getText();
+                String parUserName= this.parHomePage.getParUsername();
+                controller.eventSearch(query,parUserName);
+                this.parHomePage.dispose();
+
+            }
             } else {
                 this.parHomePage.dispose();
                 UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
@@ -84,4 +85,4 @@ public class ParHomeActionListener implements ActionListener {
             }
         }
     }
-}
+
