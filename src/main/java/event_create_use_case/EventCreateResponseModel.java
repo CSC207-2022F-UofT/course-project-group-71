@@ -5,10 +5,8 @@ public class EventCreateResponseModel {
     private String orgUsername;
     private String title;
     private int status;
-    private int eventType;
     private String description;
     private String location;
-    private String imagePath;
     private int year;
     private int month;
     private int day;
@@ -16,24 +14,20 @@ public class EventCreateResponseModel {
     private int minute;
 
     public EventCreateResponseModel(String orgUsername,
-                                   String title,
-                                   int status,
-                                   int eventType,
-                                   String description,
-                                   String location,
-                                   String imagePath,
-                                   int year,
-                                   int month,
-                                   int day,
-                                   int hour,
-                                   int minute) {
+                                    String title,
+                                    int status,
+                                    String description,
+                                    String location,
+                                    int year,
+                                    int month,
+                                    int day,
+                                    int hour,
+                                    int minute) {
         this.orgUsername = orgUsername;
         this.title = title;
         this.status = status;
-        this.eventType = eventType;
         this.description = description;
         this.location = location;
-        this.imagePath = imagePath;
         this.year = year;
         this.month = month;
         this.day = day;
@@ -65,14 +59,6 @@ public class EventCreateResponseModel {
         this.status = status;
     }
 
-    public int getEventType() {
-        return this.eventType;
-    }
-
-    public void setEventType(int eventType) {
-        this.eventType = eventType;
-    }
-
     public String getDescription() {
         return this.description;
     }
@@ -87,14 +73,6 @@ public class EventCreateResponseModel {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getImagePath() {
-        return this.imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public int getYear() {

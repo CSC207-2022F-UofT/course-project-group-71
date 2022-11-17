@@ -23,12 +23,11 @@ public class EventCreateInteractor implements EventCreateInputBoundary {
             userOutput.prepareFailView("Title already exists.");
         } else {
             orgDsGateway.createAnEvent(requestModel.getOrgUsername(), requestModel.getTitle(), requestModel.getStatus(),
-                    requestModel.getEventType(), requestModel.getDescription(), requestModel.getLocation(),
-                    requestModel.getImagePath(), requestModel.getYear(), requestModel.getMonth(), requestModel.getDay(),
+                    requestModel.getDescription(), requestModel.getLocation(),requestModel.getYear(), requestModel.getMonth(), requestModel.getDay(),
                     requestModel.getHour(), requestModel.getMinute());
             EventCreateResponseModel responseModel = new EventCreateResponseModel(requestModel.getOrgUsername(),
-                    requestModel.getTitle(), requestModel.getStatus(), requestModel.getEventType(),
-                    requestModel.getDescription(), requestModel.getLocation(), requestModel.getImagePath(),
+                    requestModel.getTitle(), requestModel.getStatus(),
+                    requestModel.getDescription(), requestModel.getLocation(),
                     requestModel.getYear(), requestModel.getMonth(), requestModel.getDay(), requestModel.getHour(),
                     requestModel.getMinute());
             userOutput.prepareSuccessView(responseModel);

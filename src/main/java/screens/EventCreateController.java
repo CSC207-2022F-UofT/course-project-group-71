@@ -14,7 +14,6 @@ public class EventCreateController {
     public void create(String orgUsername,
                        String title,
                        int status,
-                       int eventType,
                        String description,
                        String location,
                        String imagePath,
@@ -24,7 +23,7 @@ public class EventCreateController {
                        int hour,
                        int minute){
         EventCreateRequestModel requestModel = new EventCreateRequestModel(
-                orgUsername, title, status, eventType, description, location, imagePath, year, month, day, hour,
+                orgUsername, title, status, description, location, year, month, day, hour,
                 minute);
         userInput.create(requestModel);
     }

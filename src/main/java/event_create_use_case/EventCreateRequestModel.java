@@ -5,7 +5,6 @@ public class EventCreateRequestModel {
     private String orgUsername;
     private String title;
     private int status;
-    private int eventType;
     private String description;
     private String location;
     private String imagePath;
@@ -18,10 +17,8 @@ public class EventCreateRequestModel {
     public EventCreateRequestModel(String orgUsername,
                                    String title,
                                    int status,
-                                   int eventType,
                                    String description,
                                    String location,
-                                   String imagePath,
                                    int year,
                                    int month,
                                    int day,
@@ -30,10 +27,8 @@ public class EventCreateRequestModel {
         this.orgUsername = orgUsername;
         this.title = title;
         this.status = status;
-        this.eventType = eventType;
         this.description = description;
         this.location = location;
-        this.imagePath = imagePath;
         this.year = year;
         this.month = month;
         this.day = day;
@@ -65,14 +60,6 @@ public class EventCreateRequestModel {
         this.status = status;
     }
 
-    public int getEventType() {
-        return this.eventType;
-    }
-
-    public void setEventType(int eventType) {
-        this.eventType = eventType;
-    }
-
     public String getDescription() {
         return this.description;
     }
@@ -87,14 +74,6 @@ public class EventCreateRequestModel {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getImagePath() {
-        return this.imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public int getYear() {
