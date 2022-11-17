@@ -1,9 +1,5 @@
 package screens;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
@@ -11,7 +7,11 @@ import database.ParFileUser;
 import screens.org_home.OrgHomeResponseFormatter;
 import screens.par_home.ParHomeResponseFormatter;
 import user_login_use_case.*;
-import user_register_use_case.*;
+import user_register_use_case.UserRegisterController;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class RegisterPage extends JFrame implements ActionListener {
 
@@ -29,6 +29,13 @@ public class RegisterPage extends JFrame implements ActionListener {
     int x = 500;
     int y = 500;
 
+    /**The method generate a registration page.
+     * It contains button to choose the user type for registration.
+     * It allows user to input username, password and second-input password.
+     * The controller process the information after use clicks 'Register' button, it calls actionPerformed method.
+     *
+     * @param controller UserRegisterController that takes information got from the page
+     */
     public RegisterPage(UserRegisterController controller) {
 
         this.setLayout(null);
@@ -112,6 +119,13 @@ public class RegisterPage extends JFrame implements ActionListener {
         this.setVisible(true);
 
     }
+
+    /**The method got information needed to input from the page.
+     * The method generate Presenter , DsGateWays, interactor and controller to process them.
+     * Once the information are passed to the above components, jump to login page.
+     *
+     * @param selectType the event to be processed
+     */
     public void actionPerformed(ActionEvent selectType) {
         try {
             userRegisterController.create(

@@ -12,6 +12,13 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
     final UserRegisterPresenter userRegisterPresenter;
 
+    /**This is the construct method of UserRegisterInteractor.
+     * It takes DsGateways and Presenter as input to store as instances.
+     *
+     * @param parDsGateway The database gateway of the participants
+     * @param orgDsGateway The database gateway of the organizers
+     * @param userRegisterPresenter The presenter used to show success or not of registration
+     */
     public UserRegisterInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway, UserRegisterPresenter userRegisterPresenter){
         this.parDsGateway = parDsGateway;
         this.orgDsGateway = orgDsGateway;
@@ -19,6 +26,17 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
     }
 
+    /**Use the information contained in the requestmodel to create a new user and respond a responsemodel.
+     * It first chooses which DsGateWay to use by checking which user types selected by the user.
+     * Then it checks whether username exists in the database.
+     * Then it check if two password input are the same.
+     * Then it create a user.
+     * If failed in one of the above process, return a failure response.
+     * Otherwise, success response is returned.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responsemodel representing whether the user creation is successful
+     */
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel){
         if (requestModel.getUserType().equals("O")){
             //Then proceed as organizer
