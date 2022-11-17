@@ -843,11 +843,11 @@ public class OrgFileUser implements OrgDsGateway {
         }
         else if(status == 1){
             //Past
-            utilAddOrgPastEvent(org_username,title);
+            utilAddOrgUpcomingEvent(org_username,title);
         }
         else{
             //Upcoming
-            utilAddOrgUpcomingEvent(org_username,title);
+            utilAddOrgPastEvent(org_username,title);
 
         }
     }
