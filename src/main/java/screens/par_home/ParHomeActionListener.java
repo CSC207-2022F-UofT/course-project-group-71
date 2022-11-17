@@ -53,16 +53,16 @@ public class ParHomeActionListener implements ActionListener {
                 this.parHomePage.dispose();
 
 
-//            } else {
-//                EventDsGateway eve = new EventFileUser();
-//                EventOutputBoundary presenter = new EventSearchPresenter(); //minor issue
-//                EventSearchInputBoundary interactor = new EventSearchInputBoundary(eve, presenter);
-//                EventSearchController controller = new EventSearchController(interactor);
-//                String query = this.parHomePage.searchBox.getText();
-//                this.parHomePage.dispose();
-//                controller.eventSearch(query);
-//
-//            }
+            } else {
+                EventDsGateway eve = new EventFileUser();
+                EventOutputBoundary presenter = new EventSearchPresenter(); //minor issue
+                EventSearchInputBoundary interactor = new EventSearchInputBoundary(eve, presenter);
+                EventSearchController controller = new EventSearchController(interactor);
+                String query = this.parHomePage.searchBox.getText();
+                this.parHomePage.dispose();
+                controller.eventSearch(query);
+
+            }
             } else {
                 this.parHomePage.dispose();
                 UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
