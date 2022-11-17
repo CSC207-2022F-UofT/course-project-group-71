@@ -30,8 +30,9 @@ public class EventFileUser implements EventDsGateway{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "insert into eventfile(title,status,,description,location,year,month,day,hour,minute) values('" +
-                    title + "'," + status + ",'" + description + "','" + location + "',," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            String sql = "insert into eventfile(title,status,description,location,year,month,day,hour,minute) values('" +
+                    title + "'," + status + ",'" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            System.out.println(sql);
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
