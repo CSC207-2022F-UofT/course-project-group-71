@@ -4,10 +4,8 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import user_register_use_case.UserRegisterController;
 import user_register_use_case.UserRegisterInputBoundary;
 import user_register_use_case.UserRegisterInteractor;
-import user_register_use_case.UserRegisterResponseFormatter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

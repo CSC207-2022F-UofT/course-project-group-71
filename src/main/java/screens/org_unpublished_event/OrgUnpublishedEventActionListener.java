@@ -1,6 +1,9 @@
 package screens.org_unpublished_event;
 
 import database.*;
+import org_create_event_use_case.OrgCreateEventInputBoundary;
+import org_create_event_use_case.OrgCreateEventInteractor;
+import org_create_event_use_case.OrgCreateEventPresenter;
 import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
 import org_delete_event_use_case.OrgDeleteEventPresenter;
@@ -82,8 +85,18 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
 
         }
-        else if (actionCommand.contains("Create")){
+        else if (actionCommand.contains("Create An Event")){
+            EventDsGateway eventDsGateway = new EventFileUser();
 
+            OrgDsGateway orgDsGateway= new OrgFileUser();
+
+            OrgCreateEventPresenter orgCreateEventPresenter = new OrgCreateEventResponseFormatter();
+
+            OrgCreateEventInputBoundary interactor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway, orgCreateEventPresenter);
+
+            OrgCreateEventController orgCreateEventController = new OrgCreateEventController(interactor);
+
+            new CreateEventPage(orgCreateEventController, this.orgUnpublishedEventPage);
         }
     }
 }
