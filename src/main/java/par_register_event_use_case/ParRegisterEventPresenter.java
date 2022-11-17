@@ -1,0 +1,7 @@
+package par_register_event_use_case;
+
+import par_register_event_use_case.ParRegisterEventResponseModel;
+
+public interface ParRegisterEventPresenter {
+    ParRegisterEventResponseModel prepareSuccessView(ParRegisterEventResponseModel parRegisterEventResponseModel);
+}
