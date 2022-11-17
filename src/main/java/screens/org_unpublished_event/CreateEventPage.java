@@ -1,14 +1,13 @@
-package screens.search_screens;
+package screens.org_unpublished_event;
 
-import screens.*;
+import screens.LabelTextPanel;
+
 import javax.swing.*;
 import java.awt.*;
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
 
 public class CreateEventPage extends JFrame {
 
-    private String parUsername;
+    OrgCreateEventController controller;
 
     JTextField eventTitle = new JTextField(15);
     JTextField description = new JTextField(15);
@@ -19,12 +18,11 @@ public class CreateEventPage extends JFrame {
     JTextField minute = new JTextField(15);
     JTextField location = new JTextField(15);
 
-    public CreateEventPage(String parUserName){
+    public CreateEventPage(OrgCreateEventController controller){
+        this.controller = controller;
         
         int x = 500;
         int y = 500;
-        
-        this.parUsername= parUserName;
 
         this.setLayout(null);
 
@@ -53,11 +51,11 @@ public class CreateEventPage extends JFrame {
         monthInfo.setBounds (x/5,200, x/5, 50);
 
         LabelTextPanel dayInfo = new LabelTextPanel(
-                new JLabel("Day"), month);
+                new JLabel("Day"), day);
         dayInfo.setBounds (2*x/5,200, x/5, 50);
         
         LabelTextPanel hourInfo = new LabelTextPanel(
-                new JLabel("Hour"), day);
+                new JLabel("Hour"), hour);
         hourInfo.setBounds (3*x/5,200, x/5, 50);
 
         LabelTextPanel minuteInfo = new LabelTextPanel(
@@ -85,11 +83,6 @@ public class CreateEventPage extends JFrame {
 
         this.setVisible(true);
 
-    }
-
-
-    public String getParUsername() {
-        return parUsername;
     }
 
 }
