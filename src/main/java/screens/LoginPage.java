@@ -100,7 +100,6 @@ public class LoginPage extends JFrame implements ActionListener {
 
     }
     public void actionPerformed(ActionEvent selectType) {
-        ///System.out.println(username.getText());
         try {
             userLoginController.login(
                     P?"P":"",
