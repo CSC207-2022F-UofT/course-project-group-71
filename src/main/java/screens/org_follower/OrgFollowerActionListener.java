@@ -1,5 +1,6 @@
 package screens.org_follower;
 
+import database.*;
 import screens.org_home.OrgHomePage;
 
 import java.awt.event.ActionEvent;
