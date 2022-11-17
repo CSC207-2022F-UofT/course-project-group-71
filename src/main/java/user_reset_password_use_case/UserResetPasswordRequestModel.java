@@ -2,38 +2,50 @@ package user_reset_password_use_case;
 
 public class UserResetPasswordRequestModel {
 
-    private String parUsername;
-    private String orgUsername;
-    private String oldPassword;
+    private String reNewPassword;
+    private String username;
+    private String password;
+    private boolean whether_org;
     private String newPassword;
-    private String retypeNewPassword;
 
-    public UserResetPasswordRequestModel(String parUsername, String orgUsername, String oldPassword, String newPassword) {
-        this.parUsername = parUsername;
-        this.orgUsername = orgUsername;
-        this.oldPassword = oldPassword;
+    public UserResetPasswordRequestModel(String username, String password, boolean whether_org, String newPassword, String reNewPassword) {
+        this.username = username;
+        this.password = password;
+        this.whether_org = whether_org;
         this.newPassword = newPassword;
-        this.retypeNewPassword = retypeNewPassword;
+        this.reNewPassword = reNewPassword;
+    }
+
+    public String getReNewPassword() {
+        return reNewPassword;
+    }
+
+    public void setReNewPassword(String reNewPassword) {
+        this.reNewPassword = reNewPassword;
     }
 
     public String getUsername() {
-        return parUsername;
+        return username;
     }
 
-    public void setUsername(String parUsername) {
-        this.parUsername = parUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getOrgUsername() {return orgUsername;}
-
-    public void setOrgUsername(String orgUsername) {this.orgUsername = orgUsername;}
-
-    public String getOldPassword() {
-        return oldPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isWhether_org() {
+        return whether_org;
+    }
+
+    public void setWhether_org(boolean whether_org) {
+        this.whether_org = whether_org;
     }
 
     public String getNewPassword() {
@@ -42,13 +54,5 @@ public class UserResetPasswordRequestModel {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
-    }
-
-    public String getRetypeNewPassword() {
-        return retypeNewPassword;
-    }
-
-    public void setRetypeNewPassword(String retypeNewPassword) {
-        this.retypeNewPassword = retypeNewPassword;
     }
 }

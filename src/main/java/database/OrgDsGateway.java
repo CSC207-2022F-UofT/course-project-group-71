@@ -18,7 +18,7 @@ public interface OrgDsGateway {
     public ArrayList<String> getFollowers(String username);
 
     //It will create the event and build the connection of the event and the organizer
-    public void createAnEvent(String org_username, String title, int status, int event_type, String description, String location, String image_path, int year, int month, int day, int hour, int minute);
+    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
 
     //It will call the event method in EventFileUser which delete all relationships and event itself
     //This might be abundant

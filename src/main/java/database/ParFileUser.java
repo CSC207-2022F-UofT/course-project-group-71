@@ -88,7 +88,7 @@ public class ParFileUser implements ParDsGateway {
         }
     }
 
-    public void utiladdparfollowing(String par_username, String org_username){
+    public void utilAddParFollowing(String par_username, String org_username){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -166,7 +166,7 @@ public class ParFileUser implements ParDsGateway {
 
         }
 
-    public void utilAddParPastevent(String par_username, String event_title){
+    public void utilAddParPastEvent(String par_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -205,7 +205,7 @@ public class ParFileUser implements ParDsGateway {
 
 
     }
-    public void utilDeleteParPastevent(String par_username, String event_title){
+    public void utilDeleteParPastEvent(String par_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -285,7 +285,7 @@ public class ParFileUser implements ParDsGateway {
 
     }
 
-    public void utilDeleteParUpcomingevent(String par_username, String event_title){
+    public void utilDeleteParUpcomingEvent(String par_username, String event_title){
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -502,7 +502,6 @@ public class ParFileUser implements ParDsGateway {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-//            String sql = "update parfile set notification = '" + new_notification + "' where username = '" + par_username + "';";
             String sql = "insert into par_notification(par_username, notification) values('" + par_username + "','" + new_notification + "')";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -709,7 +708,7 @@ public class ParFileUser implements ParDsGateway {
     }
 
     public void followOrg(String par_username, String org_username){
-        utiladdparfollowing(par_username,org_username);
+        utilAddParFollowing(par_username,org_username);
     }
 
     public void registerEvent(String par_username, String title){
@@ -717,7 +716,7 @@ public class ParFileUser implements ParDsGateway {
     }
 
     public void leaveEvent(String par_username, String title){
-        utilDeleteParUpcomingevent(par_username,title);
+        utilDeleteParUpcomingEvent(par_username,title);
     }
 
 
@@ -780,11 +779,11 @@ public class ParFileUser implements ParDsGateway {
         //First breaking relationship with past events
         ArrayList<String> All_past_events = utilGetAllPastEvent(username);
         for (String all_past_event : All_past_events) {
-            utilDeleteParPastevent(username, all_past_event);
+            utilDeleteParPastEvent(username, all_past_event);
         }
         ArrayList<String> All_upcoming_events = utilGetAllUpcomingEvent(username);
         for (String all_upcoming_event : All_upcoming_events) {
-            utilDeleteParUpcomingevent(username, all_upcoming_event);
+            utilDeleteParUpcomingEvent(username, all_upcoming_event);
         }
 
         //Then break relationship with followings

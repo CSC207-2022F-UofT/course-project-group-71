@@ -9,33 +9,29 @@ public class EventFileUser implements EventDsGateway{
     public static void main(String[] args) {
     }
 
-    /**This is a tool method that is called by other method to create an event
-     * It took parameters to insert a new row in the table called 'eventfile' which is in the database
-     * The time segment is seperated into five parameters because of database compatibility
-     * It should not return anything but make changes on the database
+    /**This is a tool method that is called by other method to create an event.
+     * It took parameters to insert a new row in the table called 'eventfile' which is in the database.
+     * The time segment is seperated into five parameters because of database compatibility.
+     * It should not return anything but make changes on the database.
      *
      * @param title The title of the event
      * @param status The status of the event (We are considering deleting it)
-     * @param event_type The event type of the event (We are considering replacing it with a String)
      * @param description The description of the event
      * @param location The location of the event (It could be a zoom link)
-     * @param image_path The image path that is relevant to the event
      * @param year The time (year) of the event
      * @param month The time (month) of the event
      * @param day The time (day) of the event
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
      */
-    public void utilStoreEvent(String title, int status, int event_type, String description, String location, String image_path, int year, int month, int day, int hour, int minute){
-        // This is a tool method
-        // Called to store the event
+    public void utilStoreEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "insert into eventfile(title,status,event_type,description,location,image_path,year,month,day,hour,minute) values('" +
-                    title + "'," + status + "," + event_type + ",'" + description + "','" + location + "','" + image_path + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            String sql = "insert into eventfile(title,status,,description,location,year,month,day,hour,minute) values('" +
+                    title + "'," + status + ",'" + description + "','" + location + "',," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -67,16 +63,14 @@ public class EventFileUser implements EventDsGateway{
         }
     }
 
-    /**This is a tool method used for deleting an event
-     * This is not the whole function of event deletion, it only deletes event from a table called 'eventfile'
-     * It did not break relationships of the event with other tables
-     * It should not return anything
+    /**This is a tool method used for deleting an event.
+     * This is not the whole function of event deletion, it only deletes event from a table called 'eventfile'.
+     * It did not break relationships of the event with other tables.
+     * It should not return anything.
      *
      * @param title The title of the event that need to be deleted
      */
     public void utilDeleteEvent(String title){
-        // This is a tool method
-        // Called to delete the event
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -114,16 +108,14 @@ public class EventFileUser implements EventDsGateway{
         }
     }
 
-    /**This is a tool method to find the organization who create a specific event
-     * It should return a String as the name of the organization
-     * It should return null if the event does not have an organizer (By project design, it should be impossible)
+    /**This is a tool method to find the organization who create a specific event.
+     * It should return a String as the name of the organization.
+     * It should return null if the event does not have an organizer (By project design, it should be impossible).
      *
      * @param title The title of the event that need the name of the organization who created it
      * @return the name of the organization who created the event
      */
     public String utilGetOrganization(String title){
-        // This is a tool method
-        // Called to get organization
         Statement stmt = null;
         Connection conn = null;
         ResultSet unpublished_organizer = null;
@@ -192,8 +184,8 @@ public class EventFileUser implements EventDsGateway{
         return organizer;
     }
 
-    /**This is a tool method which can only find participants of a past event
-     * If the event is not a past event, it should return an empty ArrayList
+    /**This is a tool method which can only find participants of a past event.
+     * If the event is not a past event, it should return an empty ArrayList.
      *
      * @param title The title of the event(which is a past event) that need the list of all participants
      * @return The list containing all participants of the event
@@ -242,16 +234,13 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    /**This is a tool method that only returns participants of an upcoming event
-     * If the event is not an upcoming event, it returns an empty ArrayList
+    /**This is a tool method that only returns participants of an upcoming event.
+     * If the event is not an upcoming event, it returns an empty ArrayList.
      *
-     * @param title The title of the event(which is a upcoming event) that need the list of all participants
+     * @param title The title of the event(which is an upcoming event) that need the list of all participants
      * @return The list containing all participants of the event
      */
     public ArrayList<String> utilGetAllUpcomingEventParticipant(String title){
-        // This is a tool method
-        // Called to return the participants of an event if the e vent is upcoming
-        // If the event is not upcoming event, it should return an empty arraylist
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -295,17 +284,15 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    /**This is a tool method that is used to change the relationship of organizer with the event
-     * Note it only change the relationship of the organizer not the participant
-     * The event would become an upcoming event instead of an unpublished event for the organizer
-     * The relationship of the event with the participants would not change so far
-     * If the event is not unpublished, it should not do anything and the error would be dealt with an exception
+    /**This is a tool method that is used to change the relationship of organizer with the event.
+     * Note it only change the relationship of the organizer not the participant.
+     * The event would become an upcoming event instead of an unpublished event for the organizer.
+     * The relationship of the event with the participants would not change so far.
+     * If the event is not unpublished, it should not do anything and the error would be dealt with an exception.
      *
      * @param title The title of the event that need to change the status
      */
     public void utilUnpublishedToUpcomingForOrg(String title){
-        // This is a tool method
-        // Called to turn unpublished event into an upcoming event
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -350,17 +337,15 @@ public class EventFileUser implements EventDsGateway{
     }
 
     /**
-     * This is a tool method that is used to change the relationship of organizer with the event
-     * Note it only change the relationship with the organizer not the participant
-     * The event would become a past event instead of an upcoming event for the organizer
-     * The relationship of the event with the participants would not change so far
-     * If the event is not upcoming, it should not do anything and the error would be dealt with an exception
+     * This is a tool method that is used to change the relationship of organizer with the event.
+     * Note it only change the relationship with the organizer not the participant.
+     * The event would become a past event instead of an upcoming event for the organizer.
+     * The relationship of the event with the participants would not change so far.
+     * If the event is not upcoming, it should not do anything and the error would be dealt with an exception.
      *
      * @param title The title of the event that need to change the status
      */
     private void utilUpcomingToPastForOrg(String title) {
-        // This is a tool method
-        // Called to turn unpublished event into an upcoming event
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -368,13 +353,9 @@ public class EventFileUser implements EventDsGateway{
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             stmt = conn.createStatement();
             String orgName = getOrganization(title);
-            System.out.println(orgName);
-            System.out.println(title);
             String sql1 = "delete from upcoming_events_for_org where event_title = '" + title + "';";
             int count1 = stmt.executeUpdate(sql1);
-            System.out.println(sql1);
             String sql2 = "insert into past_events_for_org(org_username, event_title) values('" + orgName + "','" + title + "');";
-            System.out.println(sql2);
             int count2 = stmt.executeUpdate(sql2);
             System.out.println(count2);
             if (count1 > 0 && count2 > 0) {
@@ -404,16 +385,14 @@ public class EventFileUser implements EventDsGateway{
         }
     }
 
-    /**This is a tool method used to change the relationship of the participants with the event
-     * Note it only change the relationship with the participants not the organizer
-     * The status of the event for the participants would be changed from upcoming to past
-     * If the event is not an upcoming event, it would meet an error which would be dealt with exception
+    /**This is a tool method used to change the relationship of the participants with the event.
+     * Note it only change the relationship with the participants not the organizer.
+     * The status of the event for the participants would be changed from upcoming to past.
+     * If the event is not an upcoming event, it would meet an error which would be dealt with exception.
      *
      * @param title The title of the event that need to change the status
      */
     private void utilUpcomingToPastForPar(String title){
-        // This is a tool method
-        // Called to turn unpublished event into an upcoming event
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -451,9 +430,9 @@ public class EventFileUser implements EventDsGateway{
     }
 
 
-    /**This method is used for searching event
-     * It should return an arraylist containing all relevant event titles
-     * If there's no event that have title relevant to the entered keyword, it should return an empty arraylist
+    /**This is a tool method used for searching event.
+     * It should return an arraylist containing all relevant event titles.
+     * If there's no event that have title relevant to the entered keyword, it should return an empty arraylist.
      *
      * @param about_name The keyword entered by user to search relevant event name
      * @return An arraylist containing all relevant event names
@@ -504,6 +483,14 @@ public class EventFileUser implements EventDsGateway{
         return l;
     }
 
+    /**This is a tool method that examine which status is the event.
+     * It will examine all three tables of the organizer-event relationship.
+     * Check which one contain the relationship.
+     * If it's contained in two tables, it will return the last one's relationship (It should not happen if the project works correctly).
+     *
+     * @param title The title of the event that need to know the status
+     * @return The status of the input event
+     */
     public String utilGetStatus(String title){
         Statement stmt = null;
         Connection conn = null;
@@ -577,10 +564,22 @@ public class EventFileUser implements EventDsGateway{
     }
 
 
+    /**This is a method used to get the current status of the event(upcoming, past or unpublished).
+     * It calls a tool method calls utilGetStatus.
+     *
+     * @param title The title of the event that need to know the status
+     * @return The status of the input event
+     */
     public String getStatus(String title){
         return utilGetStatus(title);
     }
 
+    /**This is a tool method used to get the type of the event.
+     * The type is currently just integer (considering it to be String).
+     *
+     * @param title The title of event that need the type returned
+     * @return The type of the event
+     */
     public int utilGetType(String title){
         Statement stmt = null;
         Connection conn = null;
@@ -625,10 +624,22 @@ public class EventFileUser implements EventDsGateway{
         }
         return type;
     }
+
+    /**This is a method to get the type of the event.
+     * It calls a tool method called utilGetType.
+     *
+     * @param title The title of event that need the type returned
+     * @return The type of the event
+     */
     public int getType(String title){
         return utilGetType(title);
     }
 
+    /**This is a tool method used to get the description of the event.
+     *
+     * @param title The title of event that need the description returned
+     * @return The description of the event
+     */
     public String utilGetDescription(String title){
         Statement stmt = null;
         Connection conn = null;
@@ -674,10 +685,22 @@ public class EventFileUser implements EventDsGateway{
         return description;
     }
 
+    /**This is a method used to get the event description.
+     * It calls a tool method called getType.
+     *
+     * @param title The title of event that need the description returned
+     * @return The description of the event
+     */
     public String getDescription(String title){
         return utilGetDescription(title);
     }
 
+    /**It's a tool method that is used to obtain the location of the event.
+     * Potentially return a zoom link.
+     *
+     * @param title The title of the event that need the location returned
+     * @return The location of the event
+     */
     public String utilGetLocation(String title){
         Statement stmt = null;
         Connection conn = null;
@@ -722,6 +745,14 @@ public class EventFileUser implements EventDsGateway{
         }
         return location;
     }
+
+    /**It's a method used to get the event location.
+     * Potentially return a zoom link.
+     * It calls a tool method called utilGetLocation.
+     *
+     * @param title The title of the event that need the location returned
+     * @return The location of the event
+     */
     public String getLocation(String title){
         return utilGetLocation(title);
     }
@@ -774,6 +805,12 @@ public class EventFileUser implements EventDsGateway{
         return utilGetImagePath(title);
     }
 
+    /**A tool method used to get the time of the method.
+     * The time is returned as an Arraylist.
+     *
+     * @param title The title of the event that need the time returned
+     * @return The time of the event as [year,month,day,hour,minute]
+     */
     public ArrayList<Integer> utilGetTime(String title){
         Statement stmt = null;
         Connection conn = null;
@@ -822,10 +859,22 @@ public class EventFileUser implements EventDsGateway{
         }
         return l;
     }
+    /**A method that returned the time of the input event.
+     * The method called a tool method called utilGetTime.
+     * The time is returned as an Arraylist .
+     *
+     * @param title The title of the event that need the time returned
+     * @return The time of the event as [year,month,day,hour,minute]
+     */
     public ArrayList<Integer> getTime(String title){
         return utilGetTime(title);
     }
 
+    /**A tool method that returned the participant list of the event.
+     *
+     * @param title The title of the event that need all the participants returned
+     * @return An Arraylist containing all the participants
+     */
     public ArrayList<String> utilGetParticipants(String title){
         ArrayList<String> l1 = utilGetAllPastEventParticipant(title);
         ArrayList<String> l2 = utilGetAllUpcomingEventParticipant(title);
@@ -834,51 +883,66 @@ public class EventFileUser implements EventDsGateway{
         l.addAll(l2);
         return l;
     }
+    /**A method that returned the participant list of the event.
+     * It should call a tool method called utilGetParticipants.
+     *
+     * @param title The title of the event that need all the participants returned
+     * @return An Arraylist containing all the participants
+     */
     public ArrayList<String> getParticipants(String title){
         return utilGetParticipants(title);
     }
 
+    /**This is a method returning the organizer who create the event.
+     * It calls a tool method called utilGetOrganization.
+     *
+     * @param title The title of the event that need the organizer who create the event returned
+     * @return The organizer of the event
+     */
     public String getOrganization(String title){
         return utilGetOrganization(title);
     }
 
+    /**The method calls a tool method called utilUnpublishedToUpcomingForOrg to change the status of the event.
+     * The event currently have no participants so no need to worry about participant relationships.
+     * the event must be unpublished and should only have one status
+     *
+     * @param title The title of the event that's unpublished and need to turn to upcoming
+     */
     public void UnpublishedToUpcoming(String title){
         utilUnpublishedToUpcomingForOrg(title);
     }
 
+    /**The method calls two tool method called utilUpcomingToPastForOrg and utilUpcomingToPastForPar to change the status of the event.
+     * The event should only have one state and must be upcoming
+     *
+     * @param title The title of the event that's upcoming and need to turn to past
+     */
     @Override
     public void UpcomingToPast(String title) {
         utilUpcomingToPastForOrg(title);
         utilUpcomingToPastForPar(title);
     }
 
+    /**This method is used for searching event.
+     * This is method called a tool method called utilEventSearch.
+     * It should return an arraylist containing all relevant event titles.
+     * If there's no event that have title relevant to the entered keyword, it should return an empty arraylist.
+     *
+     * @param about_name The keyword entered by user to search relevant event name
+     * @return An arraylist containing all relevant event names
+     */
     public ArrayList<String> eventSearch(String about_name){
         return utilEventSearch(about_name);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public boolean checkIfEventNameExist(String eventName){
+    /**This is a tool method returning whether the event exist.
+     * If not found, returned false, which is the default value of the boolean stored in the method.
+     *
+     * @param eventName The event name that need to be used to check existence
+     * @return Whether the event exists
+     */
+    public boolean utilCheckIfEventNameExist(String eventName){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -925,19 +989,38 @@ public class EventFileUser implements EventDsGateway{
         return WhetherExist;
     }
 
+
+    /**This is a method returning whether the event exist.
+     * It calls a method called utilCheckIfEventNameExist.
+     * If not found, returned false, which is the default value of boolean stored in the method.
+     *
+     * @param eventName The event name that need to be used to check existence
+     * @return Whether the event exists
+     */
+    public boolean checkIfEventNameExist(String eventName){
+        return utilCheckIfEventNameExist(eventName);
+    }
+
+    /**This is a method that delete that event and all the relationships with it
+     * including participants and organizers.
+     * It calls utilDeleteParPastevent, utilDeleteParUpcomingevent, utilDeleteOrgPastEvent, utilDeleteOrgUnpublishedEvent, utilDeleteOrgUpcomingevent
+     * to break all the potential relationships.
+     * And it calls utilGetOrganization to get the organizer name.
+     * The existance of the event should be wiped out of the database.
+     *
+     * @param event_title The title of the event that need to be deleted
+     */
+
     public void deleteEvent(String event_title){
-        //First break relationships of the event with the organizer
-        //Then break relationships of the event with all the participants
-        //Then delete the event itself
         OrgFileUser temp_orgFileUser = new OrgFileUser();
         ParFileUser temp_parFileUser = new ParFileUser();
         ArrayList<String> All_past_participants = utilGetAllPastEventParticipant(event_title);
         for (String all_past_participant : All_past_participants) {
-            temp_parFileUser.utilDeleteParPastevent(all_past_participant, event_title);
+            temp_parFileUser.utilDeleteParPastEvent(all_past_participant, event_title);
         }
         ArrayList<String> All_upcoming_participants = utilGetAllUpcomingEventParticipant(event_title);
         for (String all_upcoming_participant : All_upcoming_participants) {
-            temp_parFileUser.utilDeleteParUpcomingevent(all_upcoming_participant, event_title);
+            temp_parFileUser.utilDeleteParUpcomingEvent(all_upcoming_participant, event_title);
         }
 
 

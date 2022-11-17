@@ -8,13 +8,11 @@ public interface EventDsGateway {
     public String getStatus(String title);
 
     // Return the event_type which is stored as integer
-    public int getType(String title);
 
     // Return the description of the event
     public String getDescription(String title);
 
     // Return the location of the event
-    public String getLocation(String title);
 
     // Return the image path of the event
     public String getImagePath(String title);
