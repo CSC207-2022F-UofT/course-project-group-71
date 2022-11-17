@@ -631,7 +631,7 @@ public class OrgFileUser implements OrgDsGateway {
         return password;
     }
 
-    /**This is a tool method used to change the password of the organizer
+    /**This is a tool method used to change the password of the organizer.
      *
      * @param org_username The username of the organizer
      * @param new_password The new password of the organizer
@@ -673,7 +673,7 @@ public class OrgFileUser implements OrgDsGateway {
         }
     }
 
-    /**This is a tool method used to obtain all the organizers relevant to the keyword inputed
+    /**This is a tool method used to obtain all the organizers relevant to the input keyword.
      *
      * @param about_name The keyword that used for search for relevant organizer
      * @return An ArrayList containing the name of all relevant organizers
@@ -726,63 +726,93 @@ public class OrgFileUser implements OrgDsGateway {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    /**This is a method used to obtain all the organizers relevant to the input keyword.
+     * This method called a tool method called utilOrganizerSearch.
+     *
+     * @param about_name The keyword that used for search for relevant organizer
+     * @return An ArrayList containing the name of all relevant organizers
+     */
     public ArrayList<String> organizerSearch(String about_name){
         return utilOrganizerSearch(about_name);
     }
 
-
+    /**This method returns the password of the organizer.
+     * This method calls a tool method.
+     *
+     * @param username The name of the organizer
+     * @return THe password of the organizer
+     */
     public String getPassword(String username) {
         return utilGetPassword(username);
     }
 
+    /**This method is used to reset the password of the organizer.
+     * This method called a tool method called utilPasswordUpdating.
+     *
+     * @param username The name of the organizer
+     * @param new_password The new password of the organizer
+     */
     public void setPassword(String username, String new_password){
-        //
         utilPasswordUpdating(username, new_password);
     }
 
-
+    /**This is a method used to get all unpublished events.
+     * This method called a tool method called utilGetUnpublishedEvents.
+     *
+     * @param username The username of the organizer
+     * @return The arraylist containing all unpublished events of the organizer
+     */
     public ArrayList<String> getUnpublishedEvents(String username){
         return utilGetUnpublishedEvents(username);
     }
 
+    /**This is a method used to get all past events.
+     * This method called a tool method called utilGetPastEvents.
+     *
+     * @param username The username of the organizer
+     * @return The arraylist containing all past events of the organizer
+     */
     public ArrayList<String> getPastEvents(String username){
         return utilGetPastEvents(username);
     }
 
+    /**This is a method used to get all upcoming events.
+     * This method called a tool method called utilGetUpcomingEvents.
+     *
+     * @param username The username of the organizer
+     * @return The arraylist containing all upcoming events of the organizer
+     */
     public ArrayList<String> getUpcomingEvents(String username){
         return utilGetUpcomingEvents(username);
     }
 
+    /**This is a method used to get all the followers of the organizer.
+     * This method used a tool method called utilGetAllFollowers.
+     *
+     * @param username The username of the organizer
+     * @return The arraylist containing all followers of the organizer
+     */
     public ArrayList<String> getFollowers(String username){
         return utilGetAllFollowers(username);
     }
 
-    public void createAnEvent(String org_username,
-                              String title,
-                              int status,
-                              int event_type,
-                              String description,
-                              String location,
-                              String image_path,
-                              int year,
-                              int month,
-                              int day,
-                              int hour,
-                              int minute){
+    /**This is a method used to create event, it put an event into the database and build the relatinoship between
+     * the organizer and the event.
+     *
+     * @param org_username The username of the organizer
+     * @param title The title of the event
+     * @param status The status of the event (We are considering deleting it)
+     * @param description The description of the event
+     * @param location The location of the event (It could be a zoom link)
+     * @param year The time (year) of the event
+     * @param month The time (month) of the event
+     * @param day The time (day) of the event
+     * @param hour The time (hour) of the event
+     * @param minute The time (minute) of the event
+     */
+    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
         EventFileUser temp_eventfileuser = new EventFileUser();
-        temp_eventfileuser.utilStoreEvent(title, status, event_type, description, location, image_path, year, month, day, hour, minute);
+        temp_eventfileuser.utilStoreEvent(title, status, description, location, year, month, day, hour, minute);
         if (status == 0){
             //Unpublished
             utilAddOrgUnpublishedEvent(org_username,title);
@@ -797,12 +827,26 @@ public class OrgFileUser implements OrgDsGateway {
 
         }
     }
+
+    /**This method delete the event and delete the relationship of the organizer and the event
+     * The deleteEvent method of the EventFileUser would automatically delete the relationship between the event
+     * and the organizer and the participants.
+     *
+     * @param username The username of the organizer
+     * @param title The title of the event
+     */
     public void deleteAnEvent(String username, String title){
         EventFileUser temp_eventfileuser = new EventFileUser();
         temp_eventfileuser.deleteEvent(title);
     }
 
-    public boolean checkIfUsernameExist(String username){
+    /**This is a tool method returning whether the username exist.
+     * If not found, returned false, which is the default value of the boolean stored in method.
+     *
+     * @param username The username that need to be used to check existence
+     * @return Whether the username exists
+     */
+    public boolean utilCheckIfUsernameExist(String username){
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -849,13 +893,36 @@ public class OrgFileUser implements OrgDsGateway {
         return WhetherExist;
     }
 
+    /**This is a method returning whether the username exist.
+     * This method calls a tool method called utilCheckIfUsernameExist.
+     * If not found, returned false, which is the default value of the boolean stored in method.
+     *
+     * @param username The username that need to be used to check existence
+     * @return Whether the username exists
+     */
+    public boolean checkIfUsernameExist(String username){
+        return utilCheckIfUsernameExist(username);
+    }
+
+
+    /**this method is used to create an organizer.
+     * this method calls a tool method called createOrg.
+     *
+     * @param username The username of the organizer
+     * @param password The password of the organizer
+     */
     public void createOrg(String username, String password){
         utilStoreOrg(username,password);
     }
+
+    /**This method delete the organizer from the datbase and removes all the relationship of the event created by the organizer
+     * and the relationship with all the followers
+     * This method calls tool methods including
+     * utilGetUnpublishedEvents, utilGetPastEvents, utilGetUpcomingEvents and utilGetAllFollowers.
+     *
+     * @param username The username of the organizer
+     */
     public void deleteOrg(String username){
-        //First delete relationships with events
-        //Then delete relationships with participants
-        //Then delete itself
         ParFileUser temp_parfileuser = new ParFileUser();
         ArrayList<String> All_Unpublished = utilGetUnpublishedEvents(username);
         for (String s : All_Unpublished) {

@@ -16,24 +16,22 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event
      * @param status The status of the event (We are considering deleting it)
-     * @param event_type The event type of the event (We are considering replacing it with a String)
      * @param description The description of the event
      * @param location The location of the event (It could be a zoom link)
-     * @param image_path The image path that is relevant to the event
      * @param year The time (year) of the event
      * @param month The time (month) of the event
      * @param day The time (day) of the event
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
      */
-    public void utilStoreEvent(String title, int status, int event_type, String description, String location, String image_path, int year, int month, int day, int hour, int minute){
+    public void utilStoreEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "insert into eventfile(title,status,event_type,description,location,image_path,year,month,day,hour,minute) values('" +
-                    title + "'," + status + "," + event_type + ",'" + description + "','" + location + "','" + image_path + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            String sql = "insert into eventfile(title,status,,description,location,year,month,day,hour,minute) values('" +
+                    title + "'," + status + ",'" + description + "','" + location + "',," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -939,7 +937,7 @@ public class EventFileUser implements EventDsGateway{
     }
 
     /**This is a tool method returning whether the event exist.
-     * If not found, returned false, which is the default value of the method.
+     * If not found, returned false, which is the default value of the boolean stored in the method.
      *
      * @param eventName The event name that need to be used to check existence
      * @return Whether the event exists
@@ -994,7 +992,7 @@ public class EventFileUser implements EventDsGateway{
 
     /**This is a method returning whether the event exist.
      * It calls a method called utilCheckIfEventNameExist.
-     * If not found, returned false, which is the default value of the method.
+     * If not found, returned false, which is the default value of boolean stored in the method.
      *
      * @param eventName The event name that need to be used to check existence
      * @return Whether the event exists
