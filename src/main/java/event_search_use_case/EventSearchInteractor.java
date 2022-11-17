@@ -15,17 +15,18 @@ public class EventSearchInteractor implements EventSearchInputBoundary {
         this.userOutput = userOutput;
     }
 
-    @Override
-    public EventSearchResponseModel eventSearch(EventSearchRequestModel requestModel) {
-            ArrayList<String> searchResults = eventDsGateway.eventSearch(requestModel.getQuery());
-            if (searchResults.isEmpty()) {
-                return userOutput.prepareFailView("No organizers found.");
-            } else {
-                EventSearchResponseModel responseModel = new EventSearchResponseModel (searchResults);
-                return userOutput.prepareSuccessView(responseModel);
-            }
-        }
 
+    @Override
+    public EventSearchResponseModel eventSearch(EventSearchRequestModel userInput) {
+        ArrayList<String> searchResults = eventDsGateway.eventSearch(userInput.getQuery());
+        String parUserName= userInput.getParUserName();
+        if (searchResults.isEmpty()) {
+            return userOutput.prepareFailView("No events found.");
+        } else {
+            EventSearchResponseModel responseModel = new EventSearchResponseModel (searchResults, parUserName);
+            return userOutput.prepareSuccessView(responseModel);
+        }
     }
+}
 
 
