@@ -44,4 +44,6 @@ public interface EventDsGateway {
 
     // Change the status of the event from upcomign to past
     public void UpcomingToPast(String title);
+
+    public ArrayList<String> eventSearch(String about_name);
 }
