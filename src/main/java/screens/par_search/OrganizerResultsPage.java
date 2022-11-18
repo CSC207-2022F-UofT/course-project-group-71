@@ -1,4 +1,4 @@
-package screens.search_screens;
+package screens.par_search;
 
 
 
@@ -14,14 +14,12 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrganizerResultsPage extends JFrame {
 
-    private ArrayList<String> orgNames;
-    private String parUsername;
+    private final String parUsername;
 
     ParDsGateway par = new ParFileUser();
 
     public OrganizerResultsPage(ArrayList<String> orgNames, String parUsername) {
 
-        this.orgNames = orgNames;
         this.parUsername = parUsername;
         ArrayList<String> orgFollowed = par.getFollowedOrg(this.parUsername);
 
@@ -43,7 +41,7 @@ public class OrganizerResultsPage extends JFrame {
         JPanel organizers = new JPanel();
         organizers.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
 
-        int numberOrgs = this.orgNames.size();
+        int numberOrgs = orgNames.size();
         if (numberOrgs != 0) {
 
             organizers.setLayout(new GridLayout(numberOrgs, 0, 10, 10));
@@ -51,7 +49,7 @@ public class OrganizerResultsPage extends JFrame {
             int x = 0;
             int y = 0;
 
-            for (String nextOrg : this.orgNames) {
+            for (String nextOrg : orgNames) {
 
                 JButton orgName = new JButton(nextOrg);
 //                orgName.addActionListener(new OrganizerResultsPageActionListener(this));
