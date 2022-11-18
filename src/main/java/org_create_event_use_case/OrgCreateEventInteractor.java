@@ -3,6 +3,8 @@ package org_create_event_use_case;
 import database.EventDsGateway;
 import database.OrgDsGateway;
 
+import java.time.LocalDateTime;
+
 public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
 
     EventDsGateway eventDsGateway;
@@ -62,6 +64,12 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
             int min = Integer.parseInt(minute);
             if (min > 59 || min < 0) {
                 return orgCreateEventPresenter.prepareFailView("Minute is not within 0 to 60.");
+            }
+
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime time = LocalDateTime.of(y, m, d, h, min);
+            if (time.isBefore(now)){
+                return orgCreateEventPresenter.prepareFailView("Time must be in future.");
             }
 
             else {

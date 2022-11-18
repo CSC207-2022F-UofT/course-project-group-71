@@ -56,7 +56,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, e.getMessage());
             }
             this.orgUnpublishedEventPage.dispose();
-            new OrgUpcomingEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
         }
         else if (actionCommand.contains("Publish")){
             EventDsGateway eventDsGateway = new EventFileUser();
