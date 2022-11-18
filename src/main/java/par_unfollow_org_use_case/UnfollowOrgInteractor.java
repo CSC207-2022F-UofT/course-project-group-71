@@ -5,17 +5,18 @@ import database.ParDsGateway;
 public class UnfollowOrgInteractor implements UnfollowOrgInputBoundary {
 
     ParDsGateway parDsGateway;
-    UnfollowOrgOutputBoundary followOrgPresenter;
+    UnfollowOrgOutputBoundary unfollowOrgOutputBoundary;
 
-    public UnfollowOrgInteractor(ParDsGateway parDsGateway, UnfollowOrgOutputBoundary followOrgPresenter){
+    public UnfollowOrgInteractor(ParDsGateway parDsGateway, UnfollowOrgOutputBoundary unfollowOrgOutputBoundary){
         this.parDsGateway=parDsGateway;
-        this.followOrgPresenter= followOrgPresenter;
+        this.unfollowOrgOutputBoundary= unfollowOrgOutputBoundary;
     }
 
-    public void follow(UnfollowOrgRequestModel requestModel){
-        parDsGateway.followOrg(requestModel.getPar_username(),requestModel
+    public UnfollowOrgResponseModel unfollow(UnfollowOrgRequestModel requestModel){
+        parDsGateway.unfollowOrg(requestModel.getPar_username(),requestModel
                 .getOrg_username());
-
+        UnfollowOrgResponseModel responseModel = new UnfollowOrgResponseModel(requestModel.getOrg_username());
+        return unfollowOrgOutputBoundary.prepareSuccessPage(responseModel);
 
     }
 }
