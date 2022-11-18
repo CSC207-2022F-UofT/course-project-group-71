@@ -1,7 +1,9 @@
-package par_leave_event_use_case;
+package screens.par_upcoming_event;
 
 import LeaveTheEventScreen.FaliureViewModel;
 import LeaveTheEventScreen.SuccessfulViewModule;
+import par_leave_event_use_case.ParLeaveEventOutputBoundary;
+import par_leave_event_use_case.ParLeaveEventResponseModel;
 
 public class ParLeaveEventPresenter implements ParLeaveEventOutputBoundary {
 

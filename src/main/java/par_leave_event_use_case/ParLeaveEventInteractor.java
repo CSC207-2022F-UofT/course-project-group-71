@@ -2,6 +2,7 @@ package par_leave_event_use_case;
 
 import database.OrgDsGateway;
 import database.ParDsGateway;
+import screens.par_upcoming_event.ParLeaveEventPresenter;
 
 public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
 

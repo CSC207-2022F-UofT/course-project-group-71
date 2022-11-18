@@ -1,4 +1,7 @@
-package par_leave_event_use_case;
+package screens.par_upcoming_event;
+
+import par_leave_event_use_case.ParLeaveEventInputBoundary;
+import par_leave_event_use_case.ParLeaveEventRequestModel;
 
 public class ParLeaveEventController {
 
