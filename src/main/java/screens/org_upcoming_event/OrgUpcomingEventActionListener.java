@@ -44,10 +44,13 @@ public class OrgUpcomingEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
-            OrgNotifyEventResponseModel responseModel =
-                    orgNotifyEventController.sendNotification("Future",eventName);
-
-            JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
+            try {
+                OrgNotifyEventResponseModel responseModel =
+                        orgNotifyEventController.sendNotification("Future", eventName);
+                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
+            }
         }
         else if (actionCommand.contains("Delete")) {
             EventDsGateway eventDsGateway = new EventFileUser();

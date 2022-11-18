@@ -2,7 +2,6 @@ package par_leave_event_use_case;
 
 import database.OrgDsGateway;
 import database.ParDsGateway;
-import screens.par_upcoming_event.ParLeaveEventPresenter;
 
 public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
 
@@ -10,22 +9,22 @@ public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
 
     final OrgDsGateway orgDsGateway;
 
-    final ParLeaveEventPresenter EventLeavePresenter;
+    final ParLeaveEventOutputBoundary parLeaveEventOutputBoundary;
 
-    public ParLeaveEventInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway, ParLeaveEventPresenter eventLeavePresenter) {
+    public ParLeaveEventInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway,
+                                   ParLeaveEventOutputBoundary parLeaveEVentOutputBoundary) {
         this.parDsGateway = parDsGateway;
         this.orgDsGateway = orgDsGateway;
-        this.EventLeavePresenter = eventLeavePresenter;
+        this.parLeaveEventOutputBoundary = parLeaveEVentOutputBoundary;
     }
 
     @Override
-    public void leave(ParLeaveEventRequestModel requestModel) {
+    public ParLeaveEventResponseModel leave(ParLeaveEventRequestModel requestModel) {
         parDsGateway.leaveEvent(requestModel.getPar_username(),requestModel.getEvent_title());
-        ParLeaveEventResponseModel succesresponse = new ParLeaveEventResponseModel(requestModel.getPar_username(), requestModel.getEvent_title(),"Success to leave the event");
-        EventLeavePresenter.success_view_preparation(succesresponse);
-        System.out.println(1);
-        return;
+        ParLeaveEventResponseModel responseModel = new ParLeaveEventResponseModel(
+                requestModel.getEvent_title(),"Success to leave the event");
+        return parLeaveEventOutputBoundary.prepareSuccessView(responseModel);
     }
 
-    }
+}
 

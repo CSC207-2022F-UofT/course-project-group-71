@@ -19,8 +19,4 @@ public class ParLeaveEventRequestModel {
     public String getEvent_title() {
         return event_title;
     }
-
-    public void setEvent_title(String event_title) {
-        this.event_title = event_title;
-    }
 }
