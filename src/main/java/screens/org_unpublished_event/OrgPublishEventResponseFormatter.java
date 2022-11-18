@@ -8,7 +8,7 @@ public class OrgPublishEventResponseFormatter implements OrgPublishEventPresente
     @Override
     public OrgPublishEventResponseModel prepareSuccessView(OrgPublishEventResponseModel response) {
         response.setMessage("Event" + response.getEventName() + "is published");
-        throw new ShowMessageView(response.getMessage());
+        return response;
     }
 
 }

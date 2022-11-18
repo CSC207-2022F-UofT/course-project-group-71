@@ -49,12 +49,10 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
-            try{
-                OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
-                JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
-            } catch(Exception e) {
-                JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, e.getMessage());
-            }
+            OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
+
+            JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
+
             this.orgUnpublishedEventPage.dispose();
             new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
         }
@@ -75,15 +73,13 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             String eventName = actionCommand.substring(0,actionCommand.length()-7);
             System.out.println(eventName + "A");
 
-            try{
-                OrgPublishEventResponseModel responseModel = orgPublishEventController.publish(eventName);
-                JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
-            } catch(Exception e) {
-                JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, e.getMessage());
-            }
-            this.orgUnpublishedEventPage.dispose();
-            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+            OrgPublishEventResponseModel responseModel = orgPublishEventController.publish(eventName);
 
+            JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
+
+            this.orgUnpublishedEventPage.dispose();
+
+            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
         }
         else if (actionCommand.contains("Create An Event")){
             EventDsGateway eventDsGateway = new EventFileUser();

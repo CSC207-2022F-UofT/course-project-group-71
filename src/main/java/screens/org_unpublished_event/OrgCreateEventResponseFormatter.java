@@ -9,8 +9,7 @@ public class OrgCreateEventResponseFormatter implements OrgCreateEventPresenter 
     @Override
     public OrgCreateEventResponseModel prepareSuccessView(OrgCreateEventResponseModel response) {
         response.setMessage("Event " + response.getTitle() + " is successfully created!");
-        System.out.println("Formatter returned");
-        throw new ShowMessageView(response.getMessage());
+        return response;
     }
 
     @Override
