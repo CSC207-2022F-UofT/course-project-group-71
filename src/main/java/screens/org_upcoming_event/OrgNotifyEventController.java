@@ -1,8 +1,10 @@
 package screens.org_upcoming_event;
 
-import org_notify_event_use_case.*;
+import org_notify_event_use_case.OrgNotifyEventInputBoundary;
+import org_notify_event_use_case.OrgNotifyEventRequestModel;
+import org_notify_event_use_case.OrgNotifyEventResponseModel;
 
-import java.time.LocalDateTime;
+import java.sql.SQLException;
 
 public class OrgNotifyEventController {
     final OrgNotifyEventInputBoundary orgNotifyEventInputBoundary;
@@ -11,7 +13,7 @@ public class OrgNotifyEventController {
         this.orgNotifyEventInputBoundary = accountGateway;
     }
 
-    public OrgNotifyEventResponseModel sendNotification(String notificationType, String eventName) {
+    public OrgNotifyEventResponseModel sendNotification(String notificationType, String eventName) throws SQLException {
         OrgNotifyEventRequestModel requestModel = new OrgNotifyEventRequestModel(notificationType, eventName);
 
         return orgNotifyEventInputBoundary.sendNotification(requestModel);

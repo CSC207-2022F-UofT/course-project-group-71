@@ -4,6 +4,8 @@ import org_edit_event_use_case.OrgEditEventInputBoundary;
 import org_edit_event_use_case.OrgEditEventRequestModel;
 import org_edit_event_use_case.OrgEditEventResponseModel;
 
+import java.sql.SQLException;
+
 public class OrgEditEventController {
 
     final OrgEditEventInputBoundary userInput;
@@ -19,7 +21,7 @@ public class OrgEditEventController {
                                               String month,
                                               String day,
                                               String hour,
-                                              String minute){
+                                              String minute) throws SQLException, ClassNotFoundException {
         OrgEditEventRequestModel requestModel = new OrgEditEventRequestModel(
                 title, description, location, year, month, day, hour, minute);
         System.out.println("Controller Returned");

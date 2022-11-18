@@ -24,6 +24,7 @@ import screens.par_search.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class ParHomeActionListener implements ActionListener {
     public ParHomePage parHomePage;
@@ -41,7 +42,13 @@ public class ParHomeActionListener implements ActionListener {
             new ParAccountPage(this.parHomePage.getParUsername());
         } else if (page.equals("Upcoming Event")) {
             this.parHomePage.dispose();
-            new ParUpcomingEventPage(this.parHomePage.getParUsername());
+            try {
+                new ParUpcomingEventPage(this.parHomePage.getParUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -49,14 +56,27 @@ public class ParHomeActionListener implements ActionListener {
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
                     eventDsGateway, upcomingToPastPresenter);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel = controller.convertToPast("P",
-                    this.parHomePage.getParUsername());
+            UpcomingToPastResponseModel responseModel = null;
+            try {
+                responseModel = controller.convertToPast("P",
+                        this.parHomePage.getParUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             if (!responseModel.getEventsToPast().isEmpty()){
                 JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
             }
         } else if (page.equals("Past Event")) {
             this.parHomePage.dispose();
-            new ParPastEventPage(this.parHomePage.getParUsername());
+            try {
+                new ParPastEventPage(this.parHomePage.getParUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -64,8 +84,15 @@ public class ParHomeActionListener implements ActionListener {
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
                     eventDsGateway, upcomingToPastPresenter);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel = controller.convertToPast("P",
-                    this.parHomePage.getParUsername());
+            UpcomingToPastResponseModel responseModel = null;
+            try {
+                responseModel = controller.convertToPast("P",
+                        this.parHomePage.getParUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             if (!responseModel.getEventsToPast().isEmpty()){
                 JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
             }

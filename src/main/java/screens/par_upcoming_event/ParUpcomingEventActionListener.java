@@ -13,6 +13,7 @@ import screens.par_home.ParHomePage;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class ParUpcomingEventActionListener implements ActionListener {
     public ParUpcomingEventPage parUpcomingEventPage;
@@ -47,7 +48,13 @@ public class ParUpcomingEventActionListener implements ActionListener {
             JOptionPane.showMessageDialog(this.parUpcomingEventPage, responseModel.getMessage());
 
             this.parUpcomingEventPage.dispose();
-            new ParUpcomingEventPage(this.parUpcomingEventPage.getParUsername());
+            try {
+                new ParUpcomingEventPage(this.parUpcomingEventPage.getParUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

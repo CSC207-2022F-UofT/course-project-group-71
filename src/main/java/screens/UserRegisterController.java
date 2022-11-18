@@ -4,6 +4,8 @@ import user_register_use_case.UserRegisterInputBoundary;
 import user_register_use_case.UserRegisterRequestModel;
 import user_register_use_case.UserRegisterResponseModel;
 
+import java.sql.SQLException;
+
 public class UserRegisterController {
     final UserRegisterInputBoundary interactor;
 
@@ -26,7 +28,7 @@ public class UserRegisterController {
      * @param retypePassword The second input password of the user registration
      * @return The response model showing whether creation is successful
      */
-    public UserRegisterResponseModel create(String isParticipant, String isOrganization, String username, String password, String retypePassword) {
+    public UserRegisterResponseModel create(String isParticipant, String isOrganization, String username, String password, String retypePassword) throws SQLException, ClassNotFoundException {
         UserRegisterRequestModel requestModel = new UserRegisterRequestModel(
                 isParticipant, isOrganization, username, password, retypePassword);
 

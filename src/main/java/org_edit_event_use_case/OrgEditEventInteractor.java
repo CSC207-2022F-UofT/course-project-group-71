@@ -3,6 +3,7 @@ package org_edit_event_use_case;
 import database.EventDsGateway;
 import database.OrgDsGateway;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
@@ -21,7 +22,7 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
     }
 
     @Override
-    public OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) {
+    public OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
         if (requestModel.getTitle().isEmpty() || requestModel.getDescription().isEmpty()
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()
                 || requestModel.getDay().isEmpty() || requestModel.getHour().isEmpty()

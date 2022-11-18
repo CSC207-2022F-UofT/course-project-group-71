@@ -4,6 +4,7 @@ import database.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
@@ -11,7 +12,7 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrgFollowerPage extends JFrame {
     private final String orgUsername;
-    public OrgFollowerPage(String orgUsername){
+    public OrgFollowerPage(String orgUsername) throws SQLException, ClassNotFoundException {
         this.orgUsername = orgUsername;
 
         this.setLayout(null);

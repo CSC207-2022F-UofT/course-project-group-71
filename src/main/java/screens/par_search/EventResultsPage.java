@@ -1,11 +1,12 @@
 package screens.par_search;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-
 import database.ParDsGateway;
 import database.ParFileUser;
+
+import javax.swing.*;
+import java.awt.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
@@ -17,7 +18,7 @@ public class EventResultsPage extends JFrame {
 
     ParDsGateway par = new ParFileUser();
 
-    public EventResultsPage(ArrayList<String> eventNames, String parUserName) {
+    public EventResultsPage(ArrayList<String> eventNames, String parUserName) throws SQLException, ClassNotFoundException {
 
         this.eventNames = eventNames;
         this.parUsername = parUserName;

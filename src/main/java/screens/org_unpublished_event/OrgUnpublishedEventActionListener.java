@@ -11,8 +11,10 @@ import org_delete_event_use_case.OrgDeleteEventResponseModel;
 import org_edit_event_use_case.OrgEditEventInputBoundary;
 import org_edit_event_use_case.OrgEditEventInteractor;
 import org_edit_event_use_case.OrgEditEventPresenter;
-import org_edit_event_use_case.OrgEditEventResponseModel;
-import org_publish_event_use_case.*;
+import org_publish_event_use_case.OrgPublishEventInputBoundary;
+import org_publish_event_use_case.OrgPublishEventInteractor;
+import org_publish_event_use_case.OrgPublishEventPresenter;
+import org_publish_event_use_case.OrgPublishEventResponseModel;
 import screens.org_home.OrgHomePage;
 import screens.org_upcoming_event.OrgDeleteEventController;
 import screens.org_upcoming_event.OrgDeleteEventResponseFormatter;
@@ -20,6 +22,7 @@ import screens.org_upcoming_event.OrgDeleteEventResponseFormatter;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class OrgUnpublishedEventActionListener implements ActionListener {
     public OrgUnpublishedEventPage orgUnpublishedEventPage;
@@ -52,7 +55,12 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
-            OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
+            OrgDeleteEventResponseModel responseModel = null;
+            try {
+                responseModel = orgDeleteEventController.delete(eventName);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
             JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
 

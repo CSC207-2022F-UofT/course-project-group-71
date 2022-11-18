@@ -2,6 +2,8 @@ package screens.upcoming_to_past;
 
 import upcoming_to_past_use_case.*;
 
+import java.sql.SQLException;
+
 public class UpcomingToPastController {
     final UpcomingToPastInputBoundary interactor;
 
@@ -21,7 +23,7 @@ public class UpcomingToPastController {
      * @param username The username of the user
      * @return The response model showing whether creation is successful
      */
-    public UpcomingToPastResponseModel convertToPast(String userType, String username) {
+    public UpcomingToPastResponseModel convertToPast(String userType, String username) throws SQLException, ClassNotFoundException {
         UpcomingToPastRequestModel requestModel = new UpcomingToPastRequestModel(userType, username);
 
         return interactor.convertToPast(requestModel);

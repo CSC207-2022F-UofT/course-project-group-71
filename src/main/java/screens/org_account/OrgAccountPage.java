@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
@@ -76,9 +77,16 @@ public class OrgAccountPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        UserResetPasswordResponseModel responseModel = orgResetPasswordController.resetPassword(
-                this.orgUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
-                String.valueOf(retypeNewPassword.getPassword()));
+        UserResetPasswordResponseModel responseModel = null;
+        try {
+            responseModel = orgResetPasswordController.resetPassword(
+                    this.orgUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
+                    String.valueOf(retypeNewPassword.getPassword()));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        } catch (ClassNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
         JOptionPane.showMessageDialog(this, responseModel.getMessage());
     }
 

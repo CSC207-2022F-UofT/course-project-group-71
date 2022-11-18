@@ -1,6 +1,8 @@
 package org_notify_event_use_case;
 
 import database.*;
+
+import java.sql.SQLException;
 import java.util.*;
 
 public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
@@ -20,7 +22,7 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
     }
 
     @Override
-    public OrgNotifyEventResponseModel sendNotification (OrgNotifyEventRequestModel orgNotifyEventRequestModel){
+    public OrgNotifyEventResponseModel sendNotification (OrgNotifyEventRequestModel orgNotifyEventRequestModel) throws SQLException, ClassNotFoundException {
         String eventName = orgNotifyEventRequestModel.getEventName();
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
         OrgNotifyEventResponseModel notificationResponseModel =

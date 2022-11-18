@@ -2,6 +2,7 @@ package database;
 
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class ParFileUserTest {
     ParFileUser parFileUser = new ParFileUser();
     
     @Test
-    void testGetPassword(){
+    void testGetPassword() throws SQLException, ClassNotFoundException {
         assertEquals("p1", parFileUser.getPassword("P1"));
         assertEquals("p2", parFileUser.getPassword("P2"));
         assertEquals("p3", parFileUser.getPassword("P3"));
@@ -27,13 +28,13 @@ public class ParFileUserTest {
     }
 
     @Test
-    void testGetNotifications(){
+    void testGetNotifications() throws SQLException, ClassNotFoundException {
         ArrayList<String> l1 = new ArrayList<>(List.of("Note1 for P1","Note2 for P1","Note3 for P1","Note4 for P1"));
         assertEquals(l1,parFileUser.getNotifications("P1"));
     }
 
     @Test
-    void testGetUpcomingEvents(){
+    void testGetUpcomingEvents() throws SQLException, ClassNotFoundException {
         ArrayList<String> l1 = new ArrayList<>(List.of("E4"));
         assertEquals(l1,parFileUser.getUpcomingEvents("P1"));
         assertEquals(l1,parFileUser.getUpcomingEvents("P2"));
@@ -43,7 +44,7 @@ public class ParFileUserTest {
     }
 
     @Test
-    void testGetPastEvents(){
+    void testGetPastEvents() throws SQLException, ClassNotFoundException {
         ArrayList<String> l1 = new ArrayList<>(List.of("E5"));
         assertEquals(l1,parFileUser.getPastEvents("P6"));
         assertEquals(l1,parFileUser.getPastEvents("P7"));
@@ -53,7 +54,7 @@ public class ParFileUserTest {
     }
 
     @Test
-    void testGetFollowedOrg(){
+    void testGetFollowedOrg() throws SQLException, ClassNotFoundException {
         ArrayList<String> l1 = new ArrayList<>(List.of("O2"));
         assertEquals(l1,parFileUser.getFollowedOrg("P1"));
         assertEquals(l1,parFileUser.getFollowedOrg("P2"));
@@ -90,7 +91,7 @@ public class ParFileUserTest {
     }
 
     @Test
-    void testCheckIfUsernameExist(){
+    void testCheckIfUsernameExist() throws SQLException, ClassNotFoundException {
         assertTrue(parFileUser.checkIfUsernameExist("P1"));
         assertTrue(parFileUser.checkIfUsernameExist("P2"));
         assertTrue(parFileUser.checkIfUsernameExist("P3"));
