@@ -4,10 +4,10 @@ import database.ParDsGateway;
 
 public class FollowOrgInteractor implements FollowOrgInputBoundary {
 
-    final ParDsGateway parDsGateway;
-    final FollowOrgPresenter followOrgPresenter;
+    ParDsGateway parDsGateway;
+    FollowOrgOutputBoundary followOrgPresenter;
 
-    public FollowOrgInteractor(ParDsGateway parDsGateway, FollowOrgPresenter followOrgPresenter){
+    public FollowOrgInteractor(ParDsGateway parDsGateway, FollowOrgOutputBoundary followOrgPresenter){
         this.parDsGateway=parDsGateway;
         this.followOrgPresenter= followOrgPresenter;
     }

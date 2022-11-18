@@ -16,7 +16,7 @@ public class HelloWorld {
     static int CONSTANT_Y = 800;
     static String databaseUrl = "jdbc:mysql://localhost:3306/testing_db";
     static String databaseUsername = "root";
-    static String databasePassword = "1234";
+    static String databasePassword = "Feng703902!";
     public static String getDatabaseUrl() {return databaseUrl;}
     public static String getDatabaseUsername() {return databaseUsername;}
     public static String getDatabasePassword(){return databasePassword;}
