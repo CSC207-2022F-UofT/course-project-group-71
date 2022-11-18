@@ -3,31 +3,28 @@ package database;
 import java.util.ArrayList;
 
 public interface OrgDsGateway {
-    public ArrayList<String> organizerSearch(String about_name);
+    String getPassword(String username);
 
-    public String getPassword(String username);
+    void setPassword(String username, String new_password);
 
-    public void setPassword(String username, String new_password);
+    ArrayList<String> getUnpublishedEvents(String username);
 
-    public ArrayList<String> getUnpublishedEvents(String username);
+    ArrayList<String> getPastEvents(String username);
 
-    public ArrayList<String> getPastEvents(String username);
+    ArrayList<String> getUpcomingEvents(String username);
 
-    public ArrayList<String> getUpcomingEvents(String username);
+    ArrayList<String> getFollowers(String username);
 
-    public ArrayList<String> getFollowers(String username);
+    void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
 
-    //It will create the event and build the connection of the event and the organizer
-    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
+    void deleteAnEvent(String username, String title);
 
-    //It will call the event method in EventFileUser which delete all relationships and event itself
-    //This might be abundant
-    public void deleteAnEvent(String username, String title);
+    boolean checkIfUsernameExist(String username);
 
-    public boolean checkIfUsernameExist(String username);
+    void createOrg(String username, String password);
 
-    public void createOrg(String username, String password);
+    void deleteOrg(String username);
 
-    public void deleteOrg(String username);
+    ArrayList<String> organizerSearch(String about_name);
 
 }

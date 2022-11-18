@@ -231,7 +231,7 @@ public class ParFileUser implements ParDsGateway {
 
     }
     /**This a tool method used to delete relationship between participants and past events from the database.
-     *The participant must registered the past event, otherwise nothing would happen.
+     *The participant must register the past event, otherwise nothing would happen.
      *
      * @param par_username The username of the participant
      * @param event_title The title of the event
@@ -322,7 +322,7 @@ public class ParFileUser implements ParDsGateway {
     }
 
     /**This a tool method used to delete relationship between participants and upcoming events from the database.
-     * This par must registered in the upcoming event, otherwise nothing happens.
+     * This par must register in the upcoming event, otherwise nothing happens.
      *
      * @param par_username The username of the participant
      * @param event_title The title of the event

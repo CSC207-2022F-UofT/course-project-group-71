@@ -4,27 +4,27 @@ import java.util.ArrayList;
 
 public interface EventDsGateway {
 
-    public String getStatus(String title);
+    String getStatus(String title);
 
-    public String getDescription(String title);
+    String getDescription(String title);
 
-    public String getLocation(String title);
+    String getLocation(String title);
 
-    public ArrayList<Integer> getTime(String title);
+    ArrayList<Integer> getTime(String title);
 
-    public ArrayList<String> getParticipants(String title);
+    ArrayList<String> getParticipants(String title);
 
-    public String getOrganization(String title);
+    String getOrganization(String title);
 
-    public void UnpublishedToUpcoming(String title);
+    void unPublishedToUpcoming(String title);
 
-    public void UpcomingToPast(String title);
+    void upcomingToPast(String title);
 
-    public ArrayList<String> eventSearch(String about_name);
+    ArrayList<String> eventSearch(String about_name);
 
-    public boolean checkIfEventNameExist(String eventName);
+    boolean checkIfEventNameExist(String eventName);
 
-    public void deleteEvent(String event_title);
+    void deleteEvent(String event_title);
 
-    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
+    void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
 }

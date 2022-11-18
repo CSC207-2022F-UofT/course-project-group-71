@@ -3,6 +3,8 @@ package database;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OrgFileUserTest {
@@ -10,63 +12,74 @@ public class OrgFileUserTest {
     OrgFileUser orgFileUser = new OrgFileUser();
 
     @Test
-    void organizerSearchTest(String about_name){
-    };
+    void testGetPassword(){
+        assertEquals("O1password",orgFileUser.getPassword("O1"));
+        assertEquals("O2password",orgFileUser.getPassword("O2"));
+        assertEquals("O3password",orgFileUser.getPassword("O3"));
+    }
 
     @Test
-    void getPasswordTest(String username){
-
-    };
-
-    @Test
-    void setPasswordTest(String username, String new_password){
-
-    };
-
-    @Test
-    void getUnpublishedEventsTest(String username){
+    void testSetPassword(){
 
     }
 
     @Test
-    void getPastEventsTest(String username){
+    void testGetUnpublishedEvents(){
+        ArrayList<String> l1 = new ArrayList<>(List.of("E1"));
+        assertEquals(l1,orgFileUser.getUnpublishedEvents("O1"));
+    }
+
+    @Test
+    void testGetPastEvents(){
+        ArrayList<String> l1 = new ArrayList<>(List.of("E3"));
+        assertEquals(l1,orgFileUser.getPastEvents("O1"));
+    }
+
+    @Test
+    void testGetUpcomingEvents(){
+        ArrayList<String> l1 = new ArrayList<>(List.of("E2", "E4"));
+        assertEquals(l1,orgFileUser.getUpcomingEvents("O1"));
+    }
+
+    @Test
+    void testGetFollowers(){
+        ArrayList<String> l1 = new ArrayList<>(List.of("P1","P2","P3","P4","P5"));
+        assertEquals(l1,orgFileUser.getFollowers("O2"));
+    }
+
+    @Test
+    void testCreateAnEvent(){
+
 
     }
 
     @Test
-    void getUpcomingEventsTest(String username){
+    void testDeleteAnEvent(){
 
     }
 
     @Test
-    void getFollowersTest(String username){
-
+    void testCheckIfUsernameExist(){
+        assertTrue(orgFileUser.checkIfUsernameExist("O1"));
+        assertTrue(orgFileUser.checkIfUsernameExist("O2"));
+        assertTrue(orgFileUser.checkIfUsernameExist("O3"));
+        assertFalse(orgFileUser.checkIfUsernameExist("Not1"));
+        assertFalse(orgFileUser.checkIfUsernameExist("Not2"));
+        assertFalse(orgFileUser.checkIfUsernameExist("Not3"));
     }
 
     @Test
-    void createAnEventTest(String org_username, String title, int status, int event_type, String description,
-                       String location, String image_path, int year, int month, int day, int hour, int minute){
-
-    }
+    void testCreateOrg(){}
 
     @Test
-    void deleteAnEventTest(String username, String title){
-
-    }
+    void testDeleteOrg(){}
 
     @Test
-    void checkIfUsernameExistTest(String username){
+    void testOrganizerSearch(){
+        ArrayList<String> l1 = new ArrayList<>(List.of("O1", "O2","O3"));
+        assertEquals(l1,orgFileUser.organizerSearch("O"));
 
     }
 
-    @Test
-    void createOrgTest(String username, String password){
-
-    }
-
-    @Test
-    void deleteOrgTest(String username){
-
-    }
 
 }

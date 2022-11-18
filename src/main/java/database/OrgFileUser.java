@@ -583,7 +583,7 @@ public class OrgFileUser implements OrgDsGateway {
     /**This is a tool method used to get the password of the organizer.
      *
      * @param org_username The username of the organizer
-     * @return
+     * @return The password of the organizer
      */
     public String utilGetPassword(String org_username) {
         //Return the password of the entered organizer user
