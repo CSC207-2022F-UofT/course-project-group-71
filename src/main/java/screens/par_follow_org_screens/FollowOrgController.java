@@ -1,7 +1,7 @@
 package screens.par_follow_org_screens;
 
-import par_follow_org_usecase.FollowOrgInputBoundary;
-import par_follow_org_usecase.FollowOrgRequestModel;
+import par_follow_org_use_case.FollowOrgInputBoundary;
+import par_follow_org_use_case.FollowOrgRequestModel;
 
 public class FollowOrgController {
 

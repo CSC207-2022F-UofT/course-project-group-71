@@ -1,4 +1,4 @@
-package par_follow_org_usecase;
+package par_follow_org_use_case;
 
 public interface FollowOrgOutputBoundary {
 
