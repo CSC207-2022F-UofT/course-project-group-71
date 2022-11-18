@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import database.ParDsGateway;
+import database.ParFileUser;
+
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
@@ -12,10 +15,13 @@ public class EventResultsPage extends JFrame {
     private ArrayList<String> eventNames;
     private String parUsername;
 
-    public EventResultsPage( ArrayList<String> eventNames, String parUserName){
+    ParDsGateway par = new ParFileUser();
 
-        this.eventNames=eventNames;
-        this.parUsername= parUserName;
+    public EventResultsPage(ArrayList<String> eventNames, String parUserName) {
+
+        this.eventNames = eventNames;
+        this.parUsername = parUserName;
+        ArrayList<String> eventFollowed = par.getUpcomingEvents(parUserName);
 
         this.setLayout(null);
 
@@ -35,7 +41,7 @@ public class EventResultsPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
 
-        int numberEvents= this.eventNames.size();
+        int numberEvents = this.eventNames.size();
         if (numberEvents != 0) {
 
             events.setLayout(new GridLayout(numberEvents, 0, 10, 10));
@@ -43,29 +49,28 @@ public class EventResultsPage extends JFrame {
             int x = 0;
             int y = 0;
 
-            for (String nextEvent : this.eventNames ) {
+            for (String nextEvent : this.eventNames) {
 
-                JButton orgName = new JButton(nextEvent);
+                JButton eventName = new JButton(nextEvent);
 //                eventNames.addActionListener(new ParUpcomingEventActionListener(this));
-                orgName.setBounds(x, y, 250, 30);
-                orgName.setVisible(true);
+                eventName.setBounds(x, y, 250, 30);
+                events.add(eventName);
+                eventName.setVisible(true);
 
 
-                JButton join = new JButton("Join");
+                if (eventFollowed.contains(nextEvent)) {
+                    JButton join = new JButton("Leave");
 //              join.addActionListener(new OrganizerResultsPageActionListener(this));
-                join.setBounds(x, y, 250, 30);
-                join.setVisible(true);
-
-
-                JButton leave = new JButton("Leave");
+                    join.setBounds(x, y, 250, 30);
+                    events.add(join);
+                    join.setVisible(true);
+                } else {
+                    JButton leave = new JButton("Join");
 //                leave.addActionListener(new OrganizerResultsPageActionListener(this));
-                leave.setBounds(x + 250, y + 15, 100, 30);
-                leave.setVisible(true);
-
-
-                events.add(orgName);
-                events.add(join);
-                events.add(leave);
+                    leave.setBounds(x, y, 250, 30);
+                    events.add(leave);
+                    leave.setVisible(true);
+                }
 
 
                 y += 100;
@@ -78,7 +83,6 @@ public class EventResultsPage extends JFrame {
             eventScroll.setVisible(true);
             this.add(eventScroll);
         }
-
 
         this.add(title);
         this.add(back);

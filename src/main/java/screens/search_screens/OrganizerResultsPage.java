@@ -1,8 +1,9 @@
 package screens.search_screens;
 
 
-import org_search_use_case.OrgSearchPresenter;
-import screens.par_upcoming_event.ParUpcomingEventActionListener;
+
+import database.ParDsGateway;
+import database.ParFileUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,12 +14,16 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrganizerResultsPage extends JFrame {
 
-     private ArrayList<String> orgNames;
-     private String parUsername;
+    private ArrayList<String> orgNames;
+    private String parUsername;
+
+    ParDsGateway par = new ParFileUser();
+
     public OrganizerResultsPage(ArrayList<String> orgNames, String parUsername) {
 
         this.orgNames = orgNames;
-        this.parUsername=parUsername;
+        this.parUsername = parUsername;
+        ArrayList<String> orgFollowed = par.getFollowedOrg(this.parUsername);
 
         this.setLayout(null);
 
@@ -38,7 +43,7 @@ public class OrganizerResultsPage extends JFrame {
         JPanel organizers = new JPanel();
         organizers.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
 
-        int numberOrgs= this.orgNames.size();
+        int numberOrgs = this.orgNames.size();
         if (numberOrgs != 0) {
 
             organizers.setLayout(new GridLayout(numberOrgs, 0, 10, 10));
@@ -46,29 +51,31 @@ public class OrganizerResultsPage extends JFrame {
             int x = 0;
             int y = 0;
 
-            for (String nextOrg : this.orgNames ) {
+            for (String nextOrg : this.orgNames) {
 
                 JButton orgName = new JButton(nextOrg);
 //                orgName.addActionListener(new OrganizerResultsPageActionListener(this));
                 orgName.setBounds(x, y, 250, 30);
+                organizers.add(orgName);
                 orgName.setVisible(true);
 
 
-                JButton follow = new JButton("Follow");
-//              follow.addActionListener(new OrganizerResultsPageActionListener(this));
-                follow.setBounds(x, y, 250, 30);
-                follow.setVisible(true);
-
-
-                JButton unfollow = new JButton("Unfollow");
+                if (orgFollowed.contains(nextOrg)) {
+                    JButton unfollow = new JButton("Unfollow");
 //                unfollow.addActionListener(new OrganizerResultsPageActionListener(this));
-                unfollow.setBounds(x + 250, y + 15, 100, 30);
-                unfollow.setVisible(true);
+                    unfollow.setBounds(x, y, 250, 30);
+                    organizers.add(unfollow);
+                    unfollow.setVisible(true);
+
+                } else {
+                    JButton follow = new JButton("Follow");
+//              follow.addActionListener(new OrganizerResultsPageActionListener(this));
+                    follow.setBounds(x, y, 250, 30);
+                    organizers.add(follow);
+                    follow.setVisible(true);
+                }
 
 
-                organizers.add(orgName);
-                organizers.add(follow);
-                organizers.add(unfollow);
 
 
                 y += 100;

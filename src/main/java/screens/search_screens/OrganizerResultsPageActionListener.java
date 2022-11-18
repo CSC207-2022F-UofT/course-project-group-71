@@ -24,5 +24,6 @@ public class OrganizerResultsPageActionListener implements ActionListener {
             new ParHomePage(this.organizerResultsPage.getParUsername());
         }
 
+
     }
 }
