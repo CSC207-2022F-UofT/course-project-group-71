@@ -583,7 +583,7 @@ public class OrgFileUser implements OrgDsGateway {
     /**This is a tool method used to get the password of the organizer.
      *
      * @param org_username The username of the organizer
-     * @return
+     * @return The password of the organizer
      */
     public String utilGetPassword(String org_username) {
         //Return the password of the entered organizer user
@@ -946,6 +946,10 @@ public class OrgFileUser implements OrgDsGateway {
         return utilCheckIfUsernameExist(username);
     }
 
+    public void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+        EventFileUser eventFileUser = new EventFileUser();
+        eventFileUser.editEvent(title,status,description,location,year,month,day,hour,minute);
+    }
 
 
 }

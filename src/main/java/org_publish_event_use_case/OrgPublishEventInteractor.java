@@ -4,9 +4,6 @@ import database.EventDsGateway;
 import database.OrgDsGateway;
 import database.ParDsGateway;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     private EventDsGateway eventDsGateway;
     private OrgDsGateway orgDsGateway;
@@ -23,7 +20,7 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) {
         String eventName = requestModel.getEventName();
 
-        eventDsGateway.UnpublishedToUpcoming(eventName);
+        eventDsGateway.unPublishedToUpcoming(eventName);
 
         OrgPublishEventResponseModel orgPublishEventResponseModel = new OrgPublishEventResponseModel(eventName);
 
