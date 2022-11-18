@@ -3,31 +3,31 @@ package database;
 import java.util.ArrayList;
 
 public interface ParDsGateway {
-    public String getPassword(String username);
+    String getPassword(String username);
 
-    public ArrayList<String> getNotifications(String username);
+    ArrayList<String> getNotifications(String username);
 
-    public ArrayList<String> getUpcomingEvents(String username);
+    ArrayList<String> getUpcomingEvents(String username);
 
-    public ArrayList<String> getPastEvents(String username);
+    ArrayList<String> getPastEvents(String username);
 
-    public ArrayList<String> getFollowedOrg(String username);
+    ArrayList<String> getFollowedOrg(String username);
 
-    public void setPassword(String username, String new_password);
+    void setPassword(String username, String new_password);
 
-    public boolean addNotification(String username, String new_notification);
+    boolean addNotification(String username, String new_notification);
 
-    public void followOrg(String par_username, String org_username);
+    void followOrg(String par_username, String org_username);
 
-    public void registerEvent(String par_username, String title);
+    void registerEvent(String par_username, String title);
 
-    public void leaveEvent(String par_username, String title);
+    void leaveEvent(String par_username, String title);
 
-    public boolean checkIfUsernameExist(String username);
+    boolean checkIfUsernameExist(String username);
 
-    public void createPar(String username, String password);
+    void createPar(String username, String password);
 
-    public void deletePar(String username);
+    void deletePar(String username);
 
-    public void clearNotifications(String usename);
+    void clearNotifications(String username);
 }
