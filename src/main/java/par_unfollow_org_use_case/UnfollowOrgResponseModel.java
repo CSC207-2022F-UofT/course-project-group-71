@@ -1,21 +1,17 @@
-package par_follow_org_use_case;
+package par_unfollow_org_use_case;
 
-public class FollowOrgResponseModel {
+public class UnfollowOrgResponseModel {
 
     private String orgName;
 
     private String message;
 
-    public FollowOrgResponseModel(String orgName){
+    public UnfollowOrgResponseModel(String orgName){
         this.orgName=orgName;
     }
 
     public String getOrgName() {
         return orgName;
-    }
-
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
     }
 
     public void setMessage(String message) {

@@ -14,6 +14,7 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrganizerResultsPage extends JFrame {
 
+    private final ArrayList<String> orgNames;
     private final String parUsername;
 
     ParDsGateway par = new ParFileUser();
@@ -21,7 +22,7 @@ public class OrganizerResultsPage extends JFrame {
     public OrganizerResultsPage(ArrayList<String> orgNames, String parUsername) {
 
         this.parUsername = parUsername;
-        ArrayList<String> orgFollowed = par.getFollowedOrg(this.parUsername);
+        this.orgNames = orgNames;
 
         this.setLayout(null);
 
@@ -58,23 +59,20 @@ public class OrganizerResultsPage extends JFrame {
                 orgName.setVisible(true);
 
 
-                if (orgFollowed.contains(nextOrg)) {
+                if (orgNames.contains(nextOrg)) {
                     JButton unfollow = new JButton("Unfollow "+nextOrg);
-                unfollow.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
+                    unfollow.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
                     unfollow.setBounds(x, y, 250, 30);
                     organizers.add(unfollow);
                     unfollow.setVisible(true);
 
                 } else {
                     JButton follow = new JButton("Follow "+nextOrg);
-              follow.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
+                    follow.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
                     follow.setBounds(x, y, 250, 30);
                     organizers.add(follow);
                     follow.setVisible(true);
                 }
-
-
-
 
                 y += 100;
             }
@@ -100,5 +98,7 @@ public class OrganizerResultsPage extends JFrame {
     public String getParUsername() {
         return parUsername;
     }
+
+    public ArrayList<String> getOrgNames(){ return orgNames;}
 
 }

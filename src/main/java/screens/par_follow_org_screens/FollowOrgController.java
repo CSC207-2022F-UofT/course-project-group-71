@@ -2,6 +2,7 @@ package screens.par_follow_org_screens;
 
 import par_follow_org_use_case.FollowOrgInputBoundary;
 import par_follow_org_use_case.FollowOrgRequestModel;
+import par_follow_org_use_case.FollowOrgResponseModel;
 
 public class FollowOrgController {
 
@@ -10,8 +11,9 @@ public class FollowOrgController {
         this.interactor= interactor;
     }
 
-    public void follow(String par_username, String org_username){
+    public FollowOrgResponseModel follow(String par_username, String org_username){
         FollowOrgRequestModel request= new FollowOrgRequestModel(par_username,org_username);
+        return interactor.follow(request);
     }
 
 }
