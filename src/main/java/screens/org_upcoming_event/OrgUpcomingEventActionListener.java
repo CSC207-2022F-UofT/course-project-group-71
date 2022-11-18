@@ -44,7 +44,8 @@ public class OrgUpcomingEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
-            OrgNotifyEventResponseModel responseModel = orgNotifyEventController.sendNotification(eventName);
+            OrgNotifyEventResponseModel responseModel =
+                    orgNotifyEventController.sendNotification("Future",eventName);
 
             JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
         }

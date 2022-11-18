@@ -41,6 +41,7 @@ public class ParHomeActionListener implements ActionListener {
             new ParAccountPage(this.parHomePage.getParUsername());
         } else if (page.equals("Upcoming Event")) {
             this.parHomePage.dispose();
+            new ParUpcomingEventPage(this.parHomePage.getParUsername());
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -50,10 +51,12 @@ public class ParHomeActionListener implements ActionListener {
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
             UpcomingToPastResponseModel responseModel = controller.convertToPast("P",
                     this.parHomePage.getParUsername());
-            JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
-            new ParUpcomingEventPage(this.parHomePage.getParUsername());
+            if (!responseModel.getEventsToPast().isEmpty()){
+                JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
+            }
         } else if (page.equals("Past Event")) {
             this.parHomePage.dispose();
+            new ParPastEventPage(this.parHomePage.getParUsername());
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -63,8 +66,9 @@ public class ParHomeActionListener implements ActionListener {
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
             UpcomingToPastResponseModel responseModel = controller.convertToPast("P",
                     this.parHomePage.getParUsername());
-            JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
-            new ParPastEventPage(this.parHomePage.getParUsername());
+            if (!responseModel.getEventsToPast().isEmpty()){
+                JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
+            }
         } else if (page.equals("Followed Org")) {
             this.parHomePage.dispose();
             new ParFollowedOrgPage(this.parHomePage.getParUsername());

@@ -11,8 +11,8 @@ public class OrgNotifyEventController {
         this.orgNotifyEventInputBoundary = accountGateway;
     }
 
-    OrgNotifyEventResponseModel sendNotification(String eventName) {
-        OrgNotifyEventRequestModel requestModel = new OrgNotifyEventRequestModel(eventName);
+    public OrgNotifyEventResponseModel sendNotification(String notificationType, String eventName) {
+        OrgNotifyEventRequestModel requestModel = new OrgNotifyEventRequestModel(notificationType, eventName);
 
         return orgNotifyEventInputBoundary.sendNotification(requestModel);
     }
