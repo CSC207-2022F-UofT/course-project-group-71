@@ -48,7 +48,7 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
                 LocalDateTime time = LocalDateTime.of(times.get(0), times.get(1), times.get(2), times.get(3),
                         times.get(4));
                 if (time.isBefore(now)){
-                    eventDsGateway.UpcomingToPast(event);
+                    eventDsGateway.upcomingToPast(event);
                     eventsToPast.add(event);
                 }
             }
@@ -63,7 +63,7 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
                 LocalDateTime time = LocalDateTime.of(times.get(0), times.get(1), times.get(2), times.get(3),
                         times.get(4));
                 if (time.isBefore(now)){
-                    eventDsGateway.UpcomingToPast(event);
+                    eventDsGateway.upcomingToPast(event);
                     eventsToPast.add(event);
                 }
             }
