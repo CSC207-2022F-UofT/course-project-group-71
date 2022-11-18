@@ -10,25 +10,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserRegisterInteractorTest {
 
+    void testPrepareView(){
+        ParDsGateway par = new ParFileUser();
+        OrgDsGateway org = new OrgFileUser();
+        UserRegisterPresenter presenter = new UserRegisterPresenter();
+
+        UserRegisterInputBoundary interactor = new UserRegisterInteractor(
+                par, org, presenter);
+        UserRegisterRequestModel inputData1 = new UserRegisterRequestModel("P", "",
+                "allyson", "12345", "12345");
+        interactor.create(inputData1);
+
+        assertEquals("prepareFailview", );
+    }
+
+
     @Test
     void create() {
 
         ParDsGateway par = new ParFileUser();
         OrgDsGateway org = new OrgFileUser();
-        UserRegisterPresenter presenter = new UserRegisterPresenter() {
-            @Override
-            public UserRegisterResponseModel prepareFailView(String failureResponse) {
-                fail("Use case failure is unexpected.");
-                return null;
-            }
-
-            @Override
-            public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel user) {
-                assertEquals("allyson", user.getUsername());
-                assertTrue(par.checkIfUsernameExist("allyson"));
-                return null;
-            }
-        };
+        UserRegisterPresenter presenter = new UserRegisterPresenter();
 
         UserRegisterInputBoundary interactor = new UserRegisterInteractor(
                 par, org, presenter);
