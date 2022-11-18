@@ -2,7 +2,6 @@ package user_reset_password_use_case;
 
 import database.OrgDsGateway;
 import database.ParDsGateway;
-import user_login_use_case.*;
 
 public class UserResetPasswordInteractor implements UserResetPasswordInputBoundary {
     final UserResetPasswordPresenter userResetPasswordPresenter;
@@ -19,7 +18,9 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
     public UserResetPasswordResponseModel resetPassword(UserResetPasswordRequestModel requestModel) {
         if (requestModel.isWhether_org()){
             //Organizer
-            if (requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
+            System.out.println("a");
+            if (requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getPassword()))){
+                System.out.println("b");
                 return userResetPasswordPresenter.prepareView("Old password is not correct.");
             }
             else {
@@ -34,7 +35,7 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         }
         else {
             //Participant
-            if (requestModel.getPassword().equals(parDsGateway.getPassword(requestModel.getUsername()))){
+            if (requestModel.getPassword().equals(parDsGateway.getPassword(requestModel.getPassword()))){
                 return userResetPasswordPresenter.prepareView("Old password is not correct.");
             }
             else {

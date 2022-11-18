@@ -596,9 +596,10 @@ public class OrgFileUser implements OrgDsGateway {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select password from orgfile where username = \"" + org_username + "\";");
+            rs = stmt.executeQuery("select password from orgfile where username = '" + org_username + "';");
             rs.next();
             password = rs.getString("password");
+            System.out.println(password);
         } catch (ClassNotFoundException e) {
             System.out.println("NotFound");
             e.printStackTrace();

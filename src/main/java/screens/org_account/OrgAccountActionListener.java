@@ -1,9 +1,10 @@
 package screens.org_account;
 
-import database.*;
+import database.OrgDsGateway;
+import database.OrgFileUser;
+import database.ParDsGateway;
+import database.ParFileUser;
 import screens.org_home.OrgHomePage;
-import screens.org_past_event.OrgPastEventPage;
-import user_login_use_case.OrgHomePresenter;
 import user_reset_password_use_case.*;
 
 import javax.swing.*;
@@ -49,7 +50,7 @@ public class OrgAccountActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.orgAccountPage, e.getMessage());
             }
             this.orgAccountPage.dispose();
-            new OrgPastEventPage(this.orgAccountPage.getOrgUsername());
+            new OrgAccountPage(this.orgAccountPage.getOrgUsername());
 
         }
     }
