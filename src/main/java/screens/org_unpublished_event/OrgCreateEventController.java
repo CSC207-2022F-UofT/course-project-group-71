@@ -23,6 +23,8 @@ public class OrgCreateEventController {
                                               String minute){
         OrgCreateEventRequestModel requestModel = new OrgCreateEventRequestModel(
                 orgUsername, title, description, location, year, month, day, hour, minute);
+        System.out.println("Controller Returned");
+
         return userInput.create(requestModel);
     }
 

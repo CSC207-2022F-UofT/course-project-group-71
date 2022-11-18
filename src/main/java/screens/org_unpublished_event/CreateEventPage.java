@@ -1,5 +1,6 @@
 package screens.org_unpublished_event;
 
+import org_create_event_use_case.OrgCreateEventResponseModel;
 import screens.LabelTextPanel;
 
 import javax.swing.*;
@@ -102,11 +103,12 @@ public class CreateEventPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            controller.create(getOrgUsername(), eventTitle.getText(), description.getText(), location.getText(),
-                    year.getText(), month.getText(), day.getText(), hour.getText(), minute.getText());
             this.dispose();
             this.orgUnpublishedEventPage.dispose();
             new OrgUnpublishedEventPage(getOrgUsername());
+            OrgCreateEventResponseModel response_model = controller.create(getOrgUsername(), eventTitle.getText(), description.getText(), location.getText(),
+                    year.getText(), month.getText(), day.getText(), hour.getText(), minute.getText());
+
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }

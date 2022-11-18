@@ -70,6 +70,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
                 OrgCreateEventResponseModel responseModel = new OrgCreateEventResponseModel(requestModel.getOrgUsername(),
                         requestModel.getTitle(), 0, requestModel.getDescription(), requestModel.getLocation(),
                         y, m, d, h, min);
+                System.out.println("Interactor returned");
                 return orgCreateEventPresenter.prepareSuccessView(responseModel);
             }
         }
