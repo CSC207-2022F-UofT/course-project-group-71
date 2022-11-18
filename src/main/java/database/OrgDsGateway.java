@@ -27,4 +27,7 @@ public interface OrgDsGateway {
 
     ArrayList<String> organizerSearch(String about_name);
 
+    void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
+
+
 }

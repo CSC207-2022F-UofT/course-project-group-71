@@ -946,6 +946,10 @@ public class OrgFileUser implements OrgDsGateway {
         return utilCheckIfUsernameExist(username);
     }
 
+    public void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+        EventFileUser eventFileUser = new EventFileUser();
+        eventFileUser.editEvent(title,status,description,location,year,month,day,hour,minute);
+    }
 
 
 }
