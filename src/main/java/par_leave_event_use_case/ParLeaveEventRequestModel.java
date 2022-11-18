@@ -1,10 +1,10 @@
-package participant_leave_the_event;
+package par_leave_event_use_case;
 
-public class EventLeaveRequestModel {
+public class ParLeaveEventRequestModel {
     private String par_username;
     private String event_title;
 
-    public EventLeaveRequestModel(String par_username, String event_title) {
+    public ParLeaveEventRequestModel(String par_username, String event_title) {
         this.par_username = par_username;
         this.event_title = event_title;
     }

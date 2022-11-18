@@ -1,13 +1,13 @@
-package participant_leave_the_event;
+package par_leave_event_use_case;
 
-public class EventLeaveResponseModel {
+public class ParLeaveEventResponseModel {
     private String par_username;
 
     private String event_title;
 
     private String message;
 
-    public EventLeaveResponseModel(String par_username, String event_title, String message) {
+    public ParLeaveEventResponseModel(String par_username, String event_title, String message) {
         this.par_username = par_username;
         this.event_title = event_title;
         this.message = message;

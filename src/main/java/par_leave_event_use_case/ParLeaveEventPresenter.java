@@ -1,12 +1,12 @@
-package participant_leave_the_event;
+package par_leave_event_use_case;
 
 import LeaveTheEventScreen.FaliureViewModel;
 import LeaveTheEventScreen.SuccessfulViewModule;
 
-public class EventLeavePresenter implements EventLeaveOutputBoundary{
+public class ParLeaveEventPresenter implements ParLeaveEventOutputBoundary {
 
     @Override
-    public void faliure_view_preparation(EventLeaveResponseModel failureresponse) {
+    public void faliure_view_preparation(ParLeaveEventResponseModel failureresponse) {
         String par_username = failureresponse.getPar_username();
         String event_title = failureresponse.getEvent_title();
         String message = failureresponse.getMessage();
@@ -14,7 +14,7 @@ public class EventLeavePresenter implements EventLeaveOutputBoundary{
         f.GeneratePage();
     }
 
-    public void success_view_preparation(EventLeaveResponseModel successresponse) {
+    public void success_view_preparation(ParLeaveEventResponseModel successresponse) {
         String par_username = successresponse.getPar_username();
         String event_title = successresponse.getEvent_title();
         String message = successresponse.getMessage();
