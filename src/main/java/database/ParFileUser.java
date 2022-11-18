@@ -892,6 +892,16 @@ public class ParFileUser implements ParDsGateway {
         utilAddParFollowing(par_username,org_username);
     }
 
+    /**This is a method used to add following relationship between participants and organizers to the database.
+     * This method called a tool method called utilAddParFollowing.
+     *
+     * @param par_username The username of the participant
+     * @param org_username The username of the organizer
+     */
+    public void unfollowOrg(String par_username, String org_username){
+        utilDeleteParFollowOrg(par_username,org_username);
+    }
+
 
     /**This is a method returning whether the username exist.
      * This method calls a tool method called utilCheckIfUsernameExist.
