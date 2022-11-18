@@ -16,9 +16,9 @@ public interface EventDsGateway {
 
     public String getOrganization(String title);
 
-    public void UnpublishedToUpcoming(String title);
+    public void unPublishedToUpcoming(String title);
 
-    public void UpcomingToPast(String title);
+    public void upcomingToPast(String title);
 
     public ArrayList<String> eventSearch(String about_name);
 

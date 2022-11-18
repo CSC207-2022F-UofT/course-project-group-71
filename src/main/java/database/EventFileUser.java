@@ -696,10 +696,11 @@ public class EventFileUser implements EventDsGateway{
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select description from eventfile where title = '" + title + "';";
+            System.out.println(sql);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            rs.next();
-            description = rs.getString("description");
+            if (rs.next()){
+                description = rs.getString("description");}
         } catch (ClassNotFoundException e) {
             System.out.println("NotFound");
             e.printStackTrace();
@@ -812,14 +813,15 @@ public class EventFileUser implements EventDsGateway{
         boolean WhetherExist = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db2", "root", getDatabasePassword());
-            String sql = "select exists(select * from eventfile where title = '" + eventName + "');";
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            String sql = "select * from eventfile where title = '" + eventName + "';";
+            System.out.println(sql);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            rs.next();
-            if (rs.getInt(1) == 1){
+            if (rs.next()){
                 WhetherExist = true;
             }
+
         } catch (ClassNotFoundException e) {
             System.out.println("NotFound");
             e.printStackTrace();
@@ -923,7 +925,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that's unpublished and need to turn to upcoming
      */
-    public void UnpublishedToUpcoming(String title){
+    public void unPublishedToUpcoming(String title){
         utilUnpublishedToUpcomingForOrg(title);
     }
 
@@ -932,7 +934,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that's upcoming and need to turn to past
      */
-    public void UpcomingToPast(String title) {
+    public void upcomingToPast(String title) {
         utilUpcomingToPastForOrg(title);
         utilUpcomingToPastForPar(title);
     }

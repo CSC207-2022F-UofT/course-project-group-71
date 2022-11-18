@@ -3,8 +3,6 @@ package database;
 import java.util.ArrayList;
 
 public interface OrgDsGateway {
-    public ArrayList<String> organizerSearch(String about_name);
-
     public String getPassword(String username);
 
     public void setPassword(String username, String new_password);
@@ -29,5 +27,7 @@ public interface OrgDsGateway {
     public void createOrg(String username, String password);
 
     public void deleteOrg(String username);
+
+    public ArrayList<String> organizerSearch(String about_name);
 
 }

@@ -1,7 +1,7 @@
 package tutorial;
 
 public class HelloWorld {
-    static String databaseUrl = "jdbc:mysql://localhost:3306/db2";
+    static String databaseUrl = "jdbc:mysql://localhost:3306/testing_db";
 
     static String databaseUsername = "root";
     static String databasePassword = "1234";
