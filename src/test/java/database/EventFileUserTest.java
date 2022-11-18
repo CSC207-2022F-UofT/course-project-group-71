@@ -2,6 +2,7 @@ package database;
 
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testGetOrganization(){
+    void testGetOrganization() throws SQLException {
         assertEquals("O1", eventFileUser.getOrganization("E1"));
         assertEquals("O1", eventFileUser.getOrganization("E2"));
         assertEquals("O1", eventFileUser.getOrganization("E3"));
