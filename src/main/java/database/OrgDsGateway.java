@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface OrgDsGateway {
@@ -15,7 +16,7 @@ public interface OrgDsGateway {
 
     ArrayList<String> getFollowers(String username);
 
-    void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
+    void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException;
 
     void deleteAnEvent(String username, String title);
 

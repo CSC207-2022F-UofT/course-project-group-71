@@ -16,7 +16,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organizer that need to be stored
      * @param password The password of the organizer that need to be stored
      */
-    public void utilStoreOrg(String username, String password){
+    public void utilStoreOrg(String username, String password) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -33,21 +33,23 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
             if (conn != null){
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
 
@@ -61,7 +63,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organizer that need to be deleted
      */
-    public void utilDeleteOrg(String username){
+    public void utilDeleteOrg(String username) throws SQLException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -85,14 +87,14 @@ public class OrgFileUser implements OrgDsGateway {
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
             if (conn != null){
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
 
@@ -105,7 +107,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @param event_title The title of the event
      */
-    public void utilAddOrgPastEvent(String org_username, String event_title){
+    public void utilAddOrgPastEvent(String org_username, String event_title) throws SQLException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -129,14 +131,14 @@ public class OrgFileUser implements OrgDsGateway {
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
             if (conn != null){
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
 
@@ -835,7 +837,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
      */
-    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
         EventFileUser temp_eventfileuser = new EventFileUser();
         temp_eventfileuser.utilStoreEvent(title, status, description, location, year, month, day, hour, minute);
         if (status == 0){
