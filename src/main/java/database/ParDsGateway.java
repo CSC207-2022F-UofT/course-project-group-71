@@ -19,7 +19,7 @@ public interface ParDsGateway {
 
     void followOrg(String par_username, String org_username);
 
-    void unfollowOrg(String par_username, String org_username)
+    void unfollowOrg(String par_username, String org_username);
 
     void registerEvent (String par_username, String title);
 

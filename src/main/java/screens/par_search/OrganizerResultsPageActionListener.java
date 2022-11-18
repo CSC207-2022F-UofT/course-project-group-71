@@ -3,8 +3,11 @@ package screens.par_search;
 import database.ParDsGateway;
 import database.ParFileUser;
 import screens.par_follow_org_screens.FollowOrgController;
+import screens.par_follow_org_screens.FollowOrgPresenter;
 import screens.par_home.ParHomePage;
 import par_follow_org_use_case.*;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,9 +38,9 @@ public class OrganizerResultsPageActionListener implements ActionListener {
             FollowOrgController controller = new FollowOrgController(interactor);
             String parUserName = this.organizerResultsPage.getParUsername();
             this.organizerResultsPage.dispose();
-            controller.follow(parUserName,this.orgName);
+            FollowOrgResponseModel responseModel = controller.follow(parUserName,this.orgName);
+            JOptionPane.showMessageDialog(this.organizerResultsPage, responseModel.getMessage());
             new ParHomePage(this.organizerResultsPage.getParUsername());
-
 
         }
 

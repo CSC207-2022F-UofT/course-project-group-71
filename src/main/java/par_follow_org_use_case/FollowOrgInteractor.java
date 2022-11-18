@@ -12,10 +12,9 @@ public class FollowOrgInteractor implements FollowOrgInputBoundary {
         this.followOrgPresenter= followOrgPresenter;
     }
 
-    public void follow(FollowOrgRequestModel requestModel){
-        parDsGateway.followOrg(requestModel.getPar_username(),requestModel
-                .getOrg_username());
-
-
+    public FollowOrgResponseModel follow(FollowOrgRequestModel requestModel){
+        parDsGateway.followOrg(requestModel.getPar_username(),requestModel.getOrg_username());
+        FollowOrgResponseModel responseModel = new FollowOrgResponseModel(requestModel.getOrg_username());
+        return followOrgPresenter.prepareSuccessScreen(responseModel);
     }
 }
