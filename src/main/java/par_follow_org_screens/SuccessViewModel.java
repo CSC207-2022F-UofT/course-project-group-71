@@ -1,4 +1,4 @@
-package screens;
+package par_follow_org_screens;
 
 import javax.swing.*;
 

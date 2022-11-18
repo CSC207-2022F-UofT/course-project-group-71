@@ -1,6 +1,6 @@
 package par_follow_org_usecase;
 
-import screens.SuccessViewModel;
+import par_follow_org_screens.SuccessViewModel;
 
 public class FollowOrgPresenter implements FollowOrgOutputBoundary {
 
