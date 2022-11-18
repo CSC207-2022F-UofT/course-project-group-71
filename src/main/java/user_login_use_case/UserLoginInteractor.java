@@ -5,12 +5,21 @@ import database.OrgDsGateway;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
 
-    private UserLoginPresenter userLoginPresenter;
-    private ParDsGateway parDsGateway;
-    private ParHomePresenter parHomePresenter;
-    private OrgDsGateway orgDsGateway;
-    private OrgHomePresenter orgHomePresenter;
+    final UserLoginPresenter userLoginPresenter;
+    final ParDsGateway parDsGateway;
+    final ParHomePresenter parHomePresenter;
+    final OrgDsGateway orgDsGateway;
+    final OrgHomePresenter orgHomePresenter;
 
+    /**This is the construct method of UserRegisterInteractor.
+     * It takes DsGateways and Presenter as input to store as instances.
+     *
+     * @param parDsGateway The database gateway of the participants
+     * @param orgDsGateway The database gateway of the organizers
+     * @param userLoginPresenter The presenter used to show fail messages of login
+     * @param parHomePresenter The presenter used to show the home page of the participant
+     * @param orgHomePresenter The presenter used to show the home page of the participant
+     */
     public UserLoginInteractor(UserLoginPresenter userLoginPresenter, ParDsGateway parDsGateway,
                                ParHomePresenter parHomePresenter, OrgDsGateway orgDsGateway,
                                OrgHomePresenter orgHomePresenter) {
@@ -20,7 +29,17 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         this.orgDsGateway = orgDsGateway;
         this.orgHomePresenter = orgHomePresenter;
     }
-    
+
+    /**Use the information contained in the requestModel to check with database and respond a responseModel.
+     * It first chooses which DsGateWay to use by checking which user types selected by the user.
+     * Then it checks whether username exists in the database.
+     * Then it check if the password matches.
+     * If failed in one of the above process, return a failure response.
+     * Then it direct the user to the corresponding home page.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responseModel representing whether the user creation is successful
+     */
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
         if (requestModel.getUserType().equals("P")) {
             String username = requestModel.getUsername();
