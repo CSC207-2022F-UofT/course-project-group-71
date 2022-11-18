@@ -915,7 +915,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the organizer who create the event returned
      * @return The organizer of the event
      */
-    public String getOrganization(String title){
+    public String getOrganization(String title) throws SQLException {
         return utilGetOrganization(title);
     }
 
@@ -972,7 +972,7 @@ public class EventFileUser implements EventDsGateway{
      * @param event_title The title of the event that need to be deleted
      */
 
-    public void deleteEvent(String event_title){
+    public void deleteEvent(String event_title) throws SQLException {
         OrgFileUser temp_orgFileUser = new OrgFileUser();
         ParFileUser temp_parFileUser = new ParFileUser();
         ArrayList<String> All_past_participants = utilGetAllPastEventParticipant(event_title);
@@ -994,7 +994,7 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
         utilEditEvent(title,status,description,location,year,month,day,hour,minute);
     }
 

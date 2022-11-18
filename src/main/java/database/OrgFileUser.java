@@ -789,7 +789,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organizer
      * @param password The password of the organizer
      */
-    public void createOrg(String username, String password){
+    public void createOrg(String username, String password) throws SQLException, ClassNotFoundException {
         utilStoreOrg(username,password);
     }
 
@@ -800,7 +800,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organizer
      */
-    public void deleteOrg(String username){
+    public void deleteOrg(String username) throws SQLException {
         ParFileUser temp_parfileuser = new ParFileUser();
         ArrayList<String> All_Unpublished = utilGetUnpublishedEvents(username);
         for (String s : All_Unpublished) {
@@ -862,7 +862,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organizer
      * @param title The title of the event
      */
-    public void deleteAnEvent(String username, String title){
+    public void deleteAnEvent(String username, String title) throws SQLException {
         EventFileUser temp_eventfileuser = new EventFileUser();
         temp_eventfileuser.deleteEvent(title);
     }
@@ -948,7 +948,7 @@ public class OrgFileUser implements OrgDsGateway {
         return utilCheckIfUsernameExist(username);
     }
 
-    public void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+    public void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
         EventFileUser eventFileUser = new EventFileUser();
         eventFileUser.editEvent(title,status,description,location,year,month,day,hour,minute);
     }

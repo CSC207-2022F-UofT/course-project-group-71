@@ -18,17 +18,17 @@ public interface OrgDsGateway {
 
     void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException;
 
-    void deleteAnEvent(String username, String title);
+    void deleteAnEvent(String username, String title) throws SQLException;
 
     boolean checkIfUsernameExist(String username);
 
-    void createOrg(String username, String password);
+    void createOrg(String username, String password) throws SQLException, ClassNotFoundException;
 
-    void deleteOrg(String username);
+    void deleteOrg(String username) throws SQLException;
 
     ArrayList<String> organizerSearch(String about_name);
 
-    void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
+    void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException;
 
 
 }
