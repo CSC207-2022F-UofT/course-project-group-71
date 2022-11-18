@@ -8,7 +8,7 @@ import static tutorial.HelloWorld.*;
 public class EventFileUser implements EventDsGateway{
     public static void main(String[] args) {
         EventFileUser n = new EventFileUser();
-        n.utilEditEvent("1",1,"2","1",1,1,1,1,1);
+        System.out.println(n.getStatus("E2"));
     }
 
     /**This is a tool method that is called by other method to create an event.
@@ -34,7 +34,6 @@ public class EventFileUser implements EventDsGateway{
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "insert into eventfile(title,status,description,location,year,month,day,hour,minute) values('" +
                     title + "'," + status + ",'" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
-            System.out.println(sql);
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -558,20 +557,27 @@ public class EventFileUser implements EventDsGateway{
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             stmt = conn.createStatement();
-            rs1 = stmt.executeQuery("select exists(select * from unpublished_events_for_org where event_title = '" + title + "');");
-            rs2 = stmt.executeQuery("select exists(select * from past_events_for_org where event_title = '" + title + "');");
-            rs3 = stmt.executeQuery("select exists(select * from upcoming_events_for_org where event_title = '" + title + "');");
-            rs1.next();
-            if (rs1.getInt(1) == 1){
+            String sql1 = "select * from unpublished_events_for_org where event_title = '" + title + "';";
+            String sql2 = "select * from past_events_for_org where event_title = '" + title + "';";
+            String sql3 = "select * from upcoming_events_for_org where event_title = '" + title + "';";
+            System.out.println(title);
+            System.out.println(sql1);
+            System.out.println(sql2);
+            System.out.println(sql3);
+            rs1 = stmt.executeQuery(sql1);
+            if (rs1.next()){
                 status = "Unpublished";
+                System.out.println("Pass1");
             }
-            rs2.next();
-            if (rs2.getInt(1) == 1){
+            rs2 = stmt.executeQuery(sql2);
+            if (rs2.next()){
                 status = "Past";
+                System.out.println("Pass2");
             }
-            rs2.next();
-            if (rs3.getInt(1) == 1){
+            rs3 = stmt.executeQuery(sql3);
+            if (rs3.next()){
                 status = "Upcoming";
+                System.out.println("Pass3");
             }
         } catch (ClassNotFoundException e) {
             System.out.println("NotFound");

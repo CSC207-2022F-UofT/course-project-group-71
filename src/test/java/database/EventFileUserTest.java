@@ -2,11 +2,7 @@ package database;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
-import database.EventFileUser;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EventFileUserTest {
     //NOT COMPLETE
@@ -21,7 +17,7 @@ public class EventFileUserTest {
     }
     @Test
     void getLocationTest(){
-        assertEquals("Bahen", eventFileUser.getLocation("CSC207"));
+        assertEquals("Bahal", eventFileUser.getLocation("CSC207"));
     }
     @Test
     void getImagePathTest(String title){
