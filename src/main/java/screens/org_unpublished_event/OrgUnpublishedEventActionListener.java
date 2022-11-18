@@ -8,6 +8,10 @@ import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
 import org_delete_event_use_case.OrgDeleteEventPresenter;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
+import org_edit_event_use_case.OrgEditEventInputBoundary;
+import org_edit_event_use_case.OrgEditEventInteractor;
+import org_edit_event_use_case.OrgEditEventPresenter;
+import org_edit_event_use_case.OrgEditEventResponseModel;
 import org_publish_event_use_case.*;
 import screens.org_home.OrgHomePage;
 import screens.org_upcoming_event.OrgDeleteEventController;
@@ -68,6 +72,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                     parDsGateway,orgPublishEventPresenter);
 
             OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
+
             String eventName = actionCommand.substring(0,actionCommand.length()-7);
 
             OrgPublishEventResponseModel responseModel = orgPublishEventController.publish(eventName);
@@ -78,7 +83,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
         }
-        else if (actionCommand.contains("Create An Event")){
+        else if (actionCommand.equals("Create An Event")){
             EventDsGateway eventDsGateway = new EventFileUser();
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
@@ -90,6 +95,21 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             OrgCreateEventController orgCreateEventController = new OrgCreateEventController(interactor);
 
             new CreateEventPage(orgCreateEventController, this.orgUnpublishedEventPage);
+        }
+        else if (actionCommand.contains("Edit")){
+            EventDsGateway eventDsGateway = new EventFileUser();
+
+            OrgDsGateway orgDsGateway= new OrgFileUser();
+
+            OrgEditEventPresenter orgEditEventPresenter = new OrgEditEventResponseFormatter();
+
+            OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(eventDsGateway, orgDsGateway, orgEditEventPresenter);
+
+            OrgEditEventController orgEditEventController = new OrgEditEventController(interactor);
+
+            String eventName = actionCommand.substring(0,actionCommand.length()-4);
+
+            new EditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName);
         }
     }
 }
