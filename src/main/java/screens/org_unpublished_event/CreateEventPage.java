@@ -103,7 +103,8 @@ public class CreateEventPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            OrgCreateEventResponseModel responseModel = controller.create(getOrgUsername(), eventTitle.getText(), description.getText(), location.getText(),
+            OrgCreateEventResponseModel responseModel = controller.create(getOrgUsername(), eventTitle.getText(),
+                    description.getText(), location.getText(),
                     year.getText(), month.getText(), day.getText(), hour.getText(), minute.getText());
             JOptionPane.showMessageDialog(this, responseModel.getMessage());
             this.dispose();

@@ -1,4 +1,4 @@
-package screens.search_screens;
+package screens.par_search;
 
 import screens.par_home.ParHomePage;
 

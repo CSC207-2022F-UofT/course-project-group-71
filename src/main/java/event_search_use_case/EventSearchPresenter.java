@@ -1,7 +1,7 @@
 package event_search_use_case;
 
 import screens.ShowMessageView;
-import screens.search_screens.EventResultsPage;
+import screens.par_search.EventResultsPage;
 
 import java.util.ArrayList;
 

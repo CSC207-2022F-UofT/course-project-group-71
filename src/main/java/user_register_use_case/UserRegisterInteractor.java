@@ -19,7 +19,8 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
      * @param orgDsGateway The database gateway of the organizers
      * @param userRegisterPresenter The presenter used to show success or not of registration
      */
-    public UserRegisterInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway, UserRegisterPresenter userRegisterPresenter){
+    public UserRegisterInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway,
+                                  UserRegisterPresenter userRegisterPresenter){
         this.parDsGateway = parDsGateway;
         this.orgDsGateway = orgDsGateway;
         this.userRegisterPresenter = userRegisterPresenter;
@@ -40,7 +41,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel){
         if (requestModel.getUserType().equals("O")){
             //Then proceed as organizer
-            if (orgDsGateway.checkIfUsernameExist(requestModel.getName()) == true){
+            if (orgDsGateway.checkIfUsernameExist(requestModel.getName())){
                 return userRegisterPresenter.prepareFailView("Organization already exists.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
@@ -52,7 +53,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         }
         else if (requestModel.getUserType().equals("P")){
             //Proceed as participant
-            if (parDsGateway.checkIfUsernameExist(requestModel.getName()) == true){
+            if (parDsGateway.checkIfUsernameExist(requestModel.getName())){
                 return userRegisterPresenter.prepareFailView("Participant already exists.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {

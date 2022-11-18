@@ -1,8 +1,5 @@
-package screens.search_screens;
+package screens.par_search;
 
-
-import org_search_use_case.OrgSearchPresenter;
-import screens.par_upcoming_event.ParUpcomingEventActionListener;
 
 import javax.swing.*;
 import java.awt.*;

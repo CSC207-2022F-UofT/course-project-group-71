@@ -1,10 +1,8 @@
-package screens.search_screens;
+package screens.par_search;
 
 import org_search_use_case.OrgSearchInputBoundary;
 import org_search_use_case.OrgSearchRequestModel;
 import org_search_use_case.OrgSearchResponseModel;
-
-import java.util.ArrayList;
 
 public class OrgSearchController {
 

@@ -13,10 +13,10 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     private ParDsGateway parDsGateway;
     private OrgPublishEventPresenter orgPublishEventPresenter;
     public OrgPublishEventInteractor(EventDsGateway eventDsGateway, OrgDsGateway orgDsGateway, ParDsGateway parDsGateway, OrgPublishEventPresenter orgPublishEventPresenter) {
-        this.eventDsGateway=eventDsGateway;
-        this.orgDsGateway=orgDsGateway;
-        this.parDsGateway=parDsGateway;
-        this.orgPublishEventPresenter=orgPublishEventPresenter;
+        this.eventDsGateway = eventDsGateway;
+        this.orgDsGateway = orgDsGateway;
+        this.parDsGateway = parDsGateway;
+        this.orgPublishEventPresenter = orgPublishEventPresenter;
     }
 
     @Override

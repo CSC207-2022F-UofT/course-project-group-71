@@ -1,7 +1,7 @@
 package org_search_use_case;
 
 import screens.ShowMessageView;
-import screens.search_screens.OrganizerResultsPage;
+import screens.par_search.OrganizerResultsPage;
 
 import java.util.ArrayList;
 

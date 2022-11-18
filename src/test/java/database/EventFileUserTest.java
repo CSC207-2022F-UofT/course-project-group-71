@@ -16,16 +16,12 @@ public class EventFileUserTest {
         assertEquals(1, eventFileUser.getStatus("CSC207"));
     }
     @Test
-    void getTypeTest(){
-        assertEquals(0, eventFileUser.getType("CSC207"));
-    }
-    @Test
     void getDescriptionTest(){
         assertEquals("Many many group work", eventFileUser.getDescription("CSC207"));
     }
     @Test
     void getLocationTest(){
-        assertEquals("Bahal", eventFileUser.getLocation("CSC207"));
+        assertEquals("Bahen", eventFileUser.getLocation("CSC207"));
     }
     @Test
     void getImagePathTest(String title){

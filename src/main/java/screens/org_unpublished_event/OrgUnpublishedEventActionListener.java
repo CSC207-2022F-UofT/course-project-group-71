@@ -12,7 +12,6 @@ import org_publish_event_use_case.*;
 import screens.org_home.OrgHomePage;
 import screens.org_upcoming_event.OrgDeleteEventController;
 import screens.org_upcoming_event.OrgDeleteEventResponseFormatter;
-import screens.org_upcoming_event.OrgUpcomingEventPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -69,9 +68,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                     parDsGateway,orgPublishEventPresenter);
 
             OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
-            System.out.println((actionCommand.substring(0)));
             String eventName = actionCommand.substring(0,actionCommand.length()-7);
-            System.out.println(eventName + "A");
 
             OrgPublishEventResponseModel responseModel = orgPublishEventController.publish(eventName);
 
