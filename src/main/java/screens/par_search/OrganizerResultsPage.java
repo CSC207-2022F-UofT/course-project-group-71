@@ -35,7 +35,7 @@ public class OrganizerResultsPage extends JFrame {
 
 
         JButton back = new JButton("Back");
-        back.addActionListener(new OrganizerResultsPageActionListener(this));
+        back.addActionListener(new OrganizerResultsPageActionListener(this,"none"));
         back.setBounds(0, 100, 150, 30);
 
         JPanel organizers = new JPanel();
@@ -52,22 +52,22 @@ public class OrganizerResultsPage extends JFrame {
             for (String nextOrg : orgNames) {
 
                 JButton orgName = new JButton(nextOrg);
-//                orgName.addActionListener(new OrganizerResultsPageActionListener(this));
+                orgName.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
                 orgName.setBounds(x, y, 250, 30);
                 organizers.add(orgName);
                 orgName.setVisible(true);
 
 
                 if (orgFollowed.contains(nextOrg)) {
-                    JButton unfollow = new JButton("Unfollow");
-//                unfollow.addActionListener(new OrganizerResultsPageActionListener(this));
+                    JButton unfollow = new JButton("Unfollow "+nextOrg);
+                unfollow.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
                     unfollow.setBounds(x, y, 250, 30);
                     organizers.add(unfollow);
                     unfollow.setVisible(true);
 
                 } else {
-                    JButton follow = new JButton("Follow");
-//              follow.addActionListener(new OrganizerResultsPageActionListener(this));
+                    JButton follow = new JButton("Follow "+nextOrg);
+              follow.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
                     follow.setBounds(x, y, 250, 30);
                     organizers.add(follow);
                     follow.setVisible(true);
