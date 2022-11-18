@@ -10,7 +10,7 @@ import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
 public class ParUpcomingEventPage extends JFrame {
-    private String parUsername;
+    private final String parUsername;
     public ParUpcomingEventPage(String parUsername){
         this.parUsername = parUsername;
 
@@ -31,7 +31,6 @@ public class ParUpcomingEventPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
-        OrgDsGateway orgDsGateway = new OrgFileUser();
         EventDsGateway eventDsGateway = new EventFileUser();
         ParDsGateway parDsGateway = new ParFileUser();
 
@@ -66,12 +65,6 @@ public class ParUpcomingEventPage extends JFrame {
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);
 
-//                JButton notify = new JButton("Edit");
-//                notify.setActionCommand(upcomingEventTitle + "Edit");
-//                notify.addActionListener(new OrgUnpublishedEventActionListener(this));
-//                notify.setBounds(x + 250, y + 15, 100, 30);
-//                notify.setVisible(true);
-
                 JButton leave = new JButton("Leave");
                 leave.setActionCommand(upcomingEventTitle + "Leave");
                 leave.addActionListener(new ParUpcomingEventActionListener(this));
@@ -81,14 +74,12 @@ public class ParUpcomingEventPage extends JFrame {
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
-//                events.add(notify);
-//                events.add(delete);
                 events.add(leave);
                 y += 100;
             }
 
             JScrollPane eventScroll = new JScrollPane(events);
-            eventScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
+            eventScroll.setBounds(150, 100, getConstantX()-170, getConstantY()-150);
             eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
             eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
             eventScroll.setVisible(true);

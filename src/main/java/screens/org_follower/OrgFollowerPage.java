@@ -10,7 +10,7 @@ import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
 public class OrgFollowerPage extends JFrame {
-    private String orgUsername;
+    private final String orgUsername;
     public OrgFollowerPage(String orgUsername){
         this.orgUsername = orgUsername;
 
@@ -32,8 +32,6 @@ public class OrgFollowerPage extends JFrame {
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
         OrgDsGateway orgDsGateway = new OrgFileUser();
-        EventDsGateway eventDsGateway = new EventFileUser();
-        ParDsGateway parDsGateway = new ParFileUser();
 
         ArrayList<String> Followers = orgDsGateway.getFollowers(orgUsername);
 

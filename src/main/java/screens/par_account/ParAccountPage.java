@@ -1,7 +1,6 @@
 package screens.par_account;
 
 import screens.LabelTextPanel;
-import screens.org_account.OrgResetPasswordController;
 import user_reset_password_use_case.UserResetPasswordResponseModel;
 
 import static tutorial.HelloWorld.getConstantX;
@@ -31,8 +30,9 @@ public class ParAccountPage extends JFrame implements ActionListener {
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel username = new JLabel(" Username           " + this.parUsername);
+        JLabel username = new JLabel("Username                      " + this.parUsername + "                ");
         username.setBounds(150, 100, 500,30);
+        username.setHorizontalAlignment(JLabel.CENTER);
 
         LabelTextPanel oldPasswordInfo = new LabelTextPanel(
                 new JLabel("Old Password"), oldPassword);
@@ -47,8 +47,11 @@ public class ParAccountPage extends JFrame implements ActionListener {
         retypeNewPasswordInfo.setBounds (150,230, 500, 50);
 
         JButton resetPassword = new JButton("Reset Password");
-        resetPassword.setBounds (150,280, 150, 30);
         resetPassword.addActionListener(this);
+
+        JPanel button = new JPanel();
+        button.add(resetPassword);
+        button.setBounds (150,280, 500, 30);
 
         JButton back = new JButton("Back");
         back.addActionListener(new ParAccountActionListener(this));
@@ -60,7 +63,7 @@ public class ParAccountPage extends JFrame implements ActionListener {
         this.add(oldPasswordInfo);
         this.add(newPasswordInfo);
         this.add(retypeNewPasswordInfo);
-        this.add(resetPassword);
+        this.add(button);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

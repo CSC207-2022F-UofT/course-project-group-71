@@ -1,6 +1,10 @@
 package screens.par_past_event;
 
-import database.*;
+
+import database.EventDsGateway;
+import database.EventFileUser;
+import database.ParDsGateway;
+import database.ParFileUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +14,7 @@ import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
 public class ParPastEventPage extends JFrame {
-    private String parUsername;
+    private final String parUsername;
     public ParPastEventPage(String parUsername){
         this.parUsername = parUsername;
 
@@ -31,9 +35,8 @@ public class ParPastEventPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
-        OrgDsGateway orgDsGateway = new OrgFileUser();
-        EventDsGateway eventDsGateway = new EventFileUser();
         ParDsGateway parDsGateway = new ParFileUser();
+        EventDsGateway eventDsGateway = new EventFileUser();
 
         ArrayList<String> pastEvents = parDsGateway.getPastEvents(parUsername);
 
@@ -46,14 +49,14 @@ public class ParPastEventPage extends JFrame {
             int x = 0;
             int y = 0;
 
-            for (String pastEventTitle : pastEvents) {
+            for (String unpublishedEventTitle : pastEvents) {
 
-                JButton eventTitle = new JButton(pastEventTitle);
+                JButton eventTitle = new JButton(unpublishedEventTitle);
                 eventTitle.addActionListener(new ParPastEventActionListener(this));
                 eventTitle.setBounds(x, y, 250, 30);
                 eventTitle.setVisible(true);
 
-                ArrayList<Integer> times = eventDsGateway.getTime(pastEventTitle);
+                ArrayList<Integer> times = eventDsGateway.getTime(unpublishedEventTitle);
                 String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
                         times.get(3) + ":" + times.get(4);
 
@@ -61,22 +64,21 @@ public class ParPastEventPage extends JFrame {
                 eventTime.setBounds(x + 20, y + 40, 250, 30);
                 eventTime.setVisible(true);
 
-                String location = eventDsGateway.getLocation(pastEventTitle);
+                String location = eventDsGateway.getLocation(unpublishedEventTitle);
                 JLabel eventLocation = new JLabel(location);
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);
 
-//                JButton delete = new JButton("Delete");
-//                delete.setActionCommand(unpublishedEventTitle + "Delete");
-//                delete.addActionListener(new ParPastEventActionListener(this));
-//                delete.setBounds(x + 250, y + 55, 100, 30);
-//                delete.setVisible(true);
+                JButton delete = new JButton("Delete");
+                delete.setActionCommand(unpublishedEventTitle + "Delete");
+                delete.addActionListener(new ParPastEventActionListener(this));
+                delete.setBounds(x + 250, y + 55, 100, 30);
+                delete.setVisible(true);
 
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
-//                events.add(notify);
-//                events.add(delete);
+                events.add(delete);
                 y += 100;
             }
 
@@ -87,7 +89,6 @@ public class ParPastEventPage extends JFrame {
             eventScroll.setVisible(true);
             this.add(eventScroll);
         }
-
 
         this.add(title);
         this.add(back);

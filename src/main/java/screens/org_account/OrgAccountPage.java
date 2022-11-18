@@ -1,14 +1,18 @@
 package screens.org_account;
 
 import screens.LabelTextPanel;
+import user_reset_password_use_case.UserResetPasswordResponseModel;
 
 import javax.swing.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
-public class OrgAccountPage extends JFrame {
-    private String orgUsername;
+public class OrgAccountPage extends JFrame implements ActionListener {
+    private final String orgUsername;
     JPasswordField oldPassword = new JPasswordField(15);
     JPasswordField newPassword = new JPasswordField(15);
     JPasswordField retypeNewPassword = new JPasswordField(15);
@@ -26,8 +30,9 @@ public class OrgAccountPage extends JFrame {
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel username = new JLabel(" Username           " + this.orgUsername);
+        JLabel username = new JLabel("Username                      " + this.orgUsername + "                ");
         username.setBounds(150, 100, 500,30);
+        username.setHorizontalAlignment(JLabel.CENTER);
 
         LabelTextPanel oldPasswordInfo = new LabelTextPanel(
                 new JLabel("Old Password"), oldPassword);
@@ -42,8 +47,11 @@ public class OrgAccountPage extends JFrame {
         retypeNewPasswordInfo.setBounds (150,230, 500, 50);
 
         JButton resetPassword = new JButton("Reset Password");
-        resetPassword.setBounds (150,280, 150, 30);
-        resetPassword.addActionListener(new OrgAccountActionListener(this));
+        resetPassword.addActionListener(this);
+
+        JPanel button = new JPanel();
+        button.add(resetPassword);
+        button.setBounds (150,280, 500, 30);
 
         JButton back = new JButton("Back");
         back.addActionListener(new OrgAccountActionListener(this));
@@ -55,7 +63,7 @@ public class OrgAccountPage extends JFrame {
         this.add(oldPasswordInfo);
         this.add(newPasswordInfo);
         this.add(retypeNewPasswordInfo);
-        this.add(resetPassword);
+        this.add(button);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -66,6 +74,12 @@ public class OrgAccountPage extends JFrame {
         return orgUsername;
     }
 
-
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        UserResetPasswordResponseModel responseModel = orgResetPasswordController.resetPassword(
+                this.orgUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
+                String.valueOf(retypeNewPassword.getPassword()));
+        JOptionPane.showMessageDialog(this, responseModel.getMessage());
+    }
 
 }

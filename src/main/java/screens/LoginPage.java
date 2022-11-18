@@ -39,19 +39,13 @@ public class LoginPage extends JFrame implements ActionListener {
         JRadioButton orgButton = new JRadioButton("Organization");
         orgButton.setActionCommand("O");
 
-        parButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                P = !P;
-                if (O) { O = false; }
-            }
+        parButton.addActionListener(actionEvent -> {
+            if (O) { P = !P; O = false; }
+            else {P = true;}
         });
-        orgButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                O = !O;
-                if (P) { P = false; }
-            }
+        orgButton.addActionListener(actionEvent -> {
+            if (P) { O = !O; P = false; }
+            else {O = true;}
         });
 
         JButton logIn = new JButton("Log in");

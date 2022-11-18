@@ -14,7 +14,7 @@ import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
 public class OrgPastEventPage extends JFrame {
-    private String orgUsername;
+    private final String orgUsername;
     public OrgPastEventPage(String orgUsername){
         this.orgUsername = orgUsername;
 
@@ -69,12 +69,6 @@ public class OrgPastEventPage extends JFrame {
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);
 
-//                JButton notify = new JButton("Notify");
-//                notify.setActionCommand(unpublishedEventTitle + "Notify");
-//                notify.addActionListener(new OrgPastEventActionListener(this));
-//                notify.setBounds(x + 250, y + 15, 100, 30);
-//                notify.setVisible(true);
-
                 JButton delete = new JButton("Delete");
                 delete.setActionCommand(unpublishedEventTitle + "Delete");
                 delete.addActionListener(new OrgPastEventActionListener(this));
@@ -84,7 +78,6 @@ public class OrgPastEventPage extends JFrame {
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
-//                events.add(notify);
                 events.add(delete);
                 y += 100;
             }

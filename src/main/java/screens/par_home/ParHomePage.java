@@ -16,7 +16,7 @@ import par_show_notification_use_case.*;
 
 public class ParHomePage extends JFrame implements ActionListener {
 
-    private String parUsername;
+    private final String parUsername;
     JRadioButton org,eve;
     JTextField searchBox;
 
@@ -43,32 +43,38 @@ public class ParHomePage extends JFrame implements ActionListener {
 
         JButton showNotifications = new JButton("Show Notifications");
         showNotifications.addActionListener(this);
-        showNotifications.setBounds (0,0, 150, 30);
+
+        JPanel notification = new JPanel();
+        notification.add(showNotifications);
+        notification.setBounds (0,50, getConstantX(), 40);
 
         JButton account = new JButton("Account");
         account.addActionListener(new ParHomeActionListener(this));
-        account.setBounds (0,100, 150, 30);
+        account.setBounds (0,150, 150, 30);
 
         JButton upcomingEvent = new JButton("Upcoming Event");
         upcomingEvent.addActionListener(new ParHomeActionListener(this));
-        upcomingEvent.setBounds (0,180, 150, 30);
+        upcomingEvent.setBounds (0,210, 150, 30);
 
         JButton pastEvent = new JButton("Past Event");
         pastEvent.addActionListener(new ParHomeActionListener(this));
-        pastEvent.setBounds (0,210, 150, 30);
+        pastEvent.setBounds (0,270, 150, 30);
 
         JButton followedOrg = new JButton("Followed Org");
         followedOrg.addActionListener(new ParHomeActionListener(this));
-        followedOrg.setBounds (0,240, 150, 30);
+        followedOrg.setBounds (0,330, 150, 30);
 
         JButton logOut = new JButton("Log Out");
         logOut.addActionListener(new ParHomeActionListener(this));
-        logOut.setBounds (0,320, 150, 30);
+        logOut.setBounds (0,550, 150, 30);
 
 
-        searchBox= new JTextField(20);
-        searchBox.setBounds(200,100,500,50);
-        org = new JRadioButton("Organizer");
+        JLabel searchLable= new JLabel("Search for:");
+        searchLable.setBounds(160,150,80,40);
+
+        searchBox = new JTextField(15);
+        searchBox.setBounds(240,150,500,40);
+        org = new JRadioButton("Organization");
         eve = new JRadioButton("Event");
 
         ButtonGroup group = new ButtonGroup();
@@ -81,18 +87,15 @@ public class ParHomePage extends JFrame implements ActionListener {
         JPanel buttons1 = new JPanel();
         buttons1.add(org);
         buttons1.add(eve);
-        buttons1.setBounds(300,180,200,50);
+        buttons1.setBounds(300,210,200,30);
 
         JPanel buttons2 = new JPanel();
         buttons2.add(search);
-        buttons2.setBounds(310,230,200,50);
-
-        JLabel searchLable= new JLabel("Type:");
-        searchLable.setBounds(160,100,50,50);
+        buttons2.setBounds(310,270,200,30);
 
 
         this.add(title);
-        this.add(showNotifications);
+        this.add(notification);
         this.add(account);
         this.add(upcomingEvent);
         this.add(pastEvent);

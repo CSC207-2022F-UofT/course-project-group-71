@@ -14,7 +14,7 @@ import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
 public class OrgUnpublishedEventPage extends JFrame {
-    private String orgUsername;
+    private final String orgUsername;
     public OrgUnpublishedEventPage(String orgUsername){
         this.orgUsername = orgUsername;
 
@@ -34,7 +34,10 @@ public class OrgUnpublishedEventPage extends JFrame {
 
         JButton create = new JButton("Create An Event");
         create.addActionListener(new OrgUnpublishedEventActionListener(this));
-        create.setBounds(0,150,150,30);
+
+        JPanel button = new JPanel();
+        button.add(create);
+        button.setBounds(0,50, getConstantX(),40);
 
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
@@ -110,7 +113,7 @@ public class OrgUnpublishedEventPage extends JFrame {
 
         this.add(title);
         this.add(back);
-        this.add(create);
+        this.add(button);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

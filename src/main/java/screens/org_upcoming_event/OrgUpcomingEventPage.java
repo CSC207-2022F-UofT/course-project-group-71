@@ -11,7 +11,7 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrgUpcomingEventPage extends JFrame {
 
-    private String orgUsername;
+    private final String orgUsername;
 
     public OrgUpcomingEventPage(String orgUsername) {
 
