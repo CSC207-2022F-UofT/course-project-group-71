@@ -1,15 +1,13 @@
 package screens.org_account;
 
-import user_reset_password_use_case.UserResetPasswordResponseModel;
 import screens.LabelTextPanel;
+
+import javax.swing.*;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class OrgAccountPage extends JFrame implements ActionListener {
+public class OrgAccountPage extends JFrame {
     private String orgUsername;
     JPasswordField oldPassword = new JPasswordField(15);
     JPasswordField newPassword = new JPasswordField(15);
@@ -45,7 +43,7 @@ public class OrgAccountPage extends JFrame implements ActionListener {
 
         JButton resetPassword = new JButton("Reset Password");
         resetPassword.setBounds (150,280, 150, 30);
-        resetPassword.addActionListener(this);
+        resetPassword.addActionListener(new OrgAccountActionListener(this));
 
         JButton back = new JButton("Back");
         back.addActionListener(new OrgAccountActionListener(this));
@@ -68,11 +66,6 @@ public class OrgAccountPage extends JFrame implements ActionListener {
         return orgUsername;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        UserResetPasswordResponseModel responseModel = orgResetPasswordController.resetPassword(
-                this.orgUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
-                String.valueOf(retypeNewPassword.getPassword()));
-        JOptionPane.showMessageDialog(this, responseModel.getMessage());
-    }
+
+
 }
