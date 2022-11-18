@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface EventDsGateway {
@@ -14,7 +15,7 @@ public interface EventDsGateway {
 
     ArrayList<String> getParticipants(String title);
 
-    String getOrganization(String title);
+    String getOrganization(String title) throws SQLException;
 
     void unPublishedToUpcoming(String title);
 
@@ -24,7 +25,7 @@ public interface EventDsGateway {
 
     boolean checkIfEventNameExist(String eventName);
 
-    void deleteEvent(String event_title);
+    void deleteEvent(String event_title) throws SQLException;
 
-    void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute);
+    void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException;
 }

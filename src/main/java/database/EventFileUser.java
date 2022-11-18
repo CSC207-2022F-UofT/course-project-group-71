@@ -26,7 +26,7 @@ public class EventFileUser implements EventDsGateway{
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
      */
-    public void utilStoreEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+    public void utilStoreEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -51,14 +51,14 @@ public class EventFileUser implements EventDsGateway{
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
             if (conn != null){
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
 
@@ -78,7 +78,7 @@ public class EventFileUser implements EventDsGateway{
      * @param minute The time (minute) of the event
      */
 
-    public void utilEditEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+    public void utilEditEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -105,7 +105,7 @@ public class EventFileUser implements EventDsGateway{
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
             if (conn != null){
@@ -126,7 +126,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need to be deleted
      */
-    public void utilDeleteEvent(String title){
+    public void utilDeleteEvent(String title) throws SQLException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -150,7 +150,7 @@ public class EventFileUser implements EventDsGateway{
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
             if (conn != null){
@@ -171,7 +171,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the name of the organization who created it
      * @return the name of the organization who created the event
      */
-    public String utilGetOrganization(String title){
+    public String utilGetOrganization(String title) throws SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet unpublished_organizer = null;
@@ -206,26 +206,26 @@ public class EventFileUser implements EventDsGateway{
                 try {
                     unpublished_organizer.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }if (past_organizer != null){
                 try {
                     past_organizer.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }if (upcoming_organizer != null){
                 try {
                     upcoming_organizer.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
             if (stmt != null){
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new SQLException();
                 }
             }
             if (conn != null){
@@ -915,7 +915,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the organizer who create the event returned
      * @return The organizer of the event
      */
-    public String getOrganization(String title){
+    public String getOrganization(String title) throws SQLException {
         return utilGetOrganization(title);
     }
 
@@ -972,7 +972,7 @@ public class EventFileUser implements EventDsGateway{
      * @param event_title The title of the event that need to be deleted
      */
 
-    public void deleteEvent(String event_title){
+    public void deleteEvent(String event_title) throws SQLException {
         OrgFileUser temp_orgFileUser = new OrgFileUser();
         ParFileUser temp_parFileUser = new ParFileUser();
         ArrayList<String> All_past_participants = utilGetAllPastEventParticipant(event_title);
@@ -994,7 +994,7 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute){
+    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
         utilEditEvent(title,status,description,location,year,month,day,hour,minute);
     }
 
