@@ -35,8 +35,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
                 parDsGateway.addNotification(username, newNotification);
             }
         }
-        orgDsGateway.deleteAnEvent(orgUsername, eventName);
-        eventDsGateway.deleteEvent(eventName);
+        orgDsGateway.deleteAnEvent(eventName);
 
         OrgDeleteEventResponseModel orgDeleteEventResponseModel = new OrgDeleteEventResponseModel(eventName);
         return orgDeleteEventPresenter.prepareSuccessView(orgDeleteEventResponseModel);

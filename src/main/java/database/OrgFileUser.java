@@ -618,6 +618,7 @@ public class OrgFileUser implements OrgDsGateway {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select exists(select * from orgfile where username = '" + username + "');";
+            System.out.println(sql);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rs.next();
@@ -720,10 +721,9 @@ public class OrgFileUser implements OrgDsGateway {
      * The deleteEvent method of the EventFileUser would automatically delete the relationship between the event
      * and the organizer and the participants.
      *
-     * @param username The username of the organizer
      * @param title The title of the event
      */
-    public void deleteAnEvent(String username, String title) throws SQLException, ClassNotFoundException {
+    public void deleteAnEvent(String title) throws SQLException, ClassNotFoundException {
         EventFileUser temp_eventfileuser = new EventFileUser();
         temp_eventfileuser.deleteEvent(title);
     }

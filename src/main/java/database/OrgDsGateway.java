@@ -18,7 +18,7 @@ public interface OrgDsGateway {
 
     void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException;
 
-    void deleteAnEvent(String username, String title) throws SQLException, ClassNotFoundException;
+    void deleteAnEvent(String title) throws SQLException, ClassNotFoundException;
 
     boolean checkIfUsernameExist(String username) throws SQLException, ClassNotFoundException;
 

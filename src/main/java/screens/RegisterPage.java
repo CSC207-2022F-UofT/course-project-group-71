@@ -7,7 +7,7 @@ import database.ParFileUser;
 import screens.org_home.OrgHomeResponseFormatter;
 import screens.par_home.ParHomeResponseFormatter;
 import user_login_use_case.*;
-import user_register_use_case.UserRegisterResponseModel;
+import user_register_use_case_old.UserRegisterResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -66,28 +66,47 @@ public class ParFileUserTest {
     }
 
     @Test
-    void testSetPassword(){
+    void testSetPassword() throws SQLException, ClassNotFoundException {
+        assertEquals("p1", parFileUser.getPassword("P1"));
+        parFileUser.setPassword("P1", "temp_password");
+        assertEquals("temp_password", parFileUser.getPassword("P1"));
+
+        parFileUser.setPassword("P1", "O1password");
+        assertEquals("O1password", parFileUser.getPassword("P1"));
+    }
+
+    @Test
+    void testAddNotification() throws SQLException, ClassNotFoundException {
+        ArrayList<String> Notifications = parFileUser.getNotifications("P2");
+        assertFalse(Notifications.contains("Note_Temp"));
+        parFileUser.addNotification("P2", "Note_Temp");
+
+        parFileUser.clearNotifications("P2");
+    }
+
+    @Test
+    void testFollowOrg() throws SQLException, ClassNotFoundException {
+        ArrayList<String> FollowedOrg = parFileUser.getFollowedOrg("P1");
+        assertFalse(FollowedOrg.contains("O3"));
+
+        parFileUser.followOrg("P1","O3");
+        FollowedOrg = parFileUser.getFollowedOrg("P1");
+
+        assertTrue(FollowedOrg.contains("O3"));
+
+        parFileUser.unfollowOrg("P1", "O3");
+    }
+
+
+
+    @Test
+    void testRegisterEvent() throws SQLException, ClassNotFoundException {
+
 
     }
 
     @Test
-    void testAddNotification(){
-
-    }
-
-    @Test
-    void testFollowOrg(){}
-
-
-
-    @Test
-    void testRegisterEvent(){
-
-    }
-
-    @Test
-    void testLeaveEvent(){
-
+    void testLeaveEvent() throws SQLException, ClassNotFoundException {
     }
 
     @Test
@@ -100,17 +119,30 @@ public class ParFileUserTest {
     }
 
     @Test
-    void testCreatePar(){
-
+    void testCreatePar() throws SQLException, ClassNotFoundException {
+        assertFalse(parFileUser.checkIfUsernameExist("P11"));
+        parFileUser.createPar("P11", "temp_password");
+        parFileUser.checkIfUsernameExist("P11");
+        parFileUser.deletePar("P11");
     }
 
     @Test
-    void testDeletePar(String usename){
-
+    void testDeletePar() throws SQLException, ClassNotFoundException {
+        assertFalse(parFileUser.checkIfUsernameExist("P11"));
+        parFileUser.createPar("P11", "temp_password");
+        assertTrue(parFileUser.checkIfUsernameExist("P11"));
+        parFileUser.deletePar("P11");
+        assertFalse(parFileUser.checkIfUsernameExist("P11"));
     }
 
     @Test
-    void testclearNotifications(String usename){
+    void testclearNotifications(String usename) throws SQLException, ClassNotFoundException {
+        ArrayList<String> Notifications = parFileUser.getNotifications("P2");
+        assertTrue(Notifications.isEmpty());
+        parFileUser.addNotification("P2", "Note_Temp");
+        assertFalse(Notifications.isEmpty());
+        parFileUser.clearNotifications("P2");
+        assertTrue(Notifications.isEmpty());
 
     }
 }

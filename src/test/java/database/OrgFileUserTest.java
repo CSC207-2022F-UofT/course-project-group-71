@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class OrgFileUserTest {
 
     OrgFileUser orgFileUser = new OrgFileUser();
+    EventFileUser eventFileUser = new EventFileUser();
 
     @Test
     void testGetPassword() throws SQLException, ClassNotFoundException {
@@ -20,7 +21,13 @@ public class OrgFileUserTest {
     }
 
     @Test
-    void testSetPassword(){
+    void testSetPassword() throws SQLException, ClassNotFoundException {
+        assertEquals("O1password", orgFileUser.getPassword("O1"));
+        orgFileUser.setPassword("O1", "temp_password");
+        assertEquals("temp_password", orgFileUser.getPassword("O1"));
+
+        orgFileUser.setPassword("O1", "O1password");
+        assertEquals("O1password", orgFileUser.getPassword("O1"));
 
     }
 
@@ -49,13 +56,22 @@ public class OrgFileUserTest {
     }
 
     @Test
-    void testCreateAnEvent(){
+    void testCreateAnEvent() throws SQLException, ClassNotFoundException {
+        assertFalse(eventFileUser.checkIfEventNameExist("Testing 3"));
+        orgFileUser.createAnEvent("O3", "Testing 3", 0, "E_Temp", "Zoom_Temp", 2000, 0,0,0,0);
+        assertTrue(eventFileUser.checkIfEventNameExist("Testing 3"));
 
-
+        orgFileUser.deleteAnEvent("Testing 3");
     }
 
     @Test
-    void testDeleteAnEvent(){
+    void testDeleteAnEvent() throws SQLException, ClassNotFoundException {
+        orgFileUser.createAnEvent("O3", "Testing 4", 0, "E_Temp", "Zoom_Temp", 2000, 0,0,0,0);
+        assertTrue(eventFileUser.checkIfEventNameExist("Testing 4"));
+        orgFileUser.deleteAnEvent("Testing 4");
+        assertFalse(eventFileUser.checkIfEventNameExist("Testing 4"));
+
+
 
     }
 
@@ -79,7 +95,13 @@ public class OrgFileUserTest {
 
     @Test
     void testDeleteOrg() throws SQLException, ClassNotFoundException {
-        assertTrue(orgFileUser.checkIfUsernameExist("O5"))
+        assertTrue(orgFileUser.checkIfUsernameExist("O3"));
+        orgFileUser.deleteOrg("O3");
+        assertFalse(orgFileUser.checkIfUsernameExist("O3"));
+
+        orgFileUser.createOrg("O3", "O3password");
+
+
 
     }
 
