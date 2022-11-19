@@ -18,10 +18,21 @@ public class ParSearchEventResultsPage extends JFrame {
 
     ParDsGateway par = new ParFileUser();
 
+    /**A getter for the event names dispayed on the search page.
+     *
+     * @return An array list containing event names
+     */
     public ArrayList<String> getEventNames() {
         return eventNames;
     }
 
+    /**The main method for creating the search results page.
+     *
+     * @param eventNames An array list containing all the search results
+     * @param parUserName The username of the participant
+     * @throws SQLException This exception handles mistakes in SQL
+     * @throws ClassNotFoundException This exception handles missing classes
+     */
     public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) throws SQLException, ClassNotFoundException {
 
         this.eventNames = eventNames;
