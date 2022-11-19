@@ -1,8 +1,8 @@
 package screens.par_home;
 
 import database.*;
-import org_search_use_case.*;
-import event_search_use_case.*;
+import par_search_org_use_case.*;
+import par_search_event_use_case.*;
 import screens.LoginPage;
 import screens.org_home.OrgHomeResponseFormatter;
 import screens.UserLoginController;
@@ -106,9 +106,9 @@ public class ParHomeActionListener implements ActionListener {
         } else if (page.equals("Search")) {
             if (this.parHomePage.org.isSelected()) {
                 OrgDsGateway org = new OrgFileUser();
-                OrgSearchOutputBoundary presenter = new OrgSearchPresenter();
-                OrgSearchInputBoundary interactor = new OrgSearchInteractor(org, presenter);
-                OrgSearchController controller = new OrgSearchController(interactor);
+                ParSearchOrgOutputBoundary presenter = new ParSearchOrgPresenter();
+                ParSearchOrgInputBoundary interactor = new ParSearchOrgInteractor(org, presenter);
+                ParSearchOrgController controller = new ParSearchOrgController(interactor);
                 String query = this.parHomePage.searchBox.getText();
                 String parUserName= this.parHomePage.getParUsername();
                 try {
@@ -121,9 +121,9 @@ public class ParHomeActionListener implements ActionListener {
                 this.parHomePage.dispose();
             } else {
                 EventDsGateway eve = new EventFileUser();
-                EventSearchOutputBoundary presenter = new EventSearchPresenter(); //minor issue
-                EventSearchInputBoundary interactor = new EventSearchInteractor(eve, presenter);
-                EventSearchController controller = new EventSearchController(interactor);
+                ParSearchEventOutputBoundary presenter = new ParSearchEventPresenter(); //minor issue
+                ParSearchEventInputBoundary interactor = new ParSearchEventInteractor(eve, presenter);
+                ParSearchEventController controller = new ParSearchEventController(interactor);
                 String query = this.parHomePage.searchBox.getText();
                 String parUserName= this.parHomePage.getParUsername();
                 try {

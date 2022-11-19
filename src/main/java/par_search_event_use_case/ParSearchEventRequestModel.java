@@ -1,0 +1,28 @@
+package par_search_event_use_case;
+
+public class ParSearchEventRequestModel {
+
+    private String query;
+    private String parUserName;
+
+    public ParSearchEventRequestModel(String query, String parUserName) {
+        this.query = query;
+        this.parUserName= parUserName;
+    }
+
+    public String getQuery() {
+        return this.query;
+    }
+
+    public String getParUserName() {
+        return parUserName;
+    }
+
+    public void setParUserName(String parUserName) {
+        this.parUserName = parUserName;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+}
