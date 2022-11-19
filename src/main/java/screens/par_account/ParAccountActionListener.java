@@ -12,6 +12,7 @@ import user_reset_password_use_case.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class ParAccountActionListener implements ActionListener {
     public ParAccountPage parAccountPage;
@@ -52,7 +53,13 @@ public class ParAccountActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.parAccountPage, e.getMessage());
             }
             this.parAccountPage.dispose();
-            new OrgPastEventPage(this.parAccountPage.getParUsername());
+            try {
+                new OrgPastEventPage(this.parAccountPage.getParUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
         }
     }

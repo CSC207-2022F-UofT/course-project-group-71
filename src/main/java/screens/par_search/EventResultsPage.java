@@ -36,7 +36,7 @@ public class EventResultsPage extends JFrame {
 
 
         JButton back = new JButton("Back");
-        back.addActionListener(new EventResultsPageActionListener(this));
+        back.addActionListener(new EventResultsPageActionListener(this,"none"));
         back.setBounds(0, 100, 150, 30);
 
         JPanel events = new JPanel();
@@ -53,21 +53,21 @@ public class EventResultsPage extends JFrame {
             for (String nextEvent : this.eventNames) {
 
                 JButton eventName = new JButton(nextEvent);
-//                eventNames.addActionListener(new ParUpcomingEventActionListener(this));
+                eventName.addActionListener(new EventResultsPageActionListener(this,nextEvent));
                 eventName.setBounds(x, y, 250, 30);
                 events.add(eventName);
                 eventName.setVisible(true);
 
 
                 if (eventFollowed.contains(nextEvent)) {
-                    JButton join = new JButton("Leave");
-//              join.addActionListener(new OrganizerResultsPageActionListener(this));
+                    JButton join = new JButton("Leave "+nextEvent);
+                 join.addActionListener(new EventResultsPageActionListener(this,nextEvent));
                     join.setBounds(x, y, 250, 30);
                     events.add(join);
                     join.setVisible(true);
                 } else {
-                    JButton leave = new JButton("Join");
-//                leave.addActionListener(new OrganizerResultsPageActionListener(this));
+                    JButton leave = new JButton("Join "+nextEvent);
+                leave.addActionListener(new EventResultsPageActionListener(this,nextEvent));
                     leave.setBounds(x, y, 250, 30);
                     events.add(leave);
                     leave.setVisible(true);

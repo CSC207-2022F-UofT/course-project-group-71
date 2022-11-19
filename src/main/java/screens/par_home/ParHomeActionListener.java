@@ -96,7 +96,13 @@ public class ParHomeActionListener implements ActionListener {
             }
         } else if (page.equals("Followed Org")) {
             this.parHomePage.dispose();
-            new ParFollowedOrgPage(this.parHomePage.getParUsername());
+            try {
+                new ParFollowedOrgPage(this.parHomePage.getParUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         } else if (page.equals("Search")) {
             if (this.parHomePage.org.isSelected()) {
                 OrgDsGateway org = new OrgFileUser();
@@ -105,7 +111,13 @@ public class ParHomeActionListener implements ActionListener {
                 OrgSearchController controller = new OrgSearchController(interactor);
                 String query = this.parHomePage.searchBox.getText();
                 String parUserName= this.parHomePage.getParUsername();
-                controller.orgSearch(query,parUserName); //draw screen
+                try {
+                    controller.orgSearch(query,parUserName); //draw screen
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 this.parHomePage.dispose();
             } else {
                 EventDsGateway eve = new EventFileUser();
@@ -114,7 +126,13 @@ public class ParHomeActionListener implements ActionListener {
                 EventSearchController controller = new EventSearchController(interactor);
                 String query = this.parHomePage.searchBox.getText();
                 String parUserName= this.parHomePage.getParUsername();
-                controller.eventSearch(query,parUserName);
+                try {
+                    controller.eventSearch(query,parUserName);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 this.parHomePage.dispose();
             }
             } else {

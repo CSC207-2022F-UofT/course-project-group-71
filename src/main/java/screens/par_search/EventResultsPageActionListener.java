@@ -1,16 +1,25 @@
 package screens.par_search;
 
+import database.ParDsGateway;
+import database.ParFileUser;
+import par_follow_org_use_case.FollowOrgResponseModel;
 import screens.par_home.ParHomePage;
+import par_join_event_use_case.*;
+import screens.par_join_event.ParJoinEventController;
+import screens.par_join_event.ParJoinEventPresenter;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EventResultsPageActionListener implements ActionListener {
 
     public EventResultsPage eventResultsPage;
+    private String eventName;
 
-    public EventResultsPageActionListener( EventResultsPage eventResultsPage){
-        this.eventResultsPage= eventResultsPage;
+    public EventResultsPageActionListener(EventResultsPage eventResultsPage, String eventName) {
+        this.eventResultsPage = eventResultsPage;
+        this.eventName = eventName;
 
     }
 
@@ -21,6 +30,26 @@ public class EventResultsPageActionListener implements ActionListener {
         if (actionCommand.equals("Back")) {
             this.eventResultsPage.dispose();
             new ParHomePage(this.eventResultsPage.getParUsername());
+        } else if (actionCommand.equals("Join " + this.eventName)) {
+
+            try {
+                ParDsGateway par = new ParFileUser();
+                ParJoinEventOutputBoundary presenter = new ParJoinEventPresenter();
+                ParJoinEventInputBoundary interactor = new ParJoinEventInteractor(par, presenter);
+                ParJoinEventController controller = new ParJoinEventController(interactor);
+                String parUserName = this.eventResultsPage.getParUsername();
+                ParJoinEventResponseModel response = null;
+                response = controller.join(parUserName, this.eventName);
+            }catch (Exception error) {
+                JOptionPane.showMessageDialog(this.eventResultsPage, response.getMessage());
+            }
+            new ParHomePage(this.eventResultsPage.getParUsername());
         }
+
+//        }else if (actionCommand.equals("Leave "+this.eventName){
+//
+//    }
+
+
     }
 }
