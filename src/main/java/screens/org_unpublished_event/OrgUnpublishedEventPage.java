@@ -16,6 +16,19 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrgUnpublishedEventPage extends JFrame {
     private final String orgUsername;
+    /**The method generate a page of organization's unpublished event.
+     * It let the organization create new a unpublished event and contains all unpublished events held by this
+     *       organization and let the organization publish, edit or delete specific events.
+     * There is a button "create new events" on the top which jump to the create event page.
+     * After each of the event, there are three buttons.
+     * -First is a "Publish" button, which the organization can publish the event and let participants join it.
+     *  The event will disappear in this unpublished page and appear in the published page.
+     * -Second is an "Edit" button, which the organization can keep editing this event and it will switch to the edit event page.
+     * -Third is a "Delete" button, which the organiation can delete the event and event will no longer be inside the unpublished page.
+     * There is a button "back" which directed the Organization back to the home page.
+     *
+     * @param orgUsername the username of the organization.
+     */
     public OrgUnpublishedEventPage(String orgUsername) throws SQLException, ClassNotFoundException {
         this.orgUsername = orgUsername;
 
@@ -120,7 +133,9 @@ public class OrgUnpublishedEventPage extends JFrame {
 
         this.setVisible(true);
     }
-
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
     public String getOrgUsername() {
         return orgUsername;
     }
