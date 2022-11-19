@@ -22,6 +22,8 @@ public class ParFollowOrgTest {
     ParFollowOrgController controller = new ParFollowOrgController(interactor);
     ParFollowOrgResponseModel responseModel;
 
+    /**Need to create "allyson" as a participant in parfile and "UBC" as an organization in orgfile
+     */
     @Test
     @Order(1)
     void testParFollowOrg() {

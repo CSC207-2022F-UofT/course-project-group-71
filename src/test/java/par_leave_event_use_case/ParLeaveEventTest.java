@@ -24,12 +24,17 @@ public class ParLeaveEventTest {
 
     ParLeaveEventResponseModel responseModel = null;
 
+    /**Need to create "P10" as a participant in parfile and an organization in orgfile
+     * Need to add "E6" in the eventfile
+     * Need to add "P10" and "E6" in upcoming_events_for_par
+     * Need to add the organization and "E6" in upcoming_events_for_org
+     */
     @Test
     @Order(1)
     void testPrepareSuccessView(){
         try {
             responseModel = controller.leave("P10","E6");
-            assertEquals("Success to leave the event", responseModel.getMessage());
+            assertEquals("You have left the event E6.", responseModel.getMessage());
             parDsGateway.registerEvent("P10", "E6");
         } catch (SQLException | ClassNotFoundException e) {
             assert(false);

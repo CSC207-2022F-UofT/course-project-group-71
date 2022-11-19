@@ -16,7 +16,10 @@ public class UserRegisterTest {
     UserRegisterInputBoundary interactor = new UserRegisterInteractor(par, org, presenter);
     UserRegisterController userRegisterController = new UserRegisterController(interactor);
 
-    UserRegisterResponseModel responseModel = null;
+    UserRegisterResponseModel responseModel;
+
+    /**Do not need prior data
+     */
     @Test
     @Order(1)
     void testPrepareFailView_ParticipantMissingType(){
