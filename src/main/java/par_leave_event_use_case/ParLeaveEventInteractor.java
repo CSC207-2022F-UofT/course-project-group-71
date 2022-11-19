@@ -13,7 +13,7 @@ public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
 
     final ParLeaveEventOutputBoundary parLeaveEventOutputBoundary;
 
-    /**This is the construct method of ParRegisterEventInteractor.
+    /**This is the construct method of ParLeaveEventInteractor .
      * It takes DsGateways and Presenter as input to store as instances.
      *
      * @param parLeaveEventOutputBoundary The output boundary used to show successful
