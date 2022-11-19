@@ -12,6 +12,14 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class ParUpcomingEventPage extends JFrame {
     private final String parUsername;
+
+    /**The constructor of the Participant upcoming event page.
+     * It takes a parUsername to obtain necessary information from the database.
+     *
+     * @param parUsername The username of the participant
+     * @throws SQLException The Exception when an SQL error occurs
+     * @throws ClassNotFoundException The Exception when the Class is not found
+     */
     public ParUpcomingEventPage(String parUsername) throws SQLException, ClassNotFoundException {
         this.parUsername = parUsername;
 
@@ -96,6 +104,10 @@ public class ParUpcomingEventPage extends JFrame {
         this.setVisible(true);
     }
 
+    /**Used to obtain the participant username from the page object
+     *
+     * @return The username of the participants
+     */
     public String getParUsername() {
         return parUsername;
     }

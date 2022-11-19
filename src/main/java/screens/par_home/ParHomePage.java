@@ -2,17 +2,18 @@ package screens.par_home;
 
 import database.ParDsGateway;
 import database.ParFileUser;
+import par_show_notification_use_case.ParShowNotificationInputBoundary;
+import par_show_notification_use_case.ParShowNotificationInteractor;
+import par_show_notification_use_case.ParShowNotificationOutputBoundary;
 import screens.par_show_notification.ParShowNotificationController;
 import screens.par_show_notification.ParShowNotificationPresenter;
 
 import javax.swing.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
-import par_show_notification_use_case.*;
 
 public class ParHomePage extends JFrame implements ActionListener {
 
@@ -27,6 +28,13 @@ public class ParHomePage extends JFrame implements ActionListener {
     ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor( parShowNotificationPresenter, parDsGateway);
     ParShowNotificationController parShowNotificationController = new ParShowNotificationController(interactor);
 
+    /**Take the username of the participant, and generate a homepage for this partricipant.
+     * The Page contains notifications, account page, upcoming event, past event and followed Org.
+     * It also contains a button to log out.
+     * In the middle of the page, there's a search bar where participant can search organizer or event.
+     *
+     * @param parUsername The username o the participant
+     */
     public ParHomePage(String parUsername){
 
         this.parUsername = parUsername;

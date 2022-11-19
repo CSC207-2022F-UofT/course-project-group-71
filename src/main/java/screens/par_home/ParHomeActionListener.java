@@ -29,11 +29,24 @@ import java.sql.SQLException;
 public class ParHomeActionListener implements ActionListener {
     public ParHomePage parHomePage;
 
+    /**The constructor of the par homepage listener
+     *
+     * @param parHomePage The homepage to be listened
+     */
     public ParHomeActionListener(ParHomePage parHomePage) {
         this.parHomePage = parHomePage;
     }
 
 
+    /**Method operating when an action is done and heard.
+     * It sent user to the account page when user clicks "Account"
+     * And it's generates and showing an upcoming event page when user clicks "Upcoming Event"
+     * It generates and showing a past event page when user clicks "Past Event"
+     * It generates and showing a followed organizer page when user clicks "Followed Org"
+     * When user input something in the searching bar and clicks "Search", it jumps to the result of searching.
+     *
+     * @param arg0 the event to be processed
+     */
     public void actionPerformed(ActionEvent arg0) {
         String page = arg0.getActionCommand();
 

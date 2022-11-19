@@ -9,7 +9,13 @@ import java.util.ArrayList;
 
 public class ParSearchEventPresenter implements ParSearchEventOutputBoundary {
 
-
+    /**Returns the search results of a successful search.
+     *
+     * @param results A response model containing information to show success view
+     * @return Returns the response model
+     * @throws SQLException This exception handles mistakes in SQL
+     * @throws ClassNotFoundException This exception handles missing classes
+     */
     @Override
     public ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results) throws SQLException, ClassNotFoundException {
         ArrayList<String> eventNames= results.getSearchResults();
