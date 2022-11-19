@@ -7,7 +7,7 @@ public class OrgDeleteEventRequestModel {
 
     private String eventName;
 
-    /**A request model sent the interactor to create a user.
+    /**A request model sent the interactor to delete an event.
      *
      * @param eventName Name of event.
      */
