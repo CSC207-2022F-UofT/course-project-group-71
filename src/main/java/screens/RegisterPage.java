@@ -7,6 +7,7 @@ import database.ParFileUser;
 import screens.org_home.OrgHomeResponseFormatter;
 import screens.par_home.ParHomeResponseFormatter;
 import user_login_use_case.*;
+import user_register_use_case.UserRegisterResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -121,12 +122,13 @@ public class RegisterPage extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent selectType) {
         try {
-            userRegisterController.create(
+            UserRegisterResponseModel responseModel = userRegisterController.create(
                     P?"P":"",
                     O?"O":"",
                     username.getText(),
                     String.valueOf(password.getPassword()),
                     String.valueOf(retypePassword.getPassword()));
+            JOptionPane.showMessageDialog(this, responseModel.getMessage());
             this.dispose();
             UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
 

@@ -6,6 +6,10 @@ import database.ParDsGateway;
 
 import java.sql.SQLException;
 import java.util.Objects;
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /** The interactor of the registration.
  *  Implements UserRegisterInputBoundary.
@@ -72,7 +76,9 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
             }
             parDsGateway.createPar(requestModel.getName(),requestModel.getPassword());
             UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
-            return userRegisterPresenter.prepareSuccessView(responseModel);
+            UserRegisterResponseModel tempPresenter = userRegisterPresenter.prepareSuccessView(responseModel);
+
+            return tempPresenter;
         }
         else {
             return userRegisterPresenter.prepareFailView("Please select your account type.");
