@@ -10,7 +10,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
     final EventDsGateway eventDsGateway;
     final OrgDsGateway orgDsGateway;
     final ParDsGateway parDsGateway;
-    final OrgDeleteEventPresenter orgDeleteEventPresenter;
+    final OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary;
 
     /**This is the construct method of OrgDeleteEventInteractor.
      * It takes DsGateways and Presenter as input to store as instances.
@@ -18,17 +18,17 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
      * @param eventDsGateway The database gateway of the events
      * @param orgDsGateway The database gateway of the organizers
      * @param parDsGateway The database gateway of the participants
-     * @param orgDeleteEventPresenter The presenter used to show success of deletion
+     * @param orgDeleteEventOutputBoundary The presenter used to show success of deletion
      */
 
     public OrgDeleteEventInteractor(EventDsGateway eventDsGateway,
                                     OrgDsGateway orgDsGateway,
                                     ParDsGateway parDsGateway,
-                                    OrgDeleteEventPresenter orgDeleteEventPresenter) {
+                                    OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary) {
         this.eventDsGateway = eventDsGateway;
         this.orgDsGateway = orgDsGateway;
         this.parDsGateway = parDsGateway;
-        this.orgDeleteEventPresenter = orgDeleteEventPresenter;
+        this.orgDeleteEventOutputBoundary = orgDeleteEventOutputBoundary;
     }
 
     /**Use the information contained in the orgDeleteEventRequestModel to delete an event and create a responsemodel.
@@ -58,6 +58,6 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
         eventDsGateway.deleteEvent(eventName);
 
         OrgDeleteEventResponseModel orgDeleteEventResponseModel = new OrgDeleteEventResponseModel(eventName);
-        return orgDeleteEventPresenter.prepareSuccessView(orgDeleteEventResponseModel);
+        return orgDeleteEventOutputBoundary.prepareSuccessView(orgDeleteEventResponseModel);
     }
 }
