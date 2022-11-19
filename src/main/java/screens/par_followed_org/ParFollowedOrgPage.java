@@ -12,6 +12,13 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class ParFollowedOrgPage extends JFrame {
     private final String parUsername;
+
+    /**The page that displays the participant's followed organizers.
+     *
+     * @param parUsername The username of the participant
+     * @throws SQLException Exceptions raised from SQL
+     * @throws ClassNotFoundException Exceptions raised from missing classes
+     */
     public ParFollowedOrgPage(String parUsername) throws SQLException, ClassNotFoundException {
         this.parUsername = parUsername;
 
@@ -83,6 +90,10 @@ public class ParFollowedOrgPage extends JFrame {
         this.setVisible(true);
     }
 
+    /**A getter for the participant's username.
+     *
+     * @return The participant's username
+     */
     public String getParUsername() {
         return parUsername;
     }
