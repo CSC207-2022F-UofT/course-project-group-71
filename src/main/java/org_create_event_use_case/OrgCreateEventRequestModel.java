@@ -36,71 +36,35 @@ public class OrgCreateEventRequestModel {
         return this.orgUsername;
     }
 
-    public void setOrgUsername() {
-        this.orgUsername = orgUsername;
-    }
-
     public String getTitle() {
         return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getLocation() {
         return this.location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getYear() {
         return this.year;
     }
 
-    public void setYear(String year) {
-        this.year = year;
-    }
-
     public String getMonth() {
         return this.month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
     }
 
     public String getDay() {
         return this.day;
     }
 
-    public void setDay(String day) {
-        this.day = day;
-    }
-
     public String getHour() {
         return this.hour;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
-
     public String getMinute() {
         return this.minute;
-    }
-
-    public void setMinute(String minute) {
-        this.minute = minute;
     }
 }

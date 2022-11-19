@@ -1,23 +1,20 @@
 package screens.par_follow_org_screens;
 
-import par_follow_org_use_case.FollowOrgInputBoundary;
-import par_follow_org_use_case.FollowOrgRequestModel;
-import par_follow_org_use_case.FollowOrgResponseModel;
-import par_unfollow_org_use_case.UnfollowOrgInputBoundary;
-import par_unfollow_org_use_case.UnfollowOrgRequestModel;
-import par_unfollow_org_use_case.UnfollowOrgResponseModel;
+import par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
+import par_unfollow_org_use_case.ParUnfollowOrgRequestModel;
+import par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
 
 import java.sql.SQLException;
 
 public class UnfollowOrgController {
 
-    final UnfollowOrgInputBoundary interactor;
-    public UnfollowOrgController(UnfollowOrgInputBoundary interactor){
+    final ParUnfollowOrgInputBoundary interactor;
+    public UnfollowOrgController(ParUnfollowOrgInputBoundary interactor){
         this.interactor= interactor;
     }
 
-    public UnfollowOrgResponseModel unfollow(String par_username, String org_username) throws SQLException, ClassNotFoundException {
-        UnfollowOrgRequestModel request= new UnfollowOrgRequestModel(par_username,org_username);
+    public ParUnfollowOrgResponseModel unfollow(String par_username, String org_username) throws SQLException, ClassNotFoundException {
+        ParUnfollowOrgRequestModel request= new ParUnfollowOrgRequestModel(par_username,org_username);
         return interactor.unfollow(request);
     }
 
