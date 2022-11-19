@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EditEventPage extends JFrame implements ActionListener {
+public class OrgEditEventPage extends JFrame implements ActionListener {
 
     OrgEditEventController controller;
     OrgUnpublishedEventPage orgUnpublishedEventPage;
@@ -22,8 +22,8 @@ public class EditEventPage extends JFrame implements ActionListener {
     JTextField minute = new JTextField(2);
     JTextField location = new JTextField(15);
 
-    public EditEventPage(OrgEditEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage,
-                         String eventName){
+    public OrgEditEventPage(OrgEditEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage,
+                            String eventName){
         this.controller = controller;
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
         this.eventName = eventName;
@@ -103,7 +103,7 @@ public class EditEventPage extends JFrame implements ActionListener {
 
 
         JButton cancel = new JButton("Cancel");
-        cancel.addActionListener(new EditEventPageActionListener(this));
+        cancel.addActionListener(new OrgEditEventPageActionListener(this));
 
         JButton edit = new JButton("Edit");
         edit.addActionListener(this);

@@ -125,7 +125,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgCreateEventController orgCreateEventController = new OrgCreateEventController(interactor);
 
-            new CreateEventPage(orgCreateEventController, this.orgUnpublishedEventPage);
+            new OrgCreateEventPage(orgCreateEventController, this.orgUnpublishedEventPage);
         }
         else if (actionCommand.contains("Edit")){
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -140,7 +140,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0,actionCommand.length()-4);
 
-            new EditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName);
+            new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName);
         }
     }
 }

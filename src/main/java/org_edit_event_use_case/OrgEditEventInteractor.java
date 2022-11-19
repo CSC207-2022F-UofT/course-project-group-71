@@ -30,10 +30,6 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
             return orgEditEventPresenter.prepareFailView("Entries cannot be empty.");
         }
 
-        if (eventDsGateway.checkIfEventNameExist(requestModel.getTitle())) {
-            return orgEditEventPresenter.prepareFailView("Title already exists.");
-        }
-
         String year = requestModel.getYear();
         String month = requestModel.getMonth();
         String day = requestModel.getDay();
@@ -76,8 +72,7 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
             else {
                 orgDsGateway.editAnEvent(requestModel.getTitle(), requestModel.getDescription(),
                         requestModel.getLocation(), y, m, d, h, min);
-                OrgEditEventResponseModel responseModel = new OrgEditEventResponseModel(requestModel.getTitle(),
-                        0, requestModel.getDescription(), requestModel.getLocation(), y, m, d, h, min);
+                OrgEditEventResponseModel responseModel = new OrgEditEventResponseModel(requestModel.getTitle());
                 return orgEditEventPresenter.prepareSuccessView(responseModel);
             }
         }
