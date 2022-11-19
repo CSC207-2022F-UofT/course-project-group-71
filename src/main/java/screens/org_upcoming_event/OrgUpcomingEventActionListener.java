@@ -14,6 +14,7 @@ import screens.org_home.OrgHomePage;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class OrgUpcomingEventActionListener implements ActionListener {
     public OrgUpcomingEventPage orgUpcomingEventPage;
@@ -75,7 +76,13 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
             }
             this.orgUpcomingEventPage.dispose();
-            new OrgUpcomingEventPage(this.orgUsername);
+            try {
+                new OrgUpcomingEventPage(this.orgUsername);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else {
 

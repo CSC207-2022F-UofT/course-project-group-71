@@ -4,8 +4,6 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import screens.org_account.OrgResetPasswordController;
-import screens.org_past_event.OrgPastEventPage;
 import screens.par_home.ParHomePage;
 import user_reset_password_use_case.*;
 
@@ -52,7 +50,7 @@ public class ParAccountActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.parAccountPage, e.getMessage());
             }
             this.parAccountPage.dispose();
-            new OrgPastEventPage(this.parAccountPage.getParUsername());
+            new ParAccountPage(this.parAccountPage.getParUsername());
 
         }
     }

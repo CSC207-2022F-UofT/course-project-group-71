@@ -1,18 +1,13 @@
 package screens.org_account;
 
 import screens.LabelTextPanel;
-import user_reset_password_use_case.UserResetPasswordResponseModel;
 
 import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
-public class OrgAccountPage extends JFrame implements ActionListener {
+public class OrgAccountPage extends JFrame {
     private final String orgUsername;
     JPasswordField oldPassword = new JPasswordField(15);
     JPasswordField newPassword = new JPasswordField(15);
@@ -48,7 +43,7 @@ public class OrgAccountPage extends JFrame implements ActionListener {
         retypeNewPasswordInfo.setBounds (150,230, 500, 50);
 
         JButton resetPassword = new JButton("Reset Password");
-        resetPassword.addActionListener(this);
+        resetPassword.addActionListener(new OrgAccountActionListener(this));
 
         JPanel button = new JPanel();
         button.add(resetPassword);
@@ -75,19 +70,19 @@ public class OrgAccountPage extends JFrame implements ActionListener {
         return orgUsername;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        UserResetPasswordResponseModel responseModel = null;
-        try {
-            responseModel = orgResetPasswordController.resetPassword(
-                    this.orgUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
-                    String.valueOf(retypeNewPassword.getPassword()));
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        } catch (ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
-        JOptionPane.showMessageDialog(this, responseModel.getMessage());
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        UserResetPasswordResponseModel responseModel = null;
+//        try {
+//            responseModel = orgResetPasswordController.resetPassword(
+//                    this.orgUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
+//                    String.valueOf(retypeNewPassword.getPassword()));
+//        } catch (SQLException ex) {
+//            throw new RuntimeException(ex);
+//        } catch (ClassNotFoundException ex) {
+//            throw new RuntimeException(ex);
+//        }
+//        JOptionPane.showMessageDialog(this, responseModel.getMessage());
+//    }
 
 }

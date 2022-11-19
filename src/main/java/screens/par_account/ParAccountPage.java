@@ -1,17 +1,13 @@
 package screens.par_account;
 
 import screens.LabelTextPanel;
-import user_reset_password_use_case.UserResetPasswordResponseModel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
-public class ParAccountPage extends JFrame implements ActionListener {
+public class ParAccountPage extends JFrame {
     private final String parUsername;
 
     JPasswordField oldPassword = new JPasswordField(15);
@@ -49,7 +45,7 @@ public class ParAccountPage extends JFrame implements ActionListener {
         retypeNewPasswordInfo.setBounds (150,230, 500, 50);
 
         JButton resetPassword = new JButton("Reset Password");
-        resetPassword.addActionListener(this);
+        resetPassword.addActionListener(new ParAccountActionListener(this));
 
         JPanel button = new JPanel();
         button.add(resetPassword);
@@ -75,18 +71,18 @@ public class ParAccountPage extends JFrame implements ActionListener {
     public String getParUsername() {
         return parUsername;
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        UserResetPasswordResponseModel responseModel = null;
-        try {
-            responseModel = parResetPasswordController.resetPassword(
-                    this.parUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
-                    String.valueOf(retypeNewPassword.getPassword()));
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        } catch (ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
-        JOptionPane.showMessageDialog(this, responseModel.getMessage());
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        UserResetPasswordResponseModel responseModel = null;
+//        try {
+//            responseModel = parResetPasswordController.resetPassword(
+//                    this.parUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
+//                    String.valueOf(retypeNewPassword.getPassword()));
+//        } catch (SQLException ex) {
+//            throw new RuntimeException(ex);
+//        } catch (ClassNotFoundException ex) {
+//            throw new RuntimeException(ex);
+//        }
+//        JOptionPane.showMessageDialog(this, responseModel.getMessage());
+//    }
 }

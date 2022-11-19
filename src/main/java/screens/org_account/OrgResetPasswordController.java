@@ -13,7 +13,7 @@ public class OrgResetPasswordController {
 
     UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws SQLException, ClassNotFoundException {
         UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, password, true, newPassword, reNewPassword);
-
+        System.out.println("Reset");
         return userInput.resetPassword(requestModel);
     }
 }

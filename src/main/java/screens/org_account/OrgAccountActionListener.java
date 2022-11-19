@@ -42,9 +42,12 @@ public class OrgAccountActionListener implements ActionListener {
             String password = String.valueOf(orgAccountPage.oldPassword.getPassword());
             String new_password = String.valueOf(orgAccountPage.newPassword.getPassword());
             String retype_password = String.valueOf(orgAccountPage.retypeNewPassword.getPassword());
+            System.out.println("eeeee");
 
             try{
                 UserResetPasswordResponseModel responseModel = resetPasswordController.resetPassword(username, password, new_password, retype_password);
+                System.out.println(responseModel.getMessage());
+                System.out.println("A");
                 JOptionPane.showMessageDialog(this.orgAccountPage, responseModel.getMessage());
             } catch (Exception e){
                 JOptionPane.showMessageDialog(this.orgAccountPage, e.getMessage());

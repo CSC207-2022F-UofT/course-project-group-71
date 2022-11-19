@@ -84,6 +84,8 @@ public class OrgHomeActionListener implements ActionListener {
                         orgNotifyEventController.sendNotification("Past", event);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }
@@ -122,11 +124,19 @@ public class OrgHomeActionListener implements ActionListener {
                         orgNotifyEventController.sendNotification("Past", event);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }
         } else if (page.equals("Follower")) {
-            new OrgFollowerPage(this.orgHomePage.getOrgUsername());
+            try {
+                new OrgFollowerPage(this.orgHomePage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         } else{
             UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
 
