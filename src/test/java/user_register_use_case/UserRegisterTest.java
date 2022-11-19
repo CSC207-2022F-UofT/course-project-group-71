@@ -75,17 +75,6 @@ public class UserRegisterTest {
     }
     @Test
     @Order(6)
-    void testPrepareFailView_ParticipantExists(){
-        try {
-            responseModel = userRegisterController.create("P", "",
-                    "1", "12345", "12345");
-            assert (false);
-        } catch (Exception e) {
-            assertEquals("Participant already exists.", e.getMessage());
-        }
-    }
-    @Test
-    @Order(7)
     void testPrepareSuccessView_Participant(){
         try {
             responseModel = userRegisterController.create("P", "",
@@ -93,6 +82,17 @@ public class UserRegisterTest {
             assertEquals("1, you can login now!", responseModel.getMessage());
         } catch (Exception e) {
             assert(false);
+        }
+    }
+    @Test
+    @Order(7)
+    void testPrepareFailView_ParticipantExists(){
+        try {
+            responseModel = userRegisterController.create("P", "",
+                    "1", "12345", "12345");
+            assert (false);
+        } catch (Exception e) {
+            assertEquals("Participant already exists.", e.getMessage());
         }
     }
     @Test

@@ -24,7 +24,7 @@ public class OrgDeleteEventTest {
 
     OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
 
-    OrgDeleteEventResponseModel responseModel = null;
+    OrgDeleteEventResponseModel responseModel;
     @Test
     @Order(1)
     void testEventHasParticipant() {
@@ -41,7 +41,7 @@ public class OrgDeleteEventTest {
     @Order(1)
     void testEventNoParticipant() {
         try {
-            responseModel = orgDeleteEventController.delete("ACT240");
+            responseModel = orgNotifyEventController.delete("ACT240");
             assert(false);
         } catch (Exception e) {
             assertEquals("No participant joined ACT240.", e.getMessage());

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import screens.org_account.OrgResetPasswordController;
 import screens.par_account.ParResetPasswordController;
+import screens.par_account.ParResetPasswordPresenter;
 
 import java.sql.SQLException;
 
@@ -17,7 +18,7 @@ public class UserResetPasswordTest {
     ParDsGateway parDsGateway = new ParFileUser();
     OrgDsGateway orgDsGateway = new OrgFileUser();
 
-    UserResetPasswordPresenter presenter = new UserResetPasswordFormatter();
+    UserResetPasswordOutputBoundary presenter = new ParResetPasswordPresenter();
     UserResetPasswordInputBoundary interactor = new UserResetPasswordInteractor(presenter, orgDsGateway, parDsGateway);
 
     OrgResetPasswordController orgcontroller = new OrgResetPasswordController(interactor);
