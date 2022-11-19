@@ -65,7 +65,7 @@ public class ParHomeActionListener implements ActionListener {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            if (!responseModel.getEventsToPast().isEmpty()){
+            if (!responseModel.getEventsToPast().isEmpty()) {
                 JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
             }
         } else if (page.equals("Past Event")) {
@@ -93,7 +93,7 @@ public class ParHomeActionListener implements ActionListener {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            if (!responseModel.getEventsToPast().isEmpty()){
+            if (!responseModel.getEventsToPast().isEmpty()) {
                 JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
             }
         } else if (page.equals("Followed Org")) {
@@ -107,55 +107,64 @@ public class ParHomeActionListener implements ActionListener {
             }
         } else if (page.equals("Search")) {
             if (this.parHomePage.org.isSelected()) {
-                OrgDsGateway org = new OrgFileUser();
-                OrgSearchOutputBoundary presenter = new OrgSearchPresenter();
-                OrgSearchInputBoundary interactor = new OrgSearchInteractor(org, presenter);
-                OrgSearchController controller = new OrgSearchController(interactor);
-                String query = this.parHomePage.searchBox.getText();
-                String parUserName= this.parHomePage.getParUsername();
                 try {
-                    controller.orgSearch(query,parUserName); //draw screen
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
+                    OrgDsGateway org = new OrgFileUser();
+                    OrgSearchOutputBoundary presenter = new OrgSearchPresenter();
+                    OrgSearchInputBoundary interactor = new OrgSearchInteractor(org, presenter);
+                    OrgSearchController controller = new OrgSearchController(interactor);
+                    String query = this.parHomePage.searchBox.getText();
+                    String parUserName = this.parHomePage.getParUsername();
+                    try {
+                        controller.orgSearch(query, parUserName); //draw screen
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    this.parHomePage.dispose();
+                } catch (Exception error) {
+                    JOptionPane.showMessageDialog(this.parHomePage, error.getMessage());
                 }
-                this.parHomePage.dispose();
+
             } else {
-                EventDsGateway eve = new EventFileUser();
-                EventSearchOutputBoundary presenter = new EventSearchPresenter(); //minor issue
-                EventSearchInputBoundary interactor = new EventSearchInteractor(eve, presenter);
-                EventSearchController controller = new EventSearchController(interactor);
-                String query = this.parHomePage.searchBox.getText();
-                String parUserName= this.parHomePage.getParUsername();
                 try {
-                    controller.eventSearch(query,parUserName);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
+                    EventDsGateway eve = new EventFileUser();
+                    EventSearchOutputBoundary presenter = new EventSearchPresenter(); //minor issue
+                    EventSearchInputBoundary interactor = new EventSearchInteractor(eve, presenter);
+                    EventSearchController controller = new EventSearchController(interactor);
+                    String query = this.parHomePage.searchBox.getText();
+                    String parUserName = this.parHomePage.getParUsername();
+                    try {
+                        controller.eventSearch(query, parUserName);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    this.parHomePage.dispose();
+                } catch (Exception error) {
+                    JOptionPane.showMessageDialog(this.parHomePage, error.getMessage());
                 }
-                this.parHomePage.dispose();
             }
-            } else {
-                this.parHomePage.dispose();
-                UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
 
-                ParDsGateway parDsGateway = new ParFileUser();
 
-                ParHomePresenter parHomePresenter = new ParHomeResponseFormatter();
+        } else {
+            this.parHomePage.dispose();
+            UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
 
-                OrgDsGateway orgDsGateway = new OrgFileUser();
+            ParDsGateway parDsGateway = new ParFileUser();
 
-                OrgHomePresenter orgHomePresenter = new OrgHomeResponseFormatter();
+            ParHomePresenter parHomePresenter = new ParHomeResponseFormatter();
 
-                UserLoginInputBoundary interactor = new UserLoginInteractor(
-                        userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+            OrgDsGateway orgDsGateway = new OrgFileUser();
 
-                UserLoginController userLoginController = new UserLoginController(interactor);
+            OrgHomePresenter orgHomePresenter = new OrgHomeResponseFormatter();
 
-                new LoginPage(userLoginController);
-            }
+            UserLoginInputBoundary interactor = new UserLoginInteractor(
+                    userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+
+            UserLoginController userLoginController = new UserLoginController(interactor);
+
+            new LoginPage(userLoginController);
         }
     }
+}
 

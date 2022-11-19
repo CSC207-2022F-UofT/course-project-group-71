@@ -17,6 +17,7 @@ public class OrgSearchPresenter implements OrgSearchOutputBoundary {
     }
 
     @Override
-    public OrgSearchResponseModel prepareFailView(String error) {throw new ShowMessageView(error);
+    public OrgSearchResponseModel prepareFailView(String error) {
+        throw new ShowMessageView(error);
     }
 }
