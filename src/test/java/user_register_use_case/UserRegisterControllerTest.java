@@ -5,7 +5,6 @@ import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Test;
-import screens.RegisterPage;
 import screens.UserRegisterController;
 import screens.UserRegisterResponseFormatter;
 
@@ -14,10 +13,12 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class UserRegisterControllerTest {
-/*
+
     @Test
     void testPrepareSuccessPage() throws SQLException, ClassNotFoundException {
+        System.out.println("sss");
         ParDsGateway par = new ParFileUser();
         OrgDsGateway org = new OrgFileUser();
 
@@ -25,7 +26,7 @@ class UserRegisterControllerTest {
         UserRegisterInputBoundary interactor = new UserRegisterInteractor(par, org, presenter);
         UserRegisterController userRegisterController = new UserRegisterController(interactor);
         userRegisterController.create("P", "",
-                "allyson", "12345", "12345");
+                "test", "12345", "12345");
 
         StackWalker walker = StackWalker.getInstance();
         Optional<String> prepareSuccessPage = walker.walk(frames -> frames
@@ -34,7 +35,7 @@ class UserRegisterControllerTest {
         assertTrue(prepareSuccessPage.isPresent());
         assertEquals("prepareSuccessPage", prepareSuccessPage.get());
     }
-*/
+
     @Test
     void xxx(){
         assertEquals("sss", "sss");

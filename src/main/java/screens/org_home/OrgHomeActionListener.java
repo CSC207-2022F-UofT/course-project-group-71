@@ -84,6 +84,8 @@ public class OrgHomeActionListener implements ActionListener {
                         orgNotifyEventController.sendNotification("Past", event);
                     } catch (SQLException | ClassNotFoundException e) {
                         throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }
@@ -125,6 +127,8 @@ public class OrgHomeActionListener implements ActionListener {
                             throw new RuntimeException(e);
                         }
                     } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
                         throw new RuntimeException(e);
                     }
                 }

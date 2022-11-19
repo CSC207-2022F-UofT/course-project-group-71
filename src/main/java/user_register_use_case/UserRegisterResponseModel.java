@@ -2,6 +2,7 @@ package user_register_use_case;
 
 public class UserRegisterResponseModel {
     private String username;
+    private String message;
 
     /**This is the construct method of UserRegisterResponseModel, it took a username and store it as instance.
      *
@@ -25,5 +26,14 @@ public class UserRegisterResponseModel {
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
