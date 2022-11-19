@@ -13,7 +13,7 @@ public class OrgDeleteEventController {
         this.userInput = accountGateway;
     }
 
-    OrgDeleteEventResponseModel delete(String eventName) throws SQLException {
+    OrgDeleteEventResponseModel delete(String eventName) throws SQLException, ClassNotFoundException {
         OrgDeleteEventRequestModel requestModel = new OrgDeleteEventRequestModel(eventName);
         return userInput.delete(requestModel);
     }

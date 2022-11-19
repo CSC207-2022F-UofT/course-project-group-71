@@ -41,7 +41,7 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
 
             ParDsGateway par = new ParFileUser();
             ParFollowOrgOutputBoundary presenter = new ParFollowOrgPresenter();
-            ParFollowOrgInputBoundary interactor = new ParParFollowOrgInteractor(par,presenter);
+            ParFollowOrgInputBoundary interactor = new ParFollowOrgInteractor(par,presenter);
             FollowOrgController controller = new FollowOrgController(interactor);
             String parUserName = this.parSearchOrgResultsPage.getParUsername();
             this.parSearchOrgResultsPage.dispose();
