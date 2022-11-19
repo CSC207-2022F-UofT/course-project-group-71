@@ -5,6 +5,16 @@ import user_reset_password_use_case.UserResetPasswordOutputBoundary;
 import user_reset_password_use_case.UserResetPasswordResponseModel;
 
 public class ParResetPasswordPresenter implements UserResetPasswordOutputBoundary {
-    public UserResetPasswordResponseModel prepareView(String message) {
+
+    @Override
+    public UserResetPasswordResponseModel prepareFailureView(String message) {
         throw new ShowMessageView(message);
-}}
+    }
+
+    @Override
+    public UserResetPasswordResponseModel prepareSuccessView(UserResetPasswordResponseModel responseModel) {
+        responseModel.setMessage(responseModel.getMessage());
+        return responseModel;
+    }
+
+}

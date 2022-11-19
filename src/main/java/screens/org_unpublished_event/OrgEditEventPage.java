@@ -26,6 +26,17 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
     JTextField minute = new JTextField(2);
     JTextField location = new JTextField(15);
 
+    /**The method generate an edit event window and allowed the organization to edit the unpublished event by input details.
+     * It allows user to input title, description, year, month, day, hour, minutes and location,
+     * with two buttons called "Cancel" and "Edit".
+     * The "Cancel" button will close the window and won't have any changes to the Unpublished Event page.
+     * The "Edit" button will close the window and updated the Unpublished Event page with the event edited.
+     *
+     * @param controller OrgCreateEventController that takes information got from the page.
+     * @param orgUnpublishedEventPage OrgUnpublishedEventPage that will be updated after the event was created.
+     * @param eventName String of the event's name.
+     * @param eventDsGateway EventDsGateway that we need to access the old event and modify it.
+     */
     public OrgEditEventPage(OrgEditEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage,
                             String eventName, EventDsGateway eventDsGateway) throws SQLException, ClassNotFoundException {
         this.controller = controller;
@@ -160,6 +171,9 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
 
     }
 
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
     public String getOrgUsername() { return this.orgUnpublishedEventPage.getOrgUsername(); }
 
     @Override

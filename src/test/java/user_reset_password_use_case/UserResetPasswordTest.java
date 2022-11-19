@@ -7,6 +7,7 @@ import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import screens.org_account.OrgResetPasswordController;
+import screens.org_account.OrgResetPasswordPresenter;
 import screens.par_account.ParResetPasswordController;
 import screens.par_account.ParResetPasswordPresenter;
 
@@ -18,11 +19,15 @@ public class UserResetPasswordTest {
     ParDsGateway parDsGateway = new ParFileUser();
     OrgDsGateway orgDsGateway = new OrgFileUser();
 
-    UserResetPasswordOutputBoundary presenter = new ParResetPasswordPresenter();
-    UserResetPasswordInputBoundary interactor = new UserResetPasswordInteractor(presenter, orgDsGateway, parDsGateway);
+    UserResetPasswordOutputBoundary org_presenter = new OrgResetPasswordPresenter();
+    UserResetPasswordOutputBoundary par_presenter = new ParResetPasswordPresenter();
 
-    OrgResetPasswordController orgcontroller = new OrgResetPasswordController(interactor);
-    ParResetPasswordController parcontroller = new ParResetPasswordController(interactor);
+
+    UserResetPasswordInputBoundary interactor_org = new UserResetPasswordInteractor(org_presenter, orgDsGateway, parDsGateway);
+    UserResetPasswordInputBoundary interactor_par = new UserResetPasswordInteractor(par_presenter, orgDsGateway, parDsGateway);
+
+    OrgResetPasswordController orgController = new OrgResetPasswordController(interactor_org);
+    ParResetPasswordController parController = new ParResetPasswordController(interactor_par);
 
 
     UserResetPasswordResponseModel responseModel = null;
@@ -31,7 +36,7 @@ public class UserResetPasswordTest {
     @Order(1)
     void testPrepareFailureView_Org_Incorrect_Password(){
         try {
-            responseModel = orgcontroller.resetPassword("O1", "fake_password",
+            responseModel = orgController.resetPassword("O1", "fake_password",
                     "temp_new", "temp_new");
             assert(false);
         } catch (Exception e) {
@@ -43,12 +48,12 @@ public class UserResetPasswordTest {
     @Order(2)
     void testPrepareSuccessView_Org() {
         try {
-            responseModel = orgcontroller.resetPassword("O1", "O1password",
+            responseModel = orgController.resetPassword("O1", "O1password",
                     "temp_new", "temp_new");
             System.out.println("Password reset successfully!");
             System.out.println(responseModel.getMessage());
             assertEquals("Password reset successfully!", responseModel.getMessage());
-            orgcontroller.resetPassword("O1", "temp_new", "O1password","O1password");
+            orgController.resetPassword("O1", "temp_new", "O1password","O1password");
         } catch (SQLException | ClassNotFoundException e) {
             assert(false);
         }
@@ -58,7 +63,7 @@ public class UserResetPasswordTest {
     @Order(3)
     void testPrepareFailureView_Org_New_Password_Not_Match(){
         try {
-            responseModel = orgcontroller.resetPassword("O1", "O1password", "temp1", "temp2");
+            responseModel = orgController.resetPassword("O1", "O1password", "temp1", "temp2");
             assert(false);
         } catch (Exception e) {
             assertEquals("New Passwords do not match.", e.getMessage());
@@ -69,7 +74,7 @@ public class UserResetPasswordTest {
     @Order(4)
     void testPrepareFailureView_Par_Incorrect_Password(){
         try {
-            responseModel = parcontroller.resetPassword("P2","fake_password","temp_password","temp_password");
+            responseModel = parController.resetPassword("P2","fake_password","temp_password","temp_password");
             assert(false);
         } catch (Exception e) {
             assertEquals("Old password is not correct.", e.getMessage());
@@ -80,9 +85,9 @@ public class UserResetPasswordTest {
     @Order(5)
     void testPrepareSuccessView_Par(){
         try {
-            responseModel = parcontroller.resetPassword("P2","p2","temp_password","temp_password");
+            responseModel = parController.resetPassword("P2","p2","temp_password","temp_password");
             assertEquals("Password reset successfully!", responseModel.getMessage());
-            parcontroller.resetPassword("P2", "temp_password","p2","p2");
+            parController.resetPassword("P2", "temp_password","p2","p2");
         } catch (SQLException | ClassNotFoundException e) {
             assert(false);
         }
@@ -92,7 +97,7 @@ public class UserResetPasswordTest {
     @Order(6)
     void testPrepareFailureView_Par_New_Password_Not_Match() {
         try {
-            responseModel = parcontroller.resetPassword("P2", "p2", "temp1", "temp2");
+            responseModel = parController.resetPassword("P2", "p2", "temp1", "temp2");
             assert (false);
         } catch (Exception e) {
             assertEquals("New Passwords do not match.", e.getMessage());

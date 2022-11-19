@@ -15,6 +15,12 @@ public class ParAccountPage extends JFrame {
     JPasswordField retypeNewPassword = new JPasswordField(15);
 
     ParResetPasswordController parResetPasswordController;
+
+    /**The username of the participant, the page use this name to find relevant information from the database.
+     * And generating the page.
+     *
+     * @param parUsername The participant username
+     */
     public ParAccountPage(String parUsername){
         this.parUsername = parUsername;
 
