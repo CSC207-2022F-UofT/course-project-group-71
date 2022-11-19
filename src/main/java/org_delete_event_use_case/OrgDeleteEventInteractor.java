@@ -18,7 +18,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
      * @param eventDsGateway The database gateway of the events
      * @param orgDsGateway The database gateway of the organizers
      * @param parDsGateway The database gateway of the participants
-     * @param orgDeleteEventPresenter The presenter used to show success or not of registration
+     * @param orgDeleteEventPresenter The presenter used to show success of deletion
      */
 
     public OrgDeleteEventInteractor(EventDsGateway eventDsGateway,
