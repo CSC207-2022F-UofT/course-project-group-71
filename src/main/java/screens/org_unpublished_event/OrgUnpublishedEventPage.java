@@ -19,7 +19,7 @@ public class OrgUnpublishedEventPage extends JFrame {
     /**The method generate a page of organization's unpublished event.
      * It let the organization create new a unpublished event and contains all unpublished events held by this
      *       organization and let the organization publish, edit or delete specific events.
-     * There is a button "create new events" on the top which jump to the create event page.
+     * There is a button "create new events" on the top which will pop up a window of create event.
      * After each of the event, there are three buttons.
      * -First is a "Publish" button, which the organization can publish the event and let participants join it.
      *  The event will disappear in this unpublished page and appear in the published page.
