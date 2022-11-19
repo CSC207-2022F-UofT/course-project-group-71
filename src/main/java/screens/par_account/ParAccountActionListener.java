@@ -16,10 +16,20 @@ import java.sql.SQLException;
 public class ParAccountActionListener implements ActionListener {
     public ParAccountPage parAccountPage;
 
+    /**The constructor class for action listener, it's going to take a page and listen to the change from the page.
+     *
+     * @param parAccountPage The page that's showing to the user
+     */
     public ParAccountActionListener(ParAccountPage parAccountPage){
         this.parAccountPage = parAccountPage;
     }
 
+    /**Send user back to parhomepage when User clicks "Back"
+     * After clicking "Reset Password", the reset password controller is called, the message of success or failure
+     * is going to be shown, and the current page is going to be refreshed.
+     *
+     * @param arg0 the event to be processed
+     */
     public void actionPerformed(ActionEvent arg0){
         String actionCommand = arg0.getActionCommand();
 
