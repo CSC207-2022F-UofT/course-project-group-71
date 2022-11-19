@@ -1,4 +1,4 @@
-package user_register_use_case;
+package user_register_use_case_old;
 
 import org.junit.jupiter.api.Test;
 

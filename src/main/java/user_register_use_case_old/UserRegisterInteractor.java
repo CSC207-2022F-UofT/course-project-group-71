@@ -1,4 +1,4 @@
-package user_register_use_case;
+package user_register_use_case_old;
 
 
 import database.OrgDsGateway;
@@ -7,6 +7,9 @@ import database.ParDsGateway;
 import java.sql.SQLException;
 import java.util.Objects;
 
+/** The interactor of the registration.
+ *  Implements UserRegisterInputBoundary.
+ */
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
     final ParDsGateway parDsGateway;
     final OrgDsGateway orgDsGateway;
@@ -46,7 +49,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return userRegisterPresenter.prepareFailView("Organization already exists.");
             }
             if (requestModel.getPassword() == null){
-                return userRegisterPresenter.prepareFailView("Empty passwords.");
+                return userRegisterPresenter.prepareFailView("Password cannot be empty.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
                 return userRegisterPresenter.prepareFailView("Two Passwords are different.");
@@ -62,7 +65,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return userRegisterPresenter.prepareFailView("Participant already exists.");
             }
             if (requestModel.getPassword() == null){
-                return userRegisterPresenter.prepareFailView("Empty passwords.");
+                return userRegisterPresenter.prepareFailView("Password cannot be empty.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
                 return userRegisterPresenter.prepareFailView("Two Passwords are different.");

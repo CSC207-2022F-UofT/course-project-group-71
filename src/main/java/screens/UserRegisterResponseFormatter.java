@@ -1,7 +1,6 @@
 package screens;
-import screens.ShowMessageView;
-import user_register_use_case.UserRegisterPresenter;
-import user_register_use_case.UserRegisterResponseModel;
+import user_register_use_case_old.UserRegisterPresenter;
+import user_register_use_case_old.UserRegisterResponseModel;
 
 public class UserRegisterResponseFormatter implements UserRegisterPresenter {
 
