@@ -42,8 +42,15 @@ public class ParUpcomingEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0, actionCommand.length() - 5);
 
-            ParLeaveEventResponseModel responseModel = parLeaveEventController.leave(
-                    this.parUpcomingEventPage.getParUsername(), eventName);
+            ParLeaveEventResponseModel responseModel = null;
+            try {
+                responseModel = parLeaveEventController.leave(
+                        this.parUpcomingEventPage.getParUsername(), eventName);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
             JOptionPane.showMessageDialog(this.parUpcomingEventPage, responseModel.getMessage());
 

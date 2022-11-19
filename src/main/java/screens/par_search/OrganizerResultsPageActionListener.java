@@ -16,6 +16,7 @@ import par_follow_org_use_case.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class OrganizerResultsPageActionListener implements ActionListener {
 
@@ -44,7 +45,14 @@ public class OrganizerResultsPageActionListener implements ActionListener {
             FollowOrgController controller = new FollowOrgController(interactor);
             String parUserName = this.organizerResultsPage.getParUsername();
             this.organizerResultsPage.dispose();
-            FollowOrgResponseModel responseModel = controller.follow(parUserName,this.orgName);
+            FollowOrgResponseModel responseModel = null;
+            try {
+                responseModel = controller.follow(parUserName,this.orgName);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
             JOptionPane.showMessageDialog(this.organizerResultsPage, responseModel.getMessage());
             new ParHomePage(this.organizerResultsPage.getParUsername());
 
@@ -56,7 +64,14 @@ public class OrganizerResultsPageActionListener implements ActionListener {
             UnfollowOrgController controller = new UnfollowOrgController(interactor);
             String parUserName = this.organizerResultsPage.getParUsername();
             this.organizerResultsPage.dispose();
-            UnfollowOrgResponseModel responseModel = controller.unfollow(parUserName, this.orgName);
+            UnfollowOrgResponseModel responseModel = null;
+            try {
+                responseModel = controller.unfollow(parUserName, this.orgName);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
             JOptionPane.showMessageDialog(this.organizerResultsPage, responseModel.getMessage());
             new ParHomePage(this.organizerResultsPage.getParUsername());
         }

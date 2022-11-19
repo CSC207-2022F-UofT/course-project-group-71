@@ -12,6 +12,7 @@ import screens.org_upcoming_event.OrgDeleteEventResponseFormatter;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class OrgPastEventActionListener implements ActionListener {
     public OrgPastEventPage orgPastEventPage;
@@ -50,7 +51,13 @@ public class OrgPastEventActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.orgPastEventPage, e.getMessage());
             }
             this.orgPastEventPage.dispose();
-            new OrgPastEventPage(this.orgPastEventPage.getOrgUsername());
+            try {
+                new OrgPastEventPage(this.orgPastEventPage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

@@ -57,7 +57,11 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgDeleteEventResponseModel responseModel = null;
             try {
-                responseModel = orgDeleteEventController.delete(eventName);
+                try {
+                    responseModel = orgDeleteEventController.delete(eventName);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -65,7 +69,13 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
 
             this.orgUnpublishedEventPage.dispose();
-            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+            try {
+                new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else if (actionCommand.contains("Publish")){
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -83,13 +93,26 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0,actionCommand.length()-7);
 
-            OrgPublishEventResponseModel responseModel = orgPublishEventController.publish(eventName);
+            OrgPublishEventResponseModel responseModel = null;
+            try {
+                responseModel = orgPublishEventController.publish(eventName);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
             JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
 
             this.orgUnpublishedEventPage.dispose();
 
-            new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+            try {
+                new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else if (actionCommand.equals("Create An Event")){
             EventDsGateway eventDsGateway = new EventFileUser();

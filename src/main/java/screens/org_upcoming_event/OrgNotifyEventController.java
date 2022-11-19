@@ -13,7 +13,7 @@ public class OrgNotifyEventController {
         this.orgNotifyEventInputBoundary = accountGateway;
     }
 
-    public OrgNotifyEventResponseModel sendNotification(String notificationType, String eventName) throws SQLException {
+    public OrgNotifyEventResponseModel sendNotification(String notificationType, String eventName) throws SQLException, ClassNotFoundException {
         OrgNotifyEventRequestModel requestModel = new OrgNotifyEventRequestModel(notificationType, eventName);
 
         return orgNotifyEventInputBoundary.sendNotification(requestModel);
