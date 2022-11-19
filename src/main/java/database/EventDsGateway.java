@@ -1,26 +1,31 @@
 package database;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface EventDsGateway {
-    public int getStatus(String title);
 
-    public int getType(String title);
+    String getStatus(String title);
 
-    public String getDescription(String title);
+    String getDescription(String title);
 
-    public String getLocation(String title);
+    String getLocation(String title);
 
-    public String getImagePath(String title);
+    ArrayList<Integer> getTime(String title);
 
-    public ArrayList<Integer> getTime(String title);
+    ArrayList<String> getParticipants(String title);
 
-    public boolean checkIfEventNameExist(String eventname);
+    String getOrganization(String title) throws SQLException;
 
-    //Should Delete All relationships with events and the event itself
-    public void deleteEvent(String event_title);
+    void unPublishedToUpcoming(String title);
 
-    public ArrayList<String> getParticipants(String title);
+    void upcomingToPast(String title);
 
-    public String getOrganization(String title);
+    ArrayList<String> eventSearch(String about_name);
+
+    boolean checkIfEventNameExist(String eventName);
+
+    void deleteEvent(String event_title) throws SQLException;
+
+    void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException;
 }
