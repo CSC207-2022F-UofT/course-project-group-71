@@ -31,7 +31,7 @@ public class UserRegisterController {
     public UserRegisterResponseModel create(String isParticipant, String isOrganization, String username, String password, String retypePassword) throws SQLException, ClassNotFoundException {
         UserRegisterRequestModel requestModel = new UserRegisterRequestModel(
                 isParticipant, isOrganization, username, password, retypePassword);
-
+        System.out.println("Stop??");
         return interactor.create(requestModel);
     }
 }
