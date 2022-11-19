@@ -42,7 +42,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
      * @return orgDeleteEventResponseModel representing whether the user creation is successful
      */
     @Override
-    public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) throws SQLException {
+    public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) throws SQLException, ClassNotFoundException {
         String eventName = orgDeleteEventRequestModel.getEventName();
         String orgUsername = eventDsGateway.getOrganization(eventName);
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
