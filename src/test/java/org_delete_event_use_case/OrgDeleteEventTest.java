@@ -4,20 +4,9 @@ package org_delete_event_use_case;
 import database.*;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org_delete_event_use_case.OrgDeleteEventInputBoundary;
-import org_delete_event_use_case.OrgDeleteEventInteractor;
-import org_delete_event_use_case.OrgDeleteEventPresenter;
-import org_delete_event_use_case.OrgDeleteEventResponseModel;
 import screens.org_upcoming_event.OrgDeleteEventController;
-import screens.org_upcoming_event.OrgDeleteEventResponseFormatter;
+import screens.org_upcoming_event.OrgDeleteEventPresenter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,10 +17,10 @@ public class OrgDeleteEventTest {
 
     ParDsGateway parDsGateway = new ParFileUser();
 
-    OrgDeleteEventPresenter orgDeleteEventPresenter = new OrgDeleteEventResponseFormatter();
+    OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
 
     OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
-            parDsGateway,orgDeleteEventPresenter);
+            parDsGateway, orgDeleteEventOutputBoundary);
 
     OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
 
