@@ -14,7 +14,7 @@ import user_login_use_case.*;
 public class HelloWorld {
     static int CONSTANT_X = 800;
     static int CONSTANT_Y = 800;
-    static String databaseUrl = "jdbc:mysql://localhost:3306/db2";
+    static String databaseUrl = "jdbc:mysql://localhost:3306/testing_db";
     static String databaseUsername = "root";
     static String databasePassword = "vvks1309";
     public static String getDatabaseUrl() {return databaseUrl;}

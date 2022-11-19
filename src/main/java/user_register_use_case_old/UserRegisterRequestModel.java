@@ -1,5 +1,8 @@
-package user_register_use_case;
+package user_register_use_case_old;
 
+/** The request model of user registration.
+ *  Contains whether organizer or participant, name, password and second-input password.
+ */
 public class UserRegisterRequestModel {
 
     private String isParticipant;

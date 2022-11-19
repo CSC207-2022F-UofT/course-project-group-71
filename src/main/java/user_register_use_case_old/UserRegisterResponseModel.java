@@ -1,5 +1,8 @@
-package user_register_use_case;
+package user_register_use_case_old;
 
+/** The response model sent back to the page.
+ *  Containing the username and the message.
+ */
 public class UserRegisterResponseModel {
     private String username;
     private String message;
@@ -28,11 +31,18 @@ public class UserRegisterResponseModel {
         this.username = username;
     }
 
-
+    /**This is a method to set the message sent back
+     *
+     * @param message The message to set
+     */
     public void setMessage(String message) {
         this.message = message;
     }
 
+    /**This is a method to get the message sent back
+     *
+     * @return The message sent back
+     */
     public String getMessage() {
         return message;
     }
