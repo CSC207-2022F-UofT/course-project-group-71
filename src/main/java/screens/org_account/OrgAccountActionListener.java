@@ -26,7 +26,7 @@ public class OrgAccountActionListener implements ActionListener {
             new OrgHomePage(this.orgAccountPage.getOrgUsername());
         }
         else if (actionCommand.equals("Reset Password")) {
-            UserResetPasswordPresenter userResetPasswordPresenter = new UserResetPasswordFormatter();
+            UserResetPasswordOutputBoundary userResetPasswordOutputBoundary = new OrgResetPasswordPresenter();
 
             ParDsGateway parDsGateway = new ParFileUser();
 
@@ -34,7 +34,7 @@ public class OrgAccountActionListener implements ActionListener {
 
 
             UserResetPasswordInputBoundary interactor = new UserResetPasswordInteractor(
-                    userResetPasswordPresenter, orgDsGateway, parDsGateway);
+                    userResetPasswordOutputBoundary, orgDsGateway, parDsGateway);
 
             OrgResetPasswordController resetPasswordController = new OrgResetPasswordController(interactor);
 

@@ -12,7 +12,7 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
     final OrgDsGateway orgDsGateway;
     final EventDsGateway eventDsGateway;
 
-    final UpcomingToPastPresenter upcomingToPastPresenter;
+    final UpcomingToPastOutputBoundary upcomingToPastOutputBoundary;
 
     /**
      * This is the construct method of UserRegisterInteractor.
@@ -21,14 +21,14 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
      * @param parDsGateway              The database gateway of the participants
      * @param orgDsGateway              The database gateway of the organizations
      * @param eventDsGateway            The database gateway of the events
-     * @param upcomingToPastPresenter   The presenter used to change event's status from Upcoming to Past
+     * @param upcomingToPastOutputBoundary   The presenter used to change event's status from Upcoming to Past
      */
     public UpcomingToPastInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway,
-                                    EventDsGateway eventDsGateway, UpcomingToPastPresenter upcomingToPastPresenter){
+                                    EventDsGateway eventDsGateway, UpcomingToPastOutputBoundary upcomingToPastOutputBoundary){
         this.parDsGateway = parDsGateway;
         this.orgDsGateway = orgDsGateway;
         this.eventDsGateway = eventDsGateway;
-        this.upcomingToPastPresenter = upcomingToPastPresenter;
+        this.upcomingToPastOutputBoundary = upcomingToPastOutputBoundary;
 
     }
 
@@ -71,6 +71,6 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
         }
         UpcomingToPastResponseModel upcomingToPastResponseModel = new UpcomingToPastResponseModel(eventsToPast);
 
-        return upcomingToPastPresenter.prepareSuccessView(upcomingToPastResponseModel);
+        return upcomingToPastOutputBoundary.prepareSuccessView(upcomingToPastResponseModel);
     }
 }

@@ -3,7 +3,7 @@ package user_register_use_case;
 /** Class used to prepare failure or success view.
  *
  */
-public interface UserRegisterPresenter {
+public interface UserRegisterOutputBoundary {
     /**A method used to show failure view to the user
      *
      * @param failureResponse A String containing information about how to fail

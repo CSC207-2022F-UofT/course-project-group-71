@@ -1,6 +1,6 @@
 package org_create_event_use_case;
 
-/** The request model of user registration.
+/** The request model of event creation.
  *  Contains orgUsername, title, description, location, year, month, day, hour, minute.
  */
 public class OrgCreateEventRequestModel {

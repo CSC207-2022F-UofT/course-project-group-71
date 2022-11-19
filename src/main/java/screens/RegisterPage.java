@@ -4,8 +4,8 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import screens.org_home.OrgHomeResponseFormatter;
-import screens.par_home.ParHomeResponseFormatter;
+import screens.org_home.OrgHomePresenter;
+import screens.par_home.ParHomePresenter;
 import user_login_use_case.*;
 import user_register_use_case.UserRegisterResponseModel;
 
@@ -130,18 +130,18 @@ public class RegisterPage extends JFrame implements ActionListener {
                     String.valueOf(retypePassword.getPassword()));
             JOptionPane.showMessageDialog(this, responseModel.getMessage());
             this.dispose();
-            UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
+            UserLoginOutputBoundary userLoginOutputBoundary =  new UserLoginPresenter();
 
             ParDsGateway parDsGateway = new ParFileUser();
 
-            ParHomePresenter parHomePresenter =  new ParHomeResponseFormatter();
+            ParHomeOutputBoundary parHomeOutputBoundary =  new ParHomePresenter();
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
 
-            OrgHomePresenter orgHomePresenter =  new OrgHomeResponseFormatter();
+            OrgHomeOutputBoundary orgHomeOutputBoundary =  new OrgHomePresenter();
 
             UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+                    userLoginOutputBoundary, parDsGateway, parHomeOutputBoundary, orgDsGateway, orgHomeOutputBoundary);
 
             UserLoginController userLoginController = new UserLoginController(interactor);
 

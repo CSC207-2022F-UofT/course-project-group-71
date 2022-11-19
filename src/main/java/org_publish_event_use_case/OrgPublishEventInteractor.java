@@ -1,23 +1,32 @@
 package org_publish_event_use_case;
 
 import database.EventDsGateway;
-import database.OrgDsGateway;
-import database.ParDsGateway;
 
 import java.sql.SQLException;
 
 public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     private EventDsGateway eventDsGateway;
-    private OrgDsGateway orgDsGateway;
-    private ParDsGateway parDsGateway;
-    private OrgPublishEventPresenter orgPublishEventPresenter;
-    public OrgPublishEventInteractor(EventDsGateway eventDsGateway, OrgDsGateway orgDsGateway, ParDsGateway parDsGateway, OrgPublishEventPresenter orgPublishEventPresenter) {
+    private OrgPublishEventOutputBoundary orgPublishEventOutputBoundary;
+
+    /**This is the construct method of OrgPublishEventInteractor.
+     * It takes DsGateways and Presenter as input to store as instances.
+     *
+     * @param eventDsGateway The database gateway of the events
+     * @param orgPublishEventOutputBoundary The presenter used to show success of publishing
+     */
+    public OrgPublishEventInteractor(EventDsGateway eventDsGateway, OrgPublishEventOutputBoundary orgPublishEventOutputBoundary) {
         this.eventDsGateway = eventDsGateway;
-        this.orgDsGateway = orgDsGateway;
-        this.parDsGateway = parDsGateway;
-        this.orgPublishEventPresenter = orgPublishEventPresenter;
+        this.orgPublishEventOutputBoundary = orgPublishEventOutputBoundary;
     }
 
+    /**Use the information contained in the requestmodel to publish an event and respond a responsemodel.
+     * It retrieves an event name.
+     * It publishes the event.
+     * Success response is returned.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responsemodel representing whether the event publishing is successful
+     */
     @Override
     public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
         String eventName = requestModel.getEventName();
@@ -26,6 +35,6 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
 
         OrgPublishEventResponseModel orgPublishEventResponseModel = new OrgPublishEventResponseModel(eventName);
 
-        return orgPublishEventPresenter.prepareSuccessView(orgPublishEventResponseModel);
+        return orgPublishEventOutputBoundary.prepareSuccessView(orgPublishEventResponseModel);
     }
 }

@@ -4,8 +4,8 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import screens.org_home.OrgHomeResponseFormatter;
-import screens.par_home.ParHomeResponseFormatter;
+import screens.org_home.OrgHomePresenter;
+import screens.par_home.ParHomePresenter;
 import user_login_use_case.*;
 
 import java.awt.event.ActionEvent;
@@ -33,18 +33,18 @@ public class RegisterPageActionListener implements ActionListener {
         String page = actionEvent.getActionCommand();
 
         if (page.equals("To Login Page")) {
-            UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
+            UserLoginOutputBoundary userLoginOutputBoundary =  new UserLoginPresenter();
 
             ParDsGateway parDsGateway = new ParFileUser();
 
-            ParHomePresenter parHomePresenter =  new ParHomeResponseFormatter();
+            ParHomeOutputBoundary parHomeOutputBoundary =  new ParHomePresenter();
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
 
-            OrgHomePresenter orgHomePresenter =  new OrgHomeResponseFormatter();
+            OrgHomeOutputBoundary orgHomeOutputBoundary =  new OrgHomePresenter();
 
             UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+                    userLoginOutputBoundary, parDsGateway, parHomeOutputBoundary, orgDsGateway, orgHomeOutputBoundary);
 
             UserLoginController userLoginController = new UserLoginController(interactor);
 

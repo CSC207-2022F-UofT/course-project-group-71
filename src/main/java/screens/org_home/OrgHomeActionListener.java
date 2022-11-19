@@ -3,23 +3,23 @@ package screens.org_home;
 import database.*;
 import org_notify_event_use_case.OrgNotifyEventInputBoundary;
 import org_notify_event_use_case.OrgNotifyEventInteractor;
-import org_notify_event_use_case.OrgNotifyEventPresenter;
+import org_notify_event_use_case.OrgNotifyEventOutputBoundary;
 import screens.LoginPage;
 import screens.UserLoginController;
-import screens.UserLoginResponseFormatter;
+import screens.UserLoginPresenter;
 import screens.org_account.OrgAccountPage;
 import screens.org_follower.OrgFollowerPage;
 import screens.org_past_event.OrgPastEventPage;
 import screens.org_unpublished_event.OrgUnpublishedEventPage;
 import screens.org_upcoming_event.OrgNotifyEventController;
-import screens.org_upcoming_event.OrgNotifyEventResponseFormatter;
+import screens.org_upcoming_event.OrgNotifyEventPresenter;
 import screens.org_upcoming_event.OrgUpcomingEventPage;
-import screens.par_home.ParHomeResponseFormatter;
+import screens.par_home.ParHomePresenter;
 import screens.upcoming_to_past.UpcomingToPastController;
 import screens.upcoming_to_past.UpcomingToPastResponseFormatter;
 import upcoming_to_past_use_case.UpcomingToPastInputBoundary;
 import upcoming_to_past_use_case.UpcomingToPastInteractor;
-import upcoming_to_past_use_case.UpcomingToPastPresenter;
+import upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
 import upcoming_to_past_use_case.UpcomingToPastResponseModel;
 import user_login_use_case.*;
 
@@ -44,40 +44,34 @@ public class OrgHomeActionListener implements ActionListener {
         } else if (page.equals("Unpublished Event")) {
             try {
                 new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         } else if (page.equals("Upcoming Event")) {
             try {
                 new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastPresenter upcomingToPastPresenter = new UpcomingToPastResponseFormatter();
+            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastResponseFormatter();
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                    eventDsGateway, upcomingToPastPresenter);
+                    eventDsGateway, upcomingToPastOutputBoundary);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel = null;
+            UpcomingToPastResponseModel responseModel;
             try {
                 responseModel = controller.convertToPast("O",
                         this.orgHomePage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             if (!responseModel.getEventsToPast().isEmpty()){
                 JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                OrgNotifyEventPresenter orgNotifyEventPresenter = new OrgNotifyEventResponseFormatter();
+                OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary = new OrgNotifyEventPresenter();
                 OrgNotifyEventInputBoundary interactor2 = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway,
-                        orgNotifyEventPresenter);
+                        orgNotifyEventOutputBoundary);
                 OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor2);
                 for (String event : responseModel.getEventsToPast()){
                     try {
@@ -90,32 +84,28 @@ public class OrgHomeActionListener implements ActionListener {
         } else if (page.equals("Past Event")) {
             try {
                 new OrgPastEventPage(this.orgHomePage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastPresenter upcomingToPastPresenter = new UpcomingToPastResponseFormatter();
+            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastResponseFormatter();
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                    eventDsGateway, upcomingToPastPresenter);
+                    eventDsGateway, upcomingToPastOutputBoundary);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel = null;
+            UpcomingToPastResponseModel responseModel;
             try {
                 responseModel = controller.convertToPast("O",
                         this.orgHomePage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             if (!responseModel.getEventsToPast().isEmpty()){
                 JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                OrgNotifyEventPresenter orgNotifyEventPresenter = new OrgNotifyEventResponseFormatter();
+                OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary = new OrgNotifyEventPresenter();
                 OrgNotifyEventInputBoundary interactor2 = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway,
-                        orgNotifyEventPresenter);
+                        orgNotifyEventOutputBoundary);
                 OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor2);
                 for (String event : responseModel.getEventsToPast()){
                     try {
@@ -132,24 +122,22 @@ public class OrgHomeActionListener implements ActionListener {
         } else if (page.equals("Follower")) {
             try {
                 new OrgFollowerPage(this.orgHomePage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         } else{
-            UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
+            UserLoginOutputBoundary userLoginOutputBoundary = new UserLoginPresenter();
 
             ParDsGateway parDsGateway = new ParFileUser();
 
-            ParHomePresenter parHomePresenter = new ParHomeResponseFormatter();
+            ParHomeOutputBoundary parHomeOutputBoundary = new ParHomePresenter();
 
             OrgDsGateway orgDsGateway = new OrgFileUser();
 
-            OrgHomePresenter orgHomePresenter = new OrgHomeResponseFormatter();
+            OrgHomeOutputBoundary orgHomeOutputBoundary = new OrgHomePresenter();
 
             UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+                    userLoginOutputBoundary, parDsGateway, parHomeOutputBoundary, orgDsGateway, orgHomeOutputBoundary);
 
             UserLoginController userLoginController = new UserLoginController(interactor);
 
