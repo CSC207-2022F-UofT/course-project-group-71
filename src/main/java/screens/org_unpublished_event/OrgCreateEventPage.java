@@ -112,6 +112,13 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
      */
     public String getOrgUsername() { return this.orgUnpublishedEventPage.getOrgUsername(); }
 
+    /**The action listener for button "Create", which will intake the information of the typed strings and send it to
+     * the OrgCreateEvent use case.
+     * If succeeds, the OrgCreateEventPage will dispose and the OrgUnpublishedEventPage will be renewed.
+     * If fails, the OrgCreateEventPage will raise a message showing the reason why it fails.
+     *
+     * @param e ActionEvent by button "Create".
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         try {

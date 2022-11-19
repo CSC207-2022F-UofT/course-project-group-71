@@ -11,7 +11,7 @@ public class ParLeaveEventPresenter implements ParLeaveEventOutputBoundary {
      * @return
      */
     public ParLeaveEventResponseModel prepareSuccessView(ParLeaveEventResponseModel response) {
-        response.setMessage(response.getMessage());
+        response.setMessage("You have left the event " + response.getEvent_title() + ".");
         return response;
     }
 }
