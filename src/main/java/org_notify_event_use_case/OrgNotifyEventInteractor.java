@@ -13,6 +13,13 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
     private ParDsGateway parDsGateway;
     private OrgNotifyEventPresenter orgNotifyEventPresenter;
 
+    /**This is the construct method of OrgNotifyEventInteractor.
+     * It takes DsGateways and Presenter as input to store as instances.
+     *
+     * @param eventDsGateway The database gateway of the events
+     * @param parDsGateway The database gateway of the participants
+     * @param orgNotifyEventPresenter The presenter used to show success or not of notification
+     */
     public OrgNotifyEventInteractor(EventDsGateway eventDsGateway,
                                     ParDsGateway parDsGateway,
                                     OrgNotifyEventPresenter orgNotifyEventPresenter) {
@@ -21,6 +28,15 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
         this.orgNotifyEventPresenter = orgNotifyEventPresenter;
     }
 
+    /**Use the information contained in the requestmodel to send notifications and respond a responsemodel.
+     * It retrieves the event name.
+     * It retrieves all participants that joined this event.
+     * If participants is empty, return a failure response.
+     * Otherwise, send out a notification, success response is returned.
+     *
+     * @param orgNotifyEventRequestModel The request model sent to the interactor
+     * @return A responsemodel representing whether the user creation is successful
+     */
     @Override
     public OrgNotifyEventResponseModel sendNotification (OrgNotifyEventRequestModel orgNotifyEventRequestModel) throws SQLException, ClassNotFoundException {
         String eventName = orgNotifyEventRequestModel.getEventName();
