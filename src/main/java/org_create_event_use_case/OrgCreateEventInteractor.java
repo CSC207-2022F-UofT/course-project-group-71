@@ -13,7 +13,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
     OrgCreateEventPresenter orgCreateEventPresenter;
 
 
-    /**This is the construct method of UserRegisterInteractor.
+    /**This is the construct method of OrgCreateEventInteractor.
      * It takes DsGateways and Presenter as input to store as instances.
      *
      * @param eventDsGateway The database gateway of events
