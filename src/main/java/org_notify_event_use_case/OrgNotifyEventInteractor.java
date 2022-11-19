@@ -14,11 +14,11 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
     private OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary;
 
     /**This is the construct method of OrgNotifyEventInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+     * It takes DsGateways and OutputBoundary as input to store as instances.
      *
      * @param eventDsGateway The database gateway of the events
      * @param parDsGateway The database gateway of the participants
-     * @param orgNotifyEventPresenter The presenter used to show success or not of notification
+     * @param orgNotifyEventOutputBoundary The OutputBoundary used to show success or not of notification
      */
     public OrgNotifyEventInteractor(EventDsGateway eventDsGateway,
                                     ParDsGateway parDsGateway,
@@ -35,7 +35,7 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
      * Otherwise, send out a notification, success response is returned.
      *
      * @param orgNotifyEventRequestModel The request model sent to the interactor
-     * @return A responsemodel representing whether the user creation is successful
+     * @return A responsemodel representing whether the notification is successful
      */
     @Override
     public OrgNotifyEventResponseModel sendNotification (OrgNotifyEventRequestModel orgNotifyEventRequestModel) throws SQLException, ClassNotFoundException {

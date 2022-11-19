@@ -1,6 +1,6 @@
 package par_search_org_use_case;
 
-/** The request model of participant search for event.
+/** The request model of participant search for organizers.
  *  Contains query and parUserName.
  */
 public class ParSearchOrgRequestModel {
