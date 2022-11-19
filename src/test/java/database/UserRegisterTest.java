@@ -1,4 +1,5 @@
 package database;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import screens.*;
 import screens.org_home.OrgHomeResponseFormatter;
@@ -25,6 +26,7 @@ public class UserRegisterTest {
 
     UserRegisterResponseModel responseModel = null;
     @Test
+    @Order(1)
     void testPrepareFailView_ParticipantMissingType(){
 
         try {
@@ -36,6 +38,7 @@ public class UserRegisterTest {
         }
     }
     @Test
+    @Order(2)
     void testPrepareSuccessView_Organization(){
         try {
             responseModel = userRegisterController.create("", "O",
@@ -46,6 +49,7 @@ public class UserRegisterTest {
         }
     }
     @Test
+    @Order(3)
     void testPrepareFailView_OrganizationExists(){
         try {
             responseModel = userRegisterController.create("", "O",
@@ -56,16 +60,19 @@ public class UserRegisterTest {
         }
     }
     @Test
+    @Order(4)
     void testPrepareFailView_OrganizationPasswordEmpty(){
         try {
             responseModel = userRegisterController.create("", "O",
                     "2", "", "");
+            System.out.println(responseModel.getMessage());
             assert(false);
         } catch (Exception e) {
             assertEquals("Password cannot be empty.", e.getMessage());
         }
     }
     @Test
+    @Order(5)
     void testPrepareFailView_OrganizationPasswordNotMatch(){
         try {
             responseModel = userRegisterController.create("", "O",
@@ -76,36 +83,44 @@ public class UserRegisterTest {
         }
     }
     @Test
-    void testPrepareSuccessView_Participant(){
+    @Order(6)
+    void testPrepareSuccessView_Participant() {
         try {
             responseModel = userRegisterController.create("P", "",
-                    "1", "12345", "12345");
-            assertEquals("1, you can login now!", responseModel.getMessage());
-        } catch (Exception e) {
-            assert(false);
-        }
-    }
-    @Test
-    void testPrepareFailView_ParticipantExists(){
-        try {
-            responseModel = userRegisterController.create("P", "",
-                    "1", "12345", "12345");
-            assert(false);
+                    "a", "12345", "12345");
+            System.out.println(responseModel.getMessage());
+            assert (false);
         } catch (Exception e) {
             assertEquals("Participant already exists.", e.getMessage());
         }
     }
     @Test
+    @Order(7)
+    void testPrepareFailView_ParticipantExists(){
+        try {
+            responseModel = userRegisterController.create("P", "",
+                    "a", "12345", "12345");
+            assertEquals("a, you can login now!", responseModel.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            assert(false);
+        }
+    }
+    @Test
+    @Order(8)
     void testPrepareFailView_ParticipantPasswordEmpty(){
         try {
             responseModel = userRegisterController.create("P", "",
                     "2", "", "");
+            System.out.println(responseModel.getMessage());
             assert(false);
         } catch (Exception e) {
+
             assertEquals("Password cannot be empty.", e.getMessage());
         }
     }
     @Test
+    @Order(9)
     void testPrepareFailView_ParticipantPasswordNotMatch(){
         try {
             responseModel = userRegisterController.create("P", "",
