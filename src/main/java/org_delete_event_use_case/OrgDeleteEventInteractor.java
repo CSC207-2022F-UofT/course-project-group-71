@@ -33,7 +33,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
         if (!parUsernames.isEmpty()) {
             for (String username : parUsernames) {
                 parDsGateway.leaveEvent(username, eventName);//LEAVE BEHAVES THE SAME WAY HERE! BUT WATCH OUT!
-                parDsGateway.setNotification(username, newNotification);
+                parDsGateway.addNotification(username, newNotification);
             }
         }
 
