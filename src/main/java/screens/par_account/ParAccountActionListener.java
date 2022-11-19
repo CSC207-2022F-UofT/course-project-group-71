@@ -16,10 +16,21 @@ import java.sql.SQLException;
 public class ParAccountActionListener implements ActionListener {
     public ParAccountPage parAccountPage;
 
+    /**The constructor of the ParAccountActionListener.
+     * It takes an input ParAccountPage and stores it as instance.
+     *
+     * @param parAccountPage The account page for participants
+     */
     public ParAccountActionListener(ParAccountPage parAccountPage){
         this.parAccountPage = parAccountPage;
     }
 
+    /**It takes one event and presents a new page depending on the action command.
+     * If the command is "Back," it responds a new participant home page.
+     * If the command is "Reset Password," it disposes the participant account page and
+     *
+     * @param arg0 the event to be processed
+     */
     public void actionPerformed(ActionEvent arg0){
         String actionCommand = arg0.getActionCommand();
 
