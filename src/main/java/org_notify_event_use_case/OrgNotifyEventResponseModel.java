@@ -7,7 +7,7 @@ public class OrgNotifyEventResponseModel {
     String eventName;
     String message;
 
-    /**This is the construct method of OrgNotifyEventResponseModel, it took a eventName and store it as instance.
+    /**This is the construct method of OrgNotifyEventResponseModel, it took an eventName and store it as instance.
      *
      * @param eventName The event name of event which notifications will be sent out.
      */
