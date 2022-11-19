@@ -7,7 +7,7 @@ public class OrgDeleteEventResponseModel {
     String eventName;
     String message;
 
-    /**This is the construct method of UserRegisterResponseModel, it took a eventName and store it as instance.
+    /**This is the construct method of OrgDeleteEventResponseModel, it took an eventName and store it as instance.
      *
      * @param eventName Name of event
      */

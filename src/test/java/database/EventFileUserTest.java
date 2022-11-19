@@ -63,12 +63,23 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testUnpublishedToUpcoming(){
-        //First test whether unpublished contain
+    void testUnpublishedToUpcoming() throws SQLException, ClassNotFoundException {
+        orgFileUser.createAnEvent("O3", "Test_Unpublished",0,"Test_unpublished", "Testing zoom", 2000,1,1,1,1);
+        assertEquals("Unpublished", eventFileUser.getStatus("Test_Unpublished"));
+        eventFileUser.unPublishedToUpcoming("Test_Unpublished");
+        assertEquals("Upcoming", eventFileUser.getStatus("Test_Unpublished"));
+        orgFileUser.deleteAnEvent("Test_Unpublished");
     }
 
     @Test
-    void testUpcomingToPast(){}
+    void testUpcomingToPast() throws SQLException, ClassNotFoundException {
+        //First test whether unpublished contain
+        orgFileUser.createAnEvent("O3", "Testing_Upcoming",1,"Testing_Upcoming", "Testing zoom", 2000,1,1,1,1);
+        assertEquals("Upcoming", eventFileUser.getStatus("Testing_Upcoming"));
+        eventFileUser.upcomingToPast("Testing_Upcoming");
+        assertEquals("Past", eventFileUser.getStatus("Testing_Upcoming"));
+        orgFileUser.deleteAnEvent("Testing_Upcoming");
+    }
 
     @Test
     void testEventSearch() throws SQLException, ClassNotFoundException {
@@ -95,6 +106,8 @@ public class EventFileUserTest {
         assertTrue(eventFileUser.checkIfEventNameExist("DeletionTestingTitle"));
         eventFileUser.deleteEvent("DeletionTestingTitle");
         assertFalse(eventFileUser.checkIfEventNameExist("DeletionTestingTitle"));
+
+
 
 
     }

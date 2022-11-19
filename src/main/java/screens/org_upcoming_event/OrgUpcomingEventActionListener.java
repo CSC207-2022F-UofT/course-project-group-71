@@ -3,11 +3,11 @@ package screens.org_upcoming_event;
 import database.*;
 import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
-import org_delete_event_use_case.OrgDeleteEventPresenter;
+import org_delete_event_use_case.OrgDeleteEventOutputBoundary;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
 import org_notify_event_use_case.OrgNotifyEventInputBoundary;
 import org_notify_event_use_case.OrgNotifyEventInteractor;
-import org_notify_event_use_case.OrgNotifyEventPresenter;
+import org_notify_event_use_case.OrgNotifyEventOutputBoundary;
 import org_notify_event_use_case.OrgNotifyEventResponseModel;
 import screens.org_home.OrgHomePage;
 
@@ -37,9 +37,9 @@ public class OrgUpcomingEventActionListener implements ActionListener {
 
             ParDsGateway parDsGateway = new ParFileUser();
 
-            OrgNotifyEventPresenter orgNotifyEventPresenter = new OrgNotifyEventResponseFormatter();
+            OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary = new OrgNotifyEventPresenter();
 
-            OrgNotifyEventInputBoundary interactor = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway, orgNotifyEventPresenter);
+            OrgNotifyEventInputBoundary interactor = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway, orgNotifyEventOutputBoundary);
 
             OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor);
 
@@ -60,10 +60,10 @@ public class OrgUpcomingEventActionListener implements ActionListener {
 
             ParDsGateway parDsGateway = new ParFileUser();
 
-            OrgDeleteEventPresenter orgDeleteEventPresenter = new OrgDeleteEventResponseFormatter();
+            OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
 
             OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
-                    parDsGateway,orgDeleteEventPresenter);
+                    parDsGateway, orgDeleteEventOutputBoundary);
 
             OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
 

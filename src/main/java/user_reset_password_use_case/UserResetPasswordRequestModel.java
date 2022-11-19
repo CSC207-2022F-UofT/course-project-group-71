@@ -8,6 +8,15 @@ public class UserResetPasswordRequestModel {
     private boolean whether_org;
     private String newPassword;
 
+    /** A request model sent the interactor to reset the new password.
+     *
+     * @param username The username of the user
+     * @param password The currentlly password of the user
+     * @param whether_org Bollean showing whether the user is an orgnizer.
+     * @param newPassword The new password of the user
+     * @param reNewPassword The second input password of the user
+     */
+
     public UserResetPasswordRequestModel(String username, String password, boolean whether_org, String newPassword, String reNewPassword) {
         this.username = username;
         this.password = password;
@@ -15,6 +24,11 @@ public class UserResetPasswordRequestModel {
         this.newPassword = newPassword;
         this.reNewPassword = reNewPassword;
     }
+
+    /**A method to get the new password of user from the request model
+     *
+     * @return New password of the user
+     */
 
     public String getReNewPassword() {
         return reNewPassword;
@@ -24,6 +38,11 @@ public class UserResetPasswordRequestModel {
         this.reNewPassword = reNewPassword;
     }
 
+    /** A method to get the name of the user from the request model.
+     *
+     * @return name of the user
+     */
+
     public String getUsername() {
         return username;
     }
@@ -31,6 +50,7 @@ public class UserResetPasswordRequestModel {
     public void setUsername(String username) {
         this.username = username;
     }
+
 
     public String getPassword() {
         return password;

@@ -64,13 +64,15 @@ public class ParSearchEventResultsPage extends JFrame {
 
 
                 if (eventFollowed.contains(nextEvent)) {
-                    JButton join = new JButton("Leave "+nextEvent);
-                 join.addActionListener(new ParSearchEventResultsPageActionListener(this,nextEvent));
+                    JButton join = new JButton("Leave");
+                    join.setActionCommand("Leave "+nextEvent);
+                    join.addActionListener(new ParSearchEventResultsPageActionListener(this,nextEvent));
                     join.setBounds(x, y, 250, 30);
                     events.add(join);
                     join.setVisible(true);
                 } else {
-                    JButton leave = new JButton("Join "+nextEvent);
+                    JButton leave = new JButton("Join");
+                    leave.setActionCommand("Join "+nextEvent);
                     leave.addActionListener(new ParSearchEventResultsPageActionListener(this,nextEvent));
                     leave.setBounds(x, y, 250, 30);
                     events.add(leave);

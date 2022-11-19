@@ -14,6 +14,19 @@ public class OrgUpcomingEventPage extends JFrame {
 
     private final String orgUsername;
 
+    /**The method generate a page of organization's upcoming event.
+     * It contains all upcoming events held by this organization and let the organization
+     *      notify the participants or delete the Upcoming events.
+     * After each of the event, there are two buttons.
+     * -First is a "Notify" button, which the organization can send notification to all participants.
+     *  After the notification sent, there will be a pop-up window says "Notification sent for" the event name
+     *  or "No participant register for this event" if no participant register for it.
+     * -Second is a "Delete" button, which the organiation can delete the event and
+     *  this event will no longer be inside the upcoming page.
+     * There is a button "back" which directed the Organization back to the home page.
+     *
+     * @param orgUsername the username of the organization.
+     */
     public OrgUpcomingEventPage(String orgUsername) throws SQLException, ClassNotFoundException {
 
         this.orgUsername = orgUsername;
@@ -108,7 +121,9 @@ public class OrgUpcomingEventPage extends JFrame {
 
         this.setVisible(true);
     }
-
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
     public String getOrgUsername() {
         return orgUsername;
     }

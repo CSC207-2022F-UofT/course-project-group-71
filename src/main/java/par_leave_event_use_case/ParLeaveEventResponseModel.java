@@ -6,11 +6,16 @@ public class ParLeaveEventResponseModel {
 
     private String message;
 
+    /** This is the construct method of EventLeaveResponseModel.
+     *
+     * @param event_title  The event name that a participant have taken and want to leave.
+     * @param message A String to show if the participant leave successfully
+     */
+
     public ParLeaveEventResponseModel(String event_title, String message) {
         this.event_title = event_title;
         this.message = message;
     }
-
     public String getEvent_title() {
         return event_title;
     }
