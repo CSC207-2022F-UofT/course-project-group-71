@@ -5,6 +5,11 @@ import par_leave_event_use_case.ParLeaveEventResponseModel;
 
 public class ParLeaveEventPresenter implements ParLeaveEventOutputBoundary {
 
+    /**Prepare the success view when the operation are successful.
+     *
+     * @param response The response send from the interactor
+     * @return
+     */
     public ParLeaveEventResponseModel prepareSuccessView(ParLeaveEventResponseModel response) {
         response.setMessage(response.getMessage());
         return response;

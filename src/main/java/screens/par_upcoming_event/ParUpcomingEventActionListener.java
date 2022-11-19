@@ -18,10 +18,21 @@ import java.sql.SQLException;
 public class ParUpcomingEventActionListener implements ActionListener {
     public ParUpcomingEventPage parUpcomingEventPage;
 
+    /**Constructor of the upcoming event page.
+     * It gets an upcoming event page as input and store it as instance.
+     *
+     * @param parUpcomingEventPage The upcoming event page of the participants
+     */
     public ParUpcomingEventActionListener(ParUpcomingEventPage parUpcomingEventPage){
         this.parUpcomingEventPage = parUpcomingEventPage;
     }
 
+    /**A method that dealt with activated event including back and leave.
+     * If back button is pressed, it will jump to the participant home page.
+     * If the Leave button is pressed, it will refresh the page and make the participant leaving the event.
+     *
+     * @param arg0 the event to be processed
+     */
     public void actionPerformed(ActionEvent arg0) {
         String actionCommand = arg0.getActionCommand();
 

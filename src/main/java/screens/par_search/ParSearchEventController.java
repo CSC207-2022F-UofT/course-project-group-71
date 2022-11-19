@@ -11,9 +11,15 @@ public class ParSearchEventController {
 
     final ParSearchEventInputBoundary userInput;
 
+    /**The constructor of search event controller.
+     *
+     * @param userInput The interactor sent to the controller
+     */
+
     public ParSearchEventController(ParSearchEventInputBoundary userInput) {
         this.userInput = userInput;
     }
+
 
     public ParSearchEventResponseModel eventSearch(String query, String parUserName) throws SQLException, ClassNotFoundException {
         ParSearchEventRequestModel requestModel = new ParSearchEventRequestModel(query,parUserName);
