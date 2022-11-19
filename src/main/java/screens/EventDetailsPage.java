@@ -35,8 +35,8 @@ public class EventDetailsPage extends JFrame {
 
         ArrayList<Integer> times = eve.getTime(this.eventTitle);
         JLabel time = new JLabel("Time: " + times.get(0) + " " + times.get(1) + "-" +
-                times.get(2) +" "+times.get(3) + ":" + times.get(4));
-        JLabel location = new JLabel("Location:"+eve.getLocation(this.eventTitle));
+                times.get(2) + " " + times.get(3) + ":" + times.get(4));
+        JLabel location = new JLabel("Location:" + eve.getLocation(this.eventTitle));
         panel.add(eventName);
         panel.add(description);
         panel.add(time);
@@ -50,6 +50,5 @@ public class EventDetailsPage extends JFrame {
         this.setVisible(true);
 
     }
-
 
 }
