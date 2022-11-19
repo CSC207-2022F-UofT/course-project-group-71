@@ -23,10 +23,10 @@ public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
      */
 
     public ParLeaveEventInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway,
-                                   ParLeaveEventOutputBoundary parLeaveEVentOutputBoundary) {
+                                   ParLeaveEventOutputBoundary parLeaveEventOutputBoundary) {
         this.parDsGateway = parDsGateway;
         this.orgDsGateway = orgDsGateway;
-        this.parLeaveEventOutputBoundary = parLeaveEVentOutputBoundary;
+        this.parLeaveEventOutputBoundary = parLeaveEventOutputBoundary;
     }
     /**Use the information contained in the requestModel to check with database and respond a responseModel.
      * It took the request model and calls the registerEvent method in parDsGateway with the function
