@@ -24,11 +24,11 @@ public class ParSearchEventController {
      * It passes the request to search for events to the input boundary using the request model
      * data structure.
      *
-     * @param query The search query.
-     * @param parUserName The username of the participant.
-     * @return Returns the response model, which is a data structure containing the search results.
-     * @throws SQLException This exception handles mistakes in SQL.
-     * @throws ClassNotFoundException This exception handles missing classes.
+     * @param query The search query
+     * @param parUserName The username of the participant
+     * @return Returns the response model, which is a data structure containing the search results
+     * @throws SQLException This exception handles mistakes in SQL
+     * @throws ClassNotFoundException This exception handles missing classes
      */
     public ParSearchEventResponseModel eventSearch(String query, String parUserName) throws SQLException, ClassNotFoundException {
         ParSearchEventRequestModel requestModel = new ParSearchEventRequestModel(query,parUserName);
