@@ -2,8 +2,14 @@ package screens.par_search;
 
 import database.ParDsGateway;
 import database.ParFileUser;
+import par_unfollow_org_use_case.UnfollowOrgInputBoundary;
+import par_unfollow_org_use_case.UnfollowOrgInteractor;
+import par_unfollow_org_use_case.UnfollowOrgOutputBoundary;
+import par_unfollow_org_use_case.UnfollowOrgResponseModel;
 import screens.par_follow_org_screens.FollowOrgController;
 import screens.par_follow_org_screens.FollowOrgPresenter;
+import screens.par_follow_org_screens.UnfollowOrgController;
+import screens.par_follow_org_screens.UnfollowOrgPresenter;
 import screens.par_home.ParHomePage;
 import par_follow_org_use_case.*;
 
@@ -50,8 +56,25 @@ public class OrganizerResultsPageActionListener implements ActionListener {
             JOptionPane.showMessageDialog(this.organizerResultsPage, responseModel.getMessage());
             new ParHomePage(this.organizerResultsPage.getParUsername());
 
-        }
+        } else if (actionCommand.equals("Unfollow " + this.orgName)) {
 
+            ParDsGateway par = new ParFileUser();
+            UnfollowOrgOutputBoundary presenter = new UnfollowOrgPresenter();
+            UnfollowOrgInputBoundary interactor = new UnfollowOrgInteractor(par, presenter);
+            UnfollowOrgController controller = new UnfollowOrgController(interactor);
+            String parUserName = this.organizerResultsPage.getParUsername();
+            this.organizerResultsPage.dispose();
+            UnfollowOrgResponseModel responseModel = null;
+            try {
+                responseModel = controller.unfollow(parUserName, this.orgName);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+            JOptionPane.showMessageDialog(this.organizerResultsPage, responseModel.getMessage());
+            new ParHomePage(this.organizerResultsPage.getParUsername());
+        }
 
     }
 }

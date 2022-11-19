@@ -57,7 +57,11 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgDeleteEventResponseModel responseModel = null;
             try {
-                responseModel = orgDeleteEventController.delete(eventName);
+                try {
+                    responseModel = orgDeleteEventController.delete(eventName);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {

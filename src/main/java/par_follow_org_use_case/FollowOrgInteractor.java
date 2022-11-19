@@ -17,6 +17,6 @@ public class FollowOrgInteractor implements FollowOrgInputBoundary {
     public FollowOrgResponseModel follow(FollowOrgRequestModel requestModel) throws SQLException, ClassNotFoundException {
         parDsGateway.followOrg(requestModel.getPar_username(),requestModel.getOrg_username());
         FollowOrgResponseModel responseModel = new FollowOrgResponseModel(requestModel.getOrg_username());
-        return followOrgPresenter.prepareSuccessScreen(responseModel);
+        return followOrgPresenter.prepareSuccessPage(responseModel);
     }
 }
