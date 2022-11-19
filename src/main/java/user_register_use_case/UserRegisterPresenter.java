@@ -1,5 +1,8 @@
 package user_register_use_case;
 
+/** Class used to prepare failure or success view.
+ *
+ */
 public interface UserRegisterPresenter {
     /**A method used to show failure view to the user
      *

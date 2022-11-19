@@ -7,7 +7,6 @@ import user_login_use_case.UserLoginResponseModel;
 
 public class UserLoginResponseFormatter implements UserLoginPresenter {
     @Override
-
     public UserLoginResponseModel prepareFailView(String error) {
         throw new ShowMessageView(error);
     }

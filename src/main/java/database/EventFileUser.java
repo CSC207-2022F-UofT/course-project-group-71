@@ -17,7 +17,6 @@ public class EventFileUser implements EventDsGateway{
      * It should not return anything but make changes on the database.
      *
      * @param title The title of the event
-     * @param status The status of the event (We are considering deleting it)
      * @param description The description of the event
      * @param location The location of the event (It could be a zoom link)
      * @param year The time (year) of the event
@@ -26,14 +25,14 @@ public class EventFileUser implements EventDsGateway{
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
      */
-    public void utilStoreEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
+    public void utilStoreEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "insert into eventfile(title,status,description,location,year,month,day,hour,minute) values('" +
-                    title + "'," + status + ",'" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            String sql = "insert into eventfile(title,description,location,year,month,day,hour,minute) values('" +
+                    title + "','" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -70,13 +69,13 @@ public class EventFileUser implements EventDsGateway{
      * @param minute The time (minute) of the event
      */
 
-    public void utilEditEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
+    public void utilEditEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql =  "update eventfile set status = " + status + ", description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
+            String sql =  "update eventfile set description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
 
             System.out.println(sql);
             System.out.println(sql);
@@ -827,8 +826,8 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
-        utilEditEvent(title,status,description,location,year,month,day,hour,minute);
+    public void editEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
+        utilEditEvent(title,description,location,year,month,day,hour,minute);
     }
 
 }

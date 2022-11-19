@@ -21,6 +21,13 @@ public class LoginPage extends JFrame implements ActionListener {
     int x = 500;
     int y = 500;
 
+    /**The method generate a login page.
+     * It contains button to choose the user type for login.
+     * It allows user to input username, and password.
+     * The controller process the information after use clicks 'Login' button, it calls actionPerformed method.
+     *
+     * @param controller UserLoginController that takes information got from the page
+     */
     public LoginPage(UserLoginController controller) {
 
         this.setLayout(null);
@@ -93,7 +100,14 @@ public class LoginPage extends JFrame implements ActionListener {
         this.setVisible(true);
 
     }
-    public void actionPerformed(ActionEvent selectType) {
+
+    /**The method got information needed to input from the page.
+     * The method generate Presenter , DsGateWays, interactor and controller to process them.
+     * Once the information are passed to the above components, jump to login page.
+     *
+     * @param e the Login event
+     */
+    public void actionPerformed(ActionEvent e) {
         try {
             userLoginController.login(
                     P?"P":"",
@@ -103,8 +117,8 @@ public class LoginPage extends JFrame implements ActionListener {
             this.dispose();
             if (P) {new ParHomePage(username.getText());}
             else { new OrgHomePage(username.getText());}
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, exception.getMessage());
         }
     }
 

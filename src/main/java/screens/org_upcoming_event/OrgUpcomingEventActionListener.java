@@ -78,14 +78,9 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             this.orgUpcomingEventPage.dispose();
             try {
                 new OrgUpcomingEventPage(this.orgUsername);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-        }
-        else {
-
         }
     }
 }

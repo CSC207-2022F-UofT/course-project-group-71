@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EventFileUserTest {
     //NOT COMPLETE
     EventFileUser eventFileUser = new EventFileUser();
+    ParFileUser parFileUser = new ParFileUser();
+    OrgFileUser orgFileUser = new OrgFileUser();
     @Test
     void testGetStatus() throws SQLException, ClassNotFoundException {
         assertEquals("Unpublished", eventFileUser.getStatus("E1"));
@@ -84,9 +86,29 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testDeleteEvent(){}
+    void testDeleteEvent() throws SQLException, ClassNotFoundException {
+        //Assume the checkIfEventNameExist is False
+        assertFalse(eventFileUser.checkIfEventNameExist("DeletionTestingTitle"));
+        //Assume createAnEvent is True
+        orgFileUser.createAnEvent("O1", "DeletionTestingTitle", 0, "Deletion Testing", "Zoom Testing Deletion", 2000, 1, 1, 1, 1);
+        //Assume the checkIfEventNameExist is True
+        assertTrue(eventFileUser.checkIfEventNameExist("DeletionTestingTitle"));
+        eventFileUser.deleteEvent("DeletionTestingTitle");
+        assertFalse(eventFileUser.checkIfEventNameExist("DeletionTestingTitle"));
 
-    void testEditEvent(){}
+
+    }
+
+    @Test
+    void testEditEvent() throws SQLException, ClassNotFoundException {
+        //Assume create an event is correct
+        orgFileUser.createAnEvent("O1", "DeletionTestingTitle", 0, "Deletion Testing", "Zoom Testing Deletion", 2000, 1, 1, 1, 1);
+        orgFileUser.editAnEvent("DeletionTestingTitle", "Editing Testing", "Zoom Testing Editting",2001,2,2,2,2);
+        assertEquals("Editing Testing", eventFileUser.getDescription("DeletionTestingTitle"));
+        assertEquals("Zoom Testing Editting", eventFileUser.getLocation("DeletionTestingTitle"));
+        ArrayList<Integer> l1 = new ArrayList<>(List.of(2001,2,2,2,2));
+        assertEquals(l1, eventFileUser.getTime("DeletionTestingTitle"));
+    }
 
 
 

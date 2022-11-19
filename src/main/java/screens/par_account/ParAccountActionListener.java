@@ -4,7 +4,6 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import screens.org_account.OrgResetPasswordController;
 import screens.org_past_event.OrgPastEventPage;
 import screens.par_home.ParHomePage;
 import user_reset_password_use_case.*;

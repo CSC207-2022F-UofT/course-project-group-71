@@ -70,10 +70,18 @@ public class OrgFileUserTest {
     }
 
     @Test
-    void testCreateOrg(){}
+    void testCreateOrg() throws SQLException, ClassNotFoundException {
+        assertFalse(orgFileUser.checkIfUsernameExist("O4"));
+        orgFileUser.createOrg("O4", "O4password");
+        assertTrue(orgFileUser.checkIfUsernameExist("O4"));
+        orgFileUser.deleteOrg("O4");
+    }
 
     @Test
-    void testDeleteOrg(){}
+    void testDeleteOrg() throws SQLException, ClassNotFoundException {
+        assertTrue(orgFileUser.checkIfUsernameExist("O5"));
+
+    }
 
     @Test
     void testOrganizerSearch() throws SQLException, ClassNotFoundException {

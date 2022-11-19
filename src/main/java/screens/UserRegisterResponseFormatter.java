@@ -1,7 +1,11 @@
 package screens;
-import screens.ShowMessageView;
 import user_register_use_case.UserRegisterPresenter;
 import user_register_use_case.UserRegisterResponseModel;
+
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UserRegisterResponseFormatter implements UserRegisterPresenter {
 
@@ -20,8 +24,7 @@ public class UserRegisterResponseFormatter implements UserRegisterPresenter {
      * @return Response model to show success view
      */
     public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel responseModel){
-        //UserRegisterResponseModel responseModel = new
-          //      setMessage();
-        throw new ShowMessageView(responseModel.getUsername() + ", you can login now!");
+        responseModel.setMessage(responseModel.getUsername() + ", you can login now!");
+        return responseModel;
     }
 }

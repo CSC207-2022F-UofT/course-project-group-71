@@ -26,7 +26,7 @@ public class LoginPageActionListener implements ActionListener {
             UserRegisterInputBoundary interactor = new UserRegisterInteractor(
                     par, org, presenter);
             UserRegisterController userRegisterController = new UserRegisterController(interactor);
-
+            System.out.println("S");
             this.loginPage.dispose();
             new RegisterPage(userRegisterController);
         }

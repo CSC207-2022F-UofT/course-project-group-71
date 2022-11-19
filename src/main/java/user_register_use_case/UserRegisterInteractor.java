@@ -6,6 +6,10 @@ import database.ParDsGateway;
 
 import java.sql.SQLException;
 import java.util.Objects;
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
     final ParDsGateway parDsGateway;
@@ -45,6 +49,9 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
             if (orgDsGateway.checkIfUsernameExist(requestModel.getName())){
                 return userRegisterPresenter.prepareFailView("Organization already exists.");
             }
+            if (requestModel.getPassword().isEmpty()){
+                return userRegisterPresenter.prepareFailView("Password cannot be empty.");
+            }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
                 return userRegisterPresenter.prepareFailView("Two Passwords are different.");
             }
@@ -54,15 +61,21 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         }
         else if (requestModel.getUserType().equals("P")){
             //Proceed as participant
+
             if (parDsGateway.checkIfUsernameExist(requestModel.getName())){
                 return userRegisterPresenter.prepareFailView("Participant already exists.");
+            }
+            if (requestModel.getPassword().isEmpty()){
+                return userRegisterPresenter.prepareFailView("Password cannot be empty.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
                 return userRegisterPresenter.prepareFailView("Two Passwords are different.");
             }
             parDsGateway.createPar(requestModel.getName(),requestModel.getPassword());
             UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
-            return userRegisterPresenter.prepareSuccessView(responseModel);
+            UserRegisterResponseModel tempPresenter = userRegisterPresenter.prepareSuccessView(responseModel);
+
+            return tempPresenter;
         }
         else {
             return userRegisterPresenter.prepareFailView("Please select your account type.");

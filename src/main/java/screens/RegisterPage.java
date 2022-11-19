@@ -7,6 +7,7 @@ import database.ParFileUser;
 import screens.org_home.OrgHomeResponseFormatter;
 import screens.par_home.ParHomeResponseFormatter;
 import user_login_use_case.*;
+import user_register_use_case.UserRegisterResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -117,16 +118,17 @@ public class RegisterPage extends JFrame implements ActionListener {
      * The method generate Presenter , DsGateWays, interactor and controller to process them.
      * Once the information are passed to the above components, jump to login page.
      *
-     * @param selectType the event to be processed
+     * @param e the registration event
      */
-    public void actionPerformed(ActionEvent selectType) {
+    public void actionPerformed(ActionEvent e) {
         try {
-            userRegisterController.create(
+            UserRegisterResponseModel responseModel = userRegisterController.create(
                     P?"P":"",
                     O?"O":"",
                     username.getText(),
                     String.valueOf(password.getPassword()),
                     String.valueOf(retypePassword.getPassword()));
+            JOptionPane.showMessageDialog(this, responseModel.getMessage());
             this.dispose();
             UserLoginPresenter userLoginPresenter =  new UserLoginResponseFormatter();
 
@@ -144,8 +146,8 @@ public class RegisterPage extends JFrame implements ActionListener {
             UserLoginController userLoginController = new UserLoginController(interactor);
 
             new LoginPage(userLoginController);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, exception.getMessage());
         }
     }
 
