@@ -4,6 +4,8 @@ import org_delete_event_use_case.OrgDeleteEventResponseModel;
 import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventRequestModel;
 
+import java.sql.SQLException;
+
 public class OrgDeleteEventController {
     final OrgDeleteEventInputBoundary userInput;
 
@@ -11,7 +13,7 @@ public class OrgDeleteEventController {
         this.userInput = accountGateway;
     }
 
-    OrgDeleteEventResponseModel delete(String eventName) {
+    OrgDeleteEventResponseModel delete(String eventName) throws SQLException {
         OrgDeleteEventRequestModel requestModel = new OrgDeleteEventRequestModel(eventName);
         return userInput.delete(requestModel);
     }
