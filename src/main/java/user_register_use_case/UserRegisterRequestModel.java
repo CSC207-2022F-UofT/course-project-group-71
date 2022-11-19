@@ -1,4 +1,4 @@
-package user_register_use_case_old;
+package user_register_use_case;
 
 /** The request model of user registration.
  *  Contains whether organizer or participant, name, password and second-input password.

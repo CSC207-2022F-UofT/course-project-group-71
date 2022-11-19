@@ -1,8 +1,8 @@
 package screens;
 
-import user_register_use_case_old.UserRegisterInputBoundary;
-import user_register_use_case_old.UserRegisterRequestModel;
-import user_register_use_case_old.UserRegisterResponseModel;
+import user_register_use_case.UserRegisterInputBoundary;
+import user_register_use_case.UserRegisterRequestModel;
+import user_register_use_case.UserRegisterResponseModel;
 
 import java.sql.SQLException;
 

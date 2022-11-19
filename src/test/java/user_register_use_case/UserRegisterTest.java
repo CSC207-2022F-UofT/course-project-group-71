@@ -57,7 +57,6 @@ public class UserRegisterTest {
         try {
             responseModel = userRegisterController.create("", "O",
                     "2", "", "");
-            System.out.println(responseModel.getMessage());
             assert(false);
         } catch (Exception e) {
             assertEquals("Password cannot be empty.", e.getMessage());
@@ -80,7 +79,6 @@ public class UserRegisterTest {
         try {
             responseModel = userRegisterController.create("P", "",
                     "1", "12345", "12345");
-            System.out.println(responseModel.getMessage());
             assert (false);
         } catch (Exception e) {
             assertEquals("Participant already exists.", e.getMessage());
@@ -94,7 +92,6 @@ public class UserRegisterTest {
                     "1", "12345", "12345");
             assertEquals("1, you can login now!", responseModel.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             assert(false);
         }
     }
@@ -104,7 +101,6 @@ public class UserRegisterTest {
         try {
             responseModel = userRegisterController.create("P", "",
                     "2", "", "");
-            System.out.println(responseModel.getMessage());
             assert(false);
         } catch (Exception e) {
 

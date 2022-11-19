@@ -1,6 +1,6 @@
 package screens;
-import user_register_use_case_old.UserRegisterPresenter;
-import user_register_use_case_old.UserRegisterResponseModel;
+import user_register_use_case.UserRegisterPresenter;
+import user_register_use_case.UserRegisterResponseModel;
 
 import java.util.Optional;
 
@@ -25,12 +25,6 @@ public class UserRegisterResponseFormatter implements UserRegisterPresenter {
      */
     public UserRegisterResponseModel prepareSuccessView(UserRegisterResponseModel responseModel){
         responseModel.setMessage(responseModel.getUsername() + ", you can login now!");
-        StackWalker walker = StackWalker.getInstance();
-        Optional<String> prepareSuccessView = walker.walk(frames -> frames
-                .findFirst()
-                .map(StackWalker.StackFrame::getMethodName));
-        assertTrue(prepareSuccessView.isPresent());
-        assertEquals("prepareSuccessView", prepareSuccessView.get());
         return responseModel;
     }
 }
