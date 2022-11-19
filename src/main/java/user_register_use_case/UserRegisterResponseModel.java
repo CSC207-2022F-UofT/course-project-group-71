@@ -1,4 +1,4 @@
-package user_register_use_case_old;
+package user_register_use_case;
 
 /** The response model sent back to the page.
  *  Containing the username and the message.

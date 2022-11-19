@@ -118,9 +118,9 @@ public class RegisterPage extends JFrame implements ActionListener {
      * The method generate Presenter , DsGateWays, interactor and controller to process them.
      * Once the information are passed to the above components, jump to login page.
      *
-     * @param selectType the event to be processed
+     * @param e the registration event
      */
-    public void actionPerformed(ActionEvent selectType) {
+    public void actionPerformed(ActionEvent e) {
         try {
             UserRegisterResponseModel responseModel = userRegisterController.create(
                     P?"P":"",
@@ -146,8 +146,8 @@ public class RegisterPage extends JFrame implements ActionListener {
             UserLoginController userLoginController = new UserLoginController(interactor);
 
             new LoginPage(userLoginController);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, exception.getMessage());
         }
     }
 

@@ -79,7 +79,7 @@ public class OrgFileUserTest {
 
     @Test
     void testDeleteOrg() throws SQLException, ClassNotFoundException {
-        assertTrue(orgFileUser.checkIfUsernameExist("O5"))
+        assertTrue(orgFileUser.checkIfUsernameExist("O5"));
 
     }
 

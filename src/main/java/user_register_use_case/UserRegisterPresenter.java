@@ -1,4 +1,4 @@
-package user_register_use_case_old;
+package user_register_use_case;
 
 /** Class used to prepare failure or success view.
  *
