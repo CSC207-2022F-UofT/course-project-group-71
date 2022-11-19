@@ -8,7 +8,7 @@ public class OrgCreateEventResponseModel {
     private String message;
     private String title;
 
-    /**This is the construct method of UserRegisterResponseModel, it took a username and store it as instance.
+    /**This is the construct method of OrgCreateEventResponseModel, it took a username and store it as instance.
      *
      * @param title The title of event
      */

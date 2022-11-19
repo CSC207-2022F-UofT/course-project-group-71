@@ -13,6 +13,13 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
     OrgEditEventPresenter orgEditEventPresenter;
 
 
+    /**This is the construct method of OrgEditEventInteractor.
+     * It takes DsGateways and Presenter as input to store as instances.
+     *
+     * @param eventDsGateway The database gateway of the events
+     * @param orgDsGateway The database gateway of the organizers
+     * @param orgEditEventPresenter The presenter used to show success or not of event editing
+     */
     public OrgEditEventInteractor(EventDsGateway eventDsGateway,
                                   OrgDsGateway orgDsGateway,
                                   OrgEditEventPresenter orgEditEventPresenter) {
@@ -21,6 +28,17 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
         this.orgEditEventPresenter = orgEditEventPresenter;
     }
 
+    /**Use the information contained in the requestmodel to edit ana event and respond a responsemodel.
+     * It checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.
+     * It checks if title already exists.
+     * It checks if all time entries are bound by format: year, month, day, hour, minute.
+     * It checks if the time is set in the future.
+     * If failed in one of the above process, return a failure response.
+     * Otherwise, success response is returned.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responsemodel representing whether the event editing is successful
+     */
     @Override
     public OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
         if (requestModel.getTitle().isEmpty() || requestModel.getDescription().isEmpty()
@@ -80,6 +98,11 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
         else { return orgEditEventPresenter.prepareFailView("Time entry/ies is/are not integer."); }
     }
 
+    /**A method used to check time entries format
+     *
+     * @param s A string of a time entry.
+     * @return A boolean of whether the entry is bound by format.
+     */
     public boolean isStringInt(String s)
     {
         try
