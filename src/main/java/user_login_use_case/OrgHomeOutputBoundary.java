@@ -1,5 +1,5 @@
 package user_login_use_case;
 
-public interface OrgHomePresenter {
+public interface OrgHomeOutputBoundary {
     UserLoginResponseModel prepareHomePageView(UserLoginResponseModel organization);
 }

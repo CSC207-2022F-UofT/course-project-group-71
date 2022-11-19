@@ -8,7 +8,7 @@ public class ParSearchEventRequestModel {
     private String query;
     private String parUserName;
 
-    /**A request model sent the interactor to create a user.
+    /**A request model sent the interactor to search for event.
      *
      * @param query String to be searched
      * @param parUserName Name of the participant

@@ -1,15 +1,19 @@
 package screens.org_unpublished_event;
 
+import database.EventDsGateway;
 import org_edit_event_use_case.OrgEditEventResponseModel;
 import screens.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class OrgEditEventPage extends JFrame implements ActionListener {
 
     OrgEditEventController controller;
+    EventDsGateway eventDsGateway;
     OrgUnpublishedEventPage orgUnpublishedEventPage;
 
     String eventName;
@@ -22,11 +26,23 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
     JTextField minute = new JTextField(2);
     JTextField location = new JTextField(15);
 
+    /**The method generate an edit event window and allowed the organization to edit the unpublished event by input details.
+     * It allows user to input title, description, year, month, day, hour, minutes and location,
+     * with two buttons called "Cancel" and "Edit".
+     * The "Cancel" button will close the window and won't have any changes to the Unpublished Event page.
+     * The "Edit" button will close the window and updated the Unpublished Event page with the event edited.
+     *
+     * @param controller OrgCreateEventController that takes information got from the page.
+     * @param orgUnpublishedEventPage OrgUnpublishedEventPage that will be updated after the event was created.
+     * @param eventName String of the event's name.
+     * @param eventDsGateway EventDsGateway that we need to access the old event and modify it.
+     */
     public OrgEditEventPage(OrgEditEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage,
-                            String eventName){
+                            String eventName, EventDsGateway eventDsGateway) throws SQLException, ClassNotFoundException {
         this.controller = controller;
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
         this.eventName = eventName;
+        this.eventDsGateway = eventDsGateway;
         
         int x = 500;
         int y = 500;
@@ -42,60 +58,78 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
         title.setHorizontalAlignment(JLabel.CENTER);
 
 
-        JLabel oldEventTitle = new JLabel("Title:   " + eventName);
-        oldEventTitle.setBounds(0,100,x,30);
+        JLabel eventTitle = new JLabel("Title:   " + eventName);
+        JPanel eventTitleInfo = new JPanel();
+        eventTitleInfo.add(eventTitle);
+        eventTitleInfo.setBounds(0,100,x,30);
 
 
-        JLabel oldDescription = new JLabel("Description:   " + eventName);
-        oldDescription.setBounds(0,150,x,30);
+        JLabel oldDescription = new JLabel("Description:   " + eventDsGateway.getDescription(eventName));
+        JPanel oldDescriptionInfo = new JPanel();
+        oldDescriptionInfo.add(oldDescription);
+        oldDescriptionInfo.setBounds(0,150,x,30);
 
         LabelTextPanel descriptionInfo = new LabelTextPanel(
                 new JLabel("Description"), description);
         descriptionInfo.setBounds (0,180, x, 50);
 
 
-        JLabel oldYear = new JLabel("Year:   " + eventName);
-        oldYear.setBounds(0,230,x/5,30);
+        ArrayList<Integer> times = eventDsGateway.getTime(eventName);
+
+        JLabel oldYear = new JLabel("Year:   " + times.get(0));
+        JPanel oldYearInfo = new JPanel();
+        oldYearInfo.add(oldYear);
+        oldYearInfo.setBounds(0,230,x/5,30);
 
         LabelTextPanel yearInfo = new LabelTextPanel(
                 new JLabel("Year"), year);
         yearInfo.setBounds (0,260, x/5, 50);
 
 
-        JLabel oldMonth = new JLabel("Month:   " + eventName);
-        oldMonth.setBounds(x/5,230,x/5,30);
+        JLabel oldMonth = new JLabel("Month:   " + times.get(1));
+        JPanel oldMonthInfo = new JPanel();
+        oldMonthInfo.add(oldMonth);
+        oldMonthInfo.setBounds(x/5,230,x/5,30);
 
         LabelTextPanel monthInfo = new LabelTextPanel(
                 new JLabel("Month"), month);
         monthInfo.setBounds (x/5,260, x/5, 50);
 
 
-        JLabel oldDay = new JLabel("Day:   " + eventName);
-        oldDay.setBounds(2*x/5,230,x/5,30);
+        JLabel oldDay = new JLabel("Day:   " + times.get(2));
+        JPanel oldDayInfo = new JPanel();
+        oldDayInfo.add(oldDay);
+        oldDayInfo.setBounds(2*x/5,230,x/5,30);
 
         LabelTextPanel dayInfo = new LabelTextPanel(
                 new JLabel("Day"), day);
         dayInfo.setBounds (2*x/5,260, x/5, 50);
 
 
-        JLabel oldHour = new JLabel("Hour:   " + eventName);
-        oldHour.setBounds(3*x/5,230,x/5,30);
+        JLabel oldHour = new JLabel("Hour:   " + times.get(3));
+        JPanel oldHourInfo = new JPanel();
+        oldHourInfo.add(oldHour);
+        oldHourInfo.setBounds(3*x/5,230,x/5,30);
 
         LabelTextPanel hourInfo = new LabelTextPanel(
                 new JLabel("Hour"), hour);
         hourInfo.setBounds (3*x/5,260, x/5, 50);
 
 
-        JLabel oldMinute = new JLabel("Minute:   " + eventName);
-        oldMinute.setBounds(4*x/5,230,x/5,30);
+        JLabel oldMinute = new JLabel("Minute:   " + times.get(4));
+        JPanel oldMinuteInfo = new JPanel();
+        oldMinuteInfo.add(oldMinute);
+        oldMinuteInfo.setBounds(4*x/5,230,x/5,30);
 
         LabelTextPanel minuteInfo = new LabelTextPanel(
                 new JLabel("Minute"), minute);
         minuteInfo.setBounds (4*x/5,260, x/5, 50);
 
 
-        JLabel oldLocation = new JLabel("Location:   " + eventName);
-        oldMinute.setBounds(0,310, x,30);
+        JLabel oldLocation = new JLabel("Location:   " + eventDsGateway.getLocation(eventName));
+        JPanel oldLocationInfo = new JPanel();
+        oldLocationInfo.add(oldLocation);
+        oldLocationInfo.setBounds(0,310, x,30);
 
         LabelTextPanel locationInfo = new LabelTextPanel(
                 new JLabel("Location"), location);
@@ -114,20 +148,20 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
         buttons.setBounds (0,390, x, 50);
 
         this.add(title);
-        this.add(oldEventTitle);
-        this.add(oldDescription);
+        this.add(eventTitle);
+        this.add(oldDescriptionInfo);
         this.add(descriptionInfo);
-        this.add(oldYear);
+        this.add(oldYearInfo);
         this.add(yearInfo);
-        this.add(oldMonth);
+        this.add(oldMonthInfo);
         this.add(monthInfo);
-        this.add(oldDay);
+        this.add(oldDayInfo);
         this.add(dayInfo);
-        this.add(oldHour);
+        this.add(oldHourInfo);
         this.add(hourInfo);
-        this.add(oldMinute);
+        this.add(oldMinuteInfo);
         this.add(minuteInfo);
-        this.add(oldLocation);
+        this.add(oldLocationInfo);
         this.add(locationInfo);
         this.add(buttons);
 
@@ -137,6 +171,9 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
 
     }
 
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
     public String getOrgUsername() { return this.orgUnpublishedEventPage.getOrgUsername(); }
 
     @Override

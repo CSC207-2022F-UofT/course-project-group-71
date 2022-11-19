@@ -10,22 +10,22 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
 
     EventDsGateway eventDsGateway;
     OrgDsGateway orgDsGateway;
-    OrgEditEventPresenter orgEditEventPresenter;
+    OrgEditEventOutputBoundary orgEditEventOutputBoundary;
 
 
     /**This is the construct method of OrgEditEventInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+     * It takes DsGateways and OutputBoundary as input to store as instances.
      *
      * @param eventDsGateway The database gateway of the events
      * @param orgDsGateway The database gateway of the organizers
-     * @param orgEditEventPresenter The presenter used to show success or not of event editing
+     * @param orgEditEventOutputBoundary The OutputBoundary used to show success or not of event editing
      */
     public OrgEditEventInteractor(EventDsGateway eventDsGateway,
                                   OrgDsGateway orgDsGateway,
-                                  OrgEditEventPresenter orgEditEventPresenter) {
+                                  OrgEditEventOutputBoundary orgEditEventOutputBoundary) {
         this.eventDsGateway = eventDsGateway;
         this.orgDsGateway = orgDsGateway;
-        this.orgEditEventPresenter = orgEditEventPresenter;
+        this.orgEditEventOutputBoundary = orgEditEventOutputBoundary;
     }
 
     /**Use the information contained in the requestmodel to edit ana event and respond a responsemodel.
@@ -45,7 +45,7 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()
                 || requestModel.getDay().isEmpty() || requestModel.getHour().isEmpty()
                 || requestModel.getMinute().isEmpty() || requestModel.getLocation().isEmpty()) {
-            return orgEditEventPresenter.prepareFailView("Entries cannot be empty.");
+            return orgEditEventOutputBoundary.prepareFailView("Entries cannot be empty.");
         }
 
         String year = requestModel.getYear();
@@ -57,45 +57,45 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
         if (isStringInt(year) && isStringInt(month) && isStringInt(day) && isStringInt(hour) && isStringInt(minute)) {
 
             if (year.length() != 4) {
-                return orgEditEventPresenter.prepareFailView("Year is not 4 digits.");
+                return orgEditEventOutputBoundary.prepareFailView("Year is not 4 digits.");
             }
             int y = Integer.parseInt(year);
 
             int m = Integer.parseInt(month);
             if (m > 12 || m <= 0) {
-                return orgEditEventPresenter.prepareFailView("Month is not within 1 to 12.");
+                return orgEditEventOutputBoundary.prepareFailView("Month is not within 1 to 12.");
             }
 
             int d = Integer.parseInt(day);
             if (d > 31 || d <= 0) {
-                return orgEditEventPresenter.prepareFailView("Day is not within 1 to 31.");
+                return orgEditEventOutputBoundary.prepareFailView("Day is not within 1 to 31.");
             }
 
             int h = Integer.parseInt(hour);
             if (h > 23 || h < 0) {
-                return orgEditEventPresenter.prepareFailView("Day is not within 0 to 24.");
+                return orgEditEventOutputBoundary.prepareFailView("Day is not within 0 to 24.");
             }
 
             int min = Integer.parseInt(minute);
             if (min > 59 || min < 0) {
-                return orgEditEventPresenter.prepareFailView("Minute is not within 0 to 60.");
+                return orgEditEventOutputBoundary.prepareFailView("Minute is not within 0 to 60.");
             }
 
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime time = LocalDateTime.of(y, m, d, h, min);
             if (time.isBefore(now)){
-                return orgEditEventPresenter.prepareFailView("Time must be in future.");
+                return orgEditEventOutputBoundary.prepareFailView("Time must be in future.");
             }
 
             else {
                 orgDsGateway.editAnEvent(requestModel.getTitle(), requestModel.getDescription(),
                         requestModel.getLocation(), y, m, d, h, min);
                 OrgEditEventResponseModel responseModel = new OrgEditEventResponseModel(requestModel.getTitle());
-                return orgEditEventPresenter.prepareSuccessView(responseModel);
+                return orgEditEventOutputBoundary.prepareSuccessView(responseModel);
             }
         }
 
-        else { return orgEditEventPresenter.prepareFailView("Time entry/ies is/are not integer."); }
+        else { return orgEditEventOutputBoundary.prepareFailView("Time entry/ies is/are not integer."); }
     }
 
     /**A method used to check time entries format

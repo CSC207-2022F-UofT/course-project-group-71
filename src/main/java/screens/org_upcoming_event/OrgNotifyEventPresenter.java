@@ -1,10 +1,10 @@
 package screens.org_upcoming_event;
 
-import org_notify_event_use_case.OrgNotifyEventPresenter;
+import org_notify_event_use_case.OrgNotifyEventOutputBoundary;
 import org_notify_event_use_case.OrgNotifyEventResponseModel;
 import screens.ShowMessageView;
 
-public class OrgNotifyEventResponseFormatter implements OrgNotifyEventPresenter {
+public class OrgNotifyEventPresenter implements OrgNotifyEventOutputBoundary {
     @Override
     public OrgNotifyEventResponseModel prepareSuccessView(OrgNotifyEventResponseModel response) {
         response.setMessage("Notification sent for " + response.getEventName() + "!");

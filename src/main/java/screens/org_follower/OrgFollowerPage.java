@@ -12,6 +12,13 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrgFollowerPage extends JFrame {
     private final String orgUsername;
+
+    /**The method generate a page of organizer's followers.
+     * It contains all participants who followed the organization.
+     * There is a button "back" which directed the Organization back to the home page.
+     *
+     * @param orgUsername the username of the organization.
+     */
     public OrgFollowerPage(String orgUsername) throws SQLException, ClassNotFoundException {
         this.orgUsername = orgUsername;
 
@@ -82,7 +89,9 @@ public class OrgFollowerPage extends JFrame {
 
         this.setVisible(true);
     }
-
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
     public String getOrgUsername() {
         return orgUsername;
     }

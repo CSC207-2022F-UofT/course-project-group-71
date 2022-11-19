@@ -8,6 +8,20 @@ import static tutorial.HelloWorld.getConstantY;
 public class OrgHomePage extends JFrame {
 
     private final String orgUsername;
+
+    /**The method generate a page of organization's homepage.
+     * It contains six buttons at left vertically.
+     * "Account" button will jump to the account page which can let the organization to changes password.
+     * "Unpublished Event" button will jump to the Unpublished Event page which can let the organization both create
+     *      a new unpublished events or modify the unpublished events, they can publish, edit or delete specific events.
+     * "Upcoming Event" button will jump to the Upcoming Event page which can let the organization
+     *      notify the participants or delete the Upcoming events.
+     * "Past Event" button will jump to the Past Event page which can let the organization delete specific past events.
+     * "Followers" button will jump to the followers page which the organization can see all followers
+     * There is a button "Log Out" at the button which logged the Organization out and jump to the log in page.
+     *
+     * @param orgUsername the username of the organization.
+     */
     public OrgHomePage(String orgUsername){
 
         this.orgUsername = orgUsername;
@@ -59,7 +73,9 @@ public class OrgHomePage extends JFrame {
 
         this.setVisible(true);
     }
-
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
     public String getOrgUsername() { return this.orgUsername;}
 
 }

@@ -1,13 +1,8 @@
 package screens;
-import user_register_use_case.UserRegisterPresenter;
+import user_register_use_case.UserRegisterOutputBoundary;
 import user_register_use_case.UserRegisterResponseModel;
 
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-public class UserRegisterResponseFormatter implements UserRegisterPresenter {
+public class UserRegisterPresenter implements UserRegisterOutputBoundary {
 
     /**This is a method used to prepare the failure view to the user
      *
