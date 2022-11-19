@@ -13,7 +13,7 @@ public class ParRegisterEventInteractor implements ParRegisterEventInputBoundary
      *
      * @param parRegisterEventPresenter The presenter used to show successful view when registered successes.
      * @param parDsGateway The database gateway of the participants.
-     * @param eventDsGateway The database gateway of the participants.
+     * @param eventDsGateway The database gateway of the events.
      */
 
     public ParRegisterEventInteractor(ParDsGateway parDsGateway, EventDsGateway eventDsGateway, ParRegisterEventPresenter parRegisterEventPresenter) {
