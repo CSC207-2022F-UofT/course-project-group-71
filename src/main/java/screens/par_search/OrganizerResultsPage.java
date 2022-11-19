@@ -7,6 +7,7 @@ import database.ParFileUser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
@@ -14,8 +15,8 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrganizerResultsPage extends JFrame {
 
-    private final ArrayList<String> orgNames;
-    private final String parUsername;
+    private ArrayList<String> orgNames,followedList;
+    private String parUsername;
 
     ParDsGateway par = new ParFileUser();
 
@@ -23,6 +24,14 @@ public class OrganizerResultsPage extends JFrame {
 
         this.parUsername = parUsername;
         this.orgNames = orgNames;
+        try {
+            this.followedList= par.getFollowedOrg(this.parUsername);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
 
         this.setLayout(null);
 
@@ -51,6 +60,7 @@ public class OrganizerResultsPage extends JFrame {
             int y = 0;
 
             for (String nextOrg : orgNames) {
+                System.out.println(nextOrg);
 
                 JButton orgName = new JButton(nextOrg);
                 orgName.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
@@ -59,7 +69,7 @@ public class OrganizerResultsPage extends JFrame {
                 orgName.setVisible(true);
 
 
-                if (orgNames.contains(nextOrg)) {
+               if (this.followedList.contains(nextOrg)) {
                     JButton unfollow = new JButton("Unfollow "+nextOrg);
                     unfollow.addActionListener(new OrganizerResultsPageActionListener(this,nextOrg));
                     unfollow.setBounds(x, y, 250, 30);

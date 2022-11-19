@@ -27,5 +27,5 @@ public interface EventDsGateway {
 
     void deleteEvent(String event_title) throws SQLException, ClassNotFoundException;
 
-    void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException;
+    void editEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException;
 }

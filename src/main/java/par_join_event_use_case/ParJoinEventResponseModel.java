@@ -1,10 +1,10 @@
-package par_register_event_use_case;
+package par_join_event_use_case;
 
-public class ParRegisterEventResponseModel {
+public class ParJoinEventResponseModel {
     String eventName;
     String message;
 
-    public ParRegisterEventResponseModel(String eventName) {
+    public ParJoinEventResponseModel(String eventName) {
         this.eventName = eventName;
     }
 

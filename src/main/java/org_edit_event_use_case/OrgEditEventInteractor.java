@@ -74,7 +74,7 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
             }
 
             else {
-                orgDsGateway.editAnEvent(requestModel.getTitle(), 0, requestModel.getDescription(),
+                orgDsGateway.editAnEvent(requestModel.getTitle(), requestModel.getDescription(),
                         requestModel.getLocation(), y, m, d, h, min);
                 OrgEditEventResponseModel responseModel = new OrgEditEventResponseModel(requestModel.getTitle(),
                         0, requestModel.getDescription(), requestModel.getLocation(), y, m, d, h, min);

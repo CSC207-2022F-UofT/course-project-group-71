@@ -53,6 +53,7 @@ public class OrganizerResultsPageActionListener implements ActionListener {
             } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
+
             JOptionPane.showMessageDialog(this.organizerResultsPage, responseModel.getMessage());
             new ParHomePage(this.organizerResultsPage.getParUsername());
 

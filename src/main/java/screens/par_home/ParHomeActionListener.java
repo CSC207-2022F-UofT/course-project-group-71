@@ -60,9 +60,7 @@ public class ParHomeActionListener implements ActionListener {
             try {
                 responseModel = controller.convertToPast("P",
                         this.parHomePage.getParUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             if (!responseModel.getEventsToPast().isEmpty()){

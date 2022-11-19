@@ -49,6 +49,9 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
             if (orgDsGateway.checkIfUsernameExist(requestModel.getName())){
                 return userRegisterPresenter.prepareFailView("Organization already exists.");
             }
+            if (requestModel.getPassword() == null){
+                return userRegisterPresenter.prepareFailView("Empty passwords.");
+            }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
                 return userRegisterPresenter.prepareFailView("Two Passwords are different.");
             }
@@ -58,8 +61,12 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         }
         else if (requestModel.getUserType().equals("P")){
             //Proceed as participant
+
             if (parDsGateway.checkIfUsernameExist(requestModel.getName())){
                 return userRegisterPresenter.prepareFailView("Participant already exists.");
+            }
+            if (requestModel.getPassword() == null){
+                return userRegisterPresenter.prepareFailView("Empty passwords.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
                 return userRegisterPresenter.prepareFailView("Two Passwords are different.");
