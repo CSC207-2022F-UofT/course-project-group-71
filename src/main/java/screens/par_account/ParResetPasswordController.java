@@ -14,8 +14,8 @@ public class ParResetPasswordController {
     }
 
     public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws SQLException, ClassNotFoundException {
-        UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, password, true, newPassword, reNewPassword);
-
+        UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, password, false, newPassword, reNewPassword);
+        System.out.println("Reset Par");
         return userInput.resetPassword(requestModel);
     }
 }

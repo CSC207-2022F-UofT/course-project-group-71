@@ -64,6 +64,8 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
 
             JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
