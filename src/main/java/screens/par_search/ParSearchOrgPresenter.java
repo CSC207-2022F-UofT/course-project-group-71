@@ -9,6 +9,11 @@ import java.util.ArrayList;
 
 public class ParSearchOrgPresenter implements ParSearchOrgOutputBoundary {
 
+    /**Returns the search results following a successful search for organizers.
+     *
+     * @param results A response model containing information to show success view
+     * @return Returns the response model
+     */
     @Override
     public ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel results) {
         ArrayList<String> orgNames= results.getSearchResults();
@@ -17,6 +22,11 @@ public class ParSearchOrgPresenter implements ParSearchOrgOutputBoundary {
         return results;
     }
 
+    /**Returns an error due to a failed search.
+     *
+     * @param error A String containing information about how it failed
+     * @return Throws an error
+     */
     @Override
     public ParSearchOrgResponseModel prepareFailView(String error) {
         throw new ShowMessageView(error);

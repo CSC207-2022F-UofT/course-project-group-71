@@ -24,12 +24,26 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
     public ParSearchOrgResultsPage parSearchOrgResultsPage;
     private String orgName;
 
+    /**Constructor for the organizer search results page action listener.
+     * It takes a search results page and an organizer name as inputs
+     * and stores them as attributes.
+     *
+     * @param parSearchOrgResultsPage The participant's organizer search results page
+     * @param orgName The name of the organizer the action is being performed on
+     */
     public ParSearchOrgResultsPageActionListener(ParSearchOrgResultsPage parSearchOrgResultsPage, String orgName) {
 
         this.parSearchOrgResultsPage = parSearchOrgResultsPage;
         this.orgName = orgName;
     }
 
+    /**A method to deal with actions on the organizer search results page.
+     * If the action command is back, the participant's home page is displayed.
+     * If the action command is follow or unfollow, the participant attempts to
+     * follow or unfollow the organizer.
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();

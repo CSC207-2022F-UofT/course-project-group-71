@@ -20,6 +20,11 @@ public class ParSearchOrgResultsPage extends JFrame {
 
     ParDsGateway par = new ParFileUser();
 
+    /**The main method for creating the search results page.
+     *
+     * @param orgNames An array list containing all the search results
+     * @param parUsername A string containing the participant's username
+     */
     public ParSearchOrgResultsPage(ArrayList<String> orgNames, String parUsername) {
 
         this.parUsername = parUsername;
@@ -105,6 +110,10 @@ public class ParSearchOrgResultsPage extends JFrame {
 
     }
 
+    /**A getter for the participant's username
+     *
+     * @return Returns the participant's username
+     */
     public String getParUsername() {
         return parUsername;
     }
