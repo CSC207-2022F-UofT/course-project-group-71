@@ -25,12 +25,25 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
     public ParSearchEventResultsPage parSearchEventResultsPage;
     private String eventName;
 
+    /**Constructor of the event search results page action listener.
+     * It takes a search results page and an event name as inputs
+     * and stores them as attributes.
+     *
+     * @param parSearchEventResultsPage The participant's event search results page
+     * @param eventName The name of the event
+     */
     public ParSearchEventResultsPageActionListener(ParSearchEventResultsPage parSearchEventResultsPage, String eventName) {
         this.parSearchEventResultsPage = parSearchEventResultsPage;
         this.eventName = eventName;
 
     }
 
+    /**A method to deal with actions on the event search results page.
+     * If the action command is back, the home page is displayed.
+     * If the action command is join, the participant attempts to join the event.
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
