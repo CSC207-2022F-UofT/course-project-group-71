@@ -9,6 +9,6 @@ public class ParJoinEventPresenter implements ParJoinEventOutputBoundary {
     @Override
     public ParJoinEventResponseModel prepareSuccessView(ParJoinEventResponseModel response) {
         response.setMessage("Registered successfully for " + response.getEventName() + "!");
-        throw new ShowMessageView(response.getMessage());
+        return response;
     }
 }

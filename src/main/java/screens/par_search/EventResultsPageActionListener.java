@@ -11,6 +11,7 @@ import screens.par_join_event.ParJoinEventPresenter;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class EventResultsPageActionListener implements ActionListener {
 
@@ -32,24 +33,23 @@ public class EventResultsPageActionListener implements ActionListener {
             new ParHomePage(this.eventResultsPage.getParUsername());
         } else if (actionCommand.equals("Join " + this.eventName)) {
 
-            try {
-                ParDsGateway par = new ParFileUser();
-                ParJoinEventOutputBoundary presenter = new ParJoinEventPresenter();
-                ParJoinEventInputBoundary interactor = new ParJoinEventInteractor(par, presenter);
-                ParJoinEventController controller = new ParJoinEventController(interactor);
-                String parUserName = this.eventResultsPage.getParUsername();
-                ParJoinEventResponseModel response = null;
-                response = controller.join(parUserName, this.eventName);
-            }catch (Exception error) {
-                JOptionPane.showMessageDialog(this.eventResultsPage, response.getMessage());
-            }
-            new ParHomePage(this.eventResultsPage.getParUsername());
-        }
+            ParDsGateway par = new ParFileUser();
+            ParJoinEventOutputBoundary presenter = new ParJoinEventPresenter();
+            ParJoinEventInputBoundary interactor = new ParJoinEventInteractor(par, presenter);
+            ParJoinEventController controller = new ParJoinEventController(interactor);
+            String parUserName = this.eventResultsPage.getParUsername();
+            ParJoinEventResponseModel response = controller.join(parUserName, this.eventName);
+            this.eventResultsPage.dispose();
 
-//        }else if (actionCommand.equals("Leave "+this.eventName){
-//
-//    }
+            JOptionPane.showMessageDialog(this.eventResultsPage, response.getMessage());
+            new ParHomePage(this.eventResultsPage.getParUsername());
+
+        } else if (actionCommand.equals("Leave " + this.eventName) {
+
+
+        }
 
 
     }
+}
 }
