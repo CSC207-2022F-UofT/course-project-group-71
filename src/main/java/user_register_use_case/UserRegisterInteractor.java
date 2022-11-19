@@ -6,29 +6,25 @@ import database.ParDsGateway;
 
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
     final ParDsGateway parDsGateway;
     final OrgDsGateway orgDsGateway;
 
-    final UserRegisterPresenter userRegisterPresenter;
+    final UserRegisterOutputBoundary userRegisterOutputBoundary;
 
     /**This is the construct method of UserRegisterInteractor.
      * It takes DsGateways and Presenter as input to store as instances.
      *
      * @param parDsGateway The database gateway of the participants
      * @param orgDsGateway The database gateway of the organizers
-     * @param userRegisterPresenter The presenter used to show success or not of registration
+     * @param userRegisterOutputBoundary The presenter used to show success or not of registration
      */
     public UserRegisterInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway,
-                                  UserRegisterPresenter userRegisterPresenter){
+                                  UserRegisterOutputBoundary userRegisterOutputBoundary){
         this.parDsGateway = parDsGateway;
         this.orgDsGateway = orgDsGateway;
-        this.userRegisterPresenter = userRegisterPresenter;
+        this.userRegisterOutputBoundary = userRegisterOutputBoundary;
 
     }
 
@@ -47,38 +43,37 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         if (requestModel.getUserType().equals("O")){
             //Then proceed as organizer
             if (orgDsGateway.checkIfUsernameExist(requestModel.getName())){
-                return userRegisterPresenter.prepareFailView("Organization already exists.");
+                return userRegisterOutputBoundary.prepareFailView("Organization already exists.");
             }
             if (requestModel.getPassword().isEmpty()){
-                return userRegisterPresenter.prepareFailView("Password cannot be empty.");
+                return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
-                return userRegisterPresenter.prepareFailView("Two Passwords are different.");
+                return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
             }
             orgDsGateway.createOrg(requestModel.getName(),requestModel.getPassword());
             UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
-            return userRegisterPresenter.prepareSuccessView(responseModel);
+            return userRegisterOutputBoundary.prepareSuccessView(responseModel);
         }
         else if (requestModel.getUserType().equals("P")){
             //Proceed as participant
 
             if (parDsGateway.checkIfUsernameExist(requestModel.getName())){
-                return userRegisterPresenter.prepareFailView("Participant already exists.");
+                return userRegisterOutputBoundary.prepareFailView("Participant already exists.");
             }
             if (requestModel.getPassword().isEmpty()){
-                return userRegisterPresenter.prepareFailView("Password cannot be empty.");
+                return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
             }
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
-                return userRegisterPresenter.prepareFailView("Two Passwords are different.");
+                return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
             }
             parDsGateway.createPar(requestModel.getName(),requestModel.getPassword());
             UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
-            UserRegisterResponseModel tempPresenter = userRegisterPresenter.prepareSuccessView(responseModel);
 
-            return tempPresenter;
+            return userRegisterOutputBoundary.prepareSuccessView(responseModel);
         }
         else {
-            return userRegisterPresenter.prepareFailView("Please select your account type.");
+            return userRegisterOutputBoundary.prepareFailView("Please select your account type.");
         }
 
     }

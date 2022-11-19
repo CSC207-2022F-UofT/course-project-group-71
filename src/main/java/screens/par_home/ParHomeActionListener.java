@@ -4,9 +4,9 @@ import database.*;
 import par_search_org_use_case.*;
 import par_search_event_use_case.*;
 import screens.LoginPage;
-import screens.org_home.OrgHomeResponseFormatter;
+import screens.org_home.OrgHomePresenter;
 import screens.UserLoginController;
-import screens.UserLoginResponseFormatter;
+import screens.UserLoginPresenter;
 import screens.par_account.ParAccountPage;
 import screens.par_followed_org.ParFollowedOrgPage;
 import screens.par_past_event.ParPastEventPage;
@@ -15,7 +15,7 @@ import screens.upcoming_to_past.UpcomingToPastController;
 import screens.upcoming_to_past.UpcomingToPastResponseFormatter;
 import upcoming_to_past_use_case.UpcomingToPastInputBoundary;
 import upcoming_to_past_use_case.UpcomingToPastInteractor;
-import upcoming_to_past_use_case.UpcomingToPastPresenter;
+import upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
 import upcoming_to_past_use_case.UpcomingToPastResponseModel;
 import user_login_use_case.*;
 import screens.par_search.*;
@@ -44,19 +44,17 @@ public class ParHomeActionListener implements ActionListener {
             this.parHomePage.dispose();
             try {
                 new ParUpcomingEventPage(this.parHomePage.getParUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastPresenter upcomingToPastPresenter = new UpcomingToPastResponseFormatter();
+            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastResponseFormatter();
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                    eventDsGateway, upcomingToPastPresenter);
+                    eventDsGateway, upcomingToPastOutputBoundary);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel = null;
+            UpcomingToPastResponseModel responseModel;
             try {
                 responseModel = controller.convertToPast("P",
                         this.parHomePage.getParUsername());
@@ -70,25 +68,21 @@ public class ParHomeActionListener implements ActionListener {
             this.parHomePage.dispose();
             try {
                 new ParPastEventPage(this.parHomePage.getParUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastPresenter upcomingToPastPresenter = new UpcomingToPastResponseFormatter();
+            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastResponseFormatter();
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                    eventDsGateway, upcomingToPastPresenter);
+                    eventDsGateway, upcomingToPastOutputBoundary);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel = null;
+            UpcomingToPastResponseModel responseModel;
             try {
                 responseModel = controller.convertToPast("P",
                         this.parHomePage.getParUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             if (!responseModel.getEventsToPast().isEmpty()){
@@ -98,9 +92,7 @@ public class ParHomeActionListener implements ActionListener {
             this.parHomePage.dispose();
             try {
                 new ParFollowedOrgPage(this.parHomePage.getParUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         } else if (page.equals("Search")) {
@@ -113,9 +105,7 @@ public class ParHomeActionListener implements ActionListener {
                 String parUserName= this.parHomePage.getParUsername();
                 try {
                     controller.orgSearch(query,parUserName); //draw screen
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
+                } catch (SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
                 this.parHomePage.dispose();
@@ -128,27 +118,25 @@ public class ParHomeActionListener implements ActionListener {
                 String parUserName= this.parHomePage.getParUsername();
                 try {
                     controller.eventSearch(query,parUserName);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
+                } catch (SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
                 this.parHomePage.dispose();
             }
             } else {
                 this.parHomePage.dispose();
-                UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
+                UserLoginOutputBoundary userLoginOutputBoundary = new UserLoginPresenter();
 
                 ParDsGateway parDsGateway = new ParFileUser();
 
-                ParHomePresenter parHomePresenter = new ParHomeResponseFormatter();
+                ParHomeOutputBoundary parHomeOutputBoundary = new ParHomePresenter();
 
                 OrgDsGateway orgDsGateway = new OrgFileUser();
 
-                OrgHomePresenter orgHomePresenter = new OrgHomeResponseFormatter();
+                OrgHomeOutputBoundary orgHomeOutputBoundary = new OrgHomePresenter();
 
                 UserLoginInputBoundary interactor = new UserLoginInteractor(
-                        userLoginPresenter, parDsGateway, parHomePresenter, orgDsGateway, orgHomePresenter);
+                        userLoginOutputBoundary, parDsGateway, parHomeOutputBoundary, orgDsGateway, orgHomeOutputBoundary);
 
                 UserLoginController userLoginController = new UserLoginController(interactor);
 

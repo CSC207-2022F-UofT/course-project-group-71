@@ -11,14 +11,14 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
     private EventDsGateway eventDsGateway;
 
     private ParDsGateway parDsGateway;
-    private OrgNotifyEventPresenter orgNotifyEventPresenter;
+    private OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary;
 
     public OrgNotifyEventInteractor(EventDsGateway eventDsGateway,
                                     ParDsGateway parDsGateway,
-                                    OrgNotifyEventPresenter orgNotifyEventPresenter) {
+                                    OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary) {
         this.eventDsGateway = eventDsGateway;
         this.parDsGateway = parDsGateway;
-        this.orgNotifyEventPresenter = orgNotifyEventPresenter;
+        this.orgNotifyEventOutputBoundary = orgNotifyEventOutputBoundary;
     }
 
     @Override
@@ -28,13 +28,13 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
         OrgNotifyEventResponseModel notificationResponseModel =
                 new OrgNotifyEventResponseModel(eventName);
         if (parUsernames.isEmpty()) {
-            return orgNotifyEventPresenter.prepareFailView(notificationResponseModel);
+            return orgNotifyEventOutputBoundary.prepareFailView(notificationResponseModel);
         }
 
         ArrayList<Integer> times = eventDsGateway.getTime(eventName);
         String time = times.get(1) + "-" + times.get(2) + " " + times.get(3) + ":" + times.get(4);
         for (String username : parUsernames) {
-            String newNotification = "";
+            String newNotification;
             if (orgNotifyEventRequestModel.getNotificationType().equals("Future")){
                 newNotification = "Event " + eventName + " is about to happen at " + time + "!";
             } else {
@@ -43,7 +43,7 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
             parDsGateway.addNotification(username, newNotification);
 
         }
-        return orgNotifyEventPresenter.prepareSuccessView(notificationResponseModel);
+        return orgNotifyEventOutputBoundary.prepareSuccessView(notificationResponseModel);
     }
 
 }

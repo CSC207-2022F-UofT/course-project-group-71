@@ -3,7 +3,7 @@ package screens.par_home;
 import database.ParDsGateway;
 import database.ParFileUser;
 import screens.par_show_notification.ParShowNotificationController;
-import screens.par_show_notification.ParShowNotificationResponseFormatter;
+import screens.par_show_notification.ParShowNotificationPresenter;
 
 import javax.swing.*;
 
@@ -20,7 +20,7 @@ public class ParHomePage extends JFrame implements ActionListener {
     JRadioButton org,eve;
     JTextField searchBox;
 
-    ParShowNotificationPresenter parShowNotificationPresenter =  new ParShowNotificationResponseFormatter();
+    ParShowNotificationOutputBoundary parShowNotificationPresenter =  new ParShowNotificationPresenter();
 
     ParDsGateway parDsGateway = new ParFileUser();
 

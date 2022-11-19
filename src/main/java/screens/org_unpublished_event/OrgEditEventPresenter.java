@@ -1,10 +1,10 @@
 package screens.org_unpublished_event;
 
-import org_edit_event_use_case.OrgEditEventPresenter;
+import org_edit_event_use_case.OrgEditEventOutputBoundary;
 import org_edit_event_use_case.OrgEditEventResponseModel;
 import screens.ShowMessageView;
 
-public class OrgEditEventResponseFormatter implements OrgEditEventPresenter {
+public class OrgEditEventPresenter implements OrgEditEventOutputBoundary {
 
     @Override
     public OrgEditEventResponseModel prepareSuccessView(OrgEditEventResponseModel response) {

@@ -12,7 +12,7 @@ public class UserRegisterTest {
     ParDsGateway par = new ParFileUser();
     OrgDsGateway org = new OrgFileUser();
 
-    UserRegisterResponseFormatter presenter = new UserRegisterResponseFormatter();
+    UserRegisterPresenter presenter = new UserRegisterPresenter();
     UserRegisterInputBoundary interactor = new UserRegisterInteractor(par, org, presenter);
     UserRegisterController userRegisterController = new UserRegisterController(interactor);
 

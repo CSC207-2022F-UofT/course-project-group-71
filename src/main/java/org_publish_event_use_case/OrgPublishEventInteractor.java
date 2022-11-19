@@ -1,21 +1,15 @@
 package org_publish_event_use_case;
 
 import database.EventDsGateway;
-import database.OrgDsGateway;
-import database.ParDsGateway;
 
 import java.sql.SQLException;
 
 public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     private EventDsGateway eventDsGateway;
-    private OrgDsGateway orgDsGateway;
-    private ParDsGateway parDsGateway;
-    private OrgPublishEventPresenter orgPublishEventPresenter;
-    public OrgPublishEventInteractor(EventDsGateway eventDsGateway, OrgDsGateway orgDsGateway, ParDsGateway parDsGateway, OrgPublishEventPresenter orgPublishEventPresenter) {
+    private OrgPublishEventOutputBoundary orgPublishEventOutputBoundary;
+    public OrgPublishEventInteractor(EventDsGateway eventDsGateway, OrgPublishEventOutputBoundary orgPublishEventOutputBoundary) {
         this.eventDsGateway = eventDsGateway;
-        this.orgDsGateway = orgDsGateway;
-        this.parDsGateway = parDsGateway;
-        this.orgPublishEventPresenter = orgPublishEventPresenter;
+        this.orgPublishEventOutputBoundary = orgPublishEventOutputBoundary;
     }
 
     @Override
@@ -26,6 +20,6 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
 
         OrgPublishEventResponseModel orgPublishEventResponseModel = new OrgPublishEventResponseModel(eventName);
 
-        return orgPublishEventPresenter.prepareSuccessView(orgPublishEventResponseModel);
+        return orgPublishEventOutputBoundary.prepareSuccessView(orgPublishEventResponseModel);
     }
 }

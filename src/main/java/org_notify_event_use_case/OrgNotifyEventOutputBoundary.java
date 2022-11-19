@@ -1,6 +1,6 @@
 package org_notify_event_use_case;
 
-public interface OrgNotifyEventPresenter {
+public interface OrgNotifyEventOutputBoundary {
     OrgNotifyEventResponseModel prepareSuccessView(OrgNotifyEventResponseModel notificationResponseModel);
 
     OrgNotifyEventResponseModel prepareFailView(OrgNotifyEventResponseModel notificationResponseModel);

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ParShowNotificationInteractor implements ParShowNotificationInputBoundary {
 
-    private ParShowNotificationPresenter parShowNotificationPresenter;
+    private ParShowNotificationOutputBoundary parShowNotificationPresenter;
     private ParDsGateway parDsGateway;
     /**This is the construct method of ParShowNotificationInteractor.
      * It takes ParGateways and Presenter as input to store as instances.
@@ -16,7 +16,7 @@ public class ParShowNotificationInteractor implements ParShowNotificationInputBo
      * @param parDsGateway The participants gateway of the participants.
      */
 
-    public ParShowNotificationInteractor(ParShowNotificationPresenter parShowNotificationPresenter, ParDsGateway parDsGateway) {
+    public ParShowNotificationInteractor(ParShowNotificationOutputBoundary parShowNotificationPresenter, ParDsGateway parDsGateway) {
         this.parShowNotificationPresenter = parShowNotificationPresenter;
         this.parDsGateway = parDsGateway;
     }
@@ -34,12 +34,12 @@ public class ParShowNotificationInteractor implements ParShowNotificationInputBo
     public ParShowNotificationResponseModel showNotification(ParShowNotificationRequestModel requestModel) throws SQLException, ClassNotFoundException {
         ArrayList<String> notifications = parDsGateway.getNotifications(requestModel.getUsername());
         if (!notifications.isEmpty()){
-            String notification = "";
+            StringBuilder notification = new StringBuilder();
             for (String n : notifications) {
-                notification += n+"\n";
+                notification.append(n).append("\n");
             }
             parDsGateway.clearNotifications(requestModel.getUsername());
-            return parShowNotificationPresenter.prepareView(notification);
+            return parShowNotificationPresenter.prepareView(notification.toString());
         }
         else {
             return parShowNotificationPresenter.prepareView("You have no notification!");

@@ -28,7 +28,7 @@ public class ParAccountActionListener implements ActionListener {
             new ParHomePage(this.parAccountPage.getParUsername());
         }
         else if (actionCommand.equals("Reset Password")) {
-            UserResetPasswordPresenter userResetPasswordPresenter = new UserResetPasswordFormatter();
+            UserResetPasswordOutputBoundary userResetPasswordOutputBoundary = new ParResetPasswordPresenter();
 
             ParDsGateway parDsGateway = new ParFileUser();
 
@@ -36,7 +36,7 @@ public class ParAccountActionListener implements ActionListener {
 
 
             UserResetPasswordInputBoundary interactor = new UserResetPasswordInteractor(
-                    userResetPasswordPresenter, orgDsGateway, parDsGateway);
+                    userResetPasswordOutputBoundary, orgDsGateway, parDsGateway);
 
             ParResetPasswordController resetPasswordController = new ParResetPasswordController(interactor);
 
@@ -54,9 +54,7 @@ public class ParAccountActionListener implements ActionListener {
             this.parAccountPage.dispose();
             try {
                 new OrgPastEventPage(this.parAccountPage.getParUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 

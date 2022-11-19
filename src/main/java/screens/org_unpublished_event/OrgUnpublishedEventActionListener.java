@@ -3,21 +3,20 @@ package screens.org_unpublished_event;
 import database.*;
 import org_create_event_use_case.OrgCreateEventInputBoundary;
 import org_create_event_use_case.OrgCreateEventInteractor;
-import org_create_event_use_case.OrgCreateEventPresenter;
 import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
-import org_delete_event_use_case.OrgDeleteEventPresenter;
+import org_delete_event_use_case.OrgDeleteEventOutputBoundary;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
 import org_edit_event_use_case.OrgEditEventInputBoundary;
 import org_edit_event_use_case.OrgEditEventInteractor;
-import org_edit_event_use_case.OrgEditEventPresenter;
+import org_edit_event_use_case.OrgEditEventOutputBoundary;
 import org_publish_event_use_case.OrgPublishEventInputBoundary;
 import org_publish_event_use_case.OrgPublishEventInteractor;
-import org_publish_event_use_case.OrgPublishEventPresenter;
+import org_publish_event_use_case.OrgPublishEventOutputBoundary;
 import org_publish_event_use_case.OrgPublishEventResponseModel;
 import screens.org_home.OrgHomePage;
 import screens.org_upcoming_event.OrgDeleteEventController;
-import screens.org_upcoming_event.OrgDeleteEventResponseFormatter;
+import screens.org_upcoming_event.OrgDeleteEventPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -46,16 +45,16 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             ParDsGateway parDsGateway = new ParFileUser();
 
-            OrgDeleteEventPresenter orgDeleteEventPresenter = new OrgDeleteEventResponseFormatter();
+            OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
 
             OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
-                    parDsGateway,orgDeleteEventPresenter);
+                    parDsGateway, orgDeleteEventOutputBoundary);
 
             OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
-            OrgDeleteEventResponseModel responseModel = null;
+            OrgDeleteEventResponseModel responseModel;
             try {
                 try {
                     responseModel = orgDeleteEventController.delete(eventName);
@@ -71,34 +70,25 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             this.orgUnpublishedEventPage.dispose();
             try {
                 new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
         else if (actionCommand.contains("Publish")){
             EventDsGateway eventDsGateway = new EventFileUser();
 
-            OrgDsGateway orgDsGateway = new OrgFileUser();
+            OrgPublishEventOutputBoundary orgPublishEventOutputBoundary = new OrgPublishEventResponseFormatter();
 
-            ParDsGateway parDsGateway = new ParFileUser();
-
-            OrgPublishEventPresenter orgPublishEventPresenter = new OrgPublishEventResponseFormatter();
-
-            OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgDsGateway,
-                    parDsGateway,orgPublishEventPresenter);
+            OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgPublishEventOutputBoundary);
 
             OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
 
             String eventName = actionCommand.substring(0,actionCommand.length()-7);
 
-            OrgPublishEventResponseModel responseModel = null;
+            OrgPublishEventResponseModel responseModel;
             try {
                 responseModel = orgPublishEventController.publish(eventName);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
@@ -108,9 +98,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             try {
                 new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -119,7 +107,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
 
-            OrgCreateEventPresenter orgCreateEventPresenter = new OrgCreateEventResponseFormatter();
+            org_create_event_use_case.OrgCreateEventPresenter orgCreateEventPresenter = new OrgCreateEventPresenter();
 
             OrgCreateEventInputBoundary interactor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway, orgCreateEventPresenter);
 
@@ -132,9 +120,9 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
 
-            OrgEditEventPresenter orgEditEventPresenter = new OrgEditEventResponseFormatter();
+            OrgEditEventOutputBoundary orgEditEventOutputBoundary = new OrgEditEventPresenter();
 
-            OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(eventDsGateway, orgDsGateway, orgEditEventPresenter);
+            OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(eventDsGateway, orgDsGateway, orgEditEventOutputBoundary);
 
             OrgEditEventController orgEditEventController = new OrgEditEventController(interactor);
 
