@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import static tutorial.HelloWorld.*;
 
 public class EventFileUser implements EventDsGateway{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         EventFileUser n = new EventFileUser();
-        System.out.println(n.getStatus("E2"));
+        System.out.println(n.utilDeleteEvent("E2"));
     }
 
     /**This is a tool method that is called by other method to create an event.
@@ -17,7 +17,6 @@ public class EventFileUser implements EventDsGateway{
      * It should not return anything but make changes on the database.
      *
      * @param title The title of the event
-     * @param status The status of the event (We are considering deleting it)
      * @param description The description of the event
      * @param location The location of the event (It could be a zoom link)
      * @param year The time (year) of the event
@@ -26,14 +25,14 @@ public class EventFileUser implements EventDsGateway{
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
      */
-    public void utilStoreEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
+    public void utilStoreEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "insert into eventfile(title,status,description,location,year,month,day,hour,minute) values('" +
-                    title + "'," + status + ",'" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+            String sql = "insert into eventfile(title,description,location,year,month,day,hour,minute) values('" +
+                    title + "','" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);
@@ -44,22 +43,14 @@ public class EventFileUser implements EventDsGateway{
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                conn.close();
             }
 
         }
@@ -68,7 +59,6 @@ public class EventFileUser implements EventDsGateway{
     /**This is a tool method used to edit the event information
      *
      * @param title The title of the event
-     * @param status The status of the event (We are considering deleting it)
      * @param description The description of the event
      * @param location The location of the event (It could be a zoom link)
      * @param year The time (year) of the event
@@ -78,13 +68,13 @@ public class EventFileUser implements EventDsGateway{
      * @param minute The time (minute) of the event
      */
 
-    public void utilEditEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
+    public void utilEditEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql =  "update eventfile set status = " + status + ", description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
+            String sql =  "update eventfile set description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
 
             System.out.println(sql);
             System.out.println(sql);
@@ -98,35 +88,29 @@ public class EventFileUser implements EventDsGateway{
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
     }
 
-    /**This is a tool method used for deleting an event.
+    /**
+     * This is a tool method used for deleting an event.
      * This is not the whole function of event deletion, it only deletes event from a table called 'eventfile'.
      * It did not break relationships of the event with other tables.
      * It should not return anything.
      *
      * @param title The title of the event that need to be deleted
+     * @return False
      */
-    public void utilDeleteEvent(String title) throws SQLException {
+    public boolean utilDeleteEvent(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -143,25 +127,20 @@ public class EventFileUser implements EventDsGateway{
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException( );
+        } catch (SQLException e) {
+            throw new SQLException( );
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
+        return false;
     }
 
     /**This is a tool method to find the organization who create a specific event.
@@ -171,7 +150,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the name of the organization who created it
      * @return the name of the organization who created the event
      */
-    public String utilGetOrganization(String title) throws SQLException {
+    public String utilGetOrganization(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet unpublished_organizer = null;
@@ -199,41 +178,25 @@ public class EventFileUser implements EventDsGateway{
                 organizer = upcoming_organizer.getString(1);
                 upcoming_organizer.close();
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (unpublished_organizer != null){
-                try {
-                    unpublished_organizer.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
-            }if (past_organizer != null){
-                try {
+                unpublished_organizer.close();
+            }
+            if (past_organizer != null){
                     past_organizer.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
-            }if (upcoming_organizer != null){
-                try {
-                    upcoming_organizer.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+            }
+            if (upcoming_organizer != null){
+                upcoming_organizer.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -246,7 +209,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event(which is a past event) that need the list of all participants
      * @return The list containing all participants of the event
      */
-    public ArrayList<String> utilGetAllPastEventParticipant(String title){
+    public ArrayList<String> utilGetAllPastEventParticipant(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -259,31 +222,21 @@ public class EventFileUser implements EventDsGateway{
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
+
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
-
         }
         return l;
 
@@ -296,7 +249,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event(which is an upcoming event) that need the list of all participants
      * @return The list containing all participants of the event
      */
-    public ArrayList<String> utilGetAllUpcomingEventParticipant(String title){
+    public ArrayList<String> utilGetAllUpcomingEventParticipant(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -309,29 +262,19 @@ public class EventFileUser implements EventDsGateway{
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -348,7 +291,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need to change the status
      */
-    public void utilUnpublishedToUpcomingForOrg(String title){
+    public void utilUnpublishedToUpcomingForOrg(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -371,22 +314,16 @@ public class EventFileUser implements EventDsGateway{
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -401,7 +338,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need to change the status
      */
-    private void utilUpcomingToPastForOrg(String title) {
+    private void utilUpcomingToPastForOrg(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -420,22 +357,16 @@ public class EventFileUser implements EventDsGateway{
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -448,7 +379,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need to change the status
      */
-    private void utilUpcomingToPastForPar(String title){
+    private void utilUpcomingToPastForPar(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -462,24 +393,16 @@ public class EventFileUser implements EventDsGateway{
                 stmt.executeUpdate("insert into past_events_for_par(par_username, event_title) values('" + participant + "','" + title + "');");
             }
             System.out.println("Success");
-
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -492,7 +415,7 @@ public class EventFileUser implements EventDsGateway{
      * @param about_name The keyword entered by user to search relevant event name
      * @return An arraylist containing all relevant event names
      */
-    public ArrayList<String> utilEventSearch(String about_name){
+    public ArrayList<String> utilEventSearch(String about_name) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -507,32 +430,18 @@ public class EventFileUser implements EventDsGateway{
                 l.add(rs.getString("title"));
             }
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         } finally {
             if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return l;
@@ -546,7 +455,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need to know the status
      * @return The status of the input event
      */
-    public String utilGetStatus(String title){
+    public String utilGetStatus(String title) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs1 = null;
@@ -580,46 +489,24 @@ public class EventFileUser implements EventDsGateway{
                 System.out.println("Pass3");
             }
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         }finally {
             if(rs1 != null){
-                try {
-                    rs1.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs1.close();
             }
             if(rs2 != null){
-                try {
-                    rs2.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs2.close();
             }
             if(rs3 != null){
-                try {
-                    rs3.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs3.close();
             }
             if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return status;
@@ -633,7 +520,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the time returned
      * @return The time of the event as [year,month,day,hour,minute]
      */
-    public ArrayList<Integer> utilGetTime(String title){
+    public ArrayList<Integer> utilGetTime(String title) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -651,32 +538,18 @@ public class EventFileUser implements EventDsGateway{
             l.add(rs.getInt("hour"));
             l.add(rs.getInt("minute"));
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         }finally {
             if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return l;
@@ -687,7 +560,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of event that need the description returned
      * @return The description of the event
      */
-    public String utilGetDescription(String title){
+    public String utilGetDescription(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -702,32 +575,18 @@ public class EventFileUser implements EventDsGateway{
             if (rs.next()){
                 description = rs.getString("description");}
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         }finally {
             if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return description;
@@ -739,7 +598,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the location returned
      * @return The location of the event
      */
-    public String utilGetLocation(String title){
+    public String utilGetLocation(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -753,32 +612,18 @@ public class EventFileUser implements EventDsGateway{
             rs.next();
             location = rs.getString("location");
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         }finally {
             if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return location;
@@ -790,7 +635,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need all the participants returned
      * @return An Arraylist containing all the participants
      */
-    public ArrayList<String> utilGetParticipants(String title){
+    public ArrayList<String> utilGetParticipants(String title) throws SQLException, ClassNotFoundException {
         ArrayList<String> l1 = utilGetAllPastEventParticipant(title);
         ArrayList<String> l2 = utilGetAllUpcomingEventParticipant(title);
         ArrayList<String> l = new ArrayList<>(0);
@@ -806,7 +651,7 @@ public class EventFileUser implements EventDsGateway{
      * @param eventName The event name that need to be used to check existence
      * @return Whether the event exists
      */
-    public boolean utilCheckIfEventNameExist(String eventName){
+    public boolean utilCheckIfEventNameExist(String eventName) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -823,32 +668,18 @@ public class EventFileUser implements EventDsGateway{
             }
 
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         }finally {
             if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return WhetherExist;
@@ -863,7 +694,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need to know the status
      * @return The status of the input event
      */
-    public String getStatus(String title){
+    public String getStatus(String title) throws SQLException, ClassNotFoundException {
         return utilGetStatus(title);
     }
 
@@ -873,7 +704,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of event that need the description returned
      * @return The description of the event
      */
-    public String getDescription(String title){
+    public String getDescription(String title) throws SQLException, ClassNotFoundException {
         return utilGetDescription(title);
     }
 
@@ -884,7 +715,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the location returned
      * @return The location of the event
      */
-    public String getLocation(String title){
+    public String getLocation(String title) throws SQLException, ClassNotFoundException {
         return utilGetLocation(title);
     }
 
@@ -895,7 +726,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the time returned
      * @return The time of the event as [year,month,day,hour,minute]
      */
-    public ArrayList<Integer> getTime(String title){
+    public ArrayList<Integer> getTime(String title) throws SQLException, ClassNotFoundException {
         return utilGetTime(title);
     }
 
@@ -905,7 +736,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need all the participants returned
      * @return An Arraylist containing all the participants
      */
-    public ArrayList<String> getParticipants(String title){
+    public ArrayList<String> getParticipants(String title) throws SQLException, ClassNotFoundException {
         return utilGetParticipants(title);
     }
 
@@ -915,7 +746,7 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need the organizer who create the event returned
      * @return The organizer of the event
      */
-    public String getOrganization(String title) throws SQLException {
+    public String getOrganization(String title) throws SQLException, ClassNotFoundException {
         return utilGetOrganization(title);
     }
 
@@ -925,7 +756,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that's unpublished and need to turn to upcoming
      */
-    public void unPublishedToUpcoming(String title){
+    public void unPublishedToUpcoming(String title) throws SQLException, ClassNotFoundException {
         utilUnpublishedToUpcomingForOrg(title);
     }
 
@@ -934,7 +765,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that's upcoming and need to turn to past
      */
-    public void upcomingToPast(String title) {
+    public void upcomingToPast(String title) throws SQLException, ClassNotFoundException {
         utilUpcomingToPastForOrg(title);
         utilUpcomingToPastForPar(title);
     }
@@ -947,7 +778,7 @@ public class EventFileUser implements EventDsGateway{
      * @param about_name The keyword entered by user to search relevant event name
      * @return An arraylist containing all relevant event names
      */
-    public ArrayList<String> eventSearch(String about_name){
+    public ArrayList<String> eventSearch(String about_name) throws SQLException, ClassNotFoundException {
         return utilEventSearch(about_name);
     }
 
@@ -958,7 +789,7 @@ public class EventFileUser implements EventDsGateway{
      * @param eventName The event name that need to be used to check existence
      * @return Whether the event exists
      */
-    public boolean checkIfEventNameExist(String eventName){
+    public boolean checkIfEventNameExist(String eventName) throws SQLException, ClassNotFoundException {
         return utilCheckIfEventNameExist(eventName);
     }
 
@@ -972,7 +803,7 @@ public class EventFileUser implements EventDsGateway{
      * @param event_title The title of the event that need to be deleted
      */
 
-    public void deleteEvent(String event_title) throws SQLException {
+    public void deleteEvent(String event_title) throws SQLException, ClassNotFoundException {
         OrgFileUser temp_orgFileUser = new OrgFileUser();
         ParFileUser temp_parFileUser = new ParFileUser();
         ArrayList<String> All_past_participants = utilGetAllPastEventParticipant(event_title);
@@ -994,8 +825,8 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    public void editEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
-        utilEditEvent(title,status,description,location,year,month,day,hour,minute);
+    public void editEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
+        utilEditEvent(title,description,location,year,month,day,hour,minute);
     }
 
 }

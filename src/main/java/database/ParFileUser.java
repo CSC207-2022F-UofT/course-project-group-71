@@ -16,7 +16,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @param password The password of the participant
      */
-    public void utilStorePar(String username, String password){
+    public void utilStorePar(String username, String password) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -33,22 +33,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -59,7 +53,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param username THe username of the participant
      */
-    public void utilDeletePar(String username){
+    public void utilDeletePar(String username) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -76,22 +70,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -102,7 +90,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param org_username The username of the organizer
      */
-    public void utilAddParFollowing(String par_username, String org_username){
+    public void utilAddParFollowing(String par_username, String org_username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -119,22 +107,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -148,7 +130,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param org_username The username of the organizer
      */
-    public void utilDeleteParFollowOrg(String par_username, String org_username) {
+    public void utilDeleteParFollowOrg(String par_username, String org_username) throws ClassNotFoundException, SQLException {
             Statement stmt = null;
             Connection conn = null;
             try {
@@ -164,22 +146,16 @@ public class ParFileUser implements ParDsGateway {
                     System.out.println("Failure");
                 }
 
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                throw new ClassNotFoundException();
+            } catch (SQLException e) {
+                throw new SQLException();
             } finally {
                 if (stmt != null) {
-                    try {
-                        stmt.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    stmt.close();
                 }
                 if (conn != null) {
-                    try {
-                        conn.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    conn.close();
                 }
 
             }
@@ -191,7 +167,7 @@ public class ParFileUser implements ParDsGateway {
       * @param par_username The username of the participant
      * @param event_title The title of the event
      */
-    public void utilAddParPastEvent(String par_username, String event_title){
+    public void utilAddParPastEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -208,22 +184,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -236,7 +206,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param event_title The title of the event
      */
-    public void utilDeleteParPastEvent(String par_username, String event_title){
+    public void utilDeleteParPastEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -252,22 +222,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -281,7 +245,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param event_title The title of the event
      */
-    public void utilAddParUpcomingEvent(String par_username, String event_title){
+    public void utilAddParUpcomingEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -298,22 +262,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -327,7 +285,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param event_title The title of the event
      */
-    public void utilDeleteParUpcomingEvent(String par_username, String event_title){
+    public void utilDeleteParUpcomingEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -343,22 +301,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -370,7 +322,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All organizers followed by the participant
      */
-    public ArrayList<String> utilGetAllFollowing(String par_username){
+    public ArrayList<String> utilGetAllFollowing(String par_username) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -386,29 +338,19 @@ public class ParFileUser implements ParDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -423,7 +365,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All past events registered by the participant
      */
-    public ArrayList<String> utilGetAllPastEvent(String par_username){
+    public ArrayList<String> utilGetAllPastEvent(String par_username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -438,29 +380,19 @@ public class ParFileUser implements ParDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -473,7 +405,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All upcoming events registered by the participant
      */
-    public ArrayList<String> utilGetAllUpcomingEvent(String par_username){
+    public ArrayList<String> utilGetAllUpcomingEvent(String par_username) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -488,29 +420,19 @@ public class ParFileUser implements ParDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -523,7 +445,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param new_password The new password of the participant
      */
-    public void utilPasswordUpdating(String par_username, String new_password){
+    public void utilPasswordUpdating(String par_username, String new_password) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -539,22 +461,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -565,7 +481,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param new_notification The new notification need to be sent to the participant
      */
-    public void utilNotificationUpdating(String par_username, String new_notification){
+    public void utilNotificationUpdating(String par_username, String new_notification) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -581,22 +497,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -607,7 +517,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All notifications of the participant
      */
-    public ArrayList<String> UtilGetNotifications(String par_username){
+    public ArrayList<String> UtilGetNotifications(String par_username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -623,29 +533,19 @@ public class ParFileUser implements ParDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -656,7 +556,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      */
-    public void UtilClearNotifications(String par_username){
+    public void UtilClearNotifications(String par_username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -672,22 +572,16 @@ public class ParFileUser implements ParDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -699,7 +593,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return The password of the participant
      */
-    public String utilGetPassword(String username){
+    public String utilGetPassword(String username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -713,32 +607,18 @@ public class ParFileUser implements ParDsGateway {
             rs.next();
             password = rs.getString("password");
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         }finally {
             if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return password;
@@ -750,7 +630,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
      */
-    public boolean utilCheckIfUsernameExist(String username){
+    public boolean utilCheckIfUsernameExist(String username) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -766,32 +646,18 @@ public class ParFileUser implements ParDsGateway {
                 WhetherExist = true;
             }
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         }finally {
             if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return WhetherExist;
@@ -807,7 +673,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param title The title of the event
      */
-    public void registerEvent(String par_username, String title){
+    public void registerEvent(String par_username, String title) throws SQLException, ClassNotFoundException {
         utilAddParUpcomingEvent(par_username,title);
     }
 
@@ -818,7 +684,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param title The title of the event
      */
-    public void leaveEvent(String par_username, String title){
+    public void leaveEvent(String par_username, String title) throws SQLException, ClassNotFoundException {
         utilDeleteParUpcomingEvent(par_username,title);
     }
 
@@ -828,7 +694,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return The password of the participant
      */
-    public String getPassword(String username){
+    public String getPassword(String username) throws SQLException, ClassNotFoundException {
         return utilGetPassword(username);
     }
 
@@ -838,7 +704,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @param new_password The new password of the participant
      */
-    public void setPassword(String username, String new_password){
+    public void setPassword(String username, String new_password) throws SQLException, ClassNotFoundException {
         utilPasswordUpdating(username, new_password);
     }
 
@@ -848,7 +714,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All notifications of the participant
      */
-    public ArrayList<String> getNotifications(String par_username){
+    public ArrayList<String> getNotifications(String par_username) throws SQLException, ClassNotFoundException {
         return UtilGetNotifications(par_username);
     }
 
@@ -858,7 +724,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return All the upcoming events registered by the participant
      */
-    public ArrayList<String> getUpcomingEvents(String username){
+    public ArrayList<String> getUpcomingEvents(String username) throws SQLException, ClassNotFoundException {
         return utilGetAllUpcomingEvent(username);
     }
 
@@ -868,7 +734,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return All the past events registered by the participant
      */
-    public ArrayList<String> getPastEvents(String username){
+    public ArrayList<String> getPastEvents(String username) throws SQLException, ClassNotFoundException {
         return utilGetAllPastEvent(username);
     }
 
@@ -878,7 +744,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return All the organizers followed by the participant
      */
-    public ArrayList<String> getFollowedOrg(String username){
+    public ArrayList<String> getFollowedOrg(String username) throws SQLException, ClassNotFoundException {
         return utilGetAllFollowing(username);
     }
 
@@ -888,7 +754,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param org_username The username of the organizer
      */
-    public void followOrg(String par_username, String org_username){
+    public void followOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException {
         utilAddParFollowing(par_username,org_username);
     }
 
@@ -898,7 +764,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param org_username The username of the organizer
      */
-    public void unfollowOrg(String par_username, String org_username){
+    public void unfollowOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException {
         utilDeleteParFollowOrg(par_username,org_username);
     }
 
@@ -910,7 +776,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
      */
-    public boolean checkIfUsernameExist(String username){
+    public boolean checkIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
         return utilCheckIfUsernameExist(username);
     }
 
@@ -920,7 +786,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @param password The password of the participant
      */
-    public void createPar(String username, String password){
+    public void createPar(String username, String password) throws SQLException, ClassNotFoundException {
         utilStorePar(username, password);
     }
 
@@ -932,7 +798,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param username The username of the participant
      */
-    public void deletePar(String username){
+    public void deletePar(String username) throws SQLException, ClassNotFoundException {
         //First delete relationships with events
         //Then delete relationships with organizers
         //Then delete itself
@@ -965,7 +831,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @param new_notification The new notification sent to the participant
      */
-    public boolean addNotification(String username, String new_notification){
+    public boolean addNotification(String username, String new_notification) throws SQLException, ClassNotFoundException {
         utilNotificationUpdating(username,new_notification);
         return false;
     }
@@ -976,7 +842,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      */
     @Override
-    public void clearNotifications(String username) {
+    public void clearNotifications(String username) throws SQLException, ClassNotFoundException {
         UtilClearNotifications(username);
     }
 

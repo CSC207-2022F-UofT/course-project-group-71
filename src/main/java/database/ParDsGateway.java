@@ -1,35 +1,36 @@
 package database;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface ParDsGateway {
-    String getPassword(String username);
+    String getPassword(String username) throws SQLException, ClassNotFoundException;
 
-    ArrayList<String> getNotifications(String username);
+    ArrayList<String> getNotifications(String username) throws SQLException, ClassNotFoundException;
 
-    ArrayList<String> getUpcomingEvents(String username);
+    ArrayList<String> getUpcomingEvents(String username) throws SQLException, ClassNotFoundException;
 
-    ArrayList<String> getPastEvents(String username);
+    ArrayList<String> getPastEvents(String username) throws SQLException, ClassNotFoundException;
 
-    ArrayList<String> getFollowedOrg(String username);
+    ArrayList<String> getFollowedOrg(String username) throws SQLException, ClassNotFoundException;
 
-    void setPassword(String username, String new_password);
+    void setPassword(String username, String new_password) throws SQLException, ClassNotFoundException;
 
-    boolean addNotification(String username, String new_notification);
+    boolean addNotification(String username, String new_notification) throws SQLException, ClassNotFoundException;
 
-    void followOrg(String par_username, String org_username);
+    void followOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException;
 
-    void unfollowOrg(String par_username, String org_username);
+    void unfollowOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException;
 
-    void registerEvent (String par_username, String title);
+    void registerEvent (String par_username, String title) throws SQLException, ClassNotFoundException;
 
-    void leaveEvent(String par_username, String title);
+    void leaveEvent(String par_username, String title) throws SQLException, ClassNotFoundException;
 
-    boolean checkIfUsernameExist(String username);
+    boolean checkIfUsernameExist(String username) throws SQLException, ClassNotFoundException;
 
-    void createPar(String username, String password);
+    void createPar(String username, String password) throws SQLException, ClassNotFoundException;
 
-    void deletePar(String username);
+    void deletePar(String username) throws SQLException, ClassNotFoundException;
 
-    void clearNotifications(String username);
+    void clearNotifications(String username) throws SQLException, ClassNotFoundException;
 }

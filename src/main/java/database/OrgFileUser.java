@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import static tutorial.HelloWorld.*;
 
 public class OrgFileUser implements OrgDsGateway {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         OrgFileUser a = new OrgFileUser();
         System.out.println(a.organizerSearch("s"));
     }
@@ -39,18 +39,10 @@ public class OrgFileUser implements OrgDsGateway {
             throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                conn.close();
             }
 
         }
@@ -84,18 +76,10 @@ public class OrgFileUser implements OrgDsGateway {
             e.printStackTrace();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                conn.close();
             }
 
         }
@@ -107,7 +91,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @param event_title The title of the event
      */
-    public void utilAddOrgPastEvent(String org_username, String event_title) throws SQLException {
+    public void utilAddOrgPastEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -124,22 +108,16 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new SQLException();
-                }
+                conn.close();
             }
 
         }
@@ -153,7 +131,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @param event_title The title of the event
      */
-    public void utilDeleteOrgPastEvent(String org_username, String event_title) {
+    public void utilDeleteOrgPastEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -169,22 +147,16 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -197,7 +169,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @param event_title The title of the event
      */
-    public void utilAddOrgUnpublishedEvent(String org_username, String event_title){
+    public void utilAddOrgUnpublishedEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -214,22 +186,16 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -243,7 +209,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @param event_title The title of the event
      */
-    public void utilDeleteOrgUnpublishedEvent(String org_username, String event_title){
+    public void utilDeleteOrgUnpublishedEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -259,22 +225,16 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -287,7 +247,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @param event_title The title of the event
      */
-    public void utilAddOrgUpcomingEvent(String org_username, String event_title){
+    public void utilAddOrgUpcomingEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -304,22 +264,16 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -333,7 +287,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @param event_title The title of the event
      */
-    public void utilDeleteOrgUpcomingevent(String org_username, String event_title){
+    public void utilDeleteOrgUpcomingevent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -349,22 +303,17 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -376,7 +325,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @return All followers of the organizer
      */
-    public ArrayList<String> utilGetAllFollowers(String org_username){
+    public ArrayList<String> utilGetAllFollowers(String org_username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -392,29 +341,19 @@ public class OrgFileUser implements OrgDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -428,7 +367,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @return All unpublished events of the organizer
      */
-    public ArrayList<String> utilGetUnpublishedEvents(String org_username){
+    public ArrayList<String> utilGetUnpublishedEvents(String org_username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -444,29 +383,19 @@ public class OrgFileUser implements OrgDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -481,7 +410,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @return All past events of the organizer
      */
-    public ArrayList<String> utilGetPastEvents(String org_username){
+    public ArrayList<String> utilGetPastEvents(String org_username) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -497,29 +426,19 @@ public class OrgFileUser implements OrgDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -534,7 +453,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @return All upcoming events of the organizer
      */
-    public ArrayList<String> utilGetUpcomingEvents(String org_username){
+    public ArrayList<String> utilGetUpcomingEvents(String org_username) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -550,29 +469,19 @@ public class OrgFileUser implements OrgDsGateway {
             while (rs.next()){
                 l.add(rs.getString(1));
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -587,13 +496,13 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @return The password of the organizer
      */
-    public String utilGetPassword(String org_username) {
+    public String utilGetPassword(String org_username) throws SQLException, ClassNotFoundException {
         //Return the password of the entered organizer user
         //Used for login password check
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        String password = null;
+        String password;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
@@ -603,32 +512,18 @@ public class OrgFileUser implements OrgDsGateway {
             password = rs.getString("password");
             System.out.println(password);
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         } finally {
             if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return password;
@@ -639,7 +534,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organizer
      * @param new_password The new password of the organizer
      */
-    public void utilPasswordUpdating(String org_username, String new_password){
+    public void utilPasswordUpdating(String org_username, String new_password) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -655,22 +550,16 @@ public class OrgFileUser implements OrgDsGateway {
                 System.out.println("Failure");
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
         } finally {
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
 
         }
@@ -681,7 +570,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param about_name The keyword that used for search for relevant organizer
      * @return An ArrayList containing the name of all relevant organizers
      */
-    public ArrayList<String> utilOrganizerSearch(String about_name){
+    public ArrayList<String> utilOrganizerSearch(String about_name) throws SQLException, ClassNotFoundException {
         //This is method is used for searching method of the website
         Statement stmt = null;
         Connection conn = null;
@@ -697,32 +586,18 @@ public class OrgFileUser implements OrgDsGateway {
                 l.add(rs.getString("username"));
             }
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         } finally {
             if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return l;
@@ -734,7 +609,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
      */
-    public boolean utilCheckIfUsernameExist(String username){
+    public boolean utilCheckIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -743,6 +618,7 @@ public class OrgFileUser implements OrgDsGateway {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "select exists(select * from orgfile where username = '" + username + "');";
+            System.out.println(sql);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rs.next();
@@ -750,32 +626,18 @@ public class OrgFileUser implements OrgDsGateway {
                 WhetherExist = true;
             }
         } catch (ClassNotFoundException e) {
-            System.out.println("NotFound");
-            e.printStackTrace();
+            throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
-            e.printStackTrace();
+            throw new SQLException();
         }finally {
             if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                stmt.close();
             }
             if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
         return WhetherExist;
@@ -800,7 +662,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organizer
      */
-    public void deleteOrg(String username) throws SQLException {
+    public void deleteOrg(String username) throws SQLException, ClassNotFoundException {
         ParFileUser temp_parfileuser = new ParFileUser();
         ArrayList<String> All_Unpublished = utilGetUnpublishedEvents(username);
         for (String s : All_Unpublished) {
@@ -837,9 +699,9 @@ public class OrgFileUser implements OrgDsGateway {
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
      */
-    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
+    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         EventFileUser temp_eventfileuser = new EventFileUser();
-        temp_eventfileuser.utilStoreEvent(title, status, description, location, year, month, day, hour, minute);
+        temp_eventfileuser.utilStoreEvent(title, description, location, year, month, day, hour, minute);
         if (status == 0){
             //Unpublished
             utilAddOrgUnpublishedEvent(org_username,title);
@@ -859,10 +721,9 @@ public class OrgFileUser implements OrgDsGateway {
      * The deleteEvent method of the EventFileUser would automatically delete the relationship between the event
      * and the organizer and the participants.
      *
-     * @param username The username of the organizer
      * @param title The title of the event
      */
-    public void deleteAnEvent(String username, String title) throws SQLException {
+    public void deleteAnEvent(String title) throws SQLException, ClassNotFoundException {
         EventFileUser temp_eventfileuser = new EventFileUser();
         temp_eventfileuser.deleteEvent(title);
     }
@@ -873,7 +734,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The name of the organizer
      * @return THe password of the organizer
      */
-    public String getPassword(String username) {
+    public String getPassword(String username) throws SQLException, ClassNotFoundException {
         return utilGetPassword(username);
     }
 
@@ -883,7 +744,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The name of the organizer
      * @param new_password The new password of the organizer
      */
-    public void setPassword(String username, String new_password){
+    public void setPassword(String username, String new_password) throws SQLException, ClassNotFoundException {
         utilPasswordUpdating(username, new_password);
     }
 
@@ -893,7 +754,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param about_name The keyword that used for search for relevant organizer
      * @return An ArrayList containing the name of all relevant organizers
      */
-    public ArrayList<String> organizerSearch(String about_name){
+    public ArrayList<String> organizerSearch(String about_name) throws SQLException, ClassNotFoundException {
         return utilOrganizerSearch(about_name);
     }
 
@@ -903,7 +764,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organizer
      * @return The arraylist containing all unpublished events of the organizer
      */
-    public ArrayList<String> getUnpublishedEvents(String username){
+    public ArrayList<String> getUnpublishedEvents(String username) throws SQLException, ClassNotFoundException {
         return utilGetUnpublishedEvents(username);
     }
 
@@ -913,7 +774,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organizer
      * @return The arraylist containing all past events of the organizer
      */
-    public ArrayList<String> getPastEvents(String username){
+    public ArrayList<String> getPastEvents(String username) throws SQLException, ClassNotFoundException {
         return utilGetPastEvents(username);
     }
 
@@ -923,7 +784,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organizer
      * @return The arraylist containing all upcoming events of the organizer
      */
-    public ArrayList<String> getUpcomingEvents(String username){
+    public ArrayList<String> getUpcomingEvents(String username) throws SQLException, ClassNotFoundException {
         return utilGetUpcomingEvents(username);
     }
 
@@ -933,7 +794,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organizer
      * @return The arraylist containing all followers of the organizer
      */
-    public ArrayList<String> getFollowers(String username){
+    public ArrayList<String> getFollowers(String username) throws SQLException, ClassNotFoundException {
         return utilGetAllFollowers(username);
     }
 
@@ -944,13 +805,14 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
      */
-    public boolean checkIfUsernameExist(String username){
+    public boolean checkIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
         return utilCheckIfUsernameExist(username);
     }
 
-    public void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException {
+    public void editAnEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         EventFileUser eventFileUser = new EventFileUser();
-        eventFileUser.editEvent(title,status,description,location,year,month,day,hour,minute);
+        eventFileUser.editEvent(title,description,location,year,month,day,hour,minute);
+
     }
 
 
