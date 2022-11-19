@@ -101,12 +101,20 @@ public class ParFileUserTest {
 
     @Test
     void testRegisterEvent() throws SQLException, ClassNotFoundException {
+        parFileUser.registerEvent("P3","E3");
+        assertTrue(parFileUser.getUpcomingEvents("P3").contains("E3"));
+        parFileUser.leaveEvent("P3", "E3");
 
 
     }
 
     @Test
     void testLeaveEvent() throws SQLException, ClassNotFoundException {
+        parFileUser.registerEvent("P3","E3");
+        assertTrue(parFileUser.getUpcomingEvents("P3").contains("E3"));
+        parFileUser.leaveEvent("P3", "E3");
+        assertFalse(parFileUser.getUpcomingEvents("P3").contains("E3"));
+
     }
 
     @Test
