@@ -2,21 +2,22 @@ package par_unfollow_org_use_case;
 
 import database.ParDsGateway;
 
+import java.sql.SQLException;
+
 public class UnfollowOrgInteractor implements UnfollowOrgInputBoundary {
 
     ParDsGateway parDsGateway;
-    UnfollowOrgOutputBoundary unfollowOrgOutputBoundary;
+    UnfollowOrgOutputBoundary followOrgPresenter;
 
-    public UnfollowOrgInteractor(ParDsGateway parDsGateway, UnfollowOrgOutputBoundary unfollowOrgOutputBoundary){
+    public UnfollowOrgInteractor(ParDsGateway parDsGateway, UnfollowOrgOutputBoundary followOrgPresenter){
         this.parDsGateway=parDsGateway;
-        this.unfollowOrgOutputBoundary= unfollowOrgOutputBoundary;
+        this.followOrgPresenter= followOrgPresenter;
     }
 
-    public UnfollowOrgResponseModel unfollow(UnfollowOrgRequestModel requestModel){
-        parDsGateway.unfollowOrg(requestModel.getPar_username(),requestModel
+    public void follow(UnfollowOrgRequestModel requestModel) throws SQLException, ClassNotFoundException {
+        parDsGateway.followOrg(requestModel.getPar_username(),requestModel
                 .getOrg_username());
-        UnfollowOrgResponseModel responseModel = new UnfollowOrgResponseModel(requestModel.getOrg_username());
-        return unfollowOrgOutputBoundary.prepareSuccessPage(responseModel);
+
 
     }
 }

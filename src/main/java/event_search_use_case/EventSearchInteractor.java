@@ -3,6 +3,7 @@ package event_search_use_case;
 import database.EventDsGateway;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EventSearchInteractor implements EventSearchInputBoundary {
@@ -17,7 +18,7 @@ public class EventSearchInteractor implements EventSearchInputBoundary {
 
 
     @Override
-    public EventSearchResponseModel eventSearch(EventSearchRequestModel userInput) {
+    public EventSearchResponseModel eventSearch(EventSearchRequestModel userInput) throws SQLException, ClassNotFoundException {
         ArrayList<String> searchResults = eventDsGateway.eventSearch(userInput.getQuery());
         String parUserName= userInput.getParUserName();
         if (searchResults.isEmpty()) {

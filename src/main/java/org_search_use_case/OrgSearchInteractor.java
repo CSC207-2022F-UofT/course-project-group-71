@@ -2,6 +2,7 @@ package org_search_use_case;
 
 import database.OrgDsGateway;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrgSearchInteractor implements OrgSearchInputBoundary {
@@ -15,7 +16,7 @@ public class OrgSearchInteractor implements OrgSearchInputBoundary {
     }
 
     @Override
-    public OrgSearchResponseModel orgSearch(OrgSearchRequestModel userInput) {
+    public OrgSearchResponseModel orgSearch(OrgSearchRequestModel userInput) throws SQLException, ClassNotFoundException {
         ArrayList<String> searchResults = orgDsGateway.organizerSearch(userInput.getQuery());
         String parUserName= userInput.getParUserName();
         if (searchResults.isEmpty()) {

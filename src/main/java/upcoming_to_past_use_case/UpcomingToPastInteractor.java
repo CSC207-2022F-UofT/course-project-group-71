@@ -2,6 +2,7 @@ package upcoming_to_past_use_case;
 
 import database.*;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
     }
 
     @Override
-    public UpcomingToPastResponseModel convertToPast(UpcomingToPastRequestModel requestModel) {
+    public UpcomingToPastResponseModel convertToPast(UpcomingToPastRequestModel requestModel) throws SQLException, ClassNotFoundException {
 
         String username = requestModel.getUsername();
 

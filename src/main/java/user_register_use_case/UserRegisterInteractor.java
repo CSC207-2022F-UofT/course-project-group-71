@@ -4,6 +4,7 @@ package user_register_use_case;
 import database.OrgDsGateway;
 import database.ParDsGateway;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
@@ -38,7 +39,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
      * @param requestModel The request model sent to the interactor
      * @return A responsemodel representing whether the user creation is successful
      */
-    public UserRegisterResponseModel create(UserRegisterRequestModel requestModel){
+    public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException {
         if (requestModel.getUserType().equals("O")){
             //Then proceed as organizer
             if (orgDsGateway.checkIfUsernameExist(requestModel.getName())){

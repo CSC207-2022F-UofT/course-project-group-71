@@ -3,6 +3,8 @@ package user_reset_password_use_case;
 import database.OrgDsGateway;
 import database.ParDsGateway;
 
+import java.sql.SQLException;
+
 public class UserResetPasswordInteractor implements UserResetPasswordInputBoundary {
     final UserResetPasswordPresenter userResetPasswordPresenter;
     final OrgDsGateway orgDsGateway;
@@ -15,7 +17,7 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         this.parDsGateway = parDsGateway;
     }
 
-    public UserResetPasswordResponseModel resetPassword(UserResetPasswordRequestModel requestModel) {
+    public UserResetPasswordResponseModel resetPassword(UserResetPasswordRequestModel requestModel) throws SQLException, ClassNotFoundException {
         if (requestModel.isWhether_org()){
             //Organizer
             System.out.println("a");

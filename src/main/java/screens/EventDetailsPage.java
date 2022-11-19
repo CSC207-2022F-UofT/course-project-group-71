@@ -1,15 +1,15 @@
 package screens;
 
 
-import javax.swing.*;
-
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
-
 import database.EventDsGateway;
 import database.EventFileUser;
 
+import javax.swing.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import static tutorial.HelloWorld.getConstantX;
+import static tutorial.HelloWorld.getConstantY;
 
 public class EventDetailsPage extends JFrame {
 
@@ -17,7 +17,7 @@ public class EventDetailsPage extends JFrame {
 
     EventDsGateway eve = new EventFileUser();
 
-    public EventDetailsPage(String eventTitle) {
+    public EventDetailsPage(String eventTitle) throws SQLException, ClassNotFoundException {
 
         this.eventTitle = eventTitle;
         this.setSize(getConstantX() - 300, getConstantY() - 500);

@@ -3,6 +3,7 @@ package org_create_event_use_case;
 import database.EventDsGateway;
 import database.OrgDsGateway;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
@@ -21,7 +22,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
     }
 
     @Override
-    public OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) {
+    public OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
         if (requestModel.getTitle().isEmpty() || requestModel.getDescription().isEmpty()
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()
                 || requestModel.getDay().isEmpty() || requestModel.getHour().isEmpty()

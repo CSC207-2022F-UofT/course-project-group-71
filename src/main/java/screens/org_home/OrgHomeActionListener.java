@@ -1,9 +1,9 @@
 package screens.org_home;
+
 import database.*;
 import org_notify_event_use_case.OrgNotifyEventInputBoundary;
 import org_notify_event_use_case.OrgNotifyEventInteractor;
 import org_notify_event_use_case.OrgNotifyEventPresenter;
-import org_notify_event_use_case.OrgNotifyEventResponseModel;
 import screens.LoginPage;
 import screens.UserLoginController;
 import screens.UserLoginResponseFormatter;
@@ -26,6 +26,7 @@ import user_login_use_case.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class OrgHomeActionListener implements ActionListener {
     public OrgHomePage orgHomePage;
@@ -41,9 +42,21 @@ public class OrgHomeActionListener implements ActionListener {
         if (page.equals("Account")){
             new OrgAccountPage(this.orgHomePage.getOrgUsername());
         } else if (page.equals("Unpublished Event")) {
-            new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
+            try {
+                new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         } else if (page.equals("Upcoming Event")) {
-            new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
+            try {
+                new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -51,8 +64,15 @@ public class OrgHomeActionListener implements ActionListener {
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
                     eventDsGateway, upcomingToPastPresenter);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel = controller.convertToPast("O",
-                    this.orgHomePage.getOrgUsername());
+            UpcomingToPastResponseModel responseModel = null;
+            try {
+                responseModel = controller.convertToPast("O",
+                        this.orgHomePage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             if (!responseModel.getEventsToPast().isEmpty()){
                 JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
                 OrgNotifyEventPresenter orgNotifyEventPresenter = new OrgNotifyEventResponseFormatter();
@@ -60,11 +80,21 @@ public class OrgHomeActionListener implements ActionListener {
                         orgNotifyEventPresenter);
                 OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor2);
                 for (String event : responseModel.getEventsToPast()){
-                    orgNotifyEventController.sendNotification("Past", event);
+                    try {
+                        orgNotifyEventController.sendNotification("Past", event);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         } else if (page.equals("Past Event")) {
-            new OrgPastEventPage(this.orgHomePage.getOrgUsername());
+            try {
+                new OrgPastEventPage(this.orgHomePage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -72,8 +102,15 @@ public class OrgHomeActionListener implements ActionListener {
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
                     eventDsGateway, upcomingToPastPresenter);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel = controller.convertToPast("O",
-                    this.orgHomePage.getOrgUsername());
+            UpcomingToPastResponseModel responseModel = null;
+            try {
+                responseModel = controller.convertToPast("O",
+                        this.orgHomePage.getOrgUsername());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             if (!responseModel.getEventsToPast().isEmpty()){
                 JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
                 OrgNotifyEventPresenter orgNotifyEventPresenter = new OrgNotifyEventResponseFormatter();
@@ -81,7 +118,11 @@ public class OrgHomeActionListener implements ActionListener {
                         orgNotifyEventPresenter);
                 OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor2);
                 for (String event : responseModel.getEventsToPast()){
-                    orgNotifyEventController.sendNotification("Past", event);
+                    try {
+                        orgNotifyEventController.sendNotification("Past", event);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         } else if (page.equals("Follower")) {

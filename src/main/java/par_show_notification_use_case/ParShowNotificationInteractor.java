@@ -1,10 +1,8 @@
 package par_show_notification_use_case;
 
-import database.OrgDsGateway;
 import database.ParDsGateway;
-import user_login_use_case.OrgHomePresenter;
-import user_login_use_case.ParHomePresenter;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ParShowNotificationInteractor implements ParShowNotificationInputBoundary {
@@ -17,7 +15,7 @@ public class ParShowNotificationInteractor implements ParShowNotificationInputBo
         this.parDsGateway = parDsGateway;
     }
     
-    public ParShowNotificationResponseModel showNotification(ParShowNotificationRequestModel requestModel) {
+    public ParShowNotificationResponseModel showNotification(ParShowNotificationRequestModel requestModel) throws SQLException, ClassNotFoundException {
         ArrayList<String> notifications = parDsGateway.getNotifications(requestModel.getUsername());
         if (!notifications.isEmpty()){
             String notification = "";

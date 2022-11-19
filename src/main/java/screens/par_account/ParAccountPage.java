@@ -3,11 +3,13 @@ package screens.par_account;
 import screens.LabelTextPanel;
 import user_reset_password_use_case.UserResetPasswordResponseModel;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import static tutorial.HelloWorld.getConstantX;
+import static tutorial.HelloWorld.getConstantY;
 
 public class ParAccountPage extends JFrame implements ActionListener {
     private final String parUsername;
@@ -75,9 +77,16 @@ public class ParAccountPage extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        UserResetPasswordResponseModel responseModel = parResetPasswordController.resetPassword(
-                this.parUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
-                String.valueOf(retypeNewPassword.getPassword()));
+        UserResetPasswordResponseModel responseModel = null;
+        try {
+            responseModel = parResetPasswordController.resetPassword(
+                    this.parUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
+                    String.valueOf(retypeNewPassword.getPassword()));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        } catch (ClassNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
         JOptionPane.showMessageDialog(this, responseModel.getMessage());
     }
 }

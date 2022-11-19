@@ -4,6 +4,8 @@ import database.EventDsGateway;
 import database.OrgDsGateway;
 import database.ParDsGateway;
 
+import java.sql.SQLException;
+
 public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     private EventDsGateway eventDsGateway;
     private OrgDsGateway orgDsGateway;
@@ -17,7 +19,7 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     }
 
     @Override
-    public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) {
+    public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
         String eventName = requestModel.getEventName();
 
         eventDsGateway.unPublishedToUpcoming(eventName);

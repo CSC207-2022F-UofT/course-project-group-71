@@ -8,6 +8,7 @@ import database.ParFileUser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
@@ -15,7 +16,7 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class ParPastEventPage extends JFrame {
     private final String parUsername;
-    public ParPastEventPage(String parUsername){
+    public ParPastEventPage(String parUsername) throws SQLException, ClassNotFoundException {
         this.parUsername = parUsername;
 
         this.setLayout(null);

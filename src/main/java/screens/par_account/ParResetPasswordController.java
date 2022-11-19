@@ -4,6 +4,8 @@ import user_reset_password_use_case.UserResetPasswordInputBoundary;
 import user_reset_password_use_case.UserResetPasswordRequestModel;
 import user_reset_password_use_case.UserResetPasswordResponseModel;
 
+import java.sql.SQLException;
+
 public class ParResetPasswordController {
     final UserResetPasswordInputBoundary userInput;
 
@@ -11,7 +13,7 @@ public class ParResetPasswordController {
         this.userInput = accountGateway;
     }
 
-    public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) {
+    public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws SQLException, ClassNotFoundException {
         UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, password, true, newPassword, reNewPassword);
 
         return userInput.resetPassword(requestModel);

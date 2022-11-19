@@ -8,6 +8,7 @@ import database.OrgFileUser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
@@ -15,7 +16,7 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrgPastEventPage extends JFrame {
     private final String orgUsername;
-    public OrgPastEventPage(String orgUsername){
+    public OrgPastEventPage(String orgUsername) throws SQLException, ClassNotFoundException {
         this.orgUsername = orgUsername;
 
         this.setLayout(null);
