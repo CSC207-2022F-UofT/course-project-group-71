@@ -9,7 +9,7 @@ public interface OrgDeleteEventInputBoundary {
     /**Use the information contained in the request model to delete an event and respond a response model.
      *
      * @param requestModel The request model sent to the input boundary
-     * @return A responsemodel representing whether the user creation is successful
+     * @return A response model representing whether the user creation is successful
      */
     OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel requestModel) throws SQLException;
 }
