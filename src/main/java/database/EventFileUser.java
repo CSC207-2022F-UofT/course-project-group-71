@@ -59,7 +59,6 @@ public class EventFileUser implements EventDsGateway{
     /**This is a tool method used to edit the event information
      *
      * @param title The title of the event
-     * @param status The status of the event (We are considering deleting it)
      * @param description The description of the event
      * @param location The location of the event (It could be a zoom link)
      * @param year The time (year) of the event

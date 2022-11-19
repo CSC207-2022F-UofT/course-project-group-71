@@ -35,11 +35,11 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
      * It retrieves orgUsername, parUsernames via eventName.
      * It deletes all possible associated events for org in database: OrgPastEvent, OrgUnpublishedEvent, OrgUpcomingevent.
      * If parUsernames non-empty, it deletes all possible associated events for pars in database: ParPastEvent, ParUpcomingEvent,
-       and add a notification to all pars.
+     and add a notification to all pars.
      * Success response is returned.
      *
      * @param orgDeleteEventRequestModel The request model sent to the interactor
-     * @return orgDeleteEventResponseModel representing whether the user creation is successful
+     * @return orgDeleteEventResponseModel representing whether event deletion is successful
      */
     @Override
     public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) throws SQLException, ClassNotFoundException {
@@ -48,7 +48,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
         String newNotification = "Event " + eventName + " is canceled";
 
-        orgDsGateway.deleteAnEvent(orgUsername, eventName);
+        orgDsGateway.deleteAnEvent(eventName);
         if (!parUsernames.isEmpty()) {
             for (String username : parUsernames) {
                 parDsGateway.leaveEvent(username, eventName);//LEAVE BEHAVES THE SAME WAY HERE! BUT WATCH OUT!
