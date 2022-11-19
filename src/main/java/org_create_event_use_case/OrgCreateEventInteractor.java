@@ -14,11 +14,11 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
 
 
     /**This is the construct method of OrgCreateEventInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+     * It takes DsGateways and OutputBoundary as input to store as instances.
      *
      * @param eventDsGateway The database gateway of events
      * @param orgDsGateway The database gateway of organizers
-     * @param orgCreateEventPresenter The presenter used to show success or not of event creation
+     * @param orgCreateEventPresenter The OutputBoundary used to show success or not of event creation
      */
     public OrgCreateEventInteractor(EventDsGateway eventDsGateway,
                                     OrgDsGateway orgDsGateway,
