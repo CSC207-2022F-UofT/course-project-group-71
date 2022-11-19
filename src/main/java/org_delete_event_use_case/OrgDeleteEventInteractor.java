@@ -2,6 +2,7 @@ package org_delete_event_use_case;
 
 import database.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
@@ -22,7 +23,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
     }
 
     @Override
-    public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) {
+    public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) throws SQLException {
         String eventName = orgDeleteEventRequestModel.getEventName();
         String orgUsername = eventDsGateway.getOrganization(eventName);
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
