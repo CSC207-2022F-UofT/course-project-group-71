@@ -67,7 +67,7 @@ public class EventResultsPage extends JFrame {
                     join.setVisible(true);
                 } else {
                     JButton leave = new JButton("Join "+nextEvent);
-                leave.addActionListener(new EventResultsPageActionListener(this,nextEvent));
+                    leave.addActionListener(new EventResultsPageActionListener(this,nextEvent));
                     leave.setBounds(x, y, 250, 30);
                     events.add(leave);
                     leave.setVisible(true);

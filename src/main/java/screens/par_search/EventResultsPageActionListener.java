@@ -3,6 +3,7 @@ package screens.par_search;
 import database.ParDsGateway;
 import database.ParFileUser;
 import par_follow_org_use_case.FollowOrgResponseModel;
+import screens.EventDetailsPage;
 import screens.par_home.ParHomePage;
 import par_join_event_use_case.*;
 import screens.par_join_event.ParJoinEventController;
@@ -44,12 +45,20 @@ public class EventResultsPageActionListener implements ActionListener {
             JOptionPane.showMessageDialog(this.eventResultsPage, response.getMessage());
             new ParHomePage(this.eventResultsPage.getParUsername());
 
-        } else if (actionCommand.equals("Leave " + this.eventName) {
+        } else if (actionCommand.equals("Leave " + this.eventName)){
 
 
+
+        }else{
+            try {
+                new EventDetailsPage(this.eventName);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
 
     }
-}
 }
