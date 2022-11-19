@@ -8,6 +8,7 @@ import static tutorial.HelloWorld.getConstantY;
 public class OrgHomePage extends JFrame {
 
     private final String orgUsername;
+
     /**The method generate a page of organization's homepage.
      * It contains six buttons at left vertically.
      * "Account" button will jump to the account page which can let the organization to changes password.

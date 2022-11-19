@@ -128,7 +128,11 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0,actionCommand.length()-4);
 
-            new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName);
+            try {
+                new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName, eventDsGateway);
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
