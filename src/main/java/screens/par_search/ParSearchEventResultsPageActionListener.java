@@ -30,7 +30,7 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
      * and stores them as attributes.
      *
      * @param parSearchEventResultsPage The participant's event search results page
-     * @param eventName The name of the event
+     * @param eventName The name of the event the action is being performed on
      */
     public ParSearchEventResultsPageActionListener(ParSearchEventResultsPage parSearchEventResultsPage, String eventName) {
         this.parSearchEventResultsPage = parSearchEventResultsPage;
@@ -39,7 +39,7 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
     }
 
     /**A method to deal with actions on the event search results page.
-     * If the action command is back, the home page is displayed.
+     * If the action command is back, the participant's home page is displayed.
      * If the action command is join, the participant attempts to join the event.
      *
      * @param e the event to be processed
