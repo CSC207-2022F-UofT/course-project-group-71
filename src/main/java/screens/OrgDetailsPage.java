@@ -86,11 +86,6 @@ public class OrgDetailsPage extends JFrame {
 
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        new OrgDetailsPage("sexy");
-
-
-    }
 
 
 

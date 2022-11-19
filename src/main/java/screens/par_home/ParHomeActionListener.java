@@ -119,7 +119,7 @@ public class ParHomeActionListener implements ActionListener {
                     throw new RuntimeException(e);
                 }
                 this.parHomePage.dispose();
-            } else {
+            } else if(this.parHomePage.eve.isSelected()) {
                 EventDsGateway eve = new EventFileUser();
                 ParSearchEventOutputBoundary presenter = new ParSearchEventPresenter(); //minor issue
                 ParSearchEventInputBoundary interactor = new ParSearchEventInteractor(eve, presenter);
@@ -134,8 +134,10 @@ public class ParHomeActionListener implements ActionListener {
                     throw new RuntimeException(e);
                 }
                 this.parHomePage.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this.parHomePage,"Please Select Search Target");
             }
-            } else {
+            } else if(page.equals("Log Out")){
                 this.parHomePage.dispose();
                 UserLoginPresenter userLoginPresenter = new UserLoginResponseFormatter();
 
@@ -153,7 +155,8 @@ public class ParHomeActionListener implements ActionListener {
                 UserLoginController userLoginController = new UserLoginController(interactor);
 
                 new LoginPage(userLoginController);
-            }
+
+        }
         }
     }
 
