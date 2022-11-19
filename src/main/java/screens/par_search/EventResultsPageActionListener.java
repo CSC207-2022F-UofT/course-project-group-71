@@ -1,13 +1,19 @@
 package screens.par_search;
 
-import database.ParDsGateway;
-import database.ParFileUser;
-import par_follow_org_use_case.FollowOrgResponseModel;
-import screens.EventDetailsPage;
+import database.*;
+import par_join_event_use_case.ParJoinEventInputBoundary;
+import par_join_event_use_case.ParJoinEventInteractor;
+import par_join_event_use_case.ParJoinEventOutputBoundary;
+import par_join_event_use_case.ParJoinEventResponseModel;
+import par_leave_event_use_case.ParLeaveEventInputBoundary;
+import par_leave_event_use_case.ParLeaveEventInteractor;
+import par_leave_event_use_case.ParLeaveEventOutputBoundary;
+import par_leave_event_use_case.ParLeaveEventResponseModel;
 import screens.par_home.ParHomePage;
-import par_join_event_use_case.*;
 import screens.par_join_event.ParJoinEventController;
 import screens.par_join_event.ParJoinEventPresenter;
+import screens.par_upcoming_event.ParLeaveEventController;
+import screens.par_upcoming_event.ParLeaveEventPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -41,22 +47,45 @@ public class EventResultsPageActionListener implements ActionListener {
             String parUserName = this.eventResultsPage.getParUsername();
             ParJoinEventResponseModel response = controller.join(parUserName, this.eventName);
             this.eventResultsPage.dispose();
-
-            JOptionPane.showMessageDialog(this.eventResultsPage, response.getMessage());
-            new ParHomePage(this.eventResultsPage.getParUsername());
-
-        } else if (actionCommand.equals("Leave " + this.eventName)){
-
-
-
-        }else{
             try {
-                new EventDetailsPage(this.eventName);
+                new EventResultsPage(this.eventResultsPage.getEventNames(), parUserName);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
+            JOptionPane.showMessageDialog(this.eventResultsPage, response.getMessage());
+
+
+        } else if (actionCommand.equals("Leave " + this.eventName)){
+            ParDsGateway parDsGateway = new ParFileUser();
+            OrgDsGateway orgDsGateway = new OrgFileUser();
+            EventDsGateway eventDsGateway = new EventFileUser();
+
+            ParLeaveEventOutputBoundary presenter = new ParLeaveEventPresenter();
+            ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway, orgDsGateway,presenter);
+            ParLeaveEventController controller = new ParLeaveEventController(interactor);
+            String parUserName = this.eventResultsPage.getParUsername();
+            ParLeaveEventResponseModel response = null;
+            try {
+                response = controller.leave(parUserName, this.eventName);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+            this.eventResultsPage.dispose();
+
+            parUserName = this.eventResultsPage.getParUsername();
+            JOptionPane.showMessageDialog(this.eventResultsPage, response.getMessage());
+            try {
+                new EventResultsPage(this.eventResultsPage.getEventNames(), parUserName);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
         }
 
 

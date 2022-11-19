@@ -700,7 +700,7 @@ public class OrgFileUser implements OrgDsGateway {
      */
     public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         EventFileUser temp_eventfileuser = new EventFileUser();
-        temp_eventfileuser.utilStoreEvent(title, status, description, location, year, month, day, hour, minute);
+        temp_eventfileuser.utilStoreEvent(title, description, location, year, month, day, hour, minute);
         if (status == 0){
             //Unpublished
             utilAddOrgUnpublishedEvent(org_username,title);
@@ -809,9 +809,10 @@ public class OrgFileUser implements OrgDsGateway {
         return utilCheckIfUsernameExist(username);
     }
 
-    public void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
+    public void editAnEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         EventFileUser eventFileUser = new EventFileUser();
-        eventFileUser.editEvent(title,status,description,location,year,month,day,hour,minute);
+        eventFileUser.editEvent(title,description,location,year,month,day,hour,minute);
+
     }
 
 

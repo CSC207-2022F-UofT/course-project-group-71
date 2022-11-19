@@ -28,7 +28,7 @@ public interface OrgDsGateway {
 
     ArrayList<String> organizerSearch(String about_name) throws SQLException, ClassNotFoundException;
 
-    void editAnEvent(String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException;
+    void editAnEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException;
 
 
 }

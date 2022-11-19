@@ -18,6 +18,10 @@ public class EventResultsPage extends JFrame {
 
     ParDsGateway par = new ParFileUser();
 
+    public ArrayList<String> getEventNames() {
+        return eventNames;
+    }
+
     public EventResultsPage(ArrayList<String> eventNames, String parUserName) throws SQLException, ClassNotFoundException {
 
         this.eventNames = eventNames;
