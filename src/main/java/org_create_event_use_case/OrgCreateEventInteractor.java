@@ -10,22 +10,22 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
 
     EventDsGateway eventDsGateway;
     OrgDsGateway orgDsGateway;
-    OrgCreateEventPresenter orgCreateEventPresenter;
+    OrgCreateEventOutputBoundary orgCreateEventOutputBoundary;
 
 
     /**This is the construct method of OrgCreateEventInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+     * It takes DsGateways and OutputBoundary as input to store as instances.
      *
      * @param eventDsGateway The database gateway of events
      * @param orgDsGateway The database gateway of organizers
-     * @param orgCreateEventPresenter The presenter used to show success or not of event creation
+     * @param orgCreateEventOutputBoundary The OutputBoundary used to show success or not of event creation
      */
     public OrgCreateEventInteractor(EventDsGateway eventDsGateway,
                                     OrgDsGateway orgDsGateway,
-                                    OrgCreateEventPresenter orgCreateEventPresenter) {
+                                    OrgCreateEventOutputBoundary orgCreateEventOutputBoundary) {
         this.eventDsGateway = eventDsGateway;
         this.orgDsGateway = orgDsGateway;
-        this.orgCreateEventPresenter = orgCreateEventPresenter;
+        this.orgCreateEventOutputBoundary = orgCreateEventOutputBoundary;
     }
 
     /**Use the information contained in the requestmodel to create a new event and respond a responsemodel.
@@ -45,11 +45,11 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()
                 || requestModel.getDay().isEmpty() || requestModel.getHour().isEmpty()
                 || requestModel.getMinute().isEmpty() || requestModel.getLocation().isEmpty()) {
-            return orgCreateEventPresenter.prepareFailView("Entries cannot be empty.");
+            return orgCreateEventOutputBoundary.prepareFailView("Entries cannot be empty.");
         }
 
         if (eventDsGateway.checkIfEventNameExist(requestModel.getTitle())) {
-            return orgCreateEventPresenter.prepareFailView("Title already exists.");
+            return orgCreateEventOutputBoundary.prepareFailView("Title already exists.");
         }
 
         String year = requestModel.getYear();
@@ -61,45 +61,45 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
         if (isStringInt(year) && isStringInt(month) && isStringInt(day) && isStringInt(hour) && isStringInt(minute)) {
 
             if (year.length() != 4) {
-                return orgCreateEventPresenter.prepareFailView("Year is not 4 digits.");
+                return orgCreateEventOutputBoundary.prepareFailView("Year is not 4 digits.");
             }
             int y = Integer.parseInt(year);
 
             int m = Integer.parseInt(month);
             if (m > 12 || m <= 0) {
-                return orgCreateEventPresenter.prepareFailView("Month is not within 1 to 12.");
+                return orgCreateEventOutputBoundary.prepareFailView("Month is not within 1 to 12.");
             }
 
             int d = Integer.parseInt(day);
             if (d > 31 || d <= 0) {
-                return orgCreateEventPresenter.prepareFailView("Day is not within 1 to 31.");
+                return orgCreateEventOutputBoundary.prepareFailView("Day is not within 1 to 31.");
             }
 
             int h = Integer.parseInt(hour);
             if (h > 23 || h < 0) {
-                return orgCreateEventPresenter.prepareFailView("Day is not within 0 to 24.");
+                return orgCreateEventOutputBoundary.prepareFailView("Day is not within 0 to 24.");
             }
 
             int min = Integer.parseInt(minute);
             if (min > 59 || min < 0) {
-                return orgCreateEventPresenter.prepareFailView("Minute is not within 0 to 60.");
+                return orgCreateEventOutputBoundary.prepareFailView("Minute is not within 0 to 60.");
             }
 
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime time = LocalDateTime.of(y, m, d, h, min);
             if (time.isBefore(now)){
-                return orgCreateEventPresenter.prepareFailView("Time must be in future.");
+                return orgCreateEventOutputBoundary.prepareFailView("Time must be in future.");
             }
 
             else {
                 orgDsGateway.createAnEvent(requestModel.getOrgUsername(), requestModel.getTitle(), 0,
                         requestModel.getDescription(), requestModel.getLocation(), y, m, d, h, min);
                 OrgCreateEventResponseModel responseModel = new OrgCreateEventResponseModel(requestModel.getTitle());
-                return orgCreateEventPresenter.prepareSuccessView(responseModel);
+                return orgCreateEventOutputBoundary.prepareSuccessView(responseModel);
             }
         }
 
-        else { return orgCreateEventPresenter.prepareFailView("Time entry/ies is/are not integer."); }
+        else { return orgCreateEventOutputBoundary.prepareFailView("Time entry/ies is/are not integer."); }
     }
 
     /**A method used to check time entries format

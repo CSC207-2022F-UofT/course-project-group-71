@@ -14,11 +14,11 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
 
 
     /**This is the construct method of OrgEditEventInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+     * It takes DsGateways and OutputBoundary as input to store as instances.
      *
      * @param eventDsGateway The database gateway of the events
      * @param orgDsGateway The database gateway of the organizers
-     * @param orgEditEventPresenter The presenter used to show success or not of event editing
+     * @param orgEditEventOutputBoundary The OutputBoundary used to show success or not of event editing
      */
     public OrgEditEventInteractor(EventDsGateway eventDsGateway,
                                   OrgDsGateway orgDsGateway,

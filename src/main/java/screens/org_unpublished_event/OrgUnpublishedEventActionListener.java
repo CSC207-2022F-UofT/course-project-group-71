@@ -3,6 +3,7 @@ package screens.org_unpublished_event;
 import database.*;
 import org_create_event_use_case.OrgCreateEventInputBoundary;
 import org_create_event_use_case.OrgCreateEventInteractor;
+import org_create_event_use_case.OrgCreateEventOutputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
 import org_delete_event_use_case.OrgDeleteEventOutputBoundary;
@@ -107,9 +108,9 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
 
-            org_create_event_use_case.OrgCreateEventPresenter orgCreateEventPresenter = new OrgCreateEventPresenter();
+            OrgCreateEventOutputBoundary orgCreateEventOutputBoundary = new screens.org_unpublished_event.OrgCreateEventOutputBoundary();
 
-            OrgCreateEventInputBoundary interactor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway, orgCreateEventPresenter);
+            OrgCreateEventInputBoundary interactor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway, orgCreateEventOutputBoundary);
 
             OrgCreateEventController orgCreateEventController = new OrgCreateEventController(interactor);
 

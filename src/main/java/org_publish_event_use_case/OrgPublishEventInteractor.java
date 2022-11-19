@@ -9,10 +9,10 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     private OrgPublishEventOutputBoundary orgPublishEventOutputBoundary;
 
     /**This is the construct method of OrgPublishEventInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+     * It takes DsGateways and OutputBoundary as input to store as instances.
      *
      * @param eventDsGateway The database gateway of the events
-     * @param orgPublishEventOutputBoundary The presenter used to show success of publishing
+     * @param orgPublishEventOutputBoundary The OutputBoundary used to show success of publishing
      */
     public OrgPublishEventInteractor(EventDsGateway eventDsGateway, OrgPublishEventOutputBoundary orgPublishEventOutputBoundary) {
         this.eventDsGateway = eventDsGateway;
