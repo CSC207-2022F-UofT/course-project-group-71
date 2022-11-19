@@ -13,6 +13,13 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
     OrgCreateEventPresenter orgCreateEventPresenter;
 
 
+    /**This is the construct method of UserRegisterInteractor.
+     * It takes DsGateways and Presenter as input to store as instances.
+     *
+     * @param eventDsGateway The database gateway of events
+     * @param orgDsGateway The database gateway of organizers
+     * @param orgCreateEventPresenter The presenter used to show success or not of event creation
+     */
     public OrgCreateEventInteractor(EventDsGateway eventDsGateway,
                                     OrgDsGateway orgDsGateway,
                                     OrgCreateEventPresenter orgCreateEventPresenter) {
@@ -21,6 +28,17 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
         this.orgCreateEventPresenter = orgCreateEventPresenter;
     }
 
+    /**Use the information contained in the requestmodel to create a new event and respond a responsemodel.
+     * It checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.
+     * It checks if title already exists.
+     * It checks if all time entries are bound by format: year, month, day, hour, minute.
+     * It checks if the time is set in the future.
+     * If failed in one of the above process, return a failure response.
+     * Otherwise, success response is returned.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responsemodel representing whether the event creation is successful
+     */
     @Override
     public OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
         if (requestModel.getTitle().isEmpty() || requestModel.getDescription().isEmpty()
@@ -76,9 +94,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
             else {
                 orgDsGateway.createAnEvent(requestModel.getOrgUsername(), requestModel.getTitle(), 0,
                         requestModel.getDescription(), requestModel.getLocation(), y, m, d, h, min);
-                OrgCreateEventResponseModel responseModel = new OrgCreateEventResponseModel(requestModel.getOrgUsername(),
-                        requestModel.getTitle(), 0, requestModel.getDescription(), requestModel.getLocation(),
-                        y, m, d, h, min);
+                OrgCreateEventResponseModel responseModel = new OrgCreateEventResponseModel(requestModel.getTitle());
                 return orgCreateEventPresenter.prepareSuccessView(responseModel);
             }
         }
@@ -86,6 +102,11 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
         else { return orgCreateEventPresenter.prepareFailView("Time entry/ies is/are not integer."); }
     }
 
+    /**A method used to check time entries format
+     *
+     * @param s A string of a time entry.
+     * @return A boolean of whether the entry is bound by format.
+     */
     public boolean isStringInt(String s)
     {
         try

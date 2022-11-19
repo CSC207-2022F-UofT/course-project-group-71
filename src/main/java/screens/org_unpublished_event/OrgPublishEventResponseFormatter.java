@@ -7,7 +7,7 @@ import screens.ShowMessageView;
 public class OrgPublishEventResponseFormatter implements OrgPublishEventPresenter {
     @Override
     public OrgPublishEventResponseModel prepareSuccessView(OrgPublishEventResponseModel response) {
-        response.setMessage("Event" + response.getEventName() + "is published");
+        response.setMessage("Event " + response.getEventName() + " is published!");
         return response;
     }
 

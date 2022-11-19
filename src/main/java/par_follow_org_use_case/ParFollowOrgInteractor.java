@@ -4,7 +4,7 @@ import database.ParDsGateway;
 
 import java.sql.SQLException;
 
-public class ParParFollowOrgInteractor implements ParFollowOrgInputBoundary {
+public class ParFollowOrgInteractor implements ParFollowOrgInputBoundary {
 
     ParDsGateway parDsGateway;
     ParFollowOrgOutputBoundary followOrgPresenter;
@@ -15,7 +15,7 @@ public class ParParFollowOrgInteractor implements ParFollowOrgInputBoundary {
      * @param parDsGateway The participants gateway of the participants.
      */
 
-    public ParParFollowOrgInteractor(ParDsGateway parDsGateway, ParFollowOrgOutputBoundary followOrgPresenter){
+    public ParFollowOrgInteractor(ParDsGateway parDsGateway, ParFollowOrgOutputBoundary followOrgPresenter){
         this.parDsGateway=parDsGateway;
         this.followOrgPresenter= followOrgPresenter;
     }
