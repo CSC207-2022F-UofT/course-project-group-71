@@ -24,6 +24,11 @@ public class ParSearchEventPresenter implements ParSearchEventOutputBoundary {
         return results;
     }
 
+    /**Returns an error due to a failed search.
+     *
+     * @param error A String containing information about how it failed
+     * @return Throws an error
+     */
     @Override
     public ParSearchEventResponseModel prepareFailView(String error) {throw new ShowMessageView(error);
     }
