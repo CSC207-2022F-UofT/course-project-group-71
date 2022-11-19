@@ -6,7 +6,7 @@ import org_create_event_use_case.OrgCreateEventInteractor;
 import org_create_event_use_case.OrgCreateEventPresenter;
 import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
-import org_delete_event_use_case.OrgDeleteEventPresenter;
+import org_delete_event_use_case.OrgDeleteEventOutputBoundary;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
 import org_edit_event_use_case.OrgEditEventInputBoundary;
 import org_edit_event_use_case.OrgEditEventInteractor;
@@ -17,7 +17,7 @@ import org_publish_event_use_case.OrgPublishEventPresenter;
 import org_publish_event_use_case.OrgPublishEventResponseModel;
 import screens.org_home.OrgHomePage;
 import screens.org_upcoming_event.OrgDeleteEventController;
-import screens.org_upcoming_event.OrgDeleteEventResponseFormatter;
+import screens.org_upcoming_event.OrgDeleteEventPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -46,10 +46,10 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             ParDsGateway parDsGateway = new ParFileUser();
 
-            OrgDeleteEventPresenter orgDeleteEventPresenter = new OrgDeleteEventResponseFormatter();
+            OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
 
             OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
-                    parDsGateway,orgDeleteEventPresenter);
+                    parDsGateway, orgDeleteEventOutputBoundary);
 
             OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
 
