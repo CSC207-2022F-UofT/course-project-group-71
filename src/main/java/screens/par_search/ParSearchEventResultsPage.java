@@ -111,7 +111,10 @@ public class ParSearchEventResultsPage extends JFrame {
 
     }
 
-
+    /**A getter for the username of the participant.
+     *
+     * @return The participant's username
+     */
     public String getParUsername() {
         return parUsername;
     }
