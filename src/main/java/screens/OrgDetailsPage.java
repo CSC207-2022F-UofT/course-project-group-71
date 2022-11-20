@@ -39,7 +39,7 @@ public class OrgDetailsPage extends JFrame {
         title.setHorizontalAlignment(JLabel.CENTER);
 
 
-        JLabel orgTitle = new JLabel("Organizer Name: " + this.orgName);
+        JLabel orgTitle = new JLabel("Organization Name: " + this.orgName);
         orgTitle.setBounds(0, 50, getConstantX() - 300, 50);
         orgTitle.setHorizontalAlignment(JLabel.CENTER);
         JLabel upcoming = new JLabel("Upcoming Events for " + this.orgName);

@@ -12,10 +12,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
     OrgDsGateway o;
     ParDsGateway p;
 
-    public ExtractInfoInteractor(EventDsGateway e) {
-
-        this.e = e;
-    }
+    public ExtractInfoInteractor(EventDsGateway e) {this.e = e;}
 
     public ExtractInfoInteractor(OrgDsGateway o){
         this.o=o;

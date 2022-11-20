@@ -1,6 +1,10 @@
 package screens.org_follower;
 
 import database.*;
+import extract_information_use_case.ExtractInfoController;
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoInteractor;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +16,7 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrgFollowerPage extends JFrame {
     private final String orgUsername;
+    OrgDsGateway orgDsGateway;
 
     /**The method generate a page of organizer's followers.
      * It contains all participants who followed the organization.
@@ -40,10 +45,11 @@ public class OrgFollowerPage extends JFrame {
         //Create a JPanel to store followers
         JPanel followers = new JPanel();
         followers.setBounds(150,100,getConstantX()-170,getConstantY()-150);
-
-        //Obtain OrgDsGateway and followers
-        OrgDsGateway orgDsGateway = new OrgFileUser();
-        ArrayList<String> Followers = orgDsGateway.getFollowers(orgUsername);
+        //Obtain and followers from ExtractInfoInteractor
+        ExtractInfoInputBoundary interactor = new ExtractInfoInteractor(orgDsGateway);
+        ExtractInfoController extractInfoController = new ExtractInfoController(interactor);
+        ExtractInfoResponseModel<String> responseModel = extractInfoController.extractOrg("getFollowers", this.orgUsername);
+        ArrayList<String> Followers = responseModel.getAl();
 
         int numberOfEvent = Followers.size();
 

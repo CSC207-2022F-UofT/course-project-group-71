@@ -1,6 +1,10 @@
 package screens.par_followed_org;
 
 import database.*;
+import extract_information_use_case.ExtractInfoController;
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoInteractor;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,8 +44,11 @@ public class ParFollowedOrgPage extends JFrame {
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
         ParDsGateway parDsGateway = new ParFileUser();
-
-        ArrayList<String> followedOrg = parDsGateway.getFollowedOrg(parUsername);
+        ExtractInfoInputBoundary interactor = new ExtractInfoInteractor(parDsGateway);
+        ExtractInfoController controller = new ExtractInfoController(interactor);
+        ExtractInfoResponseModel<String> response1= controller.extractPar("getFollowedOrg",
+                this.parUsername);
+        ArrayList<String> followedOrg = response1.getAl();
 
         int numberOfEvent = followedOrg.size();
 
