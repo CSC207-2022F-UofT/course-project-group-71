@@ -8,6 +8,7 @@ import par_leave_event_use_case.ParLeaveEventInputBoundary;
 import par_leave_event_use_case.ParLeaveEventInteractor;
 import par_leave_event_use_case.ParLeaveEventOutputBoundary;
 import par_leave_event_use_case.ParLeaveEventResponseModel;
+import screens.EventDetailsPage;
 import screens.par_home.ParHomePage;
 
 import javax.swing.*;
@@ -72,6 +73,13 @@ public class ParUpcomingEventActionListener implements ActionListener {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        else {
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
             }
         }
     }

@@ -6,6 +6,7 @@ import par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
 import par_unfollow_org_use_case.ParUnfollowOrgInteractor;
 import par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
 import par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
+import screens.OrgDetailsPage;
 import screens.par_follow_org_screens.ParUnfollowOrgController;
 import screens.par_follow_org_screens.ParUnfollowOrgPresenter;
 import screens.par_home.ParHomePage;
@@ -54,9 +55,7 @@ public class ParFollowedOrgActionListener implements ActionListener {
 
             try {
                 parUnfollowOrgController.unfollow(parUsername, this.orgName);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
@@ -65,6 +64,13 @@ public class ParFollowedOrgActionListener implements ActionListener {
                 this.parFollowerPage.dispose();
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        else {
+            try {
+                new OrgDetailsPage(this.orgName);
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
             }
         }
     }

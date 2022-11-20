@@ -82,9 +82,7 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             ParLeaveEventResponseModel response = null;
             try {
                 response = controller.leave(parUserName, this.eventName);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
 
@@ -94,9 +92,7 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
 
             try {
                 new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
 
@@ -104,9 +100,7 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
         else {
             try {
                 new EventDetailsPage(eventName);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
         }

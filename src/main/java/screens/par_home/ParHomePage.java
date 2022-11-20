@@ -25,7 +25,8 @@ public class ParHomePage extends JFrame implements ActionListener {
 
     ParDsGateway parDsGateway = new ParFileUser();
 
-    ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor( parShowNotificationPresenter, parDsGateway);
+    ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(parShowNotificationPresenter,
+            parDsGateway);
     ParShowNotificationController parShowNotificationController = new ParShowNotificationController(interactor);
 
     /**Take the username of the participant, and generate a homepage for this partricipant.
