@@ -118,4 +118,7 @@ public class ParSearchOrgResultsPage extends JFrame {
         return parUsername;
     }
 
+    public ArrayList<String> getOrgNames() {
+        return orgNames;
+    }
 }
