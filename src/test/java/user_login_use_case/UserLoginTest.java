@@ -66,6 +66,41 @@ public class UserLoginTest {
         }
     }
 
+    @Test
+    @Order(4)
+    void testPrepareFailView_OrganizerPasswordNotMatch() {
+
+        try{
+            responseModel = UserLoginController.login("0","","123", "114514");
+            assert(false);
+        } catch (Exception e) {
+            assertEquals("Password doesn't match.", e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(5)
+    void testPrepareFailView_UserMissType() {
+
+        try{
+            responseModel = UserLoginController.login("","","123", "114514");
+            assert(false);
+        } catch (Exception e) {
+            assertEquals("Please select your account type.", e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(5)
+    void testPrepareSuccessView_Orgnization() {
+
+        try{
+            responseModel = UserLoginController.login("","0","123", "123");
+            assert(false);
+        } catch (Exception e) {
+            assertEquals("Please select your account type.", e.getMessage());
+        }
+    }
 
 
 }
