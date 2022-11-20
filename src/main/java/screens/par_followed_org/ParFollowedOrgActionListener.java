@@ -53,9 +53,10 @@ public class ParFollowedOrgActionListener implements ActionListener {
             ParUnfollowOrgController parUnfollowOrgController = new ParUnfollowOrgController(
                     parUnfollowOrgInteractor);
             try {
-                parUnfollowOrgResponseModel = parUnfollowOrgController.unfollow(
-                        parUsername, this.orgName);
+                parUnfollowOrgController.unfollow(parUsername, this.orgName);
             } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             try {
