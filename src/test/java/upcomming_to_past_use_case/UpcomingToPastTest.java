@@ -30,7 +30,7 @@ public class UpcomingToPastTest {
 
     @Test
     @Order(1)
-    void testPrepareSuccessView() {
+    void testPrepareSuccessView_Orgnization() {
 
         try {
             responseModel = controller.convertToPast("", "s");
@@ -40,4 +40,15 @@ public class UpcomingToPastTest {
         }
     }
 
+    @Test
+    @Order(2)
+    void testPrepareSuccessView_Participant() {
+
+        try {
+            responseModel = controller.convertToPast("", "s");
+            assertEquals("", responseModel.getMessage());
+        }catch (Exception e) {
+            assert(false);
+        }
+    }
 }
