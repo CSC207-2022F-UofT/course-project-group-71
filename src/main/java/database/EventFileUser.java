@@ -8,7 +8,7 @@ import static tutorial.HelloWorld.*;
 public class EventFileUser implements EventDsGateway{
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         EventFileUser n = new EventFileUser();
-        System.out.println(n.utilDeleteEvent("E2"));
+
     }
 
     /**This is a tool method that is called by other method to create an event.
@@ -76,7 +76,6 @@ public class EventFileUser implements EventDsGateway{
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql =  "update eventfile set description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
 
-            System.out.println(sql);
             System.out.println(sql);
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);

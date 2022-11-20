@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Order;
 import screens.org_unpublished_event.OrgEditEventController;
 import screens.org_unpublished_event.OrgEditEventPresenter;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrgEditEventTest {
@@ -130,6 +132,24 @@ public class OrgEditEventTest {
             assertEquals("Time entry/ies is/are not integer.", e.getMessage());
 
         }
+    }
+
+    @Test
+    @Order(8)
+    public void test_PrepareSuccessView()  {
+        try{
+            responseModel = controller.edit("Edit", "SS", "Zoom", "2024", "5", "2", "9", "9");
+            System.out.println(responseModel.getTitle());
+            System.out.println("a");
+
+            assertEquals("Event Edit is successfully edited!", responseModel.getTitle());
+
+            controller.edit("Edit", "GG", "Zoom", "2024", "5", "2", "9", "9");
+            System.out.println("a");
+        } catch (Exception e) {
+            assert(false);
+        }
+
     }
 
 
