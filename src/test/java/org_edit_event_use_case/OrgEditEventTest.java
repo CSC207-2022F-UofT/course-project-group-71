@@ -41,14 +41,16 @@ public class OrgEditEventTest {
     @Order(2)
     public void test_PrepareFailureView_wrong_year() {
         try{
-            responseModel = controller.edit("Edit", "", "", "4", "21", "", "11", "");
+            responseModel = controller.edit("Edit", "HH", "Zoom", "200", "4", "2", "9", "9");
             assert (false);
             System.out.println(responseModel);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            assertEquals("Entries cannot be empty.", e.getMessage());
+            assertEquals("Year is not 4 digits.", e.getMessage());
         }
     }
+
+
 
 
 
