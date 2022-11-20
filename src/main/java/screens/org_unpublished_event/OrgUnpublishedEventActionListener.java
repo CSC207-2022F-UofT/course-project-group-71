@@ -15,6 +15,7 @@ import org_publish_event_use_case.OrgPublishEventInputBoundary;
 import org_publish_event_use_case.OrgPublishEventInteractor;
 import org_publish_event_use_case.OrgPublishEventOutputBoundary;
 import org_publish_event_use_case.OrgPublishEventResponseModel;
+import screens.EventDetailsPage;
 import screens.org_home.OrgHomePage;
 import screens.org_upcoming_event.OrgDeleteEventController;
 import screens.org_upcoming_event.OrgDeleteEventPresenter;
@@ -78,7 +79,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
         else if (actionCommand.contains("Publish")){
             EventDsGateway eventDsGateway = new EventFileUser();
 
-            OrgPublishEventOutputBoundary orgPublishEventOutputBoundary = new OrgPublishEventResponseFormatter();
+            OrgPublishEventOutputBoundary orgPublishEventOutputBoundary = new OrgPublishEventPresenter();
 
             OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgPublishEventOutputBoundary);
 
@@ -133,6 +134,13 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                 new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName, eventDsGateway);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        else {
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
             }
         }
     }

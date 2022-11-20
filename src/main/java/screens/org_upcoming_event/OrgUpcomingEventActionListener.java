@@ -9,6 +9,7 @@ import org_notify_event_use_case.OrgNotifyEventInputBoundary;
 import org_notify_event_use_case.OrgNotifyEventInteractor;
 import org_notify_event_use_case.OrgNotifyEventOutputBoundary;
 import org_notify_event_use_case.OrgNotifyEventResponseModel;
+import screens.EventDetailsPage;
 import screens.org_home.OrgHomePage;
 
 import javax.swing.*;
@@ -80,6 +81,13 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                 new OrgUpcomingEventPage(this.orgUsername);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        else {
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
             }
         }
     }

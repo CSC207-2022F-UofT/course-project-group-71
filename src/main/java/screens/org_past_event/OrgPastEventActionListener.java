@@ -5,6 +5,7 @@ import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
 import org_delete_event_use_case.OrgDeleteEventOutputBoundary;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
+import screens.EventDetailsPage;
 import screens.org_home.OrgHomePage;
 import screens.org_upcoming_event.OrgDeleteEventController;
 import screens.org_upcoming_event.OrgDeleteEventPresenter;
@@ -55,6 +56,13 @@ public class OrgPastEventActionListener implements ActionListener {
                 new OrgPastEventPage(this.orgPastEventPage.getOrgUsername());
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        else {
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
             }
         }
     }
