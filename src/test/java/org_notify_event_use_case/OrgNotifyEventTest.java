@@ -33,7 +33,7 @@ public class OrgNotifyEventTest {
 
     @Test
     @Order(2)
-    void test_PrepareSuccessView_Past() throws SQLException, ClassNotFoundException {
+    void test_PrepareSuccessView_Past(){
         try {
             responseModel = controller.sendNotification("Past", "TeamMeeting2");
             assertEquals("Event TeamMeeting2 was over at 11-12 0:0.", parDsGateway.getNotifications("654321").get(0));
