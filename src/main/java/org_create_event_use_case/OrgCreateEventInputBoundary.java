@@ -9,7 +9,7 @@ public interface OrgCreateEventInputBoundary {
     /**Use the information contained in the requestmodel to create a new event and respond a responsemodel.
      *
      * @param requestModel The request model sent to the input boundary
-     * @return A responsemodel representing whether the user creation is successful
+     * @return A responsemodel representing whether the event creation is successful
      */
     OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
 }

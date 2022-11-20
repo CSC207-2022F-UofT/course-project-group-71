@@ -1,10 +1,9 @@
 package screens.org_unpublished_event;
 
-import org_create_event_use_case.OrgCreateEventPresenter;
 import org_create_event_use_case.OrgCreateEventResponseModel;
 import screens.ShowMessageView;
 
-public class OrgCreateEventResponseFormatter implements OrgCreateEventPresenter {
+public class OrgCreateEventOutputBoundary implements org_create_event_use_case.OrgCreateEventOutputBoundary {
 
     @Override
     public OrgCreateEventResponseModel prepareSuccessView(OrgCreateEventResponseModel response) {

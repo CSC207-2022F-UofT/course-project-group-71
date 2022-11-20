@@ -20,15 +20,18 @@ public class ParSearchOrgResultsPage extends JFrame {
 
     ParDsGateway par = new ParFileUser();
 
+    /**The main method for creating the search results page.
+     *
+     * @param orgNames An array list containing all the search results
+     * @param parUsername A string containing the participant's username
+     */
     public ParSearchOrgResultsPage(ArrayList<String> orgNames, String parUsername) {
 
         this.parUsername = parUsername;
         this.orgNames = orgNames;
         try {
             this.followedList= par.getFollowedOrg(this.parUsername);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -70,21 +73,23 @@ public class ParSearchOrgResultsPage extends JFrame {
 
 
                if (this.followedList.contains(nextOrg)) {
-                    JButton unfollow = new JButton("Unfollow "+nextOrg);
+                    JButton unfollow = new JButton("Unfollow");
+                    unfollow.setActionCommand("Unfollow "+nextOrg);
                     unfollow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
                     unfollow.setBounds(x, y, 250, 30);
                     organizers.add(unfollow);
                     unfollow.setVisible(true);
 
-                } else {
-                    JButton follow = new JButton("Follow "+nextOrg);
-                    follow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
-                    follow.setBounds(x, y, 250, 30);
-                    organizers.add(follow);
-                    follow.setVisible(true);
-                }
+               } else {
+                   JButton follow = new JButton("Follow "+nextOrg);
+                   follow.setActionCommand("Follow "+nextOrg);
+                   follow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
+                   follow.setBounds(x, y, 250, 30);
+                   organizers.add(follow);
+                   follow.setVisible(true);
+               }
 
-                y += 100;
+               y += 100;
             }
 
             JScrollPane orgScroll = new JScrollPane(organizers);
@@ -105,10 +110,12 @@ public class ParSearchOrgResultsPage extends JFrame {
 
     }
 
+    /**A getter for the participant's username
+     *
+     * @return Returns the participant's username
+     */
     public String getParUsername() {
         return parUsername;
     }
-
-    public ArrayList<String> getOrgNames(){ return orgNames;}
 
 }

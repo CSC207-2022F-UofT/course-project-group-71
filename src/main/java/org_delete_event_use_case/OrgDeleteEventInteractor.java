@@ -13,12 +13,12 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
     final OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary;
 
     /**This is the construct method of OrgDeleteEventInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+     * It takes DsGateways and OutputBoundary as input to store as instances.
      *
      * @param eventDsGateway The database gateway of the events
      * @param orgDsGateway The database gateway of the organizers
      * @param parDsGateway The database gateway of the participants
-     * @param orgDeleteEventOutputBoundary The presenter used to show success of deletion
+     * @param orgDeleteEventOutputBoundary The OutputBoundary used to show success of deletion
      */
 
     public OrgDeleteEventInteractor(EventDsGateway eventDsGateway,

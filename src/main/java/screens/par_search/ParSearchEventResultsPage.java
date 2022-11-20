@@ -18,10 +18,21 @@ public class ParSearchEventResultsPage extends JFrame {
 
     ParDsGateway par = new ParFileUser();
 
+    /**A getter for the event names dispayed on the search page.
+     *
+     * @return An array list containing event names
+     */
     public ArrayList<String> getEventNames() {
         return eventNames;
     }
 
+    /**The main method for creating the search results page.
+     *
+     * @param eventNames An array list containing all the search results
+     * @param parUserName The username of the participant
+     * @throws SQLException This exception handles mistakes in SQL
+     * @throws ClassNotFoundException This exception handles missing classes
+     */
     public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) throws SQLException, ClassNotFoundException {
 
         this.eventNames = eventNames;
@@ -64,13 +75,15 @@ public class ParSearchEventResultsPage extends JFrame {
 
 
                 if (eventFollowed.contains(nextEvent)) {
-                    JButton join = new JButton("Leave "+nextEvent);
-                 join.addActionListener(new ParSearchEventResultsPageActionListener(this,nextEvent));
+                    JButton join = new JButton("Leave");
+                    join.setActionCommand("Leave "+nextEvent);
+                    join.addActionListener(new ParSearchEventResultsPageActionListener(this,nextEvent));
                     join.setBounds(x, y, 250, 30);
                     events.add(join);
                     join.setVisible(true);
                 } else {
-                    JButton leave = new JButton("Join "+nextEvent);
+                    JButton leave = new JButton("Join");
+                    leave.setActionCommand("Join "+nextEvent);
                     leave.addActionListener(new ParSearchEventResultsPageActionListener(this,nextEvent));
                     leave.setBounds(x, y, 250, 30);
                     events.add(leave);
@@ -98,7 +111,10 @@ public class ParSearchEventResultsPage extends JFrame {
 
     }
 
-
+    /**A getter for the username of the participant.
+     *
+     * @return The participant's username
+     */
     public String getParUsername() {
         return parUsername;
     }

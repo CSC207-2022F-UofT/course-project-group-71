@@ -16,6 +16,14 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class ParPastEventPage extends JFrame {
     private final String parUsername;
+
+    /**The page that shows the participant's past events (i.e., the events they previously
+     * registered for.
+     *
+     * @param parUsername The username of the participant
+     * @throws SQLException Exceptions raised from SQL
+     * @throws ClassNotFoundException Exceptions from missing classes
+     */
     public ParPastEventPage(String parUsername) throws SQLException, ClassNotFoundException {
         this.parUsername = parUsername;
 
@@ -99,6 +107,10 @@ public class ParPastEventPage extends JFrame {
         this.setVisible(true);
     }
 
+    /**A getter for the participant's username.
+     *
+     * @return The participant's username
+     */
     public String getParUsername() {
         return parUsername;
     }

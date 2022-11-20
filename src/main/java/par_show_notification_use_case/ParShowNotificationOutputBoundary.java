@@ -1,7 +1,5 @@
 package par_show_notification_use_case;
 
-import java.util.ArrayList;
-
-public interface ParShowNotificationPresenter {
+public interface ParShowNotificationOutputBoundary {
     ParShowNotificationResponseModel prepareView(String error);
 }

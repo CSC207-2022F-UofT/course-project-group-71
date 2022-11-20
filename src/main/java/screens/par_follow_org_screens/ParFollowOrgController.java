@@ -6,10 +6,10 @@ import par_follow_org_use_case.ParFollowOrgResponseModel;
 
 import java.sql.SQLException;
 
-public class FollowOrgController {
+public class ParFollowOrgController {
 
     final ParFollowOrgInputBoundary interactor;
-    public FollowOrgController(ParFollowOrgInputBoundary interactor){
+    public ParFollowOrgController(ParFollowOrgInputBoundary interactor){
         this.interactor= interactor;
     }
 

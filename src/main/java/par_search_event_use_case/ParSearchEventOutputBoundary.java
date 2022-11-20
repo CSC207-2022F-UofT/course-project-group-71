@@ -16,7 +16,7 @@ public interface ParSearchEventOutputBoundary {
     /**A method used to show failure view to the user
      *
      * @param error A String containing information about how it failed
-     * @return A response model showing failure view
+     * @return A response model showing success view
      */
     ParSearchEventResponseModel prepareFailView(String error);
 }

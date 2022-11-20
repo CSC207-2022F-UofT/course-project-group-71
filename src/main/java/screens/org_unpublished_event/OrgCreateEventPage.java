@@ -21,6 +21,15 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
     JTextField minute = new JTextField(2);
     JTextField location = new JTextField(15);
 
+    /**The method generate a create event window and allowed the organization to create a new event by input details.
+     * It allows user to input title, description, year, month, day, hour, minutes and location,
+     * with two buttons called "Cancel" and "Create".
+     * The "Cancel" button will close the window and won't have any changes to the Unpublished Event page.
+     * The "Create" button will close the window and updated the Unpublished Event page with the new event added.
+     *
+     * @param controller OrgCreateEventController that takes information got from the page.
+     * @param orgUnpublishedEventPage OrgUnpublishedEventPage that will be updated after the event was created.
+     */
     public OrgCreateEventPage(OrgCreateEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage){
         this.controller = controller;
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
@@ -98,8 +107,18 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
 
     }
 
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
     public String getOrgUsername() { return this.orgUnpublishedEventPage.getOrgUsername(); }
 
+    /**The action listener for button "Create", which will intake the information of the typed strings and send it to
+     * the OrgCreateEvent use case.
+     * If succeeds, the OrgCreateEventPage will dispose and the OrgUnpublishedEventPage will be renewed.
+     * If fails, the OrgCreateEventPage will raise a message showing the reason why it fails.
+     *
+     * @param e ActionEvent by button "Create".
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         try {

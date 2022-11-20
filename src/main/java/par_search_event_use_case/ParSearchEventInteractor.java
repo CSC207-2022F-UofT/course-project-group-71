@@ -26,7 +26,8 @@ public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
     /**Use the information contained in the userInput to search an event and create a responsemodel.
      * It retrieves all events that contain the string userInput and store it in searchResults.
      * It retrieves parUserName.
-     * It creates responseModel using searchResults and parUserName.(need parUserName to determine follow/unfollow)
+     * If searchResults is empty, return failure response.
+     * Otherwise, It creates responseModel using searchResults and parUserName.(need parUserName to determine follow/unfollow)
      * Success response is returned.
      *
      * @param userInput The request model sent to the interactor

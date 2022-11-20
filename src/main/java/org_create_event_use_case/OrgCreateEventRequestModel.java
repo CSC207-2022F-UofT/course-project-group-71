@@ -1,6 +1,6 @@
 package org_create_event_use_case;
 
-/** The request model of user registration.
+/** The request model of event creation.
  *  Contains orgUsername, title, description, location, year, month, day, hour, minute.
  */
 public class OrgCreateEventRequestModel {
@@ -47,7 +47,7 @@ public class OrgCreateEventRequestModel {
         this.minute = minute;
     }
 
-    /**A method to get the name of the organizer from the request model。
+    /**A method to get the name of the organizer from the request model.
      *
      * @return Name of the organizer currently creating an event
      */
@@ -55,7 +55,7 @@ public class OrgCreateEventRequestModel {
         return this.orgUsername;
     }
 
-    /**A method to get the title of the event from the request model。
+    /**A method to get the title of the event from the request model.
      *
      * @return Title of event currently being created
      */
@@ -63,7 +63,7 @@ public class OrgCreateEventRequestModel {
         return this.title;
     }
 
-    /**A method to get the description of the event from the request model。
+    /**A method to get the description of the event from the request model.
      *
      * @return Description of the event currently being created
      */
@@ -71,7 +71,7 @@ public class OrgCreateEventRequestModel {
         return this.description;
     }
 
-    /**A method to get the location of the event from the request model。
+    /**A method to get the location of the event from the request model.
      *
      * @return location of the event currently being created
      */
@@ -79,7 +79,7 @@ public class OrgCreateEventRequestModel {
         return this.location;
     }
 
-    /**A method to get the year of the event from the request model。
+    /**A method to get the year of the event from the request model.
      *
      * @return year of the event currently being created
      */
@@ -87,7 +87,7 @@ public class OrgCreateEventRequestModel {
         return this.year;
     }
 
-    /**A method to get the month of the event from the request model。
+    /**A method to get the month of the event from the request model.
      *
      * @return month of the event currently being created
      */
@@ -95,7 +95,7 @@ public class OrgCreateEventRequestModel {
         return this.month;
     }
 
-    /**A method to get the day of the event from the request model。
+    /**A method to get the day of the event from the request model.
      *
      * @return day of the event currently being created
      */
@@ -103,7 +103,7 @@ public class OrgCreateEventRequestModel {
         return this.day;
     }
 
-    /**A method to get the hour of the event from the request model。
+    /**A method to get the hour of the event from the request model.
      *
      * @return hour of the event currently being created
      */
@@ -111,7 +111,7 @@ public class OrgCreateEventRequestModel {
         return this.hour;
     }
 
-    /**A method to get the minute of the event from the request model。
+    /**A method to get the minute of the event from the request model.
      *
      * @return minute of the event currently being created
      */

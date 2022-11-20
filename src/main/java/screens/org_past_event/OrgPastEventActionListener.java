@@ -53,9 +53,7 @@ public class OrgPastEventActionListener implements ActionListener {
             this.orgPastEventPage.dispose();
             try {
                 new OrgPastEventPage(this.orgPastEventPage.getOrgUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
