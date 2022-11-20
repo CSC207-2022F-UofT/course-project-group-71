@@ -2,7 +2,6 @@ package org_notify_event_use_case;
 import database.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.*;
 import screens.org_upcoming_event.OrgNotifyEventController;
 import screens.org_upcoming_event.OrgNotifyEventPresenter;
 
