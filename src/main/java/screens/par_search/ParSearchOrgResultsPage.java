@@ -38,11 +38,7 @@ public class ParSearchOrgResultsPage extends JFrame {
         ExtractInfoController controller1= new ExtractInfoController(interactor1);
         ExtractInfoResponseModel<String> response1= controller1.extractPar("getFollowedOrg",parUsername);
 
-        try {
-            this.followedList= p.getFollowedOrg(this.parUsername);
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        this.followedList= response1.getAl();
 
 
         this.setLayout(null);

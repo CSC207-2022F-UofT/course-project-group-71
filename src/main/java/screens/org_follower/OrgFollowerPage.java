@@ -1,6 +1,8 @@
 package screens.org_follower;
 
 import database.*;
+import extract_information_use_case.*;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +45,13 @@ public class OrgFollowerPage extends JFrame {
 
         //Obtain OrgDsGateway and followers
         OrgDsGateway orgDsGateway = new OrgFileUser();
-        ArrayList<String> Followers = orgDsGateway.getFollowers(orgUsername);
+
+
+        ExtractInfoInputBoundary interactor = new ExtractInfoInteractor(orgDsGateway);
+        ExtractInfoController extractInfoController = new ExtractInfoController(interactor);
+        ExtractInfoResponseModel<String> responseModel = extractInfoController.extractOrg("getFollowers", this.orgUsername);
+        ArrayList<String> Followers = responseModel.getAl();
+
 
         int numberOfEvent = Followers.size();
 
