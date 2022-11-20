@@ -10,11 +10,13 @@ public class ParShowNotificationPresenter implements ParShowNotificationOutputBo
 
     /**Call ShowSuccessView to prepare a notification success/failure view.
      *
-     * @param message The messge need to be sent
      * @return A responsemodel to be sent back to the controller.
      */
+    public ParShowNotificationResponseModel prepareSuccessView(ParShowNotificationResponseModel responseModel) {
+        return responseModel;
+    }
     @Override
-    public ParShowNotificationResponseModel prepareView(String message) {
+    public ParShowNotificationResponseModel prepareFailView(String message) {
         throw new ShowMessageView(message);
     }
 }

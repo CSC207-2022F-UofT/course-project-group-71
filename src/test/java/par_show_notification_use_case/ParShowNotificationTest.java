@@ -13,7 +13,7 @@ public class ParShowNotificationTest {
     ParShowNotificationPresenter presenter = new ParShowNotificationPresenter();
     ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(presenter, parDsGateway);
     ParShowNotificationController controller = new ParShowNotificationController(interactor);
-    ParShowNotificationResponseModel responseModel = null;
+    ParShowNotificationResponseModel responseModel;
 
     @Test
     @Order(1)
