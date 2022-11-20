@@ -53,4 +53,19 @@ public class UserLoginTest {
             assertEquals("Password doesn't match.", e.getMessage());
         }
     }
+
+    @Test
+    @Order(3)
+    void testPrepareFailView_OrganizerNotExist() {
+
+        try{
+            responseModel = UserLoginController.login("","0","kkk", "123123");
+            assert(false);
+        } catch (Exception e) {
+            assertEquals("Organization does not exist.", e.getMessage());
+        }
+    }
+
+
+
 }
