@@ -4,6 +4,10 @@ public class ParJoinEventResponseModel {
     String eventName;
     String message;
 
+    /** This is the construct method of EventLeaveResponseModel.
+     *
+     * @param eventName  The event name that a participant want to join.
+     */
     public ParJoinEventResponseModel(String eventName) {
         this.eventName = eventName;
     }
