@@ -53,9 +53,9 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
         String day = requestModel.getDay();
         String hour = requestModel.getHour();
         String minute = requestModel.getMinute();
-
+        System.out.println("Before");
         if (isStringInt(year) && isStringInt(month) && isStringInt(day) && isStringInt(hour) && isStringInt(minute)) {
-
+            System.out.println("Before2");
             if (year.length() != 4) {
                 return orgEditEventOutputBoundary.prepareFailView("Year is not 4 digits.");
             }
@@ -83,13 +83,21 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
 
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime time = LocalDateTime.of(y, m, d, h, min);
+            System.out.println("Before3");
             if (time.isBefore(now)){
+                System.out.println("5");
                 return orgEditEventOutputBoundary.prepareFailView("Time must be in future.");
             }
-
             else {
+                System.out.println("Other2");
+                System.out.println(y);
+                System.out.println(m);
+                System.out.println(d);
+                System.out.println(h);
+                System.out.println(min);
                 orgDsGateway.editAnEvent(requestModel.getTitle(), requestModel.getDescription(),
                         requestModel.getLocation(), y, m, d, h, min);
+                System.out.println("sucee");
                 OrgEditEventResponseModel responseModel = new OrgEditEventResponseModel(requestModel.getTitle());
                 return orgEditEventOutputBoundary.prepareSuccessView(responseModel);
             }
