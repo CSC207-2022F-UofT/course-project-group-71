@@ -13,7 +13,7 @@ public class UserLoginController {
         this.userInput = accountGateway;
     }
 
-    UserLoginResponseModel login(String isParticipant, String isOrganization, String username, String password) throws SQLException, ClassNotFoundException {
+    public UserLoginResponseModel login(String isParticipant, String isOrganization, String username, String password) throws SQLException, ClassNotFoundException {
         UserLoginRequestModel requestModel = new UserLoginRequestModel(
                 isParticipant, isOrganization, username, password);
 

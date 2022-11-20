@@ -35,7 +35,7 @@ public class UserLoginTest {
     void testPrepareFailView_ParticipantNotExist() {
 
         try{
-            responseModel = UserLoginController.login("0","","kkk", "123123");
+            responseModel = controller.login("0","","kkk", "123123");
             assert(false);
         } catch (Exception e) {
             assertEquals("Participant does not exist.", e.getMessage());
@@ -47,7 +47,7 @@ public class UserLoginTest {
     void testPrepareFailView_ParticipantPasswordNotMatch() {
 
         try{
-            responseModel = UserLoginController.login("0","","aas", "123123");
+            responseModel = controller.login("0","","aas", "123123");
             assert(false);
         } catch (Exception e) {
             assertEquals("Password doesn't match.", e.getMessage());
@@ -59,7 +59,7 @@ public class UserLoginTest {
     void testPrepareFailView_OrganizerNotExist() {
 
         try{
-            responseModel = UserLoginController.login("","0","kkk", "123123");
+            responseModel = controller.login("","0","kkk", "123123");
             assert(false);
         } catch (Exception e) {
             assertEquals("Organization does not exist.", e.getMessage());
@@ -71,7 +71,7 @@ public class UserLoginTest {
     void testPrepareFailView_OrganizerPasswordNotMatch() {
 
         try{
-            responseModel = UserLoginController.login("0","","123", "114514");
+            responseModel = controller.login("0","","123", "114514");
             assert(false);
         } catch (Exception e) {
             assertEquals("Password doesn't match.", e.getMessage());
@@ -83,7 +83,7 @@ public class UserLoginTest {
     void testPrepareFailView_UserMissType() {
 
         try{
-            responseModel = UserLoginController.login("","","123", "114514");
+            responseModel = controller.login("","","123", "114514");
             assert(false);
         } catch (Exception e) {
             assertEquals("Please select your account type.", e.getMessage());
@@ -91,14 +91,14 @@ public class UserLoginTest {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     void testPrepareSuccessView_Orgnization() {
 
         try{
-            responseModel = UserLoginController.login("","0","123", "123");
-            assert(false);
+            responseModel = controller.login("","0","123", "123");
+            assertEquals("", responseModel.getUsername());
         } catch (Exception e) {
-            assertEquals("Please select your account type.", e.getMessage());
+            assert(false);
         }
     }
 
