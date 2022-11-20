@@ -1,21 +1,34 @@
 package screens.par_followed_org;
 
+import database.ParDsGateway;
+import database.ParFileUser;
+import par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
+import par_unfollow_org_use_case.ParUnfollowOrgInteractor;
+import par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
+import par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
+import screens.par_follow_org_screens.ParUnfollowOrgController;
+import screens.par_follow_org_screens.ParUnfollowOrgPresenter;
 import screens.par_home.ParHomePage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class ParFollowedOrgActionListener implements ActionListener {
     public ParFollowedOrgPage parFollowerPage;
+    private String orgName;
 
     /**Constructor for the action listener of the page appearing after the participant
      * follows an organizer.
-     * It takes a participant's follower page as an input and sets it as an attribute.
+     * It takes a participant's follower page and an organizers's name as inputs and
+     * sets them as attributes.
      *
      * @param parFollowerPage The participant's followed organizers page.
+     * @param orgName The organizer to be unfollowed.
      */
-    public ParFollowedOrgActionListener(ParFollowedOrgPage parFollowerPage){
+    public ParFollowedOrgActionListener(ParFollowedOrgPage parFollowerPage, String orgName){
         this.parFollowerPage = parFollowerPage;
+        this.orgName = orgName;
     }
 
     /**Responds to actions performed on the participant's followed organizers page.
@@ -30,8 +43,26 @@ public class ParFollowedOrgActionListener implements ActionListener {
         if (actionCommand.equals("Back")) {
             this.parFollowerPage.dispose();
             new ParHomePage(this.parFollowerPage.getParUsername());
-        } else if (actionCommand.equals("UnFollow")) {
-            // TODO: This section is missing.
+        } else if (actionCommand.equals(orgName + "UnFollow")) {
+            String parUsername = this.parFollowerPage.getParUsername();
+            ParUnfollowOrgResponseModel parUnfollowOrgResponseModel;
+            ParDsGateway parDsGateway = new ParFileUser();
+            ParUnfollowOrgOutputBoundary parUnfollowOrgPresenter = new ParUnfollowOrgPresenter();
+            ParUnfollowOrgInputBoundary parUnfollowOrgInteractor = new ParUnfollowOrgInteractor(
+                    parDsGateway, parUnfollowOrgPresenter);
+            ParUnfollowOrgController parUnfollowOrgController = new ParUnfollowOrgController(
+                    parUnfollowOrgInteractor);
+            try {
+                parUnfollowOrgResponseModel = parUnfollowOrgController.unfollow(
+                        parUsername, this.orgName);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                new ParFollowedOrgPage(this.parFollowerPage.getParUsername());
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

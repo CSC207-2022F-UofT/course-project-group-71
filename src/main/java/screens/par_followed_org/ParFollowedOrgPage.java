@@ -33,7 +33,7 @@ public class ParFollowedOrgPage extends JFrame {
         title.setHorizontalAlignment(JLabel.CENTER);
 
         JButton back = new JButton("Back");
-        back.addActionListener(new ParFollowedOrgActionListener(this));
+        back.addActionListener(new ParFollowedOrgActionListener(this, "none"));
         back.setBounds(0, 100, 150, 30);
 
         JPanel events = new JPanel();
@@ -55,13 +55,13 @@ public class ParFollowedOrgPage extends JFrame {
             for (String orgname : followedOrg) {
 
                 JButton organization = new JButton(orgname);
-                organization.addActionListener(new ParFollowedOrgActionListener(this));
+                organization.addActionListener(new ParFollowedOrgActionListener(this, orgname));
                 organization.setBounds(x, y, 250, 30);
                 organization.setVisible(true);
 
                 JButton unFollow = new JButton("UnFollow");
                 unFollow.setActionCommand(orgname + "UnFollow");
-                unFollow.addActionListener(new ParFollowedOrgActionListener(this));
+                unFollow.addActionListener(new ParFollowedOrgActionListener(this, orgname));
                 unFollow.setBounds(x + 250, y + 55, 100, 30);
                 unFollow.setVisible(true);
 
