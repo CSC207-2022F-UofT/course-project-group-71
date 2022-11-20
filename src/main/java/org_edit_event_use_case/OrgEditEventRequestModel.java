@@ -44,7 +44,7 @@ public class OrgEditEventRequestModel {
         this.minute = minute;
     }
 
-    /**A method to get the title of the event from the request model。
+    /**A method to get the title of the event from the request model.
      *
      * @return Title of event currently being edited
      */
@@ -52,7 +52,7 @@ public class OrgEditEventRequestModel {
         return this.title;
     }
 
-    /**A method to get the description of the event from the request model。
+    /**A method to get the description of the event from the request model.
      *
      * @return Description of the event currently being edited
      */
@@ -60,7 +60,7 @@ public class OrgEditEventRequestModel {
         return this.description;
     }
 
-    /**A method to get the location of the event from the request model。
+    /**A method to get the location of the event from the request model.
      *
      * @return location of the event currently being edited
      */
@@ -68,7 +68,7 @@ public class OrgEditEventRequestModel {
         return this.location;
     }
 
-    /**A method to get the year of the event from the request model。
+    /**A method to get the year of the event from the request model.
      *
      * @return year of the event currently being edited
      */
@@ -76,7 +76,7 @@ public class OrgEditEventRequestModel {
         return this.year;
     }
 
-    /**A method to get the month of the event from the request model。
+    /**A method to get the month of the event from the request model.
      *
      * @return month of the event currently being edited
      */
@@ -84,7 +84,7 @@ public class OrgEditEventRequestModel {
         return this.month;
     }
 
-    /**A method to get the day of the event from the request model。
+    /**A method to get the day of the event from the request model.
      *
      * @return day of the event currently being edited
      */
@@ -92,7 +92,7 @@ public class OrgEditEventRequestModel {
         return this.day;
     }
 
-    /**A method to get the hour of the event from the request model。
+    /**A method to get the hour of the event from the request model.
      *
      * @return hour of the event currently being edited
      */
@@ -100,7 +100,7 @@ public class OrgEditEventRequestModel {
         return this.hour;
     }
 
-    /**A method to get the minute of the event from the request model。
+    /**A method to get the minute of the event from the request model.
      *
      * @return minute of the event currently being edited
      */

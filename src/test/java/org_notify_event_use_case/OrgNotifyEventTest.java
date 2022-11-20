@@ -6,8 +6,6 @@ import screens.*;
 import screens.org_upcoming_event.OrgNotifyEventController;
 import screens.org_upcoming_event.OrgNotifyEventPresenter;
 
-import java.sql.SQLException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OrgNotifyEventTest {

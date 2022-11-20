@@ -14,7 +14,7 @@ public class OrgPublishEventRequestModel {
         this.eventName = eventName;
     }
 
-    /**A method to get the name of the event from the request model。
+    /**A method to get the name of the event from the request model.
      *
      * @return Name of the event currently publishing
      */
