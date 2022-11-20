@@ -4,6 +4,10 @@ package screens.par_search;
 
 import database.ParDsGateway;
 import database.ParFileUser;
+import extract_information_use_case.ExtractInfoController;
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoInteractor;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +22,7 @@ public class ParSearchOrgResultsPage extends JFrame {
     private ArrayList<String> orgNames,followedList;
     private String parUsername;
 
-    ParDsGateway par = new ParFileUser();
+    ParDsGateway p = new ParFileUser();
 
     /**The main method for creating the search results page.
      *
@@ -29,8 +33,13 @@ public class ParSearchOrgResultsPage extends JFrame {
 
         this.parUsername = parUsername;
         this.orgNames = orgNames;
+
+        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(p);
+        ExtractInfoController controller1= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1= controller1.extractPar("getFollowedOrg",parUsername);
+
         try {
-            this.followedList= par.getFollowedOrg(this.parUsername);
+            this.followedList= p.getFollowedOrg(this.parUsername);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

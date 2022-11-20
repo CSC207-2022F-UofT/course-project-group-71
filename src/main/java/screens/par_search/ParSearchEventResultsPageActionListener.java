@@ -60,7 +60,6 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             ParJoinEventController controller = new ParJoinEventController(interactor);
             String parUserName = this.parSearchEventResultsPage.getParUsername();
             ParJoinEventResponseModel response = controller.join(parUserName, this.eventName);
-            this.parSearchEventResultsPage.dispose();
             try {
                 new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
             } catch (SQLException ex) {
@@ -69,12 +68,12 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
                 throw new RuntimeException(ex);
             }
             JOptionPane.showMessageDialog(this.parSearchEventResultsPage, response.getMessage());
+            this.parSearchEventResultsPage.dispose();
 
 
         } else if (actionCommand.equals("Leave " + this.eventName)){
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
-            EventDsGateway eventDsGateway = new EventFileUser();
 
             ParLeaveEventOutputBoundary presenter = new ParLeaveEventPresenter();
             ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway, orgDsGateway,presenter);
@@ -88,10 +87,11 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
-            this.parSearchEventResultsPage.dispose();
 
             parUserName = this.parSearchEventResultsPage.getParUsername();
             JOptionPane.showMessageDialog(this.parSearchEventResultsPage, response.getMessage());
+            this.parSearchEventResultsPage.dispose();
+
             try {
                 new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
             } catch (SQLException ex) {

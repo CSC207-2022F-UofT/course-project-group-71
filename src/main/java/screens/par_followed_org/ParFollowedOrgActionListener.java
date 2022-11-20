@@ -45,13 +45,13 @@ public class ParFollowedOrgActionListener implements ActionListener {
             new ParHomePage(this.parFollowerPage.getParUsername());
         } else if (actionCommand.equals(orgName + "UnFollow")) {
             String parUsername = this.parFollowerPage.getParUsername();
-            ParUnfollowOrgResponseModel parUnfollowOrgResponseModel;
             ParDsGateway parDsGateway = new ParFileUser();
             ParUnfollowOrgOutputBoundary parUnfollowOrgPresenter = new ParUnfollowOrgPresenter();
             ParUnfollowOrgInputBoundary parUnfollowOrgInteractor = new ParUnfollowOrgInteractor(
                     parDsGateway, parUnfollowOrgPresenter);
             ParUnfollowOrgController parUnfollowOrgController = new ParUnfollowOrgController(
                     parUnfollowOrgInteractor);
+
             try {
                 parUnfollowOrgController.unfollow(parUsername, this.orgName);
             } catch (SQLException e) {
@@ -59,8 +59,10 @@ public class ParFollowedOrgActionListener implements ActionListener {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+
             try {
                 new ParFollowedOrgPage(this.parFollowerPage.getParUsername());
+                this.parFollowerPage.dispose();
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

@@ -1,6 +1,10 @@
 package screens.org_upcoming_event;
 
 import database.*;
+import extract_information_use_case.ExtractInfoController;
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoInteractor;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,10 +52,15 @@ public class OrgUpcomingEventPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
-        OrgDsGateway orgDsGateway = new OrgFileUser();
-        EventDsGateway eventDsGateway = new EventFileUser();
+        OrgDsGateway o = new OrgFileUser();
+        EventDsGateway e = new EventFileUser();
 
-        ArrayList<String> upcomingEvents = orgDsGateway.getUpcomingEvents(orgUsername);
+        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(o);
+        ExtractInfoController controller1= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1= controller1.extractOrg("getUpcomingEvents",orgUsername);
+
+
+        ArrayList<String> upcomingEvents = response1.getAl();
 
         int numberOfEvent = upcomingEvents.size();
         if (numberOfEvent == 0){
@@ -74,7 +83,12 @@ public class OrgUpcomingEventPage extends JFrame {
             eventTitle.setBounds (x, y, 250, 30);
             eventTitle.setVisible(true);
 
-            ArrayList<Integer> times = eventDsGateway.getTime(upcomingEventTitle);
+            ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
+            ExtractInfoController controller2= new ExtractInfoController(interactor2);
+            ExtractInfoResponseModel<Integer> response2= controller2.extractEventTime(upcomingEventTitle);
+
+
+            ArrayList<Integer> times = response2.getAl();
             String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
                     times.get(3) + ":" + times.get(4);
 
@@ -82,7 +96,14 @@ public class OrgUpcomingEventPage extends JFrame {
             eventTime.setBounds (x+20, y+40, 250, 30);
             eventTime.setVisible(true);
 
-            String location = eventDsGateway.getLocation(upcomingEventTitle);
+
+            ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
+            ExtractInfoController controller3= new ExtractInfoController(interactor3);
+            ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
+                    upcomingEventTitle);
+
+
+            String location = response3.getStr();
             JLabel eventLocation = new JLabel(location);
             eventLocation.setBounds (x+20, y+70, 250, 30);
             eventLocation.setVisible(true);

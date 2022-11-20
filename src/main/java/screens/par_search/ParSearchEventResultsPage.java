@@ -2,6 +2,10 @@ package screens.par_search;
 
 import database.ParDsGateway;
 import database.ParFileUser;
+import extract_information_use_case.ExtractInfoController;
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoInteractor;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +20,7 @@ public class ParSearchEventResultsPage extends JFrame {
     private ArrayList<String> eventNames;
     private String parUsername;
 
-    ParDsGateway par = new ParFileUser();
+    ParDsGateway p = new ParFileUser();
 
     /**A getter for the event names dispayed on the search page.
      *
@@ -37,7 +41,12 @@ public class ParSearchEventResultsPage extends JFrame {
 
         this.eventNames = eventNames;
         this.parUsername = parUserName;
-        ArrayList<String> eventFollowed = par.getUpcomingEvents(parUserName);
+        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(p);
+        ExtractInfoController controller1= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1= controller1.extractPar("getUpcomingEvents",parUserName);
+
+
+        ArrayList<String> eventFollowed = response1.getAl();
 
         this.setLayout(null);
 

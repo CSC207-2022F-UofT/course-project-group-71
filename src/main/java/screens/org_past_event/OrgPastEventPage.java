@@ -5,6 +5,10 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import database.OrgDsGateway;
 import database.OrgFileUser;
+import extract_information_use_case.ExtractInfoController;
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoInteractor;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,10 +48,14 @@ public class OrgPastEventPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
-        OrgDsGateway orgDsGateway = new OrgFileUser();
-        EventDsGateway eventDsGateway = new EventFileUser();
+        OrgDsGateway o = new OrgFileUser();
+        EventDsGateway e = new EventFileUser();
 
-        ArrayList<String> pastEvents = orgDsGateway.getPastEvents(orgUsername);
+        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(o);
+        ExtractInfoController controller1= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1= controller1.extractOrg("getPastEvents",this.orgUsername);
+
+        ArrayList<String> pastEvents = response1.getAl();
 
         int numberOfEvent = pastEvents.size();
 
@@ -65,7 +73,11 @@ public class OrgPastEventPage extends JFrame {
                 eventTitle.setBounds(x, y, 250, 30);
                 eventTitle.setVisible(true);
 
-                ArrayList<Integer> times = eventDsGateway.getTime(unpublishedEventTitle);
+                ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
+                ExtractInfoController controller2= new ExtractInfoController(interactor2);
+                ExtractInfoResponseModel<Integer> response2= controller2.extractEventTime(unpublishedEventTitle);
+
+                ArrayList<Integer> times = response2.getAl();
                 String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
                         times.get(3) + ":" + times.get(4);
 
@@ -73,7 +85,12 @@ public class OrgPastEventPage extends JFrame {
                 eventTime.setBounds(x + 20, y + 40, 250, 30);
                 eventTime.setVisible(true);
 
-                String location = eventDsGateway.getLocation(unpublishedEventTitle);
+                ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
+                ExtractInfoController controller3= new ExtractInfoController(interactor3);
+                ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
+                        unpublishedEventTitle);
+
+                String location = response3.getStr();
                 JLabel eventLocation = new JLabel(location);
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);

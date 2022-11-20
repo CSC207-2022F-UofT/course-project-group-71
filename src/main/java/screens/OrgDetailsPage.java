@@ -1,14 +1,15 @@
 package screens;
 
 
-
-import database.EventDsGateway;
-import database.EventFileUser;
 import database.OrgDsGateway;
 import database.OrgFileUser;
+import extract_information_use_case.ExtractInfoController;
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoInteractor;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
-import java.awt.*;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -22,8 +23,7 @@ public class OrgDetailsPage extends JFrame {
     private String orgName;
 
 
-    OrgDsGateway org = new OrgFileUser();
-    EventDsGateway eve = new EventFileUser();
+    OrgDsGateway o = new OrgFileUser();
 
 
     public OrgDetailsPage(String orgName) throws SQLException, ClassNotFoundException {
@@ -46,11 +46,16 @@ public class OrgDetailsPage extends JFrame {
         upcoming.setBounds(0, 100, getConstantX() - 300, 50);
         upcoming.setHorizontalAlignment(JLabel.CENTER);
 
-        ArrayList<String> orgUpcomingEvents = org.getUpcomingEvents(this.orgName);
+        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(o);
+        ExtractInfoController controller1= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1= controller1.extractOrg("getUpcomingEvents",orgName);
 
-        JPanel panel=new JPanel();
-        panel.setBounds(100,150,200,100);
-        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+
+        ArrayList<String> orgUpcomingEvents = response1.getAl();
+
+        JPanel panel = new JPanel();
+        panel.setBounds(100, 150, 200, 100);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         for (String eventTitle : orgUpcomingEvents) {
             JLabel event = new JLabel(eventTitle);
             panel.add(event);

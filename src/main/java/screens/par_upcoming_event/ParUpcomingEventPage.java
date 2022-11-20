@@ -1,6 +1,10 @@
 package screens.par_upcoming_event;
 
 import database.*;
+import extract_information_use_case.ExtractInfoController;
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoInteractor;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,10 +44,14 @@ public class ParUpcomingEventPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
-        EventDsGateway eventDsGateway = new EventFileUser();
-        ParDsGateway parDsGateway = new ParFileUser();
+        EventDsGateway e = new EventFileUser();
+        ParDsGateway p = new ParFileUser();
 
-        ArrayList<String> upcomingEvents = parDsGateway.getUpcomingEvents(parUsername);
+        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(p);
+        ExtractInfoController controller1= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1= controller1.extractPar("getUpcomingEvents",parUsername);
+
+        ArrayList<String> upcomingEvents = response1.getAl();
 
         int numberOfEvent = upcomingEvents.size();
 
@@ -61,7 +69,11 @@ public class ParUpcomingEventPage extends JFrame {
                 eventTitle.setBounds(x, y, 250, 30);
                 eventTitle.setVisible(true);
 
-                ArrayList<Integer> times = eventDsGateway.getTime(upcomingEventTitle);
+                ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
+                ExtractInfoController controller2= new ExtractInfoController(interactor2);
+                ExtractInfoResponseModel<Integer> response2= controller2.extractEventTime(upcomingEventTitle);
+
+                ArrayList<Integer> times =response2.getAl();
                 String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
                         times.get(3) + ":" + times.get(4);
 
@@ -69,7 +81,12 @@ public class ParUpcomingEventPage extends JFrame {
                 eventTime.setBounds(x + 20, y + 40, 250, 30);
                 eventTime.setVisible(true);
 
-                String location = eventDsGateway.getLocation(upcomingEventTitle);
+                ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
+                ExtractInfoController controller3= new ExtractInfoController(interactor3);
+                ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
+                        upcomingEventTitle);
+
+                String location = response3.getStr();
                 JLabel eventLocation = new JLabel(location);
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);

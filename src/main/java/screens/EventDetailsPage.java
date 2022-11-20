@@ -3,6 +3,7 @@ package screens;
 
 import database.EventDsGateway;
 import database.EventFileUser;
+import extract_information_use_case.*;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -15,10 +16,11 @@ public class EventDetailsPage extends JFrame {
 
     private String eventTitle;
 
-    EventDsGateway eve = new EventFileUser();
+
 
     public EventDetailsPage(String eventTitle) throws SQLException, ClassNotFoundException {
 
+        EventDsGateway e= new EventFileUser();
         this.eventTitle = eventTitle;
         this.setSize(getConstantX() - 300, getConstantY() - 500);
         this.setLayout(null);
@@ -31,12 +33,26 @@ public class EventDetailsPage extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JLabel eventName = new JLabel("Event Title: " + this.eventTitle);
-        JLabel description = new JLabel("Description: " + eve.getDescription(this.eventTitle));
 
-        ArrayList<Integer> times = eve.getTime(this.eventTitle);
+        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(e);
+        ExtractInfoController controller1= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1= controller1.extractEvent("getDescription",this.eventTitle);
+
+        JLabel description = new JLabel("Description: " + response1.getStr());
+
+        ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
+        ExtractInfoController controller2= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<Integer> response2= controller1.extractEventTime(this.eventTitle);
+
+        ArrayList<Integer> times = response2.getAl();
         JLabel time = new JLabel("Time: " + times.get(0) + " " + times.get(1) + "-" +
                 times.get(2) +" "+times.get(3) + ":" + times.get(4));
-        JLabel location = new JLabel("Location:"+eve.getLocation(this.eventTitle));
+
+        ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
+        ExtractInfoController controller3= new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",this.eventTitle);
+
+        JLabel location = new JLabel("Location:"+response3.getStr());
         panel.add(eventName);
         panel.add(description);
         panel.add(time);
