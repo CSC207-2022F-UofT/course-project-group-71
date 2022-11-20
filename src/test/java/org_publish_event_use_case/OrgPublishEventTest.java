@@ -1,14 +1,13 @@
 package org_publish_event_use_case;
 
-import database.*;
+import database.EventDsGateway;
+import database.EventFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org_publish_event_use_case.OrgPublishEventOutputBoundary;
-import org_publish_event_use_case.OrgPublishEventInputBoundary;
-import org_publish_event_use_case.OrgPublishEventInteractor;
-import org_publish_event_use_case.OrgPublishEventResponseModel;
 import screens.org_unpublished_event.OrgPublishEventController;
 import screens.org_unpublished_event.OrgPublishEventPresenter;
+
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,8 +29,8 @@ public class OrgPublishEventTest {
             responseModel = orgPublishEventController.publish("A");
             System.out.println(responseModel.getMessage());
             assertEquals("Event A is published!", responseModel.getMessage());
-        }
-        catch (Exception e) {
+        } catch (SQLException | ClassNotFoundException e) {
             assert(false);
-        }}
-}
+        }
+
+    }}
