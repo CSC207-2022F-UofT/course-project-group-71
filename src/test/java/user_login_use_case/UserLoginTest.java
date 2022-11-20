@@ -102,5 +102,17 @@ public class UserLoginTest {
         }
     }
 
+    @Test
+    @Order(6)
+    void testPrepareSuccessView_Participant() {
+
+        try{
+            responseModel = controller.login("0","","aas", "114514");
+            assertEquals("", responseModel.getUsername());
+        } catch (Exception e) {
+            assert(false);
+        }
+    }
+
 
 }
