@@ -5,14 +5,16 @@ package org_notify_event_use_case;
  */
 public class OrgNotifyEventResponseModel {
     String eventName;
+    String notificationType;
     String message;
 
     /**This is the construct method of OrgNotifyEventResponseModel, it took an eventName and store it as instance.
      *
      * @param eventName The event name of event which notifications will be sent out.
      */
-    public OrgNotifyEventResponseModel(String eventName) {
+    public OrgNotifyEventResponseModel(String eventName, String notificationType) {
         this.eventName = eventName;
+        this.notificationType = notificationType;
     }
 
     /**This is a method to get the eventName.
@@ -22,6 +24,8 @@ public class OrgNotifyEventResponseModel {
     public String getEventName() {
         return eventName;
     }
+
+    public String getNotificationType(){return notificationType;}
 
     /**This is a method to set the message sent back
      *
