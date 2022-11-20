@@ -117,4 +117,21 @@ public class OrgEditEventTest {
 
         }
     }
+
+    @Test
+    @Order(7)
+    public void test_PrepareFailureView_not_integer() {
+        try {
+            responseModel = controller.edit("Edit", "HH", "Zoom", "aja", "4", "2", "9", "9");
+            assert (false);
+            System.out.println(responseModel);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            assertEquals("Time entry/ies is/are not integer.", e.getMessage());
+
+        }
+    }
+
+
+
 }
