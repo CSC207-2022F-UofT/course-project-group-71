@@ -28,7 +28,7 @@ public class OrgEditEventResponseModel {
      */
     public String getMessage() { return this.message;}
 
-    /**A method to get the title of the event。
+    /**A method to get the title of the event.
      *
      * @return Title of event currently being edited
      */

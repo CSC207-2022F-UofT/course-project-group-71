@@ -19,12 +19,12 @@ public class OrgNotifyEventRequestModel {
         this.eventName = eventName;
     }
 
-    /**A method to get the notification type from the request model。
+    /**A method to get the notification type from the request model.
      *
      * @return notification type
      */
     String getNotificationType(){ return notificationType;}
-    /**A method to get the event name from the request model。
+    /**A method to get the event name from the request model.
      *
      * @return Name of the event
      */

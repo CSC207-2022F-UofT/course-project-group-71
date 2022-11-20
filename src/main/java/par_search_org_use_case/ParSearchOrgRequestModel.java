@@ -18,7 +18,7 @@ public class ParSearchOrgRequestModel {
         this.parUserName= parUserName;
     }
 
-    /**A method to get the string to be searched from the request model。
+    /**A method to get the string to be searched from the request model.
      *
      * @return Name of the participant currently searching for organizers
      */
@@ -32,7 +32,7 @@ public class ParSearchOrgRequestModel {
         this.query = query;
     }
 
-    /**A method to get the name of the participant from the request model。
+    /**A method to get the name of the participant from the request model.
      *
      * @return Name of the participant currently searching for organizers
      */
@@ -40,7 +40,7 @@ public class ParSearchOrgRequestModel {
         return parUserName;
     }
 
-    /**A method to set the name of the participant。
+    /**A method to set the name of the participant.
      */
     public void setParUserName(String parUserName) {
         this.parUserName = parUserName;

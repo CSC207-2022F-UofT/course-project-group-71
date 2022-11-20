@@ -689,7 +689,7 @@ public class ParFileUser implements ParDsGateway {
     }
 
     /**This is a method used to get the password of the participant.
-     * This method called a tool method called utilGetPassword。
+     * This method called a tool method called utilGetPassword.
      *
      * @param username The username of the participant
      * @return The password of the participant

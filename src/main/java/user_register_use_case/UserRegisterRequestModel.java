@@ -29,7 +29,7 @@ public class UserRegisterRequestModel {
         this.re_password = re_password;
     }
 
-    /**A method to get the name of the participant from teh request model。
+    /**A method to get the name of the participant from teh request model.
      *
      * @return Name of the participant currently registering
      */
@@ -37,7 +37,7 @@ public class UserRegisterRequestModel {
         return name;
     }
 
-    /**A method to get the password (First one inputted) of the participant from teh request model。
+    /**A method to get the password (First one inputted) of the participant from teh request model.
      *
      * @return Password of the participant currently registering
      */
@@ -45,7 +45,7 @@ public class UserRegisterRequestModel {
         return password;
     }
 
-    /**A method to get the password (Second one inputted) of the participant from the request model。
+    /**A method to get the password (Second one inputted) of the participant from the request model.
      *
      * @return Password of the participant currently registering
      */
