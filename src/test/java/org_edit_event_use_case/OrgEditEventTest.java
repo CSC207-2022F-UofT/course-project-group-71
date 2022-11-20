@@ -50,6 +50,22 @@ public class OrgEditEventTest {
         }
     }
 
+    @Test
+    @Order(3)
+    public void test_PrepareFailureView_wrong_month() {
+        try{
+            responseModel = controller.edit("Edit", "HH", "Zoom", "2004", "13", "2", "9", "9");
+            assert (false);
+            System.out.println(responseModel);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            assertEquals("Month is not within 1 to 12.", e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(4)
+
 
 
 
