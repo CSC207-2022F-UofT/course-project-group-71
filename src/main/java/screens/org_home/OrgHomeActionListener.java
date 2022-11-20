@@ -16,7 +16,7 @@ import screens.org_upcoming_event.OrgNotifyEventPresenter;
 import screens.org_upcoming_event.OrgUpcomingEventPage;
 import screens.par_home.ParHomePresenter;
 import screens.upcoming_to_past.UpcomingToPastController;
-import screens.upcoming_to_past.UpcomingToPastResponseFormatter;
+import screens.upcoming_to_past.UpcomingToPastPresenter;
 import upcoming_to_past_use_case.UpcomingToPastInputBoundary;
 import upcoming_to_past_use_case.UpcomingToPastInteractor;
 import upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
@@ -56,7 +56,7 @@ public class OrgHomeActionListener implements ActionListener {
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastResponseFormatter();
+            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
                     eventDsGateway, upcomingToPastOutputBoundary);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);
@@ -90,7 +90,7 @@ public class OrgHomeActionListener implements ActionListener {
             ParDsGateway parDsGateway = new ParFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastResponseFormatter();
+            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
             UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
                     eventDsGateway, upcomingToPastOutputBoundary);
             UpcomingToPastController controller = new UpcomingToPastController(interactor);

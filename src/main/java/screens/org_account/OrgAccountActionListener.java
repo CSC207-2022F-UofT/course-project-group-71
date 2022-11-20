@@ -20,24 +20,24 @@ public class OrgAccountActionListener implements ActionListener {
 
     public void actionPerformed(ActionEvent arg0){
         String actionCommand = arg0.getActionCommand();
-
+        //If the button clicked is "Back"
         if (actionCommand.equals("Back")) {
+            //Dispose the account page
             this.orgAccountPage.dispose();
+            //Generate a new page
             new OrgHomePage(this.orgAccountPage.getOrgUsername());
         }
+        //If the button clicked is "Reset Password"
         else if (actionCommand.equals("Reset Password")) {
+            //Initialize DsGateway, Controller, InputBoundary, OutBoundary
             UserResetPasswordOutputBoundary userResetPasswordOutputBoundary = new OrgResetPasswordPresenter();
-
             ParDsGateway parDsGateway = new ParFileUser();
-
             OrgDsGateway orgDsGateway = new OrgFileUser();
-
-
             UserResetPasswordInputBoundary interactor = new UserResetPasswordInteractor(
                     userResetPasswordOutputBoundary, orgDsGateway, parDsGateway);
-
             OrgResetPasswordController resetPasswordController = new OrgResetPasswordController(interactor);
 
+            //Obtain username, passwords from the type input bar and buttons
             String username = orgAccountPage.getOrgUsername();
             String password = String.valueOf(orgAccountPage.oldPassword.getPassword());
             String new_password = String.valueOf(orgAccountPage.newPassword.getPassword());
@@ -45,13 +45,16 @@ public class OrgAccountActionListener implements ActionListener {
             System.out.println("eeeee");
 
             try{
+                //Try to reset the password
                 UserResetPasswordResponseModel responseModel = resetPasswordController.resetPassword(username, password, new_password, retype_password);
                 System.out.println(responseModel.getMessage());
                 System.out.println("A");
                 JOptionPane.showMessageDialog(this.orgAccountPage, responseModel.getMessage());
             } catch (Exception e){
+                //If meet some problem, show this one
                 JOptionPane.showMessageDialog(this.orgAccountPage, e.getMessage());
             }
+            //Dispose the page and regenerate the organizer account page
             this.orgAccountPage.dispose();
             new OrgAccountPage(this.orgAccountPage.getOrgUsername());
 

@@ -40,24 +40,23 @@ public class OrgNotifyEventInteractor implements OrgNotifyEventInputBoundary {
     @Override
     public OrgNotifyEventResponseModel sendNotification (OrgNotifyEventRequestModel orgNotifyEventRequestModel) throws SQLException, ClassNotFoundException {
         String eventName = orgNotifyEventRequestModel.getEventName();
+        String notificationType = orgNotifyEventRequestModel.getNotificationType();
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
         OrgNotifyEventResponseModel notificationResponseModel =
-                new OrgNotifyEventResponseModel(eventName);
+                new OrgNotifyEventResponseModel(eventName, notificationType);
         if (parUsernames.isEmpty()) {
             return orgNotifyEventOutputBoundary.prepareFailView(notificationResponseModel);
         }
-
         ArrayList<Integer> times = eventDsGateway.getTime(eventName);
         String time = times.get(1) + "-" + times.get(2) + " " + times.get(3) + ":" + times.get(4);
         for (String username : parUsernames) {
-            String newNotification;
-            if (orgNotifyEventRequestModel.getNotificationType().equals("Future")){
+            String newNotification = null;
+            if (notificationType.equals("Future")){
                 newNotification = "Event " + eventName + " is about to happen at " + time + "!";
             } else {
                 newNotification = "Event " + eventName + " was over at " + time + ".";
             }
             parDsGateway.addNotification(username, newNotification);
-
         }
         return orgNotifyEventOutputBoundary.prepareSuccessView(notificationResponseModel);
     }
