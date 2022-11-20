@@ -103,4 +103,18 @@ public class OrgEditEventTest {
 
         }
     }
+
+    @Test
+    @Order(7)
+    public void test_PrepareFailureView_future_time() {
+        try {
+            responseModel = controller.edit("Edit", "HH", "Zoom", "2004", "4", "2", "9", "9");
+            assert (false);
+            System.out.println(responseModel);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            assertEquals("Time must be in future.", e.getMessage());
+
+        }
+    }
 }
