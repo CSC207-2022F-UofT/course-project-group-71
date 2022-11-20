@@ -30,9 +30,10 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
     @Override
     public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
         String eventName = requestModel.getEventName();
+        System.out.println(eventName);
 
         eventDsGateway.unPublishedToUpcoming(eventName);
-
+        System.out.println("B");
         OrgPublishEventResponseModel orgPublishEventResponseModel = new OrgPublishEventResponseModel(eventName);
 
         return orgPublishEventOutputBoundary.prepareSuccessView(orgPublishEventResponseModel);
