@@ -6,6 +6,7 @@ import par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
 import par_unfollow_org_use_case.ParUnfollowOrgInteractor;
 import par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
 import par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
+import screens.OrgDetailsPage;
 import screens.par_follow_org_screens.ParFollowOrgController;
 import screens.par_follow_org_screens.ParFollowOrgPresenter;
 import screens.par_follow_org_screens.ParUnfollowOrgController;
@@ -84,7 +85,15 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
                 throw new RuntimeException(ex);
             }
             JOptionPane.showMessageDialog(this.parSearchOrgResultsPage, responseModel.getMessage());
-            new ParHomePage(this.parSearchOrgResultsPage.getParUsername());
+            new ParSearchOrgResultsPage(this.parSearchOrgResultsPage.getOrgNames(),parUserName);
+        }else {
+            try {
+                new OrgDetailsPage(this.orgName);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
     }

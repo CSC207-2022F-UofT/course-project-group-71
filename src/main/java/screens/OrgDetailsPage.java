@@ -47,7 +47,6 @@ public class OrgDetailsPage extends JFrame {
         upcoming.setHorizontalAlignment(JLabel.CENTER);
 
         ArrayList<String> orgUpcomingEvents = org.getUpcomingEvents(this.orgName);
-        System.out.println(orgUpcomingEvents);
 
         JPanel panel=new JPanel();
         panel.setBounds(100,150,200,100);
