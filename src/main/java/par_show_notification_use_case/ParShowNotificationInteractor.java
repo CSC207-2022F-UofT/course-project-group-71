@@ -25,6 +25,7 @@ public class ParShowNotificationInteractor implements ParShowNotificationInputBo
      * getUsername in the request model and save that into an Arraylist of Strings called notifications.
      * If the arraylist is not empty, it will loop notifications so each item will saved as a string called notification
      * with a new line character.
+     * Then it deletes all notifications for this participant.
      * Then it returns the notification request model back to the presenter.
      * If the arraylist is empty, it returns "You have no notification!" request model back to the presenter.
      *
@@ -32,17 +33,21 @@ public class ParShowNotificationInteractor implements ParShowNotificationInputBo
      * @return A responseModel representing the notification if there is or "You have no notification!" if there isn't.
      */
     public ParShowNotificationResponseModel showNotification(ParShowNotificationRequestModel requestModel) throws SQLException, ClassNotFoundException {
+        System.out.println(requestModel.getUsername());
         ArrayList<String> notifications = parDsGateway.getNotifications(requestModel.getUsername());
+        System.out.println("sss");
         if (!notifications.isEmpty()){
             StringBuilder notification = new StringBuilder();
             for (String n : notifications) {
                 notification.append(n).append("\n");
             }
             parDsGateway.clearNotifications(requestModel.getUsername());
-            return parShowNotificationPresenter.prepareView(notification.toString());
+            ParShowNotificationResponseModel responseModel = new ParShowNotificationResponseModel(notification.toString());
+            return parShowNotificationPresenter.prepareSuccessView(responseModel);
         }
         else {
-            return parShowNotificationPresenter.prepareView("You have no notification!");
+            System.out.println("sss");
+            return parShowNotificationPresenter.prepareFailView("You have no notification!");
         }
     }
 }

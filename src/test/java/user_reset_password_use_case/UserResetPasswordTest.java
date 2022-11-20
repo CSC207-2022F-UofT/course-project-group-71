@@ -15,6 +15,14 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**Before using the test, click and open Datagrip
+ * Create a localhost, create a database called testing_db
+ * Then right clicks testing_db, choose import/export, click restore from mysqldump
+ * Choose the mysql.exe file from the file explorer
+ * And set the file path to the testing_db.sql in sql_file_to_import package next to this class
+ * Click Import to import all the tables in, the testing database are set after this
+ *
+ */
 public class UserResetPasswordTest {
     ParDsGateway parDsGateway = new ParFileUser();
     OrgDsGateway orgDsGateway = new OrgFileUser();
