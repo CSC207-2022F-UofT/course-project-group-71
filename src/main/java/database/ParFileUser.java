@@ -488,6 +488,7 @@ public class ParFileUser implements ParDsGateway {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             String sql = "insert into par_notification(par_username, notification) values('" + par_username + "','" + new_notification + "')";
+            System.out.println(sql);
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
             System.out.println(sql);

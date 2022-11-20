@@ -7,13 +7,21 @@ import screens.ShowMessageView;
 public class OrgNotifyEventPresenter implements OrgNotifyEventOutputBoundary {
     @Override
     public OrgNotifyEventResponseModel prepareSuccessView(OrgNotifyEventResponseModel response) {
-        response.setMessage("Notification sent for " + response.getEventName() + "!");
-        throw new ShowMessageView(response.getMessage());
+        if (response.getNotificationType().equals("Future")){
+            response.setMessage("Notification sent for " + response.getEventName() + "!");
+            System.out.println(response.getMessage());
+        } else if (response.getNotificationType().equals("Past")){
+            response.setMessage("Event " + response.getEventName() + " was over.");
+            System.out.println(response.getMessage());
+        }
+        return response;
     }
+
 
     @Override
     public OrgNotifyEventResponseModel prepareFailView(OrgNotifyEventResponseModel response) {
         response.setMessage("No participant has registered up for " + response.getEventName() + "!");
+        System.out.println(response.getMessage());
         throw new ShowMessageView(response.getMessage());
     }
 }

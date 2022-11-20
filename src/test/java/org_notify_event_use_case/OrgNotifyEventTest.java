@@ -22,7 +22,7 @@ public class OrgNotifyEventTest {
     @Order(1)
     void test_PrepareFailureView_No_Pars(){
         try {
-            responseModel = controller.sendNotification("", "TeamMeeting1");
+            responseModel = controller.sendNotification("Future", "TeamMeeting1");
             assert(false);
         } catch (Exception e) {
             assertEquals("No participant has registered up for TeamMeeting1!", e.getMessage());
@@ -34,8 +34,9 @@ public class OrgNotifyEventTest {
     void test_PrepareSuccessView_Past(){
         try {
             responseModel = controller.sendNotification("Past", "TeamMeeting2");
+            System.out.println(responseModel.getMessage());
             assertEquals("Event TeamMeeting2 was over at 11-12 0:0.", parDsGateway.getNotifications("654321").get(0));
-            assertEquals("Notification sent for TeamMeeting2!", responseModel.getMessage());
+            assertEquals("Event TeamMeeting2 was over.", responseModel.getMessage());
         } catch (Exception e) {
             assert(false);
         }
