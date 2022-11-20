@@ -65,6 +65,19 @@ public class OrgEditEventTest {
 
     @Test
     @Order(4)
+    public void test_PrepareFailureView_wrong_day() {
+        try{
+            responseModel = controller.edit("Edit", "HH", "Zoom", "2004", "4", "40", "9", "9");
+            assert (false);
+            System.out.println(responseModel);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            assertEquals("Day is not within 1 to 31.", e.getMessage());
+        }
+    }
+
+    @Test
+    @Order()
 
 
 
