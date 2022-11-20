@@ -27,8 +27,9 @@ public class OrgPublishEventTest {
     @Order(1)
     void testOrganizationPublishEvent() {
         try {
-            responseModel = orgPublishEventController.publish("CSC207");
-            assertEquals("Event CSC207 is published!", responseModel.getMessage());
+            responseModel = orgPublishEventController.publish("A");
+            System.out.println(responseModel.getMessage());
+            assertEquals("Event A is published!", responseModel.getMessage());
         }
         catch (Exception e) {
             assert(false);
