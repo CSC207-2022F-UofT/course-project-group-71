@@ -17,6 +17,10 @@ public class OrgNotifyEventTest {
     OrgNotifyEventController controller = new OrgNotifyEventController(interactor);
     OrgNotifyEventResponseModel responseModel = null;
 
+    /**Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3" in eventfile
+     * Need to create a participant in parfile
+     * Assign the participant the latter two event in upcoming_event_for_par
+     */
     @Test
     @Order(1)
     void test_PrepareFailureView_No_Pars(){
@@ -46,7 +50,7 @@ public class OrgNotifyEventTest {
     void test_PrepareSuccessView_Future(){
         try {
             responseModel = controller.sendNotification("Future", "TeamMeeting3");
-            assertEquals("Event TeamMeeting3 is about to happen at 11-30 0:0!", parDsGateway.getNotifications("654321").get(0));
+            assertEquals("Event TeamMeeting3 is about to happen at 11-30 0:0!", parDsGateway.getNotifications("654321").get(1));
             assertEquals("Notification sent for TeamMeeting3!", responseModel.getMessage());
         } catch (Exception e) {
             assert(false);

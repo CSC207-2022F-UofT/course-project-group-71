@@ -9,10 +9,8 @@ public class OrgNotifyEventPresenter implements OrgNotifyEventOutputBoundary {
     public OrgNotifyEventResponseModel prepareSuccessView(OrgNotifyEventResponseModel response) {
         if (response.getNotificationType().equals("Future")){
             response.setMessage("Notification sent for " + response.getEventName() + "!");
-            System.out.println(response.getMessage());
         } else if (response.getNotificationType().equals("Past")){
             response.setMessage("Event " + response.getEventName() + " was over.");
-            System.out.println(response.getMessage());
         }
         return response;
     }
