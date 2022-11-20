@@ -27,7 +27,7 @@ public class OrgEditEventTest {
     @Test
     @Order(1)
     public void test_PrepareFailureView_entries_empty() {
-        try{
+        try {
             responseModel = controller.edit("Edit", "", "", "4", "21", "", "11", "");
             assert (false);
             System.out.println(responseModel);
@@ -40,7 +40,7 @@ public class OrgEditEventTest {
     @Test
     @Order(2)
     public void test_PrepareFailureView_wrong_year() {
-        try{
+        try {
             responseModel = controller.edit("Edit", "HH", "Zoom", "200", "4", "2", "9", "9");
             assert (false);
             System.out.println(responseModel);
@@ -53,8 +53,8 @@ public class OrgEditEventTest {
     @Test
     @Order(3)
     public void test_PrepareFailureView_wrong_month() {
-        try{
-            responseModel = controller.edit("Edit", "HH", "Zoom", "2004", "13", "2", "9", "9");
+        try {
+            responseModel = controller.edit("Edit", "HH", "Zoom", "2024", "13", "2", "9", "9");
             assert (false);
             System.out.println(responseModel);
         } catch (Exception e) {
@@ -66,8 +66,8 @@ public class OrgEditEventTest {
     @Test
     @Order(4)
     public void test_PrepareFailureView_wrong_day() {
-        try{
-            responseModel = controller.edit("Edit", "HH", "Zoom", "2004", "4", "40", "9", "9");
+        try {
+            responseModel = controller.edit("Edit", "HH", "Zoom", "2024", "4", "40", "9", "9");
             assert (false);
             System.out.println(responseModel);
         } catch (Exception e) {
@@ -79,8 +79,8 @@ public class OrgEditEventTest {
     @Test
     @Order(5)
     public void test_PrepareFailureView_wrong_hour() {
-        try{
-            responseModel = controller.edit("Edit", "HH", "Zoom", "2004", "4", "2", "30", "9");
+        try {
+            responseModel = controller.edit("Edit", "HH", "Zoom", "2024", "4", "2", "30", "9");
             assert (false);
             System.out.println(responseModel);
         } catch (Exception e) {
@@ -89,11 +89,32 @@ public class OrgEditEventTest {
         }
     }
 
+    @Test
+    @Order(6)
+    public void test_PrepareFailureView_wrong_minite() {
+        try {
+            responseModel = controller.edit("Edit", "HH", "Zoom", "2024", "4", "2", "9", "70");
+            assert (false);
+            System.out.println(responseModel);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            assertEquals("Minute is not within 0 to 60.", e.getMessage());
 
 
+        }
+    }
 
+    @Test
+    @Order(7)
+    public void test_PrepareFailureView_future_time() {
+        try {
+            responseModel = controller.edit("Edit", "HH", "Zoom", "2004", "4", "2", "9", "9");
+            assert (false);
+            System.out.println(responseModel);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            assertEquals("Time must be in future.", e.getMessage());
 
-
-
-
+        }
+    }
 }
