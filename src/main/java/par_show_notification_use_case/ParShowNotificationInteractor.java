@@ -25,6 +25,7 @@ public class ParShowNotificationInteractor implements ParShowNotificationInputBo
      * getUsername in the request model and save that into an Arraylist of Strings called notifications.
      * If the arraylist is not empty, it will loop notifications so each item will saved as a string called notification
      * with a new line character.
+     * Then it deletes all notifications for this participant.
      * Then it returns the notification request model back to the presenter.
      * If the arraylist is empty, it returns "You have no notification!" request model back to the presenter.
      *
