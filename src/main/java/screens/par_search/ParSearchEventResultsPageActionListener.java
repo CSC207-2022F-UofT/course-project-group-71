@@ -9,6 +9,7 @@ import par_leave_event_use_case.ParLeaveEventInputBoundary;
 import par_leave_event_use_case.ParLeaveEventInteractor;
 import par_leave_event_use_case.ParLeaveEventOutputBoundary;
 import par_leave_event_use_case.ParLeaveEventResponseModel;
+import screens.EventDetailsPage;
 import screens.par_home.ParHomePage;
 import screens.par_join_event.ParJoinEventController;
 import screens.par_join_event.ParJoinEventPresenter;
@@ -86,6 +87,15 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
                 throw new RuntimeException(ex);
             }
 
+        }
+        else {
+            try {
+                new EventDetailsPage(eventName);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
 
