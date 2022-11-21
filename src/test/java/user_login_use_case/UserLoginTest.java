@@ -35,7 +35,7 @@ public class UserLoginTest {
     void testPrepareFailView_ParticipantNotExist() {
 
         try{
-            responseModel = controller.login("0","","kkk", "123123");
+            responseModel = controller.login("P","","kkk", "123123");
             assert(false);
         } catch (Exception e) {
             assertEquals("Participant does not exist.", e.getMessage());
