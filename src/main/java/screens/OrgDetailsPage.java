@@ -41,7 +41,7 @@ public class OrgDetailsPage extends JFrame {
         this.setLocationRelativeTo(null);
 
         //Creates title
-        JLabel title = new JLabel("Event Details");
+        JLabel title = new JLabel("Organization Details");
         title.setBounds(0, 0, getConstantX() - 300, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
