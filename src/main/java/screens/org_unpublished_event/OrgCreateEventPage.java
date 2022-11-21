@@ -12,6 +12,7 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
     OrgCreateEventController controller;
     OrgUnpublishedEventPage orgUnpublishedEventPage;
 
+    //The input bar for all sorts of information
     JTextField eventTitle = new JTextField(15);
     JTextField description = new JTextField(15);
     JTextField year = new JTextField(4);
@@ -33,55 +34,65 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
     public OrgCreateEventPage(OrgCreateEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage){
         this.controller = controller;
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
-        
+
+        //Initialize the page
         int x = 500;
         int y = 500;
-
         this.setLayout(null);
-
         this.setSize(x, y);
-
         this.setLocationRelativeTo(null);
 
+        //Generate the title
         JLabel title = new JLabel("Create Your Event");
         title.setBounds(0, 0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
+        //Generate the panel to show title information
         LabelTextPanel eventTitleInfo = new LabelTextPanel(
                 new JLabel("Title"), eventTitle);
         eventTitleInfo.setBounds (0,100, x, 50);
 
+        //Generate the panel to show description information
         LabelTextPanel descriptionInfo = new LabelTextPanel(
                 new JLabel("Description"), description);
         descriptionInfo.setBounds (0,150, x, 50);
 
+        //Generate the panel to show year information
         LabelTextPanel yearInfo = new LabelTextPanel(
                 new JLabel("Year"), year);
         yearInfo.setBounds (0,200, x/5, 50);
 
+        //Generate the panel to show month information
         LabelTextPanel monthInfo = new LabelTextPanel(
                 new JLabel("Month"), month);
         monthInfo.setBounds (x/5,200, x/5, 50);
 
+        //Generate the panel to show day information
         LabelTextPanel dayInfo = new LabelTextPanel(
                 new JLabel("Day"), day);
         dayInfo.setBounds (2*x/5,200, x/5, 50);
-        
+
+        //Generate the panel to show hour information
         LabelTextPanel hourInfo = new LabelTextPanel(
                 new JLabel("Hour"), hour);
         hourInfo.setBounds (3*x/5,200, x/5, 50);
 
+        //Generate the panel to show minute information
         LabelTextPanel minuteInfo = new LabelTextPanel(
                 new JLabel("Minute"), minute);
         minuteInfo.setBounds (4*x/5,200, x/5, 50);
 
+        //Generate the panel to show location information
         LabelTextPanel locationInfo = new LabelTextPanel(
                 new JLabel("Location"), location);
         locationInfo.setBounds (0,250, x, 50);
 
+        //Generate a cancel button
         JButton cancel = new JButton("Cancel");
+        //Set the action listener for user clicking "Cancel"
         cancel.addActionListener(new OrgCreateEventPageActionListener(this));
 
+        //Generate a button for creation
         JButton create = new JButton("Create");
         create.addActionListener(this);
 
@@ -90,6 +101,7 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
         buttons.add(create);
         buttons.setBounds (0,300, x, 50);
 
+        //Add all the prepared elements to the page
         this.add(title);
         this.add(eventTitleInfo);
         this.add(descriptionInfo);
@@ -121,6 +133,7 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Try to generate the new page in response of the success
         try {
             OrgCreateEventResponseModel responseModel = controller.create(getOrgUsername(), eventTitle.getText(),
                     description.getText(), location.getText(),
@@ -130,6 +143,7 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
             this.orgUnpublishedEventPage.dispose();
             new OrgUnpublishedEventPage(getOrgUsername());
         } catch (Exception exception) {
+            //If the trying above meet some exception, it goes here
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }
     }
