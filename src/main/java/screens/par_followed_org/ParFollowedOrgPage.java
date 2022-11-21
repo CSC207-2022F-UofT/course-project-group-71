@@ -52,7 +52,7 @@ public class ParFollowedOrgPage extends JFrame {
 
         int numberOfOrg = followedOrg.size();
 
-        JLabel number = new JLabel("Total Number of Followed Organization: " + numberOfOrg);
+        JLabel number = new JLabel("Total Number of Followed Organizations: " + numberOfOrg);
         JPanel followedN = new JPanel();
         followedN.add(number);
         followedN.setBounds(0,50, getConstantX(),40);
