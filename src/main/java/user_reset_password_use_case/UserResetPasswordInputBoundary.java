@@ -2,6 +2,9 @@ package user_reset_password_use_case;
 
 import java.sql.SQLException;
 
+/** Interface implements by interactor.
+ * The interactor who implement the interface must have resetpassword() method.
+ */
 public interface UserResetPasswordInputBoundary {
 
     /** Use the information contained in the requestmodel can let user reset their password and responsemodel.
