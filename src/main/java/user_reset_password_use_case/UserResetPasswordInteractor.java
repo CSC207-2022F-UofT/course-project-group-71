@@ -43,7 +43,7 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
             }
-            if (requestModel.getPassword().isEmpty()) {
+            if (requestModel.getNewPassword().isEmpty()) {
                 return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
             }
             //Check if the new password and the retypenew password of organizer are same
@@ -65,7 +65,7 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
             }
-            if (requestModel.getPassword().isEmpty()) {
+            if (requestModel.getNewPassword().isEmpty()) {
                 return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
             }
             //Check if the new password and the retypenew password of participant are same
