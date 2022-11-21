@@ -50,11 +50,16 @@ public class ParFollowedOrgPage extends JFrame {
                 this.parUsername);
         ArrayList<String> followedOrg = response1.getAl();
 
-        int numberOfEvent = followedOrg.size();
+        int numberOfOrg = followedOrg.size();
 
-        if (numberOfEvent != 0) {
+        JLabel number = new JLabel("Total Number of Followed Organization: " + numberOfOrg);
+        JPanel followedN = new JPanel();
+        followedN.add(number);
+        followedN.setBounds(0,50, getConstantX(),40);
 
-            events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
+        if (numberOfOrg != 0) {
+
+            events.setLayout(new GridLayout(numberOfOrg, 0, 10, 10));
 
             int x = 0;
             int y = 0;
@@ -73,10 +78,6 @@ public class ParFollowedOrgPage extends JFrame {
                 unFollow.setVisible(true);
 
                 events.add(organization);
-//                events.add(eventTime);
-//                events.add(eventLocation);
-//                events.add(notify);
-//                events.add(delete);
                 events.add(unFollow);
                 y += 100;
             }
@@ -90,6 +91,7 @@ public class ParFollowedOrgPage extends JFrame {
         }
 
         this.add(title);
+        this.add(followedN);
         this.add(back);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
