@@ -31,6 +31,8 @@ public class ParJoinEventInteractor implements ParJoinEventInputBoundary {
     @Override
     public ParJoinEventResponseModel join(ParJoinEventRequestModel request_Model) throws SQLException, ClassNotFoundException {
         parDsGateway.registerEvent(request_Model.getPar_username(),request_Model.getEvent_name());
+        //This calls the registerevent method in the parDsGateway which took the user name and the event name to
+        // modify the participant database.
         ParJoinEventResponseModel success = new ParJoinEventResponseModel(request_Model.getEvent_name());
         return presenter.prepareSuccessView(success);
     }
