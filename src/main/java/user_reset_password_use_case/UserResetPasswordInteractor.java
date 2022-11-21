@@ -39,6 +39,9 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         if (requestModel.isWhether_org()){
             //Organizer
             //Check if the old password of oganizer is correct
+            if (requestModel.getPassword().isEmpty()) {
+                return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
+            }
             if (! requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
@@ -57,7 +60,10 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         }
         else {
             //Participant
-            //Check if the old password of participant is correct
+            //Check if the old password of participant is correct\
+            if (requestModel.getPassword().isEmpty()) {
+                return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
+            }
             if (! requestModel.getPassword().equals(parDsGateway.getPassword(requestModel.getUsername()))){
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
