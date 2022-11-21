@@ -1,3 +1,8 @@
+# How to run this project?
+You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
+The tests hasn't been completed
+
+
 # Project Template
 
 This is a template repository for CSC 207 projects. 
