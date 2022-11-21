@@ -109,7 +109,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
 
-            OrgCreateEventOutputBoundary orgCreateEventOutputBoundary = new screens.org_unpublished_event.OrgCreateEventOutputBoundary();
+            OrgCreateEventOutputBoundary orgCreateEventOutputBoundary = new OrgCreateEventPresenter();
 
             OrgCreateEventInputBoundary interactor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway, orgCreateEventOutputBoundary);
 
