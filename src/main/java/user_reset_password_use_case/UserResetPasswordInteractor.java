@@ -39,12 +39,12 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         if (requestModel.isWhether_org()){
             //Organizer
             //Check if the old password of oganizer is correct
-            if (requestModel.getPassword().isEmpty()) {
-                return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
-            }
             if (! requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
+            }
+            if (requestModel.getPassword().isEmpty()) {
+                return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
             }
             //Check if the new password and the retypenew password of organizer are same
             if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
@@ -61,12 +61,12 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         else {
             //Participant
             //Check if the old password of participant is correct\
-            if (requestModel.getPassword().isEmpty()) {
-                return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
-            }
             if (! requestModel.getPassword().equals(parDsGateway.getPassword(requestModel.getUsername()))){
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
+            }
+            if (requestModel.getPassword().isEmpty()) {
+                return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
             }
             //Check if the new password and the retypenew password of participant are same
             if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
