@@ -22,9 +22,11 @@ public class OrgEditEventController {
                                               String day,
                                               String hour,
                                               String minute) throws SQLException, ClassNotFoundException {
+        //Prepare a request model with given information
         OrgEditEventRequestModel requestModel = new OrgEditEventRequestModel(
                 title, description, location, year, month, day, hour, minute);
         System.out.println("3");
+        //Get the response model from the interactor
         OrgEditEventResponseModel responseModel = userInput.edit(requestModel);
         System.out.println("5");
         return responseModel;

@@ -28,6 +28,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
     }
 
+
     /**Use the information contained in the requestmodel to create a new user and respond a responsemodel.
      * It first chooses which DsGateWay to use by checking which user types selected by the user.
      * Then it checks whether username exists in the database.
@@ -41,32 +42,13 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
      */
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException {
         //If getUserType() == "O", it means the user is an organizer
-        if (requestModel.getUserType().equals("O")){
+        if (requestModel.getUserType().equals("O")) {
             //Check if organizer username exists
-            if (orgDsGateway.checkIfUsernameExist(requestModel.getName())){
+            if (orgDsGateway.checkIfUsernameExist(requestModel.getName())) {
                 return userRegisterOutputBoundary.prepareFailView("Organization already exists.");
             }
             //Check if the password is empty
-            if (requestModel.getPassword().isEmpty()){
-                return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
-            }
-            //Check if two passwords are different
-            if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())){
-                return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
-            }
-            //No problems met, so it shows a success view
-            orgDsGateway.createOrg(requestModel.getName(),requestModel.getPassword());
-            UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
-            return userRegisterOutputBoundary.prepareSuccessView(responseModel);
-        }
-        //IF getUserType() == "P", it means the user is a participant
-        else if (requestModel.getUserType().equals("P")){
-            //Check if participant username exists
-            if (parDsGateway.checkIfUsernameExist(requestModel.getName())){
-                return userRegisterOutputBoundary.prepareFailView("Participant already exists.");
-            }
-            //Check if the password is empty
-            if (requestModel.getPassword().isEmpty()){
+            if (requestModel.getPassword().isEmpty()) {
                 return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
             }
             //Check if two passwords are different
@@ -74,16 +56,31 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
             }
             //No problems met, so it shows a success view
-            parDsGateway.createPar(requestModel.getName(),requestModel.getPassword());
+            orgDsGateway.createOrg(requestModel.getName(), requestModel.getPassword());
             UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
             return userRegisterOutputBoundary.prepareSuccessView(responseModel);
         }
-        else {
+        //IF getUserType() == "P", it means the user is a participant
+        else if (requestModel.getUserType().equals("P")) {
+            //Check if participant username exists
+            if (parDsGateway.checkIfUsernameExist(requestModel.getName())) {
+                return userRegisterOutputBoundary.prepareFailView("Participant already exists.");
+            }
+            //Check if the password is empty
+            if (requestModel.getPassword().isEmpty()) {
+                return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
+            }
+            //Check if two passwords are different
+            if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
+                return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
+            }
+            //No problems met, so it shows a success view
+            parDsGateway.createPar(requestModel.getName(), requestModel.getPassword());
+            UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
+            return userRegisterOutputBoundary.prepareSuccessView(responseModel);
+        } else {
             //The account page is not selected, so shows failure view
             return userRegisterOutputBoundary.prepareFailView("Please select your account type.");
         }
 
-    }
-
-
-}
+    }}

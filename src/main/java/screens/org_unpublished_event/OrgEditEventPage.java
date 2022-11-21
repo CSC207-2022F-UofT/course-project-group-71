@@ -43,103 +43,114 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
         this.eventName = eventName;
         this.eventDsGateway = eventDsGateway;
-        
+
+        //Initialise the page
         int x = 500;
         int y = 500;
-
         this.setLayout(null);
-
-        this.setSize(x, y);
-
+        this.setSize(x,y);
         this.setLocationRelativeTo(null);
 
+        //Prepare the title
         JLabel title = new JLabel("Edit Your Event");
         title.setBounds(0, 0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-
+        //Prepare the title of the event which are editted
         JLabel eventTitle = new JLabel("Title:   " + eventName);
         JPanel eventTitleInfo = new JPanel();
         eventTitleInfo.add(eventTitle);
         eventTitleInfo.setBounds(0,100,x,30);
 
-
+        //Prepare the description that need to be shown
         JLabel oldDescription = new JLabel("Description:   " + eventDsGateway.getDescription(eventName));
         JPanel oldDescriptionInfo = new JPanel();
         oldDescriptionInfo.add(oldDescription);
         oldDescriptionInfo.setBounds(0,150,x,30);
 
+        //Obtain the new description inputted
         LabelTextPanel descriptionInfo = new LabelTextPanel(
                 new JLabel("Description"), description);
         descriptionInfo.setBounds (0,180, x, 50);
 
-
+        //Obtain the event time from the database
         ArrayList<Integer> times = eventDsGateway.getTime(eventName);
 
+        //Show year on the page
         JLabel oldYear = new JLabel("Year:   " + times.get(0));
         JPanel oldYearInfo = new JPanel();
         oldYearInfo.add(oldYear);
         oldYearInfo.setBounds(0,230,x/5,30);
 
+        //Give the edit window for YEAR on the page
         LabelTextPanel yearInfo = new LabelTextPanel(
                 new JLabel("Year"), year);
         yearInfo.setBounds (0,260, x/5, 50);
 
 
+        //Show month on the page
         JLabel oldMonth = new JLabel("Month:   " + times.get(1));
         JPanel oldMonthInfo = new JPanel();
         oldMonthInfo.add(oldMonth);
         oldMonthInfo.setBounds(x/5,230,x/5,30);
 
+        //Give the edit window for MONTH on the page
         LabelTextPanel monthInfo = new LabelTextPanel(
                 new JLabel("Month"), month);
         monthInfo.setBounds (x/5,260, x/5, 50);
 
-
+        //Show the day on the page
         JLabel oldDay = new JLabel("Day:   " + times.get(2));
         JPanel oldDayInfo = new JPanel();
         oldDayInfo.add(oldDay);
         oldDayInfo.setBounds(2*x/5,230,x/5,30);
 
+        //Give the edit window for DAY on the page
         LabelTextPanel dayInfo = new LabelTextPanel(
                 new JLabel("Day"), day);
         dayInfo.setBounds (2*x/5,260, x/5, 50);
 
-
+        //Show the hour on the page
         JLabel oldHour = new JLabel("Hour:   " + times.get(3));
         JPanel oldHourInfo = new JPanel();
         oldHourInfo.add(oldHour);
         oldHourInfo.setBounds(3*x/5,230,x/5,30);
 
+        //Give the edit window for HOUR on the page
         LabelTextPanel hourInfo = new LabelTextPanel(
                 new JLabel("Hour"), hour);
         hourInfo.setBounds (3*x/5,260, x/5, 50);
 
-
+        //Show the minute on the page
         JLabel oldMinute = new JLabel("Minute:   " + times.get(4));
         JPanel oldMinuteInfo = new JPanel();
         oldMinuteInfo.add(oldMinute);
         oldMinuteInfo.setBounds(4*x/5,230,x/5,30);
 
+        //Give the edit window for MINUTE on the page
         LabelTextPanel minuteInfo = new LabelTextPanel(
                 new JLabel("Minute"), minute);
         minuteInfo.setBounds (4*x/5,260, x/5, 50);
 
-
+        //Show the location on the page
         JLabel oldLocation = new JLabel("Location:   " + eventDsGateway.getLocation(eventName));
         JPanel oldLocationInfo = new JPanel();
         oldLocationInfo.add(oldLocation);
         oldLocationInfo.setBounds(0,310, x,30);
 
+        //Give the edit window for LOCATION on the page
         LabelTextPanel locationInfo = new LabelTextPanel(
                 new JLabel("Location"), location);
         locationInfo.setBounds (0,340, x, 50);
 
-
+        //Prepare a cancel button
         JButton cancel = new JButton("Cancel");
+        //Set an action listener for the "Cancel" clicking
         cancel.addActionListener(new OrgEditEventPageActionListener(this));
 
+        //Prepare a edit button
         JButton edit = new JButton("Edit");
+        //Set an action listener for the "Edit" clicking
         edit.addActionListener(this);
 
         JPanel buttons = new JPanel();
@@ -147,6 +158,7 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
         buttons.add(edit);
         buttons.setBounds (0,390, x, 50);
 
+        //Add the above elements to the page
         this.add(title);
         this.add(eventTitle);
         this.add(oldDescriptionInfo);
@@ -178,6 +190,7 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Try to dispose the current page and show the new page
         try {
             OrgEditEventResponseModel responseModel = controller.edit(eventName,
                     description.getText(), location.getText(),
@@ -187,6 +200,7 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
             this.orgUnpublishedEventPage.dispose();
             new OrgUnpublishedEventPage(getOrgUsername());
         } catch (Exception exception) {
+            //If catch an error, it shows a message
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }
     }

@@ -30,26 +30,29 @@ public class OrgPastEventPage extends JFrame {
      */
     public OrgPastEventPage(String orgUsername) throws SQLException, ClassNotFoundException {
         this.orgUsername = orgUsername;
-
+        //Initialize the page
         this.setLayout(null);
-
         this.setSize(getConstantX(), getConstantY());
-
         this.setLocationRelativeTo(null);
 
+        //Insert the page title
         JLabel title = new JLabel(this.orgUsername + "'s Past Event Page");
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
+        //Create the back button
         JButton back = new JButton("Back");
         back.addActionListener(new OrgPastEventActionListener(this));
         back.setBounds(0, 100, 150, 30);
 
+        //Generate a JPanel to put events
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
+        //Initialize the DsGateways
         OrgDsGateway o = new OrgFileUser();
         EventDsGateway e = new EventFileUser();
+
 
         ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(o);
         ExtractInfoController controller1= new ExtractInfoController(interactor1);
@@ -60,31 +63,34 @@ public class OrgPastEventPage extends JFrame {
         int numberOfEvent = pastEvents.size();
 
         if (numberOfEvent != 0) {
-
+            //Initialise a part of page to show the information of one past event
             events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
-
             int x = 0;
             int y = 0;
 
+            //Add all cards of past events to the page
             for (String unpublishedEventTitle : pastEvents) {
-
+                //Prepare the event title
                 JButton eventTitle = new JButton(unpublishedEventTitle);
                 eventTitle.addActionListener(new OrgPastEventActionListener(this));
                 eventTitle.setBounds(x, y, 250, 30);
                 eventTitle.setVisible(true);
-
+                //Prepare the interactor, controller and response model for each past events
                 ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
                 ExtractInfoController controller2= new ExtractInfoController(interactor2);
                 ExtractInfoResponseModel<Integer> response2= controller2.extractEventTime(unpublishedEventTitle);
 
+                //Obtain the time
                 ArrayList<Integer> times = response2.getAl();
                 String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
                         times.get(3) + ":" + times.get(4);
 
+                //Prepare the time label
                 JLabel eventTime = new JLabel(time);
                 eventTime.setBounds(x + 20, y + 40, 250, 30);
                 eventTime.setVisible(true);
 
+                //Prepare teh interactor, controller and controller for extracting information of each past events
                 ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
                 ExtractInfoController controller3= new ExtractInfoController(interactor3);
                 ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
@@ -95,12 +101,14 @@ public class OrgPastEventPage extends JFrame {
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);
 
+                //Prepare the delete button to remove the events
                 JButton delete = new JButton("Delete");
                 delete.setActionCommand(unpublishedEventTitle + "Delete");
                 delete.addActionListener(new OrgPastEventActionListener(this));
                 delete.setBounds(x + 250, y + 55, 100, 30);
                 delete.setVisible(true);
 
+                //Add all the prepared events back to the page
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
@@ -108,6 +116,7 @@ public class OrgPastEventPage extends JFrame {
                 y += 100;
             }
 
+            //Set parameters for JScrollPane
             JScrollPane eventScroll = new JScrollPane(events);
             eventScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
             eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -115,18 +124,18 @@ public class OrgPastEventPage extends JFrame {
             eventScroll.setVisible(true);
             this.add(eventScroll);
         }
-
+        //Add title and back button to the page
         this.add(title);
         this.add(back);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         this.setVisible(true);
     }
     /**The method returns organization's Username.
      * @return it will return a string which is organization's username.
      */
     public String getOrgUsername() {
+        //Return the username of the organizer
         return orgUsername;
     }
 }

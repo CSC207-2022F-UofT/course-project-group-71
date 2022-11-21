@@ -22,6 +22,8 @@ public class OrgPublishEventTest {
 
     OrgPublishEventResponseModel responseModel;
 
+    /**Need to create an event "A"in event file which is still unpublished
+     */
     @Test
     @Order(1)
     void testOrganizationPublishEvent() {

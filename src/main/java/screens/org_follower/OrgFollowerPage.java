@@ -53,22 +53,24 @@ public class OrgFollowerPage extends JFrame {
         ArrayList<String> Followers = responseModel.getAl();
 
 
-        int numberOfEvent = Followers.size();
+        int numberOfFollower = Followers.size();
+        JLabel number = new JLabel("Total Number of Followers: " + numberOfFollower);
+        JPanel followerN = new JPanel();
+        followerN.add(number);
+        followerN.setBounds(0,50, getConstantX(),40);
 
         //If there are events, there's going to be a scrolling bar with information in it
-        if (numberOfEvent != 0) {
-            followers.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
+        if (numberOfFollower != 0) {
+            followers.setLayout(new GridLayout(numberOfFollower, 0, 10, 10));
             int x = 0;
             int y = 0;
 
             //Add all followers to the followers panel
             for (String follower : Followers) {
-                //A button with the followers' name, can't be used to click
-                JButton organization = new JButton(follower);
-                organization.addActionListener(new OrgFollowerActionListener(this));
-                organization.setBounds(x, y, 250, 30);
-                organization.setVisible(true);
-                followers.add(organization);
+                //A Label with the followers' name, can't be used to click
+                JLabel f = new JLabel(follower);
+                f.setBounds(x, y, 250, 30);
+                followers.add(f);
                 y += 100;
             }
             //Set the followerScroll as the container of followers JPanel
@@ -83,6 +85,7 @@ public class OrgFollowerPage extends JFrame {
 
         //Add the buttons to the screen
         this.add(title);
+        this.add(followerN);
         this.add(back);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
