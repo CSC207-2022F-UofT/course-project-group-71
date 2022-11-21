@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import screens.org_upcoming_event.OrgNotifyEventController;
 import screens.org_upcoming_event.OrgNotifyEventPresenter;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OrgNotifyEventTest {
@@ -17,9 +19,15 @@ public class OrgNotifyEventTest {
     OrgNotifyEventController controller = new OrgNotifyEventController(interactor);
     OrgNotifyEventResponseModel responseModel = null;
 
-    /**Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3" in eventfile
+    /**
+     * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3" in eventfile
      * Need to create a participant in parfile
-     * Assign the participant the latter two event in upcoming_event_for_par
+     * Need to create "parName | "
+     * Assign the participant to TeamMeeting3 in upcoming_event_for_par
+     * Assign the participant to TeamMeeting2 in past_event_for_par
+     ***** IMPORTANT NOTICE: I added TimeUnit.SECONDS.sleep() in testing, because notifications might not have been
+     *                      stored in database by time we try to retrieve them. You can modify the time a bit longer
+     *                      depending on your hardware.
      */
     @Test
     @Order(1)
@@ -37,9 +45,9 @@ public class OrgNotifyEventTest {
     void test_PrepareSuccessView_Past(){
         try {
             responseModel = controller.sendNotification("Past", "TeamMeeting2");
-            //System.out.println(responseModel.getMessage());
-            assertEquals("Event TeamMeeting2 was over at 11-12 0:0.", parDsGateway.getNotifications("654321").get(0));
             assertEquals("Event TeamMeeting2 was over.", responseModel.getMessage());
+            TimeUnit.SECONDS.sleep(20);
+            assertEquals("Event TeamMeeting2 was over at 11-12 0:0.", parDsGateway.getNotifications("654321").get(0));
         } catch (Exception e) {
             assert(false);
         }
@@ -50,8 +58,9 @@ public class OrgNotifyEventTest {
     void test_PrepareSuccessView_Future(){
         try {
             responseModel = controller.sendNotification("Future", "TeamMeeting3");
-            assertEquals("Event TeamMeeting3 is about to happen at 11-30 0:0!", parDsGateway.getNotifications("654321").get(1));
             assertEquals("Notification sent for TeamMeeting3!", responseModel.getMessage());
+            TimeUnit.SECONDS.sleep(20);
+            assertEquals("Event TeamMeeting3 is about to happen at 11-30 0:0", parDsGateway.getNotifications("654321").get(1));
         } catch (Exception e) {
             assert(false);
         }
