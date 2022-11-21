@@ -24,40 +24,41 @@ public class OrgPastEventActionListener implements ActionListener {
 
     public void actionPerformed(ActionEvent arg0){
         String actionCommand = arg0.getActionCommand();
-
+        //Action made by user clicked "Back"
         if (actionCommand.equals("Back")) {
             this.orgPastEventPage.dispose();
             new OrgHomePage(this.orgPastEventPage.getOrgUsername());
         }
+        //Action made by user clicking "Delete"
         else if (actionCommand.contains("Delete")) {
+            //Initialize the file users, presenters, interactor and controller
             EventDsGateway eventDsGateway = new EventFileUser();
-
             OrgDsGateway orgDsGateway = new OrgFileUser();
-
             ParDsGateway parDsGateway = new ParFileUser();
-
             OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
-
             OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
                     parDsGateway, orgDeleteEventOutputBoundary);
-
             OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
-
+            //Get the event name from the string shown on the button
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
+            //Try using controller to delete an event
             try{
                 OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
                 JOptionPane.showMessageDialog(this.orgPastEventPage, responseModel.getMessage());
             } catch(Exception e) {
                 JOptionPane.showMessageDialog(this.orgPastEventPage, e.getMessage());
             }
+            //Dispose the current page
             this.orgPastEventPage.dispose();
+            //Trying to regenerate the page
             try {
                 new OrgPastEventPage(this.orgPastEventPage.getOrgUsername());
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
+        //Catch the exceptions
         else {
             try {
                 new EventDetailsPage(actionCommand);

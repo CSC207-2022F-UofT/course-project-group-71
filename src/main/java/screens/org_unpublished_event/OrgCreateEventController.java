@@ -11,6 +11,7 @@ public class OrgCreateEventController {
     final OrgCreateEventInputBoundary userInput;
 
     public OrgCreateEventController(OrgCreateEventInputBoundary userInput) {
+        //Store the interactor of the controller
         this.userInput = userInput;
     }
 
@@ -23,10 +24,12 @@ public class OrgCreateEventController {
                                               String day,
                                               String hour,
                                               String minute) throws SQLException, ClassNotFoundException {
+        //Generate a request model which would be sent to the interactor
         OrgCreateEventRequestModel requestModel = new OrgCreateEventRequestModel(
                 orgUsername, title, description, location, year, month, day, hour, minute);
         System.out.println("Controller Returned");
 
+        //Return the response model returned from interactor method
         return userInput.create(requestModel);
     }
 

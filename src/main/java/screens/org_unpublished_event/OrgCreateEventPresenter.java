@@ -7,12 +7,14 @@ public class OrgCreateEventPresenter implements org_create_event_use_case.OrgCre
 
     @Override
     public OrgCreateEventResponseModel prepareSuccessView(OrgCreateEventResponseModel response) {
+        //Prepare a success view
         response.setMessage("Event " + response.getTitle() + " is successfully created!");
         return response;
     }
 
     @Override
     public OrgCreateEventResponseModel prepareFailView(String error) {
+        //Prepare a failed view
         throw new ShowMessageView(error);
     }
 }
