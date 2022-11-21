@@ -38,15 +38,18 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         System.out.println(requestModel.isWhether_org());
         if (requestModel.isWhether_org()){
             //Organizer
+            //Check if the old password of oganizer is correct
             if (! requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
             }
+            //Check if the new password and the retypenew password of organizer are same
             if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
                 System.out.println("New Passwords do not match.");
                 return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
 
             }
+            //If the above two error don't occur, show the successful view
             orgDsGateway.setPassword(requestModel.getUsername(), requestModel.getNewPassword());
             System.out.println("Password reset successfully!");
             UserResetPasswordResponseModel responseModel = new UserResetPasswordResponseModel("Password reset successfully!");
@@ -54,10 +57,12 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         }
         else {
             //Participant
+            //Check if the old password of participant is correct
             if (! requestModel.getPassword().equals(parDsGateway.getPassword(requestModel.getUsername()))){
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
             }
+            //Check if the new password and the retypenew password of organizer are same
             if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
                 System.out.println("New Passwords do not match.");
                 return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
