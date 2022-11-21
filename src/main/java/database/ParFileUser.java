@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import static tutorial.HelloWorld.*;
 
 public class ParFileUser implements ParDsGateway {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        ParFileUser p = new ParFileUser();
+        System.out.println(p.getPassword("aas"));
 
 
     }

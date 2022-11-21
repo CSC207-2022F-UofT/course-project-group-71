@@ -33,7 +33,7 @@ public class UpcomingToPastTest {
     void testPrepareSuccessView_Orgnization() {
 
         try {
-            responseModel = controller.convertToPast("", "s");
+            responseModel = controller.convertToPast("P", "s");
             assertEquals("", responseModel.getMessage());
         }catch (Exception e) {
             assert(false);

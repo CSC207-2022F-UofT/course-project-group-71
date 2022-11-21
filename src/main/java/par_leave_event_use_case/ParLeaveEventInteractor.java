@@ -2,10 +2,14 @@ package par_leave_event_use_case;
 
 import database.OrgDsGateway;
 import database.ParDsGateway;
+import database.ParFileUser;
 
 import java.sql.SQLException;
 
 public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
+    public static void main(String[] args) {
+        ParDsGateway p = new ParFileUser();
+    }
 
     final ParDsGateway parDsGateway;
 
