@@ -47,7 +47,7 @@ public class UserLoginTest {
     void testPrepareFailView_ParticipantPasswordNotMatch() {
 
         try{
-            responseModel = controller.login("0","","aas", "123123");
+            responseModel = controller.login("P","","aas", "123123");
             assert(false);
         } catch (Exception e) {
             assertEquals("Password doesn't match.", e.getMessage());
@@ -71,7 +71,7 @@ public class UserLoginTest {
     void testPrepareFailView_OrganizerPasswordNotMatch() {
 
         try{
-            responseModel = controller.login("0","","123", "114514");
+            responseModel = controller.login("","O","123", "114514");
             assert(false);
         } catch (Exception e) {
             assertEquals("Password doesn't match.", e.getMessage());
@@ -96,7 +96,7 @@ public class UserLoginTest {
 
         try{
             responseModel = controller.login("","0","123", "123");
-            assertEquals("", responseModel.getUsername());
+            assertEquals("123", responseModel.getUsername());
         } catch (Exception e) {
             assert(false);
         }
@@ -108,7 +108,7 @@ public class UserLoginTest {
 
         try{
             responseModel = controller.login("0","","aas", "114514");
-            assertEquals("", responseModel.getUsername());
+            assertEquals("aas", responseModel.getUsername());
         } catch (Exception e) {
             assert(false);
         }
