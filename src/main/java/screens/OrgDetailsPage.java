@@ -26,6 +26,13 @@ public class OrgDetailsPage extends JFrame {
     OrgDsGateway o = new OrgFileUser();
 
 
+    /** When this constructor is called it will generate an organizers details page that will include the organizer's
+     * name as well as all the upcoming events for the organizer based on orgName parameter
+     *
+     * @param orgName The name of the organizer
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public OrgDetailsPage(String orgName) throws SQLException, ClassNotFoundException {
 
         this.orgName = orgName;
@@ -33,12 +40,12 @@ public class OrgDetailsPage extends JFrame {
         this.setLayout(null);
         this.setLocationRelativeTo(null);
 
-
+        //Creates title
         JLabel title = new JLabel("Event Details");
         title.setBounds(0, 0, getConstantX() - 300, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-
+        //Adds text for organizer name
         JLabel orgTitle = new JLabel("Organization Name: " + this.orgName);
         orgTitle.setBounds(0, 50, getConstantX() - 300, 50);
         orgTitle.setHorizontalAlignment(JLabel.CENTER);
@@ -56,6 +63,8 @@ public class OrgDetailsPage extends JFrame {
         JPanel panel = new JPanel();
         panel.setBounds(100, 150, 200, 100);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        //loops through all the upcoming events for organizer and adds them to the page
         for (String eventTitle : orgUpcomingEvents) {
             JLabel event = new JLabel(eventTitle);
             panel.add(event);
