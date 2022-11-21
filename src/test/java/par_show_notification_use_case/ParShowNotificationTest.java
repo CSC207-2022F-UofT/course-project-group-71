@@ -32,8 +32,7 @@ public class ParShowNotificationTest {
         try {
             String notifications =
                     "Event TeamMeeting3 is about to happen at 11-30 0:0" + "\n" +
-                            "Event TeamMeeting2 was over at 11-12 0:0.";
-            System.out.println(notifications);
+                            "Event TeamMeeting2 was over at 11-12 0:0." + "\n";
             responseModel = controller.showNotification("654321");
             assertEquals(notifications, responseModel.getNotifications());
         } catch (Exception e) {

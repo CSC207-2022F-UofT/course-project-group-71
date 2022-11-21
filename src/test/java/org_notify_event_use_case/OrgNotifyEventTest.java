@@ -37,7 +37,7 @@ public class OrgNotifyEventTest {
     void test_PrepareSuccessView_Past(){
         try {
             responseModel = controller.sendNotification("Past", "TeamMeeting2");
-            System.out.println(responseModel.getMessage());
+            //System.out.println(responseModel.getMessage());
             assertEquals("Event TeamMeeting2 was over at 11-12 0:0.", parDsGateway.getNotifications("654321").get(0));
             assertEquals("Event TeamMeeting2 was over.", responseModel.getMessage());
         } catch (Exception e) {
