@@ -28,6 +28,12 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
     }
 
+    @Override
+    public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+}
+
     /**Use the information contained in the requestmodel to create a new user and respond a responsemodel.
      * It first chooses which DsGateWay to use by checking which user types selected by the user.
      * Then it checks whether username exists in the database.
@@ -38,7 +44,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responsemodel representing whether the user creation is successful
-     */
+
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException {
         //If getUserType() == "O", it means the user is an organizer
         if (requestModel.getUserType().equals("O")){
@@ -83,7 +89,3 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
             return userRegisterOutputBoundary.prepareFailView("Please select your account type.");
         }
 
-    }
-
-
-}
