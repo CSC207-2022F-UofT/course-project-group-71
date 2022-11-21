@@ -96,16 +96,9 @@ public class ParPastEventPage extends JFrame {
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);
 
-                JButton delete = new JButton("Delete");
-                delete.setActionCommand(unpublishedEventTitle + "Delete");
-                delete.addActionListener(new ParPastEventActionListener(this));
-                delete.setBounds(x + 250, y + 55, 100, 30);
-                delete.setVisible(true);
-
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
-                events.add(delete);
                 y += 100;
             }
 

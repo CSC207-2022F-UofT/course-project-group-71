@@ -5,6 +5,7 @@ import database.ParFileUser;
 import par_show_notification_use_case.ParShowNotificationInputBoundary;
 import par_show_notification_use_case.ParShowNotificationInteractor;
 import par_show_notification_use_case.ParShowNotificationOutputBoundary;
+import par_show_notification_use_case.ParShowNotificationResponseModel;
 import screens.par_show_notification.ParShowNotificationController;
 import screens.par_show_notification.ParShowNotificationPresenter;
 
@@ -125,7 +126,8 @@ public class ParHomePage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            parShowNotificationController.showNotification(this.getParUsername());
+            ParShowNotificationResponseModel responseModel = parShowNotificationController.showNotification(this.getParUsername());
+            JOptionPane.showMessageDialog(this, responseModel.getNotifications());
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }
