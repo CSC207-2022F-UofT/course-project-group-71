@@ -62,11 +62,12 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
             }
-            //Check if the new password and the retypenew password of organizer are same
+            //Check if the new password and the retypenew password of participant are same
             if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
                 System.out.println("New Passwords do not match.");
                 return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
             }
+            //If the above two error don't occur, show the successful view
             System.out.println("Password reset successfully!");
             parDsGateway.setPassword(requestModel.getUsername(), requestModel.getNewPassword());
             UserResetPasswordResponseModel responseModel = new UserResetPasswordResponseModel("Password reset successfully!");
