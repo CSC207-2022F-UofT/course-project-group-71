@@ -1,9 +1,9 @@
-package org_notify_event_use_case;
+package notify_event_use_case;
 import database.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.org_upcoming_event.OrgNotifyEventController;
-import screens.org_upcoming_event.OrgNotifyEventPresenter;
+import screens.notify_event.NotifyEventController;
+import screens.notify_event.NotifyEventPresenter;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,11 +13,11 @@ public class OrgNotifyEventTest {
     ParDsGateway parDsGateway = new ParFileUser();
     EventDsGateway eventDsGateway = new EventFileUser();
 
-    OrgNotifyEventOutputBoundary presenter = new OrgNotifyEventPresenter();
-    OrgNotifyEventInputBoundary interactor = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway,
+    NotifyEventOutputBoundary presenter = new NotifyEventPresenter();
+    NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway,
             presenter);
-    OrgNotifyEventController controller = new OrgNotifyEventController(interactor);
-    OrgNotifyEventResponseModel responseModel = null;
+    NotifyEventController controller = new NotifyEventController(interactor);
+    NotifyEventResponseModel responseModel = null;
 
     /**
      * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3" in eventfile

@@ -1,11 +1,24 @@
 package screens;
 
+import database.*;
+import notify_event_use_case.NotifyEventInputBoundary;
+import notify_event_use_case.NotifyEventInteractor;
+import notify_event_use_case.NotifyEventOutputBoundary;
 import screens.org_home.OrgHomePage;
+import screens.notify_event.NotifyEventController;
+import screens.notify_event.NotifyEventPresenter;
 import screens.par_home.ParHomePage;
+import screens.upcoming_to_past.UpcomingToPastController;
+import screens.upcoming_to_past.UpcomingToPastPresenter;
+import upcoming_to_past_use_case.UpcomingToPastInputBoundary;
+import upcoming_to_past_use_case.UpcomingToPastInteractor;
+import upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
+import upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class LoginPage extends JFrame implements ActionListener {
 
@@ -102,7 +115,7 @@ public class LoginPage extends JFrame implements ActionListener {
     }
 
     /**The method got information needed to input from the page.
-     * The method generate Presenter , DsGateWays, interactor and controller to process them.
+     * The method generate Presenter , DsGateways, interactor and controller to process them.
      * Once the information are passed to the above components, jump to login page.
      *
      * @param e the Login event
@@ -115,8 +128,36 @@ public class LoginPage extends JFrame implements ActionListener {
                     username.getText(),
                     String.valueOf(password.getPassword()));
             this.dispose();
-            if (P) {new ParHomePage(username.getText());}
-            else { new OrgHomePage(username.getText());}
+            if (P) {
+                ParDsGateway parDsGateway = new ParFileUser();
+                OrgDsGateway orgDsGateway = new OrgFileUser();
+                EventDsGateway eventDsGateway = new EventFileUser();
+                UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
+                UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
+                        eventDsGateway, upcomingToPastOutputBoundary);
+                UpcomingToPastController controller = new UpcomingToPastController(interactor);
+                UpcomingToPastResponseModel responseModel;
+                try {
+                    responseModel = controller.convertToPast("P",username.getText());
+                } catch (SQLException | ClassNotFoundException exception) {
+                    throw new RuntimeException(exception);
+                }
+                if (!responseModel.getEventsToPast().isEmpty()){
+                    NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
+                    NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
+                            notifyEventOutputBoundary);
+                    NotifyEventController notifyEventController = new NotifyEventController(interactor2);
+                    for (String event : responseModel.getEventsToPast()){
+                        try {
+                            notifyEventController.sendNotification("Past", event);
+                        } catch (SQLException | ClassNotFoundException exception) {
+                            throw new RuntimeException(exception);
+                        }
+                    }
+                }
+                new ParHomePage(username.getText());
+            }
+            else {new OrgHomePage(username.getText());}
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }

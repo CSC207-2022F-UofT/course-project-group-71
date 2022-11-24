@@ -1,20 +1,20 @@
-package org_notify_event_use_case;
+package notify_event_use_case;
 
 
 /** The request model of org notification.
  *  Contains notificationType and eventName.
  */
-public class OrgNotifyEventRequestModel {
+public class NotifyEventRequestModel {
 
-    private String notificationType;
-    private String eventName;
+    String notificationType;
+    String eventName;
 
     /**A request model sent the interactor to send a notification.
      *
      * @param notificationType The type of notification
      * @param eventName Name of the event
      */
-    public OrgNotifyEventRequestModel(String notificationType, String eventName) {
+    public NotifyEventRequestModel(String notificationType, String eventName) {
         this.notificationType = notificationType;
         this.eventName = eventName;
     }

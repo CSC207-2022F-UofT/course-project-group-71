@@ -7,41 +7,35 @@ import java.sql.SQLException;
 
 public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
 
-    final ParDsGateway parDsGateway;
+    ParDsGateway parDsGateway;
 
-    final OrgDsGateway orgDsGateway;
+    OrgDsGateway orgDsGateway;
 
-    final ParLeaveEventOutputBoundary parLeaveEventOutputBoundary;
+    ParLeaveEventOutputBoundary parLeaveEventOutputBoundary;
 
-    /**This is the construct method of ParLeaveEventInteractor .
-     * It takes DsGateways and Presenter as input to store as instances.
+    /**Constructor
      *
-     * @param parLeaveEventOutputBoundary The output boundary used to show successful
-     *                                    view when leave event successes.
+     * @param parLeaveEventOutputBoundary The output boundary used to show successful view when leave event succeeds.
      * @param parDsGateway The database gateway of the participants.
      * @param orgDsGateway The database gateway of the organizers.
      */
-
     public ParLeaveEventInteractor(ParDsGateway parDsGateway, OrgDsGateway orgDsGateway,
                                    ParLeaveEventOutputBoundary parLeaveEventOutputBoundary) {
         this.parDsGateway = parDsGateway;
         this.orgDsGateway = orgDsGateway;
         this.parLeaveEventOutputBoundary = parLeaveEventOutputBoundary;
     }
-    /**Use the information contained in the requestModel to check with database and respond a responseModel.
-     * It took the request model and calls the registerEvent method in parDsGateway with the function
-     * getPar_username and getEvent_title in the request model.
-     * Then it returns the successful view by the output boundary.
+
+    /**Use the provided method from parDsGateway to make a participant leave an upcoming event.
+     * Precondition: the participant joined the upcoming event
      *
      * @param requestModel The request model sent to this interactor.
      * @return A responseModel representing the user leave the event successfully by the output boundary.
      */
-
     @Override
     public ParLeaveEventResponseModel leave(ParLeaveEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
-        parDsGateway.leaveEvent(requestModel.getPar_username(),requestModel.getEvent_title());
-        ParLeaveEventResponseModel responseModel = new ParLeaveEventResponseModel(
-                requestModel.getEvent_title());
+        parDsGateway.leaveEvent(requestModel.getPar_username(), requestModel.getEvent_title());
+        ParLeaveEventResponseModel responseModel = new ParLeaveEventResponseModel(requestModel.getEvent_title());
         return parLeaveEventOutputBoundary.prepareSuccessView(responseModel);
     }
 

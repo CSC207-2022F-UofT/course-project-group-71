@@ -7,98 +7,108 @@ import java.sql.SQLException;
 
 public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
 
+    EventDsGateway eventDsGateway;
+    OrgDsGateway orgDsGateway;
+    ParDsGateway parDsGateway;
 
-    EventDsGateway e;
-    OrgDsGateway o;
-    ParDsGateway p;
+    public ExtractInfoInteractor(EventDsGateway eventDsGateway) {this.eventDsGateway = eventDsGateway;}
 
-    public ExtractInfoInteractor(EventDsGateway e) {this.e = e;}
-
-    public ExtractInfoInteractor(OrgDsGateway o){
-        this.o=o;
+    public ExtractInfoInteractor(OrgDsGateway orgDsGateway){
+        this.orgDsGateway = orgDsGateway;
     }
 
-    public ExtractInfoInteractor(ParDsGateway p){
-        this.p=p;
+    public ExtractInfoInteractor(ParDsGateway parDsGateway){
+        this.parDsGateway = parDsGateway;
     }
 
-
+    /**This method is used to obtain all kinds of event's information expect for time.
+     * Use the argument *para* from responseModel to get eventTitle.
+     * Use the argument *keyword* from responseModel to decide which info to retrieve from eventDsGateway.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responseModel representing whether the event creation is successful
+     */
     @Override
     public ExtractInfoResponseModel<String> extractEventInfo(ExtractInfoRequestModel requestModel) {
 
-        String eventTitle = requestModel.getPara1();
+        String eventTitle = requestModel.getPara();
         String keyword = requestModel.getKeyword();
         try{
-        switch (keyword) {
-            case "getStatus":
-                return new ExtractInfoResponseModel<>(e.getStatus(eventTitle));
-            case "getDescription":
-                return new ExtractInfoResponseModel<>(e.getDescription(eventTitle));
-            case "getLocation":
-                return new ExtractInfoResponseModel<>(e.getLocation(eventTitle));
-            case "getParticipants":
-                return new ExtractInfoResponseModel<>(e.getParticipants(eventTitle));
-            case "getOrganization":
-                return new ExtractInfoResponseModel<>(e.getOrganization(eventTitle));
-            case "eventSearch":
-                return new ExtractInfoResponseModel<>(e.eventSearch(eventTitle));
-            case "checkIfEventNameExist":
-                return new ExtractInfoResponseModel<>(e.checkIfEventNameExist(eventTitle));
-
-        }}catch (SQLException | ClassNotFoundException ex){
+            switch (keyword) {
+                case "getStatus":
+                    return new ExtractInfoResponseModel<>(eventDsGateway.getStatus(eventTitle));
+                case "getDescription":
+                    return new ExtractInfoResponseModel<>(eventDsGateway.getDescription(eventTitle));
+                case "getLocation":
+                    return new ExtractInfoResponseModel<>(eventDsGateway.getLocation(eventTitle));
+                case "getParticipants":
+                    return new ExtractInfoResponseModel<>(eventDsGateway.getParticipants(eventTitle));
+                case "getOrganization":
+                    return new ExtractInfoResponseModel<>(eventDsGateway.getOrganization(eventTitle));
+                case "eventSearch":
+                    return new ExtractInfoResponseModel<>(eventDsGateway.eventSearch(eventTitle));
+            }
+        } catch (SQLException | ClassNotFoundException ex){
             throw new RuntimeException(ex);
         }
         return null;
     }
 
+    /**This method is used to obtain all kinds of organization's information.
+     * Use the argument *para* from responseModel to get orgName.
+     * Use the argument *keyword* from responseModel to decide which info to retrieve from orgDsGateway.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responseModel representing whether the event creation is successful
+     */
     @Override
     public ExtractInfoResponseModel<String> extractOrgInfo(ExtractInfoRequestModel requestModel) {
-        String orgName = requestModel.getPara1();
+        String orgName = requestModel.getPara();
         String keyword = requestModel.getKeyword();
         try {
             switch (keyword) {
                 case "getPassword":
-                    return new ExtractInfoResponseModel<>(o.getPassword(orgName));
+                    return new ExtractInfoResponseModel<>(orgDsGateway.getPassword(orgName));
                 case "getUnpublishedEvents":
-                    return new ExtractInfoResponseModel<>(o.getUnpublishedEvents(orgName));
+                    return new ExtractInfoResponseModel<>(orgDsGateway.getUnpublishedEvents(orgName));
                 case "getPastEvents":
-                    return new ExtractInfoResponseModel<>(o.getPastEvents(orgName));
+                    return new ExtractInfoResponseModel<>(orgDsGateway.getPastEvents(orgName));
                 case "getUpcomingEvents":
-                    return new ExtractInfoResponseModel<>(o.getUpcomingEvents(orgName));
+                    return new ExtractInfoResponseModel<>(orgDsGateway.getUpcomingEvents(orgName));
                 case "getFollowers":
-                    return new ExtractInfoResponseModel<>(o.getFollowers(orgName));
-                case "checkIfUsernameExist":
-                    return new ExtractInfoResponseModel<>(o.checkIfUsernameExist(orgName));
+                    return new ExtractInfoResponseModel<>(orgDsGateway.getFollowers(orgName));
                 case "organizerSearch":
-                    return new ExtractInfoResponseModel<>(o.organizerSearch(orgName));
+                    return new ExtractInfoResponseModel<>(orgDsGateway.organizerSearch(orgName));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             throw new RuntimeException(ex);
         }
-
-
         return null;
-
     }
 
+    /**This method is used to obtain all kinds of participant's information.
+     * Use the argument *para* from responseModel to get parName.
+     * Use the argument *keyword* from responseModel to decide which info to retrieve from parDsGateway.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responseModel representing whether the event creation is successful
+     */
     @Override
     public ExtractInfoResponseModel<String> extractParInfo(ExtractInfoRequestModel requestModel) {
-        String parName = requestModel.getPara1();
+        String parName = requestModel.getPara();
         String keyword = requestModel.getKeyword();
         try {
             switch (keyword) {
                 case "getPassword":
-                    return new ExtractInfoResponseModel<>(p.getPassword(parName));
+                    return new ExtractInfoResponseModel<>(parDsGateway.getPassword(parName));
                 case "getNotifications":
-                    return new ExtractInfoResponseModel<>(p.getNotifications(parName));
+                    return new ExtractInfoResponseModel<>(parDsGateway.getNotifications(parName));
                 case "getUpcomingEvents":
-                    return new ExtractInfoResponseModel<>(p.getUpcomingEvents(parName));
+                    return new ExtractInfoResponseModel<>(parDsGateway.getUpcomingEvents(parName));
                 case "getPastEvents":
-                    return new ExtractInfoResponseModel<>(p.getPastEvents(parName));
+                    return new ExtractInfoResponseModel<>(parDsGateway.getPastEvents(parName));
                 case "getFollowedOrg":
-                    return new ExtractInfoResponseModel<>(p.getFollowedOrg(parName));
-                case "checkIfUsernameExist":
-                    return new ExtractInfoResponseModel<>(p.checkIfUsernameExist(parName));
+                    return new ExtractInfoResponseModel<>(parDsGateway.getFollowedOrg(parName));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             throw new RuntimeException(ex);
@@ -106,24 +116,18 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
         return null;
     }
 
-    @Override
-    public ExtractInfoResponseModel<String> extractNotiInfo(ExtractInfoRequestModel requestModel) {
-        String parName= requestModel.getKeyword();
-        String newNoti= requestModel.getPara1();
-
-        try {
-            return new ExtractInfoResponseModel<>(p.addNotification(parName,newNoti));
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
+    /**This method is used to obtain event's time information.
+     * Use the argument *para* from responseModel to get eventTitle.
+     * Use the argument *keyword* from responseModel to decide which info to retrieve from eventDsGateway.
+     *
+     * @param requestModel The request model sent to the interactor
+     * @return A responseModel representing whether the event creation is successful
+     */
     @Override
     public ExtractInfoResponseModel<Integer> extractTimeInfo(ExtractInfoRequestModel requestModel) {
-        String eventName= requestModel.getPara1();
-
+        String eventName = requestModel.getPara();
         try {
-            return new ExtractInfoResponseModel<>(e.getTime(eventName));
+            return new ExtractInfoResponseModel<>(eventDsGateway.getTime(eventName));
         } catch (SQLException | ClassNotFoundException ex) {
             throw new RuntimeException(ex);
         }

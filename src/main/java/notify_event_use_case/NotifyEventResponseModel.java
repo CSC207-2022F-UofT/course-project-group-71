@@ -1,18 +1,18 @@
-package org_notify_event_use_case;
+package notify_event_use_case;
 
 /** The response model sent back to the page.
  *  Containing the eventName and the message.
  */
-public class OrgNotifyEventResponseModel {
+public class NotifyEventResponseModel {
     String eventName;
     String notificationType;
     String message;
 
-    /**This is the construct method of OrgNotifyEventResponseModel, it took an eventName and store it as instance.
+    /**This is the construct method of NotifyEventResponseModel, it took an eventName and store it as instance.
      *
      * @param eventName The event name of event which notifications will be sent out.
      */
-    public OrgNotifyEventResponseModel(String eventName, String notificationType) {
+    public NotifyEventResponseModel(String eventName, String notificationType) {
         this.eventName = eventName;
         this.notificationType = notificationType;
     }

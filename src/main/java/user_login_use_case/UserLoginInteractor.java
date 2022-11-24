@@ -7,14 +7,13 @@ import java.sql.SQLException;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
 
-    final UserLoginOutputBoundary userLoginOutputBoundary;
-    final ParDsGateway parDsGateway;
-    final ParHomeOutputBoundary parHomeOutputBoundary;
-    final OrgDsGateway orgDsGateway;
-    final OrgHomeOutputBoundary orgHomeOutputBoundary;
+    UserLoginOutputBoundary userLoginOutputBoundary;
+    ParDsGateway parDsGateway;
+    ParHomeOutputBoundary parHomeOutputBoundary;
+    OrgDsGateway orgDsGateway;
+    OrgHomeOutputBoundary orgHomeOutputBoundary;
 
-    /**This is the construct method of UserRegisterInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+    /**Constructor
      *
      * @param parDsGateway The database gateway of the participants
      * @param orgDsGateway The database gateway of the organizers
@@ -32,12 +31,8 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         this.orgHomeOutputBoundary = orgHomeOutputBoundary;
     }
 
-    /**Use the information contained in the requestModel to check with database and respond a responseModel.
-     * It first chooses which DsGateWay to use by checking which user types selected by the user.
-     * Then it checks whether username exists in the database.
-     * Then it check if the password matches.
-     * If failed in one of the above process, return a failure response.
-     * Then it direct the user to the corresponding home page.
+    /**Do checks to user inputs, if fail give hints, if pass direct user to the corresponding home page according to the
+     * user type.
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the user creation is successful

@@ -6,40 +6,33 @@ import database.ParDsGateway;
 import java.sql.SQLException;
 
 public class UserResetPasswordInteractor implements UserResetPasswordInputBoundary {
-    final UserResetPasswordOutputBoundary userResetPasswordOutputBoundary;
-    final OrgDsGateway orgDsGateway;
-    private final ParDsGateway parDsGateway;
-    /** This is the construct method of UserRsetPasswordInteractor.
-     *  It takes DsGateways and Presenter as input to store as instances.
-     * @param userResetPasswordOutputBoundary The presenter used to show success or not of reseting the password
-     * @param orgDsGateway The database gateway of the orgnizers
+    UserResetPasswordOutputBoundary userResetPasswordOutputBoundary;
+    OrgDsGateway orgDsGateway;
+    ParDsGateway parDsGateway;
+
+    /** Constructor
+     *
+     * @param userResetPasswordOutputBoundary The presenter used to show success or not of the reset
+     * @param orgDsGateway The database gateway of the organizations
      * @param parDsGateway The database gateway of the participants.
      */
-
-
     public UserResetPasswordInteractor(UserResetPasswordOutputBoundary userResetPasswordOutputBoundary, OrgDsGateway orgDsGateway, ParDsGateway parDsGateway) {
         this.userResetPasswordOutputBoundary = userResetPasswordOutputBoundary;
         this.orgDsGateway = orgDsGateway;
         this.parDsGateway = parDsGateway;
     }
 
-    /**Use the information contained in the requestmodel to reset a new password and respond a responsemodel.
-     *It first chooses which DsGateway to use by checking which user types selected by the user.
-     * Then it checks whether password exists in the database.
-     * if not, return "Old password is not correct."
-     * if it is, it will check whether the newpassword and retypenewpassword are match.
-     * if matcching, return "New Passwords do not match."
-     * otherwise, success response is returnd.
+    /**Do checks to user inputs, if fail give hints, if pass change the password.
+     *
      * @param requestModel The request model sent to the input boundary
-     * @return A responsemodel representing whether the user resetPassword is successful.
+     * @return A responseModel representing whether the user resetPassword is successful.
      */
-
     public UserResetPasswordResponseModel resetPassword(UserResetPasswordRequestModel requestModel) throws SQLException, ClassNotFoundException {
         System.out.println(requestModel.isWhether_org());
         if (requestModel.isWhether_org()){
-            //Organizer
-            //Check if the old password of oganizer is correct
-            if (! requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
+            //Organization
+            //Check if the old password of organization is entered correctly
+            if (!requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
             }
@@ -49,7 +42,7 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
             if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
                 return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
             }
-            //Check if the new password and the retypenew password of organizer are same
+            //Check if the new password and the retyped new password of organizer are same
             if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
                 System.out.println("New Passwords do not match.");
                 return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
@@ -63,7 +56,7 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         }
         else {
             //Participant
-            //Check if the old password of participant is correct\
+            //Check if the old password of participant is correct
             if (! requestModel.getPassword().equals(parDsGateway.getPassword(requestModel.getUsername()))){
                 System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
@@ -74,7 +67,7 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
             if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
                 return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
             }
-            //Check if the new password and the retypenew password of participant are same
+            //Check if the new password and the retyped new password of participant are same
             if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
                 System.out.println("New Passwords do not match.");
                 return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
@@ -85,7 +78,5 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
             UserResetPasswordResponseModel responseModel = new UserResetPasswordResponseModel("Password reset successfully!");
             return userResetPasswordOutputBoundary.prepareSuccessView(responseModel);
         }
-
-
     }
 }

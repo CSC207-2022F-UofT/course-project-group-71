@@ -12,9 +12,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
     OrgDsGateway orgDsGateway;
     OrgCreateEventOutputBoundary orgCreateEventOutputBoundary;
 
-
-    /**This is the construct method of OrgCreateEventInteractor.
-     * It takes DsGateways and OutputBoundary as input to store as instances.
+    /**Constructor
      *
      * @param eventDsGateway The database gateway of events
      * @param orgDsGateway The database gateway of organizers
@@ -28,19 +26,20 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
         this.orgCreateEventOutputBoundary = orgCreateEventOutputBoundary;
     }
 
-    /**Use the information contained in the requestmodel to create a new event and respond a responsemodel.
+    /**Use the information contained in the requestModel to create a new event and return a responseModel.
      * It checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.
      * It checks if title already exists.
      * It checks if all time entries are bound by format: year, month, day, hour, minute.
      * It checks if the time is set in the future.
-     * If failed in one of the above process, return a failure response.
+     * If any check fails, return a failure response.
      * Otherwise, success response is returned.
      *
      * @param requestModel The request model sent to the interactor
-     * @return A responsemodel representing whether the event creation is successful
+     * @return A responseModel representing whether the event creation is successful
      */
     @Override
     public OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
+        //checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.
         if (requestModel.getTitle().isEmpty() || requestModel.getDescription().isEmpty()
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()
                 || requestModel.getDay().isEmpty() || requestModel.getHour().isEmpty()
@@ -48,6 +47,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
             return orgCreateEventOutputBoundary.prepareFailView("Entries cannot be empty.");
         }
 
+        //checks if title already exists.
         if (eventDsGateway.checkIfEventNameExist(requestModel.getTitle())) {
             return orgCreateEventOutputBoundary.prepareFailView("Title already exists.");
         }
@@ -58,6 +58,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
         String hour = requestModel.getHour();
         String minute = requestModel.getMinute();
 
+        //checks if all time entries can be converted to integer
         if (isStringInt(year) && isStringInt(month) && isStringInt(day) && isStringInt(hour) && isStringInt(minute)) {
 
             if (year.length() != 4) {
@@ -87,10 +88,13 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
 
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime time = LocalDateTime.of(y, m, d, h, min);
+
+            //checks if the time is set in the future.
             if (time.isBefore(now)){
                 return orgCreateEventOutputBoundary.prepareFailView("Time must be in future.");
             }
 
+            //call orgDsGateway to create the event, and return the responseModel with the event's title
             else {
                 orgDsGateway.createAnEvent(requestModel.getOrgUsername(), requestModel.getTitle(), 0,
                         requestModel.getDescription(), requestModel.getLocation(), y, m, d, h, min);
