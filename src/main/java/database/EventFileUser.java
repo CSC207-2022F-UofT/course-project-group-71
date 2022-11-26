@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import static tutorial.HelloWorld.*;
 
 public class EventFileUser implements EventDsGateway{
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        EventFileUser n = new EventFileUser();
-        n.unPublishedToUpcoming("A");
-    }
 
     /**This is a tool method that is called by other method to create an event.
      * It took parameters to insert a new row in the table called 'eventfile' which is in the database.

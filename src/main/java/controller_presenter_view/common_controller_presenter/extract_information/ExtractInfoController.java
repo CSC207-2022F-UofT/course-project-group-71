@@ -1,4 +1,8 @@
-package extract_information_use_case;
+package controller_presenter_view.common_controller_presenter.extract_information;
+
+import extract_information_use_case.ExtractInfoInputBoundary;
+import extract_information_use_case.ExtractInfoRequestModel;
+import extract_information_use_case.ExtractInfoResponseModel;
 
 public class ExtractInfoController {
 

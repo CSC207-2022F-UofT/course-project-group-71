@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import static tutorial.HelloWorld.*;
 
 public class ParFileUser implements ParDsGateway {
-    public static void main(String[] args) {
-
-
-    }
 
     /**This is a tool method used to store the username and password of the participant to the database.
      *

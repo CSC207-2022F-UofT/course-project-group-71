@@ -52,6 +52,18 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
             return orgCreateEventOutputBoundary.prepareFailView("Title already exists.");
         }
 
+        if (requestModel.getTitle().length() > 20) {
+            return orgCreateEventOutputBoundary.prepareFailView("Title should be no longer than 20 characters.");
+        }
+
+        if (requestModel.getDescription().length() > 200) {
+            return orgCreateEventOutputBoundary.prepareFailView("Description should be no longer than 200 characters.");
+        }
+
+        if (requestModel.getLocation().length() > 50) {
+            return orgCreateEventOutputBoundary.prepareFailView("Location should be no longer than 50 characters.");
+        }
+
         String year = requestModel.getYear();
         String month = requestModel.getMonth();
         String day = requestModel.getDay();

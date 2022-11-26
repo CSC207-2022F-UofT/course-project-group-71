@@ -1,6 +1,7 @@
 package controller_presenter_view.common_view;
 
 
+import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
 import database.EventDsGateway;
 import database.EventFileUser;
 import extract_information_use_case.*;

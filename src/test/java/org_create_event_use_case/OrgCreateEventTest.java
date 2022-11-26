@@ -17,13 +17,13 @@ public class OrgCreateEventTest {
     OrgCreateEventController orgCreateEventController = new OrgCreateEventController(orgCreateEventInteractor);
     OrgCreateEventResponseModel orgCreateEventResponseModel;
 
-    /**Need to create an organization called "University of Toronto" in orgfile
+    /**Need to create an organization called "UofT" in orgfile
      */
     @Test
     @Order(1)
     void testPrepareSuccessViewOrgCreateEvent() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H1", "Software Design", "Toronto", "2345", "9",
                     "13", "14", "0");
             assertEquals(orgCreateEventResponseModel.getTitle(), "CSC207H1");
@@ -36,7 +36,7 @@ public class OrgCreateEventTest {
     @Order(2)
     void testPrepareFailViewEmptyEntries() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H1", "Software Design", "Toronto", "", "9",
                     "13", "14", "0");
             assert(false);
@@ -49,7 +49,7 @@ public class OrgCreateEventTest {
     @Order(3)
     void testPrepareFailViewRepeatingTitle() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H1", "Software Design", "Toronto", "2345", "9",
                     "13", "14", "0");
             assert(false);
@@ -62,7 +62,7 @@ public class OrgCreateEventTest {
     @Order(4)
     void testPrepareFailViewOrgCreateEvent() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H5", "Software Design", "Toronto", "2345", "9",
                     "13", "1.4", "0");
             assert(false);
@@ -75,7 +75,7 @@ public class OrgCreateEventTest {
     @Order(5)
     void testPrepareFailViewYearWrong() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H5", "Software Design", "Toronto", "234", "9",
                     "13", "14", "0");
             assert(false);
@@ -88,7 +88,7 @@ public class OrgCreateEventTest {
     @Order(6)
     void testPrepareFailViewMonthWrong() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H5", "Software Design", "Toronto", "2345", "22",
                     "13", "14", "0");
             assert(false);
@@ -101,7 +101,7 @@ public class OrgCreateEventTest {
     @Order(7)
     void testPrepareFailViewDayWrong() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H5", "Software Design", "Toronto", "2345", "9",
                     "-1", "14", "0");
             assert(false);
@@ -114,7 +114,7 @@ public class OrgCreateEventTest {
     @Order(8)
     void testPrepareFailViewHourWrong() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H5", "Software Design", "Toronto", "2345", "9",
                     "13", "24", "0");
             assert(false);
@@ -127,7 +127,7 @@ public class OrgCreateEventTest {
     @Order(9)
     void testPrepareFailViewMinuteWrong() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H5", "Software Design", "Toronto", "2345", "9",
                     "13", "14", "60");
             assert(false);
@@ -140,7 +140,7 @@ public class OrgCreateEventTest {
     @Order(9)
     void testPrepareFailViewTimeIsPast() {
         try {
-            orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H5", "Software Design", "Toronto", "1345", "9",
                     "13", "14", "0");
             assert(false);

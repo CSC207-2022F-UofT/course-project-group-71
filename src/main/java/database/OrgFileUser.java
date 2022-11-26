@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import static tutorial.HelloWorld.*;
 
 public class OrgFileUser implements OrgDsGateway {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        OrgFileUser a = new OrgFileUser();
-        System.out.println(a.organizerSearch("s"));
-    }
 
     /**This is a tool method to store the username and password of the organizer to database.
      *
