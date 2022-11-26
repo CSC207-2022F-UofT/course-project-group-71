@@ -60,7 +60,46 @@ public class OrgCreateEventTest {
 
     @Test
     @Order(4)
-    void testPrepareFailViewOrgCreateEvent() {
+    void testPrepareFailViewTitleTooLong() {
+        try {
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
+                    "CSC207H5ssssssssssssssssssssss", "Software Design", "Toronto", "2345", "9",
+                    "13", "1.4", "0");
+            assert(false);
+        } catch (Exception e) {
+            assertEquals("Title should be no longer than 20 characters.", e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(5)
+    void testPrepareFailViewDescriptionTooLong() {
+        try {
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
+                    "CSC207H5", "An introduction to software design and development concepts, methods, and tools using a statically-typed object-oriented programming language such as Java. Topics from: version control, unit testing, refactoring, object-oriented design and development, design patterns, advanced IDE usage, regular expressions, and reflection. Representation of floating-point numbers and introduction to numerical computation.",
+                    "Toronto", "2345", "9", "13", "1.4", "0");
+            assert(false);
+        } catch (Exception e) {
+            assertEquals("Description should be no longer than 200 characters.", e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(6)
+    void testPrepareFailViewLocationTooLong() {
+        try {
+            orgCreateEventResponseModel = orgCreateEventController.create("UofT",
+                    "CSC207H5", "Software Design", "Toronto ssssssssssssssssssssssssssssssssssssssssssssss ssssssssssssssssssssssssssssssssssssssssssssss",
+                    "2345", "9", "13", "1.4", "0");
+            assert(false);
+        } catch (Exception e) {
+            assertEquals("Location should be no longer than 50 characters.", e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(7)
+    void testPrepareFailViewTimeNotInteger() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
                     "CSC207H5", "Software Design", "Toronto", "2345", "9",
@@ -72,7 +111,7 @@ public class OrgCreateEventTest {
     }
 
     @Test
-    @Order(5)
+    @Order(8)
     void testPrepareFailViewYearWrong() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
@@ -85,7 +124,7 @@ public class OrgCreateEventTest {
     }
 
     @Test
-    @Order(6)
+    @Order(9)
     void testPrepareFailViewMonthWrong() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
@@ -98,7 +137,7 @@ public class OrgCreateEventTest {
     }
 
     @Test
-    @Order(7)
+    @Order(10)
     void testPrepareFailViewDayWrong() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
@@ -111,7 +150,7 @@ public class OrgCreateEventTest {
     }
 
     @Test
-    @Order(8)
+    @Order(11)
     void testPrepareFailViewHourWrong() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
@@ -124,7 +163,7 @@ public class OrgCreateEventTest {
     }
 
     @Test
-    @Order(9)
+    @Order(12)
     void testPrepareFailViewMinuteWrong() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
@@ -137,7 +176,7 @@ public class OrgCreateEventTest {
     }
 
     @Test
-    @Order(9)
+    @Order(13)
     void testPrepareFailViewTimeIsPast() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
