@@ -20,7 +20,7 @@ public class OrgNotifyEventTest {
     NotifyEventResponseModel responseModel = null;
 
     /**
-     * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3" in eventfile
+     * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3", "TeamMeeting4" in eventfile
      * Need to create a participant in parfile
      * Need to create "parName | "
      * Assign the participant to TeamMeeting3 in upcoming_event_for_par
@@ -31,7 +31,7 @@ public class OrgNotifyEventTest {
      */
     @Test
     @Order(1)
-    void test_PrepareFailureView_No_Pars(){
+    void test_PrepareFailureView_No_Pars_Future(){
         try {
             responseModel = controller.sendNotification("Future", "TeamMeeting1");
             assert(false);
@@ -42,12 +42,10 @@ public class OrgNotifyEventTest {
 
     @Test
     @Order(2)
-    void test_PrepareSuccessView_Past(){
+    void test_PrepareFailureView_No_Pars_Past(){
         try {
             responseModel = controller.sendNotification("Past", "TeamMeeting2");
-            assertEquals("Event TeamMeeting2 was over.", responseModel.getMessage());
-            TimeUnit.SECONDS.sleep(20);
-            assertEquals("Event TeamMeeting2 was over at 11-12 0:0.", parDsGateway.getNotifications("654321").get(0));
+            assertEquals("Event TeamMeeting2 is over.", responseModel.getMessage());
         } catch (Exception e) {
             assert(false);
         }
@@ -55,12 +53,25 @@ public class OrgNotifyEventTest {
 
     @Test
     @Order(3)
+    void test_PrepareSuccessView_Past(){
+        try {
+            responseModel = controller.sendNotification("Past", "TeamMeeting3");
+            assertEquals("Event TeamMeeting3 was over.", responseModel.getMessage());
+            TimeUnit.SECONDS.sleep(20);
+            assertEquals("Event TeamMeeting3 was over at 11-12 0:0.", parDsGateway.getNotifications("654321").get(0));
+        } catch (Exception e) {
+            assert(false);
+        }
+    }
+
+    @Test
+    @Order(4)
     void test_PrepareSuccessView_Future(){
         try {
-            responseModel = controller.sendNotification("Future", "TeamMeeting3");
-            assertEquals("Notification sent for TeamMeeting3!", responseModel.getMessage());
+            responseModel = controller.sendNotification("Future", "TeamMeeting4");
+            assertEquals("Notification sent for TeamMeeting4!", responseModel.getMessage());
             TimeUnit.SECONDS.sleep(20);
-            assertEquals("Event TeamMeeting3 is about to happen at 11-30 0:0", parDsGateway.getNotifications("654321").get(1));
+            assertEquals("Event TeamMeeting4 is about to happen at 11-30 0:0.", parDsGateway.getNotifications("654321").get(1));
         } catch (Exception e) {
             assert(false);
         }
