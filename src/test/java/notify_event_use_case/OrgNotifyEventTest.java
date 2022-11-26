@@ -23,8 +23,8 @@ public class OrgNotifyEventTest {
      * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3", "TeamMeeting4" in eventfile
      * Need to create a participant in parfile
      * Need to create "parName | "
-     * Assign the participant to TeamMeeting3 in upcoming_event_for_par
-     * Assign the participant to TeamMeeting2 in past_event_for_par
+     * Assign the participant to TeamMeeting4 in upcoming_event_for_par
+     * Assign the participant to TeamMeeting3 in past_event_for_par
      ***** IMPORTANT NOTICE: I added TimeUnit.SECONDS.sleep() in testing, because notifications might not have been
      *                      stored in database by time we try to retrieve them. You can modify the time a bit longer
      *                      depending on your hardware.
