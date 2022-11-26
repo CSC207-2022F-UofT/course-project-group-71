@@ -129,6 +129,8 @@ public class LoginPage extends JFrame implements ActionListener {
                     username.getText(),
                     String.valueOf(password.getPassword()));
             this.dispose();
+            //if the user is a participant, call upcoming_to_past to filter all the upcoming events of this participant,
+            //and convert some events from upcoming to past if necessary.
             if (P) {
                 ParDsGateway parDsGateway = new ParFileUser();
                 OrgDsGateway orgDsGateway = new OrgFileUser();
@@ -158,7 +160,9 @@ public class LoginPage extends JFrame implements ActionListener {
                 }
                 new ParHomePage(username.getText());
             }
-            else {new OrgHomePage(username.getText());}
+            else {//if the user is an organization, upcoming_to_past not be called at this stage.
+                new OrgHomePage(username.getText());
+            }
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }

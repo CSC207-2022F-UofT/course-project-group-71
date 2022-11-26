@@ -6,8 +6,13 @@ import notify_event_use_case.NotifyEventResponseModel;
 
 import java.sql.SQLException;
 
+/**The controller will be called by:
+ * 1. OrgHomeActionListener             When the organization clicks to the OrgUpcomingEventPage or OrgPastEventPage from OrgHomePage
+ * 2. OrgUpcomingEventActionListener    When the organization clicks the "Notify" button on org upcoming event page
+ * 3. LoginPage                         When a participant user clicks the "Login" button
+ */
 public class NotifyEventController {
-    final NotifyEventInputBoundary notifyEventInputBoundary;
+    NotifyEventInputBoundary notifyEventInputBoundary;
 
     public NotifyEventController(NotifyEventInputBoundary accountGateway) {
         this.notifyEventInputBoundary = accountGateway;
@@ -15,7 +20,6 @@ public class NotifyEventController {
 
     public NotifyEventResponseModel sendNotification(String notificationType, String eventName) throws SQLException, ClassNotFoundException {
         NotifyEventRequestModel requestModel = new NotifyEventRequestModel(notificationType, eventName);
-
         return notifyEventInputBoundary.sendNotification(requestModel);
     }
 }

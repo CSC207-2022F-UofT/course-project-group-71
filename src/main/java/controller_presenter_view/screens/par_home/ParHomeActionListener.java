@@ -17,12 +17,6 @@ import par_search_org_use_case.ParSearchOrgInputBoundary;
 import par_search_org_use_case.ParSearchOrgInteractor;
 import par_search_org_use_case.ParSearchOrgOutputBoundary;
 import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventPage;
-import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
-import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
-import upcoming_to_past_use_case.UpcomingToPastInputBoundary;
-import upcoming_to_past_use_case.UpcomingToPastInteractor;
-import upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
-import upcoming_to_past_use_case.UpcomingToPastResponseModel;
 import user_login_use_case.*;
 
 
@@ -65,46 +59,12 @@ public class ParHomeActionListener implements ActionListener {
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            ParDsGateway parDsGateway = new ParFileUser();
-            OrgDsGateway orgDsGateway = new OrgFileUser();
-            EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
-            UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                    eventDsGateway, upcomingToPastOutputBoundary);
-            UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel;
-            try {
-                responseModel = controller.convertToPast("P",
-                        this.parHomePage.getParUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            if (!responseModel.getEventsToPast().isEmpty()){
-                JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
-            }
         } else if (page.equals("Past Event")) {
             this.parHomePage.dispose();
             try {
                 new ParPastEventPage(this.parHomePage.getParUsername());
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
-            }
-            ParDsGateway parDsGateway = new ParFileUser();
-            OrgDsGateway orgDsGateway = new OrgFileUser();
-            EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
-            UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                    eventDsGateway, upcomingToPastOutputBoundary);
-            UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel;
-            try {
-                responseModel = controller.convertToPast("P",
-                        this.parHomePage.getParUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            if (!responseModel.getEventsToPast().isEmpty()){
-                JOptionPane.showMessageDialog(this.parHomePage, responseModel.getMessage());
             }
         } else if (page.equals("Followed Org")) {
             this.parHomePage.dispose();

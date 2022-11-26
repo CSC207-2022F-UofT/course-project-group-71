@@ -6,9 +6,14 @@ import par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
 
 import java.sql.SQLException;
 
+/**The controller will be called by:
+ * 1. ParSearchOrgResultsPageActionListener   When the participant clicks the "Unfollow" button on ParSearchOrgResultsPage
+ * 2. ParFollowedOrgActionListener            When the organization clicks the "Unfollow" button on ParFollowedOrgPage
+ */
 public class ParUnfollowOrgController {
 
-    final ParUnfollowOrgInputBoundary interactor;
+    ParUnfollowOrgInputBoundary interactor;
+
     public ParUnfollowOrgController(ParUnfollowOrgInputBoundary interactor){
         this.interactor= interactor;
     }
