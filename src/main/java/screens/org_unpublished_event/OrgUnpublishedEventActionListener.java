@@ -26,8 +26,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class OrgUnpublishedEventActionListener implements ActionListener {
-    public OrgUnpublishedEventPage orgUnpublishedEventPage;
-
+    OrgUnpublishedEventPage orgUnpublishedEventPage;
 
     public OrgUnpublishedEventActionListener(OrgUnpublishedEventPage orgUnpublishedEventPage){
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
