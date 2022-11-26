@@ -2,8 +2,8 @@ package par_search_org_use_case;
 import database.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.par_search.ParSearchOrgController;
-import screens.par_search.ParSearchOrgPresenter;
+import controller_presenter_view.screens.par_home.par_search.ParSearchOrgController;
+import controller_presenter_view.screens.par_home.par_search.ParSearchOrgPresenter;
 
 import java.util.ArrayList;
 

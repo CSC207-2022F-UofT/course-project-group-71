@@ -5,8 +5,8 @@ import database.*;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.Order;
-import screens.org_upcoming_event.OrgDeleteEventController;
-import screens.org_upcoming_event.OrgDeleteEventPresenter;
+import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
+import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventPresenter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,7 +26,7 @@ public class OrgDeleteEventTest {
 
     OrgDeleteEventResponseModel responseModel;
 
-    /**Need to create an event "CSC207" in event file which is still unpublished
+    /**Need to create an event "CSC207" in eventfile which is still unpublished
      */
     @Test
     @Order(1)

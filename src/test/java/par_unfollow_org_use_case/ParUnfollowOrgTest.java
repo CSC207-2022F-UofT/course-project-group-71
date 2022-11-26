@@ -6,8 +6,8 @@ import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.par_follow_org_screens.ParUnfollowOrgController;
-import screens.par_follow_org_screens.ParUnfollowOrgPresenter;
+import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgController;
+import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;
 
 import java.util.ArrayList;
 

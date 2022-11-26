@@ -3,8 +3,8 @@ package org_create_event_use_case;
 import database.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.org_unpublished_event.OrgCreateEventController;
-import screens.org_unpublished_event.OrgCreateEventPresenter;
+import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventController;
+import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventPresenter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +17,7 @@ public class OrgCreateEventTest {
     OrgCreateEventController orgCreateEventController = new OrgCreateEventController(orgCreateEventInteractor);
     OrgCreateEventResponseModel orgCreateEventResponseModel;
 
-    /**Need to create an event "CSC207H1" in event file which is still unpublished
+    /**Need to create an organization called "University of Toronto" in orgfile
      */
     @Test
     @Order(1)
@@ -63,7 +63,7 @@ public class OrgCreateEventTest {
     void testPrepareFailViewOrgCreateEvent() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
-                    "CSC207H1", "Software Design", "Toronto", "2345", "9",
+                    "CSC207H5", "Software Design", "Toronto", "2345", "9",
                     "13", "1.4", "0");
             assert(false);
         } catch (Exception e) {
@@ -129,7 +129,7 @@ public class OrgCreateEventTest {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("University of Toronto",
                     "CSC207H5", "Software Design", "Toronto", "2345", "9",
-                    "13", "24", "60");
+                    "13", "14", "60");
             assert(false);
         } catch (Exception e) {
             assertEquals("Minute is not within 0 to 59.", e.getMessage());

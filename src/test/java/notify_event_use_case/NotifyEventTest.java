@@ -2,8 +2,8 @@ package notify_event_use_case;
 import database.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.notify_event.NotifyEventController;
-import screens.notify_event.NotifyEventPresenter;
+import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
+import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
 
 import java.util.concurrent.TimeUnit;
 

@@ -2,8 +2,8 @@ package par_search_event_use_case;
 import database.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.par_search.ParSearchEventController;
-import screens.par_search.ParSearchEventPresenter;
+import controller_presenter_view.screens.par_home.par_search.ParSearchEventController;
+import controller_presenter_view.screens.par_home.par_search.ParSearchEventPresenter;
 
 import java.util.ArrayList;
 

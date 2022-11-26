@@ -4,8 +4,8 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.org_unpublished_event.OrgPublishEventController;
-import screens.org_unpublished_event.OrgPublishEventPresenter;
+import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventController;
+import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventPresenter;
 
 import java.sql.SQLException;
 

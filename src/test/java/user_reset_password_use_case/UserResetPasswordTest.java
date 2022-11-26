@@ -6,10 +6,10 @@ import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.org_account.OrgResetPasswordController;
-import screens.org_account.OrgResetPasswordPresenter;
-import screens.par_account.ParResetPasswordController;
-import screens.par_account.ParResetPasswordPresenter;
+import controller_presenter_view.screens.org_account.org_reset_password.OrgResetPasswordController;
+import controller_presenter_view.screens.org_account.org_reset_password.OrgResetPasswordPresenter;
+import controller_presenter_view.screens.par_account.par_reset_password.ParResetPasswordController;
+import controller_presenter_view.screens.par_account.par_reset_password.ParResetPasswordPresenter;
 
 import java.sql.SQLException;
 
