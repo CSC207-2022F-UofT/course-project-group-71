@@ -6,10 +6,10 @@ import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.UserLoginController;
-import screens.UserLoginPresenter;
-import screens.org_home.OrgHomePresenter;
-import screens.par_home.ParHomePresenter;
+import controller_presenter_view.screens.user_login.UserLoginController;
+import controller_presenter_view.screens.user_login.UserLoginPresenter;
+import controller_presenter_view.screens.org_home.OrgHomePresenter;
+import controller_presenter_view.screens.par_home.ParHomePresenter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

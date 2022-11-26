@@ -2,10 +2,10 @@ package user_login_use_case;
 
 public class UserLoginRequestModel {
 
-    private String isParticipant;
-    private String isOrganization;
-    private String username;
-    private String password;
+    String isParticipant;
+    String isOrganization;
+    String username;
+    String password;
 
     public UserLoginRequestModel(String isParticipant, String isOrganization, String username, String password) {
         this.isParticipant = isParticipant;

@@ -1,0 +1,25 @@
+package controller_presenter_view.common_controller_presenter.notify_event;
+
+import notify_event_use_case.NotifyEventInputBoundary;
+import notify_event_use_case.NotifyEventRequestModel;
+import notify_event_use_case.NotifyEventResponseModel;
+
+import java.sql.SQLException;
+
+/**The controller will be called by:
+ * 1. OrgHomeActionListener             When the organization clicks to the OrgUpcomingEventPage or OrgPastEventPage from OrgHomePage
+ * 2. OrgUpcomingEventActionListener    When the organization clicks the "Notify" button on org upcoming event page
+ * 3. LoginPage                         When a participant user clicks the "Login" button
+ */
+public class NotifyEventController {
+    NotifyEventInputBoundary notifyEventInputBoundary;
+
+    public NotifyEventController(NotifyEventInputBoundary accountGateway) {
+        this.notifyEventInputBoundary = accountGateway;
+    }
+
+    public NotifyEventResponseModel sendNotification(String notificationType, String eventName) throws SQLException, ClassNotFoundException {
+        NotifyEventRequestModel requestModel = new NotifyEventRequestModel(notificationType, eventName);
+        return notifyEventInputBoundary.sendNotification(requestModel);
+    }
+}

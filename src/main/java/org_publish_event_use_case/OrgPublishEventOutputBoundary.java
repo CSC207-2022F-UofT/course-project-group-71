@@ -11,4 +11,11 @@ public interface OrgPublishEventOutputBoundary {
      */
     OrgPublishEventResponseModel prepareSuccessView(OrgPublishEventResponseModel orgPublishEventResponseModel);
 
+    /**A method used to show failure view to the user
+     *
+     * @param error A String containing information about how it failed
+     * @return A response model showing failure view
+     */
+    OrgPublishEventResponseModel prepareFailView(String error);
+
 }

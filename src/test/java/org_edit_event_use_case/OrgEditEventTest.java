@@ -6,10 +6,8 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Order;
-import screens.org_unpublished_event.OrgEditEventController;
-import screens.org_unpublished_event.OrgEditEventPresenter;
-
-import java.sql.SQLException;
+import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventController;
+import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventPresenter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

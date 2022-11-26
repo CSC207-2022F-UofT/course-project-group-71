@@ -4,11 +4,11 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import screens.LoginPage;
-import screens.UserLoginController;
-import screens.UserLoginPresenter;
-import screens.org_home.OrgHomePresenter;
-import screens.par_home.ParHomePresenter;
+import controller_presenter_view.screens.user_login.LoginPage;
+import controller_presenter_view.screens.user_login.UserLoginController;
+import controller_presenter_view.screens.user_login.UserLoginPresenter;
+import controller_presenter_view.screens.org_home.OrgHomePresenter;
+import controller_presenter_view.screens.par_home.ParHomePresenter;
 import user_login_use_case.*;
 
 public class HelloWorld {

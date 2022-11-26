@@ -78,12 +78,12 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
 
             int h = Integer.parseInt(hour);
             if (h > 23 || h < 0) {
-                return orgCreateEventOutputBoundary.prepareFailView("Day is not within 0 to 24.");
+                return orgCreateEventOutputBoundary.prepareFailView("Hour is not within 0 to 23.");
             }
 
             int min = Integer.parseInt(minute);
             if (min > 59 || min < 0) {
-                return orgCreateEventOutputBoundary.prepareFailView("Minute is not within 0 to 60.");
+                return orgCreateEventOutputBoundary.prepareFailView("Minute is not within 0 to 59.");
             }
 
             LocalDateTime now = LocalDateTime.now();
