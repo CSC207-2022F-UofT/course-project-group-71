@@ -28,7 +28,7 @@ public class ParSearchOrgInteractor implements ParSearchOrgInputBoundary {
      */
     @Override
     public ParSearchOrgResponseModel orgSearch(ParSearchOrgRequestModel userInput) throws SQLException, ClassNotFoundException {
-        ArrayList<String> searchResults = orgDsGateway.organizerSearch(userInput.getQuery());
+        ArrayList<String> searchResults = orgDsGateway.organizationSearch(userInput.getQuery());
         if (searchResults.isEmpty()) {
             return userOutput.prepareFailView("No organization found.");
         } else {

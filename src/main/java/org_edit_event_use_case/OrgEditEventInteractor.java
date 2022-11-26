@@ -40,12 +40,20 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
      */
     @Override
     public OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
-        //checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.
-        if (requestModel.getTitle().isEmpty() || requestModel.getDescription().isEmpty()
+        //checks if all entries are non-empty: description, year, month, day, hour, minute, location.
+        if (requestModel.getDescription().isEmpty()
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()
                 || requestModel.getDay().isEmpty() || requestModel.getHour().isEmpty()
                 || requestModel.getMinute().isEmpty() || requestModel.getLocation().isEmpty()) {
             return orgEditEventOutputBoundary.prepareFailView("Entries cannot be empty.");
+        }
+
+        if (requestModel.getDescription().length() > 200) {
+            return orgEditEventOutputBoundary.prepareFailView("Description should be no longer than 200 characters.");
+        }
+
+        if (requestModel.getLocation().length() > 50) {
+            return orgEditEventOutputBoundary.prepareFailView("Location should be no longer than 50 characters.");
         }
 
         String year = requestModel.getYear();

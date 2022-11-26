@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.par_followed_org;
 
 import database.*;
-import extract_information_use_case.ExtractInfoController;
+import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
 import extract_information_use_case.ExtractInfoInputBoundary;
 import extract_information_use_case.ExtractInfoInteractor;
 import extract_information_use_case.ExtractInfoResponseModel;

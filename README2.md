@@ -1,39 +1,38 @@
-# Project Template
+# Project Description
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+This is an event-ticketing platform that connects participants and organizations.
+As an organization, user can create, edit, publish, new events; as a participant, user can search, join upcomin
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+## Starter File
+`src/main/java/tutorial/HellowWord`
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+There are 3 static variables in the class:
 
-## Workflow Documents
+- databaseUrl = "jdbc:mysql://localhost:3306/db2"
+  - This is used for finding the database located in DataGrip.
+- databaseUsername = "root"
+  - This is the default username of your database, usually you will not need to change it.
+- databasePassword = "vvks1309"
+  - This is the password of your database, you need to set it when you are registering your account for your database.
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
+The get methods of the above 3 static variables are used by `src/main/java/database`, these variables will be held fixed for all operations.
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
+## Entities
 
-## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
+We do not have the entities structure as we are using MySQL to store our data.
+But from the concept perspective, we have *event*, *organization*, and *participant* to bear the Enterprise Business Rules.
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
+## Use Cases
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
+All folders ending with use_case are the use cases of the project.
+Each consists of 5 types of class/interface: InputBoundary, Interactor, OutputBoundary, RequestModel, ResponseModel (except for extract_information_use_case).
+The use case
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
+There are a few special use cases:
+- extract_information_use_case: This is designed to assist views to show information stored in the database. (Clean Architecture purposes)
+- upcoming_to_past_use_case: This is an auto-triggered use case that do not need the user to explicitly demand
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
+## Database
+`src/main/java/database`
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
-
-You can create another simple class and try generating a test for this class.
+The database folder consists of 3 DsGateways and 3 FileUsers for event, organization, and participant. 

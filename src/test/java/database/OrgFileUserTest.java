@@ -108,7 +108,7 @@ public class OrgFileUserTest {
     @Test
     void testOrganizerSearch() throws SQLException, ClassNotFoundException {
         ArrayList<String> l1 = new ArrayList<>(List.of("O1", "O2","O3"));
-        assertEquals(l1,orgFileUser.organizerSearch("O"));
+        assertEquals(l1,orgFileUser.organizationSearch("O"));
 
     }
 

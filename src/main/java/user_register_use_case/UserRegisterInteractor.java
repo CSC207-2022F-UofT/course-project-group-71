@@ -37,10 +37,22 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
             if (orgDsGateway.checkIfUsernameExist(requestModel.getUsername())) {
                 return userRegisterOutputBoundary.prepareFailView("Organization already exists.");
             }
+
+            //Check if the username is too long
+            if (requestModel.getUsername().length() > 20) {
+                return userRegisterOutputBoundary.prepareFailView("Username should be no longer than 20 characters.");
+            }
+
             //Check if the password is empty
             if (requestModel.getPassword().isEmpty()) {
                 return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
             }
+
+            //Check if the password is too long
+            if (requestModel.getPassword().length() > 20) {
+                return userRegisterOutputBoundary.prepareFailView("Password should be no longer than 20 characters.");
+            }
+
             //Check if two passwords are different
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
                 return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
@@ -56,10 +68,21 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
             if (parDsGateway.checkIfUsernameExist(requestModel.getUsername())) {
                 return userRegisterOutputBoundary.prepareFailView("Participant already exists.");
             }
+            //Check if the username is too long
+            if (requestModel.getUsername().length() > 20) {
+                return userRegisterOutputBoundary.prepareFailView("Username should be no longer than 20 characters.");
+            }
+
             //Check if the password is empty
             if (requestModel.getPassword().isEmpty()) {
                 return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
             }
+
+            //Check if the password is too long
+            if (requestModel.getPassword().length() > 20) {
+                return userRegisterOutputBoundary.prepareFailView("Password should be no longer than 20 characters.");
+            }
+
             //Check if two passwords are different
             if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
                 return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");

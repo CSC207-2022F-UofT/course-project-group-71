@@ -24,7 +24,7 @@ public class ParFollowOrgInteractor implements ParFollowOrgInputBoundary {
      * Precondition: the participant is not following the organization
      *
      * @param requestModel The request model sent to this interactor.
-     * @return A responseModel representing the user followed an organizer successfully by the presenter.
+     * @return A responseModel representing the user followed an organization successfully by the presenter.
      */
     public ParFollowOrgResponseModel follow(ParFollowOrgRequestModel requestModel) throws SQLException, ClassNotFoundException {
         parDsGateway.followOrg(requestModel.getParUsername(),requestModel.getOrgUsername());

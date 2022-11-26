@@ -6,12 +6,6 @@ import java.util.ArrayList;
 import static tutorial.HelloWorld.*;
 
 public class ParFileUser implements ParDsGateway {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        ParFileUser p = new ParFileUser();
-        System.out.println(p.getPassword("aas"));
-
-
-    }
 
     /**This is a tool method used to store the username and password of the participant to the database.
      *
@@ -87,10 +81,10 @@ public class ParFileUser implements ParDsGateway {
         }
     }
 
-    /**This is a tool method used to add following relationship between participants and organizers to the database.
+    /**This is a tool method used to add following relationship between participants and organizations to the database.
      *
      * @param par_username The username of the participant
-     * @param org_username The username of the organizer
+     * @param org_username The username of the organization
      */
     public void utilAddParFollowing(String par_username, String org_username) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
@@ -126,11 +120,11 @@ public class ParFileUser implements ParDsGateway {
 
     }
 
-    /**This is a tool method used to delete following relationship between participants and organizers from the database.
+    /**This is a tool method used to delete following relationship between participants and organizations from the database.
      * The par must be following the org, otherwise nothing happens.
      *
      * @param par_username The username of the participant
-     * @param org_username The username of the organizer
+     * @param org_username The username of the organization
      */
     public void utilDeleteParFollowOrg(String par_username, String org_username) throws ClassNotFoundException, SQLException {
             Statement stmt = null;
@@ -164,44 +158,6 @@ public class ParFileUser implements ParDsGateway {
 
         }
 
-    /**This a tool method used to add relationship between participants and past events to the database.
-     *
-      * @param par_username The username of the participant
-     * @param event_title The title of the event
-     */
-    public void utilAddParPastEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql = "insert into past_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
-        }
-
-
-    }
     /**This a tool method used to delete relationship between participants and past events from the database.
      *The participant must register the past event, otherwise nothing would happen.
      *
@@ -319,10 +275,10 @@ public class ParFileUser implements ParDsGateway {
 
     }
 
-    /**This is a tool method used to get all organizers followed by a participant.
+    /**This is a tool method used to get all organizations followed by a participant.
      *
      * @param par_username The username of the participant
-     * @return All organizers followed by the participant
+     * @return All organizations followed by the participant
      */
     public ArrayList<String> utilGetAllFollowing(String par_username) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
@@ -599,7 +555,7 @@ public class ParFileUser implements ParDsGateway {
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        String password = null;
+        String password;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
@@ -740,31 +696,31 @@ public class ParFileUser implements ParDsGateway {
         return utilGetAllPastEvent(username);
     }
 
-    /**This is a method used to get all organizers followed by a participant.
+    /**This is a method used to get all organizations followed by a participant.
      * This method called a tool method called utilGetAllFollowing.
      *
      * @param username The username of the participant
-     * @return All the organizers followed by the participant
+     * @return All the organizations followed by the participant
      */
     public ArrayList<String> getFollowedOrg(String username) throws SQLException, ClassNotFoundException {
         return utilGetAllFollowing(username);
     }
 
-    /**This is a method used to add following relationship between participants and organizers to the database.
+    /**This is a method used to add following relationship between participants and organizations to the database.
      * This method called a tool method called utilAddParFollowing.
      *
      * @param par_username The username of the participant
-     * @param org_username The username of the organizer
+     * @param org_username The username of the organization
      */
     public void followOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException {
         utilAddParFollowing(par_username,org_username);
     }
 
-    /**This is a method used to add following relationship between participants and organizers to the database.
+    /**This is a method used to add following relationship between participants and organizations to the database.
      * This method called a tool method called utilAddParFollowing.
      *
      * @param par_username The username of the participant
-     * @param org_username The username of the organizer
+     * @param org_username The username of the organization
      */
     public void unfollowOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException {
         utilDeleteParFollowOrg(par_username,org_username);
@@ -802,7 +758,7 @@ public class ParFileUser implements ParDsGateway {
      */
     public void deletePar(String username) throws SQLException, ClassNotFoundException {
         //First delete relationships with events
-        //Then delete relationships with organizers
+        //Then delete relationships with organizations
         //Then delete itself
 
         //First breaking relationship with past events

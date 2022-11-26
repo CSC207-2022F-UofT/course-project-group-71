@@ -3,7 +3,7 @@ package controller_presenter_view.common_view;
 
 import database.OrgDsGateway;
 import database.OrgFileUser;
-import extract_information_use_case.ExtractInfoController;
+import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
 import extract_information_use_case.ExtractInfoInputBoundary;
 import extract_information_use_case.ExtractInfoInteractor;
 import extract_information_use_case.ExtractInfoResponseModel;
