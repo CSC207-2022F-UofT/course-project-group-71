@@ -78,7 +78,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
                 case "getFollowers":
                     return new ExtractInfoResponseModel<>(orgDsGateway.getFollowers(orgName));
                 case "organizerSearch":
-                    return new ExtractInfoResponseModel<>(orgDsGateway.organizerSearch(orgName));
+                    return new ExtractInfoResponseModel<>(orgDsGateway.organizationSearch(orgName));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             throw new RuntimeException(ex);
