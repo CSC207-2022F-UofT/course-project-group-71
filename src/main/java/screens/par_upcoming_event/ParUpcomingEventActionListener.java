@@ -54,13 +54,11 @@ public class ParUpcomingEventActionListener implements ActionListener {
 
             String eventName = actionCommand.substring(0, actionCommand.length() - 5);
 
-            ParLeaveEventResponseModel responseModel = null;
+            ParLeaveEventResponseModel responseModel;
             try {
                 responseModel = parLeaveEventController.leave(
                         this.parUpcomingEventPage.getParUsername(), eventName);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
@@ -69,9 +67,7 @@ public class ParUpcomingEventActionListener implements ActionListener {
             this.parUpcomingEventPage.dispose();
             try {
                 new ParUpcomingEventPage(this.parUpcomingEventPage.getParUsername());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }

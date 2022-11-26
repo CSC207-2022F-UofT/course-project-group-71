@@ -121,10 +121,15 @@ public class ParHomePage extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    public String getParUsername() { return this.parUsername;}
+    /**This method will be called in ParHomeActionListener.
+     * @return it will return a string which is participant's username.
+     */
+    public String getParUsername() {
+        return this.parUsername;
+    }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {//show notification
         try {
             ParShowNotificationResponseModel responseModel = parShowNotificationController.showNotification(this.getParUsername());
             JOptionPane.showMessageDialog(this, responseModel.getNotifications());
@@ -132,7 +137,4 @@ public class ParHomePage extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }
     }
-
-
-
 }

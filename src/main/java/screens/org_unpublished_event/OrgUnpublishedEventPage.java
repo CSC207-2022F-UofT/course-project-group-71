@@ -173,7 +173,8 @@ public class OrgUnpublishedEventPage extends JFrame {
 
         this.setVisible(true);
     }
-    /**The method returns organization's Username.
+
+    /**This method will be called in OrgUnpublishedEventActionListener.
      * @return it will return a string which is organization's username.
      */
     public String getOrgUsername() {

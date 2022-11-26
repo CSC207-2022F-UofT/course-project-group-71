@@ -23,8 +23,8 @@ import java.sql.SQLException;
 
 public class ParSearchEventResultsPageActionListener implements ActionListener {
 
-    public ParSearchEventResultsPage parSearchEventResultsPage;
-    private String eventName;
+    ParSearchEventResultsPage parSearchEventResultsPage;
+    String eventName;
 
     /**Constructor of the event search results page action listener.
      * It takes a search results page and an event name as inputs
@@ -36,7 +36,6 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
     public ParSearchEventResultsPageActionListener(ParSearchEventResultsPage parSearchEventResultsPage, String eventName) {
         this.parSearchEventResultsPage = parSearchEventResultsPage;
         this.eventName = eventName;
-
     }
 
     /**A method to deal with actions on the event search results page.
@@ -60,16 +59,11 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             ParJoinEventController controller = new ParJoinEventController(interactor);
             String parUserName = this.parSearchEventResultsPage.getParUsername();
             ParJoinEventResponseModel response = controller.join(parUserName, this.eventName);
-            try {
-                new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            } catch (ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            //show a success message that the participant has joined the event
             JOptionPane.showMessageDialog(this.parSearchEventResultsPage, response.getMessage());
+            //dispose the results page
             this.parSearchEventResultsPage.dispose();
-
+            new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
 
         } else if (actionCommand.equals("Leave " + this.eventName)){
             ParDsGateway parDsGateway = new ParFileUser();
@@ -79,23 +73,18 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway, orgDsGateway,presenter);
             ParLeaveEventController controller = new ParLeaveEventController(interactor);
             String parUserName = this.parSearchEventResultsPage.getParUsername();
-            ParLeaveEventResponseModel response = null;
+            ParLeaveEventResponseModel responseModel;
             try {
-                response = controller.leave(parUserName, this.eventName);
+                responseModel = controller.leave(parUserName, this.eventName);
             } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
-
-            parUserName = this.parSearchEventResultsPage.getParUsername();
-            JOptionPane.showMessageDialog(this.parSearchEventResultsPage, response.getMessage());
+            //show a success message that the participant has joined the event
+            JOptionPane.showMessageDialog(this.parSearchEventResultsPage, responseModel.getMessage());
+            //dispose the results page
             this.parSearchEventResultsPage.dispose();
-
-            try {
-                new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
-
+            //renew the results page
+            new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
         }
         else {
             try {

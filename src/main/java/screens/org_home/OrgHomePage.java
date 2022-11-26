@@ -73,7 +73,8 @@ public class OrgHomePage extends JFrame {
 
         this.setVisible(true);
     }
-    /**The method returns organization's Username.
+
+    /**This method will be called in OrgHomeActionListener.
      * @return it will return a string which is organization's username.
      */
     public String getOrgUsername() { return this.orgUsername;}

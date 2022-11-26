@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class OrgEditEventController {
 
-    final OrgEditEventInputBoundary userInput;
+    OrgEditEventInputBoundary userInput;
 
     public OrgEditEventController(OrgEditEventInputBoundary userInput) {
         this.userInput = userInput;
@@ -25,11 +25,7 @@ public class OrgEditEventController {
         //Prepare a request model with given information
         OrgEditEventRequestModel requestModel = new OrgEditEventRequestModel(
                 title, description, location, year, month, day, hour, minute);
-        System.out.println("3");
-        //Get the response model from the interactor
-        OrgEditEventResponseModel responseModel = userInput.edit(requestModel);
-        System.out.println("5");
-        return responseModel;
+        return userInput.edit(requestModel);
     }
 
 }

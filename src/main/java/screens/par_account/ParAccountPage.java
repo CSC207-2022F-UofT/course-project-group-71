@@ -8,13 +8,10 @@ import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
 public class ParAccountPage extends JFrame {
-    private final String parUsername;
-
+    String parUsername;
     JPasswordField oldPassword = new JPasswordField(15);
     JPasswordField newPassword = new JPasswordField(15);
     JPasswordField retypeNewPassword = new JPasswordField(15);
-
-    ParResetPasswordController parResetPasswordController;
 
     /**The username of the participant, the page use this name to find relevant information from the database.
      * And generating the page.
@@ -74,21 +71,10 @@ public class ParAccountPage extends JFrame {
         this.setVisible(true);
     }
 
+    /**This method will be called in ParAccountActionListener.
+     * @return it will return a string which is participant's username.
+     */
     public String getParUsername() {
         return parUsername;
     }
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        UserResetPasswordResponseModel responseModel = null;
-//        try {
-//            responseModel = parResetPasswordController.resetPassword(
-//                    this.parUsername, String.valueOf(oldPassword.getPassword()), String.valueOf(newPassword.getPassword()),
-//                    String.valueOf(retypeNewPassword.getPassword()));
-//        } catch (SQLException ex) {
-//            throw new RuntimeException(ex);
-//        } catch (ClassNotFoundException ex) {
-//            throw new RuntimeException(ex);
-//        }
-//        JOptionPane.showMessageDialog(this, responseModel.getMessage());
-//    }
 }

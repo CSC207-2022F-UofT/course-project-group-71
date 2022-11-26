@@ -16,7 +16,7 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class OrgUpcomingEventPage extends JFrame {
 
-    private final String orgUsername;
+    String orgUsername;
 
     /**The method generate a page of organization's upcoming event.
      * It contains all upcoming events held by this organization and let the organization

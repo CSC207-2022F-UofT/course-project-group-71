@@ -15,7 +15,7 @@ import static tutorial.HelloWorld.getConstantX;
 import static tutorial.HelloWorld.getConstantY;
 
 public class ParUpcomingEventPage extends JFrame {
-    private final String parUsername;
+    String parUsername;
 
     /**The constructor of the Participant upcoming event page.
      * It takes a parUsername to obtain necessary information from the database.
@@ -121,9 +121,8 @@ public class ParUpcomingEventPage extends JFrame {
         this.setVisible(true);
     }
 
-    /**Used to obtain the participant username from the page object
-     *
-     * @return The username of the participants
+    /**This method will be called in ParUpcomingEventActionListener.
+     * @return it will return a string which is participant's username.
      */
     public String getParUsername() {
         return parUsername;

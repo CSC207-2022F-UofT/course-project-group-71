@@ -13,8 +13,6 @@ public class OrgAccountPage extends JFrame {
     JPasswordField newPassword = new JPasswordField(15);
     JPasswordField retypeNewPassword = new JPasswordField(15);
 
-    OrgResetPasswordController orgResetPasswordController;
-
     /**The method generate a Organization Account page and allowed the organization to reset password.
      * It contains a title with organization's username.
      * It allows user to input old and new password to reset password with a button called "Reset Password".
@@ -82,13 +80,12 @@ public class OrgAccountPage extends JFrame {
 
         this.setVisible(true);
     }
-    /**The method returns organization's Username.
+
+    /**This method will be called in OrgAccountEventActionListener.
      * @return it will return a string which is organization's username.
      */
     public String getOrgUsername(){
         //Return the username of organizer
         return orgUsername;
     }
-
-
 }

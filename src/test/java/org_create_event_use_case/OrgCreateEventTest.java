@@ -17,6 +17,8 @@ public class OrgCreateEventTest {
     OrgCreateEventController orgCreateEventController = new OrgCreateEventController(orgCreateEventInteractor);
     OrgCreateEventResponseModel orgCreateEventResponseModel;
 
+    /**Need to create an event "CSC207H1" in event file which is still unpublished
+     */
     @Test
     @Order(1)
     void testPrepareSuccessViewOrgCreateEvent() {

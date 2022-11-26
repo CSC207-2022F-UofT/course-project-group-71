@@ -9,7 +9,6 @@ import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
@@ -17,9 +16,8 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class ParSearchEventResultsPage extends JFrame {
 
-    private ArrayList<String> eventNames;
-    private String parUsername;
-
+    ArrayList<String> eventNames;
+    String parUsername;
     ParDsGateway p = new ParFileUser();
 
     /**A getter for the event names dispayed on the search page.
@@ -34,10 +32,8 @@ public class ParSearchEventResultsPage extends JFrame {
      *
      * @param eventNames An array list containing all the search results
      * @param parUserName The username of the participant
-     * @throws SQLException This exception handles mistakes in SQL
-     * @throws ClassNotFoundException This exception handles missing classes
      */
-    public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) throws SQLException, ClassNotFoundException {
+    public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) {
 
         this.eventNames = eventNames;
         this.parUsername = parUserName;
@@ -120,9 +116,8 @@ public class ParSearchEventResultsPage extends JFrame {
 
     }
 
-    /**A getter for the username of the participant.
-     *
-     * @return The participant's username
+    /**This method will be called in ParSearchEventResultsPageActionListener.
+     * @return it will return a string which is participant's username.
      */
     public String getParUsername() {
         return parUsername;

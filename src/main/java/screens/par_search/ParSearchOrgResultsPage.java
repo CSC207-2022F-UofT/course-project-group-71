@@ -11,7 +11,6 @@ import extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static tutorial.HelloWorld.getConstantX;
@@ -19,14 +18,13 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class ParSearchOrgResultsPage extends JFrame {
 
-    private ArrayList<String> orgNames,followedList;
-    private String parUsername;
-
+    ArrayList<String> orgNames, followedList;
+    String parUsername;
     ParDsGateway p = new ParFileUser();
 
     /**The main method for creating the search results page.
      *
-     * @param orgNames An array list containing all the search results
+     * @param orgNames An ArrayList<String> containing all the search results
      * @param parUsername A string containing the participant's username
      */
     public ParSearchOrgResultsPage(ArrayList<String> orgNames, String parUsername) {
@@ -34,9 +32,9 @@ public class ParSearchOrgResultsPage extends JFrame {
         this.parUsername = parUsername;
         this.orgNames = orgNames;
 
-        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(p);
-        ExtractInfoController controller1= new ExtractInfoController(interactor1);
-        ExtractInfoResponseModel<String> response1= controller1.extractPar("getFollowedOrg",parUsername);
+        ExtractInfoInputBoundary interactor1 = new ExtractInfoInteractor(p);
+        ExtractInfoController controller1 = new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1 = controller1.extractPar("getFollowedOrg", parUsername);
 
         this.followedList= response1.getAl();
 
@@ -53,7 +51,7 @@ public class ParSearchOrgResultsPage extends JFrame {
 
 
         JButton back = new JButton("Back");
-        back.addActionListener(new ParSearchOrgResultsPageActionListener(this,"none"));
+        back.addActionListener(new ParSearchOrgResultsPageActionListener(this, "none"));
         back.setBounds(0, 100, 150, 30);
 
         JPanel organizers = new JPanel();
@@ -68,10 +66,9 @@ public class ParSearchOrgResultsPage extends JFrame {
             int y = 0;
 
             for (String nextOrg : orgNames) {
-                System.out.println(nextOrg);
 
                 JButton orgName = new JButton(nextOrg);
-                orgName.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
+                orgName.addActionListener(new ParSearchOrgResultsPageActionListener(this, nextOrg));
                 orgName.setBounds(x, y, 250, 30);
                 organizers.add(orgName);
                 orgName.setVisible(true);
@@ -80,7 +77,7 @@ public class ParSearchOrgResultsPage extends JFrame {
                if (this.followedList.contains(nextOrg)) {
                     JButton unfollow = new JButton("Unfollow");
                     unfollow.setActionCommand("Unfollow "+nextOrg);
-                    unfollow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
+                    unfollow.addActionListener(new ParSearchOrgResultsPageActionListener(this, nextOrg));
                     unfollow.setBounds(x, y, 250, 30);
                     organizers.add(unfollow);
                     unfollow.setVisible(true);
@@ -115,14 +112,16 @@ public class ParSearchOrgResultsPage extends JFrame {
 
     }
 
-    /**A getter for the participant's username
-     *
-     * @return Returns the participant's username
+    /**This method will be called in ParSearchOrgResultsPageActionListener.
+     * @return it will return a string which is participant's username.
      */
     public String getParUsername() {
         return parUsername;
     }
 
+    /**This method will be called in ParSearchOrgResultsPageActionListener.
+     * @return it will return an ArrayList<string> which is participant's username.
+     */
     public ArrayList<String> getOrgNames() {
         return orgNames;
     }

@@ -90,7 +90,8 @@ public class OrgFollowerPage extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
-    /**The method returns organization's Username.
+
+    /**This method will be called in OrgFollowerActionListener.
      * @return it will return a string which is organization's username.
      */
     public String getOrgUsername(){

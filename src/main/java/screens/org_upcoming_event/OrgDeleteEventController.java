@@ -5,7 +5,7 @@ import org_delete_event_use_case.*;
 import java.sql.SQLException;
 
 public class OrgDeleteEventController {
-    final OrgDeleteEventInputBoundary userInput;
+    OrgDeleteEventInputBoundary userInput;
 
     public OrgDeleteEventController(OrgDeleteEventInputBoundary accountGateway) {
         this.userInput = accountGateway;
