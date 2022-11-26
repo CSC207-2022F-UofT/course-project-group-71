@@ -1,4 +1,5 @@
 package user_register_use_case;
+
 import controller_presenter_view.screens.user_register.UserRegisterController;
 import controller_presenter_view.screens.user_register.UserRegisterPresenter;
 import database.OrgDsGateway;
@@ -8,7 +9,7 @@ import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserRegisterTest {
     ParDsGateway par = new ParFileUser();
     OrgDsGateway org = new OrgFileUser();
@@ -120,6 +121,54 @@ public class UserRegisterTest {
             assert(false);
         } catch (Exception e) {
             assertEquals("Two Passwords are different.", e.getMessage());
+        }
+    }
+
+    @Test
+    @Order(10)
+    void testTooLongParUsername(){
+        try {
+            responseModel = userRegisterController.create("P", "",
+                    "1111111111111111111111111111111111111111111","123","123");
+        } catch (Exception e) {
+            assertEquals("Username should be no longer than 20 characters.", e.getMessage());
+
+        }
+    }
+
+    @Test
+    @Order(11)
+    void testTooLongParPassword(){
+        try {
+            responseModel = userRegisterController.create("P", "",
+                    "1234","1111111111111111111111111111111111111111111","123");
+        } catch (Exception e) {
+            assertEquals("Password should be no longer than 20 characters.", e.getMessage());
+
+        }
+    }
+
+    @Test
+    @Order(12)
+    void testTooLongOrgUsername(){
+        try {
+            responseModel = userRegisterController.create("P", "O",
+                    "1111111111111111111111111111111111111111111","123","123");
+        } catch (Exception e) {
+            assertEquals("Username should be no longer than 20 characters.", e.getMessage());
+
+        }
+    }
+
+    @Test
+    @Order(13)
+    void testTooLongOrgPassword(){
+        try {
+            responseModel = userRegisterController.create("", "O",
+                    "1234","1111111111111111111111111111111111111111111","123");
+        } catch (Exception e) {
+            assertEquals("Password should be no longer than 20 characters.", e.getMessage());
+
         }
     }
 
