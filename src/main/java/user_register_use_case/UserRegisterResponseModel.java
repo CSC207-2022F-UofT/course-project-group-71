@@ -4,8 +4,8 @@ package user_register_use_case;
  *  Containing the username and the message.
  */
 public class UserRegisterResponseModel {
-    private String username;
-    private String message;
+    String username;
+    String message;
 
     public UserRegisterResponseModel(String username){
         this.username = username;

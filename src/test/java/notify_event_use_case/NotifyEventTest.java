@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrgNotifyEventTest {
+public class NotifyEventTest {
     ParDsGateway parDsGateway = new ParFileUser();
     EventDsGateway eventDsGateway = new EventFileUser();
 
