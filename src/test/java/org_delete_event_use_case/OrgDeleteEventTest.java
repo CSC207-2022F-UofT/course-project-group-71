@@ -5,8 +5,8 @@ import database.*;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.Order;
-import screens.org_upcoming_event.OrgDeleteEventController;
-import screens.org_upcoming_event.OrgDeleteEventPresenter;
+import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
+import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventPresenter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,6 +25,9 @@ public class OrgDeleteEventTest {
     OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
 
     OrgDeleteEventResponseModel responseModel;
+
+    /**Need to create an event "CSC207" in eventfile which is still unpublished
+     */
     @Test
     @Order(1)
     void testEventHasParticipant() {
@@ -36,19 +39,6 @@ public class OrgDeleteEventTest {
             assert(false);
         }
     }
-    /*
-    @Test
-    @Order(1)
-    void testEventNoParticipant() {
-        try {
-            responseModel = orgNotifyEventController.delete("ACT240");
-            assert(false);
-        } catch (Exception e) {
-            assertEquals("No participant joined ACT240.", e.getMessage());
-        }
-    }
-
-     */
 }
 
 

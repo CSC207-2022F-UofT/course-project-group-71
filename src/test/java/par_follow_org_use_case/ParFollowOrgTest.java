@@ -6,10 +6,8 @@ import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org_delete_event_use_case.OrgDeleteEventResponseModel;
-import screens.par_follow_org_screens.ParFollowOrgController;
-import screens.par_follow_org_screens.ParFollowOrgPresenter;
-import screens.par_upcoming_event.ParLeaveEventController;
+import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgController;
+import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgPresenter;
 
 import java.util.ArrayList;
 

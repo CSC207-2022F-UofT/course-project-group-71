@@ -4,8 +4,8 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.org_unpublished_event.OrgPublishEventController;
-import screens.org_unpublished_event.OrgPublishEventPresenter;
+import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventController;
+import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventPresenter;
 
 import java.sql.SQLException;
 
@@ -22,7 +22,8 @@ public class OrgPublishEventTest {
 
     OrgPublishEventResponseModel responseModel;
 
-    /**Need to create an event "A"in event file which is still unpublished
+    /**Need to create an event "A" in event file, make sure the time is in the future, this is a precondition
+     * Need to connect "A" with a random organization in the unpublished_events_for_org
      */
     @Test
     @Order(1)
@@ -34,5 +35,5 @@ public class OrgPublishEventTest {
         } catch (SQLException | ClassNotFoundException e) {
             assert(false);
         }
-
-    }}
+    }
+}

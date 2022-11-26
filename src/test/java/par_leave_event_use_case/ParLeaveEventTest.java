@@ -6,8 +6,8 @@ import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import screens.par_upcoming_event.ParLeaveEventController;
-import screens.par_upcoming_event.ParLeaveEventPresenter;
+import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventController;
+import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventPresenter;
 
 import java.sql.SQLException;
 
