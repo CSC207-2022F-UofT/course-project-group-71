@@ -103,9 +103,8 @@ public class EventFileUser implements EventDsGateway{
      * It should not return anything.
      *
      * @param title The title of the event that need to be deleted
-     * @return False
      */
-    public boolean utilDeleteEvent(String title) throws SQLException, ClassNotFoundException {
+    public void utilDeleteEvent(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
         try {
@@ -135,12 +134,11 @@ public class EventFileUser implements EventDsGateway{
             }
 
         }
-        return false;
     }
 
     /**This is a tool method to find the organization who create a specific event.
      * It should return a String as the name of the organization.
-     * It should return null if the event does not have an organizer (By project design, it should be impossible).
+     * It should return null if the event does not have an organization (By project design, it should be impossible).
      *
      * @param title The title of the event that need the name of the organization who created it
      * @return the name of the organization who created the event
@@ -148,44 +146,44 @@ public class EventFileUser implements EventDsGateway{
     public String utilGetOrganization(String title) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         Connection conn = null;
-        ResultSet unpublished_organizer = null;
-        ResultSet past_organizer = null;
-        ResultSet upcoming_organizer = null;
-        String organizer = null;
+        ResultSet unpublished_organization = null;
+        ResultSet past_organization = null;
+        ResultSet upcoming_organization = null;
+        String organization = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
             stmt = conn.createStatement();
-            unpublished_organizer = stmt.executeQuery("select org_username from unpublished_events_for_org where event_title = '" + title + "';");
-            if (unpublished_organizer.next()){
-                organizer = unpublished_organizer.getString(1);
-                unpublished_organizer.close();
+            unpublished_organization = stmt.executeQuery("select org_username from unpublished_events_for_org where event_title = '" + title + "';");
+            if (unpublished_organization.next()){
+                organization = unpublished_organization.getString(1);
+                unpublished_organization.close();
             }
 
-            past_organizer = stmt.executeQuery("select org_username from past_events_for_org where event_title = '" + title + "';");
-            if (past_organizer.next()){
-                organizer = past_organizer.getString(1);
-                past_organizer.close();
+            past_organization = stmt.executeQuery("select org_username from past_events_for_org where event_title = '" + title + "';");
+            if (past_organization.next()){
+                organization = past_organization.getString(1);
+                past_organization.close();
             }
 
-            upcoming_organizer = stmt.executeQuery("select org_username from upcoming_events_for_org where event_title = '" + title + "';");
-            if (upcoming_organizer.next()){
-                organizer = upcoming_organizer.getString(1);
-                upcoming_organizer.close();
+            upcoming_organization = stmt.executeQuery("select org_username from upcoming_events_for_org where event_title = '" + title + "';");
+            if (upcoming_organization.next()){
+                organization = upcoming_organization.getString(1);
+                upcoming_organization.close();
             }
         } catch (ClassNotFoundException e) {
             throw new ClassNotFoundException();
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (unpublished_organizer != null){
-                unpublished_organizer.close();
+            if (unpublished_organization != null){
+                unpublished_organization.close();
             }
-            if (past_organizer != null){
-                    past_organizer.close();
+            if (past_organization != null){
+                past_organization.close();
             }
-            if (upcoming_organizer != null){
-                upcoming_organizer.close();
+            if (upcoming_organization != null){
+                upcoming_organization.close();
             }
             if (stmt != null){
                 stmt.close();
@@ -195,7 +193,7 @@ public class EventFileUser implements EventDsGateway{
             }
 
         }
-        return organizer;
+        return organization;
     }
 
     /**This is a tool method which can only find participants of a past event.
@@ -278,9 +276,9 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
-    /**This is a tool method that is used to change the relationship of organizer with the event.
-     * Note it only change the relationship of the organizer not the participant.
-     * The event would become an upcoming event instead of an unpublished event for the organizer.
+    /**This is a tool method that is used to change the relationship of organization with the event.
+     * Note it only change the relationship of the organization not the participant.
+     * The event would become an upcoming event instead of an unpublished event for the organization.
      * The relationship of the event with the participants would not change so far.
      * If the event is not unpublished, it should not do anything and the error would be dealt with an exception.
      *
@@ -325,9 +323,9 @@ public class EventFileUser implements EventDsGateway{
     }
 
     /**
-     * This is a tool method that is used to change the relationship of organizer with the event.
-     * Note it only change the relationship with the organizer not the participant.
-     * The event would become a past event instead of an upcoming event for the organizer.
+     * This is a tool method that is used to change the relationship of organization with the event.
+     * Note it only change the relationship with the organization not the participant.
+     * The event would become a past event instead of an upcoming event for the organization.
      * The relationship of the event with the participants would not change so far.
      * If the event is not upcoming, it should not do anything and the error would be dealt with an exception.
      *
@@ -368,7 +366,7 @@ public class EventFileUser implements EventDsGateway{
     }
 
     /**This is a tool method used to change the relationship of the participants with the event.
-     * Note it only change the relationship with the participants not the organizer.
+     * Note it only change the relationship with the participants not the organization.
      * The status of the event for the participants would be changed from upcoming to past.
      * If the event is not an upcoming event, it would meet an error which would be dealt with exception.
      *
@@ -443,7 +441,7 @@ public class EventFileUser implements EventDsGateway{
     }
 
     /**This is a tool method that examine which status is the event.
-     * It will examine all three tables of the organizer-event relationship.
+     * It will examine all three tables of the organization-event relationship.
      * Check which one contain the relationship.
      * If it's contained in two tables, it will return the last one's relationship (It should not happen if the project works correctly).
      *
@@ -597,7 +595,7 @@ public class EventFileUser implements EventDsGateway{
         Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        String location = null;
+        String location;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
@@ -735,11 +733,11 @@ public class EventFileUser implements EventDsGateway{
         return utilGetParticipants(title);
     }
 
-    /**This is a method returning the organizer who create the event.
+    /**This is a method returning the organization who create the event.
      * It calls a tool method called utilGetOrganization.
      *
-     * @param title The title of the event that need the organizer who create the event returned
-     * @return The organizer of the event
+     * @param title The title of the event that need the organization who create the event returned
+     * @return The organization of the event
      */
     public String getOrganization(String title) throws SQLException, ClassNotFoundException {
         return utilGetOrganization(title);
@@ -789,10 +787,10 @@ public class EventFileUser implements EventDsGateway{
     }
 
     /**This is a method that delete that event and all the relationships with it
-     * including participants and organizers.
+     * including participants and organizations.
      * It calls utilDeleteParPastEvent, utilDeleteParUpcomingEvent, utilDeleteOrgPastEvent, utilDeleteOrgUnpublishedEvent, utilDeleteOrgUpcomingEvent
      * to break all the potential relationships.
-     * And it calls utilGetOrganization to get the organizer name.
+     * And it calls utilGetOrganization to get the organization name.
      * The existence of the event should be wiped out of the database.
      *
      * @param event_title The title of the event that need to be deleted
@@ -811,10 +809,10 @@ public class EventFileUser implements EventDsGateway{
         }
 
 
-        String organizer = utilGetOrganization(event_title);
-        temp_orgFileUser.utilDeleteOrgPastEvent(organizer,event_title);
-        temp_orgFileUser.utilDeleteOrgUnpublishedEvent(organizer,event_title);
-        temp_orgFileUser.utilDeleteOrgUpcomingevent(organizer,event_title);
+        String organization = utilGetOrganization(event_title);
+        temp_orgFileUser.utilDeleteOrgPastEvent(organization,event_title);
+        temp_orgFileUser.utilDeleteOrgUnpublishedEvent(organization,event_title);
+        temp_orgFileUser.utilDeleteOrgUpcomingEvent(organization,event_title);
 
         utilDeleteEvent(event_title);
 
