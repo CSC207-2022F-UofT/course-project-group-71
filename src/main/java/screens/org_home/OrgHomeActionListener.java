@@ -1,18 +1,18 @@
 package screens.org_home;
 
 import database.*;
-import org_notify_event_use_case.OrgNotifyEventInputBoundary;
-import org_notify_event_use_case.OrgNotifyEventInteractor;
-import org_notify_event_use_case.OrgNotifyEventOutputBoundary;
+import notify_event_use_case.NotifyEventInputBoundary;
+import notify_event_use_case.NotifyEventInteractor;
+import notify_event_use_case.NotifyEventOutputBoundary;
 import screens.LoginPage;
 import screens.UserLoginController;
 import screens.UserLoginPresenter;
+import screens.notify_event.NotifyEventController;
+import screens.notify_event.NotifyEventPresenter;
 import screens.org_account.OrgAccountPage;
 import screens.org_follower.OrgFollowerPage;
 import screens.org_past_event.OrgPastEventPage;
 import screens.org_unpublished_event.OrgUnpublishedEventPage;
-import screens.org_upcoming_event.OrgNotifyEventController;
-import screens.org_upcoming_event.OrgNotifyEventPresenter;
 import screens.org_upcoming_event.OrgUpcomingEventPage;
 import screens.par_home.ParHomePresenter;
 import screens.upcoming_to_past.UpcomingToPastController;
@@ -69,13 +69,13 @@ public class OrgHomeActionListener implements ActionListener {
             }
             if (!responseModel.getEventsToPast().isEmpty()){
                 JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary = new OrgNotifyEventPresenter();
-                OrgNotifyEventInputBoundary interactor2 = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway,
+                NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
+                NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
                         orgNotifyEventOutputBoundary);
-                OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor2);
+                NotifyEventController notifyEventController = new NotifyEventController(interactor2);
                 for (String event : responseModel.getEventsToPast()){
                     try {
-                        orgNotifyEventController.sendNotification("Past", event);
+                        notifyEventController.sendNotification("Past", event);
                     } catch (SQLException | ClassNotFoundException e) {
                         throw new RuntimeException(e);
                     }
@@ -103,14 +103,14 @@ public class OrgHomeActionListener implements ActionListener {
             }
             if (!responseModel.getEventsToPast().isEmpty()){
                 JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary = new OrgNotifyEventPresenter();
-                OrgNotifyEventInputBoundary interactor2 = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway,
+                NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
+                NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
                         orgNotifyEventOutputBoundary);
-                OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor2);
+                NotifyEventController notifyEventController = new NotifyEventController(interactor2);
                 for (String event : responseModel.getEventsToPast()){
                     try {
                         try {
-                            orgNotifyEventController.sendNotification("Past", event);
+                            notifyEventController.sendNotification("Past", event);
                         } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }

@@ -13,8 +13,7 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
     OrgEditEventOutputBoundary orgEditEventOutputBoundary;
 
 
-    /**This is the construct method of OrgEditEventInteractor.
-     * It takes DsGateways and OutputBoundary as input to store as instances.
+    /**Constructor
      *
      * @param eventDsGateway The database gateway of the events
      * @param orgDsGateway The database gateway of the organizers
@@ -28,19 +27,20 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
         this.orgEditEventOutputBoundary = orgEditEventOutputBoundary;
     }
 
-    /**Use the information contained in the requestmodel to edit ana event and respond a responsemodel.
+    /**Use the information contained in the requestModel to edit ana event and return a responseModel.
      * It checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.
-     * It checks if title already exists.
      * It checks if all time entries are bound by format: year, month, day, hour, minute.
      * It checks if the time is set in the future.
      * If failed in one of the above process, return a failure response.
      * Otherwise, success response is returned.
+     * Note: the edit method resets all event's information excepts for its title.
      *
      * @param requestModel The request model sent to the interactor
-     * @return A responsemodel representing whether the event editing is successful
+     * @return A responseModel representing whether the event editing is successful
      */
     @Override
     public OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
+        //checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.
         if (requestModel.getTitle().isEmpty() || requestModel.getDescription().isEmpty()
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()
                 || requestModel.getDay().isEmpty() || requestModel.getHour().isEmpty()
@@ -53,9 +53,9 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
         String day = requestModel.getDay();
         String hour = requestModel.getHour();
         String minute = requestModel.getMinute();
-        System.out.println("Before");
+
+        //checks if all time entries can be converted to integer
         if (isStringInt(year) && isStringInt(month) && isStringInt(day) && isStringInt(hour) && isStringInt(minute)) {
-            System.out.println("Before2");
             if (year.length() != 4) {
                 return orgEditEventOutputBoundary.prepareFailView("Year is not 4 digits.");
             }
@@ -83,21 +83,17 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
 
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime time = LocalDateTime.of(y, m, d, h, min);
-            System.out.println("Before3");
+
+            //checks if the time is set in the future.
             if (time.isBefore(now)){
                 System.out.println("5");
                 return orgEditEventOutputBoundary.prepareFailView("Time must be in future.");
             }
+
+            //call orgDsGateway to edit the event, and return the responseModel with the event's title
             else {
-                System.out.println("Other2");
-                System.out.println(y);
-                System.out.println(m);
-                System.out.println(d);
-                System.out.println(h);
-                System.out.println(min);
                 orgDsGateway.editAnEvent(requestModel.getTitle(), requestModel.getDescription(),
                         requestModel.getLocation(), y, m, d, h, min);
-                System.out.println("sucee");
                 OrgEditEventResponseModel responseModel = new OrgEditEventResponseModel(requestModel.getTitle());
                 return orgEditEventOutputBoundary.prepareSuccessView(responseModel);
             }

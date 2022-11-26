@@ -1,15 +1,17 @@
 package screens.org_upcoming_event;
 
 import database.*;
+import notify_event_use_case.NotifyEventInputBoundary;
+import notify_event_use_case.NotifyEventInteractor;
+import notify_event_use_case.NotifyEventOutputBoundary;
+import notify_event_use_case.NotifyEventResponseModel;
 import org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import org_delete_event_use_case.OrgDeleteEventInteractor;
 import org_delete_event_use_case.OrgDeleteEventOutputBoundary;
 import org_delete_event_use_case.OrgDeleteEventResponseModel;
-import org_notify_event_use_case.OrgNotifyEventInputBoundary;
-import org_notify_event_use_case.OrgNotifyEventInteractor;
-import org_notify_event_use_case.OrgNotifyEventOutputBoundary;
-import org_notify_event_use_case.OrgNotifyEventResponseModel;
 import screens.EventDetailsPage;
+import screens.notify_event.NotifyEventController;
+import screens.notify_event.NotifyEventPresenter;
 import screens.org_home.OrgHomePage;
 
 import javax.swing.*;
@@ -38,17 +40,17 @@ public class OrgUpcomingEventActionListener implements ActionListener {
 
             ParDsGateway parDsGateway = new ParFileUser();
 
-            OrgNotifyEventOutputBoundary orgNotifyEventOutputBoundary = new OrgNotifyEventPresenter();
+            NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
 
-            OrgNotifyEventInputBoundary interactor = new OrgNotifyEventInteractor(eventDsGateway, parDsGateway, orgNotifyEventOutputBoundary);
+            NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway, notifyEventOutputBoundary);
 
-            OrgNotifyEventController orgNotifyEventController = new OrgNotifyEventController(interactor);
+            NotifyEventController notifyEventController = new NotifyEventController(interactor);
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
             try {
-                OrgNotifyEventResponseModel responseModel =
-                        orgNotifyEventController.sendNotification("Future", eventName);
+                NotifyEventResponseModel responseModel =
+                        notifyEventController.sendNotification("Future", eventName);
                 JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());

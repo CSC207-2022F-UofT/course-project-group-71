@@ -101,18 +101,10 @@ public class OrgPastEventPage extends JFrame {
                 eventLocation.setBounds(x + 20, y + 70, 250, 30);
                 eventLocation.setVisible(true);
 
-                //Prepare the delete button to remove the events
-                JButton delete = new JButton("Delete");
-                delete.setActionCommand(unpublishedEventTitle + "Delete");
-                delete.addActionListener(new OrgPastEventActionListener(this));
-                delete.setBounds(x + 250, y + 55, 100, 30);
-                delete.setVisible(true);
-
                 //Add all the prepared events back to the page
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
-                events.add(delete);
                 y += 100;
             }
 

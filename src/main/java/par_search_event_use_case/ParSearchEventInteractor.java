@@ -8,11 +8,10 @@ import java.util.ArrayList;
 
 public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
 
-    final EventDsGateway eventDsGateway;
-    final ParSearchEventOutputBoundary userOutput;
+    EventDsGateway eventDsGateway;
+    ParSearchEventOutputBoundary userOutput;
 
-    /**This is the construct method of ParSearchEventInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+    /**Constructor
      *
      * @param eventDsGateway The database gateway of the events
      * @param userOutput The presenter used to show success or not of event search
@@ -23,12 +22,8 @@ public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
         this.userOutput = userOutput;
     }
 
-    /**Use the information contained in the userInput to search an event and create a responsemodel.
-     * It retrieves all events that contain the string userInput and store it in searchResults.
-     * It retrieves parUserName.
-     * If searchResults is empty, return failure response.
-     * Otherwise, It creates responseModel using searchResults and parUserName.(need parUserName to determine follow/unfollow)
-     * Success response is returned.
+    /**This method retrieves all events that contain the string userInput in their titles.
+     * If userInput is an empty string, it retrieves all upcoming events in database.
      *
      * @param userInput The request model sent to the interactor
      * @return userOutput representing whether the event search is successful
@@ -36,11 +31,11 @@ public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
     @Override
     public ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel userInput) throws SQLException, ClassNotFoundException {
         ArrayList<String> searchResults = eventDsGateway.eventSearch(userInput.getQuery());
-        String parUserName= userInput.getParUserName();
         if (searchResults.isEmpty()) {
-            return userOutput.prepareFailView("No events found.");
+            return userOutput.prepareFailView("No event found.");
         } else {
-            ParSearchEventResponseModel responseModel = new ParSearchEventResponseModel(searchResults, parUserName);
+            ParSearchEventResponseModel responseModel =
+                    new ParSearchEventResponseModel(searchResults, userInput.getParUserName());
             return userOutput.prepareSuccessView(responseModel);
         }
     }

@@ -15,17 +15,13 @@ public class ParJoinEventResponseModel {
     public String getEventName() {
         return eventName;
     }
+
     public String getMessage() {
         return this.message;
     }
 
-    public void setEventname(String eventName) {
-        this.eventName = eventName;
-    }
     public void setMessage(String message) {
         this.message = message;
     }
-
-
 
 }

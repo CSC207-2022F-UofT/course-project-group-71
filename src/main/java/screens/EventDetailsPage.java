@@ -17,14 +17,12 @@ import static tutorial.HelloWorld.getConstantY;
 
 public class EventDetailsPage extends JFrame {
 
-    private String eventTitle;
+    String eventTitle;
 
     /** When this constructor is called it will generate an event details page for the event of interest using the
      * eventTitle parameter. The page will contain information such as the event's name, description, time, and location.
      *
      * @param eventTitle The title for the event we want to get the details page for
-     * @throws SQLException
-     * @throws ClassNotFoundException
      */
     public EventDetailsPage(String eventTitle) throws SQLException, ClassNotFoundException {
 
@@ -45,16 +43,14 @@ public class EventDetailsPage extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JLabel eventName = new JLabel("Event Title: " + this.eventTitle);
 
-        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(e);
-        ExtractInfoController controller1= new ExtractInfoController(interactor1);
-        ExtractInfoResponseModel<String> response1= controller1.extractEvent("getDescription",this.eventTitle);
+        ExtractInfoInputBoundary interactor = new ExtractInfoInteractor(e);
+        ExtractInfoController controller = new ExtractInfoController(interactor);
+        ExtractInfoResponseModel<String> response1= controller.extractEvent("getDescription",this.eventTitle);
 
         //Adds text for event description
         JLabel description = new JLabel("Description: " + response1.getStr());
 
-        ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
-        ExtractInfoController controller2= new ExtractInfoController(interactor1);
-        ExtractInfoResponseModel<Integer> response2= controller2.extractEventTime(this.eventTitle);
+        ExtractInfoResponseModel<Integer> response2= controller.extractEventTime(this.eventTitle);
 
         //Adds text for event time
         ArrayList<Integer> times = response2.getAl();
@@ -66,7 +62,7 @@ public class EventDetailsPage extends JFrame {
         ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",this.eventTitle);
 
         //Adds text for event location
-        JLabel location = new JLabel("Location:"+response3.getStr());
+        JLabel location = new JLabel("Location: "+response3.getStr());
         panel.add(eventName);
         panel.add(description);
         panel.add(time);

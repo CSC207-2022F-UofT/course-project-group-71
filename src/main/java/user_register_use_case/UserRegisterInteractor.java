@@ -8,13 +8,11 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
-    final ParDsGateway parDsGateway;
-    final OrgDsGateway orgDsGateway;
+    ParDsGateway parDsGateway;
+    OrgDsGateway orgDsGateway;
+    UserRegisterOutputBoundary userRegisterOutputBoundary;
 
-    final UserRegisterOutputBoundary userRegisterOutputBoundary;
-
-    /**This is the construct method of UserRegisterInteractor.
-     * It takes DsGateways and Presenter as input to store as instances.
+    /**Constructor
      *
      * @param parDsGateway The database gateway of the participants
      * @param orgDsGateway The database gateway of the organizers
@@ -25,26 +23,18 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
         this.parDsGateway = parDsGateway;
         this.orgDsGateway = orgDsGateway;
         this.userRegisterOutputBoundary = userRegisterOutputBoundary;
-
     }
 
-
-    /**Use the information contained in the requestmodel to create a new user and respond a responsemodel.
-     * It first chooses which DsGateWay to use by checking which user types selected by the user.
-     * Then it checks whether username exists in the database.
-     * Then it check if two password input are the same.
-     * Then it create a user.
-     * If failed in one of the above process, return a failure response.
-     * Otherwise, success response is returned.
+    /**Do checks to user inputs, if fail give hints, if pass create the account.
      *
      * @param requestModel The request model sent to the interactor
-     * @return A responsemodel representing whether the user creation is successful
+     * @return A responseModel representing whether the user creation is successful
      */
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException {
         //If getUserType() == "O", it means the user is an organizer
         if (requestModel.getUserType().equals("O")) {
-            //Check if organizer username exists
-            if (orgDsGateway.checkIfUsernameExist(requestModel.getName())) {
+            //Check if organization username exists
+            if (orgDsGateway.checkIfUsernameExist(requestModel.getUsername())) {
                 return userRegisterOutputBoundary.prepareFailView("Organization already exists.");
             }
             //Check if the password is empty
@@ -56,14 +46,14 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
             }
             //No problems met, so it shows a success view
-            orgDsGateway.createOrg(requestModel.getName(), requestModel.getPassword());
-            UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
+            orgDsGateway.createOrg(requestModel.getUsername(), requestModel.getPassword());
+            UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getUsername());
             return userRegisterOutputBoundary.prepareSuccessView(responseModel);
         }
-        //IF getUserType() == "P", it means the user is a participant
+        //If getUserType() == "P", it means the user is a participant
         else if (requestModel.getUserType().equals("P")) {
             //Check if participant username exists
-            if (parDsGateway.checkIfUsernameExist(requestModel.getName())) {
+            if (parDsGateway.checkIfUsernameExist(requestModel.getUsername())) {
                 return userRegisterOutputBoundary.prepareFailView("Participant already exists.");
             }
             //Check if the password is empty
@@ -75,8 +65,8 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
             }
             //No problems met, so it shows a success view
-            parDsGateway.createPar(requestModel.getName(), requestModel.getPassword());
-            UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getName());
+            parDsGateway.createPar(requestModel.getUsername(), requestModel.getPassword());
+            UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getUsername());
             return userRegisterOutputBoundary.prepareSuccessView(responseModel);
         } else {
             //The account page is not selected, so shows failure view
