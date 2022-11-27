@@ -77,3 +77,63 @@ There are a few special use cases that are used in more than one place in the pr
 The database folder consists of 3 DsGateways and 3 FileUsers for event, organization, and participant. The FileUsers are directly connected to DataGrip. The guide for installing DataGrip and using the test database is at the end of this file.
 
 Explain ALL tables in DataGrip, what does each of them do.
+
+- eventfile:
+   - Store the information of every event.
+   - Contains row: title, description, location, year, month, day, hour, minute.
+   - title have a primary key meaning it cannot be repeated.
+- orgfile:
+   - Store the information of every organization.
+   - Contains row: username, password.
+   - username is a primary key, so it cannot have repeat terms.
+- parfile:
+   - Store the information of every participant.
+   - Contains row: username, password.
+   - username is a primary key, so it cannot have repeat terms.
+- unpublished_events_for_org:
+   - When an organization create an event and make it a draft, the event should be stored at the eventfile but the relationship between the organization and the event are stored here.
+   - Store the relationship of unpublished events and organizations.
+   - This table is specifically used for unpublished events, published or past events should not show here.
+   - Have two rows: org_username, event_title.
+   - Org_username and event_title form a primary key together, means one pair of relationship can not show twice.
+   - Foreign key of 'org_username' is linked to 'username' at orgfile and foreign key of 'event_title' is linked to 'title' at eventfile.
+- past_events_for_org:
+   - When an organization created an event, and the event have finished, the relationship between the event and the organization are stored here.
+   - Store the relationship of past events and organizations.
+   - This table is specifically used for past events, unpublished or upcoming events should not be here.
+   - Have two rows: org_username, event_title.
+   - Org_username and event_title form a primary key together, means one pair of relationship can not show twice.
+   - Foreign key of 'org_username' is linked to 'username' at orgfile and foreign key of 'event_title' is linked to 'title' at eventfile.
+- upcoming_events_for_org:
+   - When an organization create an event, the event is going to happen in the future, its relationship with organization are stored here.
+   - Store the relationship of upcoming events and organizations.
+   - This table is specifically used for upcoming events, unpublished or past events should not be here.
+   - Have two rows: org_username, event_title.
+   - Org_username and event_title form a primary key together, means one pair of relationship can not show twice.
+   - Foreign key of 'org_username' is linked to 'username' at orgfile and foreign key of 'event_title' is linked to 'title' at eventfile.
+- past_events_for_par:
+   - When a participant registered an event, and the event finished, the relationship betwene the event and the participant are stored here.
+   - Store the relationship of past events and participants.
+   - This table is specifically used for past events, upcoming events should not appear.
+   - Have two rows: par_username, event_title.
+   - Par_username and event_title form a primary key together, means one pair of relationship should not appear twice.
+   - Foreign key of 'par_username' is linked to 'username' at parfile and foreign key of 'event_title' is linked to 'title' at eventfile.
+- upcoming_events_for_par:
+   - When a participant register an event, and the event will happen in the future, the relationship of them are stored here.
+   - Store the relationship of upcoming events and participants.
+   - This table is specifically used for upcoming events, past events should not appear.
+   - Have two rows: par_username, event_title.
+   - Par_username and event_title form a primary key together, means one pair of relationship should not appear twice.
+   - Foreign key of 'par_username' is linked to 'username' at parfile and foreign key of 'event_title' is linked to 'title' at eventfile.
+- follow_org_par:
+   - If a participant followed an organization, the relationship are stored in this table.
+   - Store the relationship of organizations and participants.
+   - Have two rows: par_username, org_username.
+   - Foreign key of 'par_username' is linked to 'username' at parfile and foreign key of 'org_username' is linked to 'username' at orgfile.
+   - Par_username and org_username form a primary key together, meaning the following relationship pair cannot exist twice.
+- par_notification:
+   - When someone sent participant an notification, the relationship between the notification and the participant are stored.
+   - Store the relationship of notification and participants.
+   - Have two rows: par_username, notification.
+   - Foreign key of 'par_username' is linked to 'username' at parfile.
+   - Notification is a String, one username can be paired with multiple notifications.
