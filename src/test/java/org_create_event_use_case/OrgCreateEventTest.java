@@ -8,6 +8,8 @@ import controller_presenter_view.screens.org_unpublished_event.org_create_event.
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**Need to create an organization called "UofT" in orgfile
+ */
 public class OrgCreateEventTest {
     EventDsGateway eventDsGateway = new EventFileUser();
     OrgDsGateway orgDsGateway = new OrgFileUser();
@@ -17,8 +19,6 @@ public class OrgCreateEventTest {
     OrgCreateEventController orgCreateEventController = new OrgCreateEventController(orgCreateEventInteractor);
     OrgCreateEventResponseModel orgCreateEventResponseModel;
 
-    /**Need to create an organization called "UofT" in orgfile
-     */
     @Test
     @Order(1)
     void testPrepareSuccessViewOrgCreateEvent() {

@@ -16,7 +16,7 @@ public interface ParDsGateway {
 
     void setPassword(String username, String new_password) throws SQLException, ClassNotFoundException;
 
-    boolean addNotification(String username, String new_notification) throws SQLException, ClassNotFoundException;
+    void addNotification(String username, String new_notification) throws SQLException, ClassNotFoundException;
 
     void followOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException;
 

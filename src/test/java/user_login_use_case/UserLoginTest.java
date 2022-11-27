@@ -15,20 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserLoginTest {
     ParDsGateway parDsGateway = new ParFileUser();
-
     OrgDsGateway orgDsGateway = new OrgFileUser();
-
     UserLoginOutputBoundary presenter = new UserLoginPresenter();
-
     ParHomeOutputBoundary par_presenter = new ParHomePresenter();
-
     OrgHomeOutputBoundary org_presenter = new OrgHomePresenter();
-
     UserLoginInputBoundary interactor = new UserLoginInteractor(presenter, parDsGateway, par_presenter, orgDsGateway, org_presenter);
-
     UserLoginController controller = new UserLoginController(interactor);
-
-    UserLoginResponseModel responseModel = null;
+    UserLoginResponseModel responseModel;
 
     @Test
     @Order(1)

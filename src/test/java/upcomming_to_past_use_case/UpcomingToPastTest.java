@@ -13,25 +13,17 @@ import upcoming_to_past_use_case.UpcomingToPastResponseModel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UpcomingToPastTest {
-
     ParDsGateway parDsGateway = new ParFileUser();
-
     EventDsGateway eventDsGateway = new EventFileUser();
-
     OrgDsGateway orgDsGateway = new OrgFileUser();
-
     UpcomingToPastOutputBoundary presenter = new UpcomingToPastPresenter();
-
     UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway, eventDsGateway, presenter);
-
     UpcomingToPastController controller = new UpcomingToPastController(interactor);
-
-    UpcomingToPastResponseModel responseModel = null;
+    UpcomingToPastResponseModel responseModel;
 
     @Test
     @Order(1)
-    void testPrepareSuccessView_Orgnization() {
-
+    void testPrepareSuccessView_Organization() {
         try {
             responseModel = controller.convertToPast("P", "s");
             assertEquals("", responseModel.getMessage());
@@ -43,7 +35,6 @@ public class UpcomingToPastTest {
     @Test
     @Order(2)
     void testPrepareSuccessView_Participant() {
-
         try {
             responseModel = controller.convertToPast("", "s");
             assertEquals("", responseModel.getMessage());

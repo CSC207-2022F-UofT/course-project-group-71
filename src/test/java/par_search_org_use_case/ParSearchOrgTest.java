@@ -9,13 +9,15 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**Need to create "654321" as a participant in parfile
+ * Need to create organization "1", "12", "123", .... , "12345678", and "4321" in orgfile
+ */
 public class ParSearchOrgTest {
     OrgDsGateway orgDsGateway = new OrgFileUser();
-
     ParSearchOrgPresenter presenter = new ParSearchOrgPresenter();
     ParSearchOrgInputBoundary interactor = new ParSearchOrgInteractor(orgDsGateway, presenter);
     ParSearchOrgController controller = new ParSearchOrgController(interactor);
-    ParSearchOrgResponseModel responseModel = null;
+    ParSearchOrgResponseModel responseModel;
 
     @Test
     @Order(1)
@@ -24,7 +26,7 @@ public class ParSearchOrgTest {
             responseModel = controller.orgSearch("123456789", "654321");
             assert(false);
         } catch (Exception e) {
-            assertEquals("No organizers found.", e.getMessage());
+            assertEquals("No organization found.", e.getMessage());
         }
     }
 
@@ -34,6 +36,7 @@ public class ParSearchOrgTest {
         try {
             responseModel = controller.orgSearch("1234", "654321");
             ArrayList<String> searchResults = new ArrayList<>();
+            searchResults.add("1234");
             searchResults.add("12345");
             searchResults.add("123456");
             searchResults.add("1234567");

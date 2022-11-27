@@ -11,15 +11,15 @@ public class ParSearchOrgPresenter implements ParSearchOrgOutputBoundary {
 
     /**Returns the search results following a successful search for organizers.
      *
-     * @param results A response model containing information to show success view
+     * @param responseModel A response model containing information to show success view
      * @return Returns the response model
      */
     @Override
-    public ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel results) {
-        ArrayList<String> orgNames= results.getSearchResults();
-        String parUserName= results.getParUserName();
-        new ParSearchOrgResultsPage(orgNames,parUserName);
-        return results;
+    public ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel responseModel) {
+        ArrayList<String> orgNames = responseModel.getSearchResults();
+        String parUserName = responseModel.getParUserName();
+        new ParSearchOrgResultsPage(orgNames, parUserName);
+        return responseModel;
     }
 
     /**Returns an error due to a failed search.

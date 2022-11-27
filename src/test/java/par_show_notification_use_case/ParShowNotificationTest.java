@@ -7,9 +7,11 @@ import controller_presenter_view.screens.par_home.par_show_notification.ParShowN
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**Need to create "7654321" and "654321" as participants in parfile
+ * Need to assign notification "Event TeamMeeting3 is about to happen at 11-30 0:0" to "654321" in par_notification
+ */
 public class ParShowNotificationTest {
     ParDsGateway parDsGateway = new ParFileUser();
-
     ParShowNotificationPresenter presenter = new ParShowNotificationPresenter();
     ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(presenter, parDsGateway);
     ParShowNotificationController controller = new ParShowNotificationController(interactor);
@@ -30,11 +32,10 @@ public class ParShowNotificationTest {
     @Order(2)
     void test_PrepareSuccessView_Found_Notifications(){
         try {
-            String notifications =
-                    "Event TeamMeeting3 is about to happen at 11-30 0:0" + "\n" +
-                            "Event TeamMeeting2 was over at 11-12 0:0." + "\n";
+            String notifications = "Event TeamMeeting3 is about to happen at 11-30 0:0!" + "\n";
             responseModel = controller.showNotification("654321");
             assertEquals(notifications, responseModel.getNotifications());
+            assert(parDsGateway.getNotifications("654321").isEmpty());
         } catch (Exception e) {
             assert(false);
         }

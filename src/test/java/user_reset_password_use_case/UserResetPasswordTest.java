@@ -26,19 +26,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserResetPasswordTest {
     ParDsGateway parDsGateway = new ParFileUser();
     OrgDsGateway orgDsGateway = new OrgFileUser();
-
     UserResetPasswordOutputBoundary org_presenter = new OrgResetPasswordPresenter();
     UserResetPasswordOutputBoundary par_presenter = new ParResetPasswordPresenter();
-
-
     UserResetPasswordInputBoundary interactor_org = new UserResetPasswordInteractor(org_presenter, orgDsGateway, parDsGateway);
     UserResetPasswordInputBoundary interactor_par = new UserResetPasswordInteractor(par_presenter, orgDsGateway, parDsGateway);
-
     OrgResetPasswordController orgController = new OrgResetPasswordController(interactor_org);
     ParResetPasswordController parController = new ParResetPasswordController(interactor_par);
-
-
-    UserResetPasswordResponseModel responseModel = null;
+    UserResetPasswordResponseModel responseModel;
 
     @Test
     @Order(1)

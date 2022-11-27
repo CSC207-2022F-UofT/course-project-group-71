@@ -81,7 +81,7 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
 
             int h = Integer.parseInt(hour);
             if (h > 23 || h < 0) {
-                return orgEditEventOutputBoundary.prepareFailView("Day is not within 0 to 24.");
+                return orgEditEventOutputBoundary.prepareFailView("Hour is not within 0 to 24.");
             }
 
             int min = Integer.parseInt(minute);
