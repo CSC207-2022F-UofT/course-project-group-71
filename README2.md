@@ -63,9 +63,9 @@ If the naming starts with par_, then the use case is specifically responsible fo
 If the naming starts with org_, then the use case is specifically responsible for a functionality belongs to organization.
 
 There are a few special use cases that are used in more than one place in the project, usually across the user types:
-- extract_information_use_case: This is designed to assist views to show information stored in the database for Clean Architecture purposes. It is not tied to any specific type of user or screen.
-- upcoming_to_past_use_case: This is an auto-triggered use case that do not need the user to explicitly demand for it. It will convert the user's all relevant upcoming events whose time is in the past (comparing with system time by LocalDateTime) to past events.
-- notify_event_use_case: This is used to notify the user about changes or updates of relevant events. It can be called in various places in the project as the function is so commonly used.
+- `src/main/java/extract_information_use_case`: This is designed to assist views to show information stored in the database for Clean Architecture purposes. It is not tied to any specific type of user or screen.
+- `src/main/java/upcoming_to_past_use_case`: This is an auto-triggered use case that do not need the user to explicitly demand for it. It will convert the user's all relevant upcoming events whose time is in the past (comparing with system time by LocalDateTime) to past events.
+- `src/main/java/notify_event_use_case`: This is used to notify the user about changes or updates of relevant events. It can be called in various places in the project as the function is so commonly used.
 
 ## Database
 `src/main/java/database`
