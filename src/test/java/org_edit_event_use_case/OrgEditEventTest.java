@@ -11,21 +11,17 @@ import controller_presenter_view.screens.org_unpublished_event.org_edit_event.Or
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**Need to create an event called "Edit" in eventfile, can choose to leave other attributes null.
+ */
 public class OrgEditEventTest {
     EventDsGateway eventDsGateway = new EventFileUser();
-
     OrgDsGateway orgDsGateway = new OrgFileUser();
-
     OrgEditEventOutputBoundary presenter = new OrgEditEventPresenter();
-
     OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(eventDsGateway, orgDsGateway, presenter);
-
     OrgEditEventController controller = new OrgEditEventController(interactor);
+    OrgEditEventResponseModel responseModel;
 
-    OrgEditEventResponseModel responseModel = null;
 
-    /**Need to create an event called "Edit" in eventfile, can choose to leave other attributes null.
-     */
     @Test
     @Order(1)
     public void test_PrepareFailureView_entries_empty() {

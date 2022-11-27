@@ -11,22 +11,20 @@ import controller_presenter_view.common_controller_presenter.par_leave_event.Par
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**Need to create "P10" as a participant in parfile and an organization in orgfile
+ * Need to add "E6" in the eventfile
+ * Need to add "P10" and "E6" in upcoming_events_for_par
+ * Need to add the organization and "E6" in upcoming_events_for_org
+ */
 public class ParLeaveEventTest {
     ParDsGateway parDsGateway = new ParFileUser();
     OrgDsGateway orgDsGateway = new OrgFileUser();
     ParLeaveEventOutputBoundary presenter = new ParLeaveEventPresenter();
-
     ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway,orgDsGateway,presenter);
-
     ParLeaveEventController controller = new ParLeaveEventController(interactor);
+    ParLeaveEventResponseModel responseModel;
 
-    ParLeaveEventResponseModel responseModel = null;
 
-    /**Need to create "P10" as a participant in parfile and an organization in orgfile
-     * Need to add "E6" in the eventfile
-     * Need to add "P10" and "E6" in upcoming_events_for_par
-     * Need to add the organization and "E6" in upcoming_events_for_org
-     */
     @Test
     @Order(1)
     void testPrepareSuccessView(){

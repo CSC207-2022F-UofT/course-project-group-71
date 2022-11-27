@@ -9,13 +9,16 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**Need to create "654321" as a participant in parfile, and a random organization in orgfile
+ * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3", "TeamMeeting4" in eventfile
+ * Need to assign the above events to a random organization in upcoming_event_for_org
+ */
 public class ParSearchEventTest {
     EventDsGateway eventDsGateway = new EventFileUser();
-
     ParSearchEventPresenter presenter = new ParSearchEventPresenter();
     ParSearchEventInputBoundary interactor = new ParSearchEventInteractor(eventDsGateway, presenter);
     ParSearchEventController controller = new ParSearchEventController(interactor);
-    ParSearchEventResponseModel responseModel = null;
+    ParSearchEventResponseModel responseModel;
 
     @Test
     @Order(1)
@@ -24,7 +27,7 @@ public class ParSearchEventTest {
             responseModel = controller.eventSearch("TeamMeeting222", "654321");
             assert(false);
         } catch (Exception e) {
-            assertEquals("No events found.", e.getMessage());
+            assertEquals("No event found.", e.getMessage());
         }
     }
 

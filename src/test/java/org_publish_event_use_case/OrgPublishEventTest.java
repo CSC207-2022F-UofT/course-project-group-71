@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventPresenter;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**Need to create an organization named "UofT", "UBC" in orgfile, create a participant named "allyson" in parfile

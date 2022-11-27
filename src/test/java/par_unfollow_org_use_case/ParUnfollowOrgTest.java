@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**Need to create "ben" as a participant and "UofT" as an organization
+ * Need "ben" and "UofT" in the follow_org_par table in database
+ */
 public class ParUnfollowOrgTest {
     ParDsGateway par = new ParFileUser();
     ParUnfollowOrgOutputBoundary presenter = new ParUnfollowOrgPresenter();
@@ -20,9 +23,6 @@ public class ParUnfollowOrgTest {
     ParUnfollowOrgController controller = new ParUnfollowOrgController(interactor);
     ParUnfollowOrgResponseModel responseModel;
 
-    /**Need to create "ben" as a participant and "UofT" as an organization
-     * Need "ben" and "UofT" in the follow_org_par table in database
-     */
     @Test
     @Order(1)
     void testParUnfollowOrg() {
