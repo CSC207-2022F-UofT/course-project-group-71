@@ -789,9 +789,8 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @param new_notification The new notification sent to the participant
      */
-    public boolean addNotification(String username, String new_notification) throws SQLException, ClassNotFoundException {
+    public void addNotification(String username, String new_notification) throws SQLException, ClassNotFoundException {
         utilNotificationUpdating(username,new_notification);
-        return false;
     }
 
     /**This is a method used to delete all notifications of the participant. It no notifications before, nothing change.
