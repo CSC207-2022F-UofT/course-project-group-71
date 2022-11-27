@@ -59,7 +59,7 @@ public class UserLoginTest {
     void testPrepareFailView_OrganizerNotExist() {
 
         try{
-            responseModel = controller.login("","0","kkk", "123123");
+            responseModel = controller.login("","O","kkk", "123123");
             assert(false);
         } catch (Exception e) {
             assertEquals("Organization does not exist.", e.getMessage());
@@ -95,7 +95,7 @@ public class UserLoginTest {
     void testPrepareSuccessView_Orgnization() {
 
         try{
-            responseModel = controller.login("","0","123", "123");
+            responseModel = controller.login("","O","123", "123");
             assertEquals("123", responseModel.getUsername());
         } catch (Exception e) {
             assert(false);
@@ -107,7 +107,7 @@ public class UserLoginTest {
     void testPrepareSuccessView_Participant() {
 
         try{
-            responseModel = controller.login("0","","aas", "114514");
+            responseModel = controller.login("P","","aas", "114514");
             assertEquals("aas", responseModel.getUsername());
         } catch (Exception e) {
             assert(false);
