@@ -5,10 +5,12 @@ package org_publish_event_use_case;
  */
 public class OrgPublishEventResponseModel {
     String eventName;
+    boolean hasFollower;
     String message;
 
-    public OrgPublishEventResponseModel(String eventName) {
+    public OrgPublishEventResponseModel(String eventName, boolean hasFollower) {
         this.eventName = eventName;
+        this.hasFollower = hasFollower;
     }
 
     public void setMessage(String message) {
@@ -19,5 +21,11 @@ public class OrgPublishEventResponseModel {
         return eventName;
     }
 
-    public String getMessage() { return message; }
+    public String getMessage(){
+        return message;
+    }
+
+    public boolean getHasFollower(){
+        return hasFollower;
+    }
 }

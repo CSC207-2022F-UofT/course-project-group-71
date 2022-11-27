@@ -8,7 +8,11 @@ public class OrgPublishEventPresenter implements OrgPublishEventOutputBoundary {
     @Override
     public OrgPublishEventResponseModel prepareSuccessView(OrgPublishEventResponseModel response) {
         //Generate the message to be shown on the success view
-        response.setMessage("Event " + response.getEventName() + " is published!");
+        if (response.getHasFollower()){
+            response.setMessage("Event " + response.getEventName() + " is published! Your followers are notified.");
+        } else {
+            response.setMessage("Event " + response.getEventName() + " is published!");
+        }
         return response;
     }
     @Override

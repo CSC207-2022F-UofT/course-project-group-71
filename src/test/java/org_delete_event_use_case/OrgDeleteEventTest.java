@@ -9,7 +9,14 @@ import controller_presenter_view.common_controller_presenter.org_delete_event.Or
 import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventPresenter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
+/**Need to create 2 events "CSC207", "MAT137" in eventfile
+ * Need to create a participant "allyson" in parfile, create an organization "UofT" in orgfile
+ * Need to assign "CSC207" to "allyson" in upcoming_events_for_par
+ * Need to assign "CSC207" to "UofT" in upcoming_events_for_org
+ * Need to assign "MAT137" to "UofT" in unpublished_events_for_org
+ */
 public class OrgDeleteEventTest {
     EventDsGateway eventDsGateway = new EventFileUser();
 
@@ -26,15 +33,27 @@ public class OrgDeleteEventTest {
 
     OrgDeleteEventResponseModel responseModel;
 
-    /**Need to create an event "CSC207" in eventfile which is still unpublished
-     */
     @Test
     @Order(1)
     void testEventHasParticipant() {
         try {
             responseModel = orgDeleteEventController.delete("CSC207");
             assertEquals("Event CSC207 is deleted.", responseModel.getMessage());
+            assertFalse(orgDsGateway.getUpcomingEvents("UofT").contains("CSC207"));
             assertEquals("Event CSC207 is cancelled.", parDsGateway.getNotifications("allyson").get(0));
+            assertFalse(parDsGateway.getUpcomingEvents("allyson").contains("CSC207"));
+        } catch (Exception e) {
+            assert(false);
+        }
+    }
+
+    @Test
+    @Order(2)
+    void testEventNoParticipant() {
+        try {
+            responseModel = orgDeleteEventController.delete("MAT137");
+            assertEquals("Event MAT137 is deleted.", responseModel.getMessage());
+            assertFalse(orgDsGateway.getUpcomingEvents("UofT").contains("MAT137"));
         } catch (Exception e) {
             assert(false);
         }

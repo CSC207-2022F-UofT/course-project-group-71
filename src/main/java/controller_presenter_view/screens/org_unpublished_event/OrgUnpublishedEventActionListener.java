@@ -42,10 +42,11 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
     public void actionPerformed(ActionEvent arg0){
         String actionCommand = arg0.getActionCommand();
+        String orgUsername = this.orgUnpublishedEventPage.getOrgUsername();
 
         if (actionCommand.equals("Back")) {
             this.orgUnpublishedEventPage.dispose();
-            new OrgHomePage(this.orgUnpublishedEventPage.getOrgUsername());
+            new OrgHomePage(orgUsername);
         }
         else if (actionCommand.contains("Delete")) {
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -78,17 +79,18 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             this.orgUnpublishedEventPage.dispose();
             try {
-                new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+                new OrgUnpublishedEventPage(orgUsername);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
         else if (actionCommand.contains("Publish")){
             EventDsGateway eventDsGateway = new EventFileUser();
-
+            OrgDsGateway orgDsGateway = new OrgFileUser();
+            ParDsGateway parDsGateway = new ParFileUser();
             OrgPublishEventOutputBoundary orgPublishEventOutputBoundary = new OrgPublishEventPresenter();
 
-            OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgPublishEventOutputBoundary);
+            OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgDsGateway, parDsGateway, orgPublishEventOutputBoundary);
 
             OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
 
@@ -96,7 +98,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgPublishEventResponseModel responseModel;
             try {
-                responseModel = orgPublishEventController.publish(eventName);
+                responseModel = orgPublishEventController.publish(eventName, orgUsername);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
@@ -106,7 +108,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             this.orgUnpublishedEventPage.dispose();
 
             try {
-                new OrgUnpublishedEventPage(this.orgUnpublishedEventPage.getOrgUsername());
+                new OrgUnpublishedEventPage(orgUsername);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

@@ -4,14 +4,19 @@ package org_publish_event_use_case;
  *  Contains eventName.
  */
 public class OrgPublishEventRequestModel {
-    String eventName;
+    String eventTitle;
+    String orgUsername;
 
-    public OrgPublishEventRequestModel(String eventName) {
-        this.eventName = eventName;
+    public OrgPublishEventRequestModel(String eventTitle, String orgUsername) {
+        this.eventTitle = eventTitle;
+        this.orgUsername = orgUsername;
     }
 
-    public String getEventName() {
-        return this.eventName;
+    public String getEventTitle() {
+        return this.eventTitle;
     }
 
+    public String getOrgUsername(){
+        return this.orgUsername;
+    }
 }

@@ -1,4 +1,4 @@
-package user_login_use_case.upcomming_to_past_use_case;
+package upcomming_to_past_use_case;
 
 import database.*;
 import org.junit.jupiter.api.Order;

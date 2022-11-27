@@ -14,9 +14,9 @@ public class OrgPublishEventController {
         this.userInput = accountGateway;
     }
 
-    public OrgPublishEventResponseModel publish(String eventName) throws SQLException, ClassNotFoundException {
+    public OrgPublishEventResponseModel publish(String eventTitle, String orgUsername) throws SQLException, ClassNotFoundException {
         //Generate a new request model by the given information
-        OrgPublishEventRequestModel requestModel = new OrgPublishEventRequestModel(eventName);
+        OrgPublishEventRequestModel requestModel = new OrgPublishEventRequestModel(eventTitle, orgUsername);
         return userInput.publish(requestModel);
     }
 
