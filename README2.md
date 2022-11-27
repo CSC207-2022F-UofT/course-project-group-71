@@ -34,14 +34,14 @@ Only for demonstration purposes, each of those has the following attributes:
   - *editable* String description: the description of the event.
   - *editable* String location: the location of the event.
   - *editable* ArrayList<Integer\> time: the time of the event, consists of year, month, day, hour, minute.
-- Organization
+- Organization (User)
   - String username: the username of the organization.
   - *editable* String password: the password of the organization.
   - *editable* ArrayList<String\> unpublishedEvents: the titles of events in the "draft box" of the organization. The organization can create new events. The organization can choose to change any information of existing events except for their title. The organization can also choose to delete the events here.
   - *editable* ArrayList<String\> upcomingEvents: the titles of events that are published by the organization from the "draft box". At this point, the organization cannot change any information about the events, but can choose to delete them.
   - ArrayList<String\> pastEvents: the titles of events which are published and whose time are in the past (comparing with system time by LocalDateTime).
   - ArrayList<String\> followers: the usernames of the organization's followers (all are participants).
-- Participant 
+- Participant  (User)
   - String username: the username of the participant.
   - *editable* String password: the password of the participant.
   - *editable* ArrayList<String\> upcomingEvents: the titles of events that are published by the organization from the "draft box". At this point, the organization cannot change any information about the events, but can choose to delete them. 
@@ -56,9 +56,13 @@ Only for demonstration purposes, each of those has the following attributes:
 
 All folders ending with use_case are the use cases of the project.
 Each consists of 5 types of class/interface: InputBoundary, Interactor, OutputBoundary, RequestModel, ResponseModel (except for extract_information_use_case).
-The use case
 
-There are a few special use cases that are used in more than one place in the project:
+We have 17 use cases in total.
+If the naming starts with user_, then the user type does not play a significant part for its Application Business Rules.
+If the naming starts with par_, then the use case is specifically responsible for a functionality belongs to participant.
+If the naming starts with org_, then the use case is specifically responsible for a functionality belongs to organization.
+
+There are a few special use cases that are used in more than one place in the project, usually across the user types:
 - extract_information_use_case: This is designed to assist views to show information stored in the database for Clean Architecture purposes. It is not tied to any specific type of user or screen.
 - upcoming_to_past_use_case: This is an auto-triggered use case that do not need the user to explicitly demand for it. It will convert the user's all relevant upcoming events whose time is in the past (comparing with system time by LocalDateTime) to past events.
 - notify_event_use_case: This is used to notify the user about changes or updates of relevant events. It can be called in various places in the project as the function is so commonly used.
