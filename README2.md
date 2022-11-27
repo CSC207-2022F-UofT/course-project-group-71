@@ -137,3 +137,32 @@ Explain ALL tables in DataGrip, what does each of them do.
    - Have two rows: par_username, notification.
    - Foreign key of 'par_username' is linked to 'username' at parfile.
    - Notification is a String, one username can be paired with multiple notifications.
+
+## How to use database:
+### How to download, install and initialize mysql connection:
+This project require Mysql to be downloaded.
+Installation Guide of MYSQL: https://www.javatpoint.com/how-to-install-mysql. \
+When the installation is finished, our project require the mysql account and password to be remembered.\
+The JDBC require them to access the data from MYSQL.\
+The username and password should be updated at the src/main/java/tutorial/HelloWorld Line 18, 19.\
+If username is changed by the user, the mysql username should be default value: root.
+
+### How to use Datagrip to import the database and tables:
+Install Datagrip first: https://www.jetbrains.com/datagrip/ \ 
+After installation, click and open the Datagrip. \
+Go to the left part of the page, under Database Explorer, choose to create a new Data Source. \
+Pick MySQL under the Data Source list. \
+It will create a localhost, enter the User(which is root) and Password(As previously set). \
+Click Test Connection below to verify it's successfully connected to the local MySQL server. \
+Click OK, the localhost is built. \
+
+Then right-click the localhost, + New, Choose add a new Schema, create a database. \
+Right-click the database and copy the path of the database to the HelloWorld File, Line 17, the location of the local database need to be changed. \
+In the main/java/database_for_general.sql, it's out database default file, it contains no data.
+Right-click the database created under localhost, choose import/export, click 'Restore with mysql', find and set the location of the mysql.exe and the location of the file database_for_general.sql. \
+The whole table would be imported. \
+
+
+
+
+

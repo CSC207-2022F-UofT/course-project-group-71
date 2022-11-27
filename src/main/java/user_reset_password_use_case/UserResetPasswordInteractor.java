@@ -39,6 +39,9 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
             if (requestModel.getNewPassword().isEmpty()) {
                 return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
             }
+            if (requestModel.getPassword().length() > 20) {
+                return userResetPasswordOutputBoundary.prepareFailureView("Password should be no longer than 20 characters.");
+            }
             if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
                 return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
             }
@@ -63,6 +66,9 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
             }
             if (requestModel.getNewPassword().isEmpty()) {
                 return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
+            }
+            if (requestModel.getPassword().length() > 20) {
+                return userResetPasswordOutputBoundary.prepareFailureView("Password should be no longer than 20 characters.");
             }
             if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
                 return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
