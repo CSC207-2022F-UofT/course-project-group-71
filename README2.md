@@ -10,6 +10,8 @@ In participants’ accounts, they can see all events they have registered (past 
 ## Starter File
 `src/main/java/tutorial/HellowWord`
 
+The starter file launches the Login Page.
+
 There are 3 static variables in the class:
 
 - databaseUrl = "jdbc:mysql://localhost:3306/db2"
@@ -69,6 +71,8 @@ There are a few special use cases that are used in more than one place in the pr
 
 ## Database
 `src/main/java/database`
+
+*Important Setting to change: go to build.gradle, add dependency for MySQL: implementation 'mysql:mysql-connector-java:8.0.30'*
 
 The database folder consists of 3 DsGateways and 3 FileUsers for event, organization, and participant. The FileUsers are directly connected to DataGrip. The guide for installing DataGrip and using the test database is at the end of this file.
 
