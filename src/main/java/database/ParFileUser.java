@@ -1,7 +1,5 @@
 package database;
 
-import database.entity_temp.Participant;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
