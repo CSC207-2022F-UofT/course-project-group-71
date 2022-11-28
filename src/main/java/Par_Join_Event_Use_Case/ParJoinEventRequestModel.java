@@ -1,8 +1,8 @@
 package Par_Join_Event_Use_Case;
 
 public class ParJoinEventRequestModel {
-    String parUsername;
-    String eventTitle;
+    final String parUsername;
+    final String eventTitle;
 
     /** A request model sent the interactor to let participants join an event.
      *

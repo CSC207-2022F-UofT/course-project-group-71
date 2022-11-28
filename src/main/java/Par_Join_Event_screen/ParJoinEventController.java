@@ -7,7 +7,7 @@ import Par_Join_Event_Use_Case.ParJoinEventResponseModel;
 
 public class ParJoinEventController {
 
-    ParJoinEventInputBoundary interactor;
+    final ParJoinEventInputBoundary interactor;
 
     public ParJoinEventController(ParJoinEventInputBoundary interactor) {
         this.interactor = interactor;
