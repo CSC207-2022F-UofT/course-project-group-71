@@ -37,13 +37,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
     }
@@ -74,13 +68,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
     }
 
@@ -111,13 +99,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
 
@@ -150,13 +132,7 @@ public class ParFileUser implements ParDsGateway {
             } catch (SQLException e) {
                 throw new SQLException();
             } finally {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-
+                JDBCUtils.close(stmt,conn);
             }
 
         }
@@ -187,13 +163,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
 
@@ -225,13 +195,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
 
@@ -265,13 +229,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
 
@@ -304,13 +262,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
     }
@@ -341,16 +293,8 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return l;
 
@@ -383,16 +327,8 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return l;
 
@@ -423,16 +359,8 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return l;
 
@@ -464,13 +392,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
     }
 
@@ -500,12 +422,8 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+            JDBCUtils.close(stmt,conn);
+
 
         }
     }
@@ -536,15 +454,9 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
+
 
         }
         return l;}
@@ -575,13 +487,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
     }
 
@@ -609,15 +515,9 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         }finally {
-            if(rs != null){
-                rs.close();
-            }
-            if(stmt != null){
-                stmt.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
+
         }
         return password;
     }
@@ -657,6 +557,8 @@ public class ParFileUser implements ParDsGateway {
             if(conn != null){
                 conn.close();
             }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return WhetherExist;
     }

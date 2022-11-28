@@ -54,6 +54,13 @@ The get methods of the above 3 static variables are used by `src/main/java/datab
 ## Entities
 
 We do not have the entities structure as we are using MySQL to store our data.
+
+The data in the database are not in the form of Object-oriented programming (It works for all database). 
+If we create an entity here, some private attribute would be a list of other entity object.
+While the dependency relationship between two entities are described as an independent table in database.
+It would be performance-costly when we generate all the objects from the database.
+Accessing database and making changes on the database would be convenient in both developing and saving program time costs.
+
 But from the concept perspective, we have *event*, *organization*, and *participant* to be responsible for the Enterprise Business Rules.
 
 Only for demonstration purposes, each of those has the following attributes:
