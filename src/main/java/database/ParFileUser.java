@@ -734,22 +734,5 @@ public class ParFileUser implements ParDsGateway {
         UtilClearNotifications(username);
     }
 
-    public Participant getParticipant(String username) throws SQLException, ClassNotFoundException {
-        Participant par_to_return = new Participant(username, getPassword(username), getPastEvents(username), getUpcomingEvents(username), getFollowedOrg(username));
-        return par_to_return;
-    }
 
-    public void SaveParticipant(Participant par_to_save) throws SQLException, ClassNotFoundException {
-        deletePar(par_to_save.getUsername());
-        createPar(par_to_save.getUsername(), par_to_save.getPassword());
-        for (String past_event : par_to_save.getPast_events()) {
-            utilAddParPastEvent(par_to_save.getUsername(), past_event);
-        }
-        for (String upcoming_event : par_to_save.getUpcoming_events()) {
-            utilAddParUpcomingEvent(par_to_save.getUsername(), upcoming_event);
-        }
-        for (String followed_org : par_to_save.getFollowing_list()) {
-            utilAddParFollowing(par_to_save.getUsername(), followed_org);
-        }
-    }
 }
