@@ -1,9 +1,12 @@
 package database;
 
-import java.sql.*;
-import java.util.ArrayList;
+import database.entity_temp.Organization;
 
-import static tutorial.HelloWorld.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class OrgFileUser implements OrgDsGateway {
 
@@ -18,7 +21,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into orgfile(username, password) values('" + username + "','" + password + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -57,7 +60,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from orgfile where username = '" + username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -93,7 +96,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into past_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -133,7 +136,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from past_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -171,7 +174,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into unpublished_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -211,7 +214,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from unpublished_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -249,7 +252,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into upcoming_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -289,7 +292,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from upcoming_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -329,7 +332,7 @@ public class OrgFileUser implements OrgDsGateway {
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select par_username from follow_org_par where org_username = '" + org_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -371,7 +374,7 @@ public class OrgFileUser implements OrgDsGateway {
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select event_title from unpublished_events_for_org where org_username = '" + org_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -414,7 +417,7 @@ public class OrgFileUser implements OrgDsGateway {
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select event_title from past_events_for_org where org_username = '" + org_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -457,7 +460,7 @@ public class OrgFileUser implements OrgDsGateway {
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select event_title from upcoming_events_for_org where org_username = '" + org_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -502,7 +505,7 @@ public class OrgFileUser implements OrgDsGateway {
         String password;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select password from orgfile where username = '" + org_username + "';");
             rs.next();
@@ -536,7 +539,7 @@ public class OrgFileUser implements OrgDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "update orgfile set password = '" + new_password + "' where username = '" + org_username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -574,9 +577,8 @@ public class OrgFileUser implements OrgDsGateway {
         ResultSet rs = null;
         ArrayList<String> l = new ArrayList<>(0);
         try {
-
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select username from orgfile where username like \"%" + about_name + "%\";");
             while (rs.next()) {
@@ -613,7 +615,7 @@ public class OrgFileUser implements OrgDsGateway {
         boolean WhetherExist = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select exists(select * from orgfile where username = '" + username + "');";
             System.out.println(sql);
             stmt = conn.createStatement();
