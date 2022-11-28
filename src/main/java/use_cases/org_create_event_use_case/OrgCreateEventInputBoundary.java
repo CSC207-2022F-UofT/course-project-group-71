@@ -2,14 +2,14 @@ package use_cases.org_create_event_use_case;
 
 import java.sql.SQLException;
 
-/** Interface implements by interactor.
- * The interactor who implement the interface must have create() method.
+/** Interface implemented by the interactor (OrgCreateEventInteractor).
+ * The interactor that implements this must have the create() method.
  */
 public interface OrgCreateEventInputBoundary {
-    /**Use the information contained in the requestmodel to create a new event and respond a responsemodel.
+    /**Use the information within the request model to create a new event and return a response model.
      *
      * @param requestModel The request model sent to the input boundary
-     * @return A responsemodel representing whether the event creation is successful
+     * @return A response model representing whether the event creation is successful
      */
     OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
 }
