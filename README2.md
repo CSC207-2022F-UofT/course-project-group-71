@@ -1,7 +1,8 @@
 # Project Description
 
-This is an event ticketing platform that connects two parties together: organization and participants.
-It allows the user to register and login as one member of the parties, and direct the user to the home page depending on the user type.
+This is an event ticketing platform that allows organizations to post events and participants to join them.
+Users can register and log in as either a participant or organization and will be directed to their respective home page.
+It allows users to register and login as one member of the parties, and direct the user to the home page depending on the user type.
 
 If the user is a participant, the home page will have a search engine, a button to show notifications for the user, and a few other buttons which will direct the user to other pages.
 - Search Engine: the participant can input the keywords and select if he/she wants to search for events or organizations. 
