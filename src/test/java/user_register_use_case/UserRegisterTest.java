@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import use_cases.user_register_use_case.UserRegisterInputBoundary;
 import use_cases.user_register_use_case.UserRegisterInteractor;
+import use_cases.user_register_use_case.UserRegisterOutputBoundary;
 import use_cases.user_register_use_case.UserRegisterResponseModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserRegisterTest {
     ParDsGateway par = new ParFileUser();
     OrgDsGateway org = new OrgFileUser();
-    UserRegisterPresenter presenter = new UserRegisterPresenter();
+    UserRegisterOutputBoundary presenter = new UserRegisterPresenter();
     UserRegisterInputBoundary interactor = new UserRegisterInteractor(par, org, presenter);
     UserRegisterController userRegisterController = new UserRegisterController(interactor);
     UserRegisterResponseModel responseModel;
