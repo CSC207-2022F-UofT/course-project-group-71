@@ -36,7 +36,7 @@ There is no caps of number of people attending for all events.
 *Special Case to consider: We are using MySQL and DataGrip for data storage. Details will be explained in the Database section.*
 
 ## Starter File
-`src/main/java/tutorial/HellowWord`
+`src/main/java/Main`
 
 The starter file launches the Login Page.
 

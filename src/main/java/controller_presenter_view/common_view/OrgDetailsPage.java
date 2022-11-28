@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-import static tutorial.Main.getConstantX;
-import static tutorial.Main.getConstantY;
+import static Main.getConstantX;
+import static Main.getConstantY;
 
 
 public class OrgDetailsPage extends JFrame {
