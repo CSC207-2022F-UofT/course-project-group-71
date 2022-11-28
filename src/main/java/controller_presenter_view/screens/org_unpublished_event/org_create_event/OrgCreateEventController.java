@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 public class OrgCreateEventController {
 
-    OrgCreateEventInputBoundary userInput;
+    final OrgCreateEventInputBoundary USER_INPUT;
 
-    public OrgCreateEventController(OrgCreateEventInputBoundary userInput) {
+    public OrgCreateEventController(OrgCreateEventInputBoundary USER_INPUT) {
         //Store the interactor of the controller
-        this.userInput = userInput;
+        this.USER_INPUT = USER_INPUT;
     }
 
     public OrgCreateEventResponseModel create(String orgUsername,
@@ -29,7 +29,7 @@ public class OrgCreateEventController {
                 orgUsername, title, description, location, year, month, day, hour, minute);
 
         //Return the response model returned from interactor method
-        return userInput.create(requestModel);
+        return USER_INPUT.create(requestModel);
     }
 
 }

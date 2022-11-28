@@ -1,5 +1,3 @@
-package tutorial;
-
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
@@ -11,12 +9,12 @@ import controller_presenter_view.screens.org_home.OrgHomePresenter;
 import controller_presenter_view.screens.par_home.ParHomePresenter;
 import use_cases.user_login_use_case.*;
 
-public class HelloWorld {
+public class Main {
     static int CONSTANT_X = 800;
     static int CONSTANT_Y = 800;
     static String databaseUrl = "jdbc:mysql://localhost:3306/db2";
     static String databaseUsername = "root";
-    static String databasePassword = "Anitahua0105";
+    static String databasePassword = "1234";
     public static String getDatabaseUrl() {return databaseUrl;}
     public static String getDatabaseUsername() {return databaseUsername;}
     public static String getDatabasePassword(){return databasePassword;}

@@ -36,7 +36,7 @@ There is no caps of number of people attending for all events.
 *Special Case to consider: We are using MySQL and DataGrip for data storage. Details will be explained in the Database section.*
 
 ## Starter File
-`src/main/java/tutorial/HellowWord`
+`src/main/java/Main`
 
 The starter file launches the Login Page.
 
@@ -54,6 +54,13 @@ The get methods of the above 3 static variables are used by `src/main/java/datab
 ## Entities
 
 We do not have the entities structure as we are using MySQL to store our data.
+
+The data in the database are not in the form of Object-oriented programming (It works for all database). 
+If we create an entity here, some private attribute would be a list of other entity object.
+While the dependency relationship between two entities are described as an independent table in database.
+It would be performance-costly when we generate all the objects from the database.
+Accessing database and making changes on the database would be convenient in both developing and saving program time costs.
+
 But from the concept perspective, we have *event*, *organization*, and *participant* to be responsible for the Enterprise Business Rules.
 
 Only for demonstration purposes, each of those has the following attributes:
@@ -168,25 +175,38 @@ Explain ALL tables in DataGrip, what does each of them do.
 
 ## How to use database:
 ### How to download, install and initialize mysql connection:
-This project requires the installation of MySQL.
-An installation guide for MySQL created by JavaTpoint can be found [here](https://www.javatpoint.com/how-to-install-mysql).
-After finishing the installation, our project requires the MySQL account and password to be remembered.
-The JDBC requires them to access the data from MYSQL.
+This project require Mysql to be downloaded.
+Installation Guide of MYSQL: https://www.javatpoint.com/how-to-install-mysql. 
+
+When the installation is finished, our project require the mysql account and password to be remembered.
+The JDBC require them to access the data from MYSQL.
 The username and password should be updated at the src/main/java/tutorial/HelloWorld Line 18, 19.
-If username is changed by the user, the MySQL username should be its default value: root.
 
+![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_1.png)
+If username is changed by the user, the mysql username should be default value: root.
 ### How to use Datagrip to import the database and tables:
-Install Datagrip first: https://www.jetbrains.com/datagrip/
-After installation, click and open the Datagrip. 
-Go to the left part of the page, under Database Explorer, choose to create a new Data Source. Pick MySQL under the Data Source list. It will create a localhost, enter the User(which is root) and Password(As previously set). 
-Click Test Connection below to verify it's successfully connected to the local MySQL server. 
-Click OK, the localhost is built. 
+Install Datagrip first: https://www.jetbrains.com/datagrip/.  
+After installation, click and open the Datagrip.
+Go to the left part of the page, under Database Explorer, choose to create a new Data Source. 
+![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_2.png)
 
+Pick MySQL under the Data Source list. 
+It will create a localhost, enter the User(which is root) and Password(As previously set). 
+![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_3.png)
+Click Test Connection below to verify it's successfully connected to the local MySQL server. 
+![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_4.png)
+Click OK, the localhost is built. 
 Then right-click the localhost, + New, Choose add a new Schema, create a database. 
-Right-click the database and copy the path of the database to the HelloWorld File, Line 17, the location of the local database need to be changed. 
+![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_5.png)
+
+Copy the path of the database to the HelloWorld File, Line 17, the location of the local database need to be changed.
+![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_6.png)
+
 In the main/java/database_for_general.sql, it's out database default file, it contains no data.
 Right-click the database created under localhost, choose import/export, click 'Restore with mysql', find and set the location of the mysql.exe and the location of the file database_for_general.sql. 
-The whole table would be imported. 
+The whole table would be imported.
+![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_7.png)
+![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_8.png)
 
 
 ## SOLID Principles and Design Patterns
@@ -221,6 +241,9 @@ Both of their presenter implement a  interface of resetting password
 
 
 
+
+
+The whole table would be imported. 
 
 
 

@@ -11,8 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
+import static Main.getConstantX;
+import static Main.getConstantY;
 
 public class ParSearchEventResultsPage extends JFrame {
 

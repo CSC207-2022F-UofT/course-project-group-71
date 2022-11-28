@@ -8,22 +8,22 @@ import java.time.LocalDateTime;
 
 public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
 
-    EventDsGateway eventDsGateway;
-    OrgDsGateway orgDsGateway;
-    OrgCreateEventOutputBoundary orgCreateEventOutputBoundary;
+    final EventDsGateway EVENT_DS_GATEWAY;
+    final OrgDsGateway ORG_DS_GATEWAY;
+    final OrgCreateEventOutputBoundary ORG_CREATE_EVENT_OUTPUT_BOUNDARY;
 
     /**This is the constructor for this class.
      *
-     * @param eventDsGateway The database gateway for events
-     * @param orgDsGateway The database gateway for organizers
-     * @param orgCreateEventOutputBoundary The output boundary used to show whether event creation was successful
+     * @param EVENT_DS_GATEWAY The database gateway for events
+     * @param ORG_DS_GATEWAY The database gateway for organizers
+     * @param ORG_CREATE_EVENT_OUTPUT_BOUNDARY The output boundary used to show whether event creation was successful
      */
-    public OrgCreateEventInteractor(EventDsGateway eventDsGateway,
-                                    OrgDsGateway orgDsGateway,
-                                    OrgCreateEventOutputBoundary orgCreateEventOutputBoundary) {
-        this.eventDsGateway = eventDsGateway;
-        this.orgDsGateway = orgDsGateway;
-        this.orgCreateEventOutputBoundary = orgCreateEventOutputBoundary;
+    public OrgCreateEventInteractor(EventDsGateway EVENT_DS_GATEWAY,
+                                    OrgDsGateway ORG_DS_GATEWAY,
+                                    OrgCreateEventOutputBoundary ORG_CREATE_EVENT_OUTPUT_BOUNDARY) {
+        this.EVENT_DS_GATEWAY = EVENT_DS_GATEWAY;
+        this.ORG_DS_GATEWAY = ORG_DS_GATEWAY;
+        this.ORG_CREATE_EVENT_OUTPUT_BOUNDARY = ORG_CREATE_EVENT_OUTPUT_BOUNDARY;
     }
 
     /**Use the information contained in requestModel to create a new event and return a responseModel.
@@ -45,27 +45,27 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()
                 || requestModel.getDay().isEmpty() || requestModel.getHour().isEmpty()
                 || requestModel.getMinute().isEmpty() || requestModel.getLocation().isEmpty()) {
-            return orgCreateEventOutputBoundary.prepareFailView("Entries cannot be empty.");
+            return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Entries cannot be empty.");
         }
 
         // Checks if title already exists.
-        if (eventDsGateway.checkIfEventNameExist(requestModel.getTitle())) {
-            return orgCreateEventOutputBoundary.prepareFailView("Title already exists.");
+        if (EVENT_DS_GATEWAY.checkIfEventNameExist(requestModel.getTitle())) {
+            return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Title already exists.");
         }
 
         // Checks if title is too long (over 20 characters).
         if (requestModel.getTitle().length() > 20) {
-            return orgCreateEventOutputBoundary.prepareFailView("Title should be no longer than 20 characters.");
+            return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Title should be no longer than 20 characters.");
         }
 
         // Checks if description is too long (over 200 characters).
         if (requestModel.getDescription().length() > 200) {
-            return orgCreateEventOutputBoundary.prepareFailView("Description should be no longer than 200 characters.");
+            return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Description should be no longer than 200 characters.");
         }
 
         // Checks if location is too long (over 50 characters)
         if (requestModel.getLocation().length() > 50) {
-            return orgCreateEventOutputBoundary.prepareFailView("Location should be no longer than 50 characters.");
+            return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Location should be no longer than 50 characters.");
         }
 
         String year = requestModel.getYear();
@@ -79,32 +79,32 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
 
             // Checks if year is exactly 4 digits
             if (year.length() != 4) {
-                return orgCreateEventOutputBoundary.prepareFailView("Year is not 4 digits.");
+                return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Year is not 4 digits.");
             }
             int y = Integer.parseInt(year);
 
             // Checks if month is valid (from 1 to 12, inclusive)
             int m = Integer.parseInt(month);
             if (m > 12 || m <= 0) {
-                return orgCreateEventOutputBoundary.prepareFailView("Month is not within 1 to 12.");
+                return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Month is not within 1 to 12.");
             }
 
             // Checks is day is valid (from 1 to 31, inclusive)
             int d = Integer.parseInt(day);
             if (d > 31 || d <= 0) {
-                return orgCreateEventOutputBoundary.prepareFailView("Day is not within 1 to 31.");
+                return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Day is not within 1 to 31.");
             }
 
             // Checks if hour is valid (from 1 to 23, inclusive)
             int h = Integer.parseInt(hour);
             if (h > 23 || h < 0) {
-                return orgCreateEventOutputBoundary.prepareFailView("Hour is not within 0 to 23.");
+                return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Hour is not within 0 to 23.");
             }
 
             // CHecks is minute is valid (from 0 to 59, inclusive)
             int min = Integer.parseInt(minute);
             if (min > 59 || min < 0) {
-                return orgCreateEventOutputBoundary.prepareFailView("Minute is not within 0 to 59.");
+                return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Minute is not within 0 to 59.");
             }
 
             LocalDateTime now = LocalDateTime.now();
@@ -112,19 +112,19 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
 
             // Checks if the time is set in the future.
             if (time.isBefore(now)){
-                return orgCreateEventOutputBoundary.prepareFailView("Time must be in future.");
+                return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Time must be in future.");
             }
 
-            // Call orgDsGateway to create the event and return the responseModel with the event's title
+            // Call ORG_DS_GATEWAY to create the event and return the responseModel with the event's title
             else {
-                orgDsGateway.createAnEvent(requestModel.getOrgUsername(), requestModel.getTitle(), 0,
+                ORG_DS_GATEWAY.createAnEvent(requestModel.getOrgUsername(), requestModel.getTitle(), 0,
                         requestModel.getDescription(), requestModel.getLocation(), y, m, d, h, min);
                 OrgCreateEventResponseModel responseModel = new OrgCreateEventResponseModel(requestModel.getTitle());
-                return orgCreateEventOutputBoundary.prepareSuccessView(responseModel);
+                return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareSuccessView(responseModel);
             }
         }
 
-        else { return orgCreateEventOutputBoundary.prepareFailView("Time entry/ies is/are not integer."); }
+        else { return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Time entry/ies is/are not integer."); }
     }
 
     /**A method used to check time entries format

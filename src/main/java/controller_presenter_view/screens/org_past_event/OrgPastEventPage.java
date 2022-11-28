@@ -15,8 +15,8 @@ import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
+import static Main.getConstantX;
+import static Main.getConstantY;
 
 public class OrgPastEventPage extends JFrame {
     private final String orgUsername;

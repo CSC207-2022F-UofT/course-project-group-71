@@ -1,9 +1,12 @@
 package database;
 
-import java.sql.*;
-import java.util.ArrayList;
+import database.entity_temp.Event;
 
-import static tutorial.HelloWorld.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class EventFileUser implements EventDsGateway{
 
@@ -26,29 +29,15 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into eventfile(title,description,location,year,month,day,hour,minute) values('" +
                     title + "','" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
             stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
+            stmt.executeUpdate(sql);
         } catch (ClassNotFoundException e) {
             throw new ClassNotFoundException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt, conn);
         }
     }
 
@@ -69,30 +58,14 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
-            String sql =  "update eventfile set description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
-
-            System.out.println(sql);
+            conn = JDBCUtils.getConnection();
+            String sql = "update eventfile set description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
             stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
+            stmt.executeUpdate(sql);
         } catch (ClassNotFoundException e) {
             throw new ClassNotFoundException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
     }
 
@@ -109,29 +82,16 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
+            stmt.executeUpdate(sql);
         } catch (ClassNotFoundException e) {
             throw new ClassNotFoundException( );
         } catch (SQLException e) {
             throw new SQLException( );
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
+            JDBCUtils.close(stmt,conn);
 
         }
     }
@@ -152,7 +112,7 @@ public class EventFileUser implements EventDsGateway{
         String organization = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             unpublished_organization = stmt.executeQuery("select org_username from unpublished_events_for_org where event_title = '" + title + "';");
             if (unpublished_organization.next()){
@@ -176,22 +136,10 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (unpublished_organization != null){
-                unpublished_organization.close();
-            }
-            if (past_organization != null){
-                past_organization.close();
-            }
-            if (upcoming_organization != null){
-                upcoming_organization.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close_rs(unpublished_organization);
+            JDBCUtils.close_rs(past_organization);
+            JDBCUtils.close_rs(upcoming_organization);
+            JDBCUtils.close(stmt,conn);
         }
         return organization;
     }
@@ -209,7 +157,7 @@ public class EventFileUser implements EventDsGateway{
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select par_username from past_events_for_par where event_title = '" + title + "';");
             while (rs.next()){
@@ -220,16 +168,8 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-
-            }
-            if (conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt, conn);
         }
         return l;
 
@@ -249,7 +189,7 @@ public class EventFileUser implements EventDsGateway{
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select par_username from upcoming_events_for_par where event_title = '" + title + "';");
             while (rs.next()){
@@ -260,15 +200,8 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt, conn);
 
         }
         return l;
@@ -289,7 +222,7 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             String orgName = getOrganization(title);
             System.out.println(orgName);
@@ -318,6 +251,7 @@ public class EventFileUser implements EventDsGateway{
             if (conn != null) {
                 conn.close();
             }
+            JDBCUtils.close(stmt,conn);
 
         }
     }
@@ -336,7 +270,7 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             String orgName = getOrganization(title);
             String sql1 = "delete from upcoming_events_for_org where event_title = '" + title + "';";
@@ -377,7 +311,7 @@ public class EventFileUser implements EventDsGateway{
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             ArrayList<String> ParticipantList = getParticipants(title);
             System.out.println(title);
@@ -416,7 +350,7 @@ public class EventFileUser implements EventDsGateway{
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select title from eventfile where title like \"%" + about_name + "%\";");
             while (rs.next()) {
@@ -457,7 +391,7 @@ public class EventFileUser implements EventDsGateway{
         String status = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             String sql1 = "select * from unpublished_events_for_org where event_title = '" + title + "';";
             String sql2 = "select * from past_events_for_org where event_title = '" + title + "';";
@@ -520,7 +454,7 @@ public class EventFileUser implements EventDsGateway{
         ArrayList<Integer> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select year,month,day,hour,minute from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -560,7 +494,7 @@ public class EventFileUser implements EventDsGateway{
         String description = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select description from eventfile where title = '" + title + "';";
             System.out.println(sql);
             stmt = conn.createStatement();
@@ -598,7 +532,7 @@ public class EventFileUser implements EventDsGateway{
         String location;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select location from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -651,7 +585,7 @@ public class EventFileUser implements EventDsGateway{
         boolean WhetherExist = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select * from eventfile where title = '" + eventName + "';";
             System.out.println(sql);
             stmt = conn.createStatement();
@@ -821,5 +755,27 @@ public class EventFileUser implements EventDsGateway{
     public void editEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         utilEditEvent(title,description,location,year,month,day,hour,minute);
     }
+
+    public Event getEvent(String title) throws SQLException, ClassNotFoundException {
+        Event event_to_return = new  Event(title, getDescription(title), getLocation(title), getTime(title).get(0), getTime(title).get(1),getTime(title).get(2),getTime(title).get(3),getTime(title).get(4),getParticipants(title),getOrganization(title));
+        return event_to_return;
+    }
+
+//    public Event saveEvent(Event event_to_save) throws SQLException, ClassNotFoundException {
+//        String event_status = getStatus(event_to_save.getTitle());
+//        int event_status_int = 0;
+//        if (event_status == "Unpublished"){
+//            event_status_int = 0;
+//        }
+//        if (event_status == "Past"){
+//            event_status_int = 2;
+//        }
+//        if (event_status == "Upcoming"){
+//            event_status_int = 1;
+//        }
+//        deleteEvent(event_to_save.getTitle());
+//        OrgDsGateway orgDsGateway = new OrgFileUser();
+//        orgDsGateway.createAnEvent(event_to_save.getOrganization(), event_to_save.getTitle(), event_status_int, event_to_save.getDescription(),event_to_save.getLocation(), event_to_save.getYear(), event_to_save.getMonth(),event_to_save.get(3),getTime(title).get(4));
+//    }
 
 }

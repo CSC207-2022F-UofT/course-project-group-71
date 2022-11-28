@@ -1,9 +1,12 @@
 package database;
 
-import java.sql.*;
-import java.util.ArrayList;
+import database.entity_temp.Participant;
 
-import static tutorial.HelloWorld.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ParFileUser implements ParDsGateway {
 
@@ -17,7 +20,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into parfile(username, password) values('" + username + "','" + password + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -34,13 +37,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
     }
@@ -54,7 +51,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from parfile where username = '" + username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -71,13 +68,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
     }
 
@@ -91,7 +82,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into follow_org_par(par_username, org_username) values('" + par_username + "','" + org_username + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -108,13 +99,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
 
@@ -131,7 +116,7 @@ public class ParFileUser implements ParDsGateway {
             Connection conn = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+                conn = JDBCUtils.getConnection();
                 String sql = "delete from follow_org_par where par_username = '" + par_username + "' and org_username = '" + org_username + "';";
                 stmt = conn.createStatement();
                 int count = stmt.executeUpdate(sql);
@@ -147,13 +132,7 @@ public class ParFileUser implements ParDsGateway {
             } catch (SQLException e) {
                 throw new SQLException();
             } finally {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-
+                JDBCUtils.close(stmt,conn);
             }
 
         }
@@ -167,7 +146,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into past_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -184,13 +163,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
 
@@ -206,7 +179,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from past_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -222,13 +195,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
 
@@ -245,7 +212,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert into upcoming_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -262,13 +229,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
 
@@ -285,7 +246,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from upcoming_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -301,13 +262,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
 
     }
@@ -324,7 +279,7 @@ public class ParFileUser implements ParDsGateway {
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select org_username from follow_org_par where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -338,16 +293,8 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return l;
 
@@ -367,7 +314,7 @@ public class ParFileUser implements ParDsGateway {
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select event_title from past_events_for_par where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -380,16 +327,8 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return l;
 
@@ -407,7 +346,7 @@ public class ParFileUser implements ParDsGateway {
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select event_title from upcoming_events_for_par where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -420,16 +359,8 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return l;
 
@@ -445,7 +376,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "update parfile set password = '" + new_password + "' where username = '" + par_username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -461,13 +392,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
     }
 
@@ -481,7 +406,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "insert ignore into par_notification(par_username, notification) values('" + par_username + "','" + new_notification + "')";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -497,12 +422,8 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+            JDBCUtils.close(stmt,conn);
+
 
         }
     }
@@ -519,7 +440,7 @@ public class ParFileUser implements ParDsGateway {
         ArrayList<String> l = new ArrayList<>(0);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select notification from par_notification where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -533,15 +454,9 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null){
-                rs.close();
-            }
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
+
 
         }
         return l;}
@@ -556,7 +471,7 @@ public class ParFileUser implements ParDsGateway {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "delete from par_notification where par_username = '" + par_username + "';";
             stmt = conn.createStatement();
             int count = stmt.executeUpdate(sql);
@@ -572,13 +487,7 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
     }
 
@@ -595,7 +504,7 @@ public class ParFileUser implements ParDsGateway {
         String password;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select password from parfile where username = '" + username + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -606,15 +515,9 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         }finally {
-            if(rs != null){
-                rs.close();
-            }
-            if(stmt != null){
-                stmt.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
+
         }
         return password;
     }
@@ -632,7 +535,7 @@ public class ParFileUser implements ParDsGateway {
         boolean WhetherExist = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            conn = JDBCUtils.getConnection();
             String sql = "select exists(select * from parfile where username = '" + username + "');";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -654,6 +557,8 @@ public class ParFileUser implements ParDsGateway {
             if(conn != null){
                 conn.close();
             }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return WhetherExist;
     }

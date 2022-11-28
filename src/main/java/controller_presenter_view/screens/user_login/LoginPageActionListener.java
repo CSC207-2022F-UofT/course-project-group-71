@@ -14,9 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginPageActionListener implements ActionListener {
-    public LoginPage loginPage;
-    public LoginPageActionListener(LoginPage loginPage){
-        this.loginPage = loginPage;
+    final public LoginPage LOGIN_PAGE;
+    public LoginPageActionListener(LoginPage LOGIN_PAGE){
+        this.LOGIN_PAGE = LOGIN_PAGE;
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
@@ -30,11 +30,11 @@ public class LoginPageActionListener implements ActionListener {
                     par, org, presenter);
             UserRegisterController userRegisterController = new UserRegisterController(interactor);
             System.out.println("S");
-            this.loginPage.dispose();
+            this.LOGIN_PAGE.dispose();
             new RegisterPage(userRegisterController);
         }
         else {
-            this.loginPage.dispose();
+            this.LOGIN_PAGE.dispose();
         }
     }
 }

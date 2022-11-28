@@ -4,8 +4,8 @@ import controller_presenter_view.screens.LabelTextPanel;
 
 import javax.swing.*;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
+import static Main.getConstantX;
+import static Main.getConstantY;
 
 public class ParAccountPage extends JFrame {
     String parUsername;
