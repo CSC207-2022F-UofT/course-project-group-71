@@ -2,44 +2,45 @@ package use_cases.extract_information_use_case;
 
 public class ExtractInfoRequestModel {
 
-    String keyword;
-    String para;
+    final String KEYWORD;
+    final String PARA;
 
     /**Constructs a request model for extracting information about
      * participants, organizers, and events (except for event times)
      *
-     * @param keyword A command indicating which information to get
-     * @param para The username of a participant, the username of an organization,
+     * @param KEYWORD A command indicating which information to get
+     * @param PARA The username of a participant, the username of an organization,
      *             or the title of an event
      */
-    public ExtractInfoRequestModel(String keyword,String para){
-        this.keyword = keyword;
-        this.para = para;
+    public ExtractInfoRequestModel(String KEYWORD, String PARA){
+        this.KEYWORD = KEYWORD;
+        this.PARA = PARA;
     }
 
     /**Constructs a request model for extracting information about event times
      *
-     * @param para The title of an event
+     * @param PARA The title of an event
      */
-    public ExtractInfoRequestModel(String para){
-        this.para = para;
+    public ExtractInfoRequestModel(String PARA){
+        this.PARA = PARA;
+        KEYWORD = null;
     }
 
-    /**A getter for the attribute para
+    /**A getter for the attribute PARA
      *
      * @return A string containing the username of a participant,
      *         the username of an organization,  or the title of an event
      */
     public String getPara() {
-        return para;
+        return PARA;
     }
 
-    /**A getter for the attribute keyword
+    /**A getter for the attribute KEYWORD
      *
      * @return A string containing a command indicating which information
      *         to get
      */
     public String getKeyword() {
-        return keyword;
+        return KEYWORD;
     }
 }

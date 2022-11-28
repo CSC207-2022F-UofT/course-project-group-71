@@ -4,14 +4,14 @@ import controller_presenter_view.screens.LabelTextPanel;
 
 import javax.swing.*;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
+import static tutorial.Main.getConstantX;
+import static tutorial.Main.getConstantY;
 
 public class OrgAccountPage extends JFrame {
-    private final String orgUsername;
-    JPasswordField oldPassword = new JPasswordField(15);
-    JPasswordField newPassword = new JPasswordField(15);
-    JPasswordField retypeNewPassword = new JPasswordField(15);
+    final String orgUsername;
+    final JPasswordField oldPassword = new JPasswordField(15);
+    final JPasswordField newPassword = new JPasswordField(15);
+    final JPasswordField retypeNewPassword = new JPasswordField(15);
 
     /**The method generate a Organization Account page and allowed the organization to reset password.
      * It contains a title with organization's username.

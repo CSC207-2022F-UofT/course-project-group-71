@@ -12,25 +12,25 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
+import static tutorial.Main.getConstantX;
+import static tutorial.Main.getConstantY;
 
 
 
 
 public class EventDetailsPage extends JFrame {
 
-    String eventTitle;
+    final String EVENT_TITLE;
 
     /** When this constructor is called it will generate an event details page for the event of interest using the
-     * eventTitle parameter. The page will contain information such as the event's name, description, time, and location.
+     * EVENT_TITLE parameter. The page will contain information such as the event's name, description, time, and location.
      *
-     * @param eventTitle The title for the event we want to get the details page for
+     * @param EVENT_TITLE The title for the event we want to get the details page for
      */
-    public EventDetailsPage(String eventTitle) throws SQLException, ClassNotFoundException {
+    public EventDetailsPage(String EVENT_TITLE) throws SQLException, ClassNotFoundException {
 
         EventDsGateway e= new EventFileUser();
-        this.eventTitle = eventTitle;
+        this.EVENT_TITLE = EVENT_TITLE;
         this.setSize(getConstantX() - 300, getConstantY() - 500);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
@@ -44,16 +44,16 @@ public class EventDetailsPage extends JFrame {
         //Adds text for event name
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        JLabel eventName = new JLabel("Event Title: " + this.eventTitle);
+        JLabel eventName = new JLabel("Event Title: " + this.EVENT_TITLE);
 
         ExtractInfoInputBoundary interactor = new ExtractInfoInteractor(e);
         ExtractInfoController controller = new ExtractInfoController(interactor);
-        ExtractInfoResponseModel<String> response1= controller.extractEvent("getDescription",this.eventTitle);
+        ExtractInfoResponseModel<String> response1= controller.extractEvent("getDescription",this.EVENT_TITLE);
 
         //Adds text for event description
         JLabel description = new JLabel("Description: " + response1.getStr());
 
-        ExtractInfoResponseModel<Integer> response2= controller.extractEventTime(this.eventTitle);
+        ExtractInfoResponseModel<Integer> response2= controller.extractEventTime(this.EVENT_TITLE);
 
         //Adds text for event time
         ArrayList<Integer> times = response2.getAl();
@@ -62,7 +62,7 @@ public class EventDetailsPage extends JFrame {
 
         ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
         ExtractInfoController controller3= new ExtractInfoController(interactor3);
-        ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",this.eventTitle);
+        ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",this.EVENT_TITLE);
 
         //Adds text for event location
         JLabel location = new JLabel("Location: "+response3.getStr());
