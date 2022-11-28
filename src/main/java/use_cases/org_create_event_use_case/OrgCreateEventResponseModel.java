@@ -1,7 +1,9 @@
 package use_cases.org_create_event_use_case;
 
-/** The response model sent back to the page.
+/** The response model containing information sent back to the page.
  *  Containing message and title.
+ *  There is a setter method for the message and getter methods
+ *  for both the message and title.
  */
 public class OrgCreateEventResponseModel {
 
