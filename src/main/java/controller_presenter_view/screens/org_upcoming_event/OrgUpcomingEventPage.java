@@ -40,11 +40,12 @@ public class OrgUpcomingEventPage extends JFrame {
         this.setSize(getConstantX(), getConstantY());
 
         this.setLocationRelativeTo(null);
-
+        //Initialize the title of the upcoming event page
         JLabel title = new JLabel(this.orgUsername + "'s Upcoming Event Page");
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
+        //This is the back button
         JButton back = new JButton("Back");
         back.addActionListener(new OrgUpcomingEventActionListener(this,orgUsername));
         back.setBounds(0, 100, 150, 30);
@@ -62,6 +63,7 @@ public class OrgUpcomingEventPage extends JFrame {
 
         ArrayList<String> upcomingEvents = response1.getAl();
 
+        //If there are no upcoming event, there will only be the title and back button, but no any events.
         int numberOfEvent = upcomingEvents.size();
         if (numberOfEvent == 0){
             this.add(title);
@@ -76,6 +78,8 @@ public class OrgUpcomingEventPage extends JFrame {
         int x = 0;
         int y = 0;
 
+        //When these code is running, there will be at least 1 event so this for loop will add the upcoming events, one
+        //event at each loop.
         for (String upcomingEventTitle : upcomingEvents) {
 
             JButton eventTitle = new JButton(upcomingEventTitle);
@@ -83,11 +87,13 @@ public class OrgUpcomingEventPage extends JFrame {
             eventTitle.setBounds (x, y, 250, 30);
             eventTitle.setVisible(true);
 
+            //This will add the event title
             ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
             ExtractInfoController controller2= new ExtractInfoController(interactor2);
             ExtractInfoResponseModel<Integer> response2= controller2.extractEventTime(upcomingEventTitle);
 
 
+            //This will add event's time
             ArrayList<Integer> times = response2.getAl();
             String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
                     times.get(3) + ":" + times.get(4);
@@ -97,6 +103,7 @@ public class OrgUpcomingEventPage extends JFrame {
             eventTime.setVisible(true);
 
 
+            //This will add the event's location
             ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
             ExtractInfoController controller3= new ExtractInfoController(interactor3);
             ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
@@ -108,12 +115,14 @@ public class OrgUpcomingEventPage extends JFrame {
             eventLocation.setBounds (x+20, y+70, 250, 30);
             eventLocation.setVisible(true);
 
+            //This is the notify button
             JButton notify = new JButton("Notify");
             notify.setActionCommand(upcomingEventTitle + "Notify");
             notify.addActionListener(new OrgUpcomingEventActionListener(this,orgUsername));
             notify.setBounds (x+250, y+15, 100, 30);
             notify.setVisible(true);
 
+            //This is the delete button
             JButton delete = new JButton("Delete");
             delete.setActionCommand(upcomingEventTitle + "Delete");
             delete.addActionListener(new OrgUpcomingEventActionListener(this,orgUsername));
