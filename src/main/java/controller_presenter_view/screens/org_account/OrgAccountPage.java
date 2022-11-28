@@ -4,8 +4,8 @@ import controller_presenter_view.screens.LabelTextPanel;
 
 import javax.swing.*;
 
-import static tutorial.Main.getConstantX;
-import static tutorial.Main.getConstantY;
+import static Main.getConstantX;
+import static Main.getConstantY;
 
 public class OrgAccountPage extends JFrame {
     final String orgUsername;

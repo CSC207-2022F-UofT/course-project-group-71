@@ -1,5 +1,3 @@
-package tutorial;
-
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
