@@ -9,7 +9,7 @@ public class ExtractInfoRequestModel {
      * participants, organizers, and events (except for event times)
      *
      * @param keyword A command indicating which information to get
-     * @param para The username of a particpant, the username of an organization,
+     * @param para The username of a participant, the username of an organization,
      *             or the title of an event
      */
     public ExtractInfoRequestModel(String keyword,String para){
