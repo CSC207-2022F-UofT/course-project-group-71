@@ -1,6 +1,6 @@
 package use_cases.org_create_event_use_case;
 
-/** The response model for the organization create event use case.
+/** The request model for the organization create event use case.
  *  Contains the attributes orgUsername, title, description, location, year, month, day, hour, minute.
  *  There is a getter method for each class attribute.
  */
