@@ -39,109 +39,119 @@ public class OrgHomeActionListener implements ActionListener {
 
         this.orgHomePage.dispose();
 
-        if (page.equals("Account")){
-            new OrgAccountPage(this.orgHomePage.getOrgUsername());
-        } else if (page.equals("Unpublished Event")) {
-            try {
-                new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        } else if (page.equals("Upcoming Event")) {
-            try {
-                new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            ParDsGateway parDsGateway = new ParFileUser();
-            OrgDsGateway orgDsGateway = new OrgFileUser();
-            EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
-            UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                    eventDsGateway, upcomingToPastOutputBoundary);
-            UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel;
-            try {
-                responseModel = controller.convertToPast("O",
-                        this.orgHomePage.getOrgUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            if (!responseModel.getEventsToPast().isEmpty()){
-                JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
-                NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
-                        orgNotifyEventOutputBoundary);
-                NotifyEventController notifyEventController = new NotifyEventController(interactor2);
-                for (String event : responseModel.getEventsToPast()){
-                    try {
-                        notifyEventController.sendNotification("Past", event);
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
+        switch (page) {
+            case "Account":
+                new OrgAccountPage(this.orgHomePage.getOrgUsername());
+                break;
+            case "Unpublished Event":
+                try {
+                    new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
                 }
-            }
-        } else if (page.equals("Past Event")) {
-            try {
-                new OrgPastEventPage(this.orgHomePage.getOrgUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            ParDsGateway parDsGateway = new ParFileUser();
-            OrgDsGateway orgDsGateway = new OrgFileUser();
-            EventDsGateway eventDsGateway = new EventFileUser();
-            UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
-            UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                    eventDsGateway, upcomingToPastOutputBoundary);
-            UpcomingToPastController controller = new UpcomingToPastController(interactor);
-            UpcomingToPastResponseModel responseModel;
-            try {
-                responseModel = controller.convertToPast("O",
-                        this.orgHomePage.getOrgUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            if (!responseModel.getEventsToPast().isEmpty()){
-                JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
-                NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
-                        orgNotifyEventOutputBoundary);
-                NotifyEventController notifyEventController = new NotifyEventController(interactor2);
-                for (String event : responseModel.getEventsToPast()){
-                    try {
+                break;
+            case "Upcoming Event": {
+                try {
+                    new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                ParDsGateway parDsGateway = new ParFileUser();
+                OrgDsGateway orgDsGateway = new OrgFileUser();
+                EventDsGateway eventDsGateway = new EventFileUser();
+                UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
+                UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
+                        eventDsGateway, upcomingToPastOutputBoundary);
+                UpcomingToPastController controller = new UpcomingToPastController(interactor);
+                UpcomingToPastResponseModel responseModel;
+                try {
+                    responseModel = controller.convertToPast("O",
+                            this.orgHomePage.getOrgUsername());
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                if (!responseModel.getEventsToPast().isEmpty()) {
+                    JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
+                    NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
+                    NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
+                            orgNotifyEventOutputBoundary);
+                    NotifyEventController notifyEventController = new NotifyEventController(interactor2);
+                    for (String event : responseModel.getEventsToPast()) {
                         try {
                             notifyEventController.sendNotification("Past", event);
-                        } catch (ClassNotFoundException e) {
+                        } catch (SQLException | ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
                     }
                 }
+                break;
             }
-        } else if (page.equals("Follower")) {
-            try {
-                new OrgFollowerPage(this.orgHomePage.getOrgUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
+            case "Past Event": {
+                try {
+                    new OrgPastEventPage(this.orgHomePage.getOrgUsername());
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                ParDsGateway parDsGateway = new ParFileUser();
+                OrgDsGateway orgDsGateway = new OrgFileUser();
+                EventDsGateway eventDsGateway = new EventFileUser();
+                UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
+                UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
+                        eventDsGateway, upcomingToPastOutputBoundary);
+                UpcomingToPastController controller = new UpcomingToPastController(interactor);
+                UpcomingToPastResponseModel responseModel;
+                try {
+                    responseModel = controller.convertToPast("O",
+                            this.orgHomePage.getOrgUsername());
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                if (!responseModel.getEventsToPast().isEmpty()) {
+                    JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
+                    NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
+                    NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
+                            orgNotifyEventOutputBoundary);
+                    NotifyEventController notifyEventController = new NotifyEventController(interactor2);
+                    for (String event : responseModel.getEventsToPast()) {
+                        try {
+                            try {
+                                notifyEventController.sendNotification("Past", event);
+                            } catch (ClassNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+                break;
             }
-        } else{
-            UserLoginOutputBoundary userLoginOutputBoundary = new UserLoginPresenter();
+            case "Follower":
+                try {
+                    new OrgFollowerPage(this.orgHomePage.getOrgUsername());
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            default: {
+                UserLoginOutputBoundary userLoginOutputBoundary = new UserLoginPresenter();
 
-            ParDsGateway parDsGateway = new ParFileUser();
+                ParDsGateway parDsGateway = new ParFileUser();
 
-            ParHomeOutputBoundary parHomeOutputBoundary = new ParHomePresenter();
+                ParHomeOutputBoundary parHomeOutputBoundary = new ParHomePresenter();
 
-            OrgDsGateway orgDsGateway = new OrgFileUser();
+                OrgDsGateway orgDsGateway = new OrgFileUser();
 
-            OrgHomeOutputBoundary orgHomeOutputBoundary = new OrgHomePresenter();
+                OrgHomeOutputBoundary orgHomeOutputBoundary = new OrgHomePresenter();
 
-            UserLoginInputBoundary interactor = new UserLoginInteractor(
-                    userLoginOutputBoundary, parDsGateway, parHomeOutputBoundary, orgDsGateway, orgHomeOutputBoundary);
+                UserLoginInputBoundary interactor = new UserLoginInteractor(
+                        userLoginOutputBoundary, parDsGateway, parHomeOutputBoundary, orgDsGateway, orgHomeOutputBoundary);
 
-            UserLoginController userLoginController = new UserLoginController(interactor);
+                UserLoginController userLoginController = new UserLoginController(interactor);
 
-            new LoginPage(userLoginController);
+                new LoginPage(userLoginController);
+                break;
+            }
         }
     }
 }
