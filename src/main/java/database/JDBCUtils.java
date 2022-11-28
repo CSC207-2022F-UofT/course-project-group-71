@@ -2,9 +2,23 @@ package database;
 
 import java.sql.*;
 
-import static tutorial.Main.*;
-
 public class JDBCUtils {
+    static String databaseUrl = "jdbc:mysql://localhost:3306/db2";
+    static String databaseUsername = "root";
+    static String databasePassword = "1234";
+
+    public static String getDatabaseUrl() {
+        return databaseUrl;
+    }
+
+    public static String getDatabaseUsername() {
+        return databaseUsername;
+    }
+
+    public static String getDatabasePassword() {
+        return databasePassword;
+    }
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
     }

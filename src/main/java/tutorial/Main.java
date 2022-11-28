@@ -14,16 +14,14 @@ import use_cases.user_login_use_case.*;
 public class Main {
     static int CONSTANT_X = 800;
     static int CONSTANT_Y = 800;
-    static String databaseUrl = "jdbc:mysql://localhost:3306/db2";
-    static String databaseUsername = "root";
-    static String databasePassword = "1234";
-    public static String getDatabaseUrl() {return databaseUrl;}
-    public static String getDatabaseUsername() {return databaseUsername;}
-    public static String getDatabasePassword(){return databasePassword;}
+
     public static int getConstantX(){return CONSTANT_X;}
     public static int getConstantY(){return CONSTANT_Y;}
     public static void main(String[] args) {
+        generateLoginPage();
+    }
 
+    public static UserLoginController generateLoginPage() {
         UserLoginOutputBoundary userLoginOutputBoundary =  new UserLoginPresenter();
 
         ParDsGateway parDsGateway = new ParFileUser();
@@ -41,6 +39,7 @@ public class Main {
 
         new LoginPage(userLoginController);
 
+        return userLoginController;
     }
 
 }

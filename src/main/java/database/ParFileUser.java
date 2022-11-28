@@ -548,15 +548,6 @@ public class ParFileUser implements ParDsGateway {
         } catch (SQLException e) {
             throw new SQLException();
         }finally {
-            if(rs != null){
-                rs.close();
-            }
-            if(stmt != null){
-                stmt.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
             JDBCUtils.close_rs(rs);
             JDBCUtils.close(stmt,conn);
         }

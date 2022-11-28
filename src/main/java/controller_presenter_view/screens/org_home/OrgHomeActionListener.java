@@ -1,12 +1,10 @@
 package controller_presenter_view.screens.org_home;
 
 import database.*;
+import tutorial.Main;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
-import controller_presenter_view.screens.user_login.LoginPage;
-import controller_presenter_view.screens.user_login.UserLoginController;
-import controller_presenter_view.screens.user_login.UserLoginPresenter;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
 import controller_presenter_view.screens.org_account.OrgAccountPage;
@@ -14,14 +12,12 @@ import controller_presenter_view.screens.org_follower.OrgFollowerPage;
 import controller_presenter_view.screens.org_past_event.OrgPastEventPage;
 import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
 import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventPage;
-import controller_presenter_view.screens.par_home.ParHomePresenter;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
-import use_cases.user_login_use_case.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -134,22 +130,7 @@ public class OrgHomeActionListener implements ActionListener {
                 }
                 break;
             default: {
-                UserLoginOutputBoundary userLoginOutputBoundary = new UserLoginPresenter();
-
-                ParDsGateway parDsGateway = new ParFileUser();
-
-                ParHomeOutputBoundary parHomeOutputBoundary = new ParHomePresenter();
-
-                OrgDsGateway orgDsGateway = new OrgFileUser();
-
-                OrgHomeOutputBoundary orgHomeOutputBoundary = new OrgHomePresenter();
-
-                UserLoginInputBoundary interactor = new UserLoginInteractor(
-                        userLoginOutputBoundary, parDsGateway, parHomeOutputBoundary, orgDsGateway, orgHomeOutputBoundary);
-
-                UserLoginController userLoginController = new UserLoginController(interactor);
-
-                new LoginPage(userLoginController);
+                Main.generateLoginPage();
                 break;
             }
         }

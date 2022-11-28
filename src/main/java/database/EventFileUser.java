@@ -245,12 +245,6 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
             JDBCUtils.close(stmt,conn);
 
         }
@@ -277,24 +271,12 @@ public class EventFileUser implements EventDsGateway{
             int count1 = stmt.executeUpdate(sql1);
             String sql2 = "insert into past_events_for_org(org_username, event_title) values('" + orgName + "','" + title + "');";
             int count2 = stmt.executeUpdate(sql2);
-            System.out.println(count2);
-            if (count1 > 0 && count2 > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
         } catch (ClassNotFoundException e) {
             throw new ClassNotFoundException();
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+            JDBCUtils.close(stmt,conn);
 
         }
     }
@@ -325,13 +307,7 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
+            JDBCUtils.close(stmt,conn);
         }
     }
 
@@ -361,15 +337,8 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return l;
     }
@@ -420,21 +389,10 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         }finally {
-            if(rs1 != null){
-                rs1.close();
-            }
-            if(rs2 != null){
-                rs2.close();
-            }
-            if(rs3 != null){
-                rs3.close();
-            }
-            if(stmt != null){
-                stmt.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs1);
+            JDBCUtils.close_rs(rs2);
+            JDBCUtils.close_rs(rs3);
+            JDBCUtils.close(stmt,conn);
         }
         return status;
     }
@@ -506,15 +464,8 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         }finally {
-            if(rs != null){
-                rs.close();
-            }
-            if(stmt != null){
-                stmt.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return description;
     }
@@ -543,15 +494,8 @@ public class EventFileUser implements EventDsGateway{
         } catch (SQLException e) {
             throw new SQLException();
         }finally {
-            if(rs != null){
-                rs.close();
-            }
-            if(stmt != null){
-                stmt.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return location;
     }
