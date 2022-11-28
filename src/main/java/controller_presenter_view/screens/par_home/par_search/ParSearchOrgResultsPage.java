@@ -5,9 +5,9 @@ package controller_presenter_view.screens.par_home.par_search;
 import database.ParDsGateway;
 import database.ParFileUser;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
-import extract_information_use_case.ExtractInfoInputBoundary;
-import extract_information_use_case.ExtractInfoInteractor;
-import extract_information_use_case.ExtractInfoResponseModel;
+import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
+import use_cases.extract_information_use_case.ExtractInfoInteractor;
+import use_cases.extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;

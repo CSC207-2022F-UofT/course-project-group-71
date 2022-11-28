@@ -6,10 +6,10 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import par_leave_event_use_case.ParLeaveEventInputBoundary;
-import par_leave_event_use_case.ParLeaveEventInteractor;
-import par_leave_event_use_case.ParLeaveEventOutputBoundary;
-import par_leave_event_use_case.ParLeaveEventResponseModel;
+import use_cases.par_leave_event_use_case.ParLeaveEventInputBoundary;
+import use_cases.par_leave_event_use_case.ParLeaveEventInteractor;
+import use_cases.par_leave_event_use_case.ParLeaveEventOutputBoundary;
+import use_cases.par_leave_event_use_case.ParLeaveEventResponseModel;
 import controller_presenter_view.common_view.EventDetailsPage;
 import controller_presenter_view.screens.par_home.ParHomePage;
 

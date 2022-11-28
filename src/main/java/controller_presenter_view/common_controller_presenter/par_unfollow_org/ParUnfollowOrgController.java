@@ -1,8 +1,8 @@
 package controller_presenter_view.common_controller_presenter.par_unfollow_org;
 
-import par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
-import par_unfollow_org_use_case.ParUnfollowOrgRequestModel;
-import par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgRequestModel;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
 
 import java.sql.SQLException;
 

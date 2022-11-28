@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
+import use_cases.notify_event_use_case.NotifyEventInputBoundary;
+import use_cases.notify_event_use_case.NotifyEventInteractor;
+import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
+import use_cases.notify_event_use_case.NotifyEventResponseModel;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.par_home;
 
-import user_login_use_case.ParHomeOutputBoundary;
-import user_login_use_case.UserLoginResponseModel;
+import use_cases.user_login_use_case.ParHomeOutputBoundary;
+import use_cases.user_login_use_case.UserLoginResponseModel;
 
 public class ParHomePresenter implements ParHomeOutputBoundary {
     /**The method prepare the home page view for the participant.

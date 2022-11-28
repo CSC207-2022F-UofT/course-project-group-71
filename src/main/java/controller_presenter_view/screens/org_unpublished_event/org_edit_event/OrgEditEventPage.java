@@ -2,7 +2,7 @@ package controller_presenter_view.screens.org_unpublished_event.org_edit_event;
 
 import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
 import database.EventDsGateway;
-import org_edit_event_use_case.OrgEditEventResponseModel;
+import use_cases.org_edit_event_use_case.OrgEditEventResponseModel;
 import controller_presenter_view.screens.LabelTextPanel;
 
 import javax.swing.*;

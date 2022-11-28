@@ -1,8 +1,8 @@
 package controller_presenter_view.screens.org_unpublished_event.org_create_event;
 
-import org_create_event_use_case.OrgCreateEventInputBoundary;
-import org_create_event_use_case.OrgCreateEventRequestModel;
-import org_create_event_use_case.OrgCreateEventResponseModel;
+import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
+import use_cases.org_create_event_use_case.OrgCreateEventRequestModel;
+import use_cases.org_create_event_use_case.OrgCreateEventResponseModel;
 
 import java.sql.SQLException;
 

@@ -1,8 +1,8 @@
 package controller_presenter_view.common_controller_presenter.notify_event;
 
-import notify_event_use_case.NotifyEventInputBoundary;
-import notify_event_use_case.NotifyEventRequestModel;
-import notify_event_use_case.NotifyEventResponseModel;
+import use_cases.notify_event_use_case.NotifyEventInputBoundary;
+import use_cases.notify_event_use_case.NotifyEventRequestModel;
+import use_cases.notify_event_use_case.NotifyEventResponseModel;
 
 import java.sql.SQLException;
 

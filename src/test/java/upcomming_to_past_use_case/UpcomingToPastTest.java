@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
-import upcoming_to_past_use_case.UpcomingToPastInputBoundary;
-import upcoming_to_past_use_case.UpcomingToPastInteractor;
-import upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
-import upcoming_to_past_use_case.UpcomingToPastResponseModel;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

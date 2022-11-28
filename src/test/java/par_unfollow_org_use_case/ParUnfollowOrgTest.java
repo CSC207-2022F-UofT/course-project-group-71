@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgController;
 import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInteractor;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
 
 import java.util.ArrayList;
 

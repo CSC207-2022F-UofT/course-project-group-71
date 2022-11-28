@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventPresenter;
+import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
+import use_cases.org_create_event_use_case.OrgCreateEventInteractor;
+import use_cases.org_create_event_use_case.OrgCreateEventOutputBoundary;
+import use_cases.org_create_event_use_case.OrgCreateEventResponseModel;
 
 import static org.junit.jupiter.api.Assertions.*;
 

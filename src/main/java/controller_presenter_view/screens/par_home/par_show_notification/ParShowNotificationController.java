@@ -1,6 +1,8 @@
 package controller_presenter_view.screens.par_home.par_show_notification;
 
-import par_show_notification_use_case.*;
+import use_cases.par_show_notification_use_case.ParShowNotificationInputBoundary;
+import use_cases.par_show_notification_use_case.ParShowNotificationRequestModel;
+import use_cases.par_show_notification_use_case.ParShowNotificationResponseModel;
 
 import java.sql.SQLException;
 

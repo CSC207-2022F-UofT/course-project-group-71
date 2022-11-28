@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.par_home.par_search.ParSearchEventController;
 import controller_presenter_view.screens.par_home.par_search.ParSearchEventPresenter;
+import use_cases.par_search_event_use_case.ParSearchEventInputBoundary;
+import use_cases.par_search_event_use_case.ParSearchEventInteractor;
+import use_cases.par_search_event_use_case.ParSearchEventResponseModel;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,9 @@ package controller_presenter_view.screens.org_follower;
 
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
 import database.*;
-import extract_information_use_case.*;
+import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
+import use_cases.extract_information_use_case.ExtractInfoInteractor;
+import use_cases.extract_information_use_case.ExtractInfoResponseModel;
 
 
 import javax.swing.*;

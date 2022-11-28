@@ -7,7 +7,10 @@ import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
 import controller_presenter_view.screens.org_home.OrgHomePage;
-import user_reset_password_use_case.*;
+import use_cases.user_reset_password_use_case.UserResetPasswordInputBoundary;
+import use_cases.user_reset_password_use_case.UserResetPasswordInteractor;
+import use_cases.user_reset_password_use_case.UserResetPasswordOutputBoundary;
+import use_cases.user_reset_password_use_case.UserResetPasswordResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

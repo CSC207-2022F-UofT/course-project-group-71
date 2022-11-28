@@ -1,9 +1,9 @@
 package controller_presenter_view.screens.org_home;
 
 import database.*;
-import notify_event_use_case.NotifyEventInputBoundary;
-import notify_event_use_case.NotifyEventInteractor;
-import notify_event_use_case.NotifyEventOutputBoundary;
+import use_cases.notify_event_use_case.NotifyEventInputBoundary;
+import use_cases.notify_event_use_case.NotifyEventInteractor;
+import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
 import controller_presenter_view.screens.user_login.LoginPage;
 import controller_presenter_view.screens.user_login.UserLoginController;
 import controller_presenter_view.screens.user_login.UserLoginPresenter;
@@ -17,11 +17,11 @@ import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventPage
 import controller_presenter_view.screens.par_home.ParHomePresenter;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
-import upcoming_to_past_use_case.UpcomingToPastInputBoundary;
-import upcoming_to_past_use_case.UpcomingToPastInteractor;
-import upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
-import upcoming_to_past_use_case.UpcomingToPastResponseModel;
-import user_login_use_case.*;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
+import use_cases.user_login_use_case.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

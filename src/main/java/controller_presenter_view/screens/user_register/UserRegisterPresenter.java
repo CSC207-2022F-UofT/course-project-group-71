@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.user_register;
 import controller_presenter_view.common_view.ShowMessageView;
-import user_register_use_case.UserRegisterOutputBoundary;
-import user_register_use_case.UserRegisterResponseModel;
+import use_cases.user_register_use_case.UserRegisterOutputBoundary;
+import use_cases.user_register_use_case.UserRegisterResponseModel;
 
 public class UserRegisterPresenter implements UserRegisterOutputBoundary {
 

@@ -1,7 +1,7 @@
 package controller_presenter_view.common_controller_presenter.notify_event;
 
-import notify_event_use_case.NotifyEventOutputBoundary;
-import notify_event_use_case.NotifyEventResponseModel;
+import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
+import use_cases.notify_event_use_case.NotifyEventResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;
 
 public class NotifyEventPresenter implements NotifyEventOutputBoundary {

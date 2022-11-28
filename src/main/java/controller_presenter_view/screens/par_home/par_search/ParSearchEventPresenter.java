@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.par_home.par_search;
 
-import par_search_event_use_case.ParSearchEventOutputBoundary;
-import par_search_event_use_case.ParSearchEventResponseModel;
+import use_cases.par_search_event_use_case.ParSearchEventOutputBoundary;
+import use_cases.par_search_event_use_case.ParSearchEventResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;
 
 import java.sql.SQLException;

@@ -1,8 +1,8 @@
 package controller_presenter_view.screens.par_home.par_search;
 
-import par_search_org_use_case.ParSearchOrgInputBoundary;
-import par_search_org_use_case.ParSearchOrgRequestModel;
-import par_search_org_use_case.ParSearchOrgResponseModel;
+import use_cases.par_search_org_use_case.ParSearchOrgInputBoundary;
+import use_cases.par_search_org_use_case.ParSearchOrgRequestModel;
+import use_cases.par_search_org_use_case.ParSearchOrgResponseModel;
 
 import java.sql.SQLException;
 

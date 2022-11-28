@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.par_home.par_show_notification;
 
-import par_show_notification_use_case.ParShowNotificationOutputBoundary;
-import par_show_notification_use_case.ParShowNotificationResponseModel;
+import use_cases.par_show_notification_use_case.ParShowNotificationOutputBoundary;
+import use_cases.par_show_notification_use_case.ParShowNotificationResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;
 
 // Interface adapters layer

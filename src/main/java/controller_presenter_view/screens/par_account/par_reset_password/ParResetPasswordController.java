@@ -1,8 +1,8 @@
 package controller_presenter_view.screens.par_account.par_reset_password;
 
-import user_reset_password_use_case.UserResetPasswordInputBoundary;
-import user_reset_password_use_case.UserResetPasswordRequestModel;
-import user_reset_password_use_case.UserResetPasswordResponseModel;
+import use_cases.user_reset_password_use_case.UserResetPasswordInputBoundary;
+import use_cases.user_reset_password_use_case.UserResetPasswordRequestModel;
+import use_cases.user_reset_password_use_case.UserResetPasswordResponseModel;
 
 import java.sql.SQLException;
 

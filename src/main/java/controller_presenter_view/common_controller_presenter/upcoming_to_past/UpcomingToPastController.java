@@ -1,6 +1,8 @@
 package controller_presenter_view.common_controller_presenter.upcoming_to_past;
 
-import upcoming_to_past_use_case.*;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastRequestModel;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 import java.sql.SQLException;
 

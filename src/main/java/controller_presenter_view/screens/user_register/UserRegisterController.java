@@ -1,8 +1,8 @@
 package controller_presenter_view.screens.user_register;
 
-import user_register_use_case.UserRegisterInputBoundary;
-import user_register_use_case.UserRegisterRequestModel;
-import user_register_use_case.UserRegisterResponseModel;
+import use_cases.user_register_use_case.UserRegisterInputBoundary;
+import use_cases.user_register_use_case.UserRegisterRequestModel;
+import use_cases.user_register_use_case.UserRegisterResponseModel;
 
 import java.sql.SQLException;
 

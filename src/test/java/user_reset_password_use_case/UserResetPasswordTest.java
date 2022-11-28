@@ -10,6 +10,10 @@ import controller_presenter_view.screens.org_account.org_reset_password.OrgReset
 import controller_presenter_view.screens.org_account.org_reset_password.OrgResetPasswordPresenter;
 import controller_presenter_view.screens.par_account.par_reset_password.ParResetPasswordController;
 import controller_presenter_view.screens.par_account.par_reset_password.ParResetPasswordPresenter;
+import use_cases.user_reset_password_use_case.UserResetPasswordInputBoundary;
+import use_cases.user_reset_password_use_case.UserResetPasswordInteractor;
+import use_cases.user_reset_password_use_case.UserResetPasswordOutputBoundary;
+import use_cases.user_reset_password_use_case.UserResetPasswordResponseModel;
 
 import java.sql.SQLException;
 

@@ -9,7 +9,7 @@ import database.ParDsGateway;
 import database.ParFileUser;
 import controller_presenter_view.screens.org_home.OrgHomePresenter;
 import controller_presenter_view.screens.par_home.ParHomePresenter;
-import user_login_use_case.*;
+import use_cases.user_login_use_case.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

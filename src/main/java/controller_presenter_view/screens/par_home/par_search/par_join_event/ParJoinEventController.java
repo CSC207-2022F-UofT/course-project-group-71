@@ -1,8 +1,8 @@
 package controller_presenter_view.screens.par_home.par_search.par_join_event;
 
-import par_join_event_use_case.ParJoinEventInputBoundary;
-import par_join_event_use_case.ParJoinEventRequestModel;
-import par_join_event_use_case.ParJoinEventResponseModel;
+import use_cases.par_join_event_use_case.ParJoinEventInputBoundary;
+import use_cases.par_join_event_use_case.ParJoinEventRequestModel;
+import use_cases.par_join_event_use_case.ParJoinEventResponseModel;
 
 import java.sql.SQLException;
 

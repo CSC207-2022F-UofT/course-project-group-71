@@ -5,7 +5,6 @@ import controller_presenter_view.screens.par_home.par_search.ParSearchEventPrese
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgController;
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgPresenter;
 import database.*;
-import par_search_event_use_case.*;
 import controller_presenter_view.screens.user_login.LoginPage;
 import controller_presenter_view.screens.org_home.OrgHomePresenter;
 import controller_presenter_view.screens.user_login.UserLoginController;
@@ -13,12 +12,14 @@ import controller_presenter_view.screens.user_login.UserLoginPresenter;
 import controller_presenter_view.screens.par_account.ParAccountPage;
 import controller_presenter_view.screens.par_followed_org.ParFollowedOrgPage;
 import controller_presenter_view.screens.par_past_event.ParPastEventPage;
-import par_search_org_use_case.ParSearchOrgInputBoundary;
-import par_search_org_use_case.ParSearchOrgInteractor;
-import par_search_org_use_case.ParSearchOrgOutputBoundary;
+import use_cases.par_search_event_use_case.ParSearchEventInputBoundary;
+import use_cases.par_search_event_use_case.ParSearchEventInteractor;
+import use_cases.par_search_event_use_case.ParSearchEventOutputBoundary;
+import use_cases.par_search_org_use_case.ParSearchOrgInputBoundary;
+import use_cases.par_search_org_use_case.ParSearchOrgInteractor;
+import use_cases.par_search_org_use_case.ParSearchOrgOutputBoundary;
 import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventPage;
-import user_login_use_case.*;
-
+import use_cases.user_login_use_case.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

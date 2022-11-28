@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgController;
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgPresenter;
+import use_cases.par_search_org_use_case.ParSearchOrgInputBoundary;
+import use_cases.par_search_org_use_case.ParSearchOrgInteractor;
+import use_cases.par_search_org_use_case.ParSearchOrgResponseModel;
 
 import java.util.ArrayList;
 

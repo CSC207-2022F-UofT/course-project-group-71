@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgController;
 import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgPresenter;
+import use_cases.par_follow_org_use_case.ParFollowOrgInputBoundary;
+import use_cases.par_follow_org_use_case.ParFollowOrgInteractor;
+import use_cases.par_follow_org_use_case.ParFollowOrgOutputBoundary;
+import use_cases.par_follow_org_use_case.ParFollowOrgResponseModel;
 
 import java.util.ArrayList;
 

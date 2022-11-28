@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Order;
 import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
 import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventPresenter;
+import use_cases.org_delete_event_use_case.OrgDeleteEventInputBoundary;
+import use_cases.org_delete_event_use_case.OrgDeleteEventInteractor;
+import use_cases.org_delete_event_use_case.OrgDeleteEventOutputBoundary;
+import use_cases.org_delete_event_use_case.OrgDeleteEventResponseModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

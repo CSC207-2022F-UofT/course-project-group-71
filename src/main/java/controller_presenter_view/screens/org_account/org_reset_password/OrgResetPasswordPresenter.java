@@ -1,8 +1,8 @@
 package controller_presenter_view.screens.org_account.org_reset_password;
 
 import controller_presenter_view.common_view.ShowMessageView;
-import user_reset_password_use_case.UserResetPasswordOutputBoundary;
-import user_reset_password_use_case.UserResetPasswordResponseModel;
+import use_cases.user_reset_password_use_case.UserResetPasswordOutputBoundary;
+import use_cases.user_reset_password_use_case.UserResetPasswordResponseModel;
 
 public class OrgResetPasswordPresenter implements UserResetPasswordOutputBoundary {
     @Override

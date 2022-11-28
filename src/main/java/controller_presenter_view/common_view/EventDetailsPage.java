@@ -4,7 +4,9 @@ package controller_presenter_view.common_view;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
 import database.EventDsGateway;
 import database.EventFileUser;
-import extract_information_use_case.*;
+import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
+import use_cases.extract_information_use_case.ExtractInfoInteractor;
+import use_cases.extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.sql.SQLException;

@@ -1,7 +1,7 @@
 package controller_presenter_view.common_controller_presenter.upcoming_to_past;
 
-import upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
-import upcoming_to_past_use_case.UpcomingToPastResponseModel;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
+import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 public class UpcomingToPastPresenter implements UpcomingToPastOutputBoundary {
     @Override

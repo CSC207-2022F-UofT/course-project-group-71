@@ -2,9 +2,9 @@ package controller_presenter_view.screens.par_followed_org;
 
 import database.ParDsGateway;
 import database.ParFileUser;
-import par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
-import par_unfollow_org_use_case.ParUnfollowOrgInteractor;
-import par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInteractor;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
 import controller_presenter_view.common_view.OrgDetailsPage;
 import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgController;
 import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;

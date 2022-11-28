@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.org_unpublished_event.org_edit_event;
 
-import org_edit_event_use_case.OrgEditEventOutputBoundary;
-import org_edit_event_use_case.OrgEditEventResponseModel;
+import use_cases.org_edit_event_use_case.OrgEditEventOutputBoundary;
+import use_cases.org_edit_event_use_case.OrgEditEventResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;
 
 public class OrgEditEventPresenter implements OrgEditEventOutputBoundary {

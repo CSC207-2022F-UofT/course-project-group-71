@@ -9,7 +9,7 @@ import controller_presenter_view.screens.user_login.UserLoginController;
 import controller_presenter_view.screens.user_login.UserLoginPresenter;
 import controller_presenter_view.screens.org_home.OrgHomePresenter;
 import controller_presenter_view.screens.par_home.ParHomePresenter;
-import user_login_use_case.*;
+import use_cases.user_login_use_case.*;
 
 public class HelloWorld {
     static int CONSTANT_X = 800;

@@ -1,8 +1,8 @@
 package controller_presenter_view.common_controller_presenter.par_leave_event;
 
-import par_leave_event_use_case.ParLeaveEventInputBoundary;
-import par_leave_event_use_case.ParLeaveEventRequestModel;
-import par_leave_event_use_case.ParLeaveEventResponseModel;
+import use_cases.par_leave_event_use_case.ParLeaveEventInputBoundary;
+import use_cases.par_leave_event_use_case.ParLeaveEventRequestModel;
+import use_cases.par_leave_event_use_case.ParLeaveEventResponseModel;
 
 import java.sql.SQLException;
 

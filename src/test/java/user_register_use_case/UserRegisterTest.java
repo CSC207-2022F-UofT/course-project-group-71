@@ -8,6 +8,9 @@ import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import use_cases.user_register_use_case.UserRegisterInputBoundary;
+import use_cases.user_register_use_case.UserRegisterInteractor;
+import use_cases.user_register_use_case.UserRegisterResponseModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

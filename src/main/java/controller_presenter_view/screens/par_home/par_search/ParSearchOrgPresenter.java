@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.par_home.par_search;
 
-import par_search_org_use_case.ParSearchOrgOutputBoundary;
-import par_search_org_use_case.ParSearchOrgResponseModel;
+import use_cases.par_search_org_use_case.ParSearchOrgOutputBoundary;
+import use_cases.par_search_org_use_case.ParSearchOrgResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;
 
 import java.util.ArrayList;

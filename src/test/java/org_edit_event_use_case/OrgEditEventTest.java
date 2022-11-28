@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Order;
 import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventPresenter;
+import use_cases.org_edit_event_use_case.OrgEditEventInputBoundary;
+import use_cases.org_edit_event_use_case.OrgEditEventInteractor;
+import use_cases.org_edit_event_use_case.OrgEditEventOutputBoundary;
+import use_cases.org_edit_event_use_case.OrgEditEventResponseModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -4,10 +4,10 @@ import controller_presenter_view.screens.par_home.par_show_notification.ParShowN
 import controller_presenter_view.screens.par_home.par_show_notification.ParShowNotificationPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
-import par_show_notification_use_case.ParShowNotificationInputBoundary;
-import par_show_notification_use_case.ParShowNotificationInteractor;
-import par_show_notification_use_case.ParShowNotificationOutputBoundary;
-import par_show_notification_use_case.ParShowNotificationResponseModel;
+import use_cases.par_show_notification_use_case.ParShowNotificationInputBoundary;
+import use_cases.par_show_notification_use_case.ParShowNotificationInteractor;
+import use_cases.par_show_notification_use_case.ParShowNotificationOutputBoundary;
+import use_cases.par_show_notification_use_case.ParShowNotificationResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

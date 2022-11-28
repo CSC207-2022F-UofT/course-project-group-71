@@ -1,7 +1,7 @@
 package controller_presenter_view.common_controller_presenter.par_leave_event;
 
-import par_leave_event_use_case.ParLeaveEventOutputBoundary;
-import par_leave_event_use_case.ParLeaveEventResponseModel;
+import use_cases.par_leave_event_use_case.ParLeaveEventOutputBoundary;
+import use_cases.par_leave_event_use_case.ParLeaveEventResponseModel;
 
 public class ParLeaveEventPresenter implements ParLeaveEventOutputBoundary {
 

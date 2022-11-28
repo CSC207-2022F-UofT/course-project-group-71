@@ -2,17 +2,20 @@ package controller_presenter_view.screens.par_home.par_search;
 
 import database.ParDsGateway;
 import database.ParFileUser;
-import par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
-import par_unfollow_org_use_case.ParUnfollowOrgInteractor;
-import par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
-import par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
+import use_cases.par_follow_org_use_case.ParFollowOrgInputBoundary;
+import use_cases.par_follow_org_use_case.ParFollowOrgInteractor;
+import use_cases.par_follow_org_use_case.ParFollowOrgOutputBoundary;
+import use_cases.par_follow_org_use_case.ParFollowOrgResponseModel;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInteractor;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
+import use_cases.par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
 import controller_presenter_view.common_view.OrgDetailsPage;
 import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgController;
 import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgPresenter;
 import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgController;
 import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;
 import controller_presenter_view.screens.par_home.ParHomePage;
-import par_follow_org_use_case.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -7,8 +7,8 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import user_register_use_case.UserRegisterInputBoundary;
-import user_register_use_case.UserRegisterInteractor;
+import use_cases.user_register_use_case.UserRegisterInputBoundary;
+import use_cases.user_register_use_case.UserRegisterInteractor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
