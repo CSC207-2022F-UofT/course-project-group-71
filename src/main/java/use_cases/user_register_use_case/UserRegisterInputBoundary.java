@@ -13,4 +13,3 @@ public interface UserRegisterInputBoundary {
      */
     UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException;
 }
-er_use_case;
