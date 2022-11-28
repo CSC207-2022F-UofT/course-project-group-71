@@ -6,15 +6,15 @@ import use_cases.extract_information_use_case.ExtractInfoResponseModel;
 
 public class ExtractInfoController {
 
-    ExtractInfoInputBoundary input;
+    final ExtractInfoInputBoundary INPUT;
 
     /**The constructor for this class.
      *
-     * @param input The input boundary for extracting information
+     * @param INPUT The INPUT boundary for extracting information
      */
-    public ExtractInfoController(ExtractInfoInputBoundary input) {
-        this.input=input;
-        }
+    public ExtractInfoController(ExtractInfoInputBoundary INPUT) {
+        this.INPUT=INPUT;
+    }
 
     /**A method for getting information from organizations,
      *
@@ -29,7 +29,7 @@ public class ExtractInfoController {
      */
     public ExtractInfoResponseModel<String> extractOrg(String keyword, String para1) {
         ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(keyword, para1);
-        return input.extractOrgInfo(requestModel);
+        return INPUT.extractOrgInfo(requestModel);
     }
 
     /**A method for getting information from participants.
@@ -45,7 +45,7 @@ public class ExtractInfoController {
      */
     public ExtractInfoResponseModel<String> extractPar(String keyword, String para1) {
         ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(keyword, para1);
-        return input.extractParInfo(requestModel);
+        return INPUT.extractParInfo(requestModel);
     }
 
     /**A method for getting event time information.
@@ -55,7 +55,7 @@ public class ExtractInfoController {
      */
     public ExtractInfoResponseModel<Integer> extractEventTime(String para1) {
         ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(para1);
-        return input.extractTimeInfo(requestModel);
+        return INPUT.extractTimeInfo(requestModel);
     }
 
     /**A method for getting event information that is not time.
@@ -72,6 +72,6 @@ public class ExtractInfoController {
      */
     public ExtractInfoResponseModel<String> extractEvent(String keyword, String para1){
         ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(keyword, para1);
-        return input.extractEventInfo(requestModel);
+        return INPUT.extractEventInfo(requestModel);
     }
 }

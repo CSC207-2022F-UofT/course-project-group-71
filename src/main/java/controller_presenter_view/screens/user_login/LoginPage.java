@@ -23,21 +23,17 @@ import java.sql.SQLException;
 
 public class LoginPage extends JFrame implements ActionListener {
 
-    JTextField username = new JTextField(15);
-
-    JPasswordField password = new JPasswordField(15);
-
-    UserLoginController userLoginController;
-
+    final JTextField USERNAME = new JTextField(15);
+    final JPasswordField PASSWORD = new JPasswordField(15);
+    final UserLoginController USER_LOGIN_CONTROLLER;
     boolean P = false;
     boolean O = false;
-
-    int x = 500;
-    int y = 500;
+    final int X = 500;
+    final int Y = 500;
 
     /**The method generate a login page.
      * It contains button to choose the user type for login.
-     * It allows user to input username, and password.
+     * It allows user to input USERNAME, and PASSWORD.
      * The controller process the information after use clicks 'Login' button, it calls actionPerformed method.
      *
      * @param controller UserLoginController that takes information got from the page
@@ -46,13 +42,13 @@ public class LoginPage extends JFrame implements ActionListener {
 
         this.setLayout(null);
 
-        this.setSize(x,y);
+        this.setSize(X, Y);
 
         this.setLocationRelativeTo(null);
 
-        this.userLoginController = controller;
+        this.USER_LOGIN_CONTROLLER = controller;
         JLabel title = new JLabel("Login Screen");
-        title.setBounds (0,0, x, 50);
+        title.setBounds (0,0, X, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
         JRadioButton parButton = new JRadioButton("Participant");
@@ -80,22 +76,22 @@ public class LoginPage extends JFrame implements ActionListener {
         JPanel typeInfo = new JPanel();
         typeInfo.add(parButton);
         typeInfo.add(orgButton);
-        typeInfo.setBounds (0,50, x, 50);
+        typeInfo.setBounds (0,50, X, 50);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel("Username"), username);
-        usernameInfo.setBounds (0,100, x, 50);
+        LabelTextPanel USERNAMEInfo = new LabelTextPanel(
+                new JLabel("Username"), USERNAME);
+        USERNAMEInfo.setBounds (0,100, X, 50);
 
-        LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel("Password"), password);
-        passwordInfo.setBounds (0,150, x, 50);
+        LabelTextPanel PASSWORDInfo = new LabelTextPanel(
+                new JLabel("Password"), PASSWORD);
+        PASSWORDInfo.setBounds (0,150, X, 50);
 
         JPanel buttons = new JPanel();
 
         buttons.add(register);
         buttons.add(logIn);
         buttons.add(cancel);
-        buttons.setBounds (0,200, x, 50);
+        buttons.setBounds (0,200, X, 50);
 
         register.addActionListener(new LoginPageActionListener(this));
 
@@ -105,8 +101,8 @@ public class LoginPage extends JFrame implements ActionListener {
 
         this.add(title);
         this.add(typeInfo);
-        this.add(usernameInfo);
-        this.add(passwordInfo);
+        this.add(USERNAMEInfo);
+        this.add(PASSWORDInfo);
         this.add(buttons);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -123,11 +119,11 @@ public class LoginPage extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         try {
-            userLoginController.login(
+            USER_LOGIN_CONTROLLER.login(
                     P?"P":"",
                     O?"O":"",
-                    username.getText(),
-                    String.valueOf(password.getPassword()));
+                    USERNAME.getText(),
+                    String.valueOf(PASSWORD.getPassword()));
             this.dispose();
             //if the user is a participant, call upcoming_to_past to filter all the upcoming events of this participant,
             //and convert some events from upcoming to past if necessary.
@@ -141,7 +137,7 @@ public class LoginPage extends JFrame implements ActionListener {
                 UpcomingToPastController controller = new UpcomingToPastController(interactor);
                 UpcomingToPastResponseModel responseModel;
                 try {
-                    responseModel = controller.convertToPast("P",username.getText());
+                    responseModel = controller.convertToPast("P",USERNAME.getText());
                 } catch (SQLException | ClassNotFoundException exception) {
                     throw new RuntimeException(exception);
                 }
@@ -158,10 +154,10 @@ public class LoginPage extends JFrame implements ActionListener {
                         }
                     }
                 }
-                new ParHomePage(username.getText());
+                new ParHomePage(USERNAME.getText());
             }
             else {//if the user is an organization, upcoming_to_past not be called at this stage.
-                new OrgHomePage(username.getText());
+                new OrgHomePage(USERNAME.getText());
             }
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, exception.getMessage());

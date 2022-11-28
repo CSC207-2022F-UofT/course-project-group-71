@@ -13,8 +13,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
+import static tutorial.Main.getConstantX;
+import static tutorial.Main.getConstantY;
 
 public class ParHomePage extends JFrame implements ActionListener {
 

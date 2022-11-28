@@ -11,7 +11,7 @@ import controller_presenter_view.screens.org_home.OrgHomePresenter;
 import controller_presenter_view.screens.par_home.ParHomePresenter;
 import use_cases.user_login_use_case.*;
 
-public class HelloWorld {
+public class Main {
     static int CONSTANT_X = 800;
     static int CONSTANT_Y = 800;
     static String databaseUrl = "jdbc:mysql://localhost:3306/db2";

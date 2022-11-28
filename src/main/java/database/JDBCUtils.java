@@ -2,7 +2,7 @@ package database;
 
 import java.sql.*;
 
-import static tutorial.HelloWorld.*;
+import static tutorial.Main.*;
 
 public class JDBCUtils {
     public static Connection getConnection() throws SQLException {
