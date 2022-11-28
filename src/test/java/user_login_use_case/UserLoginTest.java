@@ -14,6 +14,10 @@ import use_cases.user_login_use_case.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**Need to create "ass" as a participant in parfile.
+ * Need to create"123" as an organization in orgfie.
+ */
+
 public class UserLoginTest {
     ParDsGateway parDsGateway = new ParFileUser();
     OrgDsGateway orgDsGateway = new OrgFileUser();
