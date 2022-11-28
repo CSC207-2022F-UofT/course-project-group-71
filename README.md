@@ -170,25 +170,45 @@ Explain ALL tables in DataGrip, what does each of them do.
 ### How to download, install and initialize mysql connection:
 This project requires the installation of MySQL.
 An installation guide for MySQL created by JavaTpoint can be found [here](https://www.javatpoint.com/how-to-install-mysql).
-After finishing the installation, our project requires the MySQL account and password to be remembered.\
-The JDBC requires them to access the data from MYSQL.\
-The username and password should be updated at the src/main/java/tutorial/HelloWorld Line 18, 19.\
-If username is changed by the user, the MySQL username should be its default value: root.\
+After finishing the installation, our project requires the MySQL account and password to be remembered.
+The JDBC requires them to access the data from MYSQL.
+The username and password should be updated at the src/main/java/tutorial/HelloWorld Line 18, 19.
+If username is changed by the user, the MySQL username should be its default value: root.
 
 ### How to use Datagrip to import the database and tables:
-Install Datagrip first: https://www.jetbrains.com/datagrip/ \ 
-After installation, click and open the Datagrip. \
-Go to the left part of the page, under Database Explorer, choose to create a new Data Source. \
-Pick MySQL under the Data Source list. \
-It will create a localhost, enter the User(which is root) and Password(As previously set). \
-Click Test Connection below to verify it's successfully connected to the local MySQL server. \
-Click OK, the localhost is built. \
+Install Datagrip first: https://www.jetbrains.com/datagrip/
+After installation, click and open the Datagrip. 
+Go to the left part of the page, under Database Explorer, choose to create a new Data Source. Pick MySQL under the Data Source list. It will create a localhost, enter the User(which is root) and Password(As previously set). 
+Click Test Connection below to verify it's successfully connected to the local MySQL server. 
+Click OK, the localhost is built. 
 
-Then right-click the localhost, + New, Choose add a new Schema, create a database. \
-Right-click the database and copy the path of the database to the HelloWorld File, Line 17, the location of the local database need to be changed. \
+Then right-click the localhost, + New, Choose add a new Schema, create a database. 
+Right-click the database and copy the path of the database to the HelloWorld File, Line 17, the location of the local database need to be changed. 
 In the main/java/database_for_general.sql, it's out database default file, it contains no data.
-Right-click the database created under localhost, choose import/export, click 'Restore with mysql', find and set the location of the mysql.exe and the location of the file database_for_general.sql. \
-The whole table would be imported. \
+Right-click the database created under localhost, choose import/export, click 'Restore with mysql', find and set the location of the mysql.exe and the location of the file database_for_general.sql. 
+The whole table would be imported. 
+
+
+## SOLID Principles and Design Patterns
+
+### SOLID Principles
+
+- Single Responsibility: The modular approach we used ensures the workflow 
+is separated into use cases with each class only having one
+functionality and one reason to change.
+- Open Closed Principle: We did not really use inheritance in our project, which is why
+this principle does not really apply i.e. no extending other classes.
+- Liskov Substitution Principle: This principle can be seen in our input and output
+boundaries, the interactor and presenter implements input and output boundaries and are
+subtypes of the input and output boundaries. Therefore, we substituted them in our program.
+- Interface Segregation Principle: This principle can be seen in the gateways we
+are using to access the database. We have three types for participant, organizer and event,
+each of these gateways contain different methods for specific uses.
+- Dependency Inversion Principle: we use input and output boundaries to adhere to this principle
+and maintain the flow of control described in clean architecture.
+
+
+
 
 
 
