@@ -1,11 +1,9 @@
 package use_cases.extract_information_use_case;
 
-
-
-
 public class ExtractInfoRequestModel {
 
-    String keyword, para;
+    String keyword;
+    String para;
 
     /**Constructs a request model for extracting information about
      * participants, organizers, and events (except for event times)
