@@ -812,5 +812,28 @@ public class OrgFileUser implements OrgDsGateway {
 
     }
 
+    public Organization getOrganization(String username) throws SQLException, ClassNotFoundException {
+        Organization org_to_return = new Organization(username, getPassword(username), getUnpublishedEvents(username),getPastEvents(username),getUpcomingEvents(username), getFollowers(username));
+        return org_to_return;
+    }
+
+    public void saveOrganization(Organization org_to_save) throws SQLException, ClassNotFoundException {
+        deleteOrg(org_to_save.getUsername());
+        createOrg(org_to_save.getUsername(), org_to_save.getPassword());
+        for (String unpublished_event: org_to_save.getUnpublished_events()){
+            utilAddOrgUnpublishedEvent(org_to_save.getUsername(), unpublished_event);
+        }
+        for (String past_event: org_to_save.getPast_events()){
+            utilAddOrgPastEvent(org_to_save.getUsername(), past_event);
+        }
+        for (String upcoming_events: org_to_save.getUpcoming_events()){
+            utilAddOrgUpcomingEvent(org_to_save.getUsername(), upcoming_events);
+        }
+        for (String follower: org_to_save.getFollowers()){
+            ParDsGateway parDsGateway = new ParFileUser();
+            parDsGateway.followOrg(follower, org_to_save.getUsername());
+        }
+    }
+
 
 }

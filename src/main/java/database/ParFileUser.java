@@ -157,7 +157,44 @@ public class ParFileUser implements ParDsGateway {
             }
 
         }
+    /**This a tool method used to add relationship between participants and past events to the database.
+     *
+     * @param par_username The username of the participant
+     * @param event_title The title of the event
+     */
+    public void utilAddParPastEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(getDatabaseUrl(), getDatabaseUsername(), getDatabasePassword());
+            String sql = "insert into past_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
+            stmt = conn.createStatement();
+            int count = stmt.executeUpdate(sql);
+            System.out.println(sql);
+            if (count > 0 ){
+                System.out.println("Success");
+            }
+            else {
+                System.out.println("Failure");
+            }
 
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
+        } finally {
+            if (stmt != null){
+                stmt.close();
+            }
+            if (conn != null){
+                conn.close();
+            }
+
+        }
+
+
+    }
     /**This a tool method used to delete relationship between participants and past events from the database.
      *The participant must register the past event, otherwise nothing would happen.
      *
@@ -803,4 +840,22 @@ public class ParFileUser implements ParDsGateway {
         UtilClearNotifications(username);
     }
 
+    public Participant getParticipant(String username) throws SQLException, ClassNotFoundException {
+        Participant par_to_return = new Participant(username, getPassword(username), getPastEvents(username), getUpcomingEvents(username), getFollowedOrg(username));
+        return par_to_return;
+    }
+
+    public void SaveParticipant(Participant par_to_save) throws SQLException, ClassNotFoundException {
+        deletePar(par_to_save.getUsername());
+        createPar(par_to_save.getUsername(), par_to_save.getPassword());
+        for (String past_event : par_to_save.getPast_events()) {
+            utilAddParPastEvent(par_to_save.getUsername(), past_event);
+        }
+        for (String upcoming_event : par_to_save.getUpcoming_events()) {
+            utilAddParUpcomingEvent(par_to_save.getUsername(), upcoming_event);
+        }
+        for (String followed_org : par_to_save.getFollowing_list()) {
+            utilAddParFollowing(par_to_save.getUsername(), followed_org);
+        }
+    }
 }
