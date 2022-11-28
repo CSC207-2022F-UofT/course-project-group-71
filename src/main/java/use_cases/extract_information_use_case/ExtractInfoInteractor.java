@@ -11,17 +11,29 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
     OrgDsGateway orgDsGateway;
     ParDsGateway parDsGateway;
 
+    /**Constructs an ExtractInfoInteractor to get information about events
+     *
+     * @param eventDsGateway A database gateway for the event database
+     */
     public ExtractInfoInteractor(EventDsGateway eventDsGateway) {this.eventDsGateway = eventDsGateway;}
 
+    /**Constructs an ExtractInfoInteractor to get information about organizations
+     *
+     * @param orgDsGateway A database gateway for the organization database
+     */
     public ExtractInfoInteractor(OrgDsGateway orgDsGateway){
         this.orgDsGateway = orgDsGateway;
     }
 
+    /**Constructs an ExtractInfoInteractor to get information about participants
+     *
+     * @param parDsGateway A database gateway for the participant database
+     */
     public ExtractInfoInteractor(ParDsGateway parDsGateway){
         this.parDsGateway = parDsGateway;
     }
 
-    /**This method is used to obtain all kinds of event's information expect for time.
+    /**This method is used to obtain all kinds of event information expect for time.
      * Use the argument *para* from responseModel to get eventTitle.
      * Use the argument *keyword* from responseModel to decide which info to retrieve from eventDsGateway.
      *
@@ -54,7 +66,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
         return null;
     }
 
-    /**This method is used to obtain all kinds of organization's information.
+    /**This method is used to obtain all kinds of organization information.
      * Use the argument *para* from responseModel to get orgName.
      * Use the argument *keyword* from responseModel to decide which info to retrieve from orgDsGateway.
      *
@@ -86,7 +98,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
         return null;
     }
 
-    /**This method is used to obtain all kinds of participant's information.
+    /**This method is used to obtain all kinds of participant information.
      * Use the argument *para* from responseModel to get parName.
      * Use the argument *keyword* from responseModel to decide which info to retrieve from parDsGateway.
      *
@@ -116,7 +128,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
         return null;
     }
 
-    /**This method is used to obtain event's time information.
+    /**This method is used to obtain an event's time information.
      * Use the argument *para* from responseModel to get eventTitle.
      * Use the argument *keyword* from responseModel to decide which info to retrieve from eventDsGateway.
      *
