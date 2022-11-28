@@ -23,7 +23,7 @@ public class ExtractInfoController {
      *                - "getUnpublishedEvents": gets an organization's unpublished events
      *                - "getPastEvents": gets an organization's past events
      *                - "getUpcomingEvents": gets an organization's upcoming events
-     *                - "organizerSearch": searches for organizations whose username contains para1 (below).
+     *                - "organizerSearch": gets all organizations whose username contains para1 (below).
      * @param para1 The usernaame of the organization
      * @return A response model containing the information found
      */
@@ -43,18 +43,35 @@ public class ExtractInfoController {
      * @param para1 The username of the participant
      * @return A response model containing the information found
      */
-    public ExtractInfoResponseModel<String> extractPar(String keyword, String para1){
-        ExtractInfoRequestModel requestModel= new ExtractInfoRequestModel(keyword, para1);
+    public ExtractInfoResponseModel<String> extractPar(String keyword, String para1) {
+        ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(keyword, para1);
         return input.extractParInfo(requestModel);
     }
 
-    public ExtractInfoResponseModel<Integer> extractEventTime(String para1){
-        ExtractInfoRequestModel requestModel= new ExtractInfoRequestModel(para1);
+    /**A method for getting event time information.
+     *
+     * @param para1 The title of the event
+     * @return A response model containing the time of the event
+     */
+    public ExtractInfoResponseModel<Integer> extractEventTime(String para1) {
+        ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(para1);
         return input.extractTimeInfo(requestModel);
     }
 
+    /**A method for getting event information that is not time.
+     *
+     * @param keyword A string indicating which information to find. It can be one of these:
+     *                - "getStatus": gets the status of the event
+     *                - "getDescription": gets the description of the event
+     *                - "getLocation": gets the location of the event
+     *                - "getParticipants": gets the participants registered for the event
+     *                - "getOrganization": gets the organization that created the event
+     *                - "eventSearch": gets all events whose titles contain para1 (below).
+     * @param para1 The title of the event
+     * @return A response model containing the information found
+     */
     public ExtractInfoResponseModel<String> extractEvent(String keyword, String para1){
-        ExtractInfoRequestModel requestModel= new ExtractInfoRequestModel(keyword, para1);
+        ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(keyword, para1);
         return input.extractEventInfo(requestModel);
     }
 }
