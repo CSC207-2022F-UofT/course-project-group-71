@@ -11,8 +11,9 @@ import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static Main.getConstantX;
-import static Main.getConstantY;
+import static controller_presenter_view.screens.screen_constants.getConstantX;
+import static controller_presenter_view.screens.screen_constants.getConstantY;
+
 
 public class OrgUpcomingEventPage extends JFrame {
 

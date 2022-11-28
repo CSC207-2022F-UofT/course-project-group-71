@@ -1,19 +1,18 @@
 package controller_presenter_view.screens.org_home;
 
-import database.*;
-import tutorial.Main;
-import use_cases.notify_event_use_case.NotifyEventInputBoundary;
-import use_cases.notify_event_use_case.NotifyEventInteractor;
-import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
+import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
+import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
 import controller_presenter_view.screens.org_account.OrgAccountPage;
 import controller_presenter_view.screens.org_follower.OrgFollowerPage;
 import controller_presenter_view.screens.org_past_event.OrgPastEventPage;
 import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
 import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventPage;
-import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
-import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
+import database.*;
+import use_cases.notify_event_use_case.NotifyEventInputBoundary;
+import use_cases.notify_event_use_case.NotifyEventInteractor;
+import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
@@ -23,6 +22,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+
+import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
 public class OrgHomeActionListener implements ActionListener {
     public OrgHomePage orgHomePage;
@@ -130,7 +131,7 @@ public class OrgHomeActionListener implements ActionListener {
                 }
                 break;
             default: {
-                Main.generateLoginPage();
+                generateLoginPage();
                 break;
             }
         }

@@ -1,26 +1,30 @@
 package controller_presenter_view.screens.par_home;
 
+import controller_presenter_view.screens.par_account.ParAccountPage;
+import controller_presenter_view.screens.par_followed_org.ParFollowedOrgPage;
 import controller_presenter_view.screens.par_home.par_search.ParSearchEventController;
 import controller_presenter_view.screens.par_home.par_search.ParSearchEventPresenter;
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgController;
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgPresenter;
-import database.*;
-import controller_presenter_view.screens.par_account.ParAccountPage;
-import controller_presenter_view.screens.par_followed_org.ParFollowedOrgPage;
 import controller_presenter_view.screens.par_past_event.ParPastEventPage;
-import tutorial.Main;
+import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventPage;
+import database.EventDsGateway;
+import database.EventFileUser;
+import database.OrgDsGateway;
+import database.OrgFileUser;
 import use_cases.par_search_event_use_case.ParSearchEventInputBoundary;
 import use_cases.par_search_event_use_case.ParSearchEventInteractor;
 import use_cases.par_search_event_use_case.ParSearchEventOutputBoundary;
 import use_cases.par_search_org_use_case.ParSearchOrgInputBoundary;
 import use_cases.par_search_org_use_case.ParSearchOrgInteractor;
 import use_cases.par_search_org_use_case.ParSearchOrgOutputBoundary;
-import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+
+import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
 public class ParHomeActionListener implements ActionListener {
     public ParHomePage parHomePage;
@@ -114,7 +118,7 @@ public class ParHomeActionListener implements ActionListener {
             }
             } else if(page.equals("Log Out")){
                 this.parHomePage.dispose();
-            Main.generateLoginPage();
+            generateLoginPage();
 
         }
         }

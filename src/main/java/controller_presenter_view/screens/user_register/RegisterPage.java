@@ -1,12 +1,13 @@
 package controller_presenter_view.screens.user_register;
 
 import controller_presenter_view.screens.LabelTextPanel;
-import tutorial.Main;
 import use_cases.user_register_use_case.UserRegisterResponseModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
 public class RegisterPage extends JFrame implements ActionListener {
 
@@ -125,7 +126,7 @@ public class RegisterPage extends JFrame implements ActionListener {
                     String.valueOf(retypePassword.getPassword()));
             JOptionPane.showMessageDialog(this, responseModel.getMessage());
             this.dispose();
-            Main.generateLoginPage();
+            generateLoginPage();
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }
