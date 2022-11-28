@@ -51,11 +51,13 @@ public class ParSearchEventResultsPage extends JFrame {
 
         this.setLocationRelativeTo(null);
 
+        //This is the title
         JLabel title = new JLabel("Event Search Results");
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
 
+        //This is the "Back" button
         JButton back = new JButton("Back");
         back.addActionListener(new ParSearchEventResultsPageActionListener(this,"none"));
         back.setBounds(0, 100, 150, 30);
@@ -63,6 +65,8 @@ public class ParSearchEventResultsPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
 
+        //if there are events related with the string the participant searched,
+        //The folowing for loop will loop through and display the event in the search page.
         int numberEvents = this.eventNames.size();
         if (numberEvents != 0) {
 
