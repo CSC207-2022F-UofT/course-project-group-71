@@ -207,6 +207,18 @@ each of these gateways contain different methods for specific uses.
 - Dependency Inversion Principle: we use input and output boundaries to adhere to this principle
 and maintain the flow of control described in clean architecture.
 
+### Design Patterns
+
+- Iterator Design Pattern: The database is accessed by the MySQL command, when we need to access a list of anything ,
+we will call the written command from the mysql to return a whole list, the java part of program do not need to know the details of table structure.
+- Observer Design Pattern: We will use a interface that prepare the method that is contained
+  For example, we will write something like EventDsGateway b = new EventFileUser(); 
+  the eventDsGateway decide what necessary methods need to be containing so an object can notify an object without know what the object is.
+- Strategy Design Pattern: Organizer and participant can reset the password through different page, each of them have a controller and presenter. 
+Both of their presenter implement a  interface of resetting password
+
+
+
 
 
 
