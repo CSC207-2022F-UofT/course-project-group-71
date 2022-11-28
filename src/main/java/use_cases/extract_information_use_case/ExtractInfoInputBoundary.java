@@ -10,7 +10,7 @@ public interface ExtractInfoInputBoundary {
      */
     ExtractInfoResponseModel<String> extractEventInfo(ExtractInfoRequestModel requestModel);
 
-    /**A method for getting organization inforamtion
+    /**A method for getting organization information
      *
      * @param requestModel A request model containing the organization username
      *                     and which information to extract
