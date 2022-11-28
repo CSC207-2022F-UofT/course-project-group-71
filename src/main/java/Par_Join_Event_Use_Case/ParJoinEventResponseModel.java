@@ -1,27 +1,27 @@
-package par_register_event_use_case;
+package Par_Join_Event_Use_Case;
 
-public class ParRegisterEventResponseModel {
+public class ParJoinEventResponseModel {
     String eventName;
     String message;
 
-    public ParRegisterEventResponseModel(String eventName) {
+    /** This is the construct method of EventLeaveResponseModel.
+     *
+     * @param eventName  The event name that a participant want to join.
+     */
+    public ParJoinEventResponseModel(String eventName) {
         this.eventName = eventName;
     }
 
     public String getEventName() {
         return eventName;
     }
+
     public String getMessage() {
         return this.message;
     }
 
-    public void setEventname(String eventName) {
-        this.eventName = eventName;
-    }
     public void setMessage(String message) {
         this.message = message;
     }
-
-
 
 }
