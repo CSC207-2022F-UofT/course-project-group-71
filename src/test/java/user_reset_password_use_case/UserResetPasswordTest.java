@@ -1,7 +1,5 @@
 package user_reset_password_use_case;
 
-import database.OrgDsGateway;
-import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;

@@ -2,8 +2,6 @@ package user_register_use_case;
 
 import controller_presenter_view.screens.user_register.UserRegisterController;
 import controller_presenter_view.screens.user_register.UserRegisterPresenter;
-import database.OrgDsGateway;
-import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
