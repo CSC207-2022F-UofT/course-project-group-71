@@ -5,7 +5,6 @@ import controller_presenter_view.screens.par_home.ParHomePage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class ParPastEventActionListener implements ActionListener {
     public final ParPastEventPage parPastEventPage;

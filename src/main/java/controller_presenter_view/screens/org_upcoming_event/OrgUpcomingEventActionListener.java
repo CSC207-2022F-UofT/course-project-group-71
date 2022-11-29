@@ -19,7 +19,6 @@ import use_cases.org_delete_event_use_case.OrgDeleteEventResponseModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class OrgUpcomingEventActionListener implements ActionListener {
     public final OrgUpcomingEventPage orgUpcomingEventPage;

@@ -4,7 +4,6 @@ import controller_presenter_view.screens.org_home.OrgHomePage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class OrgPastEventActionListener implements ActionListener {
     public final OrgPastEventPage orgPastEventPage;

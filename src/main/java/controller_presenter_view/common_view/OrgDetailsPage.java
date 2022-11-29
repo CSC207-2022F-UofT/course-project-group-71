@@ -10,7 +10,6 @@ import use_cases.extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static controller_presenter_view.screens.screen_constants.getConstantX;

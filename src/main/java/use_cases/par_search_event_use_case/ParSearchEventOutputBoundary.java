@@ -1,7 +1,5 @@
 package use_cases.par_search_event_use_case;
 
-import java.sql.SQLException;
-
 /** Class used to prepare failure or success view.
  */
 public interface ParSearchEventOutputBoundary {
