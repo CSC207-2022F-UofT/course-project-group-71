@@ -31,6 +31,22 @@ public class ParHomePage extends JFrame implements ActionListener {
             parDsGateway);
     final ParShowNotificationController parShowNotificationController = new ParShowNotificationController(interactor);
 
+
+    /**
+     * This function returns a JButton with the input as set bounds
+     * @param text string of the button showing
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return return the JButton
+     */
+    public JButton create_jbutton(String text, int x, int y, int width, int height){
+        JButton output = new JButton(text);
+        output.addActionListener(new ParHomeActionListener(this));
+        output.setBounds (x, y, width, height);
+        return output;
+    }
     /**Take the username of the participant, and generate a homepage for this partricipant.
      * The Page contains notifications, account page, upcoming event, past event and followed Org.
      * It also contains a button to log out.
@@ -59,26 +75,25 @@ public class ParHomePage extends JFrame implements ActionListener {
         notification.add(showNotifications);
         notification.setBounds (0,50, getConstantX(), 40);
 
-        JButton account = new JButton("Account");
-        account.addActionListener(new ParHomeActionListener(this));
-        account.setBounds (0,150, 150, 30);
+//        JButton account = new JButton("Account");
+//        account.addActionListener(new ParHomeActionListener(this));
+//        account.setBounds (0,150, 150, 30);
 
-        JButton upcomingEvent = new JButton("Upcoming Event");
-        upcomingEvent.addActionListener(new ParHomeActionListener(this));
-        upcomingEvent.setBounds (0,210, 150, 30);
+//        JButton upcomingEvent = new JButton("Upcoming Event");
+//        upcomingEvent.addActionListener(new ParHomeActionListener(this));
+//        upcomingEvent.setBounds (0,210, 150, 30);
 
-        JButton pastEvent = new JButton("Past Event");
-        pastEvent.addActionListener(new ParHomeActionListener(this));
-        pastEvent.setBounds (0,270, 150, 30);
+//        JButton pastEvent = new JButton("Past Event");
+//        pastEvent.addActionListener(new ParHomeActionListener(this));
+//        pastEvent.setBounds (0,270, 150, 30);
 
-        JButton followedOrg = new JButton("Followed Org");
-        followedOrg.addActionListener(new ParHomeActionListener(this));
-        followedOrg.setBounds (0,330, 150, 30);
+//        JButton followedOrg = new JButton("Followed Org");
+//        followedOrg.addActionListener(new ParHomeActionListener(this));
+//        followedOrg.setBounds (0,330, 150, 30);
 
-        JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(new ParHomeActionListener(this));
-        logOut.setBounds (0,550, 150, 30);
-
+//        JButton logOut = new JButton("Log Out");
+//        logOut.addActionListener(new ParHomeActionListener(this));
+//        logOut.setBounds (0,550, 150, 30);
 
         JLabel searchLable= new JLabel("Search for:");
         searchLable.setBounds(160,150,80,40);
@@ -107,11 +122,11 @@ public class ParHomePage extends JFrame implements ActionListener {
 
         this.add(title);
         this.add(notification);
-        this.add(account);
-        this.add(upcomingEvent);
-        this.add(pastEvent);
-        this.add(followedOrg);
-        this.add(logOut);
+        this.add(create_jbutton("Account", 0,150, 150, 30));
+        this.add(create_jbutton("Upcoming Event", 0,210, 150, 30));
+        this.add(create_jbutton("Past Event", 0,270, 150, 30));
+        this.add(create_jbutton("Followed Org", 0,330, 150, 30));
+        this.add(create_jbutton("Log Out", 0,550, 150, 30));
         this.add(searchBox);
         this.add(buttons1);
         this.add(buttons2);
