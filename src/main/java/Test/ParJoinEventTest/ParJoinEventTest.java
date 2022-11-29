@@ -43,4 +43,16 @@ public class ParJoinEventTest {
         ArrayList<String> al = parDsGateway.getUpcomingEvents("P2");
         boolean isUpcoming= al.contains("E2");
         assert isUpcoming;
-    }}
+    }
+
+    @Test
+    @Order(3)
+    public void testSuccessMessage2(){
+        try{
+            responseModel= controller.join("Anita","CSC207");
+            assertEquals("Registered Successfully for CSC207!", responseModel.getMessage());
+        }catch (Exception e){
+            assert false;
+        }
+    }
+}
