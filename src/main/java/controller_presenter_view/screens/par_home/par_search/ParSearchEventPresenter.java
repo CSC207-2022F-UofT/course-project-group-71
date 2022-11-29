@@ -13,11 +13,9 @@ public class ParSearchEventPresenter implements ParSearchEventOutputBoundary {
      *
      * @param results A response model containing information to show success view
      * @return Returns the response model
-     * @throws SQLException This exception handles mistakes in SQL
-     * @throws ClassNotFoundException This exception handles missing classes
      */
     @Override
-    public ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results) throws SQLException, ClassNotFoundException {
+    public ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results) {
         ArrayList<String> eventNames= results.getSearchResults();
         String parUserName= results.getParUserName();
         new ParSearchEventResultsPage(eventNames,parUserName);

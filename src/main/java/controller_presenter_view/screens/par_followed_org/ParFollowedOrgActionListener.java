@@ -58,19 +58,11 @@ public class ParFollowedOrgActionListener implements ActionListener {
                 throw new RuntimeException(e);
             }
 
-            try {
-                new ParFollowedOrgPage(this.parFollowerPage.getParUsername());
-                this.parFollowerPage.dispose();
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            new ParFollowedOrgPage(this.parFollowerPage.getParUsername());
+            this.parFollowerPage.dispose();
         }
         else {
-            try {
-                new OrgDetailsPage(this.orgName);
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            new OrgDetailsPage(this.orgName);
         }
     }
 }

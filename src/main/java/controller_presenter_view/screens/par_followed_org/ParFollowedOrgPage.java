@@ -21,10 +21,8 @@ public class ParFollowedOrgPage extends JFrame {
     /**The page that displays the participant's followed organizers.
      *
      * @param parUsername The username of the participant
-     * @throws SQLException Exceptions raised from SQL
-     * @throws ClassNotFoundException Exceptions raised from missing classes
      */
-    public ParFollowedOrgPage(String parUsername) throws SQLException, ClassNotFoundException {
+    public ParFollowedOrgPage(String parUsername) {
         this.parUsername = parUsername;
 
         this.setLayout(null);

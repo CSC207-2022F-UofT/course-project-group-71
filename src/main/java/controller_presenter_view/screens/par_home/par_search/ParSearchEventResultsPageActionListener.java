@@ -87,11 +87,7 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
         }
         else {
-            try {
-                new EventDetailsPage(eventName);
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            new EventDetailsPage(eventName);
         }
 
 

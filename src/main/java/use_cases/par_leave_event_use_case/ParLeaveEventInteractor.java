@@ -2,7 +2,6 @@ package use_cases.par_leave_event_use_case;
 
 import database.OrgDsGateway;
 import database.ParDsGateway;
-import database.ParFileUser;
 
 import java.sql.SQLException;
 

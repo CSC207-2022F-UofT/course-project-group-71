@@ -96,11 +96,7 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
 
 
         } else {//show organization's detail page
-            try {
-                new OrgDetailsPage(this.orgName);
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            new OrgDetailsPage(this.orgName);
         }
     }
 }

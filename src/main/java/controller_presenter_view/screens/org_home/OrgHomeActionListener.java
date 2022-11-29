@@ -41,19 +41,11 @@ public class OrgHomeActionListener implements ActionListener {
                 new OrgAccountPage(this.orgHomePage.getOrgUsername());
                 break;
             case "Unpublished Event":
-                try {
-                    new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
-                } catch (SQLException | ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
+                new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
                 break;
             case "Upcoming Event": {
-                try {
-                    new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
-                } catch (SQLException | ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                UpcomingToPastController controller = Util_Method.utilgetUpcomingToPastControllerHelper();
+                new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
+                UpcomingToPastController controller = Unorganised_Util.utilgetUpcomingToPastControllerHelper();
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("O",
@@ -74,6 +66,8 @@ public class OrgHomeActionListener implements ActionListener {
                     throw new RuntimeException(e);
                 }
                 UpcomingToPastController controller = Util_Method.utilgetUpcomingToPastControllerHelper();
+                new OrgPastEventPage(this.orgHomePage.getOrgUsername());
+                UpcomingToPastController controller = Unorganised_Util.utilgetUpcomingToPastControllerHelper();
 //                ParDsGateway parDsGateway = new ParFileUser();
 //                OrgDsGateway orgDsGateway = new OrgFileUser();
 //                EventDsGateway eventDsGateway = new EventFileUser();
@@ -111,11 +105,7 @@ public class OrgHomeActionListener implements ActionListener {
                 break;
             }
             case "Follower":
-                try {
-                    new OrgFollowerPage(this.orgHomePage.getOrgUsername());
-                } catch (SQLException | ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
+                new OrgFollowerPage(this.orgHomePage.getOrgUsername());
                 break;
             default: {
                 generateLoginPage();

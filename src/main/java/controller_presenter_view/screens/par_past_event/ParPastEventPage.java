@@ -26,10 +26,8 @@ public class ParPastEventPage extends JFrame {
      * registered for.
      *
      * @param parUsername The username of the participant
-     * @throws SQLException Exceptions raised from SQL
-     * @throws ClassNotFoundException Exceptions from missing classes
      */
-    public ParPastEventPage(String parUsername) throws SQLException, ClassNotFoundException {
+    public ParPastEventPage(String parUsername) {
         this.parUsername = parUsername;
 
         this.setLayout(null);

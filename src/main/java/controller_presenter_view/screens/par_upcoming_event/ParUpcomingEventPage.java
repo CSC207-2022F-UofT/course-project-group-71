@@ -22,10 +22,8 @@ public class ParUpcomingEventPage extends JFrame {
      * It takes a parUsername to obtain necessary information from the database.
      *
      * @param parUsername The username of the participant
-     * @throws SQLException The Exception when an SQL error occurs
-     * @throws ClassNotFoundException The Exception when the Class is not found
      */
-    public ParUpcomingEventPage(String parUsername) throws SQLException, ClassNotFoundException {
+    public ParUpcomingEventPage(String parUsername) {
         this.parUsername = parUsername;
 
         this.setLayout(null);
