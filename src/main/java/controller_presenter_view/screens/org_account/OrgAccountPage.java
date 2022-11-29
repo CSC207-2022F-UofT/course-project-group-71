@@ -61,6 +61,32 @@ public class OrgAccountPage extends JFrame {
         this.setSize(getConstantX(), getConstantY());
         this.setLocationRelativeTo(null);
 
+        //Set the title
+//        JLabel title = new JLabel(this.orgUsername + "'s Account Page");
+//        title.setBounds(0, 0, getConstantX(), 50);
+//        title.setHorizontalAlignment(JLabel.CENTER);
+
+        //Set the username label
+//        JLabel username = new JLabel("Username                      " + this.orgUsername + "                ");
+//        username.setBounds(150, 100, 500,30);
+//        username.setHorizontalAlignment(JLabel.CENTER);
+
+        //A Text panel to input the old password
+//        LabelTextPanel oldPasswordInfo = new LabelTextPanel(
+//                new JLabel("Old Password"), oldPassword);
+//        oldPasswordInfo.setBounds (150,130, 500, 50);
+        // create_text_panel("Old Password", oldPassword, 150, 130, 500, 50);
+
+        //A Test panel to input the new password
+//        LabelTextPanel newPasswordInfo = new LabelTextPanel(
+//                new JLabel("New Password"), newPassword);
+//        newPasswordInfo.setBounds (150,180, 500, 50);
+
+        //A Test panel to re-input the new password
+//        LabelTextPanel retypeNewPasswordInfo = new LabelTextPanel(
+//                new JLabel("Retype New Password"), retypeNewPassword);
+//        retypeNewPasswordInfo.setBounds (150,230, 500, 50);
+
         //A button to reset password
         JButton resetPassword = new JButton("Reset Password");
         resetPassword.addActionListener(new OrgAccountActionListener(this));
