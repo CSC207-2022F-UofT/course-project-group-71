@@ -102,7 +102,7 @@ public class OrgAccountPage extends JFrame {
         back.setBounds(0, 100, 150, 30);
 
         //Add the buttons and text panels to the page
-        this.add(create_Jlable(this.orgUsername + "'s Account Page", 0, 0, getConstantX(), 50););
+        this.add(create_Jlable(this.orgUsername + "'s Account Page", 0, 0, getConstantX(), 50));
         this.add(back);
         this.add(        create_Jlable("Username                      " + this.orgUsername + "                "
                 , 150, 100, 500,30));
