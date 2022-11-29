@@ -4,7 +4,6 @@ import use_cases.par_search_event_use_case.ParSearchEventOutputBoundary;
 import use_cases.par_search_event_use_case.ParSearchEventResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ParSearchEventPresenter implements ParSearchEventOutputBoundary {
