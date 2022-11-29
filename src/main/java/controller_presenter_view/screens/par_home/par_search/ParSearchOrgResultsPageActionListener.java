@@ -75,7 +75,7 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
             new ParSearchOrgResultsPage(this.parSearchOrgResultsPage.getOrgNames(), parUserName);
 
         } else if (actionCommand.equals("Unfollow " + this.orgName)) {
-            //do to unfollow
+            //do unfollowing
             ParDsGateway par = new ParFileUser();
             ParUnfollowOrgOutputBoundary presenter = new ParUnfollowOrgPresenter();
             ParUnfollowOrgInputBoundary interactor = new ParUnfollowOrgInteractor(par, presenter);

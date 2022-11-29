@@ -125,7 +125,7 @@ public class OrgUnpublishedEventPage extends JFrame {
                 //Add a button for "Publish"
                 JButton publish = new JButton("Publish");
                 publish.setActionCommand(unpublishedEventTitle + "Publish");
-                //Set the action listener to respond when user clicks 'Publish" for this event
+                //Set the action listener to respond when user clicks "Publish" for this event
                 publish.addActionListener(new OrgUnpublishedEventActionListener(this));
                 publish.setBounds(x + 250, y + 15, 100, 30);
                 publish.setVisible(true);
