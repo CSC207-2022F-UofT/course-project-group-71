@@ -2,16 +2,14 @@ package controller_presenter_view.screens.par_upcoming_event;
 
 import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventController;
 import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventPresenter;
-import database.OrgDsGateway;
-import database.OrgFileUser;
+import controller_presenter_view.common_view.EventDetailsPage;
+import controller_presenter_view.screens.par_home.ParHomePage;
 import database.ParDsGateway;
 import database.ParFileUser;
 import use_cases.par_leave_event_use_case.ParLeaveEventInputBoundary;
 import use_cases.par_leave_event_use_case.ParLeaveEventInteractor;
 import use_cases.par_leave_event_use_case.ParLeaveEventOutputBoundary;
 import use_cases.par_leave_event_use_case.ParLeaveEventResponseModel;
-import controller_presenter_view.common_view.EventDetailsPage;
-import controller_presenter_view.screens.par_home.ParHomePage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -45,11 +43,9 @@ public class ParUpcomingEventActionListener implements ActionListener {
         } else if (actionCommand.contains("Leave")) {
             ParDsGateway parDsGateway = new ParFileUser();
 
-            OrgDsGateway orgDsGateway = new OrgFileUser();
-
             ParLeaveEventOutputBoundary parLeaveEventOutputBoundary = new ParLeaveEventPresenter();
 
-            ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway, orgDsGateway,
+            ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway,
                     parLeaveEventOutputBoundary);
 
             ParLeaveEventController parLeaveEventController = new ParLeaveEventController(interactor);

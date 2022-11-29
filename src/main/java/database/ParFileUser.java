@@ -1,12 +1,13 @@
 package database;
 
-import database.entity_temp.Participant;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import static database.JDBCUtils.utilQueryArrayListString;
+import static database.JDBCUtils.utilUpdateVoid;
 
 public class ParFileUser implements ParDsGateway {
 
@@ -16,30 +17,8 @@ public class ParFileUser implements ParDsGateway {
      * @param password The password of the participant
      */
     public void utilStorePar(String username, String password) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into parfile(username, password) values('" + username + "','" + password + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
-
+        String sql = "insert into parfile(username, password) values('" + username + "','" + password + "');" ;
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to delete the participant from the database.
@@ -47,29 +26,8 @@ public class ParFileUser implements ParDsGateway {
      * @param username THe username of the participant
      */
     public void utilDeletePar(String username) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from parfile where username = '" + username + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
+        String sql = "delete from parfile where username = '" + username + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to add following relationship between participants and organizations to the database.
@@ -78,31 +36,8 @@ public class ParFileUser implements ParDsGateway {
      * @param org_username The username of the organization
      */
     public void utilAddParFollowing(String par_username, String org_username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into follow_org_par(par_username, org_username) values('" + par_username + "','" + org_username + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
-
-
+        String sql = "insert into follow_org_par(par_username, org_username) values('" + par_username + "','" + org_username + "');" ;
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to delete following relationship between participants and organizations from the database.
@@ -112,62 +47,20 @@ public class ParFileUser implements ParDsGateway {
      * @param org_username The username of the organization
      */
     public void utilDeleteParFollowOrg(String par_username, String org_username) throws ClassNotFoundException, SQLException {
-            Statement stmt = null;
-            Connection conn = null;
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                conn = JDBCUtils.getConnection();
-                String sql = "delete from follow_org_par where par_username = '" + par_username + "' and org_username = '" + org_username + "';";
-                stmt = conn.createStatement();
-                int count = stmt.executeUpdate(sql);
-                System.out.println(sql);
-                if (count > 0) {
-                    System.out.println("Success");
-                } else {
-                    System.out.println("Failure");
-                }
-
-            } catch (ClassNotFoundException e) {
-                throw new ClassNotFoundException();
-            } catch (SQLException e) {
-                throw new SQLException();
-            } finally {
-                JDBCUtils.close(stmt,conn);
-            }
-
-        }
-    /**This a tool method used to add relationship between participants and past events to the database.
-     *
-     * @param par_username The username of the participant
-     * @param event_title The title of the event
-     */
-    public void utilAddParPastEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into past_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
-
-
+        String sql = "delete from follow_org_par where par_username = '" + par_username + "' and org_username = '" + org_username + "';";
+        utilUpdateVoid(sql);
     }
+// --Commented out by Inspection START (2022-11-29 3:42 p.m.):
+//    /**This a tool method used to add relationship between participants and past events to the database.
+//     *
+//     * @param par_username The username of the participant
+//     * @param event_title The title of the event
+//     */
+//    public void utilAddParPastEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
+//        String sql = "insert into past_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
+//        utilUpdateVoid(sql);
+//    }
+// --Commented out by Inspection STOP (2022-11-29 3:42 p.m.)
     /**This a tool method used to delete relationship between participants and past events from the database.
      *The participant must register the past event, otherwise nothing would happen.
      *
@@ -175,31 +68,8 @@ public class ParFileUser implements ParDsGateway {
      * @param event_title The title of the event
      */
     public void utilDeleteParPastEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from past_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
-
-
-
+        String sql = "delete from past_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This a tool method used to add relationship between participants and upcoming events to the database.
@@ -208,31 +78,8 @@ public class ParFileUser implements ParDsGateway {
      * @param event_title The title of the event
      */
     public void utilAddParUpcomingEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into upcoming_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
-
-
+        String sql = "insert into upcoming_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
+        utilUpdateVoid(sql);
     }
 
     /**This a tool method used to delete relationship between participants and upcoming events from the database.
@@ -242,29 +89,8 @@ public class ParFileUser implements ParDsGateway {
      * @param event_title The title of the event
      */
     public void utilDeleteParUpcomingEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from upcoming_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
-
+        String sql = "delete from upcoming_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to get all organizations followed by a participant.
@@ -273,33 +99,8 @@ public class ParFileUser implements ParDsGateway {
      * @return All organizations followed by the participant
      */
     public ArrayList<String> utilGetAllFollowing(String par_username) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select org_username from follow_org_par where par_username = '" + par_username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            System.out.println(sql);
-//            rs.next();
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
-
-
-
+        String sql = "select org_username from follow_org_par where par_username = '" + par_username + "';";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method used to get all past events registered by a participant.
@@ -308,30 +109,8 @@ public class ParFileUser implements ParDsGateway {
      * @return All past events registered by the participant
      */
     public ArrayList<String> utilGetAllPastEvent(String par_username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select event_title from past_events_for_par where par_username = '" + par_username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            System.out.println(sql);
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
-
+        String sql = "select event_title from past_events_for_par where par_username = '" + par_username + "';";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method used to get all upcoming events registered by a participant.
@@ -340,30 +119,8 @@ public class ParFileUser implements ParDsGateway {
      * @return All upcoming events registered by the participant
      */
     public ArrayList<String> utilGetAllUpcomingEvent(String par_username) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select event_title from upcoming_events_for_par where par_username = '" + par_username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            System.out.println(sql);
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
-
+        String sql = "select event_title from upcoming_events_for_par where par_username = '" + par_username + "';";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method used to update the password of a participant.
@@ -372,28 +129,8 @@ public class ParFileUser implements ParDsGateway {
      * @param new_password The new password of the participant
      */
     public void utilPasswordUpdating(String par_username, String new_password) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "update parfile set password = '" + new_password + "' where username = '" + par_username + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
+        String sql = "update parfile set password = '" + new_password + "' where username = '" + par_username + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to add new notification to the participant.
@@ -402,30 +139,8 @@ public class ParFileUser implements ParDsGateway {
      * @param new_notification The new notification need to be sent to the participant
      */
     public void utilNotificationUpdating(String par_username, String new_notification) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert ignore into par_notification(par_username, notification) values('" + par_username + "','" + new_notification + "')";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-
-
-        }
+        String sql = "insert ignore into par_notification(par_username, notification) values('" + par_username + "','" + new_notification + "')";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to get all notifications of the participant.
@@ -434,32 +149,9 @@ public class ParFileUser implements ParDsGateway {
      * @return All notifications of the participant
      */
     public ArrayList<String> UtilGetNotifications(String par_username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select notification from par_notification where par_username = '" + par_username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            System.out.println(sql);
-//            rs.next();
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-
-
-        }
-        return l;}
+        String sql = "select notification from par_notification where par_username = '" + par_username + "';";
+        return utilQueryArrayListString(sql);
+    }
 
     /**This is a tool method used to delete all notifications of the participant.
      * It no notifications before, nothing change.
@@ -467,28 +159,8 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      */
     public void UtilClearNotifications(String par_username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from par_notification where par_username = '" + par_username + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
+        String sql = "delete from par_notification where par_username = '" + par_username + "';";
+        utilUpdateVoid(sql);
     }
 
 
@@ -498,28 +170,8 @@ public class ParFileUser implements ParDsGateway {
      * @return The password of the participant
      */
     public String utilGetPassword(String username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String password;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select password from parfile where username = '" + username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            password = rs.getString("password");
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        }finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-
-        }
-        return password;
+        String sql = "select password from parfile where username = '" + username + "';";
+        return utilQueryArrayListString(sql).get(0);
     }
 
     /**This is a tool method returning whether the username exist.
@@ -736,22 +388,26 @@ public class ParFileUser implements ParDsGateway {
         UtilClearNotifications(username);
     }
 
-    public Participant getParticipant(String username) throws SQLException, ClassNotFoundException {
-        Participant par_to_return = new Participant(username, getPassword(username), getPastEvents(username), getUpcomingEvents(username), getFollowedOrg(username));
-        return par_to_return;
-    }
+// --Commented out by Inspection START (2022-11-29 3:40 p.m.):
+//    public Participant getParticipant(String username) throws SQLException, ClassNotFoundException {
+//        Participant par_to_return = new Participant(username, getPassword(username), getPastEvents(username), getUpcomingEvents(username), getFollowedOrg(username));
+//        return par_to_return;
+//    }
+// --Commented out by Inspection STOP (2022-11-29 3:40 p.m.)
 
-    public void SaveParticipant(Participant par_to_save) throws SQLException, ClassNotFoundException {
-        deletePar(par_to_save.getUsername());
-        createPar(par_to_save.getUsername(), par_to_save.getPassword());
-        for (String past_event : par_to_save.getPast_events()) {
-            utilAddParPastEvent(par_to_save.getUsername(), past_event);
-        }
-        for (String upcoming_event : par_to_save.getUpcoming_events()) {
-            utilAddParUpcomingEvent(par_to_save.getUsername(), upcoming_event);
-        }
-        for (String followed_org : par_to_save.getFollowing_list()) {
-            utilAddParFollowing(par_to_save.getUsername(), followed_org);
-        }
-    }
+// --Commented out by Inspection START (2022-11-29 3:40 p.m.):
+//    public void SaveParticipant(Participant par_to_save) throws SQLException, ClassNotFoundException {
+//        deletePar(par_to_save.getUsername());
+//        createPar(par_to_save.getUsername(), par_to_save.getPassword());
+//        for (String past_event : par_to_save.getPast_events()) {
+//            utilAddParPastEvent(par_to_save.getUsername(), past_event);
+//        }
+//        for (String upcoming_event : par_to_save.getUpcoming_events()) {
+//            utilAddParUpcomingEvent(par_to_save.getUsername(), upcoming_event);
+//        }
+//        for (String followed_org : par_to_save.getFollowing_list()) {
+//            utilAddParFollowing(par_to_save.getUsername(), followed_org);
+//        }
+//    }
+// --Commented out by Inspection STOP (2022-11-29 3:40 p.m.)
 }

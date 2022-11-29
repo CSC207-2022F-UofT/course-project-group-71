@@ -59,10 +59,10 @@ public class ParSearchOrgResultsPage extends JFrame {
         JPanel organizers = new JPanel();
         organizers.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
 
-        int numberOrgs = orgNames.size();
-        if (numberOrgs != 0) {
+        int numberOrg = orgNames.size();
+        if (numberOrg != 0) {
 
-            organizers.setLayout(new GridLayout(numberOrgs, 0, 10, 10));
+            organizers.setLayout(new GridLayout(numberOrg, 0, 10, 10));
 
             int x = 0;
             int y = 0;

@@ -18,14 +18,14 @@ public class ParResetPasswordController {
         this.userInput = accountGateway;
     }
 
-    /**Generatign a requestmodel and sent it to the interactor and then return the responsemodel sent
+    /**Generate a request model and sent it to the interactor and then return the response model sent
      * back from the interactor.
      *
      * @param username The username of the participant
      * @param password The old password of the participant
      * @param newPassword The new password of the participant
      * @param reNewPassword The second-input password of the participant
-     * @return The responsemodel returned from the interactor
+     * @return The response model returned from the interactor
      * @throws SQLException The Exception if we SQL codes are wrong or invalid
      * @throws ClassNotFoundException The Exception if the class is not found
      */

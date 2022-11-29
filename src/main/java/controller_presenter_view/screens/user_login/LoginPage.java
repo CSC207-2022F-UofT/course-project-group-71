@@ -119,7 +119,7 @@ public class LoginPage extends JFrame implements ActionListener {
             //if the user is a participant, call upcoming_to_past to filter all the upcoming events of this participant,
             //and convert some events from upcoming to past if necessary.
             if (P) {
-                UpcomingToPastController controller = Util_Method.utilgetUpcomingToPastControllerHelper();
+                UpcomingToPastController controller = Util_Method.utilGetUpcomingToPastControllerHelper();
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("P",USERNAME.getText());

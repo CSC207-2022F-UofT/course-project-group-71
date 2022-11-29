@@ -90,7 +90,7 @@ public class UserLoginTest {
 
     @Test
     @Order(6)
-    void testPrepareSuccessView_Orgnization() {
+    void testPrepareSuccessView_Organization() {
 
         try{
             responseModel = controller.login("","O","123", "123");

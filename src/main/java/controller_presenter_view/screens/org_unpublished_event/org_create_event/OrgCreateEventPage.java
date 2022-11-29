@@ -24,7 +24,7 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
     final JTextField LOCATION = new JTextField(15);
 
     /**The method generate a create event window and allowed the organization to create a new event by input details.
-     * It allows user to input title, DESCRIPTION, YEAR, MONTH, DAY, HOUR, MINUTEs and LOCATION,
+     * It allows user to input title, DESCRIPTION, YEAR, MONTH, DAY, HOUR, MINUTEEs and LOCATION,
      * with two buttons called "Cancel" and "Create".
      * The "Cancel" button will close the window and won't have any changes to the Unpublished Event page.
      * The "Create" button will close the window and updated the Unpublished Event page with the new event added.

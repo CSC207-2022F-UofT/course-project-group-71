@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class JDBCUtils {
     static final String databaseUrl = "jdbc:mysql://localhost:3306/db2";
@@ -36,6 +37,46 @@ public class JDBCUtils {
         if (rs != null){
             rs.close();
         }
+    }
+
+    public static void utilUpdateVoid(String sql) throws SQLException, ClassNotFoundException {
+        Statement stmt = null;
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = JDBCUtils.getConnection();
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } finally {
+            JDBCUtils.close(stmt, conn);
+        }
+    }
+
+    public static ArrayList<String> utilQueryArrayListString(String sql) throws ClassNotFoundException, SQLException {
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        ArrayList<String> l = new ArrayList<>(0);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = JDBCUtils.getConnection();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                l.add(rs.getString(1));
+            }
+        } catch (ClassNotFoundException e) {
+            throw new ClassNotFoundException();
+        } catch (SQLException e) {
+            throw new SQLException();
+        } finally {
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt, conn);
+
+        }
+        return l;
     }
 
 

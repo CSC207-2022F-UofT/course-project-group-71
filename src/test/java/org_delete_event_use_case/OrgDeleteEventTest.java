@@ -30,7 +30,7 @@ public class OrgDeleteEventTest {
 
     final OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
 
-    final OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
+    final OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway,
             parDsGateway, orgDeleteEventOutputBoundary);
 
     final OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);

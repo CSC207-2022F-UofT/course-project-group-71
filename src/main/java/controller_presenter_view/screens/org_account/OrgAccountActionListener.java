@@ -47,13 +47,10 @@ public class OrgAccountActionListener implements ActionListener {
             String password = String.valueOf(orgAccountPage.oldPassword.getPassword());
             String new_password = String.valueOf(orgAccountPage.newPassword.getPassword());
             String retype_password = String.valueOf(orgAccountPage.retypeNewPassword.getPassword());
-            System.out.println("eeeee");
-
             try{
                 //Try to reset the password
                 UserResetPasswordResponseModel responseModel = resetPasswordController.resetPassword(username, password, new_password, retype_password);
                 System.out.println(responseModel.getMessage());
-                System.out.println("A");
                 JOptionPane.showMessageDialog(this.orgAccountPage, responseModel.getMessage());
             } catch (Exception e){
                 //If meet some problem, show this one

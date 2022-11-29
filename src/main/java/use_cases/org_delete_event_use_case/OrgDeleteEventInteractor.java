@@ -8,23 +8,19 @@ import java.util.ArrayList;
 public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
 
     final EventDsGateway eventDsGateway;
-    final OrgDsGateway orgDsGateway;
     final ParDsGateway parDsGateway;
     final OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary;
 
     /**Constructor
      *
      * @param eventDsGateway The database gateway of the events
-     * @param orgDsGateway The database gateway of the organizers
      * @param parDsGateway The database gateway of the participants
      * @param orgDeleteEventOutputBoundary The OutputBoundary used to show success of deletion
      */
     public OrgDeleteEventInteractor(EventDsGateway eventDsGateway,
-                                    OrgDsGateway orgDsGateway,
                                     ParDsGateway parDsGateway,
                                     OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary) {
         this.eventDsGateway = eventDsGateway;
-        this.orgDsGateway = orgDsGateway;
         this.parDsGateway = parDsGateway;
         this.orgDeleteEventOutputBoundary = orgDeleteEventOutputBoundary;
     }

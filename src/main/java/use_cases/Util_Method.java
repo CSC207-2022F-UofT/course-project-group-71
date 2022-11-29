@@ -21,7 +21,7 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 import java.sql.SQLException;
 
 public class Util_Method {
-    public static UpcomingToPastController utilgetUpcomingToPastControllerHelper(){
+    public static UpcomingToPastController utilGetUpcomingToPastControllerHelper(){
         ParDsGateway parDsGateway = new ParFileUser();
         OrgDsGateway orgDsGateway = new OrgFileUser();
         EventDsGateway eventDsGateway = new EventFileUser();
@@ -51,13 +51,11 @@ public class Util_Method {
     public static OrgDeleteEventController utilGetDeleteEventControllerHelper(){
         EventDsGateway eventDsGateway = new EventFileUser();
 
-        OrgDsGateway orgDsGateway = new OrgFileUser();
-
         ParDsGateway parDsGateway = new ParFileUser();
 
         OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
 
-        OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
+        OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway,
                 parDsGateway, orgDeleteEventOutputBoundary);
 
         OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);

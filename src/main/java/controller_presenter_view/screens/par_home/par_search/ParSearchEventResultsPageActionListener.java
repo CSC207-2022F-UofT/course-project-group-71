@@ -67,10 +67,9 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
 
         } else if (actionCommand.equals("Leave " + this.eventName)){
             ParDsGateway parDsGateway = new ParFileUser();
-            OrgDsGateway orgDsGateway = new OrgFileUser();
 
             ParLeaveEventOutputBoundary presenter = new ParLeaveEventPresenter();
-            ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway, orgDsGateway,presenter);
+            ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway,presenter);
             ParLeaveEventController controller = new ParLeaveEventController(interactor);
             String parUserName = this.parSearchEventResultsPage.getParUsername();
             ParLeaveEventResponseModel responseModel;

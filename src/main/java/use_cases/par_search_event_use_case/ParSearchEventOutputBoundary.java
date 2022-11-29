@@ -1,5 +1,6 @@
 package use_cases.par_search_event_use_case;
 
+
 /** Class used to prepare failure or success view.
  */
 public interface ParSearchEventOutputBoundary {

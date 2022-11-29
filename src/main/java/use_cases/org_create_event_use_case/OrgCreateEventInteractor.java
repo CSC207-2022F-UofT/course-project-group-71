@@ -101,7 +101,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
                 return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Hour is not within 0 to 23.");
             }
 
-            // CHecks is minute is valid (from 0 to 59, inclusive)
+            // Checks is minute is valid (from 0 to 59, inclusive)
             int min = Integer.parseInt(minute);
             if (min > 59 || min < 0) {
                 return ORG_CREATE_EVENT_OUTPUT_BOUNDARY.prepareFailView("Minute is not within 0 to 59.");

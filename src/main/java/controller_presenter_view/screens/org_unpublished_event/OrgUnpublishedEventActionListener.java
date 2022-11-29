@@ -105,20 +105,19 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             new OrgCreateEventPage(orgCreateEventController, this.orgUnpublishedEventPage);
         }
         else if (actionCommand.contains("Edit")){
-            EventDsGateway eventDsGateway = new EventFileUser();
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
 
             OrgEditEventOutputBoundary orgEditEventOutputBoundary = new OrgEditEventPresenter();
 
-            OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(eventDsGateway, orgDsGateway, orgEditEventOutputBoundary);
+            OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(orgDsGateway, orgEditEventOutputBoundary);
 
             OrgEditEventController orgEditEventController = new OrgEditEventController(interactor);
 
             String eventName = actionCommand.substring(0,actionCommand.length()-4);
 
             try {
-                new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName, eventDsGateway);
+                new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

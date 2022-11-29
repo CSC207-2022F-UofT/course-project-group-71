@@ -18,7 +18,7 @@ public class UserRegisterController {
 
     }
 
-    /**The method is used to create a user account, it will call requestmodel and interactor and sent
+    /**The method is used to create a user account, it will call request model and interactor and sent
      * them information for user creation.
      *
      * @param isParticipant String showing the user choose to create a participant

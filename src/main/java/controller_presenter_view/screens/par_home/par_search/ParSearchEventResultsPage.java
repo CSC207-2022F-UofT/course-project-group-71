@@ -21,7 +21,7 @@ public class ParSearchEventResultsPage extends JFrame {
     final String parUsername;
     final ParDsGateway p = new ParFileUser();
 
-    /**A getter for the event names dispayed on the search page.
+    /**A getter for the event names displayed on the search page.
      *
      * @return An array list containing event names
      */
@@ -66,7 +66,7 @@ public class ParSearchEventResultsPage extends JFrame {
         events.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
 
         //if there are events related with the string the participant searched,
-        //The folowing for loop will loop through and display the event in the search page.
+        //The following for loop will loop through and display the event in the search page.
         int numberEvents = this.eventNames.size();
         if (numberEvents != 0) {
 
@@ -85,7 +85,7 @@ public class ParSearchEventResultsPage extends JFrame {
 
 
                 //Leave and Join button for each event won't appear at same time, when the Participant was joined
-                //the event already, there will be leave; similarlly, if the participant haven't joined the event,
+                //the event already, there will be leave; similarly, if the participant haven't joined the event,
                 //There will be "Join" button.
                 if (eventFollowed.contains(nextEvent)) {
                     JButton join = new JButton("Leave");

@@ -1,20 +1,17 @@
 package controller_presenter_view.screens.org_unpublished_event.org_edit_event;
 
 import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
-import database.EventDsGateway;
 import use_cases.org_edit_event_use_case.OrgEditEventResponseModel;
 import controller_presenter_view.screens.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrgEditEventPage extends JFrame implements ActionListener {
 
     final OrgEditEventController controller;
-    final EventDsGateway eventDsGateway;
     final OrgUnpublishedEventPage orgUnpublishedEventPage;
 
     final String eventName;
@@ -36,14 +33,12 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
      * @param controller OrgCreateEventController that takes information got from the page.
      * @param orgUnpublishedEventPage OrgUnpublishedEventPage that will be updated after the event was created.
      * @param eventName String of the event's name.
-     * @param eventDsGateway EventDsGateway that we need to access the old event and modify it.
      */
     public OrgEditEventPage(OrgEditEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage,
-                            String eventName, EventDsGateway eventDsGateway) throws SQLException, ClassNotFoundException {
+                            String eventName) {
         this.controller = controller;
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
         this.eventName = eventName;
-        this.eventDsGateway = eventDsGateway;
 
         //Initialise the page
         int x = 500;
@@ -57,7 +52,7 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
         title.setBounds(0, 0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-        //Prepare the title of the event which are editted
+        //Prepare the title of the event which are edited
         JLabel eventTitle = new JLabel("Title:   " + eventName);
         JPanel eventTitleInfo = new JPanel();
         eventTitleInfo.add(eventTitle);

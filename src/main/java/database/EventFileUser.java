@@ -1,14 +1,20 @@
 package database;
 
-import database.entity_temp.Event;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import static database.JDBCUtils.utilQueryArrayListString;
+import static database.JDBCUtils.utilUpdateVoid;
+
 public class EventFileUser implements EventDsGateway{
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        EventFileUser b = new EventFileUser();
+        b.utilStoreEvent("aaa", "aaa", "aaa",2222 ,5,5,5,5);
+
+    }
 
     /**This is a tool method that is called by other method to create an event.
      * It took parameters to insert a new row in the table called 'eventfile' which is in the database.
@@ -25,20 +31,9 @@ public class EventFileUser implements EventDsGateway{
      * @param minute The time (minute) of the event
      */
     public void utilStoreEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into eventfile(title,description,location,year,month,day,hour,minute) values('" +
-                    title + "','" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
-            stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } finally {
-            JDBCUtils.close(stmt, conn);
-        }
+        String sql = "insert into eventfile(title,description,location,year,month,day,hour,minute) values('" +
+                title + "','" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to edit the event information
@@ -54,19 +49,8 @@ public class EventFileUser implements EventDsGateway{
      */
 
     public void utilEditEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "update eventfile set description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
-            stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
+        String sql = "update eventfile set description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
+        utilUpdateVoid(sql);
     }
 
     /**
@@ -78,22 +62,8 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need to be deleted
      */
     public void utilDeleteEvent(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException( );
-        } catch (SQLException e) {
-            throw new SQLException( );
-        } finally {
-            JDBCUtils.close(stmt,conn);
-
-        }
+        String sql = "delete from eventfile where title = '" + title + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method to find the organization who create a specific event.
@@ -104,42 +74,19 @@ public class EventFileUser implements EventDsGateway{
      * @return the name of the organization who created the event
      */
     public String utilGetOrganization(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet unpublished_organization = null;
-        ResultSet past_organization = null;
-        ResultSet upcoming_organization = null;
         String organization = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            unpublished_organization = stmt.executeQuery("select org_username from unpublished_events_for_org where event_title = '" + title + "';");
-            if (unpublished_organization.next()){
-                organization = unpublished_organization.getString(1);
-                unpublished_organization.close();
-            }
 
-            past_organization = stmt.executeQuery("select org_username from past_events_for_org where event_title = '" + title + "';");
-            if (past_organization.next()){
-                organization = past_organization.getString(1);
-                past_organization.close();
-            }
-
-            upcoming_organization = stmt.executeQuery("select org_username from upcoming_events_for_org where event_title = '" + title + "';");
-            if (upcoming_organization.next()){
-                organization = upcoming_organization.getString(1);
-                upcoming_organization.close();
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(unpublished_organization);
-            JDBCUtils.close_rs(past_organization);
-            JDBCUtils.close_rs(upcoming_organization);
-            JDBCUtils.close(stmt,conn);
+        ArrayList<String> unpublished_organization = utilQueryArrayListString("select org_username from unpublished_events_for_org where event_title = '" + title + "';");
+        ArrayList<String> past_organization = utilQueryArrayListString("select org_username from past_events_for_org where event_title = '" + title + "';");
+        ArrayList<String> upcoming_organization = utilQueryArrayListString("select org_username from upcoming_events_for_org where event_title = '" + title + "';");
+        if (!unpublished_organization.isEmpty()){
+            organization = unpublished_organization.get(0);
+        }
+        if (!past_organization.isEmpty()){
+            organization = past_organization.get(0);
+        }
+        if (!upcoming_organization.isEmpty()){
+            organization = upcoming_organization.get(0);
         }
         return organization;
     }
@@ -151,27 +98,8 @@ public class EventFileUser implements EventDsGateway{
      * @return The list containing all participants of the event
      */
     public ArrayList<String> utilGetAllPastEventParticipant(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("select par_username from past_events_for_par where event_title = '" + title + "';");
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt, conn);
-        }
-        return l;
+        String sql = "select par_username from past_events_for_par where event_title = '" + title + "';";
+        return utilQueryArrayListString(sql);
 
 
     }
@@ -183,30 +111,8 @@ public class EventFileUser implements EventDsGateway{
      * @return The list containing all participants of the event
      */
     public ArrayList<String> utilGetAllUpcomingEventParticipant(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("select par_username from upcoming_events_for_par where event_title = '" + title + "';");
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt, conn);
-
-        }
-        return l;
-
-
+        String sql = "select par_username from upcoming_events_for_par where event_title = '" + title + "';";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method that is used to change the relationship of organization with the event.
@@ -218,36 +124,10 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need to change the status
      */
     public void utilUnpublishedToUpcomingForOrg(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            String orgName = getOrganization(title);
-            System.out.println(orgName);
-            System.out.println(title);
-            String sql1 = "delete from unpublished_events_for_org where event_title = '" + title + "';";
-            int count1 = stmt.executeUpdate(sql1);
-            System.out.println(sql1);
-            String sql2 = "insert into upcoming_events_for_org(org_username, event_title) values('" + orgName + "','" + title + "');";
-            System.out.println(sql2);
-            int count2 = stmt.executeUpdate(sql2);
-            System.out.println(count2);
-            if (count1 > 0 && count2 > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
+        String orgName = getOrganization(title);
+        utilUpdateVoid("delete from unpublished_events_for_org where event_title = '" + title + "';");
+        utilUpdateVoid("insert into upcoming_events_for_org(org_username, event_title) values('" + orgName + "','" + title + "');");
 
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-
-        }
     }
 
     /**
@@ -260,25 +140,9 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need to change the status
      */
     private void utilUpcomingToPastForOrg(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            String orgName = getOrganization(title);
-            String sql1 = "delete from upcoming_events_for_org where event_title = '" + title + "';";
-            int count1 = stmt.executeUpdate(sql1);
-            String sql2 = "insert into past_events_for_org(org_username, event_title) values('" + orgName + "','" + title + "');";
-            int count2 = stmt.executeUpdate(sql2);
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-
-        }
+        String orgName = getOrganization(title);
+        utilUpdateVoid("delete from upcoming_events_for_org where event_title = '" + title + "';");
+        utilUpdateVoid("insert into past_events_for_org(org_username, event_title) values('" + orgName + "','" + title + "');");
     }
 
     /**This is a tool method used to change the relationship of the participants with the event.
@@ -289,25 +153,10 @@ public class EventFileUser implements EventDsGateway{
      * @param title The title of the event that need to change the status
      */
     private void utilUpcomingToPastForPar(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            ArrayList<String> ParticipantList = getParticipants(title);
-            System.out.println(title);
-            for (String participant : ParticipantList){
-                stmt.executeUpdate("delete from upcoming_events_for_par where event_title = '" + title + "';");
-                stmt.executeUpdate("insert into past_events_for_par(par_username, event_title) values('" + participant + "','" + title + "');");
-            }
-            System.out.println("Success");
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
+        ArrayList<String> ParticipantList = getParticipants(title);
+        for (String participant : ParticipantList){
+            utilUpdateVoid("delete from upcoming_events_for_par where event_title = '" + title + "';");
+            utilUpdateVoid("insert into past_events_for_par(par_username, event_title) values('" + participant + "','" + title + "');");
         }
     }
 
@@ -319,28 +168,8 @@ public class EventFileUser implements EventDsGateway{
      * @return An arraylist containing all relevant event names
      */
     public ArrayList<String> utilEventSearch(String about_name) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("select title from eventfile where title like \"%" + about_name + "%\";");
-            while (rs.next()) {
-                l.add(rs.getString("title"));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
+        String sql = "select title from eventfile where title like \"%" + about_name + "%\";";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method that examine which status is the event.
@@ -352,47 +181,19 @@ public class EventFileUser implements EventDsGateway{
      * @return The status of the input event
      */
     public String utilGetStatus(String title) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs1 = null;
-        ResultSet rs2 = null;
-        ResultSet rs3 = null;
         String status = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            String sql1 = "select * from unpublished_events_for_org where event_title = '" + title + "';";
-            String sql2 = "select * from past_events_for_org where event_title = '" + title + "';";
-            String sql3 = "select * from upcoming_events_for_org where event_title = '" + title + "';";
-            System.out.println(title);
-            System.out.println(sql1);
-            System.out.println(sql2);
-            System.out.println(sql3);
-            rs1 = stmt.executeQuery(sql1);
-            if (rs1.next()){
-                status = "Unpublished";
-                System.out.println("Pass1");
-            }
-            rs2 = stmt.executeQuery(sql2);
-            if (rs2.next()){
-                status = "Past";
-                System.out.println("Pass2");
-            }
-            rs3 = stmt.executeQuery(sql3);
-            if (rs3.next()){
-                status = "Upcoming";
-                System.out.println("Pass3");
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        }finally {
-            JDBCUtils.close_rs(rs1);
-            JDBCUtils.close_rs(rs2);
-            JDBCUtils.close_rs(rs3);
-            JDBCUtils.close(stmt,conn);
+        ArrayList<String> status_list_unpublished = utilQueryArrayListString("select * from unpublished_events_for_org where event_title = '" + title + "';");
+        ArrayList<String> status_list_past = utilQueryArrayListString("select * from past_events_for_org where event_title = '" + title + "';");
+        ArrayList<String> status_list_upcoming = utilQueryArrayListString("select * from upcoming_events_for_org where event_title = '" + title + "';");
+
+        if (!status_list_unpublished.isEmpty()){
+            status = "Unpublished";
+        }
+        if (!status_list_past.isEmpty()){
+            status = "Past";
+        }
+        if (!status_list_upcoming.isEmpty()){
+            status = "Upcoming";
         }
         return status;
     }
@@ -446,28 +247,8 @@ public class EventFileUser implements EventDsGateway{
      * @return The description of the event
      */
     public String utilGetDescription(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String description = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select description from eventfile where title = '" + title + "';";
-            System.out.println(sql);
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            if (rs.next()){
-                description = rs.getString("description");}
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        }finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return description;
+        String sql = "select description from eventfile where title = '" + title + "';";
+        return utilQueryArrayListString(sql).get(0);
     }
 
     /**It's a tool method that is used to obtain the location of the event.
@@ -477,27 +258,8 @@ public class EventFileUser implements EventDsGateway{
      * @return The location of the event
      */
     public String utilGetLocation(String title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String location;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select location from eventfile where title = '" + title + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            location = rs.getString("location");
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        }finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return location;
+        String sql = "select location from eventfile where title = '" + title + "';";
+        return utilQueryArrayListString(sql).get(0);
     }
 
 
@@ -696,14 +458,14 @@ public class EventFileUser implements EventDsGateway{
 
     }
 
+    @Override
     public void editEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
         utilEditEvent(title,description,location,year,month,day,hour,minute);
     }
 
-    public Event getEvent(String title) throws SQLException, ClassNotFoundException {
-        Event event_to_return = new  Event(title, getDescription(title), getLocation(title), getTime(title).get(0), getTime(title).get(1),getTime(title).get(2),getTime(title).get(3),getTime(title).get(4),getParticipants(title),getOrganization(title));
-        return event_to_return;
-    }
+//    public Event getEvent(String title) throws SQLException, ClassNotFoundException {
+//        return new Event(title, getDescription(title), getLocation(title), getTime(title).get(0), getTime(title).get(1),getTime(title).get(2),getTime(title).get(3),getTime(title).get(4),getParticipants(title),getOrganization(title));
+//    }
 
 //    public Event saveEvent(Event event_to_save) throws SQLException, ClassNotFoundException {
 //        String event_status = getStatus(event_to_save.getTitle());

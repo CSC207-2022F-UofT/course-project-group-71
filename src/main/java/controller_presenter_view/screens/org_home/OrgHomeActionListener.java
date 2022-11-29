@@ -45,7 +45,7 @@ public class OrgHomeActionListener implements ActionListener {
                 break;
             case "Upcoming Event": {
                 new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
-                UpcomingToPastController controller = Unorganised_Util.utilgetUpcomingToPastControllerHelper();
+                UpcomingToPastController controller = Util_Method.utilGetUpcomingToPastControllerHelper();
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("O",
@@ -60,21 +60,9 @@ public class OrgHomeActionListener implements ActionListener {
                 break;
             }
             case "Past Event": {
-                try {
-                    new OrgPastEventPage(this.orgHomePage.getOrgUsername());
-                } catch (SQLException | ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                UpcomingToPastController controller = Util_Method.utilgetUpcomingToPastControllerHelper();
                 new OrgPastEventPage(this.orgHomePage.getOrgUsername());
-                UpcomingToPastController controller = Unorganised_Util.utilgetUpcomingToPastControllerHelper();
-//                ParDsGateway parDsGateway = new ParFileUser();
-//                OrgDsGateway orgDsGateway = new OrgFileUser();
-//                EventDsGateway eventDsGateway = new EventFileUser();
-//                UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
-//                UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-//                        eventDsGateway, upcomingToPastOutputBoundary);
-//                UpcomingToPastController controller = new UpcomingToPastController(interactor);
+                UpcomingToPastController controller = Util_Method.utilGetUpcomingToPastControllerHelper();
+                new OrgPastEventPage(this.orgHomePage.getOrgUsername());
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("O",

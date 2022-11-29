@@ -48,7 +48,7 @@ public class ParHomePage extends JFrame implements ActionListener {
         return output;
     }
 
-    /**Take the username of the participant, and generate a homepage for this partricipant.
+    /**Take the username of the participant, and generate a homepage for this participant.
      * The Page contains notifications, account page, upcoming event, past event and followed Org.
      * It also contains a button to log out.
      * In the middle of the page, there's a search bar where participant can search organizer or event.
@@ -96,8 +96,8 @@ public class ParHomePage extends JFrame implements ActionListener {
 //        logOut.addActionListener(new ParHomeActionListener(this));
 //        logOut.setBounds (0,550, 150, 30);
 
-        JLabel searchLable= new JLabel("Search for:");
-        searchLable.setBounds(160,150,80,40);
+        JLabel searchJLable= new JLabel("Search for:");
+        searchJLable.setBounds(160,150,80,40);
 
         searchBox = new JTextField(15);
         searchBox.setBounds(240,150,500,40);
@@ -131,7 +131,7 @@ public class ParHomePage extends JFrame implements ActionListener {
         this.add(searchBox);
         this.add(buttons1);
         this.add(buttons2);
-        this.add(searchLable);
+        this.add(searchJLable);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

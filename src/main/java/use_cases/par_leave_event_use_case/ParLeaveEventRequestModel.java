@@ -1,7 +1,7 @@
 package use_cases.par_leave_event_use_case;
 
 public class ParLeaveEventRequestModel {
-    String par_username;
+    final String par_username;
     final String event_title;
 
     /** A request model sent the interactor to let participants leave an event.
@@ -22,11 +22,6 @@ public class ParLeaveEventRequestModel {
     public String getPar_username() {
         return par_username;
     }
-
-    public void setPar_username(String par_username) {
-        this.par_username = par_username;
-    }
-
 
     public String getEvent_title() {
         return event_title;

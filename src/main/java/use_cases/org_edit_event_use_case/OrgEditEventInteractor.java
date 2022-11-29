@@ -1,6 +1,5 @@
 package use_cases.org_edit_event_use_case;
 
-import database.EventDsGateway;
 import database.OrgDsGateway;
 
 import java.sql.SQLException;
@@ -8,21 +7,17 @@ import java.time.LocalDateTime;
 
 public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
 
-    final EventDsGateway eventDsGateway;
     final OrgDsGateway orgDsGateway;
     final OrgEditEventOutputBoundary orgEditEventOutputBoundary;
 
 
     /**Constructor
      *
-     * @param eventDsGateway The database gateway of the events
      * @param orgDsGateway The database gateway of the organizers
      * @param orgEditEventOutputBoundary The OutputBoundary used to show success or not of event editing
      */
-    public OrgEditEventInteractor(EventDsGateway eventDsGateway,
-                                  OrgDsGateway orgDsGateway,
+    public OrgEditEventInteractor(OrgDsGateway orgDsGateway,
                                   OrgEditEventOutputBoundary orgEditEventOutputBoundary) {
-        this.eventDsGateway = eventDsGateway;
         this.orgDsGateway = orgDsGateway;
         this.orgEditEventOutputBoundary = orgEditEventOutputBoundary;
     }

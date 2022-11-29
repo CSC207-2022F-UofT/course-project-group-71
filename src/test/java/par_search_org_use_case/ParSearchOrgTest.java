@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**Need to create "654321" as a participant in parfile
- * Need to create organization "1", "12", "123", .... , "12345678", and "4321" in orgfile
+/**Need to create "654321" as a participant in parFile
+ * Need to create organization "1", "12", "123", .... , "12345678", and "4321" in orgFile
  */
 public class ParSearchOrgTest {
     final OrgDsGateway orgDsGateway = new OrgFileUser();
@@ -24,7 +24,7 @@ public class ParSearchOrgTest {
 
     @Test
     @Order(1)
-    void test_PrepareFailureView_No_Orgs_Found(){
+    void test_PrepareFailureView_No_Org_Found(){
         try {
             responseModel = controller.orgSearch("123456789", "654321");
             assert(false);
@@ -35,7 +35,7 @@ public class ParSearchOrgTest {
 
     @Test
     @Order(2)
-    void test_PrepareSuccessView_Found_Orgs(){
+    void test_PrepareSuccessView_Found_Org(){
         try {
             responseModel = controller.orgSearch("1234", "654321");
             ArrayList<String> searchResults = new ArrayList<>();

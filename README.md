@@ -147,7 +147,7 @@ Explain ALL tables in DataGrip, what does each of them do.
    - Org_username and event_title form a primary key together, means one pair of relationship can not show twice.
    - Foreign key of 'org_username' is linked to 'username' at orgfile and foreign key of 'event_title' is linked to 'title' at eventfile.
 - past_events_for_par:
-   - When a participant registered an event, and the event finished, the relationship betwene the event and the participant are stored here.
+   - When a participant registered an event, and the event finished, the relationship between the event and the participant are stored here.
    - Store the relationship of past events and participants.
    - This table is specifically used for past events, upcoming events should not appear.
    - Have two rows: par_username, event_title.

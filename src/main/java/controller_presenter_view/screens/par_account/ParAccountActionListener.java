@@ -27,7 +27,7 @@ public class ParAccountActionListener implements ActionListener {
         this.parAccountPage = parAccountPage;
     }
 
-    /**Send user back to parhomepage when User clicks "Back"
+    /**Send user back to participant homepage when User clicks "Back"
      * After clicking "Reset Password", the reset password controller is called, the message of success or failure
      * is going to be shown, and the current page is going to be refreshed.
      *

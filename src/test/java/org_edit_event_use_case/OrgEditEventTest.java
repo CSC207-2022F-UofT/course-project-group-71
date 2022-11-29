@@ -1,13 +1,11 @@
 package org_edit_event_use_case;
 
-import database.EventDsGateway;
-import database.EventFileUser;
-import database.OrgDsGateway;
-import database.OrgFileUser;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Order;
 import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventPresenter;
+import database.OrgDsGateway;
+import database.OrgFileUser;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import use_cases.org_edit_event_use_case.OrgEditEventInputBoundary;
 import use_cases.org_edit_event_use_case.OrgEditEventInteractor;
 import use_cases.org_edit_event_use_case.OrgEditEventOutputBoundary;
@@ -18,10 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**Need to create an event called "Edit" in eventfile, can choose to leave other attributes null.
  */
 public class OrgEditEventTest {
-    final EventDsGateway eventDsGateway = new EventFileUser();
     final OrgDsGateway orgDsGateway = new OrgFileUser();
     final OrgEditEventOutputBoundary presenter = new OrgEditEventPresenter();
-    final OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(eventDsGateway, orgDsGateway, presenter);
+    final OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(orgDsGateway, presenter);
     final OrgEditEventController controller = new OrgEditEventController(interactor);
     OrgEditEventResponseModel responseModel;
 
@@ -53,7 +50,7 @@ public class OrgEditEventTest {
     @Order(3)
     void testPrepareFailViewLocationTooLong() {
         try {
-            responseModel = controller.edit("Edit", "SS", "Toronto ssssssssssssssssssssssssssssssssssssssssssssss ssssssssssssssssssssssssssssssssssssssssssssss",
+            responseModel = controller.edit("Edit", "SS", "Toronto 11111111111111111111111111111111111 11111111111111111111111111111",
                     "2024", "5", "2", "9", "9");
             assert(false);
         } catch (Exception e) {
@@ -119,7 +116,7 @@ public class OrgEditEventTest {
 
     @Test
     @Order(9)
-    public void test_PrepareFailureView_wrong_minite() {
+    public void test_PrepareFailureView_wrong_minute() {
         try {
             responseModel = controller.edit("Edit", "HH", "Zoom", "2024", "4", "2", "9", "70");
             assert (false);

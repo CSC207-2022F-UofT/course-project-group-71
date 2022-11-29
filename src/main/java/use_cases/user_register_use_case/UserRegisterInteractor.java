@@ -27,7 +27,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
 
     /**Do checks to user inputs, if fail give hints, if pass create the account.
      *
-     * @param requestModel The request model sent to the interactor
+     * @param requestModel The request model sent to the Interactor
      * @return A responseModel representing whether the user creation is successful
      */
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException {

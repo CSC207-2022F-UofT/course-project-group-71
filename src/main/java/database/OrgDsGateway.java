@@ -24,8 +24,6 @@ public interface OrgDsGateway {
 
     void createOrg(String username, String password) throws SQLException, ClassNotFoundException;
 
-    void deleteOrg(String username) throws SQLException, ClassNotFoundException;
-
     ArrayList<String> organizationSearch(String about_name) throws SQLException, ClassNotFoundException;
 
     void editAnEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException;

@@ -1,13 +1,11 @@
 package par_leave_event_use_case;
 
-import database.OrgDsGateway;
-import database.OrgFileUser;
+import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventController;
+import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventController;
-import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventPresenter;
 import use_cases.par_leave_event_use_case.ParLeaveEventInputBoundary;
 import use_cases.par_leave_event_use_case.ParLeaveEventInteractor;
 import use_cases.par_leave_event_use_case.ParLeaveEventOutputBoundary;
@@ -22,9 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class ParLeaveEventTest {
     final ParDsGateway parDsGateway = new ParFileUser();
-    final OrgDsGateway orgDsGateway = new OrgFileUser();
     final ParLeaveEventOutputBoundary presenter = new ParLeaveEventPresenter();
-    final ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway,orgDsGateway,presenter);
+    final ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway,presenter);
     final ParLeaveEventController controller = new ParLeaveEventController(interactor);
     ParLeaveEventResponseModel responseModel;
 

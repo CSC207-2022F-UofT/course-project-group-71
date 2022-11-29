@@ -80,12 +80,12 @@ public class ParFollowedOrgPage extends JFrame {
                 y += 100;
             }
 
-            JScrollPane followerscroll = new JScrollPane(events);
-            followerscroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
-            followerscroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-            followerscroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            followerscroll.setVisible(true);
-            this.add(followerscroll);
+            JScrollPane followerScroll = new JScrollPane(events);
+            followerScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
+            followerScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+            followerScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            followerScroll.setVisible(true);
+            this.add(followerScroll);
         }
 
         this.add(title);

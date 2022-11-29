@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ParShowNotificationController {
     final ParShowNotificationInputBoundary userInput;
 
-    /**The contructor of the controller of notification.
+    /**The contractor of the controller of notification.
      *
      * @param accountGateway The interactor for notification showing
      */

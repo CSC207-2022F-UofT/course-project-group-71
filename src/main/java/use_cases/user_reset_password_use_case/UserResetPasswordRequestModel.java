@@ -11,8 +11,8 @@ public class UserResetPasswordRequestModel {
     /** A request model sent the interactor to reset the new password.
      *
      * @param username The username of the user
-     * @param password The currentlly password of the user
-     * @param whether_org Bollean showing whether the user is an orgnizer.
+     * @param password The current password of the user
+     * @param whether_org Boolean showing whether the user is an organizer.
      * @param newPassword The new password of the user
      * @param reNewPassword The second input password of the user
      */

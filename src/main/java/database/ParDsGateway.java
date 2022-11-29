@@ -30,7 +30,5 @@ public interface ParDsGateway {
 
     void createPar(String username, String password) throws SQLException, ClassNotFoundException;
 
-    void deletePar(String username) throws SQLException, ClassNotFoundException;
-
     void clearNotifications(String username) throws SQLException, ClassNotFoundException;
 }

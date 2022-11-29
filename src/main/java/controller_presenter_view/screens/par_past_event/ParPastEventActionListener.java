@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class ParPastEventActionListener implements ActionListener {
     public final ParPastEventPage parPastEventPage;
 
-    /**Constructs the acation listener for the participant's past events page.
+    /**Constructs the action listener for the participant's past events page.
      * It takes the past event page as input and sets it as an attribute.
      *
      * @param parPastEventPage The participant's past event page

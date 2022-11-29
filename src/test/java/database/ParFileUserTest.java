@@ -144,7 +144,7 @@ public class ParFileUserTest {
     }
 
     @Test
-    void testclearNotifications(String usename) throws SQLException, ClassNotFoundException {
+    void testClearNotifications() throws SQLException, ClassNotFoundException {
         ArrayList<String> Notifications = parFileUser.getNotifications("P2");
         assertTrue(Notifications.isEmpty());
         parFileUser.addNotification("P2", "Note_Temp");
