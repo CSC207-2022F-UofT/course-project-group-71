@@ -2,7 +2,7 @@ package Par_Join_Event_Use_Case;
 
 public class ParJoinEventResponseModel {
     final String eventName;
-    final String message;
+    String message;
 
     /** This is the construct method of EventLeaveResponseModel.
      *
