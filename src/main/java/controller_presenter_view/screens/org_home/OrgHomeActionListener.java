@@ -12,7 +12,7 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import use_cases.Unorganised_Util;
+import use_cases.Util_Method;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
@@ -26,7 +26,7 @@ import java.sql.SQLException;
 import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
 public class OrgHomeActionListener implements ActionListener {
-    public OrgHomePage orgHomePage;
+    public final OrgHomePage orgHomePage;
     public OrgHomeActionListener(OrgHomePage orgHomePage){
         this.orgHomePage = orgHomePage;
     }
@@ -53,7 +53,7 @@ public class OrgHomeActionListener implements ActionListener {
                 } catch (SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                UpcomingToPastController controller = Unorganised_Util.utilgetUpcomingToPastControllerHelper();
+                UpcomingToPastController controller = Util_Method.utilgetUpcomingToPastControllerHelper();
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("O",
@@ -63,7 +63,7 @@ public class OrgHomeActionListener implements ActionListener {
                 }
                 if (!responseModel.getEventsToPast().isEmpty()) {
                     JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                    Unorganised_Util.utilNotifyEventHelper(responseModel);
+                    Util_Method.utilNotifyEventHelper(responseModel);
                 }
                 break;
             }
@@ -73,7 +73,7 @@ public class OrgHomeActionListener implements ActionListener {
                 } catch (SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                UpcomingToPastController controller = Unorganised_Util.utilgetUpcomingToPastControllerHelper();
+                UpcomingToPastController controller = Util_Method.utilgetUpcomingToPastControllerHelper();
 //                ParDsGateway parDsGateway = new ParFileUser();
 //                OrgDsGateway orgDsGateway = new OrgFileUser();
 //                EventDsGateway eventDsGateway = new EventFileUser();

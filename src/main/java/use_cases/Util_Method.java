@@ -20,7 +20,7 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 import java.sql.SQLException;
 
-public class Unorganised_Util {
+public class Util_Method {
     public static UpcomingToPastController utilgetUpcomingToPastControllerHelper(){
         ParDsGateway parDsGateway = new ParFileUser();
         OrgDsGateway orgDsGateway = new OrgFileUser();

@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**Do not need prior data
  */
 public class UserRegisterTest {
-    ParDsGateway par = new ParFileUser();
-    OrgDsGateway org = new OrgFileUser();
-    UserRegisterPresenter presenter = new UserRegisterPresenter();
-    UserRegisterInputBoundary interactor = new UserRegisterInteractor(par, org, presenter);
-    UserRegisterController userRegisterController = new UserRegisterController(interactor);
+    final ParDsGateway par = new ParFileUser();
+    final OrgDsGateway org = new OrgFileUser();
+    final UserRegisterPresenter presenter = new UserRegisterPresenter();
+    final UserRegisterInputBoundary interactor = new UserRegisterInteractor(par, org, presenter);
+    final UserRegisterController userRegisterController = new UserRegisterController(interactor);
     UserRegisterResponseModel responseModel;
 
 

@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * The usage of this controller is closely connected to NotifyEvent.
  */
 public class UpcomingToPastController {
-    UpcomingToPastInputBoundary interactor;
+    final UpcomingToPastInputBoundary interactor;
 
     public UpcomingToPastController(UpcomingToPastInputBoundary potential_interactor) {
         this.interactor = potential_interactor;

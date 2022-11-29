@@ -4,14 +4,14 @@ package use_cases.org_edit_event_use_case;
  *  Contains orgUsername, title, description, location, year, month, day, hour, minute.
  */
 public class OrgEditEventRequestModel {
-    String title;
-    String description;
-    String location;
-    String year;
-    String month;
-    String day;
-    String hour;
-    String minute;
+    final String title;
+    final String description;
+    final String location;
+    final String year;
+    final String month;
+    final String day;
+    final String hour;
+    final String minute;
 
     /**A request model sent the interactor to edit an event.
      *

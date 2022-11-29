@@ -9,7 +9,7 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import use_cases.Unorganised_Util;
+import use_cases.Util_Method;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
@@ -22,8 +22,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class OrgUpcomingEventActionListener implements ActionListener {
-    public OrgUpcomingEventPage orgUpcomingEventPage;
-    public String orgUsername;
+    public final OrgUpcomingEventPage orgUpcomingEventPage;
+    public final String orgUsername;
 
     public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage, String orgUsername){
         this.orgUpcomingEventPage = orgUpcomingEventPage;
@@ -59,7 +59,7 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             }
         }
         else if (actionCommand.contains("Delete")) {
-            OrgDeleteEventController orgDeleteEventController = Unorganised_Util.utilGetDeleteEventControllerHelper();
+            OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 

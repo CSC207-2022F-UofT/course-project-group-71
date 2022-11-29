@@ -4,7 +4,7 @@ import controller_presenter_view.common_controller_presenter.upcoming_to_past.Up
 import controller_presenter_view.screens.LabelTextPanel;
 import controller_presenter_view.screens.org_home.OrgHomePage;
 import controller_presenter_view.screens.par_home.ParHomePage;
-import use_cases.Unorganised_Util;
+import use_cases.Util_Method;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 import javax.swing.*;
@@ -103,7 +103,7 @@ public class LoginPage extends JFrame implements ActionListener {
     }
 
     /**The method got information needed to input from the page.
-     * The method generate Presenter , DsGateways, interactor and controller to process them.
+     * The method generate Presenter , DsGateways, interact and controller to process them.
      * Once the information are passed to the above components, jump to login page.
      *
      * @param e the Login event
@@ -119,7 +119,7 @@ public class LoginPage extends JFrame implements ActionListener {
             //if the user is a participant, call upcoming_to_past to filter all the upcoming events of this participant,
             //and convert some events from upcoming to past if necessary.
             if (P) {
-                UpcomingToPastController controller = Unorganised_Util.utilgetUpcomingToPastControllerHelper();
+                UpcomingToPastController controller = Util_Method.utilgetUpcomingToPastControllerHelper();
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("P",USERNAME.getText());
@@ -127,7 +127,7 @@ public class LoginPage extends JFrame implements ActionListener {
                     throw new RuntimeException(exception);
                 }
                 if (!responseModel.getEventsToPast().isEmpty()){
-                    Unorganised_Util.utilNotifyEventHelper(responseModel);
+                    Util_Method.utilNotifyEventHelper(responseModel);
                 }
                 new ParHomePage(USERNAME.getText());
             }

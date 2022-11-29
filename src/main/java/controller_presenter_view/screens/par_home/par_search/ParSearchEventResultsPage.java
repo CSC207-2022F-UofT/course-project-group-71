@@ -17,9 +17,9 @@ import static controller_presenter_view.screens.screen_constants.getConstantY;
 
 public class ParSearchEventResultsPage extends JFrame {
 
-    ArrayList<String> eventNames;
-    String parUsername;
-    ParDsGateway p = new ParFileUser();
+    final ArrayList<String> eventNames;
+    final String parUsername;
+    final ParDsGateway p = new ParFileUser();
 
     /**A getter for the event names dispayed on the search page.
      *
@@ -85,7 +85,7 @@ public class ParSearchEventResultsPage extends JFrame {
 
 
                 //Leave and Join button for each event won't appear at same time, when the Participant was joined
-                //the event already, there will be leave; similarlly, if the participant haven't join the event,
+                //the event already, there will be leave; similarlly, if the participant haven't joined the event,
                 //There will be "Join" button.
                 if (eventFollowed.contains(nextEvent)) {
                     JButton join = new JButton("Leave");

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OrgFollowerActionListener implements ActionListener {
-    public OrgFollowerPage orgFollowerPage;
+    public final OrgFollowerPage orgFollowerPage;
 
     public OrgFollowerActionListener(OrgFollowerPage orgFollowerPage){
         //Set the follower page as instance

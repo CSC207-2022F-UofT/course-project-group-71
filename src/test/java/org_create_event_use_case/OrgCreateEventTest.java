@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 /**Need to create an organization called "UofT" in orgfile
  */
 public class OrgCreateEventTest {
-    EventDsGateway eventDsGateway = new EventFileUser();
-    OrgDsGateway orgDsGateway = new OrgFileUser();
-    OrgCreateEventOutputBoundary orgCreateEventPresenter = new OrgCreateEventPresenter();
-    OrgCreateEventInputBoundary orgCreateEventInteractor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway,
+    final EventDsGateway eventDsGateway = new EventFileUser();
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
+    final OrgCreateEventOutputBoundary orgCreateEventPresenter = new OrgCreateEventPresenter();
+    final OrgCreateEventInputBoundary orgCreateEventInteractor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway,
             orgCreateEventPresenter);
-    OrgCreateEventController orgCreateEventController = new OrgCreateEventController(orgCreateEventInteractor);
+    final OrgCreateEventController orgCreateEventController = new OrgCreateEventController(orgCreateEventInteractor);
     OrgCreateEventResponseModel orgCreateEventResponseModel;
 
     @Test

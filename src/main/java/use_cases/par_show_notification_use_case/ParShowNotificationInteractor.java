@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class ParShowNotificationInteractor implements ParShowNotificationInputBoundary {
 
-    ParShowNotificationOutputBoundary outputBoundary;
-    ParDsGateway parDsGateway;
+    final ParShowNotificationOutputBoundary outputBoundary;
+    final ParDsGateway parDsGateway;
 
     /**Constructor
      *

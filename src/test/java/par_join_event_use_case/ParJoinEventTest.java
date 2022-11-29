@@ -18,10 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class ParJoinEventTest {
 
-    ParDsGateway parDsGateway= new ParFileUser();
-    ParJoinEventOutputBoundary presenter= new ParJoinEventPresenter();
-    ParJoinEventInputBoundary interactor= new ParJoinEventInteractor(parDsGateway,presenter);
-    ParJoinEventController controller= new ParJoinEventController(interactor);
+    final ParDsGateway parDsGateway= new ParFileUser();
+    final ParJoinEventOutputBoundary presenter= new ParJoinEventPresenter();
+    final ParJoinEventInputBoundary interactor= new ParJoinEventInteractor(parDsGateway,presenter);
+    final ParJoinEventController controller= new ParJoinEventController(interactor);
     ParJoinEventResponseModel responseModel;
 
     @Test

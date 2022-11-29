@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3", "TeamMeeting4" in eventfile
- * Need to create a participant in parfile
+ * Need to create a participant in particle
  * Assign the participant to TeamMeeting4 in upcoming_event_for_par
  * Assign the participant to TeamMeeting3 in past_event_for_par
  ***** IMPORTANT NOTICE: I added TimeUnit.SECONDS.sleep() in testing, because notifications might not have been
@@ -23,12 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
  *                      depending on your hardware.
  */
 public class NotifyEventTest {
-    ParDsGateway parDsGateway = new ParFileUser();
-    EventDsGateway eventDsGateway = new EventFileUser();
-    NotifyEventOutputBoundary presenter = new NotifyEventPresenter();
-    NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway,
+    final ParDsGateway parDsGateway = new ParFileUser();
+    final EventDsGateway eventDsGateway = new EventFileUser();
+    final NotifyEventOutputBoundary presenter = new NotifyEventPresenter();
+    final NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway,
             presenter);
-    NotifyEventController controller = new NotifyEventController(interactor);
+    final NotifyEventController controller = new NotifyEventController(interactor);
     NotifyEventResponseModel responseModel;
 
 

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class ParUnfollowOrgInteractor implements ParUnfollowOrgInputBoundary {
 
-    ParDsGateway parDsGateway;
-    ParUnfollowOrgOutputBoundary unfollowOrgOutputBoundary;
+    final ParDsGateway parDsGateway;
+    final ParUnfollowOrgOutputBoundary unfollowOrgOutputBoundary;
 
     /**Constructor
      *

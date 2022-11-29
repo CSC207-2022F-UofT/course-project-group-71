@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class ParUnfollowOrgController {
 
-    ParUnfollowOrgInputBoundary interactor;
+    final ParUnfollowOrgInputBoundary interactor;
 
     public ParUnfollowOrgController(ParUnfollowOrgInputBoundary interactor){
         this.interactor= interactor;

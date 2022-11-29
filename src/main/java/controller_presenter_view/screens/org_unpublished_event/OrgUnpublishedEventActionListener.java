@@ -12,7 +12,7 @@ import controller_presenter_view.screens.org_unpublished_event.org_edit_event.Or
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventPresenter;
 import database.*;
-import use_cases.Unorganised_Util;
+import use_cases.Util_Method;
 import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
 import use_cases.org_create_event_use_case.OrgCreateEventInteractor;
 import use_cases.org_create_event_use_case.OrgCreateEventOutputBoundary;
@@ -31,7 +31,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class OrgUnpublishedEventActionListener implements ActionListener {
-    OrgUnpublishedEventPage orgUnpublishedEventPage;
+    final OrgUnpublishedEventPage orgUnpublishedEventPage;
 
     public OrgUnpublishedEventActionListener(OrgUnpublishedEventPage orgUnpublishedEventPage){
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
@@ -46,7 +46,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             new OrgHomePage(orgUsername);
         }
         else if (actionCommand.contains("Delete")) {
-            OrgDeleteEventController orgDeleteEventController = Unorganised_Util.utilGetDeleteEventControllerHelper();
+            OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 

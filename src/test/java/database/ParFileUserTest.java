@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParFileUserTest {
     
-    ParFileUser parFileUser = new ParFileUser();
+    final ParFileUser parFileUser = new ParFileUser();
     
     @Test
     void testGetPassword() throws SQLException, ClassNotFoundException {

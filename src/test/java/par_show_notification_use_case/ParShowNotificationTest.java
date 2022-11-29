@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Need to assign notification "Event TeamMeeting3 is about to happen at 11-30 0:0" to "654321" in par_notification
  */
 public class ParShowNotificationTest {
-    ParDsGateway parDsGateway = new ParFileUser();
-    ParShowNotificationPresenter presenter = new ParShowNotificationPresenter();
-    ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(presenter, parDsGateway);
-    ParShowNotificationController controller = new ParShowNotificationController(interactor);
+    final ParDsGateway parDsGateway = new ParFileUser();
+    final ParShowNotificationPresenter presenter = new ParShowNotificationPresenter();
+    final ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(presenter, parDsGateway);
+    final ParShowNotificationController controller = new ParShowNotificationController(interactor);
     ParShowNotificationResponseModel responseModel;
 
     @Test

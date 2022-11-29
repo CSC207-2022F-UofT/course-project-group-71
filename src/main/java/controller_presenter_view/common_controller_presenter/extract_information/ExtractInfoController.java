@@ -24,7 +24,7 @@ public class ExtractInfoController {
      *                - "getPastEvents": gets an organization's past events
      *                - "getUpcomingEvents": gets an organization's upcoming events
      *                - "organizerSearch": gets all organizations whose username contains para1 (below).
-     * @param para1 The usernaame of the organization
+     * @param para1 The username of the organization
      * @return A response model containing the information found
      */
     public ExtractInfoResponseModel<String> extractOrg(String keyword, String para1) {

@@ -2,7 +2,7 @@ package use_cases.par_unfollow_org_use_case;
 
 public class ParUnfollowOrgResponseModel {
 
-    String orgName;
+    final String orgName;
 
     String message;
 

@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class ParLeaveEventController {
 
-    ParLeaveEventInputBoundary interactor;
+    final ParLeaveEventInputBoundary interactor;
 
     public ParLeaveEventController(ParLeaveEventInputBoundary interactor) {
         this.interactor = interactor;

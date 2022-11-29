@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
-    EventDsGateway eventDsGateway;
-    OrgDsGateway orgDsGateway;
-    ParDsGateway parDsGateway;
-    OrgPublishEventOutputBoundary orgPublishEventOutputBoundary;
+    final EventDsGateway eventDsGateway;
+    final OrgDsGateway orgDsGateway;
+    final ParDsGateway parDsGateway;
+    final OrgPublishEventOutputBoundary orgPublishEventOutputBoundary;
 
     /**Constructor
      *

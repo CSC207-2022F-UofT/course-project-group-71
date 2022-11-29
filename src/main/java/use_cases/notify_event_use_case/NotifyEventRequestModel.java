@@ -6,8 +6,8 @@ package use_cases.notify_event_use_case;
  */
 public class NotifyEventRequestModel {
 
-    String notificationType;//It could be "Past" or "Future"
-    String eventName;
+    final String notificationType;//It could be "Past" or "Future"
+    final String eventName;
 
     public NotifyEventRequestModel(String notificationType, String eventName) {
         this.notificationType = notificationType;

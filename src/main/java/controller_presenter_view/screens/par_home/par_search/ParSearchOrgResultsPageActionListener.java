@@ -24,8 +24,8 @@ import java.sql.SQLException;
 
 public class ParSearchOrgResultsPageActionListener implements ActionListener {
 
-    ParSearchOrgResultsPage parSearchOrgResultsPage;
-    String orgName;
+    final ParSearchOrgResultsPage parSearchOrgResultsPage;
+    final String orgName;
 
     /**Constructor for the organizer search results page action listener.
      * It takes a search results page and an organizer name as inputs
@@ -75,7 +75,7 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
             new ParSearchOrgResultsPage(this.parSearchOrgResultsPage.getOrgNames(), parUserName);
 
         } else if (actionCommand.equals("Unfollow " + this.orgName)) {
-            //do the unfollow
+            //do to unfollow
             ParDsGateway par = new ParFileUser();
             ParUnfollowOrgOutputBoundary presenter = new ParUnfollowOrgPresenter();
             ParUnfollowOrgInputBoundary interactor = new ParUnfollowOrgInteractor(par, presenter);

@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * 3. LoginPage                         When a participant user clicks the "Login" button
  */
 public class NotifyEventController {
-    NotifyEventInputBoundary notifyEventInputBoundary;
+    final NotifyEventInputBoundary notifyEventInputBoundary;
 
     public NotifyEventController(NotifyEventInputBoundary accountGateway) {
         this.notifyEventInputBoundary = accountGateway;

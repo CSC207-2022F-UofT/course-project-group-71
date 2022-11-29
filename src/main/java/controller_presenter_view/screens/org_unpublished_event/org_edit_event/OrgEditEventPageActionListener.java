@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class OrgEditEventPageActionListener implements ActionListener {
 
-    public OrgEditEventPage orgEditEventPage;
+    public final OrgEditEventPage orgEditEventPage;
 
     public OrgEditEventPageActionListener(OrgEditEventPage orgEditEventPage){
         //Set the input page as the instance

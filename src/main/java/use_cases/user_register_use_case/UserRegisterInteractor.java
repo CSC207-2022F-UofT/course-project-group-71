@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {
-    ParDsGateway parDsGateway;
-    OrgDsGateway orgDsGateway;
-    UserRegisterOutputBoundary userRegisterOutputBoundary;
+    final ParDsGateway parDsGateway;
+    final OrgDsGateway orgDsGateway;
+    final UserRegisterOutputBoundary userRegisterOutputBoundary;
 
     /**Constructor
      *

@@ -4,7 +4,7 @@ package use_cases.org_delete_event_use_case;
  *  Containing the username and the message.
  */
 public class OrgDeleteEventResponseModel {
-    String eventName;
+    final String eventName;
     String message;
 
     /**This is the construct method of OrgDeleteEventResponseModel, it took an eventName and store it as instance.

@@ -7,9 +7,9 @@ import java.util.*;
 
 public class NotifyEventInteractor implements NotifyEventInputBoundary {
 
-    EventDsGateway eventDsGateway;
-    ParDsGateway parDsGateway;
-    NotifyEventOutputBoundary notifyEventOutputBoundary;
+    final EventDsGateway eventDsGateway;
+    final ParDsGateway parDsGateway;
+    final NotifyEventOutputBoundary notifyEventOutputBoundary;
 
     /**Constructor
      *
@@ -30,7 +30,7 @@ public class NotifyEventInteractor implements NotifyEventInputBoundary {
      *      upcoming event page, notificationType would be "Future". The other one is that the system recognizes
      *      the event has already happened, notificationType would be "Past". The latter case can be seen in OrgHomePage.
      *
-     * @param notifyEventRequestModel The request model sent to the interactor
+     * @param notifyEventRequestModel The request model sent to interact
      * @return A responseModel representing whether the notification is successful
      */
     @Override

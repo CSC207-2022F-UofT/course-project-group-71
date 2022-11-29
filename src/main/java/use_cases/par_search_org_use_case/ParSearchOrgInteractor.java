@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class ParSearchOrgInteractor implements ParSearchOrgInputBoundary {
 
-    OrgDsGateway orgDsGateway;
-    ParSearchOrgOutputBoundary userOutput;
+    final OrgDsGateway orgDsGateway;
+    final ParSearchOrgOutputBoundary userOutput;
 
     /**Constructor
      *

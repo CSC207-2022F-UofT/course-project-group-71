@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EventFileUserTest {
     //NOT COMPLETE
-    EventFileUser eventFileUser = new EventFileUser();
+    final EventFileUser eventFileUser = new EventFileUser();
     ParFileUser parFileUser = new ParFileUser();
-    OrgFileUser orgFileUser = new OrgFileUser();
+    final OrgFileUser orgFileUser = new OrgFileUser();
     @Test
     void testGetStatus() throws SQLException, ClassNotFoundException {
         assertEquals("Unpublished", eventFileUser.getStatus("E1"));

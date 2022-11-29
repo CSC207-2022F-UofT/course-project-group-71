@@ -20,12 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Need to connect "C" with "UofT" in the unpublished_events_for_org
  */
 public class OrgPublishEventTest {
-    EventDsGateway eventDsGateway = new EventFileUser();
-    OrgDsGateway orgDsGateway = new OrgFileUser();
-    ParDsGateway parDsGateway = new ParFileUser();
-    OrgPublishEventOutputBoundary orgPublishEventOutputBoundary = new OrgPublishEventPresenter();
-    OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgDsGateway, parDsGateway, orgPublishEventOutputBoundary);
-    OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
+    final EventDsGateway eventDsGateway = new EventFileUser();
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
+    final ParDsGateway parDsGateway = new ParFileUser();
+    final OrgPublishEventOutputBoundary orgPublishEventOutputBoundary = new OrgPublishEventPresenter();
+    final OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgDsGateway, parDsGateway, orgPublishEventOutputBoundary);
+    final OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
     OrgPublishEventResponseModel responseModel;
 
     @Test

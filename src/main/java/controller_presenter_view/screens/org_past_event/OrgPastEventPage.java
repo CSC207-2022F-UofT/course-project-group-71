@@ -23,7 +23,7 @@ public class OrgPastEventPage extends JFrame {
     private final String orgUsername;
 
     /**The method generate a page of organization's past event.
-     * It contains all past events held by this organization and let the organization to delete specific past event.
+     * It contains all past events held by this organization and let the organization delete specific past event.
      * After each of the event, there is a delete button for organization to delete the specific past event.
      * There is a button "back" which directed the Organization back to the home page.
      *

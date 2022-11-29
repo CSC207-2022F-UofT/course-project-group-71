@@ -6,7 +6,7 @@ package use_cases.org_edit_event_use_case;
 public class OrgEditEventResponseModel {
 
     String message;
-    String title;
+    final String title;
 
     public OrgEditEventResponseModel(String title) {
         this.title = title;

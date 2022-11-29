@@ -4,8 +4,8 @@ package use_cases.org_publish_event_use_case;
  *  Containing the eventName and the message.
  */
 public class OrgPublishEventResponseModel {
-    String eventName;
-    boolean hasFollower;
+    final String eventName;
+    final boolean hasFollower;
     String message;
 
     public OrgPublishEventResponseModel(String eventName, boolean hasFollower) {

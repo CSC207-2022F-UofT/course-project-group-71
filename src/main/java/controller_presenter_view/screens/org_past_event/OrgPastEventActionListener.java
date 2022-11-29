@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class OrgPastEventActionListener implements ActionListener {
-    public OrgPastEventPage orgPastEventPage;
+    public final OrgPastEventPage orgPastEventPage;
 
     public OrgPastEventActionListener(OrgPastEventPage orgPastEventPage){
         this.orgPastEventPage = orgPastEventPage;

@@ -5,8 +5,8 @@ import database.ParDsGateway;
 import java.sql.SQLException;
 
 public class ParJoinEventInteractor implements ParJoinEventInputBoundary {
-    ParJoinEventOutputBoundary presenter;
-    ParDsGateway parDsGateway;
+    final ParJoinEventOutputBoundary presenter;
+    final ParDsGateway parDsGateway;
 
     /**This is the construct method of ParJoinEventInteractor.
      * It takes DsGateways and Presenter as input to store as instances.

@@ -17,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class UpcomingToPastTest {
-    ParDsGateway parDsGateway = new ParFileUser();
-    EventDsGateway eventDsGateway = new EventFileUser();
-    OrgDsGateway orgDsGateway = new OrgFileUser();
-    UpcomingToPastOutputBoundary presenter = new UpcomingToPastPresenter();
-    UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway, eventDsGateway, presenter);
-    UpcomingToPastController controller = new UpcomingToPastController(interactor);
+    final ParDsGateway parDsGateway = new ParFileUser();
+    final EventDsGateway eventDsGateway = new EventFileUser();
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
+    final UpcomingToPastOutputBoundary presenter = new UpcomingToPastPresenter();
+    final UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway, eventDsGateway, presenter);
+    final UpcomingToPastController controller = new UpcomingToPastController(interactor);
     UpcomingToPastResponseModel responseModel;
 
     @Test

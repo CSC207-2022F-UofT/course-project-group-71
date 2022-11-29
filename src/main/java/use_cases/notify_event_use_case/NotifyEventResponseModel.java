@@ -4,8 +4,8 @@ package use_cases.notify_event_use_case;
  *  Containing the eventName and the message.
  */
 public class NotifyEventResponseModel {
-    String eventName;
-    String notificationType;//It could be "Past" or "Future"
+    final String eventName;
+    final String notificationType;//It could be "Past" or "Future"
     String message;
 
     public NotifyEventResponseModel(String eventName, String notificationType) {

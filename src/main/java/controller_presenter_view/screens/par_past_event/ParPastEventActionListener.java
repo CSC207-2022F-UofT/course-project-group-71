@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class ParPastEventActionListener implements ActionListener {
-    public ParPastEventPage parPastEventPage;
+    public final ParPastEventPage parPastEventPage;
 
     /**Constructs the acation listener for the participant's past events page.
      * It takes the past event page as input and sets it as an attribute.
