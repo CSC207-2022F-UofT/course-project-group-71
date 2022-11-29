@@ -19,7 +19,7 @@ public class OrgHomePage extends JFrame {
      *      notify the participants or delete the Upcoming events.
      * "Past Event" button will jump to the Past Event page which can let the organization delete specific past events.
      * "Followers" button will jump to the followers page which the organization can see all followers
-     * There is a button "Log Out" at the button which logged the Organization out and jump to the log in page.
+     * There is a button "Log Out" at the button which logged the Organization out and jump to the login page.
      *
      * @param orgUsername the username of the organization.
      */

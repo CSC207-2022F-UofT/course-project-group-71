@@ -22,7 +22,7 @@ import static controller_presenter_view.screens.screen_constants.getConstantY;
 public class ParPastEventPage extends JFrame {
     private final String parUsername;
 
-    /**The page that shows the participant's past events (i.e., the events they previously
+    /**The page that shows the participant's past events (i.e., the events they previously)
      * registered for.
      *
      * @param parUsername The username of the participant

@@ -14,7 +14,7 @@ public class OrgAccountPage extends JFrame {
     final JPasswordField newPassword = new JPasswordField(15);
     final JPasswordField retypeNewPassword = new JPasswordField(15);
 
-    /**The method generate a Organization Account page and allowed the organization to reset password.
+    /**The method generate an Organization Account page and allowed the organization to reset password.
      * It contains a title with organization's username.
      * It allows user to input old and new password to reset password with a button called "Reset Password".
      * There is a button "back" which directed the Organization back to the home page.

@@ -22,13 +22,13 @@ import static controller_presenter_view.screens.screen_constants.getConstantY;
 public class OrgUnpublishedEventPage extends JFrame {
     private final String orgUsername;
     /**The method generate a page of organization's unpublished event.
-     * It let the organization create new a unpublished event and contains all unpublished events held by this
+     * It let the organization create new an unpublished event and contains all unpublished events held by this
      *       organization and let the organization publish, edit or delete specific events.
      * There is a button "create new events" on the top which will pop up a window of create event.
      * After each of the event, there are three buttons.
      * -First is a "Publish" button, which the organization can publish the event and let participants join it.
      *  The event will disappear in this unpublished page and appear in the published page.
-     * -Second is an "Edit" button, which the organization can keep editing this event and it will switch to the edit event page.
+     * -Second is an "Edit" button, which the organization can keep editing this event, and it will switch to the edit event page.
      * -Third is a "Delete" button, which the organization can delete the event and event will no longer be inside the unpublished page.
      * There is a button "back" which directed the Organization back to the home page.
      *
@@ -125,7 +125,7 @@ public class OrgUnpublishedEventPage extends JFrame {
                 //Add a button for "Publish"
                 JButton publish = new JButton("Publish");
                 publish.setActionCommand(unpublishedEventTitle + "Publish");
-                //Set the action listener to respond when user clicks 'Publish" for this event
+                //Set the action listener to respond when user clicks "Publish" for this event
                 publish.addActionListener(new OrgUnpublishedEventActionListener(this));
                 publish.setBounds(x + 250, y + 15, 100, 30);
                 publish.setVisible(true);
