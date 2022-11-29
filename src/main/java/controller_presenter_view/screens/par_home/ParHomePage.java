@@ -47,6 +47,7 @@ public class ParHomePage extends JFrame implements ActionListener {
         output.setBounds (x, y, width, height);
         return output;
     }
+
     /**Take the username of the participant, and generate a homepage for this partricipant.
      * The Page contains notifications, account page, upcoming event, past event and followed Org.
      * It also contains a button to log out.
