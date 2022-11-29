@@ -39,24 +39,10 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
             }
 
             //Check if the username is too long
-            if (requestModel.getUsername().length() > 20) {
-                return userRegisterOutputBoundary.prepareFailView("Username should be no longer than 20 characters.");
+            if (utilUsernameAndPasswordChecker(requestModel)!= null){
+                return utilUsernameAndPasswordChecker(requestModel);
             }
 
-            //Check if the password is empty
-            if (requestModel.getPassword().isEmpty()) {
-                return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
-            }
-
-            //Check if the password is too long
-            if (requestModel.getPassword().length() > 20) {
-                return userRegisterOutputBoundary.prepareFailView("Password should be no longer than 20 characters.");
-            }
-
-            //Check if two passwords are different
-            if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
-                return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
-            }
             //No problems met, so it shows a success view
             orgDsGateway.createOrg(requestModel.getUsername(), requestModel.getPassword());
             UserRegisterResponseModel responseModel = new UserRegisterResponseModel(requestModel.getUsername());
@@ -69,23 +55,8 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
                 return userRegisterOutputBoundary.prepareFailView("Participant already exists.");
             }
             //Check if the username is too long
-            if (requestModel.getUsername().length() > 20) {
-                return userRegisterOutputBoundary.prepareFailView("Username should be no longer than 20 characters.");
-            }
-
-            //Check if the password is empty
-            if (requestModel.getPassword().isEmpty()) {
-                return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
-            }
-
-            //Check if the password is too long
-            if (requestModel.getPassword().length() > 20) {
-                return userRegisterOutputBoundary.prepareFailView("Password should be no longer than 20 characters.");
-            }
-
-            //Check if two passwords are different
-            if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
-                return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
+            if (utilUsernameAndPasswordChecker(requestModel)!= null){
+                return utilUsernameAndPasswordChecker(requestModel);
             }
             //No problems met, so it shows a success view
             parDsGateway.createPar(requestModel.getUsername(), requestModel.getPassword());
@@ -96,4 +67,28 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
             return userRegisterOutputBoundary.prepareFailView("Please select your account type.");
         }
 
-    }}
+    }
+    public UserRegisterResponseModel utilUsernameAndPasswordChecker(UserRegisterRequestModel requestModel) {
+        if (requestModel.getUsername().length() > 20) {
+            return userRegisterOutputBoundary.prepareFailView("Username should be no longer than 20 characters.");
+        }
+
+        //Check if the password is empty
+        if (requestModel.getPassword().isEmpty()) {
+            return userRegisterOutputBoundary.prepareFailView("Password cannot be empty.");
+        }
+
+        //Check if the password is too long
+        if (requestModel.getPassword().length() > 20) {
+            return userRegisterOutputBoundary.prepareFailView("Password should be no longer than 20 characters.");
+        }
+
+        //Check if two passwords are different
+        if (!Objects.equals(requestModel.getPassword(), requestModel.getRe_password())) {
+            return userRegisterOutputBoundary.prepareFailView("Two Passwords are different.");
+        }
+
+
+        return null;
+    }
+}

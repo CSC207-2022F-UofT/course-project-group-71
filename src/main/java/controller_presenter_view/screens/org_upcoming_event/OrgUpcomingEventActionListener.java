@@ -1,20 +1,20 @@
 package controller_presenter_view.screens.org_upcoming_event;
 
-import database.*;
+import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
+import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
+import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
+import controller_presenter_view.common_view.EventDetailsPage;
+import controller_presenter_view.screens.org_home.OrgHomePage;
+import database.EventDsGateway;
+import database.EventFileUser;
+import database.ParDsGateway;
+import database.ParFileUser;
+import use_cases.Unorganised_Util;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
 import use_cases.notify_event_use_case.NotifyEventResponseModel;
-import use_cases.org_delete_event_use_case.OrgDeleteEventInputBoundary;
-import use_cases.org_delete_event_use_case.OrgDeleteEventInteractor;
-import use_cases.org_delete_event_use_case.OrgDeleteEventOutputBoundary;
 import use_cases.org_delete_event_use_case.OrgDeleteEventResponseModel;
-import controller_presenter_view.common_view.EventDetailsPage;
-import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
-import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
-import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
-import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventPresenter;
-import controller_presenter_view.screens.org_home.OrgHomePage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -59,18 +59,7 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             }
         }
         else if (actionCommand.contains("Delete")) {
-            EventDsGateway eventDsGateway = new EventFileUser();
-
-            OrgDsGateway orgDsGateway = new OrgFileUser();
-
-            ParDsGateway parDsGateway = new ParFileUser();
-
-            OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
-
-            OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
-                    parDsGateway, orgDeleteEventOutputBoundary);
-
-            OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
+            OrgDeleteEventController orgDeleteEventController = Unorganised_Util.utilGetDeleteEventControllerHelper();
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 

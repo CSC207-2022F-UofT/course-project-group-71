@@ -1,5 +1,8 @@
 package controller_presenter_view.screens.org_unpublished_event;
 
+import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
+import controller_presenter_view.common_view.EventDetailsPage;
+import controller_presenter_view.screens.org_home.OrgHomePage;
 import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventPage;
 import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventPresenter;
@@ -9,12 +12,10 @@ import controller_presenter_view.screens.org_unpublished_event.org_edit_event.Or
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventPresenter;
 import database.*;
+import use_cases.Unorganised_Util;
 import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
 import use_cases.org_create_event_use_case.OrgCreateEventInteractor;
 import use_cases.org_create_event_use_case.OrgCreateEventOutputBoundary;
-import use_cases.org_delete_event_use_case.OrgDeleteEventInputBoundary;
-import use_cases.org_delete_event_use_case.OrgDeleteEventInteractor;
-import use_cases.org_delete_event_use_case.OrgDeleteEventOutputBoundary;
 import use_cases.org_delete_event_use_case.OrgDeleteEventResponseModel;
 import use_cases.org_edit_event_use_case.OrgEditEventInputBoundary;
 import use_cases.org_edit_event_use_case.OrgEditEventInteractor;
@@ -23,10 +24,6 @@ import use_cases.org_publish_event_use_case.OrgPublishEventInputBoundary;
 import use_cases.org_publish_event_use_case.OrgPublishEventInteractor;
 import use_cases.org_publish_event_use_case.OrgPublishEventOutputBoundary;
 import use_cases.org_publish_event_use_case.OrgPublishEventResponseModel;
-import controller_presenter_view.common_view.EventDetailsPage;
-import controller_presenter_view.screens.org_home.OrgHomePage;
-import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
-import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -49,18 +46,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             new OrgHomePage(orgUsername);
         }
         else if (actionCommand.contains("Delete")) {
-            EventDsGateway eventDsGateway = new EventFileUser();
-
-            OrgDsGateway orgDsGateway = new OrgFileUser();
-
-            ParDsGateway parDsGateway = new ParFileUser();
-
-            OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
-
-            OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
-                    parDsGateway, orgDeleteEventOutputBoundary);
-
-            OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
+            OrgDeleteEventController orgDeleteEventController = Unorganised_Util.utilGetDeleteEventControllerHelper();
 
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
