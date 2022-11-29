@@ -19,8 +19,8 @@ import static controller_presenter_view.screens.screen_constants.getConstantY;
 
 public class OrgDetailsPage extends JFrame {
 
-    String orgName;
-    OrgDsGateway o = new OrgFileUser();
+    final String orgName;
+    final OrgDsGateway o = new OrgFileUser();
 
     /** When this constructor is called it will generate an organizers details page that will include the organizer's
      * name as well as all the upcoming events for the organizer based on orgName parameter

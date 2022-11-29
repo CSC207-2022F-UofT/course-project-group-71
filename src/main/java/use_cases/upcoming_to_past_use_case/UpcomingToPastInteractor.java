@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
 
-    ParDsGateway parDsGateway;
-    OrgDsGateway orgDsGateway;
-    EventDsGateway eventDsGateway;
-    UpcomingToPastOutputBoundary upcomingToPastOutputBoundary;
+    final ParDsGateway parDsGateway;
+    final OrgDsGateway orgDsGateway;
+    final EventDsGateway eventDsGateway;
+    final UpcomingToPastOutputBoundary upcomingToPastOutputBoundary;
 
     /**Constructor
      *

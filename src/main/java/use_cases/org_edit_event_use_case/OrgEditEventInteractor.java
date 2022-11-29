@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 
 public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
 
-    EventDsGateway eventDsGateway;
-    OrgDsGateway orgDsGateway;
-    OrgEditEventOutputBoundary orgEditEventOutputBoundary;
+    final EventDsGateway eventDsGateway;
+    final OrgDsGateway orgDsGateway;
+    final OrgEditEventOutputBoundary orgEditEventOutputBoundary;
 
 
     /**Constructor

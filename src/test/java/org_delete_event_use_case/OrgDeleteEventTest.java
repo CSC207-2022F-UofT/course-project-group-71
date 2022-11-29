@@ -22,18 +22,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * Need to assign "MAT137" to "UofT" in unpublished_events_for_org
  */
 public class OrgDeleteEventTest {
-    EventDsGateway eventDsGateway = new EventFileUser();
+    final EventDsGateway eventDsGateway = new EventFileUser();
 
-    OrgDsGateway orgDsGateway = new OrgFileUser();
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
 
-    ParDsGateway parDsGateway = new ParFileUser();
+    final ParDsGateway parDsGateway = new ParFileUser();
 
-    OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
+    final OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary = new OrgDeleteEventPresenter();
 
-    OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
+    final OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway, orgDsGateway,
             parDsGateway, orgDeleteEventOutputBoundary);
 
-    OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
+    final OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
 
     OrgDeleteEventResponseModel responseModel;
 

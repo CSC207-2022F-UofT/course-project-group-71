@@ -26,7 +26,7 @@ import java.sql.SQLException;
 import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
 public class OrgHomeActionListener implements ActionListener {
-    public OrgHomePage orgHomePage;
+    public final OrgHomePage orgHomePage;
     public OrgHomeActionListener(OrgHomePage orgHomePage){
         this.orgHomePage = orgHomePage;
     }

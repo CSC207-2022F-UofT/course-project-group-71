@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParFollowOrgTest {
-    ParDsGateway par = new ParFileUser();
-    ParFollowOrgOutputBoundary presenter = new ParFollowOrgPresenter();
-    ParFollowOrgInputBoundary interactor = new ParFollowOrgInteractor(par,presenter);
-    ParFollowOrgController controller = new ParFollowOrgController(interactor);
+    final ParDsGateway par = new ParFileUser();
+    final ParFollowOrgOutputBoundary presenter = new ParFollowOrgPresenter();
+    final ParFollowOrgInputBoundary interactor = new ParFollowOrgInteractor(par,presenter);
+    final ParFollowOrgController controller = new ParFollowOrgController(interactor);
     ParFollowOrgResponseModel responseModel;
 
     /**Need to create "allyson" as a participant in parfile and "UBC" as an organization in orgfile

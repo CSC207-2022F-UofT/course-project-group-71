@@ -19,16 +19,17 @@ import static controller_presenter_view.screens.screen_constants.getConstantY;
 public class ParHomePage extends JFrame implements ActionListener {
 
     private final String parUsername;
-    JRadioButton org,eve;
-    JTextField searchBox;
+    final JRadioButton org;
+    final JRadioButton eve;
+    final JTextField searchBox;
 
-    ParShowNotificationOutputBoundary parShowNotificationPresenter =  new ParShowNotificationPresenter();
+    final ParShowNotificationOutputBoundary parShowNotificationPresenter =  new ParShowNotificationPresenter();
 
-    ParDsGateway parDsGateway = new ParFileUser();
+    final ParDsGateway parDsGateway = new ParFileUser();
 
-    ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(parShowNotificationPresenter,
+    final ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(parShowNotificationPresenter,
             parDsGateway);
-    ParShowNotificationController parShowNotificationController = new ParShowNotificationController(interactor);
+    final ParShowNotificationController parShowNotificationController = new ParShowNotificationController(interactor);
 
     /**Take the username of the participant, and generate a homepage for this partricipant.
      * The Page contains notifications, account page, upcoming event, past event and followed Org.

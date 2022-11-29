@@ -7,9 +7,9 @@ import java.util.*;
 
 public class NotifyEventInteractor implements NotifyEventInputBoundary {
 
-    EventDsGateway eventDsGateway;
-    ParDsGateway parDsGateway;
-    NotifyEventOutputBoundary notifyEventOutputBoundary;
+    final EventDsGateway eventDsGateway;
+    final ParDsGateway parDsGateway;
+    final NotifyEventOutputBoundary notifyEventOutputBoundary;
 
     /**Constructor
      *

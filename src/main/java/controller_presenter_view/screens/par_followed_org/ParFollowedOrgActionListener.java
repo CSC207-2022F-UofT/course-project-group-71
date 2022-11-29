@@ -15,8 +15,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class ParFollowedOrgActionListener implements ActionListener {
-    ParFollowedOrgPage parFollowerPage;
-    String orgName;
+    final ParFollowedOrgPage parFollowerPage;
+    final String orgName;
 
     /**Constructor for the action listener of the page appearing after the participant
      * follows an organizer.

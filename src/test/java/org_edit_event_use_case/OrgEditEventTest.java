@@ -18,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**Need to create an event called "Edit" in eventfile, can choose to leave other attributes null.
  */
 public class OrgEditEventTest {
-    EventDsGateway eventDsGateway = new EventFileUser();
-    OrgDsGateway orgDsGateway = new OrgFileUser();
-    OrgEditEventOutputBoundary presenter = new OrgEditEventPresenter();
-    OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(eventDsGateway, orgDsGateway, presenter);
-    OrgEditEventController controller = new OrgEditEventController(interactor);
+    final EventDsGateway eventDsGateway = new EventFileUser();
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
+    final OrgEditEventOutputBoundary presenter = new OrgEditEventPresenter();
+    final OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(eventDsGateway, orgDsGateway, presenter);
+    final OrgEditEventController controller = new OrgEditEventController(interactor);
     OrgEditEventResponseModel responseModel;
 
 

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class OrgEditEventController {
 
-    OrgEditEventInputBoundary userInput;
+    final OrgEditEventInputBoundary userInput;
 
     public OrgEditEventController(OrgEditEventInputBoundary userInput) {
         this.userInput = userInput;

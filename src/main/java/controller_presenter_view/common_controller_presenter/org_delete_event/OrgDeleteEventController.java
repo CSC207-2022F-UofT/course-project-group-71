@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * 2. OrgUpcomingEventActionListener    When the organization clicks the "Delete" button on OrgUpcomingEventPage
  */
 public class OrgDeleteEventController {
-    OrgDeleteEventInputBoundary userInput;
+    final OrgDeleteEventInputBoundary userInput;
 
     public OrgDeleteEventController(OrgDeleteEventInputBoundary accountGateway) {
         this.userInput = accountGateway;

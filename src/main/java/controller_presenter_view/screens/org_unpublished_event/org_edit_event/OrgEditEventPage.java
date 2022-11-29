@@ -13,19 +13,19 @@ import java.util.ArrayList;
 
 public class OrgEditEventPage extends JFrame implements ActionListener {
 
-    OrgEditEventController controller;
-    EventDsGateway eventDsGateway;
-    OrgUnpublishedEventPage orgUnpublishedEventPage;
+    final OrgEditEventController controller;
+    final EventDsGateway eventDsGateway;
+    final OrgUnpublishedEventPage orgUnpublishedEventPage;
 
-    String eventName;
+    final String eventName;
 
-    JTextField description = new JTextField(15);
-    JTextField year = new JTextField(4);
-    JTextField month = new JTextField(2);
-    JTextField day = new JTextField(2);
-    JTextField hour = new JTextField(2);
-    JTextField minute = new JTextField(2);
-    JTextField location = new JTextField(15);
+    final JTextField description = new JTextField(15);
+    final JTextField year = new JTextField(4);
+    final JTextField month = new JTextField(2);
+    final JTextField day = new JTextField(2);
+    final JTextField hour = new JTextField(2);
+    final JTextField minute = new JTextField(2);
+    final JTextField location = new JTextField(15);
 
     /**The method generate an edit event window and allowed the organization to edit the unpublished event by input details.
      * It allows user to input title, description, year, month, day, hour, minutes and location,

@@ -2,7 +2,7 @@ package use_cases.par_leave_event_use_case;
 
 public class ParLeaveEventResponseModel {
 
-    String event_title;
+    final String event_title;
 
     String message;
 

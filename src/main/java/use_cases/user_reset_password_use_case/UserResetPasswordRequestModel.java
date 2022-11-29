@@ -2,11 +2,11 @@ package use_cases.user_reset_password_use_case;
 
 public class UserResetPasswordRequestModel {
 
-    String reNewPassword;
-    String username;
-    String password;
-    boolean whether_org;
-    String newPassword;
+    final String reNewPassword;
+    final String username;
+    final String password;
+    final boolean whether_org;
+    final String newPassword;
 
     /** A request model sent the interactor to reset the new password.
      *

@@ -5,7 +5,7 @@ package use_cases.org_delete_event_use_case;
  */
 public class OrgDeleteEventRequestModel {
 
-    String eventName;
+    final String eventName;
 
     /**A request model sent the interactor to delete an event.
      *

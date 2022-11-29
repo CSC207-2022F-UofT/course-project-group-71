@@ -23,12 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
  *                      depending on your hardware.
  */
 public class NotifyEventTest {
-    ParDsGateway parDsGateway = new ParFileUser();
-    EventDsGateway eventDsGateway = new EventFileUser();
-    NotifyEventOutputBoundary presenter = new NotifyEventPresenter();
-    NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway,
+    final ParDsGateway parDsGateway = new ParFileUser();
+    final EventDsGateway eventDsGateway = new EventFileUser();
+    final NotifyEventOutputBoundary presenter = new NotifyEventPresenter();
+    final NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway,
             presenter);
-    NotifyEventController controller = new NotifyEventController(interactor);
+    final NotifyEventController controller = new NotifyEventController(interactor);
     NotifyEventResponseModel responseModel;
 
 

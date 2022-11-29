@@ -17,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * Need to assign the above events to a random organization in upcoming_event_for_org
  */
 public class ParSearchEventTest {
-    EventDsGateway eventDsGateway = new EventFileUser();
-    ParSearchEventPresenter presenter = new ParSearchEventPresenter();
-    ParSearchEventInputBoundary interactor = new ParSearchEventInteractor(eventDsGateway, presenter);
-    ParSearchEventController controller = new ParSearchEventController(interactor);
+    final EventDsGateway eventDsGateway = new EventFileUser();
+    final ParSearchEventPresenter presenter = new ParSearchEventPresenter();
+    final ParSearchEventInputBoundary interactor = new ParSearchEventInteractor(eventDsGateway, presenter);
+    final ParSearchEventController controller = new ParSearchEventController(interactor);
     ParSearchEventResponseModel responseModel;
 
     @Test

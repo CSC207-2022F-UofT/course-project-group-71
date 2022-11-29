@@ -22,8 +22,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class OrgUpcomingEventActionListener implements ActionListener {
-    public OrgUpcomingEventPage orgUpcomingEventPage;
-    public String orgUsername;
+    public final OrgUpcomingEventPage orgUpcomingEventPage;
+    public final String orgUsername;
 
     public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage, String orgUsername){
         this.orgUpcomingEventPage = orgUpcomingEventPage;

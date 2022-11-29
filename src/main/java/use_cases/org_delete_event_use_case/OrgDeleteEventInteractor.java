@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
 
-    EventDsGateway eventDsGateway;
-    OrgDsGateway orgDsGateway;
-    ParDsGateway parDsGateway;
-    OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary;
+    final EventDsGateway eventDsGateway;
+    final OrgDsGateway orgDsGateway;
+    final ParDsGateway parDsGateway;
+    final OrgDeleteEventOutputBoundary orgDeleteEventOutputBoundary;
 
     /**Constructor
      *

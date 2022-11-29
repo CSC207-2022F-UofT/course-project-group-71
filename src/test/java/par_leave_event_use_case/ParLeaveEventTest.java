@@ -21,11 +21,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Need to add the organization and "E6" in upcoming_events_for_org
  */
 public class ParLeaveEventTest {
-    ParDsGateway parDsGateway = new ParFileUser();
-    OrgDsGateway orgDsGateway = new OrgFileUser();
-    ParLeaveEventOutputBoundary presenter = new ParLeaveEventPresenter();
-    ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway,orgDsGateway,presenter);
-    ParLeaveEventController controller = new ParLeaveEventController(interactor);
+    final ParDsGateway parDsGateway = new ParFileUser();
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
+    final ParLeaveEventOutputBoundary presenter = new ParLeaveEventPresenter();
+    final ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway,orgDsGateway,presenter);
+    final ParLeaveEventController controller = new ParLeaveEventController(interactor);
     ParLeaveEventResponseModel responseModel;
 
 

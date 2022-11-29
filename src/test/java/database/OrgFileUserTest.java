@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class OrgFileUserTest {
 
-    OrgFileUser orgFileUser = new OrgFileUser();
-    EventFileUser eventFileUser = new EventFileUser();
+    final OrgFileUser orgFileUser = new OrgFileUser();
+    final EventFileUser eventFileUser = new EventFileUser();
 
     @Test
     void testGetPassword() throws SQLException, ClassNotFoundException {

@@ -6,9 +6,9 @@ import database.ParDsGateway;
 import java.sql.SQLException;
 
 public class UserResetPasswordInteractor implements UserResetPasswordInputBoundary {
-    UserResetPasswordOutputBoundary userResetPasswordOutputBoundary;
-    OrgDsGateway orgDsGateway;
-    ParDsGateway parDsGateway;
+    final UserResetPasswordOutputBoundary userResetPasswordOutputBoundary;
+    final OrgDsGateway orgDsGateway;
+    final ParDsGateway parDsGateway;
 
     /** Constructor
      *

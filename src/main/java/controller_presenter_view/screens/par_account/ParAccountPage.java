@@ -9,10 +9,10 @@ import static controller_presenter_view.screens.screen_constants.getConstantY;
 
 
 public class ParAccountPage extends JFrame {
-    String parUsername;
-    JPasswordField oldPassword = new JPasswordField(15);
-    JPasswordField newPassword = new JPasswordField(15);
-    JPasswordField retypeNewPassword = new JPasswordField(15);
+    final String parUsername;
+    final JPasswordField oldPassword = new JPasswordField(15);
+    final JPasswordField newPassword = new JPasswordField(15);
+    final JPasswordField retypeNewPassword = new JPasswordField(15);
 
     /**The username of the participant, the page use this name to find relevant information from the database.
      * And generating the page.

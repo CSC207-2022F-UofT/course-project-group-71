@@ -11,19 +11,19 @@ import static controller_presenter_view.screens.user_register.RegisterPageBuilde
 
 public class RegisterPage extends JFrame implements ActionListener {
 
-    JTextField username = new JTextField(15);
+    final JTextField username = new JTextField(15);
 
-    JPasswordField password = new JPasswordField(15);
+    final JPasswordField password = new JPasswordField(15);
     
-    JPasswordField retypePassword = new JPasswordField(15);
+    final JPasswordField retypePassword = new JPasswordField(15);
 
-    UserRegisterController userRegisterController;
+    final UserRegisterController userRegisterController;
 
     boolean P = false;
     boolean O = false;
 
-    int x = 500;
-    int y = 500;
+    final int x = 500;
+    final int y = 500;
 
     /**The method generate a registration page.
      * It contains button to choose the user type for registration.

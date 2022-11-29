@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
 
-    EventDsGateway eventDsGateway;
-    ParSearchEventOutputBoundary userOutput;
+    final EventDsGateway eventDsGateway;
+    final ParSearchEventOutputBoundary userOutput;
 
     /**Constructor
      *

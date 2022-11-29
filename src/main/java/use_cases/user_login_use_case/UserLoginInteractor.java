@@ -7,11 +7,11 @@ import java.sql.SQLException;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
 
-    UserLoginOutputBoundary userLoginOutputBoundary;
-    ParDsGateway parDsGateway;
-    ParHomeOutputBoundary parHomeOutputBoundary;
-    OrgDsGateway orgDsGateway;
-    OrgHomeOutputBoundary orgHomeOutputBoundary;
+    final UserLoginOutputBoundary userLoginOutputBoundary;
+    final ParDsGateway parDsGateway;
+    final ParHomeOutputBoundary parHomeOutputBoundary;
+    final OrgDsGateway orgDsGateway;
+    final OrgHomeOutputBoundary orgHomeOutputBoundary;
 
     /**Constructor
      *

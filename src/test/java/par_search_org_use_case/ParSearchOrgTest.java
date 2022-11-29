@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Need to create organization "1", "12", "123", .... , "12345678", and "4321" in orgfile
  */
 public class ParSearchOrgTest {
-    OrgDsGateway orgDsGateway = new OrgFileUser();
-    ParSearchOrgPresenter presenter = new ParSearchOrgPresenter();
-    ParSearchOrgInputBoundary interactor = new ParSearchOrgInteractor(orgDsGateway, presenter);
-    ParSearchOrgController controller = new ParSearchOrgController(interactor);
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
+    final ParSearchOrgPresenter presenter = new ParSearchOrgPresenter();
+    final ParSearchOrgInputBoundary interactor = new ParSearchOrgInteractor(orgDsGateway, presenter);
+    final ParSearchOrgController controller = new ParSearchOrgController(interactor);
     ParSearchOrgResponseModel responseModel;
 
     @Test

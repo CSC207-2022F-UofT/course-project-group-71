@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
 
-    ParDsGateway parDsGateway;
+    final ParDsGateway parDsGateway;
 
-    OrgDsGateway orgDsGateway;
+    final OrgDsGateway orgDsGateway;
 
-    ParLeaveEventOutputBoundary parLeaveEventOutputBoundary;
+    final ParLeaveEventOutputBoundary parLeaveEventOutputBoundary;
 
     /**Constructor
      *

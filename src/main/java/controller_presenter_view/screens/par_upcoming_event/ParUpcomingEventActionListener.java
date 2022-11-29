@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class ParUpcomingEventActionListener implements ActionListener {
-    public ParUpcomingEventPage parUpcomingEventPage;
+    public final ParUpcomingEventPage parUpcomingEventPage;
 
     /**Constructor of the upcoming event page.
      * It gets an upcoming event page as input and store it as instance.

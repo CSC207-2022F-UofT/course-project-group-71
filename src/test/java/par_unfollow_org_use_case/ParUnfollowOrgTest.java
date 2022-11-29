@@ -21,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Need "ben" and "UofT" in the follow_org_par table in database
  */
 public class ParUnfollowOrgTest {
-    ParDsGateway par = new ParFileUser();
-    ParUnfollowOrgOutputBoundary presenter = new ParUnfollowOrgPresenter();
-    ParUnfollowOrgInputBoundary interactor = new ParUnfollowOrgInteractor(par,presenter);
-    ParUnfollowOrgController controller = new ParUnfollowOrgController(interactor);
+    final ParDsGateway par = new ParFileUser();
+    final ParUnfollowOrgOutputBoundary presenter = new ParUnfollowOrgPresenter();
+    final ParUnfollowOrgInputBoundary interactor = new ParUnfollowOrgInteractor(par,presenter);
+    final ParUnfollowOrgController controller = new ParUnfollowOrgController(interactor);
     ParUnfollowOrgResponseModel responseModel;
 
     @Test

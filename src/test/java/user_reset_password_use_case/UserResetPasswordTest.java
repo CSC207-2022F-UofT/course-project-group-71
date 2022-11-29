@@ -28,14 +28,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *
  */
 public class UserResetPasswordTest {
-    ParDsGateway parDsGateway = new ParFileUser();
-    OrgDsGateway orgDsGateway = new OrgFileUser();
-    UserResetPasswordOutputBoundary org_presenter = new OrgResetPasswordPresenter();
-    UserResetPasswordOutputBoundary par_presenter = new ParResetPasswordPresenter();
-    UserResetPasswordInputBoundary interactor_org = new UserResetPasswordInteractor(org_presenter, orgDsGateway, parDsGateway);
-    UserResetPasswordInputBoundary interactor_par = new UserResetPasswordInteractor(par_presenter, orgDsGateway, parDsGateway);
-    OrgResetPasswordController orgController = new OrgResetPasswordController(interactor_org);
-    ParResetPasswordController parController = new ParResetPasswordController(interactor_par);
+    final ParDsGateway parDsGateway = new ParFileUser();
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
+    final UserResetPasswordOutputBoundary org_presenter = new OrgResetPasswordPresenter();
+    final UserResetPasswordOutputBoundary par_presenter = new ParResetPasswordPresenter();
+    final UserResetPasswordInputBoundary interactor_org = new UserResetPasswordInteractor(org_presenter, orgDsGateway, parDsGateway);
+    final UserResetPasswordInputBoundary interactor_par = new UserResetPasswordInteractor(par_presenter, orgDsGateway, parDsGateway);
+    final OrgResetPasswordController orgController = new OrgResetPasswordController(interactor_org);
+    final ParResetPasswordController parController = new ParResetPasswordController(interactor_par);
     UserResetPasswordResponseModel responseModel;
 
     @Test

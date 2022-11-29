@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class ParJoinEventController {
 
-    ParJoinEventInputBoundary interactor;
+    final ParJoinEventInputBoundary interactor;
 
     public ParJoinEventController(ParJoinEventInputBoundary interactor) {
         this.interactor = interactor;

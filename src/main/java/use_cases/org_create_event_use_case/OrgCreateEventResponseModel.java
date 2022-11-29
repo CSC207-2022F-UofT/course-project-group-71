@@ -8,7 +8,7 @@ package use_cases.org_create_event_use_case;
 public class OrgCreateEventResponseModel {
 
     String message;
-    String title;
+    final String title;
 
     public OrgCreateEventResponseModel(String title) {
         this.title = title;

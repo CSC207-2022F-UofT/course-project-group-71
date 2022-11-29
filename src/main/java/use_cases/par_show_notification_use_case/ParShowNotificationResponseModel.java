@@ -3,7 +3,7 @@ package use_cases.par_show_notification_use_case;
 import java.util.ArrayList;
 
 public class ParShowNotificationResponseModel {
-    String notifications;
+    final String notifications;
 
     public ParShowNotificationResponseModel(String notifications) {
         this.notifications = notifications;

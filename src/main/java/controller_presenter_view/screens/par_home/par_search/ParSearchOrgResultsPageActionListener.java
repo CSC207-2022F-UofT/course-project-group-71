@@ -24,8 +24,8 @@ import java.sql.SQLException;
 
 public class ParSearchOrgResultsPageActionListener implements ActionListener {
 
-    ParSearchOrgResultsPage parSearchOrgResultsPage;
-    String orgName;
+    final ParSearchOrgResultsPage parSearchOrgResultsPage;
+    final String orgName;
 
     /**Constructor for the organizer search results page action listener.
      * It takes a search results page and an organizer name as inputs
