@@ -1,4 +1,4 @@
-package Par_Join_Event_Use_Case;
+package use_cases.par_join_event_use_case;
 
 public class ParJoinEventRequestModel {
     final String parUsername;

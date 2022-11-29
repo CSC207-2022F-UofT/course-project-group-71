@@ -1,7 +1,7 @@
-package Par_Join_Event_screen;
+package controller_presenter_view.screens.par_home.par_search.par_join_event;
 
-import Par_Join_Event_Use_Case.ParJoinEventOutputBoundary;
-import Par_Join_Event_Use_Case.ParJoinEventResponseModel;
+import use_cases.par_join_event_use_case.ParJoinEventOutputBoundary;
+import use_cases.par_join_event_use_case.ParJoinEventResponseModel;
 
 public class ParJoinEventPresenter implements ParJoinEventOutputBoundary {
 
