@@ -84,6 +84,9 @@ public class ParSearchEventResultsPage extends JFrame {
                 eventName.setVisible(true);
 
 
+                //Leave and Join button for each event won't appear at same time, when the Participant was joined
+                //the event already, there will be leave; similarlly, if the participant haven't join the event,
+                //There will be "Join" button.
                 if (eventFollowed.contains(nextEvent)) {
                     JButton join = new JButton("Leave");
                     join.setActionCommand("Leave "+nextEvent);
