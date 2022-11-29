@@ -1,19 +1,10 @@
 package controller_presenter_view.screens.user_login;
 
-import controller_presenter_view.screens.LabelTextPanel;
-import database.*;
-import use_cases.notify_event_use_case.NotifyEventInputBoundary;
-import use_cases.notify_event_use_case.NotifyEventInteractor;
-import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
-import controller_presenter_view.screens.org_home.OrgHomePage;
-import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
-import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
-import controller_presenter_view.screens.par_home.ParHomePage;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
-import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
-import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
-import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;
-import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
+import controller_presenter_view.screens.LabelTextPanel;
+import controller_presenter_view.screens.org_home.OrgHomePage;
+import controller_presenter_view.screens.par_home.ParHomePage;
+import use_cases.Unorganised_Util;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 import javax.swing.*;
@@ -128,13 +119,7 @@ public class LoginPage extends JFrame implements ActionListener {
             //if the user is a participant, call upcoming_to_past to filter all the upcoming events of this participant,
             //and convert some events from upcoming to past if necessary.
             if (P) {
-                ParDsGateway parDsGateway = new ParFileUser();
-                OrgDsGateway orgDsGateway = new OrgFileUser();
-                EventDsGateway eventDsGateway = new EventFileUser();
-                UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
-                UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
-                        eventDsGateway, upcomingToPastOutputBoundary);
-                UpcomingToPastController controller = new UpcomingToPastController(interactor);
+                UpcomingToPastController controller = Unorganised_Util.utilgetUpcomingToPastControllerHelper();
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("P",USERNAME.getText());
@@ -142,17 +127,7 @@ public class LoginPage extends JFrame implements ActionListener {
                     throw new RuntimeException(exception);
                 }
                 if (!responseModel.getEventsToPast().isEmpty()){
-                    NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
-                    NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
-                            notifyEventOutputBoundary);
-                    NotifyEventController notifyEventController = new NotifyEventController(interactor2);
-                    for (String event : responseModel.getEventsToPast()){
-                        try {
-                            notifyEventController.sendNotification("Past", event);
-                        } catch (SQLException | ClassNotFoundException exception) {
-                            throw new RuntimeException(exception);
-                        }
-                    }
+                    Unorganised_Util.utilNotifyEventHelper(responseModel);
                 }
                 new ParHomePage(USERNAME.getText());
             }

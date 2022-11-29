@@ -32,24 +32,8 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         if (requestModel.isWhether_org()){
             //Organization
             //Check if the old password of organization is entered correctly
-            if (!requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
-                System.out.println("Old password is not correct.");
-                return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
-            }
-            if (requestModel.getNewPassword().isEmpty()) {
-                return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
-            }
-            if (requestModel.getPassword().length() > 20) {
-                return userResetPasswordOutputBoundary.prepareFailureView("Password should be no longer than 20 characters.");
-            }
-            if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
-                return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
-            }
-            //Check if the new password and the retyped new password of organizer are same
-            if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
-                System.out.println("New Passwords do not match.");
-                return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
-
+            if (utilUsernameAndPasswordChecker(requestModel) != null){
+                return utilUsernameAndPasswordChecker(requestModel);
             }
             //If the above two error don't occur, show the successful view
             orgDsGateway.setPassword(requestModel.getUsername(), requestModel.getNewPassword());
@@ -60,23 +44,8 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
         else {
             //Participant
             //Check if the old password of participant is correct
-            if (! requestModel.getPassword().equals(parDsGateway.getPassword(requestModel.getUsername()))){
-                System.out.println("Old password is not correct.");
-                return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
-            }
-            if (requestModel.getNewPassword().isEmpty()) {
-                return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
-            }
-            if (requestModel.getPassword().length() > 20) {
-                return userResetPasswordOutputBoundary.prepareFailureView("Password should be no longer than 20 characters.");
-            }
-            if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
-                return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
-            }
-            //Check if the new password and the retyped new password of participant are same
-            if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
-                System.out.println("New Passwords do not match.");
-                return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
+            if (utilUsernameAndPasswordChecker(requestModel) != null){
+                return utilUsernameAndPasswordChecker(requestModel);
             }
             //If the above two error don't occur, show the successful view
             System.out.println("Password reset successfully!");
@@ -84,5 +53,28 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
             UserResetPasswordResponseModel responseModel = new UserResetPasswordResponseModel("Password reset successfully!");
             return userResetPasswordOutputBoundary.prepareSuccessView(responseModel);
         }
+    }
+
+    public UserResetPasswordResponseModel utilUsernameAndPasswordChecker(UserResetPasswordRequestModel requestModel) throws SQLException, ClassNotFoundException {
+        if (!requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))){
+            System.out.println("Old password is not correct.");
+            return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
+        }
+        if (requestModel.getNewPassword().isEmpty()) {
+            return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
+        }
+        if (requestModel.getPassword().length() > 20) {
+            return userResetPasswordOutputBoundary.prepareFailureView("Password should be no longer than 20 characters.");
+        }
+        if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
+            return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
+        }
+        //Check if the new password and the retyped new password of organizer are same
+        if (! requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
+            System.out.println("New Passwords do not match.");
+            return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
+
+        }
+        return null;
     }
 }
