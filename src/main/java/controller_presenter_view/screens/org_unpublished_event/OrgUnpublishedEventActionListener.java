@@ -64,11 +64,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
 
             this.orgUnpublishedEventPage.dispose();
-            try {
-                new OrgUnpublishedEventPage(orgUsername);
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            new OrgUnpublishedEventPage(orgUsername);
         }
         else if (actionCommand.contains("Publish")){
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -93,11 +89,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             this.orgUnpublishedEventPage.dispose();
 
-            try {
-                new OrgUnpublishedEventPage(orgUsername);
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            new OrgUnpublishedEventPage(orgUsername);
         }
         else if (actionCommand.equals("Create An Event")){
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -132,11 +124,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             }
         }
         else {
-            try {
-                new EventDetailsPage(actionCommand);
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            new EventDetailsPage(actionCommand);
         }
     }
 }

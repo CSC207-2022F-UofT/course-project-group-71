@@ -25,7 +25,7 @@ public class OrgFollowerPage extends JFrame {
      *
      * @param orgUsername the username of the organization.
      */
-    public OrgFollowerPage(String orgUsername) throws SQLException, ClassNotFoundException {
+    public OrgFollowerPage(String orgUsername) {
         this.orgUsername = orgUsername;
 
         //Set the parameter for the page

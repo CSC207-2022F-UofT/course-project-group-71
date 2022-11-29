@@ -67,18 +67,10 @@ public class ParUpcomingEventActionListener implements ActionListener {
             JOptionPane.showMessageDialog(this.parUpcomingEventPage, responseModel.getMessage());
 
             this.parUpcomingEventPage.dispose();
-            try {
-                new ParUpcomingEventPage(this.parUpcomingEventPage.getParUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            new ParUpcomingEventPage(this.parUpcomingEventPage.getParUsername());
         }
         else {
-            try {
-                new EventDetailsPage(actionCommand);
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            new EventDetailsPage(actionCommand);
         }
     }
 }

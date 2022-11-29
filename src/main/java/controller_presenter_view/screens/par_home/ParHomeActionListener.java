@@ -50,76 +50,71 @@ public class ParHomeActionListener implements ActionListener {
     public void actionPerformed(ActionEvent arg0) {
         String page = arg0.getActionCommand();
 
-        if (page.equals("Account")) {
-            this.parHomePage.dispose();
-            new ParAccountPage(this.parHomePage.getParUsername());
-        } else if (page.equals("Upcoming Event")) {
-            this.parHomePage.dispose();
-            try {
-                new ParUpcomingEventPage(this.parHomePage.getParUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        } else if (page.equals("Past Event")) {
-            this.parHomePage.dispose();
-            try {
-                new ParPastEventPage(this.parHomePage.getParUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        } else if (page.equals("Followed Org")) {
-            this.parHomePage.dispose();
-            try {
-                new ParFollowedOrgPage(this.parHomePage.getParUsername());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        } else if (page.equals("Search")) {
-            if (this.parHomePage.org.isSelected()) {
-                try {
-                    OrgDsGateway org = new OrgFileUser();
-                    ParSearchOrgOutputBoundary presenter = new ParSearchOrgPresenter();
-                    ParSearchOrgInputBoundary interactor = new ParSearchOrgInteractor(org, presenter);
-                    ParSearchOrgController controller = new ParSearchOrgController(interactor);
-                    String query = this.parHomePage.searchBox.getText();
-                    String parUserName = this.parHomePage.getParUsername();
-                    try {
-                        controller.orgSearch(query, parUserName); //draw screen
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    this.parHomePage.dispose();
-                }catch (Exception error){
-                    JOptionPane.showMessageDialog(this.parHomePage,error.getMessage());
-                    new ParHomePage(this.parHomePage.getParUsername());
-                }
-
-            } else if(this.parHomePage.eve.isSelected()) {
-
-                try {
-                    EventDsGateway eve = new EventFileUser();
-                    ParSearchEventOutputBoundary presenter = new ParSearchEventPresenter(); //minor issue
-                    ParSearchEventInputBoundary interactor = new ParSearchEventInteractor(eve, presenter);
-                    ParSearchEventController controller = new ParSearchEventController(interactor);
-                    String query = this.parHomePage.searchBox.getText();
-                    String parUserName = this.parHomePage.getParUsername();
-                    try {
-                        controller.eventSearch(query, parUserName);
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    this.parHomePage.dispose();
-                }catch (Exception error) {
-                   JOptionPane.showMessageDialog(this.parHomePage,error.getMessage());
-                   new ParHomePage(this.parHomePage.getParUsername());
-                }
-            }else{
-                JOptionPane.showMessageDialog(this.parHomePage,"Please Select Search Target");
-            }
-            } else if(page.equals("Log Out")){
+        switch (page) {
+            case "Account":
                 this.parHomePage.dispose();
-            generateLoginPage();
+                new ParAccountPage(this.parHomePage.getParUsername());
+                break;
+            case "Upcoming Event":
+                this.parHomePage.dispose();
+                new ParUpcomingEventPage(this.parHomePage.getParUsername());
+                break;
+            case "Past Event":
+                this.parHomePage.dispose();
+                new ParPastEventPage(this.parHomePage.getParUsername());
+                break;
+            case "Followed Org":
+                this.parHomePage.dispose();
+                new ParFollowedOrgPage(this.parHomePage.getParUsername());
+                break;
+            case "Search":
+                if (this.parHomePage.org.isSelected()) {
+                    try {
+                        OrgDsGateway org = new OrgFileUser();
+                        ParSearchOrgOutputBoundary presenter = new ParSearchOrgPresenter();
+                        ParSearchOrgInputBoundary interactor = new ParSearchOrgInteractor(org, presenter);
+                        ParSearchOrgController controller = new ParSearchOrgController(interactor);
+                        String query = this.parHomePage.searchBox.getText();
+                        String parUserName = this.parHomePage.getParUsername();
+                        try {
+                            controller.orgSearch(query, parUserName); //draw screen
+                        } catch (SQLException | ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                        this.parHomePage.dispose();
+                    } catch (Exception error) {
+                        JOptionPane.showMessageDialog(this.parHomePage, error.getMessage());
+                        new ParHomePage(this.parHomePage.getParUsername());
+                    }
 
+                } else if (this.parHomePage.eve.isSelected()) {
+
+                    try {
+                        EventDsGateway eve = new EventFileUser();
+                        ParSearchEventOutputBoundary presenter = new ParSearchEventPresenter(); //minor issue
+                        ParSearchEventInputBoundary interactor = new ParSearchEventInteractor(eve, presenter);
+                        ParSearchEventController controller = new ParSearchEventController(interactor);
+                        String query = this.parHomePage.searchBox.getText();
+                        String parUserName = this.parHomePage.getParUsername();
+                        try {
+                            controller.eventSearch(query, parUserName);
+                        } catch (SQLException | ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                        this.parHomePage.dispose();
+                    } catch (Exception error) {
+                        JOptionPane.showMessageDialog(this.parHomePage, error.getMessage());
+                        new ParHomePage(this.parHomePage.getParUsername());
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this.parHomePage, "Please Select Search Target");
+                }
+                break;
+            case "Log Out":
+                this.parHomePage.dispose();
+                generateLoginPage();
+
+                break;
         }
         }
     }

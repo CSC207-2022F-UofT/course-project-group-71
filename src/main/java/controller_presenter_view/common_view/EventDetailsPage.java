@@ -25,7 +25,7 @@ public class EventDetailsPage extends JFrame {
      *
      * @param EVENT_TITLE The title for the event we want to get the details page for
      */
-    public EventDetailsPage(String EVENT_TITLE) throws SQLException, ClassNotFoundException {
+    public EventDetailsPage(String EVENT_TITLE) {
 
         EventDsGateway e= new EventFileUser();
         this.EVENT_TITLE = EVENT_TITLE;

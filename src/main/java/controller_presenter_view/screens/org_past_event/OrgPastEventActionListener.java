@@ -22,11 +22,7 @@ public class OrgPastEventActionListener implements ActionListener {
         }
         //open event detail page
         else {
-            try {
-                new EventDetailsPage(actionCommand);
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            new EventDetailsPage(actionCommand);
         }
     }
 }

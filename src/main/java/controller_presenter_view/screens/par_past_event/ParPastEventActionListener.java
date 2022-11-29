@@ -33,11 +33,7 @@ public class ParPastEventActionListener implements ActionListener {
             new ParHomePage(this.parPastEventPage.getParUsername());
         }
         else {
-            try {
-                new EventDetailsPage(actionCommand);
-            } catch (SQLException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            new EventDetailsPage(actionCommand);
         }
     }
 }

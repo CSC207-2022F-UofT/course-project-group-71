@@ -32,7 +32,7 @@ public class OrgUpcomingEventPage extends JFrame {
      *
      * @param orgUsername the username of the organization.
      */
-    public OrgUpcomingEventPage(String orgUsername) throws SQLException, ClassNotFoundException {
+    public OrgUpcomingEventPage(String orgUsername) {
 
         this.orgUsername = orgUsername;
 

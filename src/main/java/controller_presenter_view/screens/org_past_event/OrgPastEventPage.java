@@ -29,7 +29,7 @@ public class OrgPastEventPage extends JFrame {
      *
      * @param orgUsername the username of the organization.
      */
-    public OrgPastEventPage(String orgUsername) throws SQLException, ClassNotFoundException {
+    public OrgPastEventPage(String orgUsername) {
         this.orgUsername = orgUsername;
         //Initialize the page
         this.setLayout(null);

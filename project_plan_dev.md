@@ -14,11 +14,11 @@ In this course project, you are expected to use Github to manage your code. This
 
 ![](images/rename.png)
 
-4. Link the project to your repository. Navigate to your repository and select **Projects** tab, then click **Add Project** and select the project you just created.
+1. Link the project to your repository. Navigate to your repository and select **Projects** tab, then click **Add Project** and select the project you just created.
 
 ![](images/link_project.png)
 
-5. The project will show up in the the list below.
+1. The project will show up in the the list below.
 
 ## Define Your Features for the Implementation Plan
 As a part of the project planning, you are required to record all features formulated from your user stories, as **issues** in your Github repository.
@@ -34,7 +34,7 @@ As a part of the project planning, you are required to record all features formu
 
 ![](images/set_tags.png)
 
-3. On the project page, you can see an item is automatically created.  :warning: :warning: **Make sure you verify that each feature issue is successfully created in the project.**  :warning: :warning:
+1. On the project page, you can see an item is automatically created.  :warning: :warning: **Make sure you verify that each feature issue is successfully created in the project.**  :warning: :warning:
 
 
 ## Feature Development
@@ -44,11 +44,11 @@ When you work on a feature, you are always required to create a **branch** for t
 
 ![](images/create_branch.png)
 
-2. Select a name and click **Create branch** on the pop-up window. Use the provided command to check out the branch you just created on your local machine.
+1. Select a name and click **Create branch** on the pop-up window. Use the provided command to check out the branch you just created on your local machine.
 
     *Alternatively, you can create a branch manually, and link it to the issue.*
 
-3. Verify that the branch is successfully linked to the issue.
+2. Verify that the branch is successfully linked to the issue.
 
 
 ![](images/link_branch.png)
@@ -63,7 +63,7 @@ When you finish working on a feature, you are required to merge the feature bran
 
 ![](images/create_pr.png)
 
-2. Give a meaningful title and description for the pull request, remember please make the name consistent. 
+1. Give a meaningful title and description for the pull request, remember please make the name consistent. 
    
    2.1 First make sure that you are merging from the feature branch to the main branch (see blue box).
    
@@ -71,20 +71,20 @@ When you finish working on a feature, you are required to merge the feature bran
 
 ![](images/new_pr.png)
 
-3. Select reviewers for the pull request. You can select multiple reviewers. The reviewers will be notified and will review your code. You can also add comments to the pull request. 
+1. Select reviewers for the pull request. You can select multiple reviewers. The reviewers will be notified and will review your code. You can also add comments to the pull request. 
 
-4. After the reviewers approve the pull request, you can merge the pull request. :warning: :warning: **Pull requests
+2. After the reviewers approve the pull request, you can merge the pull request. :warning: :warning: **Pull requests
 must be reviewed and approved by other team members before merging.** :warning: :warning: **Reviewing and approving pull requests will be a part of the evaluation.**
 
-5. After the pull request is merged, the linked issue will be automatically closed. You can verify that the issue is closed by navigating to the issues page and project page.
+3. After the pull request is merged, the linked issue will be automatically closed. You can verify that the issue is closed by navigating to the issues page and project page.
 
 ![](images/closed_issue.png)
 
 ![](images/closed_project.png)
 
-6. (Optional) Delete the feature branch after the pull request is merged. You can delete the branch by navigating to the **View all branches** page.
+1. (Optional) Delete the feature branch after the pull request is merged. You can delete the branch by navigating to the **View all branches** page.
 
-7. (Optional) If the feature is not completed or you want to continue working on the feature, you can reopen the issue and create new pull requests. Remember to change the status of the issue to **In Progress**.
+2. (Optional) If the feature is not completed or you want to continue working on the feature, you can reopen the issue and create new pull requests. Remember to change the status of the issue to **In Progress**.
 
 
 ## More Project Management and Other Resoruces (Optional)
