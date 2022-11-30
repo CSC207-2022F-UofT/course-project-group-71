@@ -23,6 +23,23 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
     final JTextField MINUTE = new JTextField(2);
     final JTextField LOCATION = new JTextField(15);
 
+    /**
+     * This method creates a label text panel for organizer to input data
+     * @param text the text we want to show
+     * @param J The JTextField
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return a text panel
+     */
+    public LabelTextPanel create_text_panel(String text, JTextField J, int x, int y, int width, int height){
+        LabelTextPanel output = new LabelTextPanel(
+                new JLabel(text), J);
+        output.setBounds (x, y, width, height);
+        return output;
+    }
+
     /**The method generate a create event window and allowed the organization to create a new event by input details.
      * It allows user to input title, DESCRIPTION, YEAR, MONTH, DAY, HOUR, MINUTEEs and LOCATION,
      * with two buttons called "Cancel" and "Create".
@@ -48,46 +65,46 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
         title.setBounds(0, 0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-        //Generate the panel to show title information
-        LabelTextPanel EVENT_TITLEInfo = new LabelTextPanel(
-                new JLabel("Title"), EVENT_TITLE);
-        EVENT_TITLEInfo.setBounds (0,100, x, 50);
-
-        //Generate the panel to show DESCRIPTION information
-        LabelTextPanel DESCRIPTIONInfo = new LabelTextPanel(
-                new JLabel("Description"), DESCRIPTION);
-        DESCRIPTIONInfo.setBounds (0,150, x, 50);
-
-        //Generate the panel to show YEAR information
-        LabelTextPanel YEARInfo = new LabelTextPanel(
-                new JLabel("Year"), YEAR);
-        YEARInfo.setBounds (0,200, x/5, 50);
-
-        //Generate the panel to show MONTH information
-        LabelTextPanel MONTHInfo = new LabelTextPanel(
-                new JLabel("Month"), MONTH);
-        MONTHInfo.setBounds (x/5,200, x/5, 50);
-
-        //Generate the panel to show DAY information
-        LabelTextPanel DAYInfo = new LabelTextPanel(
-                new JLabel("Day"), DAY);
-        DAYInfo.setBounds (2*x/5,200, x/5, 50);
-
-        //Generate the panel to show HOUR information
-        LabelTextPanel HOURInfo = new LabelTextPanel(
-                new JLabel("Hour"), HOUR);
-        HOURInfo.setBounds (3*x/5,200, x/5, 50);
-
-        //Generate the panel to show MINUTE information
-        LabelTextPanel MINUTEInfo = new LabelTextPanel(
-                new JLabel("Minute"), MINUTE);
-        MINUTEInfo.setBounds (4*x/5,200, x/5, 50);
-
-        //Generate the panel to show LOCATION information
-        LabelTextPanel LOCATIONInfo = new LabelTextPanel(
-                new JLabel("Location"), LOCATION);
-        LOCATIONInfo.setBounds (0,250, x, 50);
-
+//        //Generate the panel to show title information
+//        LabelTextPanel EVENT_TITLEInfo = new LabelTextPanel(
+//                new JLabel("Title"), EVENT_TITLE);
+//        EVENT_TITLEInfo.setBounds (0,100, x, 50);
+//
+//        //Generate the panel to show DESCRIPTION information
+//        LabelTextPanel DESCRIPTIONInfo = new LabelTextPanel(
+//                new JLabel("Description"), DESCRIPTION);
+//        DESCRIPTIONInfo.setBounds (0,150, x, 50);
+//
+//        //Generate the panel to show YEAR information
+//        LabelTextPanel YEARInfo = new LabelTextPanel(
+//                new JLabel("Year"), YEAR);
+//        YEARInfo.setBounds (0,200, x/5, 50);
+//
+//        //Generate the panel to show MONTH information
+//        LabelTextPanel MONTHInfo = new LabelTextPanel(
+//                new JLabel("Month"), MONTH);
+//        MONTHInfo.setBounds (x/5,200, x/5, 50);
+//
+//        //Generate the panel to show DAY information
+//        LabelTextPanel DAYInfo = new LabelTextPanel(
+//                new JLabel("Day"), DAY);
+//        DAYInfo.setBounds (2*x/5,200, x/5, 50);
+//
+//        //Generate the panel to show HOUR information
+//        LabelTextPanel HOURInfo = new LabelTextPanel(
+//                new JLabel("Hour"), HOUR);
+//        HOURInfo.setBounds (3*x/5,200, x/5, 50);
+//
+//        //Generate the panel to show MINUTE information
+//        LabelTextPanel MINUTEInfo = new LabelTextPanel(
+//                new JLabel("Minute"), MINUTE);
+//        MINUTEInfo.setBounds (4*x/5,200, x/5, 50);
+//
+//        //Generate the panel to show LOCATION information
+//        LabelTextPanel LOCATIONInfo = new LabelTextPanel(
+//                new JLabel("Location"), LOCATION);
+//        LOCATIONInfo.setBounds (0,250, x, 50);
+//
         //Generate a cancel button
         JButton cancel = new JButton("Cancel");
         //Set the action listener for user clicking "Cancel"
@@ -104,14 +121,14 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
 
         //Add all the prepared elements to the page
         this.add(title);
-        this.add(EVENT_TITLEInfo);
-        this.add(DESCRIPTIONInfo);
-        this.add(YEARInfo);
-        this.add(MONTHInfo);
-        this.add(DAYInfo);
-        this.add(HOURInfo);
-        this.add(MINUTEInfo);
-        this.add(LOCATIONInfo);
+        this.add(create_text_panel("Title", EVENT_TITLE, 0,100, x, 50));
+        this.add(create_text_panel("Description", DESCRIPTION, 0,150, x, 50));
+        this.add(create_text_panel("Year", YEAR, 0,200, x/5, 50));
+        this.add(create_text_panel("Month", MONTH, x/5,200, x/5, 50));
+        this.add(create_text_panel("Day", DAY, 2*x/5,200, x/5, 50));
+        this.add(create_text_panel("Hour", HOUR, 3*x/5,200, x/5, 50));
+        this.add(create_text_panel("Minute", MINUTE, 4*x/5,200, x/5, 50));
+        this.add(create_text_panel("Location", LOCATION, 0,250, x, 50));
         this.add(buttons);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
