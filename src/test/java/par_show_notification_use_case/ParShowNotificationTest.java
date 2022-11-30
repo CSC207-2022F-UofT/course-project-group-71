@@ -35,7 +35,7 @@ public class ParShowNotificationTest {
     @Order(2)
     void test_PrepareSuccessView_Found_Notifications(){
         try {
-            String notifications = "Event TeamMeeting3 is about to happen at 11-30 0:0!" + "\n";
+            String notifications = "Event TeamMeeting3 is about to happen at 11-30 0:0" + "\n";
             responseModel = controller.showNotification("654321");
             assertEquals(notifications, responseModel.getNotifications());
             assert(parDsGateway.getNotifications("654321").isEmpty());
