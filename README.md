@@ -216,7 +216,7 @@ The whole table would be imported.
 - Number of test
   - All methods (not including the one start with util) in FileUsers has a individual corresponding test. The number of test for each use cases is highly dependent on the number of if-branches in the interactor.
 - Default data for testing
-  - We prepared independent test data for each test package, which you need MySQL and DataGrip to work with. The description of the default data is in the JavaDoc of the test class.
+  - We prepared independent test data for each test package, which you will need MySQL and DataGrip to work with. The description of the default data is in the JavaDoc of the test class.
 
 
 ## SOLID Principles and Design Patterns
