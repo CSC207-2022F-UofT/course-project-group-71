@@ -208,7 +208,7 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
         this.add(create_text_panel("Month", month, x/5,260, x/5, 50));
         this.add(create_J_panel("Day:   " + times.get(2), 2*x/5,230,x/5,30));
         this.add(create_text_panel("Day", day, 2*x/5,260, x/5, 50));
-        this.add(create_J_panel("Hour:   " + times.get(3), 3*x/5,230,x/5,30)));
+        this.add(create_J_panel("Hour:   " + times.get(3), 3*x/5,230,x/5,30));
         this.add(create_text_panel("Hour", hour, 3*x/5,260, x/5, 50));
         this.add(create_J_panel("Minute:   " + times.get(4), 4*x/5,230,x/5,30));
         this.add(create_text_panel("Minute", minute, 4*x/5,260, x/5, 50));
