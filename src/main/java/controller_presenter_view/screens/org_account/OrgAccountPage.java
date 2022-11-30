@@ -30,6 +30,7 @@ public class OrgAccountPage extends JFrame {
         output.setBounds (x,y, width, height);
         return output;
     }
+
     /**
      * This is the function to generate a JLabel
      * @param text the text we want to show
@@ -45,6 +46,7 @@ public class OrgAccountPage extends JFrame {
         output.setHorizontalAlignment(JLabel.CENTER);
         return output;
     }
+
     /**The method generate an Organization Account page and allowed the organization to reset password.
      * It contains a title with organization's username.
      * It allows user to input old and new password to reset password with a button called "Reset Password".
