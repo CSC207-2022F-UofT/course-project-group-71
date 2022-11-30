@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class JDBCUtils {
     static final String databaseUrl = "jdbc:mysql://localhost:3306/db_nocare";
     static final String databaseUsername = "root";
-    static final String databasePassword = "1234";
+    static final String databasePassword = "Anitahua0105";
 
     public static String getDatabaseUrl() {
         return databaseUrl;

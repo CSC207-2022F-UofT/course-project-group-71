@@ -97,6 +97,7 @@ public class ParPastEventPage extends JFrame {
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
+
                 y += 100;
             }
 
