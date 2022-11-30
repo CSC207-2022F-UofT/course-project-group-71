@@ -85,7 +85,7 @@ public class OrgHomePage extends JFrame {
         this.add(create_jbutton("Upcoming Event", 0,270, 150, 30));
         this.add(create_jbutton("Past Event", 0,330, 150, 30));
         this.add(create_jbutton("Follower", 0,390, 150, 30));
-        this.add(create_jbutton("Log Out", 0,510, 150, 30);
+        this.add(create_jbutton("Log Out", 0,510, 150, 30));
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
