@@ -173,7 +173,7 @@ Explain ALL tables in DataGrip, what does each of them do.
    - Foreign key of 'par_username' is linked to 'username' at parfile.
    - Notification is a String, one username can be paired with multiple notifications.
 
-## How to use database:
+## How to use database
 ### How to download, install and initialize mysql connection:
 This project require Mysql to be downloaded.
 Installation Guide of MYSQL: https://www.javatpoint.com/how-to-install-mysql. 
@@ -212,7 +212,7 @@ The whole table would be imported.
 ## Test
 `src/test/java`
 - Test coverage
-  - The tests covered 16 use cases and 3 FileUsers. The leftover 1 use case that is not been tested is `src/main/java/extract_information_use_case`. This is because we see it as a data grasper that connects directly with FileUsers, so it does not carry much Application Business Rule. As long as the FileUsers are functioning correctly, the extract_information_use_case should be functioning well too.
+  - The tests covered 16 use cases and 3 FileUsers. The leftover 1 use case that is not been tested is `src/main/java/extract_information_use_case`. This is because we see it as a data grasper that is only responsible for passing data from FileUsers to Views, so it does not carry much Application Business Rule. As long as the FileUsers are functioning correctly, the extract_information_use_case should be functioning well too.
 - Number of test
   - All methods (not including the one start with util) in FileUsers has a individual corresponding test. The number of test for each use cases is highly dependent on the number of if-branches in the interactor.
 - Default data for testing
