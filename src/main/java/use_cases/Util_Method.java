@@ -18,8 +18,6 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
-import java.sql.SQLException;
-
 public class Util_Method {
     public static UpcomingToPastController utilGetUpcomingToPastControllerHelper(){
         ParDsGateway parDsGateway = new ParFileUser();
@@ -42,7 +40,7 @@ public class Util_Method {
         for (String event : responseModel.getEventsToPast()){
             try {
                 notifyEventController.sendNotification("Past", event);
-            } catch (SQLException | ClassNotFoundException exception) {
+            } catch (ClassNotFoundException exception) {
                 throw new RuntimeException(exception);
             }
         }

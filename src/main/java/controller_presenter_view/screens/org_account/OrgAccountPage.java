@@ -9,7 +9,7 @@ import static controller_presenter_view.screens.screen_constants.getConstantY;
 
 
 public class OrgAccountPage extends JFrame {
-    String orgUsername;
+    final String orgUsername;
     final JPasswordField oldPassword = new JPasswordField(15);
     final JPasswordField newPassword = new JPasswordField(15);
     final JPasswordField retypeNewPassword = new JPasswordField(15);

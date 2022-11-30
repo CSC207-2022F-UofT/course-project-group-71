@@ -5,10 +5,12 @@ import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJ
 import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.Test;
-import use_cases.par_join_event_use_case.*;
 import org.junit.jupiter.api.Order;
+import use_cases.par_join_event_use_case.ParJoinEventInputBoundary;
+import use_cases.par_join_event_use_case.ParJoinEventInteractor;
+import use_cases.par_join_event_use_case.ParJoinEventOutputBoundary;
+import use_cases.par_join_event_use_case.ParJoinEventResponseModel;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,7 +39,7 @@ public class ParJoinEventTest {
 
     @Test
     @Order(2)
-    public void testUpcomingEvent() throws SQLException, ClassNotFoundException {
+    public void testUpcomingEvent() throws ClassNotFoundException {
         ArrayList<String> al = parDsGateway.getUpcomingEvents("P2");
         boolean isUpcoming= al.contains("E2");
         assert isUpcoming;

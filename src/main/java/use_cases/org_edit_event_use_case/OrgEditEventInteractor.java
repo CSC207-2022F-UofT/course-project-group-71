@@ -34,7 +34,7 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
      * @return A responseModel representing whether the event editing is successful
      */
     @Override
-    public OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) throws ClassNotFoundException {
         //checks if all entries are non-empty: description, year, month, day, hour, minute, location.
         if (requestModel.getDescription().isEmpty()
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()

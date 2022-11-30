@@ -22,7 +22,7 @@ public class ParUpcomingEventPage extends JFrame {
      *
      * @param parUsername The username of the participant
      */
-    public ParUpcomingEventPage(String parUsername) {
+    public ParUpcomingEventPage(String parUsername) throws ClassNotFoundException {
         this.parUsername = parUsername;
 
         this.setLayout(null);

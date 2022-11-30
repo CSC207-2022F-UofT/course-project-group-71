@@ -28,7 +28,7 @@ public class OrgPastEventPage extends JFrame {
      *
      * @param orgUsername the username of the organization.
      */
-    public OrgPastEventPage(String orgUsername) {
+    public OrgPastEventPage(String orgUsername) throws ClassNotFoundException {
         this.orgUsername = orgUsername;
         //Initialize the page
         this.setLayout(null);

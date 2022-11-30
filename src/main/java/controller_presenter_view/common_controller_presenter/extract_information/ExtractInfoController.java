@@ -27,7 +27,7 @@ public class ExtractInfoController {
      * @param para1 The username of the organization
      * @return A response model containing the information found
      */
-    public ExtractInfoResponseModel<String> extractOrg(String keyword, String para1) {
+    public ExtractInfoResponseModel<String> extractOrg(String keyword, String para1) throws ClassNotFoundException {
         ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(keyword, para1);
         return INPUT.extractOrgInfo(requestModel);
     }
@@ -43,7 +43,7 @@ public class ExtractInfoController {
      * @param para1 The username of the participant
      * @return A response model containing the information found
      */
-    public ExtractInfoResponseModel<String> extractPar(String keyword, String para1) {
+    public ExtractInfoResponseModel<String> extractPar(String keyword, String para1) throws ClassNotFoundException {
         ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(keyword, para1);
         return INPUT.extractParInfo(requestModel);
     }
@@ -53,7 +53,7 @@ public class ExtractInfoController {
      * @param para1 The title of the event
      * @return A response model containing the time of the event
      */
-    public ExtractInfoResponseModel<Integer> extractEventTime(String para1) {
+    public ExtractInfoResponseModel<Integer> extractEventTime(String para1) throws ClassNotFoundException {
         ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(para1);
         return INPUT.extractTimeInfo(requestModel);
     }
@@ -70,7 +70,7 @@ public class ExtractInfoController {
      * @param para1 The title of the event
      * @return A response model containing the information found
      */
-    public ExtractInfoResponseModel<String> extractEvent(String keyword, String para1){
+    public ExtractInfoResponseModel<String> extractEvent(String keyword, String para1) throws ClassNotFoundException {
         ExtractInfoRequestModel requestModel = new ExtractInfoRequestModel(keyword, para1);
         return INPUT.extractEventInfo(requestModel);
     }

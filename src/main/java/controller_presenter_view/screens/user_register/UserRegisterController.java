@@ -28,7 +28,7 @@ public class UserRegisterController {
      * @param retypePassword The second input password of the user registration
      * @return The response model showing whether creation is successful
      */
-    public UserRegisterResponseModel create(String isParticipant, String isOrganization, String username, String password, String retypePassword) throws SQLException, ClassNotFoundException {
+    public UserRegisterResponseModel create(String isParticipant, String isOrganization, String username, String password, String retypePassword) throws ClassNotFoundException {
         UserRegisterRequestModel requestModel = new UserRegisterRequestModel(
                 isParticipant, isOrganization, username, password, retypePassword);
         System.out.println("Stop??");

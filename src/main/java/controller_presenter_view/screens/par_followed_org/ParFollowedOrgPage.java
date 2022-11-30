@@ -21,7 +21,7 @@ public class ParFollowedOrgPage extends JFrame {
      *
      * @param parUsername The username of the participant
      */
-    public ParFollowedOrgPage(String parUsername) {
+    public ParFollowedOrgPage(String parUsername) throws ClassNotFoundException {
         this.parUsername = parUsername;
 
         this.setLayout(null);

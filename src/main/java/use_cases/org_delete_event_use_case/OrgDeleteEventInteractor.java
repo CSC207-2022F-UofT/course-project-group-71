@@ -1,8 +1,8 @@
 package use_cases.org_delete_event_use_case;
 
-import database.*;
+import database.EventDsGateway;
+import database.ParDsGateway;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
@@ -36,7 +36,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
      * @return orgDeleteEventResponseModel representing whether event deletion is successful
      */
     @Override
-    public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) throws SQLException, ClassNotFoundException {
+    public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) throws ClassNotFoundException {
         //deletes the event from the database
         String eventName = orgDeleteEventRequestModel.getEventName();
         eventDsGateway.deleteEvent(eventName);

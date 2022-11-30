@@ -33,7 +33,7 @@ public class OrgUnpublishedEventPage extends JFrame {
      *
      * @param orgUsername the username of the organization.
      */
-    public OrgUnpublishedEventPage(String orgUsername) {
+    public OrgUnpublishedEventPage(String orgUsername) throws ClassNotFoundException {
         this.orgUsername = orgUsername;
 
         //Initialize the page

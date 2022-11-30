@@ -7,5 +7,5 @@ public interface ParLeaveEventInputBoundary {
      *
      * @param requestModel The request model sent to the input boundary
      */
-    ParLeaveEventResponseModel leave(ParLeaveEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    ParLeaveEventResponseModel leave(ParLeaveEventRequestModel requestModel) throws ClassNotFoundException;
 }

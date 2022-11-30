@@ -13,7 +13,7 @@ public class ParFollowOrgController {
         this.interactor= interactor;
     }
 
-    public ParFollowOrgResponseModel follow(String par_username, String org_username) throws SQLException, ClassNotFoundException {
+    public ParFollowOrgResponseModel follow(String par_username, String org_username) throws ClassNotFoundException {
         ParFollowOrgRequestModel request= new ParFollowOrgRequestModel(par_username,org_username);
         return interactor.follow(request);
     }

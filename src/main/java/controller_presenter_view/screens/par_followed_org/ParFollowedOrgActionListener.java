@@ -1,18 +1,17 @@
 package controller_presenter_view.screens.par_followed_org;
 
+import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgController;
+import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;
+import controller_presenter_view.common_view.OrgDetailsPage;
+import controller_presenter_view.screens.par_home.ParHomePage;
 import database.ParDsGateway;
 import database.ParFileUser;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInteractor;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
-import controller_presenter_view.common_view.OrgDetailsPage;
-import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgController;
-import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;
-import controller_presenter_view.screens.par_home.ParHomePage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class ParFollowedOrgActionListener implements ActionListener {
     final ParFollowedOrgPage parFollowerPage;
@@ -54,15 +53,23 @@ public class ParFollowedOrgActionListener implements ActionListener {
 
             try {
                 parUnfollowOrgController.unfollow(parUsername, this.orgName);
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
-            new ParFollowedOrgPage(this.parFollowerPage.getParUsername());
+            try {
+                new ParFollowedOrgPage(this.parFollowerPage.getParUsername());
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             this.parFollowerPage.dispose();
         }
         else {
-            new OrgDetailsPage(this.orgName);
+            try {
+                new OrgDetailsPage(this.orgName);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

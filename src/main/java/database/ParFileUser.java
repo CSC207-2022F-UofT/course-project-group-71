@@ -1,19 +1,23 @@
 package database;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static database.JDBCUtils.utilQueryArrayListString;
 import static database.JDBCUtils.utilUpdateVoid;
 
 public class ParFileUser implements ParDsGateway {
+    public static void main(String[] args) throws ClassNotFoundException {
+        ParFileUser b = new ParFileUser();
+        b.UtilClearNotifications("P2");
+        b.addNotification("allyson","cancelled");
+    }
 
     /**This is a tool method used to store the username and password of the participant to the database.
      *
      * @param username The username of the participant
      * @param password The password of the participant
      */
-    public void utilStorePar(String username, String password) throws SQLException, ClassNotFoundException {
+    public void utilStorePar(String username, String password) throws ClassNotFoundException {
         String sql = "insert into parfile(username, password) values('" + username + "','" + password + "');" ;
         utilUpdateVoid(sql);
     }
@@ -22,7 +26,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param username THe username of the participant
      */
-    public void utilDeletePar(String username) throws ClassNotFoundException, SQLException {
+    public void utilDeletePar(String username) throws ClassNotFoundException {
         String sql = "delete from parfile where username = '" + username + "';";
         utilUpdateVoid(sql);
     }
@@ -32,7 +36,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param org_username The username of the organization
      */
-    public void utilAddParFollowing(String par_username, String org_username) throws SQLException, ClassNotFoundException {
+    public void utilAddParFollowing(String par_username, String org_username) throws ClassNotFoundException {
         String sql = "insert into follow_org_par(par_username, org_username) values('" + par_username + "','" + org_username + "');" ;
         utilUpdateVoid(sql);
     }
@@ -43,7 +47,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param org_username The username of the organization
      */
-    public void utilDeleteParFollowOrg(String par_username, String org_username) throws ClassNotFoundException, SQLException {
+    public void utilDeleteParFollowOrg(String par_username, String org_username) throws ClassNotFoundException {
         String sql = "delete from follow_org_par where par_username = '" + par_username + "' and org_username = '" + org_username + "';";
         utilUpdateVoid(sql);
     }
@@ -64,7 +68,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param event_title The title of the event
      */
-    public void utilDeleteParPastEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilDeleteParPastEvent(String par_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from past_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
         utilUpdateVoid(sql);
     }
@@ -74,7 +78,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param event_title The title of the event
      */
-    public void utilAddParUpcomingEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilAddParUpcomingEvent(String par_username, String event_title) throws ClassNotFoundException {
         String sql = "insert into upcoming_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
         utilUpdateVoid(sql);
     }
@@ -85,7 +89,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param event_title The title of the event
      */
-    public void utilDeleteParUpcomingEvent(String par_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilDeleteParUpcomingEvent(String par_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from upcoming_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
         utilUpdateVoid(sql);
     }
@@ -95,7 +99,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All organizations followed by the participant
      */
-    public ArrayList<String> utilGetAllFollowing(String par_username) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> utilGetAllFollowing(String par_username) throws ClassNotFoundException {
         String sql = "select org_username from follow_org_par where par_username = '" + par_username + "';";
         return utilQueryArrayListString(sql);
     }
@@ -105,7 +109,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All past events registered by the participant
      */
-    public ArrayList<String> utilGetAllPastEvent(String par_username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> utilGetAllPastEvent(String par_username) throws ClassNotFoundException {
         String sql = "select event_title from past_events_for_par where par_username = '" + par_username + "';";
         return utilQueryArrayListString(sql);
     }
@@ -115,7 +119,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All upcoming events registered by the participant
      */
-    public ArrayList<String> utilGetAllUpcomingEvent(String par_username) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> utilGetAllUpcomingEvent(String par_username) throws ClassNotFoundException {
         String sql = "select event_title from upcoming_events_for_par where par_username = '" + par_username + "';";
         return utilQueryArrayListString(sql);
     }
@@ -125,7 +129,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param new_password The new password of the participant
      */
-    public void utilPasswordUpdating(String par_username, String new_password) throws ClassNotFoundException, SQLException {
+    public void utilPasswordUpdating(String par_username, String new_password) throws ClassNotFoundException {
         String sql = "update parfile set password = '" + new_password + "' where username = '" + par_username + "';";
         utilUpdateVoid(sql);
     }
@@ -135,7 +139,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param new_notification The new notification need to be sent to the participant
      */
-    public void utilNotificationUpdating(String par_username, String new_notification) throws ClassNotFoundException, SQLException {
+    public void utilNotificationUpdating(String par_username, String new_notification) throws ClassNotFoundException {
         String sql = "insert ignore into par_notification(par_username, notification) values('" + par_username + "','" + new_notification + "')";
         utilUpdateVoid(sql);
     }
@@ -145,7 +149,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All notifications of the participant
      */
-    public ArrayList<String> UtilGetNotifications(String par_username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> UtilGetNotifications(String par_username) throws ClassNotFoundException {
         String sql = "select notification from par_notification where par_username = '" + par_username + "';";
         return utilQueryArrayListString(sql);
     }
@@ -155,8 +159,9 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      */
-    public void UtilClearNotifications(String par_username) throws SQLException, ClassNotFoundException {
+    public void UtilClearNotifications(String par_username) throws ClassNotFoundException {
         String sql = "delete from par_notification where par_username = '" + par_username + "';";
+        System.out.println(sql);
         utilUpdateVoid(sql);
     }
 
@@ -166,7 +171,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return The password of the participant
      */
-    public String utilGetPassword(String username) throws SQLException, ClassNotFoundException {
+    public String utilGetPassword(String username) throws ClassNotFoundException {
         String sql = "select password from parfile where username = '" + username + "';";
         return utilQueryArrayListString(sql).get(0);
     }
@@ -177,9 +182,9 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
      */
-    public boolean utilCheckIfUsernameExist(String username) throws ClassNotFoundException, SQLException {
+    public boolean utilCheckIfUsernameExist(String username) throws ClassNotFoundException {
         String sql = "select username from parfile where username = '" + username + "';";
-        return utilQueryArrayListString(sql).isEmpty();
+        return !utilQueryArrayListString(sql).isEmpty();
     }
 
 
@@ -189,7 +194,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param title The title of the event
      */
-    public void registerEvent(String par_username, String title) throws SQLException, ClassNotFoundException {
+    public void registerEvent(String par_username, String title) throws ClassNotFoundException {
         utilAddParUpcomingEvent(par_username,title);
     }
 
@@ -200,7 +205,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param title The title of the event
      */
-    public void leaveEvent(String par_username, String title) throws SQLException, ClassNotFoundException {
+    public void leaveEvent(String par_username, String title) throws ClassNotFoundException {
         utilDeleteParUpcomingEvent(par_username,title);
     }
 
@@ -210,7 +215,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return The password of the participant
      */
-    public String getPassword(String username) throws SQLException, ClassNotFoundException {
+    public String getPassword(String username) throws ClassNotFoundException {
         return utilGetPassword(username);
     }
 
@@ -220,7 +225,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @param new_password The new password of the participant
      */
-    public void setPassword(String username, String new_password) throws SQLException, ClassNotFoundException {
+    public void setPassword(String username, String new_password) throws ClassNotFoundException {
         utilPasswordUpdating(username, new_password);
     }
 
@@ -230,7 +235,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @return All notifications of the participant
      */
-    public ArrayList<String> getNotifications(String par_username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getNotifications(String par_username) throws ClassNotFoundException {
         return UtilGetNotifications(par_username);
     }
 
@@ -240,7 +245,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return All the upcoming events registered by the participant
      */
-    public ArrayList<String> getUpcomingEvents(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getUpcomingEvents(String username) throws ClassNotFoundException {
         return utilGetAllUpcomingEvent(username);
     }
 
@@ -250,7 +255,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return All the past events registered by the participant
      */
-    public ArrayList<String> getPastEvents(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getPastEvents(String username) throws ClassNotFoundException {
         return utilGetAllPastEvent(username);
     }
 
@@ -260,7 +265,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @return All the organizations followed by the participant
      */
-    public ArrayList<String> getFollowedOrg(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getFollowedOrg(String username) throws ClassNotFoundException {
         return utilGetAllFollowing(username);
     }
 
@@ -270,7 +275,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param org_username The username of the organization
      */
-    public void followOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException {
+    public void followOrg(String par_username, String org_username) throws ClassNotFoundException {
         utilAddParFollowing(par_username,org_username);
     }
 
@@ -280,7 +285,7 @@ public class ParFileUser implements ParDsGateway {
      * @param par_username The username of the participant
      * @param org_username The username of the organization
      */
-    public void unfollowOrg(String par_username, String org_username) throws SQLException, ClassNotFoundException {
+    public void unfollowOrg(String par_username, String org_username) throws ClassNotFoundException {
         utilDeleteParFollowOrg(par_username,org_username);
     }
 
@@ -292,7 +297,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
      */
-    public boolean checkIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
+    public boolean checkIfUsernameExist(String username) throws ClassNotFoundException {
         return utilCheckIfUsernameExist(username);
     }
 
@@ -302,7 +307,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @param password The password of the participant
      */
-    public void createPar(String username, String password) throws SQLException, ClassNotFoundException {
+    public void createPar(String username, String password) throws ClassNotFoundException {
         utilStorePar(username, password);
     }
 
@@ -314,7 +319,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param username The username of the participant
      */
-    public void deletePar(String username) throws SQLException, ClassNotFoundException {
+    public void deletePar(String username) throws ClassNotFoundException {
         //First delete relationships with events
         //Then delete relationships with organizations
         //Then delete itself
@@ -347,7 +352,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      * @param new_notification The new notification sent to the participant
      */
-    public void addNotification(String username, String new_notification) throws SQLException, ClassNotFoundException {
+    public void addNotification(String username, String new_notification) throws ClassNotFoundException {
         utilNotificationUpdating(username,new_notification);
     }
 
@@ -357,7 +362,7 @@ public class ParFileUser implements ParDsGateway {
      * @param username The username of the participant
      */
     @Override
-    public void clearNotifications(String username) throws SQLException, ClassNotFoundException {
+    public void clearNotifications(String username) throws ClassNotFoundException {
         UtilClearNotifications(username);
     }
 

@@ -29,7 +29,7 @@ public class ParSearchOrgResultsPage extends JFrame {
      * @param orgNames An ArrayList<String> containing all the search results
      * @param parUsername A string containing the participant's username
      */
-    public ParSearchOrgResultsPage(ArrayList<String> orgNames, String parUsername) {
+    public ParSearchOrgResultsPage(ArrayList<String> orgNames, String parUsername) throws ClassNotFoundException {
 
         this.parUsername = parUsername;
         this.orgNames = orgNames;

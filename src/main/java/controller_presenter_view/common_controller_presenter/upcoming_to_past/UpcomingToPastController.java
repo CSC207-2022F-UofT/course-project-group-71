@@ -18,7 +18,7 @@ public class UpcomingToPastController {
         this.interactor = potential_interactor;
     }
 
-    public UpcomingToPastResponseModel convertToPast(String userType, String username) throws SQLException, ClassNotFoundException {
+    public UpcomingToPastResponseModel convertToPast(String userType, String username) throws ClassNotFoundException {
         UpcomingToPastRequestModel requestModel = new UpcomingToPastRequestModel(userType, username);
         return interactor.convertToPast(requestModel);
     }

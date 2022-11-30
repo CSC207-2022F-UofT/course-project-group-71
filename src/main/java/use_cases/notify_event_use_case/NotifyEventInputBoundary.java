@@ -11,5 +11,5 @@ public interface NotifyEventInputBoundary {
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the notification is successful
      */
-    NotifyEventResponseModel sendNotification(NotifyEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    NotifyEventResponseModel sendNotification(NotifyEventRequestModel requestModel) throws ClassNotFoundException;
 }

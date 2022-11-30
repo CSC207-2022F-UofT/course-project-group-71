@@ -1,5 +1,11 @@
 package controller_presenter_view.screens.par_home.par_search;
 
+import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgController;
+import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;
+import controller_presenter_view.common_view.OrgDetailsPage;
+import controller_presenter_view.screens.par_home.ParHomePage;
+import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgController;
+import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
 import use_cases.par_follow_org_use_case.ParFollowOrgInputBoundary;
@@ -10,17 +16,10 @@ import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInteractor;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgOutputBoundary;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
-import controller_presenter_view.common_view.OrgDetailsPage;
-import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgController;
-import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgPresenter;
-import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgController;
-import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;
-import controller_presenter_view.screens.par_home.ParHomePage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class ParSearchOrgResultsPageActionListener implements ActionListener {
 
@@ -64,7 +63,7 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
             ParFollowOrgResponseModel responseModel;
             try {
                 responseModel = controller.follow(parUserName, this.orgName);
-            } catch (SQLException | ClassNotFoundException ex) {
+            } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
             //show a success message that the participant has followed the organization
@@ -72,7 +71,11 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
             //dispose the results page
             this.parSearchOrgResultsPage.dispose();
             //renew the results page
-            new ParSearchOrgResultsPage(this.parSearchOrgResultsPage.getOrgNames(), parUserName);
+            try {
+                new ParSearchOrgResultsPage(this.parSearchOrgResultsPage.getOrgNames(), parUserName);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
 
         } else if (actionCommand.equals("Unfollow " + this.orgName)) {
             //do unfollowing
@@ -84,7 +87,7 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
             ParUnfollowOrgResponseModel responseModel;
             try {
                 responseModel = controller.unfollow(parUserName, this.orgName);
-            } catch (SQLException | ClassNotFoundException ex) {
+            } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
             //show a success message that the participant has unfollowed the organization
@@ -92,11 +95,19 @@ public class ParSearchOrgResultsPageActionListener implements ActionListener {
             //dispose the results page
             this.parSearchOrgResultsPage.dispose();
             //renew the results page
-            new ParSearchOrgResultsPage(this.parSearchOrgResultsPage.getOrgNames(), parUserName);
+            try {
+                new ParSearchOrgResultsPage(this.parSearchOrgResultsPage.getOrgNames(), parUserName);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
 
 
         } else {//show organization's detail page
-            new OrgDetailsPage(this.orgName);
+            try {
+                new OrgDetailsPage(this.orgName);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }

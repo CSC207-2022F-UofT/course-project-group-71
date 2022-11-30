@@ -15,7 +15,7 @@ public class ParSearchOrgPresenter implements ParSearchOrgOutputBoundary {
      * @return Returns the response model
      */
     @Override
-    public ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel responseModel) {
+    public ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel responseModel) throws ClassNotFoundException {
         ArrayList<String> orgNames = responseModel.getSearchResults();
         String parUserName = responseModel.getParUserName();
         new ParSearchOrgResultsPage(orgNames, parUserName);

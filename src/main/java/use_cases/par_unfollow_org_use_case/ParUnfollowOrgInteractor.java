@@ -2,8 +2,6 @@ package use_cases.par_unfollow_org_use_case;
 
 import database.ParDsGateway;
 
-import java.sql.SQLException;
-
 public class ParUnfollowOrgInteractor implements ParUnfollowOrgInputBoundary {
 
     final ParDsGateway parDsGateway;
@@ -24,7 +22,7 @@ public class ParUnfollowOrgInteractor implements ParUnfollowOrgInputBoundary {
      * @param requestModel The request model sent to this interactor.
      * @return A responseModel representing the user unfollowed an organizer successfully by the presenter.
      */
-    public ParUnfollowOrgResponseModel unfollow(ParUnfollowOrgRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public ParUnfollowOrgResponseModel unfollow(ParUnfollowOrgRequestModel requestModel) throws ClassNotFoundException {
         parDsGateway.unfollowOrg(requestModel.getPar_username(),requestModel.getOrg_username());
         ParUnfollowOrgResponseModel responseModel = new ParUnfollowOrgResponseModel(requestModel.getOrg_username());
         return unfollowOrgOutputBoundary.prepareSuccessPage(responseModel);

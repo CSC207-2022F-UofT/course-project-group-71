@@ -11,5 +11,5 @@ public interface OrgDeleteEventInputBoundary {
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the event deletion is successful
      */
-    OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel requestModel) throws ClassNotFoundException;
 }

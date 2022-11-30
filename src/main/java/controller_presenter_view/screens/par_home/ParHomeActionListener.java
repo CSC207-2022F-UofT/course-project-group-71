@@ -22,7 +22,6 @@ import use_cases.par_search_org_use_case.ParSearchOrgOutputBoundary;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
@@ -57,15 +56,27 @@ public class ParHomeActionListener implements ActionListener {
                 break;
             case "Upcoming Event":
                 this.parHomePage.dispose();
-                new ParUpcomingEventPage(this.parHomePage.getParUsername());
+                try {
+                    new ParUpcomingEventPage(this.parHomePage.getParUsername());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "Past Event":
                 this.parHomePage.dispose();
-                new ParPastEventPage(this.parHomePage.getParUsername());
+                try {
+                    new ParPastEventPage(this.parHomePage.getParUsername());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "Followed Org":
                 this.parHomePage.dispose();
-                new ParFollowedOrgPage(this.parHomePage.getParUsername());
+                try {
+                    new ParFollowedOrgPage(this.parHomePage.getParUsername());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "Search":
                 if (this.parHomePage.org.isSelected()) {
@@ -78,7 +89,7 @@ public class ParHomeActionListener implements ActionListener {
                         String parUserName = this.parHomePage.getParUsername();
                         try {
                             controller.orgSearch(query, parUserName); //draw screen
-                        } catch (SQLException | ClassNotFoundException e) {
+                        } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
                         this.parHomePage.dispose();
@@ -98,7 +109,7 @@ public class ParHomeActionListener implements ActionListener {
                         String parUserName = this.parHomePage.getParUsername();
                         try {
                             controller.eventSearch(query, parUserName);
-                        } catch (SQLException | ClassNotFoundException e) {
+                        } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
                         this.parHomePage.dispose();

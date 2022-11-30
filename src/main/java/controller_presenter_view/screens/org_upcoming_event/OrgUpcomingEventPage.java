@@ -1,14 +1,16 @@
 package controller_presenter_view.screens.org_upcoming_event;
 
-import database.*;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
+import database.EventDsGateway;
+import database.EventFileUser;
+import database.OrgDsGateway;
+import database.OrgFileUser;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
 import use_cases.extract_information_use_case.ExtractInfoResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static controller_presenter_view.screens.screen_constants.getConstantX;
@@ -32,7 +34,7 @@ public class OrgUpcomingEventPage extends JFrame {
      *
      * @param orgUsername the username of the organization.
      */
-    public OrgUpcomingEventPage(String orgUsername) {
+    public OrgUpcomingEventPage(String orgUsername) throws ClassNotFoundException {
 
         this.orgUsername = orgUsername;
 

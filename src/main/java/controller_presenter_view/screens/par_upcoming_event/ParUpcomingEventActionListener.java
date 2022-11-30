@@ -14,7 +14,6 @@ import use_cases.par_leave_event_use_case.ParLeaveEventResponseModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class ParUpcomingEventActionListener implements ActionListener {
     public final ParUpcomingEventPage parUpcomingEventPage;
@@ -56,17 +55,25 @@ public class ParUpcomingEventActionListener implements ActionListener {
             try {
                 responseModel = parLeaveEventController.leave(
                         this.parUpcomingEventPage.getParUsername(), eventName);
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
             JOptionPane.showMessageDialog(this.parUpcomingEventPage, responseModel.getMessage());
 
             this.parUpcomingEventPage.dispose();
-            new ParUpcomingEventPage(this.parUpcomingEventPage.getParUsername());
+            try {
+                new ParUpcomingEventPage(this.parUpcomingEventPage.getParUsername());
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else {
-            new EventDetailsPage(actionCommand);
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

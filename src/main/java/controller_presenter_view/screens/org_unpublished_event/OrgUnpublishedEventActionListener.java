@@ -28,7 +28,6 @@ import use_cases.org_publish_event_use_case.OrgPublishEventResponseModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class OrgUnpublishedEventActionListener implements ActionListener {
     final OrgUnpublishedEventPage orgUnpublishedEventPage;
@@ -52,19 +51,19 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             OrgDeleteEventResponseModel responseModel;
             try {
-                try {
-                    responseModel = orgDeleteEventController.delete(eventName);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            } catch (SQLException e) {
+                responseModel = orgDeleteEventController.delete(eventName);
+            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
             JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
 
             this.orgUnpublishedEventPage.dispose();
-            new OrgUnpublishedEventPage(orgUsername);
+            try {
+                new OrgUnpublishedEventPage(orgUsername);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else if (actionCommand.contains("Publish")){
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -81,7 +80,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             OrgPublishEventResponseModel responseModel;
             try {
                 responseModel = orgPublishEventController.publish(eventName, orgUsername);
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
@@ -89,7 +88,11 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             this.orgUnpublishedEventPage.dispose();
 
-            new OrgUnpublishedEventPage(orgUsername);
+            try {
+                new OrgUnpublishedEventPage(orgUsername);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else if (actionCommand.equals("Create An Event")){
             EventDsGateway eventDsGateway = new EventFileUser();
@@ -119,12 +122,16 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
 
             try {
                 new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName, eventDsGateway);
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
         else {
-            new EventDetailsPage(actionCommand);
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

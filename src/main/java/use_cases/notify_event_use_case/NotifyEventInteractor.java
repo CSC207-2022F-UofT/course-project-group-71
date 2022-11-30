@@ -34,7 +34,7 @@ public class NotifyEventInteractor implements NotifyEventInputBoundary {
      * @return A responseModel representing whether the notification is successful
      */
     @Override
-    public NotifyEventResponseModel sendNotification(NotifyEventRequestModel notifyEventRequestModel) throws SQLException, ClassNotFoundException {
+    public NotifyEventResponseModel sendNotification(NotifyEventRequestModel notifyEventRequestModel) throws ClassNotFoundException {
         String eventName = notifyEventRequestModel.getEventName();
         String notificationType = notifyEventRequestModel.getNotificationType();
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);

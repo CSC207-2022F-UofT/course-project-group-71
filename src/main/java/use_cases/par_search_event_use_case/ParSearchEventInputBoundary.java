@@ -11,5 +11,5 @@ public interface ParSearchEventInputBoundary {
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the search for event is successful
      */
-    ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel requestModel) throws ClassNotFoundException;
 }

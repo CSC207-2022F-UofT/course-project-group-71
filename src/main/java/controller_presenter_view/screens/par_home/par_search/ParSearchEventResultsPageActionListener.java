@@ -1,8 +1,13 @@
 package controller_presenter_view.screens.par_home.par_search;
 
+import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventController;
+import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventPresenter;
+import controller_presenter_view.common_view.EventDetailsPage;
+import controller_presenter_view.screens.par_home.ParHomePage;
 import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJoinEventController;
 import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJoinEventPresenter;
-import database.*;
+import database.ParDsGateway;
+import database.ParFileUser;
 import use_cases.par_join_event_use_case.ParJoinEventInputBoundary;
 import use_cases.par_join_event_use_case.ParJoinEventInteractor;
 import use_cases.par_join_event_use_case.ParJoinEventOutputBoundary;
@@ -11,15 +16,10 @@ import use_cases.par_leave_event_use_case.ParLeaveEventInputBoundary;
 import use_cases.par_leave_event_use_case.ParLeaveEventInteractor;
 import use_cases.par_leave_event_use_case.ParLeaveEventOutputBoundary;
 import use_cases.par_leave_event_use_case.ParLeaveEventResponseModel;
-import controller_presenter_view.common_view.EventDetailsPage;
-import controller_presenter_view.screens.par_home.ParHomePage;
-import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventController;
-import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class ParSearchEventResultsPageActionListener implements ActionListener {
 
@@ -63,7 +63,11 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             JOptionPane.showMessageDialog(this.parSearchEventResultsPage, response.getMessage());
             //dispose the results page
             this.parSearchEventResultsPage.dispose();
-            new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
+            try {
+                new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
 
         } else if (actionCommand.equals("Leave " + this.eventName)){
             ParDsGateway parDsGateway = new ParFileUser();
@@ -75,7 +79,7 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             ParLeaveEventResponseModel responseModel;
             try {
                 responseModel = controller.leave(parUserName, this.eventName);
-            } catch (SQLException | ClassNotFoundException ex) {
+            } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
             //show a success message that the participant has joined the event
@@ -83,10 +87,18 @@ public class ParSearchEventResultsPageActionListener implements ActionListener {
             //dispose the results page
             this.parSearchEventResultsPage.dispose();
             //renew the results page
-            new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
+            try {
+                new ParSearchEventResultsPage(this.parSearchEventResultsPage.getEventNames(), parUserName);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         else {
-            new EventDetailsPage(eventName);
+            try {
+                new EventDetailsPage(eventName);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
 

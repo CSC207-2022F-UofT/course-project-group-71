@@ -32,7 +32,11 @@ public class ParPastEventActionListener implements ActionListener {
             new ParHomePage(this.parPastEventPage.getParUsername());
         }
         else {
-            new EventDetailsPage(actionCommand);
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

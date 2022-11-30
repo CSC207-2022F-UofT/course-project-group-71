@@ -19,7 +19,7 @@ public class ParJoinEventController {
         ParJoinEventRequestModel requestModel = new ParJoinEventRequestModel(par_username, event_name);
         try {
             return interactor.join(requestModel);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

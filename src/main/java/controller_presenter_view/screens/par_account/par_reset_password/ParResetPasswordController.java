@@ -4,8 +4,6 @@ import use_cases.user_reset_password_use_case.UserResetPasswordInputBoundary;
 import use_cases.user_reset_password_use_case.UserResetPasswordRequestModel;
 import use_cases.user_reset_password_use_case.UserResetPasswordResponseModel;
 
-import java.sql.SQLException;
-
 public class ParResetPasswordController {
     final UserResetPasswordInputBoundary userInput;
 
@@ -26,12 +24,12 @@ public class ParResetPasswordController {
      * @param newPassword The new password of the participant
      * @param reNewPassword The second-input password of the participant
      * @return The response model returned from the interactor
-     * @throws SQLException The Exception if we SQL codes are wrong or invalid
      * @throws ClassNotFoundException The Exception if the class is not found
      */
 
-    public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws SQLException, ClassNotFoundException {
+    public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws ClassNotFoundException {
         UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, password, false, newPassword, reNewPassword);
+        System.out.println(password);
         return userInput.resetPassword(requestModel);
     }
 }

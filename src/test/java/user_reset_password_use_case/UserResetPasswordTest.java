@@ -1,21 +1,19 @@
 package user_reset_password_use_case;
 
+import controller_presenter_view.screens.org_account.org_reset_password.OrgResetPasswordController;
+import controller_presenter_view.screens.org_account.org_reset_password.OrgResetPasswordPresenter;
+import controller_presenter_view.screens.par_account.par_reset_password.ParResetPasswordController;
+import controller_presenter_view.screens.par_account.par_reset_password.ParResetPasswordPresenter;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import controller_presenter_view.screens.org_account.org_reset_password.OrgResetPasswordController;
-import controller_presenter_view.screens.org_account.org_reset_password.OrgResetPasswordPresenter;
-import controller_presenter_view.screens.par_account.par_reset_password.ParResetPasswordController;
-import controller_presenter_view.screens.par_account.par_reset_password.ParResetPasswordPresenter;
 import use_cases.user_reset_password_use_case.UserResetPasswordInputBoundary;
 import use_cases.user_reset_password_use_case.UserResetPasswordInteractor;
 import use_cases.user_reset_password_use_case.UserResetPasswordOutputBoundary;
 import use_cases.user_reset_password_use_case.UserResetPasswordResponseModel;
-
-import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -60,7 +58,7 @@ public class UserResetPasswordTest {
             System.out.println(responseModel.getMessage());
             assertEquals("Password reset successfully!", responseModel.getMessage());
             orgController.resetPassword("O1", "temp_new", "O1password","O1password");
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             assert(false);
         }
     }
@@ -94,7 +92,7 @@ public class UserResetPasswordTest {
             responseModel = parController.resetPassword("P2","p2","temp_password","temp_password");
             assertEquals("Password reset successfully!", responseModel.getMessage());
             parController.resetPassword("P2", "temp_password","p2","p2");
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             assert(false);
         }
     }

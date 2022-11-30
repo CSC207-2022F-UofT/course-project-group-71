@@ -11,5 +11,5 @@ public interface ParSearchOrgInputBoundary {
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the search for org is successful
      */
-    ParSearchOrgResponseModel orgSearch(ParSearchOrgRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    ParSearchOrgResponseModel orgSearch(ParSearchOrgRequestModel requestModel) throws ClassNotFoundException;
 }

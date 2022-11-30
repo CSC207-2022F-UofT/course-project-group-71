@@ -26,7 +26,7 @@ public class ParPastEventPage extends JFrame {
      *
      * @param parUsername The username of the participant
      */
-    public ParPastEventPage(String parUsername) {
+    public ParPastEventPage(String parUsername) throws ClassNotFoundException {
         this.parUsername = parUsername;
 
         this.setLayout(null);

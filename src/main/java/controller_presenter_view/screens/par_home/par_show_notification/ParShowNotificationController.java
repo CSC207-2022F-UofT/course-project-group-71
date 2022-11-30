@@ -21,10 +21,9 @@ public class ParShowNotificationController {
      *
      * @param username The username of the participant
      * @return The respondent sent back from the interactor.
-     * @throws SQLException Exception when SQL error occurs.
      * @throws ClassNotFoundException Exception when Class error occurs.
      */
-    public ParShowNotificationResponseModel showNotification(String username) throws SQLException, ClassNotFoundException {
+    public ParShowNotificationResponseModel showNotification(String username) throws ClassNotFoundException {
         ParShowNotificationRequestModel requestModel = new ParShowNotificationRequestModel(username);
 
         return userInput.showNotification(requestModel);

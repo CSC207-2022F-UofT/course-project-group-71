@@ -1,12 +1,15 @@
 package database;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static database.JDBCUtils.utilQueryArrayListString;
 import static database.JDBCUtils.utilUpdateVoid;
 
 public class OrgFileUser implements OrgDsGateway {
+    public static void main(String[] args) throws ClassNotFoundException {
+        OrgFileUser b = new OrgFileUser();
+        System.out.println(b.getPassword("P2"));
+    }
 
 
     /**This is a tool method to store the username and password of the organization to database.
@@ -14,7 +17,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organization that need to be stored
      * @param password The password of the organization that need to be stored
      */
-    public void utilStoreOrg(String username, String password) throws SQLException, ClassNotFoundException {
+    public void utilStoreOrg(String username, String password) throws ClassNotFoundException {
         String sql = "insert into orgfile(username, password) values('" + username + "','" + password + "');" ;
         utilUpdateVoid(sql);
     }
@@ -25,7 +28,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization that need to be deleted
      */
-    public void utilDeleteOrg(String username) throws SQLException, ClassNotFoundException {
+    public void utilDeleteOrg(String username) throws ClassNotFoundException {
         String sql = "delete from orgfile where username = '" + username + "';";
         utilUpdateVoid(sql);
     }
@@ -36,7 +39,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @param event_title The title of the event
      */
-    public void utilAddOrgPastEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilAddOrgPastEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "insert into past_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
         utilUpdateVoid(sql);
     }
@@ -47,7 +50,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @param event_title The title of the event
      */
-    public void utilDeleteOrgPastEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilDeleteOrgPastEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from past_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
         utilUpdateVoid(sql);
     }
@@ -58,7 +61,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @param event_title The title of the event
      */
-    public void utilAddOrgUnpublishedEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilAddOrgUnpublishedEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "insert into unpublished_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
         utilUpdateVoid(sql);
     }
@@ -69,7 +72,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @param event_title The title of the event
      */
-    public void utilDeleteOrgUnpublishedEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilDeleteOrgUnpublishedEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from unpublished_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
         utilUpdateVoid(sql);
     }
@@ -80,7 +83,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @param event_title The title of the event
      */
-    public void utilAddOrgUpcomingEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilAddOrgUpcomingEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "insert into upcoming_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
         utilUpdateVoid(sql);
     }
@@ -91,7 +94,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @param event_title The title of the event
      */
-    public void utilDeleteOrgUpcomingEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
+    public void utilDeleteOrgUpcomingEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from upcoming_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
         utilUpdateVoid(sql);
     }
@@ -101,7 +104,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @return All followers of the organization
      */
-    public ArrayList<String> utilGetAllFollowers(String org_username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> utilGetAllFollowers(String org_username) throws ClassNotFoundException {
         String sql = "select par_username from follow_org_par where org_username = '" + org_username + "';";
         return utilQueryArrayListString(sql);
     }
@@ -110,7 +113,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @return All unpublished events of the organization
      */
-    public ArrayList<String> utilGetUnpublishedEvents(String org_username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> utilGetUnpublishedEvents(String org_username) throws ClassNotFoundException {
         String sql = "select event_title from unpublished_events_for_org where org_username = '" + org_username + "';";
         return utilQueryArrayListString(sql);
     }
@@ -120,7 +123,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @return All past events of the organization
      */
-    public ArrayList<String> utilGetPastEvents(String org_username) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> utilGetPastEvents(String org_username) throws ClassNotFoundException {
         String sql = "select event_title from past_events_for_org where org_username = '" + org_username + "';";
         return utilQueryArrayListString(sql);
     }
@@ -130,7 +133,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @return All upcoming events of the organization
      */
-    public ArrayList<String> utilGetUpcomingEvents(String org_username) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> utilGetUpcomingEvents(String org_username) throws ClassNotFoundException {
         String sql = "select event_title from upcoming_events_for_org where org_username = '" + org_username + "';";
         return utilQueryArrayListString(sql);
     }
@@ -140,8 +143,10 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @return The password of the organization
      */
-    public String utilGetPassword(String org_username) throws SQLException, ClassNotFoundException {
+    public String utilGetPassword(String org_username) throws ClassNotFoundException {
         String sql = "select password from orgfile where username = '" + org_username + "'";
+        System.out.println(sql);
+        System.out.println(utilQueryArrayListString(sql));
         return utilQueryArrayListString(sql).get(0);
     }
 
@@ -150,7 +155,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param org_username The username of the organization
      * @param new_password The new password of the organization
      */
-    public void utilPasswordUpdating(String org_username, String new_password) throws SQLException, ClassNotFoundException {
+    public void utilPasswordUpdating(String org_username, String new_password) throws ClassNotFoundException {
         String sql = "update orgfile set password = '" + new_password + "' where username = '" + org_username + "';";
         utilUpdateVoid(sql);
     }
@@ -160,7 +165,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param about_name The keyword that used for search for relevant organization
      * @return An ArrayList containing the name of all relevant organizations
      */
-    public ArrayList<String> utilOrganizationSearch(String about_name) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> utilOrganizationSearch(String about_name) throws ClassNotFoundException {
         String sql = "select username from orgfile where username like \"%" + about_name + "%\";";
         return utilQueryArrayListString(sql);
     }
@@ -171,9 +176,9 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
      */
-    public boolean utilCheckIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
+    public boolean utilCheckIfUsernameExist(String username) throws ClassNotFoundException {
         String sql = "select username from orgfile where username = '" + username + "';";
-        return utilQueryArrayListString(sql).isEmpty();
+        return !utilQueryArrayListString(sql).isEmpty();
     }
 
 
@@ -184,7 +189,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organization
      * @param password The password of the organization
      */
-    public void createOrg(String username, String password) throws SQLException, ClassNotFoundException {
+    public void createOrg(String username, String password) throws ClassNotFoundException {
         utilStoreOrg(username,password);
     }
 
@@ -195,7 +200,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      */
-    public void deleteOrg(String username) throws SQLException, ClassNotFoundException {
+    public void deleteOrg(String username) throws ClassNotFoundException {
         ParFileUser temp_parFileUser = new ParFileUser();
         ArrayList<String> All_Unpublished = utilGetUnpublishedEvents(username);
         for (String s : All_Unpublished) {
@@ -232,7 +237,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
      */
-    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
+    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
         EventFileUser temp_eventFileUser = new EventFileUser();
         temp_eventFileUser.utilStoreEvent(title, description, location, year, month, day, hour, minute);
         if (status == 0){
@@ -256,7 +261,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param title The title of the event
      */
-    public void deleteAnEvent(String title) throws SQLException, ClassNotFoundException {
+    public void deleteAnEvent(String title) throws ClassNotFoundException {
         EventFileUser temp_eventFileUser = new EventFileUser();
         temp_eventFileUser.deleteEvent(title);
     }
@@ -267,7 +272,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The name of the organization
      * @return THe password of the organization
      */
-    public String getPassword(String username) throws SQLException, ClassNotFoundException {
+    public String getPassword(String username) throws ClassNotFoundException {
         return utilGetPassword(username);
     }
 
@@ -277,7 +282,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The name of the organization
      * @param new_password The new password of the organization
      */
-    public void setPassword(String username, String new_password) throws SQLException, ClassNotFoundException {
+    public void setPassword(String username, String new_password) throws ClassNotFoundException {
         utilPasswordUpdating(username, new_password);
     }
 
@@ -287,7 +292,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param about_name The keyword that used for search for relevant organization
      * @return An ArrayList containing the name of all relevant organizations
      */
-    public ArrayList<String> organizationSearch(String about_name) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> organizationSearch(String about_name) throws ClassNotFoundException {
         return utilOrganizationSearch(about_name);
     }
 
@@ -297,7 +302,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organization
      * @return The arraylist containing all unpublished events of the organization
      */
-    public ArrayList<String> getUnpublishedEvents(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getUnpublishedEvents(String username) throws ClassNotFoundException {
         return utilGetUnpublishedEvents(username);
     }
 
@@ -307,7 +312,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organization
      * @return The arraylist containing all past events of the organization
      */
-    public ArrayList<String> getPastEvents(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getPastEvents(String username) throws ClassNotFoundException {
         return utilGetPastEvents(username);
     }
 
@@ -317,7 +322,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organization
      * @return The arraylist containing all upcoming events of the organization
      */
-    public ArrayList<String> getUpcomingEvents(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getUpcomingEvents(String username) throws ClassNotFoundException {
         return utilGetUpcomingEvents(username);
     }
 
@@ -327,7 +332,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username of the organization
      * @return The arraylist containing all followers of the organization
      */
-    public ArrayList<String> getFollowers(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getFollowers(String username) throws ClassNotFoundException {
         return utilGetAllFollowers(username);
     }
 
@@ -338,11 +343,11 @@ public class OrgFileUser implements OrgDsGateway {
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
      */
-    public boolean checkIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
+    public boolean checkIfUsernameExist(String username) throws ClassNotFoundException {
         return utilCheckIfUsernameExist(username);
     }
 
-    public void editAnEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
+    public void editAnEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
         EventDsGateway eventFileUser = new EventFileUser();
         eventFileUser.editEvent(title,description,location,year,month,day,hour,minute);
 

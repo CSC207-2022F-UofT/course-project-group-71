@@ -23,7 +23,7 @@ public class OrgCreateEventController {
                                               String month,
                                               String day,
                                               String hour,
-                                              String minute) throws SQLException, ClassNotFoundException {
+                                              String minute) throws ClassNotFoundException {
         //Generate a request model which would be sent to the interactor
         OrgCreateEventRequestModel requestModel = new OrgCreateEventRequestModel(
                 orgUsername, title, description, location, year, month, day, hour, minute);

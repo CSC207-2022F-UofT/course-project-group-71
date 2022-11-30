@@ -7,5 +7,5 @@ public interface ParJoinEventInputBoundary {
      *
      * @param requestModel The request model sent to the input boundary
      */
-    ParJoinEventResponseModel join(ParJoinEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    ParJoinEventResponseModel join(ParJoinEventRequestModel requestModel) throws ClassNotFoundException;
 }

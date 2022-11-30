@@ -28,7 +28,7 @@ public class ParShowNotificationInteractor implements ParShowNotificationInputBo
      * @param requestModel The request model sent to this interactor.
      * @return A responseModel representing the notification if there is or "You have no notification!" if there isn't.
      */
-    public ParShowNotificationResponseModel showNotification(ParShowNotificationRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public ParShowNotificationResponseModel showNotification(ParShowNotificationRequestModel requestModel) throws ClassNotFoundException {
         ArrayList<String> notifications = parDsGateway.getNotifications(requestModel.getUsername());
         if (!notifications.isEmpty()){
             StringBuilder notification = new StringBuilder();

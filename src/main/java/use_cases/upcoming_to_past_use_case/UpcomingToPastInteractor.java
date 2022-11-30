@@ -38,7 +38,7 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
      * @return A responseModel representing whether the user creation is successful
      */
     @Override
-    public UpcomingToPastResponseModel convertToPast(UpcomingToPastRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public UpcomingToPastResponseModel convertToPast(UpcomingToPastRequestModel requestModel) throws ClassNotFoundException {
 
         String username = requestModel.getUsername();
 

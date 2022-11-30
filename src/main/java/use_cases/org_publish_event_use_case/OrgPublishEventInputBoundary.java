@@ -12,5 +12,5 @@ public interface OrgPublishEventInputBoundary {
      * @param requestModel The request model sent to the input boundary
      * @return A responsemodel representing whether the event publishing is successful
      */
-    OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws ClassNotFoundException;
 }

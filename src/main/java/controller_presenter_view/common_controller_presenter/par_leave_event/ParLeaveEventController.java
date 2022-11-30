@@ -18,7 +18,7 @@ public class ParLeaveEventController {
         this.interactor = interactor;
     }
 
-    public ParLeaveEventResponseModel leave(String par_username, String event_title) throws SQLException, ClassNotFoundException {
+    public ParLeaveEventResponseModel leave(String par_username, String event_title) throws ClassNotFoundException {
         ParLeaveEventRequestModel requestModel = new ParLeaveEventRequestModel(par_username,event_title);
         return interactor.leave(requestModel);
     }

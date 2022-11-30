@@ -1,9 +1,7 @@
 package use_cases.user_login_use_case;
 
-import database.ParDsGateway;
 import database.OrgDsGateway;
-
-import java.sql.SQLException;
+import database.ParDsGateway;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
 
@@ -37,7 +35,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the user creation is successful
      */
-    public UserLoginResponseModel login(UserLoginRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public UserLoginResponseModel login(UserLoginRequestModel requestModel) throws ClassNotFoundException {
         if (requestModel.getUserType().equals("P")) {
             String username = requestModel.getUsername();
             System.out.println("Fuck");

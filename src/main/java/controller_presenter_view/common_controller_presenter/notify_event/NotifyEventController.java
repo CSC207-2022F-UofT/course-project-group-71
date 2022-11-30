@@ -18,7 +18,7 @@ public class NotifyEventController {
         this.notifyEventInputBoundary = accountGateway;
     }
 
-    public NotifyEventResponseModel sendNotification(String notificationType, String eventName) throws SQLException, ClassNotFoundException {
+    public NotifyEventResponseModel sendNotification(String notificationType, String eventName) throws ClassNotFoundException {
         NotifyEventRequestModel requestModel = new NotifyEventRequestModel(notificationType, eventName);
         return notifyEventInputBoundary.sendNotification(requestModel);
     }

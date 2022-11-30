@@ -123,7 +123,7 @@ public class LoginPage extends JFrame implements ActionListener {
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("P",USERNAME.getText());
-                } catch (SQLException | ClassNotFoundException exception) {
+                } catch (ClassNotFoundException exception) {
                     throw new RuntimeException(exception);
                 }
                 if (!responseModel.getEventsToPast().isEmpty()){

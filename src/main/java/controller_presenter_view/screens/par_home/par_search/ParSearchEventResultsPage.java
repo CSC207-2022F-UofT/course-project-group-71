@@ -34,7 +34,7 @@ public class ParSearchEventResultsPage extends JFrame {
      * @param eventNames An array list containing all the search results
      * @param parUserName The username of the participant
      */
-    public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) {
+    public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) throws ClassNotFoundException {
 
         this.eventNames = eventNames;
         this.parUsername = parUserName;

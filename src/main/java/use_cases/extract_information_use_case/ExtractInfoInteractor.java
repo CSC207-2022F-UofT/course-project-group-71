@@ -1,9 +1,9 @@
 package use_cases.extract_information_use_case;
 
 
-import database.*;
-
-import java.sql.SQLException;
+import database.EventDsGateway;
+import database.OrgDsGateway;
+import database.ParDsGateway;
 
 public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
 
@@ -41,27 +41,23 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
      * @return A responseModel representing whether the event creation is successful
      */
     @Override
-    public ExtractInfoResponseModel<String> extractEventInfo(ExtractInfoRequestModel requestModel) {
+    public ExtractInfoResponseModel<String> extractEventInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException {
 
         String eventTitle = requestModel.getPara();
         String keyword = requestModel.getKeyword();
-        try{
-            switch (keyword) {
-                case "getStatus":
-                    return new ExtractInfoResponseModel<>(eventDsGateway.getStatus(eventTitle));
-                case "getDescription":
-                    return new ExtractInfoResponseModel<>(eventDsGateway.getDescription(eventTitle));
-                case "getLocation":
-                    return new ExtractInfoResponseModel<>(eventDsGateway.getLocation(eventTitle));
-                case "getParticipants":
-                    return new ExtractInfoResponseModel<>(eventDsGateway.getParticipants(eventTitle));
-                case "getOrganization":
-                    return new ExtractInfoResponseModel<>(eventDsGateway.getOrganization(eventTitle));
-                case "eventSearch":
-                    return new ExtractInfoResponseModel<>(eventDsGateway.eventSearch(eventTitle));
-            }
-        } catch (SQLException | ClassNotFoundException ex){
-            throw new RuntimeException(ex);
+        switch (keyword) {
+            case "getStatus":
+                return new ExtractInfoResponseModel<>(eventDsGateway.getStatus(eventTitle));
+            case "getDescription":
+                return new ExtractInfoResponseModel<>(eventDsGateway.getDescription(eventTitle));
+            case "getLocation":
+                return new ExtractInfoResponseModel<>(eventDsGateway.getLocation(eventTitle));
+            case "getParticipants":
+                return new ExtractInfoResponseModel<>(eventDsGateway.getParticipants(eventTitle));
+            case "getOrganization":
+                return new ExtractInfoResponseModel<>(eventDsGateway.getOrganization(eventTitle));
+            case "eventSearch":
+                return new ExtractInfoResponseModel<>(eventDsGateway.eventSearch(eventTitle));
         }
         return null;
     }
@@ -74,26 +70,22 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
      * @return A responseModel representing whether the event creation is successful
      */
     @Override
-    public ExtractInfoResponseModel<String> extractOrgInfo(ExtractInfoRequestModel requestModel) {
+    public ExtractInfoResponseModel<String> extractOrgInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException {
         String orgName = requestModel.getPara();
         String keyword = requestModel.getKeyword();
-        try {
-            switch (keyword) {
-                case "getPassword":
-                    return new ExtractInfoResponseModel<>(orgDsGateway.getPassword(orgName));
-                case "getUnpublishedEvents":
-                    return new ExtractInfoResponseModel<>(orgDsGateway.getUnpublishedEvents(orgName));
-                case "getPastEvents":
-                    return new ExtractInfoResponseModel<>(orgDsGateway.getPastEvents(orgName));
-                case "getUpcomingEvents":
-                    return new ExtractInfoResponseModel<>(orgDsGateway.getUpcomingEvents(orgName));
-                case "getFollowers":
-                    return new ExtractInfoResponseModel<>(orgDsGateway.getFollowers(orgName));
-                case "organizerSearch":
-                    return new ExtractInfoResponseModel<>(orgDsGateway.organizationSearch(orgName));
-            }
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
+        switch (keyword) {
+            case "getPassword":
+                return new ExtractInfoResponseModel<>(orgDsGateway.getPassword(orgName));
+            case "getUnpublishedEvents":
+                return new ExtractInfoResponseModel<>(orgDsGateway.getUnpublishedEvents(orgName));
+            case "getPastEvents":
+                return new ExtractInfoResponseModel<>(orgDsGateway.getPastEvents(orgName));
+            case "getUpcomingEvents":
+                return new ExtractInfoResponseModel<>(orgDsGateway.getUpcomingEvents(orgName));
+            case "getFollowers":
+                return new ExtractInfoResponseModel<>(orgDsGateway.getFollowers(orgName));
+            case "organizerSearch":
+                return new ExtractInfoResponseModel<>(orgDsGateway.organizationSearch(orgName));
         }
         return null;
     }
@@ -106,24 +98,20 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
      * @return A responseModel representing whether the event creation is successful
      */
     @Override
-    public ExtractInfoResponseModel<String> extractParInfo(ExtractInfoRequestModel requestModel) {
+    public ExtractInfoResponseModel<String> extractParInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException {
         String parName = requestModel.getPara();
         String keyword = requestModel.getKeyword();
-        try {
-            switch (keyword) {
-                case "getPassword":
-                    return new ExtractInfoResponseModel<>(parDsGateway.getPassword(parName));
-                case "getNotifications":
-                    return new ExtractInfoResponseModel<>(parDsGateway.getNotifications(parName));
-                case "getUpcomingEvents":
-                    return new ExtractInfoResponseModel<>(parDsGateway.getUpcomingEvents(parName));
-                case "getPastEvents":
-                    return new ExtractInfoResponseModel<>(parDsGateway.getPastEvents(parName));
-                case "getFollowedOrg":
-                    return new ExtractInfoResponseModel<>(parDsGateway.getFollowedOrg(parName));
-            }
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
+        switch (keyword) {
+            case "getPassword":
+                return new ExtractInfoResponseModel<>(parDsGateway.getPassword(parName));
+            case "getNotifications":
+                return new ExtractInfoResponseModel<>(parDsGateway.getNotifications(parName));
+            case "getUpcomingEvents":
+                return new ExtractInfoResponseModel<>(parDsGateway.getUpcomingEvents(parName));
+            case "getPastEvents":
+                return new ExtractInfoResponseModel<>(parDsGateway.getPastEvents(parName));
+            case "getFollowedOrg":
+                return new ExtractInfoResponseModel<>(parDsGateway.getFollowedOrg(parName));
         }
         return null;
     }
@@ -136,12 +124,8 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
      * @return A responseModel representing whether the event creation is successful
      */
     @Override
-    public ExtractInfoResponseModel<Integer> extractTimeInfo(ExtractInfoRequestModel requestModel) {
+    public ExtractInfoResponseModel<Integer> extractTimeInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException {
         String eventName = requestModel.getPara();
-        try {
-            return new ExtractInfoResponseModel<>(eventDsGateway.getTime(eventName));
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
+        return new ExtractInfoResponseModel<>(eventDsGateway.getTime(eventName));
     }
 }

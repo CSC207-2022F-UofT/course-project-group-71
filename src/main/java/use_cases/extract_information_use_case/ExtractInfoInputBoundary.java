@@ -8,7 +8,7 @@ public interface ExtractInfoInputBoundary {
      *                     and which information to extract
      * @return A response model containing the desired information
      */
-    ExtractInfoResponseModel<String> extractEventInfo(ExtractInfoRequestModel requestModel);
+    ExtractInfoResponseModel<String> extractEventInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException;
 
     /**A method for getting organization information
      *
@@ -16,7 +16,7 @@ public interface ExtractInfoInputBoundary {
      *                     and which information to extract
      * @return A response model containing the desired information
      */
-    ExtractInfoResponseModel<String> extractOrgInfo(ExtractInfoRequestModel requestModel);
+    ExtractInfoResponseModel<String> extractOrgInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException;
 
     /**A method for getting participant information
      *
@@ -24,12 +24,12 @@ public interface ExtractInfoInputBoundary {
      *                     and which information to extract
      * @return A response model containing the desired information
      */
-    ExtractInfoResponseModel<String> extractParInfo(ExtractInfoRequestModel requestModel);
+    ExtractInfoResponseModel<String> extractParInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException;
 
     /**A method for getting event time information
      *
      * @param requestModel A request model containing the event title
      * @return A response model containing the event time
      */
-    ExtractInfoResponseModel<Integer> extractTimeInfo(ExtractInfoRequestModel requestModel);
+    ExtractInfoResponseModel<Integer> extractTimeInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException;
 }

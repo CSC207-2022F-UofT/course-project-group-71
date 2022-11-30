@@ -18,7 +18,7 @@ public class ParUnfollowOrgController {
         this.interactor= interactor;
     }
 
-    public ParUnfollowOrgResponseModel unfollow(String par_username, String org_username) throws SQLException, ClassNotFoundException {
+    public ParUnfollowOrgResponseModel unfollow(String par_username, String org_username) throws ClassNotFoundException {
         ParUnfollowOrgRequestModel request= new ParUnfollowOrgRequestModel(par_username,org_username);
         return interactor.unfollow(request);
     }

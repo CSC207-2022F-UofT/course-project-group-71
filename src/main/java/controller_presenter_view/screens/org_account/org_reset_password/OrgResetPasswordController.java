@@ -14,7 +14,7 @@ public class OrgResetPasswordController {
         this.userInput = accountGateway;
     }
 
-    public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws SQLException, ClassNotFoundException {
+    public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws ClassNotFoundException {
         UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, password, true, newPassword, reNewPassword);
         //Send request model to interactor
         return userInput.resetPassword(requestModel);

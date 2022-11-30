@@ -26,7 +26,7 @@ public class OrgDetailsPage extends JFrame {
      *
      * @param orgName The name of the organizer
      */
-    public OrgDetailsPage(String orgName) {
+    public OrgDetailsPage(String orgName) throws ClassNotFoundException {
 
         this.orgName = orgName;
         this.setSize(getConstantX() - 300, getConstantY() - 500);

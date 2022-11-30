@@ -69,10 +69,18 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                 JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
             }
             this.orgUpcomingEventPage.dispose();
-            new OrgUpcomingEventPage(this.orgUsername);
+            try {
+                new OrgUpcomingEventPage(this.orgUsername);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
         else {
-            new EventDetailsPage(actionCommand);
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

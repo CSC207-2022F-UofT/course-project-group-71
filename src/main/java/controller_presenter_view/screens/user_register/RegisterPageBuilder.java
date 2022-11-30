@@ -29,7 +29,7 @@ public class RegisterPageBuilder {
         UserLoginController userLoginController = new UserLoginController(interactor);
 
         new LoginPage(userLoginController);
-
+        System.out.println("controller before");
         return userLoginController;
     }
 }

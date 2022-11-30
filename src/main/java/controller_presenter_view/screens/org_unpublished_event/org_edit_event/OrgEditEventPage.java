@@ -38,7 +38,7 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
      * @param eventName String of the event's name.
      */
     public OrgEditEventPage(OrgEditEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage,
-                            String eventName, EventDsGateway eventDsGateway) throws SQLException, ClassNotFoundException {
+                            String eventName, EventDsGateway eventDsGateway) throws ClassNotFoundException {
         this.controller = controller;
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
         this.eventName = eventName;

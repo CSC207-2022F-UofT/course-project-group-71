@@ -26,7 +26,7 @@ public class ParJoinEventInteractor implements ParJoinEventInputBoundary {
      * @return A responseModel representing the user registered for the event successfully by the presenter.
      */
     @Override
-    public ParJoinEventResponseModel join(ParJoinEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public ParJoinEventResponseModel join(ParJoinEventRequestModel requestModel) throws ClassNotFoundException {
         parDsGateway.registerEvent(requestModel.getParUsername(), requestModel.getEventTitle());
         ParJoinEventResponseModel success = new ParJoinEventResponseModel(requestModel.getEventTitle());
         return presenter.prepareSuccessView(success);

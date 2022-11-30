@@ -30,7 +30,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
      * @param requestModel The request model sent to the Interactor
      * @return A responseModel representing whether the user creation is successful
      */
-    public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws ClassNotFoundException {
         //If getUserType() == "O", it means the user is an organizer
         if (requestModel.getUserType().equals("O")) {
             //Check if organization username exists

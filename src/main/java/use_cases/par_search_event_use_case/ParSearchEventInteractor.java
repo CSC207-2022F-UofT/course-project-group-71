@@ -29,7 +29,7 @@ public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
      * @return userOutput representing whether the event search is successful
      */
     @Override
-    public ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel userInput) throws SQLException, ClassNotFoundException {
+    public ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel userInput) throws ClassNotFoundException {
         ArrayList<String> searchResults = eventDsGateway.eventSearch(userInput.getQuery());
         if (searchResults.isEmpty()) {
             return userOutput.prepareFailView("No event found.");

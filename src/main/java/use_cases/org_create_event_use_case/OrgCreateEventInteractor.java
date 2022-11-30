@@ -39,7 +39,7 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
      * @return A responseModel representing whether the event creation is successful
      */
     @Override
-    public OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws ClassNotFoundException {
         // Checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.
         if (requestModel.getTitle().isEmpty() || requestModel.getDescription().isEmpty()
                 || requestModel.getYear().isEmpty() || requestModel.getMonth().isEmpty()

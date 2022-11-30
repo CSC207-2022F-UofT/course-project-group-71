@@ -21,7 +21,11 @@ public class OrgPastEventActionListener implements ActionListener {
         }
         //open event detail page
         else {
-            new EventDetailsPage(actionCommand);
+            try {
+                new EventDetailsPage(actionCommand);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ public interface ParSearchOrgOutputBoundary {
      * @param results A response model containing information to show success view
      * @return A response model showing failure view
      */
-    ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel results );
+    ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel results ) throws ClassNotFoundException;
 
     /**A method used to show failure view to the user
      *

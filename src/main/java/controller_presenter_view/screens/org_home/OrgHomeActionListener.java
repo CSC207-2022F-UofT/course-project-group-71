@@ -21,7 +21,6 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
@@ -31,7 +30,7 @@ public class OrgHomeActionListener implements ActionListener {
         this.orgHomePage = orgHomePage;
     }
 
-    public void actionPerformed(ActionEvent arg0){
+    public void actionPerformed(ActionEvent arg0) {
         String page = arg0.getActionCommand();
 
         this.orgHomePage.dispose();
@@ -41,16 +40,24 @@ public class OrgHomeActionListener implements ActionListener {
                 new OrgAccountPage(this.orgHomePage.getOrgUsername());
                 break;
             case "Unpublished Event":
-                new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
+                try {
+                    new OrgUnpublishedEventPage(this.orgHomePage.getOrgUsername());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "Upcoming Event": {
-                new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
+                try {
+                    new OrgUpcomingEventPage(this.orgHomePage.getOrgUsername());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 UpcomingToPastController controller = Util_Method.utilGetUpcomingToPastControllerHelper();
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("O",
                             this.orgHomePage.getOrgUsername());
-                } catch (SQLException | ClassNotFoundException e) {
+                } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
                 if (!responseModel.getEventsToPast().isEmpty()) {
@@ -60,14 +67,22 @@ public class OrgHomeActionListener implements ActionListener {
                 break;
             }
             case "Past Event": {
-                new OrgPastEventPage(this.orgHomePage.getOrgUsername());
+                try {
+                    new OrgPastEventPage(this.orgHomePage.getOrgUsername());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 UpcomingToPastController controller = Util_Method.utilGetUpcomingToPastControllerHelper();
-                new OrgPastEventPage(this.orgHomePage.getOrgUsername());
+                try {
+                    new OrgPastEventPage(this.orgHomePage.getOrgUsername());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 UpcomingToPastResponseModel responseModel;
                 try {
                     responseModel = controller.convertToPast("O",
                             this.orgHomePage.getOrgUsername());
-                } catch (SQLException | ClassNotFoundException e) {
+                } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
                 if (!responseModel.getEventsToPast().isEmpty()) {
@@ -80,12 +95,8 @@ public class OrgHomeActionListener implements ActionListener {
                     NotifyEventController notifyEventController = new NotifyEventController(interactor2);
                     for (String event : responseModel.getEventsToPast()) {
                         try {
-                            try {
-                                notifyEventController.sendNotification("Past", event);
-                            } catch (ClassNotFoundException e) {
-                                throw new RuntimeException(e);
-                            }
-                        } catch (SQLException e) {
+                            notifyEventController.sendNotification("Past", event);
+                        } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
                     }
@@ -93,7 +104,11 @@ public class OrgHomeActionListener implements ActionListener {
                 break;
             }
             case "Follower":
-                new OrgFollowerPage(this.orgHomePage.getOrgUsername());
+                try {
+                    new OrgFollowerPage(this.orgHomePage.getOrgUsername());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             default: {
                 generateLoginPage();

@@ -1,10 +1,8 @@
 package controller_presenter_view.screens.user_login;
 
-import use_cases.user_login_use_case.UserLoginResponseModel;
 import use_cases.user_login_use_case.UserLoginInputBoundary;
 import use_cases.user_login_use_case.UserLoginRequestModel;
-
-import java.sql.SQLException;
+import use_cases.user_login_use_case.UserLoginResponseModel;
 
 public class UserLoginController {
     final UserLoginInputBoundary userInput;
@@ -13,7 +11,7 @@ public class UserLoginController {
         this.userInput = accountGateway;
     }
 
-    public UserLoginResponseModel login(String isParticipant, String isOrganization, String username, String password) throws SQLException, ClassNotFoundException {
+    public UserLoginResponseModel login(String isParticipant, String isOrganization, String username, String password) throws ClassNotFoundException {
         UserLoginRequestModel requestModel = new UserLoginRequestModel(
                 isParticipant, isOrganization, username, password);
 

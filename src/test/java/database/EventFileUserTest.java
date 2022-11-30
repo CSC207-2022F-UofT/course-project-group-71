@@ -2,7 +2,6 @@ package database;
 
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,28 +12,28 @@ public class EventFileUserTest {
     final EventDsGateway eventFileUser = new EventFileUser();
     final OrgDsGateway orgFileUser = new OrgFileUser();
     @Test
-    void testGetStatus() throws SQLException, ClassNotFoundException {
+    void testGetStatus() throws ClassNotFoundException {
         assertEquals("Unpublished", eventFileUser.getStatus("E1"));
         assertEquals("Upcoming", eventFileUser.getStatus("E2"));
         assertEquals("Past", eventFileUser.getStatus("E3"));
     }
 
     @Test
-    void testGetDescription() throws SQLException, ClassNotFoundException {
+    void testGetDescription() throws ClassNotFoundException {
         assertEquals("Testing unpublished", eventFileUser.getDescription("E1"));
         assertEquals("Testing upcoming", eventFileUser.getDescription("E2"));
         assertEquals("Testing past", eventFileUser.getDescription("E3"));
     }
 
     @Test
-    void testGetLocation() throws SQLException, ClassNotFoundException {
+    void testGetLocation() throws ClassNotFoundException {
         assertEquals("zoom1", eventFileUser.getLocation("E1"));
         assertEquals("zoom2", eventFileUser.getLocation("E2"));
         assertEquals("zoom3", eventFileUser.getLocation("E3"));
     }
 
     @Test
-    void testGetTime() throws SQLException, ClassNotFoundException {
+    void testGetTime() throws ClassNotFoundException {
         ArrayList<Integer> l1 = new ArrayList<>(
                 List.of(2024,1,1,1,1));
         ArrayList<Integer> l2 = new ArrayList<>(
@@ -47,13 +46,13 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testGetParticipants() throws SQLException, ClassNotFoundException {
-        ArrayList<String> l1 = new ArrayList<>(List.of("P1","P2","P3","P4","P5"));
+    void testGetParticipants() throws ClassNotFoundException {
+        ArrayList<String> l1 = new ArrayList<>(List.of("P1","P2","P3","P4","P5","P6"));
         assertEquals(l1,eventFileUser.getParticipants("E4"));
     }
 
     @Test
-    void testGetOrganization() throws SQLException, ClassNotFoundException {
+    void testGetOrganization() throws ClassNotFoundException {
         assertEquals("O1", eventFileUser.getOrganization("E1"));
         assertEquals("O1", eventFileUser.getOrganization("E2"));
         assertEquals("O1", eventFileUser.getOrganization("E3"));
@@ -62,7 +61,7 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testUnpublishedToUpcoming() throws SQLException, ClassNotFoundException {
+    void testUnpublishedToUpcoming() throws ClassNotFoundException {
         orgFileUser.createAnEvent("O3", "Test_Unpublished",0,"Test_unpublished", "Testing zoom", 2000,1,1,1,1);
         assertEquals("Unpublished", eventFileUser.getStatus("Test_Unpublished"));
         eventFileUser.unPublishedToUpcoming("Test_Unpublished");
@@ -71,7 +70,7 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testUpcomingToPast() throws SQLException, ClassNotFoundException {
+    void testUpcomingToPast() throws ClassNotFoundException {
         //First test whether unpublished contain
         orgFileUser.createAnEvent("O3", "Testing_Upcoming",1,"Testing_Upcoming", "Testing zoom", 2000,1,1,1,1);
         assertEquals("Upcoming", eventFileUser.getStatus("Testing_Upcoming"));
@@ -81,13 +80,13 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testEventSearch() throws SQLException, ClassNotFoundException {
-        ArrayList<String> l1 = new ArrayList<>(List.of("E1","E2","E3","E4"));
+    void testEventSearch() throws ClassNotFoundException {
+        ArrayList<String> l1 = new ArrayList<>(List.of("E1","E2","E3","E4","E5","E6"));
         assertEquals(l1,eventFileUser.eventSearch("E"));
     }
 
     @Test
-    void testCheckIfEventNameExist() throws SQLException, ClassNotFoundException {
+    void testCheckIfEventNameExist() throws ClassNotFoundException {
         assertTrue(eventFileUser.checkIfEventNameExist("E1"));
         assertTrue(eventFileUser.checkIfEventNameExist("E2"));
         assertTrue(eventFileUser.checkIfEventNameExist("E3"));
@@ -96,7 +95,7 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testDeleteEvent() throws SQLException, ClassNotFoundException {
+    void testDeleteEvent() throws ClassNotFoundException {
         //Assume the checkIfEventNameExist is False
         assertFalse(eventFileUser.checkIfEventNameExist("DeletionTestingTitle"));
         //Assume createAnEvent is True
@@ -112,7 +111,7 @@ public class EventFileUserTest {
     }
 
     @Test
-    void testEditEvent() throws SQLException, ClassNotFoundException {
+    void testEditEvent() throws ClassNotFoundException {
         //Assume create an event is correct
         orgFileUser.createAnEvent("O1", "DeletionTestingTitle", 0, "Deletion Testing", "Zoom Testing Deletion", 2000, 1, 1, 1, 1);
         orgFileUser.editAnEvent("DeletionTestingTitle", "Editing Testing", "Zoom Testing Editing",2001,2,2,2,2);
@@ -120,6 +119,7 @@ public class EventFileUserTest {
         assertEquals("Zoom Testing Editing", eventFileUser.getLocation("DeletionTestingTitle"));
         ArrayList<Integer> l1 = new ArrayList<>(List.of(2001,2,2,2,2));
         assertEquals(l1, eventFileUser.getTime("DeletionTestingTitle"));
+        orgFileUser.deleteAnEvent("DeletionTestingTitle");
     }
 
 

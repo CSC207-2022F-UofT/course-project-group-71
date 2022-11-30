@@ -28,7 +28,7 @@ public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
      * @return A responseModel representing the user leave the event successfully by the output boundary.
      */
     @Override
-    public ParLeaveEventResponseModel leave(ParLeaveEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public ParLeaveEventResponseModel leave(ParLeaveEventRequestModel requestModel) throws ClassNotFoundException {
         parDsGateway.leaveEvent(requestModel.getPar_username(), requestModel.getEvent_title());
         ParLeaveEventResponseModel responseModel = new ParLeaveEventResponseModel(requestModel.getEvent_title());
         return parLeaveEventOutputBoundary.prepareSuccessView(responseModel);

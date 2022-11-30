@@ -21,7 +21,7 @@ public class OrgEditEventController {
                                               String month,
                                               String day,
                                               String hour,
-                                              String minute) throws SQLException, ClassNotFoundException {
+                                              String minute) throws ClassNotFoundException {
         //Prepare a request model with given information
         OrgEditEventRequestModel requestModel = new OrgEditEventRequestModel(
                 title, description, location, year, month, day, hour, minute);

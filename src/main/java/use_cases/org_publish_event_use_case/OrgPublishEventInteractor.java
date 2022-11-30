@@ -32,7 +32,7 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
      * @return A responseModel representing whether the event publishing is successful
      */
     @Override
-    public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws ClassNotFoundException {
         String eventTitle = requestModel.getEventTitle();
         ArrayList<Integer> times = eventDsGateway.getTime(eventTitle);
 

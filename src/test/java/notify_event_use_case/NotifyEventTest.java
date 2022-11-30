@@ -48,7 +48,7 @@ public class NotifyEventTest {
     void test_PrepareFailureView_No_Pars_Past(){
         try {
             responseModel = controller.sendNotification("Past", "TeamMeeting2");
-            assertEquals("Event TeamMeeting2 is over.", responseModel.getMessage());
+            assertEquals("Event TeamMeeting2 was over.", responseModel.getMessage());
         } catch (Exception e) {
             assert(false);
         }
@@ -75,6 +75,7 @@ public class NotifyEventTest {
             assertEquals("Notification sent for TeamMeeting4!", responseModel.getMessage());
             TimeUnit.SECONDS.sleep(20);
             assertEquals("Event TeamMeeting4 is about to happen at 11-30 0:0.", parDsGateway.getNotifications("654321").get(1));
+            parDsGateway.clearNotifications("654321");
         } catch (Exception e) {
             assert(false);
         }

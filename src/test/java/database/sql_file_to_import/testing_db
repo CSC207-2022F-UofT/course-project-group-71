@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.24, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: testing_db
+-- Host: 127.0.0.1    Database: temp_db
 -- ------------------------------------------------------
 -- Server version	5.7.24
 
@@ -40,7 +40,7 @@ CREATE TABLE `eventfile` (
 
 LOCK TABLES `eventfile` WRITE;
 /*!40000 ALTER TABLE `eventfile` DISABLE KEYS */;
-INSERT INTO `eventfile` (`title`, `description`, `location`, `year`, `month`, `day`, `hour`, `minute`) VALUES ('E1','Testing unpublished','zoom1',2024,1,1,1,1),('E2','Testing upcoming','zoom2',2026,2,2,2,2),('E3','Testing past','zoom3',2000,3,3,3,3),('E4','Testing Participants Upcoming','zoom4',2024,4,4,4,4),('E5','Testing Participants Past','zoom5',2000,5,5,5,5),('E6','Testing Leave',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `eventfile` VALUES ('E1','Testing unpublished','zoom1',2024,1,1,1,1),('E2','Testing upcoming','zoom2',2026,2,2,2,2),('E3','Testing past','zoom3',2000,3,3,3,3),('E4','Testing Participants Upcoming','zoom4',2024,4,4,4,4),('E5','Testing Participants Past','zoom5',2000,5,5,5,5),('E6','Testing Leave',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `eventfile` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,7 @@ CREATE TABLE `follow_org_par` (
 
 LOCK TABLES `follow_org_par` WRITE;
 /*!40000 ALTER TABLE `follow_org_par` DISABLE KEYS */;
-INSERT INTO `follow_org_par` (`par_username`, `org_username`) VALUES ('P1','O2'),('P2','O2'),('P3','O2'),('P4','O2'),('P5','O2');
+INSERT INTO `follow_org_par` VALUES ('P1','O2'),('P2','O2'),('P3','O2'),('P4','O2'),('P5','O2');
 /*!40000 ALTER TABLE `follow_org_par` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `orgfile` (
 
 LOCK TABLES `orgfile` WRITE;
 /*!40000 ALTER TABLE `orgfile` DISABLE KEYS */;
-INSERT INTO `orgfile` (`username`, `password`) VALUES ('O1','O1password'),('O2','O2password'),('O3','O3password');
+INSERT INTO `orgfile` VALUES ('O1','O1password'),('O2','O2password'),('O3','O3password');
 /*!40000 ALTER TABLE `orgfile` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +109,7 @@ CREATE TABLE `par_notification` (
 
 LOCK TABLES `par_notification` WRITE;
 /*!40000 ALTER TABLE `par_notification` DISABLE KEYS */;
-INSERT INTO `par_notification` (`par_username`, `notification`) VALUES ('P1','Note1 for P1'),('P1','Note2 for P1'),('P1','Note3 for P1'),('P1','Note4 for P1');
+INSERT INTO `par_notification` VALUES ('P1','Note1 for P1'),('P1','Note2 for P1'),('P1','Note3 for P1'),('P1','Note4 for P1');
 /*!40000 ALTER TABLE `par_notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +132,7 @@ CREATE TABLE `parfile` (
 
 LOCK TABLES `parfile` WRITE;
 /*!40000 ALTER TABLE `parfile` DISABLE KEYS */;
-INSERT INTO `parfile` (`username`, `password`) VALUES ('P1','O1password'),('P2','p2'),('P3','p3'),('P4','p4'),('P5','p5'),('P6','p6'),('P7','p7'),('P8','p8'),('P9','p9'),('P10','p10');
+INSERT INTO `parfile` VALUES ('P1','O1password'),('P2','p2'),('P3','p3'),('P4','p4'),('P5','p5'),('P6','p6'),('P7','p7'),('P8','p8'),('P9','p9'),('P10','p10');
 /*!40000 ALTER TABLE `parfile` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +155,7 @@ CREATE TABLE `past_events_for_org` (
 
 LOCK TABLES `past_events_for_org` WRITE;
 /*!40000 ALTER TABLE `past_events_for_org` DISABLE KEYS */;
-INSERT INTO `past_events_for_org` (`org_username`, `event_title`) VALUES ('O1','E3');
+INSERT INTO `past_events_for_org` VALUES ('O1','E3');
 /*!40000 ALTER TABLE `past_events_for_org` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +178,7 @@ CREATE TABLE `past_events_for_par` (
 
 LOCK TABLES `past_events_for_par` WRITE;
 /*!40000 ALTER TABLE `past_events_for_par` DISABLE KEYS */;
-INSERT INTO `past_events_for_par` (`par_username`, `event_title`) VALUES ('P6','E5'),('P7','E5'),('P8','E5'),('P9','E5'),('P10','E5');
+INSERT INTO `past_events_for_par` VALUES ('P6','E5'),('P7','E5'),('P8','E5'),('P9','E5'),('P10','E5');
 /*!40000 ALTER TABLE `past_events_for_par` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +201,7 @@ CREATE TABLE `unpublished_events_for_org` (
 
 LOCK TABLES `unpublished_events_for_org` WRITE;
 /*!40000 ALTER TABLE `unpublished_events_for_org` DISABLE KEYS */;
-INSERT INTO `unpublished_events_for_org` (`org_username`, `event_title`) VALUES ('O1','E1');
+INSERT INTO `unpublished_events_for_org` VALUES ('O1','E1');
 /*!40000 ALTER TABLE `unpublished_events_for_org` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +224,7 @@ CREATE TABLE `upcoming_events_for_org` (
 
 LOCK TABLES `upcoming_events_for_org` WRITE;
 /*!40000 ALTER TABLE `upcoming_events_for_org` DISABLE KEYS */;
-INSERT INTO `upcoming_events_for_org` (`org_username`, `event_title`) VALUES ('O1','E2'),('O1','E4');
+INSERT INTO `upcoming_events_for_org` VALUES ('O1','E2'),('O1','E4');
 /*!40000 ALTER TABLE `upcoming_events_for_org` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +247,7 @@ CREATE TABLE `upcoming_events_for_par` (
 
 LOCK TABLES `upcoming_events_for_par` WRITE;
 /*!40000 ALTER TABLE `upcoming_events_for_par` DISABLE KEYS */;
-INSERT INTO `upcoming_events_for_par` (`par_username`, `event_title`) VALUES ('P1','E4'),('P2','E4'),('P3','E4'),('P4','E4'),('P5','E4'),('P6','E4'),('P10','E6');
+INSERT INTO `upcoming_events_for_par` VALUES ('P1','E4'),('P2','E4'),('P3','E4'),('P4','E4'),('P5','E4'),('P6','E4'),('P10','E6');
 /*!40000 ALTER TABLE `upcoming_events_for_par` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -260,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-19 21:06:59
+-- Dump completed on 2022-11-29 21:26:01
