@@ -43,7 +43,15 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
         output.setBounds (x, y, width, height);
         return output;
     }
-
+    /**
+     * This method creates a JPanel for organizer to input data
+     * @param text the text we want to show
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return a text panel
+     */
     public JPanel create_J_panel(String text, int x, int y, int width, int height){
         JLabel oldtext = new JLabel(text);
         JPanel oldTextInfo = new JPanel();
