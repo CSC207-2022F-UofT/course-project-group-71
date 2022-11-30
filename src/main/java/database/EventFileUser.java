@@ -285,37 +285,8 @@ public class EventFileUser implements EventDsGateway{
      * @return Whether the event exists
      */
     public boolean utilCheckIfEventNameExist(String eventName) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        boolean WhetherExist = false;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select * from eventfile where title = '" + eventName + "';";
-            System.out.println(sql);
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            if (rs.next()){
-                WhetherExist = true;
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        }finally {
-            if(rs != null){
-                rs.close();
-            }
-            if(stmt != null){
-                stmt.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
-        }
-        return WhetherExist;
+        String sql = "select title from eventfile where title = '" + eventName + "';";
+        return utilQueryArrayListString(sql).isEmpty();
     }
 
 
