@@ -1,16 +1,19 @@
 package controller_presenter_view.screens.org_unpublished_event.org_edit_event;
 
 import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
+import database.EventDsGateway;
 import use_cases.org_edit_event_use_case.OrgEditEventResponseModel;
 import controller_presenter_view.screens.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrgEditEventPage extends JFrame implements ActionListener {
 
+    final EventDsGateway eventDsGateway;
     final OrgEditEventController controller;
     final OrgUnpublishedEventPage orgUnpublishedEventPage;
 
@@ -35,10 +38,11 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
      * @param eventName String of the event's name.
      */
     public OrgEditEventPage(OrgEditEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage,
-                            String eventName) {
+                            String eventName, EventDsGateway eventDsGateway) throws SQLException, ClassNotFoundException {
         this.controller = controller;
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;
         this.eventName = eventName;
+        this.eventDsGateway = eventDsGateway;
 
         //Initialise the page
         int x = 500;

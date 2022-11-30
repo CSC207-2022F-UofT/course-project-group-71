@@ -105,6 +105,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             new OrgCreateEventPage(orgCreateEventController, this.orgUnpublishedEventPage);
         }
         else if (actionCommand.contains("Edit")){
+            EventDsGateway eventDsGateway = new EventFileUser();
 
             OrgDsGateway orgDsGateway= new OrgFileUser();
 
@@ -117,7 +118,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             String eventName = actionCommand.substring(0,actionCommand.length()-4);
 
             try {
-                new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName);
+                new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName, eventDsGateway);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
