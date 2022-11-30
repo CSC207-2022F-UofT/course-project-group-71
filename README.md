@@ -86,7 +86,7 @@ Only for demonstration purposes, each of those has the following attributes:
   - *editable* ArrayList<String\> followedOrganizations: the usernames of the participant's followed Organizations. The participant can choose to unfollow any of them.
 
 
-*"*editable*" means the value of attribute can be changed by the user through means provided on UI.*
+*"editable" means the value of attribute can be changed by the user through means provided on UI.*
 
 
 ## Use Cases
@@ -207,6 +207,16 @@ Right-click the database created under localhost, choose import/export, click 'R
 The whole table would be imported.
 ![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_7.png)
 ![](C:\Users\jackc\Desktop\DatabaseExplanation\DatabaseExplanation_8.png)
+
+
+## Test
+`src/test/java`
+- Test coverage
+  - The tests covered 16 use cases and 3 FileUsers. The leftover 1 use case that is not been tested is `src/main/java/extract_information_use_case`. This is because we see it as a data grasper that connects directly with FileUsers, so it does not carry much Application Business Rule. As long as the FileUsers are functioning correctly, the extract_information_use_case should be functioning well too.
+- Number of test
+  - All methods (not including the one start with util) in FileUsers has a individual corresponding test. The number of test for each use cases is highly dependent on the number of if-branches in the interactor.
+- Default data for testing
+  - We prepared independent test data for each test package, which you need MySQL and DataGrip to work with. The description of the default data is in the JavaDoc of the test class.
 
 
 ## SOLID Principles and Design Patterns
