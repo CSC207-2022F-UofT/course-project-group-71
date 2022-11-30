@@ -1,9 +1,6 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import static database.JDBCUtils.utilQueryArrayListString;
@@ -175,30 +172,8 @@ public class OrgFileUser implements OrgDsGateway {
      * @return Whether the username exists
      */
     public boolean utilCheckIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        boolean WhetherExist = false;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select exists(select * from orgfile where username = '" + username + "');";
-            System.out.println(sql);
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            if (rs.getInt(1) == 1){
-                WhetherExist = true;
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        }finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return WhetherExist;
+        String sql = "select username from orgfile where username = '" + username + "';";
+        return utilQueryArrayListString(sql).isEmpty();
     }
 
 
