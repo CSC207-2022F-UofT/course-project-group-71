@@ -16,6 +16,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization that need to be stored
      * @param password The password of the organization that need to be stored
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilStoreOrg(String username, String password) throws ClassNotFoundException {
         String sql = "insert into orgfile(username, password) values('" + username + "','" + password + "');" ;
@@ -27,6 +28,7 @@ public class OrgFileUser implements OrgDsGateway {
      * if not exists, then it won't show anything and won't change anything
      *
      * @param username The username of the organization that need to be deleted
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeleteOrg(String username) throws ClassNotFoundException {
         String sql = "delete from orgfile where username = '" + username + "';";
@@ -38,6 +40,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilAddOrgPastEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "insert into past_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;

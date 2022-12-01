@@ -33,6 +33,7 @@ public class OrgUpcomingEventPage extends JFrame {
      * There is a button "back" which directed the Organization back to the home page.
      *
      * @param orgUsername the username of the organization.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public OrgUpcomingEventPage(String orgUsername) throws ClassNotFoundException {
 

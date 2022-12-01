@@ -12,6 +12,7 @@ public class ParSearchEventPresenter implements ParSearchEventOutputBoundary {
      *
      * @param results A response model containing information to show success view
      * @return Returns the response model
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results) throws ClassNotFoundException {

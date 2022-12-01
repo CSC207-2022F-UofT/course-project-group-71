@@ -29,8 +29,10 @@ public class EventFileUser implements EventDsGateway{
      * @param day The time (day) of the event
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilStoreEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
+    public void utilStoreEvent(String title, String description, String location, int year, int month, int day,
+                               int hour, int minute) throws ClassNotFoundException {
         String sql = "insert into eventfile(title,description,location,year,month,day,hour,minute) values('" +
                 title + "','" + description + "','" + location + "'," + year + "," + month + "," + day + "," + hour + "," + minute + ");";
         utilUpdateVoid(sql);
@@ -48,8 +50,11 @@ public class EventFileUser implements EventDsGateway{
      * @param minute The time (minute) of the event
      */
 
-    public void utilEditEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
-        String sql = "update eventfile set description = '" + description + "', location = '" + location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour + ", minute = " + minute + " where title = '" + title + "';";
+    public void utilEditEvent(String title, String description, String location, int year, int month,
+                              int day, int hour, int minute) throws ClassNotFoundException {
+        String sql = "update eventfile set description = '" + description + "', location = '" +
+                location + "', year= " + year + ", month = " + month +", day = " + day + ", hour = " + hour
+                + ", minute = " + minute + " where title = '" + title + "';";
         utilUpdateVoid(sql);
     }
 

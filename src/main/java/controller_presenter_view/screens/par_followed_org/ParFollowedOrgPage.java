@@ -20,6 +20,7 @@ public class ParFollowedOrgPage extends JFrame {
     /**The page that displays the participant's followed organizers.
      *
      * @param parUsername The username of the participant
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ParFollowedOrgPage(String parUsername) throws ClassNotFoundException {
         this.parUsername = parUsername;

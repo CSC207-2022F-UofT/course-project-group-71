@@ -34,6 +34,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the user creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) throws ClassNotFoundException {
         if (requestModel.getUserType().equals("P")) {

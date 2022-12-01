@@ -24,7 +24,7 @@ public class ParResetPasswordController {
      * @param newPassword The new password of the participant
      * @param reNewPassword The second-input password of the participant
      * @return The response model returned from the interactor
-     * @throws ClassNotFoundException The Exception if the class is not found
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
 
     public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws ClassNotFoundException {

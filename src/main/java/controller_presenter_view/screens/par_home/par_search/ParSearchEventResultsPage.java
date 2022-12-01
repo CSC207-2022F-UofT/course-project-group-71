@@ -33,6 +33,7 @@ public class ParSearchEventResultsPage extends JFrame {
      *
      * @param eventNames An array list containing all the search results
      * @param parUserName The username of the participant
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) throws ClassNotFoundException {
 

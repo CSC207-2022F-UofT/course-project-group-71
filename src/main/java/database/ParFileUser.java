@@ -15,7 +15,8 @@ public class ParFileUser implements ParDsGateway {
     /**This is a tool method used to store the username and password of the participant to the database.
      *
      * @param username The username of the participant
-     * @param password The password of the participant
+     * @param password The password of the participant\
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilStorePar(String username, String password) throws ClassNotFoundException {
         String sql = "insert into parfile(username, password) values('" + username + "','" + password + "');" ;
@@ -25,6 +26,7 @@ public class ParFileUser implements ParDsGateway {
     /**This is a tool method used to delete the participant from the database.
      *
      * @param username THe username of the participant
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeletePar(String username) throws ClassNotFoundException {
         String sql = "delete from parfile where username = '" + username + "';";
@@ -35,6 +37,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      * @param org_username The username of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilAddParFollowing(String par_username, String org_username) throws ClassNotFoundException {
         String sql = "insert into follow_org_par(par_username, org_username) values('" + par_username + "','" + org_username + "');" ;
@@ -46,6 +49,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      * @param org_username The username of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeleteParFollowOrg(String par_username, String org_username) throws ClassNotFoundException {
         String sql = "delete from follow_org_par where par_username = '" + par_username + "' and org_username = '" + org_username + "';";
@@ -67,6 +71,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeleteParPastEvent(String par_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from past_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
@@ -77,6 +82,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilAddParUpcomingEvent(String par_username, String event_title) throws ClassNotFoundException {
         String sql = "insert into upcoming_events_for_par(par_username, event_title) values('" + par_username + "','" + event_title + "');" ;
@@ -88,6 +94,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeleteParUpcomingEvent(String par_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from upcoming_events_for_par where par_username = '" + par_username + "' and event_title = '" + event_title + "';";
@@ -98,6 +105,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      * @return All organizations followed by the participant
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetAllFollowing(String par_username) throws ClassNotFoundException {
         String sql = "select org_username from follow_org_par where par_username = '" + par_username + "';";
@@ -108,6 +116,7 @@ public class ParFileUser implements ParDsGateway {
      *
      * @param par_username The username of the participant
      * @return All past events registered by the participant
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetAllPastEvent(String par_username) throws ClassNotFoundException {
         String sql = "select event_title from past_events_for_par where par_username = '" + par_username + "';";

@@ -70,6 +70,7 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
      * @param controller OrgCreateEventController that takes information got from the page.
      * @param orgUnpublishedEventPage OrgUnpublishedEventPage that will be updated after the event was created.
      * @param eventName String of the event's name.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public OrgEditEventPage(OrgEditEventController controller, OrgUnpublishedEventPage orgUnpublishedEventPage,
                             String eventName, EventDsGateway eventDsGateway) throws ClassNotFoundException {

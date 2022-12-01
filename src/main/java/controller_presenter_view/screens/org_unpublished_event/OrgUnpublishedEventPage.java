@@ -32,6 +32,7 @@ public class OrgUnpublishedEventPage extends JFrame {
      * There is a button "back" which directed the Organization back to the home page.
      *
      * @param orgUsername the username of the organization.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public OrgUnpublishedEventPage(String orgUsername) throws ClassNotFoundException {
         this.orgUsername = orgUsername;

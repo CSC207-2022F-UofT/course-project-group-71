@@ -23,6 +23,7 @@ public class EventDetailsPage extends JFrame {
      * EVENT_TITLE parameter. The page will contain information such as the event's name, description, time, and location.
      *
      * @param EVENT_TITLE The title for the event we want to get the details page for
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public EventDetailsPage(String EVENT_TITLE) throws ClassNotFoundException {
 

@@ -25,6 +25,7 @@ public class OrgDetailsPage extends JFrame {
      * name as well as all the upcoming events for the organizer based on orgName parameter
      *
      * @param orgName The name of the organizer
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public OrgDetailsPage(String orgName) throws ClassNotFoundException {
 

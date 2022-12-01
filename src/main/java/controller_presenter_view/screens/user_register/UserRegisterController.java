@@ -27,8 +27,10 @@ public class UserRegisterController {
      * @param password The password of the user registration
      * @param retypePassword The second input password of the user registration
      * @return The response model showing whether creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public UserRegisterResponseModel create(String isParticipant, String isOrganization, String username, String password, String retypePassword) throws ClassNotFoundException {
+    public UserRegisterResponseModel create(String isParticipant, String isOrganization, String username,
+                                            String password, String retypePassword) throws ClassNotFoundException {
         UserRegisterRequestModel requestModel = new UserRegisterRequestModel(
                 isParticipant, isOrganization, username, password, retypePassword);
         System.out.println("Stop??");

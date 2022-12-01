@@ -19,9 +19,9 @@ public class ParShowNotificationController {
 
     /**The method used to show notification by calling interact, it returns a response model.
      *
-     * @param username The username of the participant
+     * @param username The username of the participant.
      * @return The respondent sent back from the interactor.
-     * @throws ClassNotFoundException Exception when Class error occurs.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ParShowNotificationResponseModel showNotification(String username) throws ClassNotFoundException {
         ParShowNotificationRequestModel requestModel = new ParShowNotificationRequestModel(username);

@@ -28,6 +28,7 @@ public class ParSearchOrgResultsPage extends JFrame {
      *
      * @param orgNames An ArrayList<String> containing all the search results
      * @param parUsername A string containing the participant's username
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ParSearchOrgResultsPage(ArrayList<String> orgNames, String parUsername) throws ClassNotFoundException {
 

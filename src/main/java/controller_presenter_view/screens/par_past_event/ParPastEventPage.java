@@ -25,6 +25,7 @@ public class ParPastEventPage extends JFrame {
      * registered for.
      *
      * @param parUsername The username of the participant
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ParPastEventPage(String parUsername) throws ClassNotFoundException {
         this.parUsername = parUsername;
