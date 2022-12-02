@@ -4,8 +4,10 @@ import controller_presenter_view.screens.org_unpublished_event.org_edit_event.Or
 import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventPresenter;
 import database.OrgDsGateway;
 import database.OrgFileUser;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.org_edit_event_use_case.OrgEditEventInputBoundary;
 import use_cases.org_edit_event_use_case.OrgEditEventInteractor;
 import use_cases.org_edit_event_use_case.OrgEditEventOutputBoundary;
@@ -15,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**Need to create an event called "Edit" in eventfile, can choose to leave other attributes null.
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrgEditEventTest {
     final OrgDsGateway orgDsGateway = new OrgFileUser();
     final OrgEditEventOutputBoundary presenter = new OrgEditEventPresenter();

@@ -61,10 +61,8 @@ public class OrgUnpublishedEventPage extends JFrame {
         button.add(create);
         button.setBounds(0, 50, getConstantX(), 40);
 
-        //Prepare the JPanel for showing events
-        JPanel events = new JPanel();
-        events.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
-        generateEvents(events);
+        //Generate a JScrollPane of events and add it to the page
+        generateEvents();
 
         //Add title and buttons on the page
         this.add(title);
@@ -84,11 +82,12 @@ public class OrgUnpublishedEventPage extends JFrame {
         return orgUsername;
     }
 
-    /**This method will generate events to fit into the JPanel events
-     *
-     * @param events A JPanel that is designed to contain events
+    /**This method will generate events in a JScrollPane and add the JScrollPane into the page.
      */
-    public void generateEvents(JPanel events) throws ClassNotFoundException {
+    public void generateEvents() throws ClassNotFoundException {
+        //Prepare the JPanel for showing events
+        JPanel events = new JPanel();
+        events.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
         //Get events' title from database
         OrgDsGateway o = new OrgFileUser();
         ExtractInfoInputBoundary interactor1 = new ExtractInfoInteractor(o);

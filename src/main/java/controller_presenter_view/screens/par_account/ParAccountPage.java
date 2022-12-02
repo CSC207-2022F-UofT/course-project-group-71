@@ -55,32 +55,9 @@ public class ParAccountPage extends JFrame {
      */
     public ParAccountPage(String parUsername){
         this.parUsername = parUsername;
-
         this.setLayout(null);
-
         this.setSize(getConstantX(), getConstantY());
-
         this.setLocationRelativeTo(null);
-
-//        JLabel title = new JLabel(this.parUsername + "'s Account Page");
-//        title.setBounds(0, 0, getConstantX(), 50);
-//        title.setHorizontalAlignment(JLabel.CENTER);
-
-//        JLabel username = new JLabel("Username                      " + this.parUsername + "                ");
-//        username.setBounds(150, 100, 500,30);
-//        username.setHorizontalAlignment(JLabel.CENTER);
-//
-//        LabelTextPanel oldPasswordInfo = new LabelTextPanel(
-//                new JLabel("Old Password"), oldPassword);
-//        oldPasswordInfo.setBounds (150,130, 500, 50);
-//
-//        LabelTextPanel newPasswordInfo = new LabelTextPanel(
-//                new JLabel("New Password"), newPassword);
-//        newPasswordInfo.setBounds (150,180, 500, 50);
-//
-//        LabelTextPanel retypeNewPasswordInfo = new LabelTextPanel(
-//                new JLabel("Retype New Password"), retypeNewPassword);
-//        retypeNewPasswordInfo.setBounds (150,230, 500, 50);
 
         JButton resetPassword = new JButton("Reset Password");
         resetPassword.addActionListener(new ParAccountActionListener(this));

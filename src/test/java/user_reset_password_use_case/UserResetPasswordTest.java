@@ -8,8 +8,10 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.user_reset_password_use_case.UserResetPasswordInputBoundary;
 import use_cases.user_reset_password_use_case.UserResetPasswordInteractor;
 import use_cases.user_reset_password_use_case.UserResetPasswordOutputBoundary;
@@ -25,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Click Import to import all the tables in, the testing database are set after this
  *
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserResetPasswordTest {
     final ParDsGateway parDsGateway = new ParFileUser();
     final OrgDsGateway orgDsGateway = new OrgFileUser();

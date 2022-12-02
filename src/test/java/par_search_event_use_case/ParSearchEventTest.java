@@ -1,9 +1,11 @@
 package par_search_event_use_case;
 import database.*;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.par_home.par_search.ParSearchEventController;
 import controller_presenter_view.screens.par_home.par_search.ParSearchEventPresenter;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.par_search_event_use_case.ParSearchEventInputBoundary;
 import use_cases.par_search_event_use_case.ParSearchEventInteractor;
 import use_cases.par_search_event_use_case.ParSearchEventResponseModel;
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3", "TeamMeeting4" in eventfile
  * Need to assign the above events to a random organization in upcoming_event_for_org
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ParSearchEventTest {
     final EventDsGateway eventDsGateway = new EventFileUser();
     final ParSearchEventPresenter presenter = new ParSearchEventPresenter();

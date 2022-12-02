@@ -4,12 +4,14 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.user_login.UserLoginController;
 import controller_presenter_view.screens.user_login.UserLoginPresenter;
 import controller_presenter_view.screens.org_home.OrgHomePresenter;
 import controller_presenter_view.screens.par_home.ParHomePresenter;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.user_login_use_case.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**Need to create "ass" as a participant in parfile.
  * Need to create"123" as an organization in orgfie.
  */
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserLoginTest {
     final ParDsGateway parDsGateway = new ParFileUser();
     final OrgDsGateway orgDsGateway = new OrgFileUser();

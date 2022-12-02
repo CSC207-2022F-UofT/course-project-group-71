@@ -17,7 +17,6 @@ import use_cases.org_delete_event_use_case.OrgDeleteEventResponseModel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 /**Need to create 2 events "CSC207", "MAT137" in eventfile
  * Need to create a participant "allyson" in parfile, create an organization "UofT" in orgfile
@@ -25,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * Need to assign "CSC207" to "UofT" in upcoming_events_for_org
  * Need to assign "MAT137" to "UofT" in unpublished_events_for_org
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrgDeleteEventTest {
     final EventDsGateway eventDsGateway = new EventFileUser();
 

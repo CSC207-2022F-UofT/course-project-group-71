@@ -1,10 +1,12 @@
 package upcomming_to_past_use_case;
 
 import database.*;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
@@ -18,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *  Need to link "UofT" and "PHL295" in upcoming_events_for_org
  *  Need to link "UBC" and "ECO225" in upcoming_events_for_org
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UpcomingToPastTest {
     final ParDsGateway parDsGateway = new ParFileUser();
     final EventDsGateway eventDsGateway = new EventFileUser();

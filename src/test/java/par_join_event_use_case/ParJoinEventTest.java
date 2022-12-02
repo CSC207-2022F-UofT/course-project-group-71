@@ -4,8 +4,10 @@ import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJ
 import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJoinEventPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.par_join_event_use_case.ParJoinEventInputBoundary;
 import use_cases.par_join_event_use_case.ParJoinEventInteractor;
 import use_cases.par_join_event_use_case.ParJoinEventOutputBoundary;
@@ -15,9 +17,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test with participant "P2" and event "E2" in the testing database
+/**Test with participant "P2" and event "E2" in the testing database
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ParJoinEventTest {
 
     final ParDsGateway parDsGateway= new ParFileUser();

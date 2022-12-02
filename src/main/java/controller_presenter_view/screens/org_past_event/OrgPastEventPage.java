@@ -45,10 +45,8 @@ public class OrgPastEventPage extends JFrame {
         back.addActionListener(new OrgPastEventActionListener(this));
         back.setBounds(0, 100, 150, 30);
 
-        //Generate a JPanel to put events
-        JPanel events = new JPanel();
-        events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
-        generateEvent(events);
+        //Generate a JScrollPane of events and add it to the page
+        generateEvents();
 
         //Add title and back button to the page
         this.add(title);
@@ -65,8 +63,12 @@ public class OrgPastEventPage extends JFrame {
         return orgUsername;
     }
 
-    public void generateEvent(JPanel events) throws ClassNotFoundException {
+    /**This method will generate events in a JScrollPane and add the JScrollPane into the page.
+     */
+    public void generateEvents() throws ClassNotFoundException {
         //Get events' title from database
+        JPanel events = new JPanel();
+        events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
         OrgDsGateway o = new OrgFileUser();
         ExtractInfoInputBoundary interactor1 = new ExtractInfoInteractor(o);
         ExtractInfoController controller1 = new ExtractInfoController(interactor1);

@@ -18,10 +18,9 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-
 /**Do not need prior data, an empty mysql file is the best
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserRegisterTest {
     final ParDsGateway par = new ParFileUser();
     final OrgDsGateway org = new OrgFileUser();
