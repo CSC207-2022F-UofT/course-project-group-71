@@ -26,6 +26,7 @@ public class OrgHomeActionListener implements ActionListener {
 
         this.orgHomePage.dispose();
 
+
         switch (page) {
             case "Account":
                 new OrgAccountPage(this.orgHomePage.getOrgUsername());
@@ -44,17 +45,7 @@ public class OrgHomeActionListener implements ActionListener {
                     throw new RuntimeException(e);
                 }
                 UpcomingToPastController controller = Util_Method.utilGetUpcomingToPastControllerHelper();
-                UpcomingToPastResponseModel responseModel;
-                try {
-                    responseModel = controller.convertToPast("O",
-                            this.orgHomePage.getOrgUsername());
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                if (!responseModel.getEventsToPast().isEmpty()) {
-                    JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                    Util_Method.utilNotifyEventHelper(responseModel);
-                }
+                utilAttemptToConvert(controller);
                 break;
             }
             case "Past Event": {
@@ -69,21 +60,7 @@ public class OrgHomeActionListener implements ActionListener {
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                UpcomingToPastResponseModel responseModel;
-                try {
-                    responseModel = controller.convertToPast("O",
-                            this.orgHomePage.getOrgUsername());
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                if (!responseModel.getEventsToPast().isEmpty()) {
-                    JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-//                    NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
-//                    EventDsGateway eventDsGateway = new EventFileUser();
-//                    ParDsGateway parDsGateway = new ParFileUser();
-                    Util_Method.utilNotifyEventHelper(responseModel);
-                }
-                break;
+                utilAttemptToConvert(controller);
             }
             case "Follower":
                 try {
@@ -96,6 +73,20 @@ public class OrgHomeActionListener implements ActionListener {
                 generateLoginPage();
                 break;
             }
+        }
+    }
+
+    private void utilAttemptToConvert(UpcomingToPastController controller) {
+        UpcomingToPastResponseModel responseModel;
+        try {
+            responseModel = controller.convertToPast("O",
+                    this.orgHomePage.getOrgUsername());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        if (!responseModel.getEventsToPast().isEmpty()) {
+            JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
+            Util_Method.utilNotifyEventHelper(responseModel);
         }
     }
 }

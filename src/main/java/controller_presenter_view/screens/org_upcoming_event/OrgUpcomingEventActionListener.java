@@ -48,12 +48,10 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                 NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway, notifyEventOutputBoundary);
     
                 NotifyEventController notifyEventController = new NotifyEventController(interactor);
-    
-                String eventName = substring;
-    
+
                 try {
                     NotifyEventResponseModel responseModel =
-                            notifyEventController.sendNotification("Future", eventName);
+                            notifyEventController.sendNotification("Future", substring);
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
@@ -61,11 +59,9 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             }
             else if (actionCommand.contains("Delete")) {
                 OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
-    
-                String eventName = substring;
-    
+
                 try{
-                    OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
+                    OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(substring);
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
                 } catch(Exception e) {
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
