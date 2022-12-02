@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.org_follower;
 
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import database.*;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
@@ -12,8 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class OrgFollowerPage extends JFrame {
@@ -101,7 +101,7 @@ public class OrgFollowerPage extends JFrame {
                 y += 100;
             }
             //Put the JPanel into a JScrollPane
-            JScrollPane followerScroll = Util_Method.generateJScrollPane(followers);
+            JScrollPane followerScroll = CommonMethod.generateJScrollPane(followers);
             followerScroll.setVisible(true);
             this.add(followerScroll);
         }

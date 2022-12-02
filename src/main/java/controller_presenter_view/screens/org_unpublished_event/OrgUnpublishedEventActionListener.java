@@ -12,7 +12,7 @@ import controller_presenter_view.screens.org_unpublished_event.org_edit_event.Or
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.OrgPublishEventPresenter;
 import database.*;
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
 import use_cases.org_create_event_use_case.OrgCreateEventInteractor;
 import use_cases.org_create_event_use_case.OrgCreateEventOutputBoundary;
@@ -47,7 +47,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
         }
         else if (actionCommand.contains("Delete")) {
             //initialize the controller
-            OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
+            OrgDeleteEventController orgDeleteEventController = CommonMethod.utilGetDeleteEventControllerHelper();
             //delete the event
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
             OrgDeleteEventResponseModel responseModel;

@@ -1,9 +1,9 @@
 package controller_presenter_view.screens.org_account;
 
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import javax.swing.*;
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class OrgAccountPage extends JFrame {
@@ -42,13 +42,13 @@ public class OrgAccountPage extends JFrame {
         back.setBounds(0, 100, 150, 30);
 
         //Add the buttons and text panels to the page
-        this.add(Util_Method.create_JLabel(this.orgUsername + "'s Account Page", 0, 0, getConstantX(), 50));
+        this.add(CommonMethod.create_JLabel(this.orgUsername + "'s Account Page", 0, 0, getConstantX(), 50));
         this.add(back);
-        this.add(Util_Method.create_JLabel("Username                      " + this.orgUsername + "                ",
+        this.add(CommonMethod.create_JLabel("Username                      " + this.orgUsername + "                ",
                 150, 100, 500,30));
-        this.add(Util_Method.create_text_panel("Old Password", oldPassword, 150, 130, 500, 50));
-        this.add(Util_Method.create_text_panel("New Password", newPassword, 150, 180, 500, 50));
-        this.add(Util_Method.create_text_panel("Retype New Password", retypeNewPassword, 150, 230, 500, 50));
+        this.add(CommonMethod.create_text_panel("Old Password", oldPassword, 150, 130, 500, 50));
+        this.add(CommonMethod.create_text_panel("New Password", newPassword, 150, 180, 500, 50));
+        this.add(CommonMethod.create_text_panel("Retype New Password", retypeNewPassword, 150, 230, 500, 50));
         this.add(button);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

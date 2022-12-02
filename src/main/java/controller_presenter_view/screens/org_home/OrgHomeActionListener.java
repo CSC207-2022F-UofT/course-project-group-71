@@ -5,7 +5,7 @@ import controller_presenter_view.screens.org_follower.OrgFollowerPage;
 import controller_presenter_view.screens.org_past_event.OrgPastEventPage;
 import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
 import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventPage;
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +36,7 @@ public class OrgHomeActionListener implements ActionListener {
                 }
                 break;
             case "Upcoming Event": {
-                Util_Method.convertAndNotify("O", orgUsername);
+                CommonMethod.convertAndNotify("O", orgUsername);
                 try {
                     new OrgUpcomingEventPage(orgUsername);
                 } catch (ClassNotFoundException e) {
@@ -45,7 +45,7 @@ public class OrgHomeActionListener implements ActionListener {
                 break;
             }
             case "Past Event": {
-                Util_Method.convertAndNotify("O", orgUsername);
+                CommonMethod.convertAndNotify("O", orgUsername);
                 try {
                     new OrgPastEventPage(orgUsername);
                 } catch ( ClassNotFoundException e) {

@@ -1,6 +1,6 @@
 package controller_presenter_view.screens.par_followed_org;
 
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import database.*;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
@@ -11,8 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class ParFollowedOrgPage extends JFrame {
@@ -91,7 +91,7 @@ public class ParFollowedOrgPage extends JFrame {
                 y += 100;
             }
             //Put the JPanel into a JScrollPane
-            JScrollPane followerScroll = Util_Method.generateJScrollPane(followedOrganization);
+            JScrollPane followerScroll = CommonMethod.generateJScrollPane(followedOrganization);
             this.add(followerScroll);
         }
         return numberOfOrg;

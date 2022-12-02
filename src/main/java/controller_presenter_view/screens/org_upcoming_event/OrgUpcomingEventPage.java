@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.org_upcoming_event;
 
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
@@ -12,8 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class OrgUpcomingEventPage extends JFrame {
@@ -50,7 +50,7 @@ public class OrgUpcomingEventPage extends JFrame {
 
         //This is the back button
         JButton back = new JButton("Back");
-        back.addActionListener(new OrgUpcomingEventActionListener(this,orgUsername));
+        back.addActionListener(new OrgUpcomingEventActionListener(this));
         back.setBounds(0, 100, 150, 30);
 
         //Generate a JScrollPane of events and add it to the page
@@ -90,22 +90,13 @@ public class OrgUpcomingEventPage extends JFrame {
             //When these code is running, there will be at least 1 event so this for loop will add the upcoming events, one
             //event at each loop.
             for (String upcomingEventTitle : upcomingEvents) {
-                JButton eventTitle = new JButton(upcomingEventTitle);
-                eventTitle.addActionListener(new OrgUpcomingEventActionListener(this, orgUsername));
-                eventTitle.setBounds(x, y, 250, 30);
-                eventTitle.setVisible(true);
-                JLabel eventTime = Util_Method.setEventTime(upcomingEventTitle, x, y);
-                JLabel eventLocation = Util_Method.setEventLocation(upcomingEventTitle, x, y);
-                //Add the above events on the page
-                events.add(eventTitle);
-                events.add(eventTime);
-                events.add(eventLocation);
+                CommonMethod.setEventInfo(this, events, upcomingEventTitle, x, y, "OrgUpcomingEvent");
                 events.add(create_JButton(upcomingEventTitle,"Notify", x + 250, y + 15, 100, 30));
                 events.add(create_JButton(upcomingEventTitle,"Delete", x + 250, y + 55, 100, 30));
                 y += 100;
             }
             //Put the JPanel into a JScrollPane
-            JScrollPane eventScroll = Util_Method.generateJScrollPane(events);
+            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
             this.add(eventScroll);
         }
     }
@@ -123,7 +114,7 @@ public class OrgUpcomingEventPage extends JFrame {
     public JButton create_JButton(String eventTitle, String text, int x, int y, int width, int height){
         JButton output = new JButton(text);
         output.setActionCommand(eventTitle + text);
-        output.addActionListener(new OrgUpcomingEventActionListener(this, orgUsername));
+        output.addActionListener(new OrgUpcomingEventActionListener(this));
         output.setBounds (x, y, width, height);
         return output;
     }

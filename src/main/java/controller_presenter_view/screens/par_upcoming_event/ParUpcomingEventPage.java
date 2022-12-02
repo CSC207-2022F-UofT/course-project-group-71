@@ -1,6 +1,6 @@
 package controller_presenter_view.screens.par_upcoming_event;
 
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import database.*;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
@@ -11,8 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class ParUpcomingEventPage extends JFrame {
@@ -77,29 +77,17 @@ public class ParUpcomingEventPage extends JFrame {
             int y = 0;
 
             for (String upcomingEventTitle : upcomingEvents) {
-
-                JButton eventTitle = new JButton(upcomingEventTitle);
-                eventTitle.addActionListener(new ParUpcomingEventActionListener(this));
-                eventTitle.setBounds(x, y, 250, 30);
-                eventTitle.setVisible(true);
-                JLabel eventTime = Util_Method.setEventTime(upcomingEventTitle, x, y);
-                JLabel eventLocation = Util_Method.setEventLocation(upcomingEventTitle, x, y);
-                //Add the above events on the page
-                events.add(eventTitle);
-                events.add(eventTime);
-                events.add(eventLocation);
-
+                CommonMethod.setEventInfo(this, events, upcomingEventTitle, x, y, "OrgUpcomingEvent");
                 JButton leave = new JButton("Leave");
                 leave.setActionCommand(upcomingEventTitle + "Leave");
                 leave.addActionListener(new ParUpcomingEventActionListener(this));
                 leave.setBounds(x + 250, y + 55, 100, 30);
                 leave.setVisible(true);
                 events.add(leave);
-
                 y += 100;
             }
             //Set parameters for JScrollPane
-            JScrollPane eventScroll = Util_Method.generateJScrollPane(events);
+            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
             this.add(eventScroll);
         }
     }

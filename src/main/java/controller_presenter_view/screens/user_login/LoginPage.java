@@ -3,7 +3,7 @@ package controller_presenter_view.screens.user_login;
 import controller_presenter_view.screens.LabelTextPanel;
 import controller_presenter_view.screens.org_home.OrgHomePage;
 import controller_presenter_view.screens.par_home.ParHomePage;
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -116,7 +116,7 @@ public class LoginPage extends JFrame implements ActionListener {
             //if the user is a participant, call upcoming_to_past to filter all the upcoming events of this participant,
             //and convert some events from upcoming to past if necessary.
             if (P) {
-                Util_Method.convertAndNotify("P", USERNAME.getText());
+                CommonMethod.convertAndNotify("P", USERNAME.getText());
                 new ParHomePage(USERNAME.getText());
             }
             else {//if the user is an organization, upcoming_to_past not be called at this stage.

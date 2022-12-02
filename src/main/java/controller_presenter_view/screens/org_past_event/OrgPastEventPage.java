@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.org_past_event;
 
 
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
@@ -13,8 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class OrgPastEventPage extends JFrame {
@@ -82,20 +82,12 @@ public class OrgPastEventPage extends JFrame {
             int x = 0;
             int y = 0;
             //Add all cards of past events to the page
-            for (String unpublishedEventTitle : pastEvents) {
-                //Prepare the event title, time and location
-                JButton eventTitle = new JButton(unpublishedEventTitle);
-                eventTitle.addActionListener(new OrgPastEventActionListener(this));
-                eventTitle.setBounds(x, y, 250, 30);
-                eventTitle.setVisible(true);
-                //Add all the prepared events back to the page
-                events.add(eventTitle);
-                events.add(Util_Method.setEventTime(unpublishedEventTitle, x, y));
-                events.add(Util_Method.setEventLocation(unpublishedEventTitle, x, y));
+            for (String pastEventTitle : pastEvents) {
+                CommonMethod.setEventInfo(this, events, pastEventTitle, x, y, "OrgPastEvent");
                 y += 100;
             }
             //Set parameters for JScrollPane
-            JScrollPane eventScroll = Util_Method.generateJScrollPane(events);
+            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
             this.add(eventScroll);
         }
     }

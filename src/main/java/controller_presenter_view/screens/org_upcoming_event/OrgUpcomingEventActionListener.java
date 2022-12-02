@@ -9,7 +9,7 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
@@ -22,11 +22,9 @@ import java.awt.event.ActionListener;
 
 public class OrgUpcomingEventActionListener implements ActionListener {
     public final OrgUpcomingEventPage orgUpcomingEventPage;
-    public final String orgUsername;
 
-    public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage, String orgUsername){
+    public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage){
         this.orgUpcomingEventPage = orgUpcomingEventPage;
-        this.orgUsername = orgUsername;
     }
 
     public void actionPerformed(ActionEvent arg0){
@@ -59,7 +57,7 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                 }
             }
             else if (actionCommand.contains("Delete")) {
-                OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
+                OrgDeleteEventController orgDeleteEventController = CommonMethod.utilGetDeleteEventControllerHelper();
 
                 String eventName = actionCommand.substring(0,actionCommand.length()-6);
 
@@ -73,7 +71,7 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                 }
                 this.orgUpcomingEventPage.dispose();
                 try {
-                    new OrgUpcomingEventPage(this.orgUsername);
+                    new OrgUpcomingEventPage(this.orgUpcomingEventPage.orgUsername);
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }

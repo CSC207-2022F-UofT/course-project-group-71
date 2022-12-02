@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.par_past_event;
 
 
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import database.ParDsGateway;
 import database.ParFileUser;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
@@ -13,8 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class ParPastEventPage extends JFrame {
@@ -79,21 +79,12 @@ public class ParPastEventPage extends JFrame {
             events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
             int x = 0;
             int y = 0;
-            for (String unpublishedEventTitle : pastEvents) {
-                JButton eventTitle = new JButton(unpublishedEventTitle);
-                eventTitle.addActionListener(new ParPastEventActionListener(this));
-                eventTitle.setBounds(x, y, 250, 30);
-                eventTitle.setVisible(true);
-                JLabel eventTime = Util_Method.setEventTime(unpublishedEventTitle, x, y);
-                JLabel eventLocation = Util_Method.setEventLocation(unpublishedEventTitle, x, y);
-                //Add the above events on the page
-                events.add(eventTitle);
-                events.add(eventTime);
-                events.add(eventLocation);
+            for (String pastEventTitle : pastEvents) {
+                CommonMethod.setEventInfo(this, events, pastEventTitle, x, y, "OrgUpcomingEvent");
                 y += 100;
             }
             //Set parameters for JScrollPane
-            JScrollPane eventScroll = Util_Method.generateJScrollPane(events);
+            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
             this.add(eventScroll);
         }
     }

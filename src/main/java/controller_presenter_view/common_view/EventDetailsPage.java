@@ -11,8 +11,8 @@ import use_cases.extract_information_use_case.ExtractInfoResponseModel;
 import javax.swing.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class EventDetailsPage extends JFrame {

@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.org_unpublished_event;
 
 
-import controller_presenter_view.screens.Util_Method;
+import controller_presenter_view.screens.CommonMethod;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
@@ -13,8 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class OrgUnpublishedEventPage extends JFrame {
@@ -104,25 +104,14 @@ public class OrgUnpublishedEventPage extends JFrame {
             int y = 0;
             //Generate information cards for each unpublished events
             for (String unpublishedEventTitle : unpublishedEvents) {
-                //Prepare the event title
-                JButton eventTitle = new JButton(unpublishedEventTitle);
-                //Set the action listener to show the detailed event information when clicking the event title
-                eventTitle.addActionListener(new OrgUnpublishedEventActionListener(this));
-                eventTitle.setBounds(x, y, 250, 30);
-                eventTitle.setVisible(true);
-                JLabel eventTime = Util_Method.setEventTime(unpublishedEventTitle, x, y);
-                JLabel eventLocation = Util_Method.setEventLocation(unpublishedEventTitle, x, y);
-                //Add the above events on the page
-                events.add(eventTitle);
-                events.add(eventTime);
-                events.add(eventLocation);
+                CommonMethod.setEventInfo(this, events, unpublishedEventTitle, x, y, "OrgUnpublishedEvent");
                 events.add(create_JButton(unpublishedEventTitle,"Publish", x + 250, y + 15, 100, 30));
                 events.add(create_JButton(unpublishedEventTitle,"Notify", x + 250, y + 15, 100, 30));
                 events.add(create_JButton(unpublishedEventTitle,"Delete", x + 250, y + 55, 100, 30));
                 y += 100;
             }
             //Put the JPanel into a JScrollPane
-            JScrollPane eventScroll = Util_Method.generateJScrollPane(events);
+            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
             this.add(eventScroll);
         }
     }

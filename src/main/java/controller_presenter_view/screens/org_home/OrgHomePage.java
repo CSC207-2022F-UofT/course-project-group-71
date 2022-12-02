@@ -2,8 +2,8 @@ package controller_presenter_view.screens.org_home;
 
 import javax.swing.*;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class OrgHomePage extends JFrame {

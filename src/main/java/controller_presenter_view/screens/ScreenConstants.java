@@ -1,6 +1,6 @@
 package controller_presenter_view.screens;
 
-public class screen_constants {
+public class ScreenConstants {
     static final int CONSTANT_X = 800;
     static final int CONSTANT_Y = 800;
 

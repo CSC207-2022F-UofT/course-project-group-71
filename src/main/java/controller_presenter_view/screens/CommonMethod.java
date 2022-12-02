@@ -7,6 +7,14 @@ import controller_presenter_view.common_controller_presenter.org_delete_event.Or
 import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventPresenter;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
+import controller_presenter_view.screens.org_past_event.OrgPastEventActionListener;
+import controller_presenter_view.screens.org_past_event.OrgPastEventPage;
+import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventActionListener;
+import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
+import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventActionListener;
+import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventPage;
+import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventActionListener;
+import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventPage;
 import database.*;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
@@ -26,10 +34,10 @@ import javax.swing.*;
 
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
-public class Util_Method {
+public class CommonMethod {
 
     public static void convertAndNotify(String userType, String orgUsername){
         //convert upcoming events to past events if their time is in the past
@@ -115,6 +123,36 @@ public class Util_Method {
         output.setBounds(x, y, width, height);
         output.setHorizontalAlignment(JLabel.CENTER);
         return output;
+    }
+
+    public static void setEventInfo(JFrame page, JPanel events, String title, int x, int y, String actionListener) throws ClassNotFoundException{
+        JButton eventTitle = new JButton(title);
+        //Set the action listener to show the detailed event information when clicking the event title
+        switch (actionListener) {
+            case "OrgUnpublishedEvent":
+                eventTitle.addActionListener(new OrgUnpublishedEventActionListener((OrgUnpublishedEventPage) page));
+                break;
+            case "OrgUpcomingEvent":
+                eventTitle.addActionListener(new OrgUpcomingEventActionListener((OrgUpcomingEventPage) page));
+                break;
+            case "OrgPastEvent":
+                eventTitle.addActionListener(new OrgPastEventActionListener((OrgPastEventPage) page));
+                break;
+            case "ParUpcomingEvent":
+                eventTitle.addActionListener(new ParUpcomingEventActionListener((ParUpcomingEventPage) page));
+                break;
+            case "ParPastEvent":
+
+                break;
+        }
+        eventTitle.setBounds(x, y, 250, 30);
+        eventTitle.setVisible(true);
+        JLabel eventTime = CommonMethod.setEventTime(title, x, y);
+        JLabel eventLocation = CommonMethod.setEventLocation(title, x, y);
+        //Add the above events on the page
+        events.add(eventTitle);
+        events.add(eventTime);
+        events.add(eventLocation);
     }
 
     public static JLabel setEventTime(String eventTitle, int x, int y) throws ClassNotFoundException {
