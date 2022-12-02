@@ -34,6 +34,7 @@ public class LoginPageActionListener implements ActionListener {
         }
         else {
             this.LOGIN_PAGE.dispose();
+            System.exit(0);
         }
     }
 }

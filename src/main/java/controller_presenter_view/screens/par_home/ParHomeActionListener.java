@@ -8,10 +8,7 @@ import controller_presenter_view.screens.par_home.par_search.ParSearchOrgControl
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgPresenter;
 import controller_presenter_view.screens.par_past_event.ParPastEventPage;
 import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventPage;
-import database.EventDsGateway;
-import database.EventFileUser;
-import database.OrgDsGateway;
-import database.OrgFileUser;
+import database.*;
 import use_cases.par_search_event_use_case.ParSearchEventInputBoundary;
 import use_cases.par_search_event_use_case.ParSearchEventInteractor;
 import use_cases.par_search_event_use_case.ParSearchEventOutputBoundary;
@@ -48,16 +45,17 @@ public class ParHomeActionListener implements ActionListener {
      */
     public void actionPerformed(ActionEvent arg0) {
         String page = arg0.getActionCommand();
+        String parUsername = this.parHomePage.getParUsername();
 
         switch (page) {
             case "Account":
                 this.parHomePage.dispose();
-                new ParAccountPage(this.parHomePage.getParUsername());
+                new ParAccountPage(parUsername);
                 break;
             case "Upcoming Event":
                 this.parHomePage.dispose();
                 try {
-                    new ParUpcomingEventPage(this.parHomePage.getParUsername());
+                    new ParUpcomingEventPage(parUsername);
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -65,7 +63,7 @@ public class ParHomeActionListener implements ActionListener {
             case "Past Event":
                 this.parHomePage.dispose();
                 try {
-                    new ParPastEventPage(this.parHomePage.getParUsername());
+                    new ParPastEventPage(parUsername);
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -73,49 +71,46 @@ public class ParHomeActionListener implements ActionListener {
             case "Followed Org":
                 this.parHomePage.dispose();
                 try {
-                    new ParFollowedOrgPage(this.parHomePage.getParUsername());
+                    new ParFollowedOrgPage(parUsername);
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
                 break;
             case "Search":
-                if (this.parHomePage.org.isSelected()) {
+                if (this.parHomePage.org.isSelected()) {//Search for Organization
                     try {
                         OrgDsGateway org = new OrgFileUser();
                         ParSearchOrgOutputBoundary presenter = new ParSearchOrgPresenter();
                         ParSearchOrgInputBoundary interactor = new ParSearchOrgInteractor(org, presenter);
                         ParSearchOrgController controller = new ParSearchOrgController(interactor);
                         String query = this.parHomePage.searchBox.getText();
-                        String parUserName = this.parHomePage.getParUsername();
                         try {
-                            controller.orgSearch(query, parUserName); //draw screen
+                            controller.orgSearch(query, parUsername); //draw screen
                         } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
                         this.parHomePage.dispose();
                     } catch (Exception error) {
                         JOptionPane.showMessageDialog(this.parHomePage, error.getMessage());
-                        new ParHomePage(this.parHomePage.getParUsername());
+                        new ParHomePage(parUsername);
                     }
 
-                } else if (this.parHomePage.eve.isSelected()) {
-
+                } else if (this.parHomePage.eve.isSelected()) {//Search for Event
                     try {
                         EventDsGateway eve = new EventFileUser();
                         ParSearchEventOutputBoundary presenter = new ParSearchEventPresenter(); //minor issue
                         ParSearchEventInputBoundary interactor = new ParSearchEventInteractor(eve, presenter);
                         ParSearchEventController controller = new ParSearchEventController(interactor);
                         String query = this.parHomePage.searchBox.getText();
-                        String parUserName = this.parHomePage.getParUsername();
                         try {
-                            controller.eventSearch(query, parUserName);
+                            controller.eventSearch(query, parUsername);
                         } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
                         this.parHomePage.dispose();
                     } catch (Exception error) {
                         JOptionPane.showMessageDialog(this.parHomePage, error.getMessage());
-                        new ParHomePage(this.parHomePage.getParUsername());
+                        new ParHomePage(parUsername);
                     }
                 } else {
                     JOptionPane.showMessageDialog(this.parHomePage, "Please Select Search Target");
@@ -124,9 +119,8 @@ public class ParHomeActionListener implements ActionListener {
             case "Log Out":
                 this.parHomePage.dispose();
                 generateLoginPage();
-
                 break;
         }
-        }
     }
+}
 

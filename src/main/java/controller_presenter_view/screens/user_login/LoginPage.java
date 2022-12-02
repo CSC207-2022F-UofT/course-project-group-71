@@ -1,11 +1,9 @@
 package controller_presenter_view.screens.user_login;
 
-import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
 import controller_presenter_view.screens.LabelTextPanel;
 import controller_presenter_view.screens.org_home.OrgHomePage;
 import controller_presenter_view.screens.par_home.ParHomePage;
-import use_cases.Util_Method;
-import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
+import controller_presenter_view.screens.Util_Method;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -118,16 +116,7 @@ public class LoginPage extends JFrame implements ActionListener {
             //if the user is a participant, call upcoming_to_past to filter all the upcoming events of this participant,
             //and convert some events from upcoming to past if necessary.
             if (P) {
-                UpcomingToPastController controller = Util_Method.utilGetUpcomingToPastControllerHelper();
-                UpcomingToPastResponseModel responseModel;
-                try {
-                    responseModel = controller.convertToPast("P",USERNAME.getText());
-                } catch (ClassNotFoundException exception) {
-                    throw new RuntimeException(exception);
-                }
-                if (!responseModel.getEventsToPast().isEmpty()){
-                    Util_Method.utilNotifyEventHelper(responseModel);
-                }
+                Util_Method.convertAndNotify("P", USERNAME.getText());
                 new ParHomePage(USERNAME.getText());
             }
             else {//if the user is an organization, upcoming_to_past not be called at this stage.

@@ -9,7 +9,7 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import use_cases.Util_Method;
+import controller_presenter_view.screens.Util_Method;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;

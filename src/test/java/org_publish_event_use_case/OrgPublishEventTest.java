@@ -9,10 +9,12 @@ import use_cases.org_publish_event_use_case.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**Need to create an event called "A" in eventfile, set the time in the past
+ * Need to create events "B" and "C" in eventfile, set the time in the future
  * Need to create an organization called "UofT", "UBC" in orgfile
  * Need to create a participant in parfile
  * Need to link "UofT" and the participant in follow_org_par
- * Need to link "UofT" and "A" in unpublished_events_for_org
+ * Need to link "UofT" with "A" and "B" in unpublished_events_for_org
+ * Need to link "UBC" with "C" in unpublished_events_for_org
  */
 public class OrgPublishEventTest {
     final EventDsGateway eventDsGateway = new EventFileUser();
