@@ -248,6 +248,12 @@ each of these gateways contain different methods for specific uses.
 - Dependency Inversion Principle: we use input and output boundaries to adhere to this principle
 and maintain the flow of control described in clean architecture.
 
+### Clean Architecture
+
+- All of our features are following Clean Architecture, which containing A presenter, controller, Output Boundary, Input Boundary,
+Response Model, Represent Model and an Interactor. Since presenter and controller on the outter layer, they're been seperated into 
+the controller-presenter file.
+
 ### Design Patterns
 
 - Iterator Design Pattern: The database is accessed by the MySQL command, when we need to access a list of anything ,
