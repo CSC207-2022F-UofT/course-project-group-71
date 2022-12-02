@@ -9,7 +9,7 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
-import use_cases.Util_Method;
+import controller_presenter_view.screens.Util_Method;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
@@ -37,7 +37,6 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             new OrgHomePage(this.orgUpcomingEventPage.getOrgUsername());
         }
         else {
-            final String substring = actionCommand.substring(0, actionCommand.length() - 6);
             if (actionCommand.contains("Notify")) {
                 EventDsGateway eventDsGateway = new EventFileUser();
     
@@ -49,9 +48,11 @@ public class OrgUpcomingEventActionListener implements ActionListener {
     
                 NotifyEventController notifyEventController = new NotifyEventController(interactor);
 
+                String eventName = actionCommand.substring(0,actionCommand.length()-6);
+
                 try {
                     NotifyEventResponseModel responseModel =
-                            notifyEventController.sendNotification("Future", substring);
+                            notifyEventController.sendNotification("Future", eventName);
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
@@ -60,10 +61,14 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             else if (actionCommand.contains("Delete")) {
                 OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
 
+                String eventName = actionCommand.substring(0,actionCommand.length()-6);
+
+
                 try{
-                    OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(substring);
+                    System.out.println("temp1");
+                    OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
-                } catch(Exception e) {
+                } catch(ClassNotFoundException e) {
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
                 }
                 this.orgUpcomingEventPage.dispose();

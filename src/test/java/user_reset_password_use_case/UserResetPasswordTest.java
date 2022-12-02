@@ -54,8 +54,6 @@ public class UserResetPasswordTest {
         try {
             responseModel = orgController.resetPassword("O1", "O1password",
                     "temp_new", "temp_new");
-            System.out.println("Password reset successfully!");
-            System.out.println(responseModel.getMessage());
             assertEquals("Password reset successfully!", responseModel.getMessage());
             orgController.resetPassword("O1", "temp_new", "O1password","O1password");
         } catch (ClassNotFoundException e) {

@@ -1,4 +1,4 @@
-package use_cases;
+package controller_presenter_view.screens;
 
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
@@ -19,28 +19,35 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 public class Util_Method {
-    public static UpcomingToPastController utilGetUpcomingToPastControllerHelper(){
+
+    public static void convertAndNotify(String userType, String orgUsername){
+        //convert upcoming events to past events if their time is in the past
         ParDsGateway parDsGateway = new ParFileUser();
         OrgDsGateway orgDsGateway = new OrgFileUser();
         EventDsGateway eventDsGateway = new EventFileUser();
         UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
         UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
                 eventDsGateway, upcomingToPastOutputBoundary);
-        return new UpcomingToPastController(interactor);
-    }
+        UpcomingToPastController controller = new UpcomingToPastController(interactor);
+        UpcomingToPastResponseModel responseModel;
+        try {
+            responseModel = controller.convertToPast(userType, orgUsername);
+        } catch (ClassNotFoundException exception) {
+            throw new RuntimeException(exception);
+        }
 
-    public static void utilNotifyEventHelper(UpcomingToPastResponseModel responseModel){
-        EventDsGateway eventDsGateway = new EventFileUser();
-        ParDsGateway parDsGateway = new ParFileUser();
-        NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
-        NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
-                notifyEventOutputBoundary);
-        NotifyEventController notifyEventController = new NotifyEventController(interactor2);
-        for (String event : responseModel.getEventsToPast()){
-            try {
-                notifyEventController.sendNotification("Past", event);
-            } catch (ClassNotFoundException exception) {
-                throw new RuntimeException(exception);
+        //notify the relevant participant of the events
+        if (!responseModel.getEventsToPast().isEmpty()) {
+            NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
+            NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
+                    notifyEventOutputBoundary);
+            NotifyEventController notifyEventController = new NotifyEventController(interactor2);
+            for (String event : responseModel.getEventsToPast()){
+                try {
+                    notifyEventController.sendNotification("Past", event);
+                } catch (ClassNotFoundException exception) {
+                    throw new RuntimeException(exception);
+                }
             }
         }
     }

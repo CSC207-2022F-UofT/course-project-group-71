@@ -7,6 +7,7 @@ public class OrgDeleteEventPresenter implements OrgDeleteEventOutputBoundary {
     @Override
     public OrgDeleteEventResponseModel prepareSuccessView(OrgDeleteEventResponseModel response) {
         response.setMessage("Event " + response.getEventName() + " is deleted.");
+        System.out.println("i am there");
         return response;
     }
 }

@@ -50,7 +50,7 @@ public class OrgAccountActionListener implements ActionListener {
             try{
                 //Try to reset the password
                 UserResetPasswordResponseModel responseModel = resetPasswordController.resetPassword(username, password, new_password, retype_password);
-                System.out.println(responseModel.getMessage());
+
                 JOptionPane.showMessageDialog(this.orgAccountPage, responseModel.getMessage());
             } catch (Exception e){
                 //If meet some problem, show this one
