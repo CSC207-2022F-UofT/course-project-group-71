@@ -1,4 +1,4 @@
-package controller_presenter_view.screens.org_unpublished_event.org_publish_event;
+package controller_presenter_view.org_publish_event;
 
 import use_cases.org_publish_event_use_case.OrgPublishEventInputBoundary;
 import use_cases.org_publish_event_use_case.OrgPublishEventRequestModel;

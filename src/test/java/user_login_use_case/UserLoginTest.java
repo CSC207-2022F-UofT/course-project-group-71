@@ -19,13 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class UserLoginTest {
-    final ParDsGateway parDsGateway = new ParFileUser();
-    final OrgDsGateway orgDsGateway = new OrgFileUser();
-    final UserLoginOutputBoundary presenter = new UserLoginPresenter();
-    final ParHomeOutputBoundary par_presenter = new ParHomePresenter();
-    final OrgHomeOutputBoundary org_presenter = new OrgHomePresenter();
-    final UserLoginInputBoundary interactor = new UserLoginInteractor(presenter, parDsGateway, par_presenter, orgDsGateway, org_presenter);
-    final UserLoginController controller = new UserLoginController(interactor);
+    ParDsGateway parDsGateway = new ParFileUser();
+    OrgDsGateway orgDsGateway = new OrgFileUser();
+    UserLoginOutputBoundary presenter = new UserLoginPresenter();
+    ParHomeOutputBoundary par_presenter = new ParHomePresenter();
+    OrgHomeOutputBoundary org_presenter = new OrgHomePresenter();
+    UserLoginInputBoundary interactor = new UserLoginInteractor(presenter, parDsGateway, par_presenter, orgDsGateway, org_presenter);
+    UserLoginController controller = new UserLoginController(interactor);
     UserLoginResponseModel responseModel;
 
     @Test

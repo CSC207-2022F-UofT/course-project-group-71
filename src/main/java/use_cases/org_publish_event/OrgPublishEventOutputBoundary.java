@@ -1,4 +1,4 @@
-package use_cases.org_publish_event_use_case;
+package use_cases.org_publish_event;
 
 /** Class used to prepare success view.
  */

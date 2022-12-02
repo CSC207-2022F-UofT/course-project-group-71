@@ -1,4 +1,4 @@
-package use_cases.org_publish_event_use_case;
+package use_cases.org_publish_event;
 
 /** The request model of event publishing.
  *  Contains eventName.

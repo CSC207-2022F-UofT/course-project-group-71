@@ -1,4 +1,4 @@
-package use_cases.org_publish_event_use_case;
+package use_cases.org_publish_event;
 
 /** Interface implements by interactor.
  * The interactor who implement the interface must have publish() method.

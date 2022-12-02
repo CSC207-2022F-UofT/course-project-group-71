@@ -86,7 +86,7 @@ Only for demonstration purposes, each of those has the following attributes:
   - *editable* ArrayList<String\> followedOrganizations: the usernames of the participant's followed Organizations. The participant can choose to unfollow any of them.
 
 
-*"*editable*" means the value of attribute can be changed by the user through means provided on UI.*
+*"editable" means the value of attribute can be changed by the user through means provided on UI.*
 
 
 ## Use Cases
@@ -173,7 +173,7 @@ Explain ALL tables in DataGrip, what does each of them do.
    - Foreign key of 'par_username' is linked to 'username' at parfile.
    - Notification is a String, one username can be paired with multiple notifications.
 
-## How to use database:
+## How to use database
 ### How to download, install and initialize mysql connection:
 This project require Mysql to be downloaded.
 Installation Guide of MYSQL: https://www.javatpoint.com/how-to-install-mysql. 
@@ -229,6 +229,16 @@ The whole table would be imported.
 <img height="400" src="images/DatabaseExplanation_8.png" width="400"/>
 
 The whole table would be imported.
+
+## Test
+`src/test/java`
+- Test coverage
+  - The tests covered 16 use cases and 3 FileUsers. The leftover 1 use case that is not been tested is `src/main/java/extract_information_use_case`. This is because we see it as a data grasper that is only responsible for passing data from FileUsers to Views, so it does not carry much Application Business Rule. As long as the FileUsers are functioning correctly, the extract_information_use_case should be functioning well too.
+- Number of test
+  - All methods (not including the one start with util) in FileUsers has a individual corresponding test. The number of test for each use cases is highly dependent on the number of if-branches in the interactor.
+- Default data for testing
+  - We prepared independent test data for each test package, which you will need MySQL and DataGrip to work with. The description of the default data is in the JavaDoc of the test class.
+
 
 ## SOLID Principles and Design Patterns
 

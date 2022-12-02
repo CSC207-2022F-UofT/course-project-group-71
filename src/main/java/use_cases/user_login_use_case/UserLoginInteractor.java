@@ -5,11 +5,11 @@ import database.ParDsGateway;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
 
-    final UserLoginOutputBoundary userLoginOutputBoundary;
-    final ParDsGateway parDsGateway;
-    final ParHomeOutputBoundary parHomeOutputBoundary;
-    final OrgDsGateway orgDsGateway;
-    final OrgHomeOutputBoundary orgHomeOutputBoundary;
+    UserLoginOutputBoundary userLoginOutputBoundary;
+    ParDsGateway parDsGateway;
+    ParHomeOutputBoundary parHomeOutputBoundary;
+    OrgDsGateway orgDsGateway;
+    OrgHomeOutputBoundary orgHomeOutputBoundary;
 
     /**Constructor
      *

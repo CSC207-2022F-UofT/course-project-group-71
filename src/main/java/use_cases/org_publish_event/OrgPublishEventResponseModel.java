@@ -1,4 +1,4 @@
-package use_cases.org_publish_event_use_case;
+package use_cases.org_publish_event;
 
 /** The response model sent back to the page.
  *  Containing the eventName and the message.

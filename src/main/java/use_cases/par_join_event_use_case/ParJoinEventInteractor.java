@@ -16,7 +16,7 @@ public class ParJoinEventInteractor implements ParJoinEventInputBoundary {
         this.parDsGateway = parDsGateway;
         this.presenter = presenter;
     }
-    
+
     /**Use the provided method from parDsGateway to make a participant join an upcoming event.
      * This method is called when the participant is searching for events.
      *
