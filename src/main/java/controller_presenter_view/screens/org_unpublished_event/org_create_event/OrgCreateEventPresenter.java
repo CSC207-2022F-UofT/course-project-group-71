@@ -10,7 +10,11 @@ public class OrgCreateEventPresenter implements OrgCreateEventOutputBoundary {
     public OrgCreateEventResponseModel prepareSuccessView(OrgCreateEventResponseModel response) {
         //Prepare a success view
         response.setMessage("Event " + response.getTitle() + " is successfully created!");
+<<<<<<< HEAD
         System.out.println(1);
+=======
+
+>>>>>>> main
         return response;
     }
 

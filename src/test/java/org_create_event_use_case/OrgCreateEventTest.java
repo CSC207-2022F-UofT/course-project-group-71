@@ -15,12 +15,21 @@ import static org.junit.jupiter.api.Assertions.*;
 /**Need to create an organization called "UofT" in orgfile
  */
 public class OrgCreateEventTest {
+<<<<<<< HEAD
     EventDsGateway eventDsGateway = new EventFileUser();
     OrgDsGateway orgDsGateway = new OrgFileUser();
     OrgCreateEventOutputBoundary orgCreateEventPresenter = new OrgCreateEventPresenter();
     OrgCreateEventInputBoundary orgCreateEventInteractor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway,
             orgCreateEventPresenter);
     OrgCreateEventController orgCreateEventController = new OrgCreateEventController(orgCreateEventInteractor);
+=======
+    final EventDsGateway eventDsGateway = new EventFileUser();
+    final OrgDsGateway orgDsGateway = new OrgFileUser();
+    final OrgCreateEventOutputBoundary orgCreateEventPresenter = new OrgCreateEventPresenter();
+    final OrgCreateEventInputBoundary orgCreateEventInteractor = new OrgCreateEventInteractor(eventDsGateway, orgDsGateway,
+            orgCreateEventPresenter);
+    final OrgCreateEventController orgCreateEventController = new OrgCreateEventController(orgCreateEventInteractor);
+>>>>>>> main
     OrgCreateEventResponseModel orgCreateEventResponseModel;
 
     @Test
@@ -67,7 +76,11 @@ public class OrgCreateEventTest {
     void testPrepareFailViewTitleTooLong() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
+<<<<<<< HEAD
                     "CSC207H5ssssssssssssssssssssss", "Software Design", "Toronto", "2345", "9",
+=======
+                    "CSC207H5111111111111111", "Software Design", "Toronto", "2345", "9",
+>>>>>>> main
                     "13", "1.4", "0");
             assert(false);
         } catch (Exception e) {
@@ -93,7 +106,11 @@ public class OrgCreateEventTest {
     void testPrepareFailViewLocationTooLong() {
         try {
             orgCreateEventResponseModel = orgCreateEventController.create("UofT",
+<<<<<<< HEAD
                     "CSC207H5", "Software Design", "Toronto ssssssssssssssssssssssssssssssssssssssssssssss ssssssssssssssssssssssssssssssssssssssssssssss",
+=======
+                    "CSC207H5", "Software Design", "Toronto 111111111111111111111111111111 111111111111111111111111111111111111111",
+>>>>>>> main
                     "2345", "9", "13", "1.4", "0");
             assert(false);
         } catch (Exception e) {
