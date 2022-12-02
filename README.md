@@ -40,7 +40,7 @@ There is no caps of number of people attending for all events.
 
 The starter file launches the Login Page.
 
-There are 3 static variables in the class:
+There are 3 static variables in the file`src/main/java/database/JDBCUtils` that you might need to change to make the database working (How to use the database is down below):
 
 - databaseUrl = "jdbc:mysql://localhost:3306/db2"
   - This is used for finding the database located in DataGrip.
