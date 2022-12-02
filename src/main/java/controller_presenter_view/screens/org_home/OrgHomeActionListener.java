@@ -70,6 +70,7 @@ public class OrgHomeActionListener implements ActionListener {
                 }
                 break;
             default: {
+                this.orgHomePage.dispose();
                 generateLoginPage();
                 break;
             }
