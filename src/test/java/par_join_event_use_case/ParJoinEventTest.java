@@ -4,8 +4,8 @@ import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJ
 import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJoinEventPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
-import org.junit.Test;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import use_cases.par_join_event_use_case.ParJoinEventInputBoundary;
 import use_cases.par_join_event_use_case.ParJoinEventInteractor;
 import use_cases.par_join_event_use_case.ParJoinEventOutputBoundary;
@@ -31,7 +31,7 @@ public class ParJoinEventTest {
     public void testSuccessMessage(){
         try{
             responseModel= controller.join("P2","E2");
-            assertEquals("Registered Successfully for eTest!", responseModel.getMessage());
+            assertEquals("Registered successfully for E2!", responseModel.getMessage());
         }catch (Exception e){
             assert false;
         }
