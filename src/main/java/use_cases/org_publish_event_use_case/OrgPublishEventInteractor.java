@@ -40,7 +40,6 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
 
         //checks if the time is set in the future.
         if (time.isBefore(now)){
-            System.out.println("not out");
             return orgPublishEventOutputBoundary.prepareFailView("Time must be in future, please edit the time.");
         }
 
