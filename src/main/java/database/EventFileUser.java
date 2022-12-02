@@ -432,26 +432,4 @@ public class EventFileUser implements EventDsGateway{
     public void editEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
         utilEditEvent(title,description,location,year,month,day,hour,minute);
     }
-
-//    public Event getEvent(String title) throws ClassNotFoundException {
-//        return new Event(title, getDescription(title), getLocation(title), getTime(title).get(0), getTime(title).get(1),getTime(title).get(2),getTime(title).get(3),getTime(title).get(4),getParticipants(title),getOrganization(title));
-//    }
-
-//    public Event saveEvent(Event event_to_save) throws ClassNotFoundException {
-//        String event_status = getStatus(event_to_save.getTitle());
-//        int event_status_int = 0;
-//        if (event_status == "Unpublished"){
-//            event_status_int = 0;
-//        }
-//        if (event_status == "Past"){
-//            event_status_int = 2;
-//        }
-//        if (event_status == "Upcoming"){
-//            event_status_int = 1;
-//        }
-//        deleteEvent(event_to_save.getTitle());
-//        OrgDsGateway orgDsGateway = new OrgFileUser();
-//        orgDsGateway.createAnEvent(event_to_save.getOrganization(), event_to_save.getTitle(), event_status_int, event_to_save.getDescription(),event_to_save.getLocation(), event_to_save.getYear(), event_to_save.getMonth(),event_to_save.get(3),getTime(title).get(4));
-//    }
-
 }
