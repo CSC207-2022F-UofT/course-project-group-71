@@ -77,7 +77,7 @@ public class ParSearchOrgResultsPage extends JFrame {
                 orgName.setVisible(true);
 
 
-               if (this.followedList.contains(nextOrg)) {
+                if (this.followedList.contains(nextOrg)) {
                     JButton unfollow = new JButton("Unfollow");
                     unfollow.setActionCommand("Unfollow "+nextOrg);
                     unfollow.addActionListener(new ParSearchOrgResultsPageActionListener(this, nextOrg));
@@ -85,16 +85,16 @@ public class ParSearchOrgResultsPage extends JFrame {
                     organizers.add(unfollow);
                     unfollow.setVisible(true);
 
-               } else {
-                   JButton follow = new JButton("Follow "+nextOrg);
-                   follow.setActionCommand("Follow "+nextOrg);
-                   follow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
-                   follow.setBounds(x, y, 250, 30);
-                   organizers.add(follow);
-                   follow.setVisible(true);
-               }
+                } else {
+                    JButton follow = new JButton("Follow "+nextOrg);
+                    follow.setActionCommand("Follow "+nextOrg);
+                    follow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
+                    follow.setBounds(x, y, 250, 30);
+                    organizers.add(follow);
+                    follow.setVisible(true);
+                }
 
-               y += 100;
+                y += 100;
             }
 
             JScrollPane orgScroll = new JScrollPane(organizers);
