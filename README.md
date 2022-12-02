@@ -182,6 +182,17 @@ When the installation is finished, our project require the mysql account and pas
 The JDBC require them to access the data from MYSQL.
 The username and password should be updated at the src/main/java/tutorial/HelloWorld Line 18, 19.
 
+<!--suppress ALL -->
+
+
+
+
+
+
+
+
+
+
 <img height="200" src="images/DatabaseExplanation_1.png"/>
 
 If username is changed by the user, the mysql username should be default value: root.
@@ -251,7 +262,7 @@ Both of their presenter implement an interface of resetting password
 It has multiple possible reasons: wrong username and password, non-existence Database or system blocking access.
 - In our program, we throw them out, if something like this happens, it's going to show on the Terminal of Intellij.
 - Normally if the database is successful installed and the username plus password both correct, we will not meet this exception.
-- However, this exception do happen to exists so there's necessity to throw it out in every class that use the exception.
+- However, this exception do happen to exist so there's necessity to throw it out in every class that use the exception.
 - SQLExceptions are different from ClassNotFoundExceptions, the SQL method used in JDBC are set by ourselves and there are 
 method in Interactor that check if each variable used in JDBC command is correct. If other part of the program have no bugs, SQLExceptions are
 expected to never happen. 
