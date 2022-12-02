@@ -181,31 +181,41 @@ Installation Guide of MYSQL: https://www.javatpoint.com/how-to-install-mysql.
 When the installation is finished, our project require the mysql account and password to be remembered.
 The JDBC require them to access the data from MYSQL.
 The username and password should be updated at the src/main/java/tutorial/HelloWorld Line 18, 19.
-![](images/DatabaseExplanation_1.png)
+
+<img height="200" src="images/DatabaseExplanation_1.png"/>
+
 If username is changed by the user, the mysql username should be default value: root.
 ### How to use Datagrip to import the database and tables:
 Install Datagrip first: https://www.jetbrains.com/datagrip/.  
 After installation, click and open the Datagrip.
 Go to the left part of the page, under Database Explorer, choose to create a new Data Source.
-![](images/DatabaseExplanation_2.png)
+
+<img height="200" src="images/DatabaseExplanation_2.png"/>
 
 Pick MySQL under the Data Source list. 
 It will create a localhost, enter the User(which is root) and Password(As previously set).
-![](images/DatabaseExplanation_3.png)
+
+<img height="400" src="images/DatabaseExplanation_3.png" width="400"/>
+
 Click Test Connection below to verify it's successfully connected to the local MySQL server.
-![](images/DatabaseExplanation_4.png)
+
+<img height="400" src="images/DatabaseExplanation_4.png" width="400"/>
+
 Click OK, the localhost is built. 
 Then right-click the localhost, + New, Choose add a new Schema, create a database.
-![](images/DatabaseExplanation_5.png)
+
+<img height="100" src="images/DatabaseExplanation_5.png"/>
 
 Copy the path of the database to the HelloWorld File, Line 17, the location of the local database need to be changed.
-![](images/DatabaseExplanation_6.png)
+
+<img height="150" src="images/DatabaseExplanation_6.png"/>
 
 In the main/java/database_for_general.sql, it's out database default file, it contains no data.
 Right-click the database created under localhost, choose import/export, click 'Restore with mysql', find and set the location of the mysql.exe and the location of the file database_for_general.sql. 
 The whole table would be imported.
-![](images/DatabaseExplanation_7.png)
-![](images/DatabaseExplanation_8.png)
+
+<img height="400" src="images/DatabaseExplanation_7.png" width="400"/>
+<img height="400" src="images/DatabaseExplanation_8.png" width="400"/>
 
 
 ## SOLID Principles and Design Patterns
@@ -236,7 +246,15 @@ we will call the written command from the mysql to return a whole list, the java
 - Strategy Design Pattern: Organizer and participant can reset the password through different page, each of them have a controller and presenter. 
 Both of their presenter implement an interface of resetting password
 
-
+### ClassNotFoundExceptions And SQLExceptions
+- In the database branch codes, there's an unavoidable possibility that the Java program cannot access the MySQl.
+It has multiple possible reasons: wrong username and password, non-existence Database or system blocking access.
+- In our program, we throw them out, if something like this happens, it's going to show on the Terminal of Intellij.
+- Normally if the database is successful installed and the username plus password both correct, we will not meet this exception.
+- However, this exception do happen to exists so there's necessity to throw it out in every class that use the exception.
+- SQLExceptions are different from ClassNotFoundExceptions, the SQL method used in JDBC are set by ourselves and there are 
+method in Interactor that check if each variable used in JDBC command is correct. If other part of the program have no bugs, SQLExceptions are
+expected to never happen. 
 
 
 
