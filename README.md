@@ -197,7 +197,7 @@ The username and password should be updated at the src/main/java/database/JDBCUt
 
 
 
-<img height="200" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseExplanation_1.png"/>
+<img height="200" src="images/DatabaseExplanation_1.png"/>
 
 If username is changed by the user, the mysql username should be default value: root.
 ### How to use Datagrip to import the database and tables:
@@ -205,32 +205,32 @@ Install Datagrip first: https://www.jetbrains.com/datagrip/.
 After installation, click and open the Datagrip.
 Go to the left part of the page, under Database Explorer, choose to create a new Data Source.
 
-<img height="200" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseExplanation_2.png"/>
+![](images/DatabaseExplanation_2.png)
 
 Pick MySQL under the Data Source list. 
 It will create a localhost, enter the User(which is root) and Password(As previously set).
 
-<img height="400" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseExplanation_3.png" width="400"/>
+![](images/DatabaseExplanation_3.png)
 
 Click Test Connection below to verify it's successfully connected to the local MySQL server.
 
-<img height="400" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseExplanation_4.png" width="400"/>
+![](images/DatabaseExplanation_4.png)
 
 Click OK, the localhost is built. 
 Then right-click the localhost, + New, Choose add a new Schema, create a database.
 
-<img height="100" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseExplanation_5.png"/>
+![](images/DatabaseExplanation_5.png)
 
 Copy the path of the database to the HelloWorld File, Line 17, the location of the local database need to be changed.
 
-<img height="150" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseExplanation_6.png"/>
+![](images/DatabaseExplanation_6.png)
 
 In the main/java/database_for_general.sql, it's out database default file, it contains no data.
 Right-click the database created under localhost, choose import/export, click 'Restore with mysql', find and set the location of the mysql.exe and the location of the file database_for_general.sql. 
 The whole table would be imported.
 
-<img height="400" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseExplanation_7.png" width="400"/>
-<img height="400" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseExplanation_8.png" width="400"/>
+![](images/DatabaseExplanation_7.png)
+![](images/DatabaseExplanation_8.png)
 
 The whole table would be imported.
 
@@ -277,11 +277,11 @@ expected to never happen.
 - For each test, we need to create a new database in DataGrip, changing the username and password stored in JDBCUtils.java.
 - And then we need to restore the sql file through MysqlDump.
   
-<img height="300" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseTestingExplanation1.png"/>
+![](images/DatabaseTestingExplanation1.png)
 
 - After successfully imported, click the test button to test them.
 
-<img height="100" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseTestingExplanation2.png"/>
+![](images/DatabaseTestingExplanation2.png)
 
 ### Potential Bug for testing database importing
 - Every computer may use a different encoding scheme, when importing the .sql file, we might meet problems of character sets.
@@ -289,8 +289,7 @@ expected to never happen.
 - If the problem is about utf8mb4_0900_ai_ci, replace it with utf8_unicode_ci.
 - If the problem is about utf8_unicode_ci, replace it with utf8mb4_0900_ai_ci.
 
-<img height="200" src="../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application%20Support/com.tencent.xinWeChat/2.0b4.0.9/d528044fafdaf2ed7b4eabc59ea078bf/Message/MessageTemp/9ee6a0c4fa8fbe9c66af8a1212c4af5a/File/course-project-group-71/images/DatabaseTestingExplanation3.png"/>
-
+![](images/DatabaseTestingExplanation3.png)
 
 
 
