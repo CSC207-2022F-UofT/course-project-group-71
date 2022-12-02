@@ -279,13 +279,13 @@ expected to never happen.
 
 <img height="100" src="images/DatabaseTestingExplanation2.png"/>
 
-### Potential Bug for testing datbase importing
+### Potential Bug for testing database importing
 - Every computer may use a different encoding scheme, when importing the .sql file, we might meet problems of character sets.
 - For this situation, we have no better solution but replacing all identify name in the sql file by Intellij auto replacement function.
 - If the problem is about utf8mb4_0900_ai_ci, replace it with utf8_unicode_ci.
 - If the problem is about utf8_unicode_ci, replace it with utf8mb4_0900_ai_ci.
 
-<img height="300" src="images/DatabaseTestingExplanation3.png"/>
+<img height="200" src="images/DatabaseTestingExplanation3.png"/>
 
 
 
