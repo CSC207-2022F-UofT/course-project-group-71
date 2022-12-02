@@ -4,8 +4,6 @@ import use_cases.par_search_org_use_case.ParSearchOrgInputBoundary;
 import use_cases.par_search_org_use_case.ParSearchOrgRequestModel;
 import use_cases.par_search_org_use_case.ParSearchOrgResponseModel;
 
-import java.sql.SQLException;
-
 public class ParSearchOrgController {
 
     final ParSearchOrgInputBoundary userInput;

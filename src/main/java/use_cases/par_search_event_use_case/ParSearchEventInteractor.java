@@ -3,7 +3,6 @@ package use_cases.par_search_event_use_case;
 import database.EventDsGateway;
 
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ParSearchEventInteractor implements ParSearchEventInputBoundary {

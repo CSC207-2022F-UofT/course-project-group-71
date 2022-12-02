@@ -4,8 +4,6 @@ import use_cases.par_join_event_use_case.ParJoinEventInputBoundary;
 import use_cases.par_join_event_use_case.ParJoinEventRequestModel;
 import use_cases.par_join_event_use_case.ParJoinEventResponseModel;
 
-import java.sql.SQLException;
-
 
 public class ParJoinEventController {
 

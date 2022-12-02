@@ -2,8 +2,6 @@ package use_cases.par_follow_org_use_case;
 
 import database.ParDsGateway;
 
-import java.sql.SQLException;
-
 public class ParFollowOrgInteractor implements ParFollowOrgInputBoundary {
 
     final ParDsGateway parDsGateway;

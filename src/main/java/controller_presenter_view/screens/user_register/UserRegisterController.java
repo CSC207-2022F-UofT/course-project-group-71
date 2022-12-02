@@ -4,8 +4,6 @@ import use_cases.user_register_use_case.UserRegisterInputBoundary;
 import use_cases.user_register_use_case.UserRegisterRequestModel;
 import use_cases.user_register_use_case.UserRegisterResponseModel;
 
-import java.sql.SQLException;
-
 public class UserRegisterController {
     final UserRegisterInputBoundary interactor;
 

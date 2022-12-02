@@ -4,8 +4,6 @@ import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventRequestModel;
 import use_cases.notify_event_use_case.NotifyEventResponseModel;
 
-import java.sql.SQLException;
-
 /**The controller will be called by:
  * 1. OrgHomeActionListener             When the organization clicks to the OrgUpcomingEventPage or OrgPastEventPage from OrgHomePage
  * 2. OrgUpcomingEventActionListener    When the organization clicks the "Notify" button on org upcoming event page

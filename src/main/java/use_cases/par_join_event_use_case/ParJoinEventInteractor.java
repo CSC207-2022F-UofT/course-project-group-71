@@ -2,8 +2,6 @@ package use_cases.par_join_event_use_case;
 
 import database.ParDsGateway;
 
-import java.sql.SQLException;
-
 public class ParJoinEventInteractor implements ParJoinEventInputBoundary {
     final ParJoinEventOutputBoundary presenter;
     final ParDsGateway parDsGateway;

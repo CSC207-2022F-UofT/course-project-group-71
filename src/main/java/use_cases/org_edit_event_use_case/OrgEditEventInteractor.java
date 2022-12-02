@@ -2,7 +2,6 @@ package use_cases.org_edit_event_use_case;
 
 import database.OrgDsGateway;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class OrgEditEventInteractor implements OrgEditEventInputBoundary {

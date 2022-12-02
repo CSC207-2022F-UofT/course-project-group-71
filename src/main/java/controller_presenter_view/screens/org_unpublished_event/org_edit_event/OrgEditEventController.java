@@ -4,8 +4,6 @@ import use_cases.org_edit_event_use_case.OrgEditEventInputBoundary;
 import use_cases.org_edit_event_use_case.OrgEditEventRequestModel;
 import use_cases.org_edit_event_use_case.OrgEditEventResponseModel;
 
-import java.sql.SQLException;
-
 public class OrgEditEventController {
 
     final OrgEditEventInputBoundary userInput;

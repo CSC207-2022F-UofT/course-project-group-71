@@ -4,7 +4,6 @@ import database.EventDsGateway;
 import database.OrgDsGateway;
 import database.ParDsGateway;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 

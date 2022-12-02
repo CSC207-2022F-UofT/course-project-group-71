@@ -4,8 +4,6 @@ import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgRequestModel;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgResponseModel;
 
-import java.sql.SQLException;
-
 /**The controller will be called by:
  * 1. ParSearchOrgResultsPageActionListener   When the participant clicks the "Unfollow" button on ParSearchOrgResultsPage
  * 2. ParFollowedOrgActionListener            When the organization clicks the "Unfollow" button on ParFollowedOrgPage

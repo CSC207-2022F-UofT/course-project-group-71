@@ -4,8 +4,6 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastRequestModel;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
-import java.sql.SQLException;
-
 /**The controller will be called by:
  * 1. OrgHomeActionListener When the organization clicks to the OrgUpcomingEventPage or OrgPastEventPage from OrgHomePage
  * 2. LoginPage             When a participant user clicks the "Login" button

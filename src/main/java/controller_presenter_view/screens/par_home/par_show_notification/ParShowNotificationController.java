@@ -4,8 +4,6 @@ import use_cases.par_show_notification_use_case.ParShowNotificationInputBoundary
 import use_cases.par_show_notification_use_case.ParShowNotificationRequestModel;
 import use_cases.par_show_notification_use_case.ParShowNotificationResponseModel;
 
-import java.sql.SQLException;
-
 public class ParShowNotificationController {
     final ParShowNotificationInputBoundary userInput;
 

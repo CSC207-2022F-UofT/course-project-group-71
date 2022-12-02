@@ -2,7 +2,6 @@ package use_cases.par_search_org_use_case;
 
 import database.OrgDsGateway;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ParSearchOrgInteractor implements ParSearchOrgInputBoundary {

@@ -1,7 +1,5 @@
 package use_cases.org_edit_event_use_case;
 
-import java.sql.SQLException;
-
 /** Interface implements by interactor.
  * The interactor who implement the interface must have edit() method.
  */

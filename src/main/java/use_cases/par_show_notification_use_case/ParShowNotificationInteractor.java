@@ -2,7 +2,6 @@ package use_cases.par_show_notification_use_case;
 
 import database.ParDsGateway;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ParShowNotificationInteractor implements ParShowNotificationInputBoundary {

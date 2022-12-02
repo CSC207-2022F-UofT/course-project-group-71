@@ -2,7 +2,6 @@ package use_cases.upcoming_to_past_use_case;
 
 import database.*;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 

@@ -2,7 +2,6 @@ package use_cases.notify_event_use_case;
 
 import database.*;
 
-import java.sql.SQLException;
 import java.util.*;
 
 public class NotifyEventInteractor implements NotifyEventInputBoundary {

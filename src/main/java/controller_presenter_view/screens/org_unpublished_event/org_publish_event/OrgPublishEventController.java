@@ -4,8 +4,6 @@ import use_cases.org_publish_event_use_case.OrgPublishEventInputBoundary;
 import use_cases.org_publish_event_use_case.OrgPublishEventRequestModel;
 import use_cases.org_publish_event_use_case.OrgPublishEventResponseModel;
 
-import java.sql.SQLException;
-
 public class OrgPublishEventController {
     final OrgPublishEventInputBoundary userInput;
     //

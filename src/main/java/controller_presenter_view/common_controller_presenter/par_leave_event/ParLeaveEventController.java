@@ -4,8 +4,6 @@ import use_cases.par_leave_event_use_case.ParLeaveEventInputBoundary;
 import use_cases.par_leave_event_use_case.ParLeaveEventRequestModel;
 import use_cases.par_leave_event_use_case.ParLeaveEventResponseModel;
 
-import java.sql.SQLException;
-
 /**The controller will be called by:
  * 1. ParSearchEventResultsPageActionListener   When the participant clicks the "Leave" button on ParSearchEventResultsPage
  * 2. ParUpcomingEventActionListener            When the organization clicks the "Leave" button on ParUpcomingEventPage

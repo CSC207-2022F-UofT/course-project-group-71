@@ -3,7 +3,6 @@ package use_cases.org_create_event_use_case;
 import database.EventDsGateway;
 import database.OrgDsGateway;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
@@ -37,7 +36,9 @@ public class OrgCreateEventInteractor implements OrgCreateEventInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the event creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found
      */
+
     @Override
     public OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws ClassNotFoundException {
         // Checks if all entries are non-empty: title, description, year, month, day, hour, minute, location.

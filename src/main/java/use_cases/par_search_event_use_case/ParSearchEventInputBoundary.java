@@ -1,7 +1,5 @@
 package use_cases.par_search_event_use_case;
 
-import java.sql.SQLException;
-
 /** Interface implements by interactor.
  * The interactor who implement the interface must have eventSearch() method.
  */

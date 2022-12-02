@@ -10,7 +10,6 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class LoginPage extends JFrame implements ActionListener {
 

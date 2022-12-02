@@ -4,8 +4,6 @@ import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
 import use_cases.org_create_event_use_case.OrgCreateEventRequestModel;
 import use_cases.org_create_event_use_case.OrgCreateEventResponseModel;
 
-import java.sql.SQLException;
-
 public class OrgCreateEventController {
 
     final OrgCreateEventInputBoundary USER_INPUT;

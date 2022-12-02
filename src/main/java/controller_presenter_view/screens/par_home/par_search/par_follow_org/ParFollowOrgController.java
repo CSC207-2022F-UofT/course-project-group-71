@@ -4,8 +4,6 @@ import use_cases.par_follow_org_use_case.ParFollowOrgInputBoundary;
 import use_cases.par_follow_org_use_case.ParFollowOrgRequestModel;
 import use_cases.par_follow_org_use_case.ParFollowOrgResponseModel;
 
-import java.sql.SQLException;
-
 public class ParFollowOrgController {
 
     final ParFollowOrgInputBoundary interactor;

@@ -4,8 +4,6 @@ import use_cases.user_reset_password_use_case.UserResetPasswordInputBoundary;
 import use_cases.user_reset_password_use_case.UserResetPasswordRequestModel;
 import use_cases.user_reset_password_use_case.UserResetPasswordResponseModel;
 
-import java.sql.SQLException;
-
 public class OrgResetPasswordController {
     final UserResetPasswordInputBoundary userInput;
 

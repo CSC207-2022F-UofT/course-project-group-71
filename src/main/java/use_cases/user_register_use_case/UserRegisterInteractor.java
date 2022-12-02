@@ -4,7 +4,6 @@ package use_cases.user_register_use_case;
 import database.OrgDsGateway;
 import database.ParDsGateway;
 
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class UserRegisterInteractor implements UserRegisterInputBoundary {

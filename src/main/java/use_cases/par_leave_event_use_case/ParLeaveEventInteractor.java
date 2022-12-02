@@ -2,8 +2,6 @@ package use_cases.par_leave_event_use_case;
 
 import database.ParDsGateway;
 
-import java.sql.SQLException;
-
 public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
 
     final ParDsGateway parDsGateway;

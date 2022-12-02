@@ -1,7 +1,5 @@
 package use_cases.notify_event_use_case;
 
-import java.sql.SQLException;
-
 /** Interface implements by interact.
  * The interactor who implement the interface must have sendNotification() method.
  */
