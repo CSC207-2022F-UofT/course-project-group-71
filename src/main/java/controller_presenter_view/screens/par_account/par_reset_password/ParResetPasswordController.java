@@ -29,7 +29,7 @@ public class ParResetPasswordController {
 
     public UserResetPasswordResponseModel resetPassword(String username, String password, String newPassword, String reNewPassword) throws ClassNotFoundException {
         UserResetPasswordRequestModel requestModel = new UserResetPasswordRequestModel(username, password, false, newPassword, reNewPassword);
-        System.out.println(password);
+
         return userInput.resetPassword(requestModel);
     }
 }

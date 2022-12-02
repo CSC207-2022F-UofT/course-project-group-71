@@ -12,6 +12,8 @@ import use_cases.user_register_use_case.UserRegisterInputBoundary;
 import use_cases.user_register_use_case.UserRegisterInteractor;
 import use_cases.user_register_use_case.UserRegisterResponseModel;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**Do not need prior data
@@ -43,6 +45,7 @@ public class UserRegisterTest {
         try {
             responseModel = userRegisterController.create("", "O",
                     "1", "12345", "12345");
+            TimeUnit.SECONDS.sleep(3);
             assertEquals("1, you can login now!", responseModel.getMessage());
         } catch (Exception e) {
             assert(false);
@@ -87,6 +90,7 @@ public class UserRegisterTest {
         try {
             responseModel = userRegisterController.create("P", "",
                     "1", "12345", "12345");
+            TimeUnit.SECONDS.sleep(3);
             assertEquals("1, you can login now!", responseModel.getMessage());
         } catch (Exception e) {
             assert(false);
@@ -98,7 +102,8 @@ public class UserRegisterTest {
         try {
             responseModel = userRegisterController.create("P", "",
                     "1", "12345", "12345");
-            assert (false);
+            TimeUnit.SECONDS.sleep(10);
+            assert(false);
         } catch (Exception e) {
             assertEquals("Participant already exists.", e.getMessage());
         }

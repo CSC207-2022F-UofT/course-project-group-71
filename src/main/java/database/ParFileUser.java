@@ -170,7 +170,6 @@ public class ParFileUser implements ParDsGateway {
      */
     public void UtilClearNotifications(String par_username) throws ClassNotFoundException {
         String sql = "delete from par_notification where par_username = '" + par_username + "';";
-        System.out.println(sql);
         utilUpdateVoid(sql);
     }
 

@@ -219,11 +219,9 @@ public class EventFileUser implements EventDsGateway{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = JDBCUtils.getConnection();
-            System.out.println(title);
             String sql = "select year,month,day,hour,minute from eventfile where title = '" + title + "';";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            System.out.println("rsQu?");
             if (rs.next()){
             l.add(rs.getInt("year"));
             l.add(rs.getInt("month"));

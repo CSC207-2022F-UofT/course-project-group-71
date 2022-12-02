@@ -77,7 +77,6 @@ public class ParFileUserTest {
     @Test
     void testAddNotification() throws ClassNotFoundException {
         ArrayList<String> Notifications = parFileUser.getNotifications("P2");
-        System.out.println(Notifications);
         assertFalse(Notifications.contains("Note_Temp"));
         parFileUser.addNotification("P2", "Note_Temp");
         Notifications = parFileUser.getNotifications("P2");
@@ -151,14 +150,9 @@ public class ParFileUserTest {
         ArrayList<String> Notifications = parFileUser.getNotifications("P2");
         assertTrue(Notifications.isEmpty());
         parFileUser.addNotification("P2", "Note_Temp");
-        System.out.println(1);
         Notifications = parFileUser.getNotifications("P2");
-        System.out.println(Notifications);
-        System.out.println("Evil");
         assertFalse(Notifications.isEmpty());
-        System.out.println(3);
         parFileUser.clearNotifications("P2");
-        System.out.println(4);
         Notifications = parFileUser.getNotifications("P2");
         assertTrue(Notifications.isEmpty());
 
