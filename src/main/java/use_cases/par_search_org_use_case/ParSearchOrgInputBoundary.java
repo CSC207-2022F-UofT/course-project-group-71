@@ -1,7 +1,5 @@
 package use_cases.par_search_org_use_case;
 
-import java.sql.SQLException;
-
 /** Interface implements by interactor.
  * The interactor who implement the interface must have orgSearch() method.
  */
@@ -11,5 +9,5 @@ public interface ParSearchOrgInputBoundary {
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the search for org is successful
      */
-    ParSearchOrgResponseModel orgSearch(ParSearchOrgRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    ParSearchOrgResponseModel orgSearch(ParSearchOrgRequestModel requestModel) throws ClassNotFoundException;
 }

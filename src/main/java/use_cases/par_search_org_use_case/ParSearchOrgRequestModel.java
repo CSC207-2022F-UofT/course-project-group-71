@@ -5,8 +5,8 @@ package use_cases.par_search_org_use_case;
  */
 public class ParSearchOrgRequestModel {
 
-    private String query;
-    private String parUserName;
+    private final String query;
+    private final String parUserName;
 
     /**A request model sent the interactor to search an organizer.
      *
@@ -26,11 +26,6 @@ public class ParSearchOrgRequestModel {
         return this.query;
     }
 
-    /**A method to set the string to be searched.
-     */
-    public void setQuery(String query) {
-        this.query = query;
-    }
 
     /**A method to get the name of the participant from the request model.
      *
@@ -40,9 +35,4 @@ public class ParSearchOrgRequestModel {
         return parUserName;
     }
 
-    /**A method to set the name of the participant.
-     */
-    public void setParUserName(String parUserName) {
-        this.parUserName = parUserName;
-    }
 }

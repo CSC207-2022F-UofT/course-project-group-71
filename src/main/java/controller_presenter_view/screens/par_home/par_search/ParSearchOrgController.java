@@ -4,8 +4,6 @@ import use_cases.par_search_org_use_case.ParSearchOrgInputBoundary;
 import use_cases.par_search_org_use_case.ParSearchOrgRequestModel;
 import use_cases.par_search_org_use_case.ParSearchOrgResponseModel;
 
-import java.sql.SQLException;
-
 public class ParSearchOrgController {
 
     final ParSearchOrgInputBoundary userInput;
@@ -24,10 +22,9 @@ public class ParSearchOrgController {
      * @param query A string containing the participant's search query
      * @param parUserName The username of the participant
      * @return Returns a response model containing the search results
-     * @throws SQLException Exceptions raised from SQL
-     * @throws ClassNotFoundException Exceptions raised due to missing classes
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ParSearchOrgResponseModel orgSearch(String query, String parUserName) throws SQLException, ClassNotFoundException {
+    public ParSearchOrgResponseModel orgSearch(String query, String parUserName) throws ClassNotFoundException {
         ParSearchOrgRequestModel requestModel = new ParSearchOrgRequestModel(query,parUserName);
         return userInput.orgSearch(requestModel);
     }

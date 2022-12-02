@@ -7,8 +7,8 @@ import java.util.ArrayList;
  */
 public class ParSearchOrgResponseModel {
 
-    private ArrayList<String> searchResults;
-    private String parUserName;
+    private final ArrayList<String> searchResults;
+    private final String parUserName;
 
     /**This is the construct method of ParSearchOrgResponseModel, it takes searchResults and parUserName, then store them as instance.
      *
@@ -29,11 +29,6 @@ public class ParSearchOrgResponseModel {
         return searchResults;
     }
 
-    /**This is a method to set searchResults.
-     */
-    public void setSearchResults(ArrayList<String> searchResults) {
-        this.searchResults = searchResults;
-    }
 
     /**This is a method to get the returned participant username.
      *
@@ -43,9 +38,4 @@ public class ParSearchOrgResponseModel {
         return parUserName;
     }
 
-    /**This is a method to set participant username.
-     */
-    public void setParUserName(String parUserName) {
-        this.parUserName = parUserName;
-    }
 }

@@ -13,21 +13,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
+import static controller_presenter_view.screens.screen_constants.getConstantX;
+import static controller_presenter_view.screens.screen_constants.getConstantY;
+
 
 public class ParSearchOrgResultsPage extends JFrame {
 
-    ArrayList<String> orgNames, followedList;
-    String parUsername;
-    ParDsGateway p = new ParFileUser();
+    final ArrayList<String> orgNames;
+    final ArrayList<String> followedList;
+    final String parUsername;
+    final ParDsGateway p = new ParFileUser();
 
     /**The main method for creating the search results page.
      *
      * @param orgNames An ArrayList<String> containing all the search results
      * @param parUsername A string containing the participant's username
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ParSearchOrgResultsPage(ArrayList<String> orgNames, String parUsername) {
+    public ParSearchOrgResultsPage(ArrayList<String> orgNames, String parUsername) throws ClassNotFoundException {
 
         this.parUsername = parUsername;
         this.orgNames = orgNames;
@@ -57,10 +60,10 @@ public class ParSearchOrgResultsPage extends JFrame {
         JPanel organizers = new JPanel();
         organizers.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
 
-        int numberOrgs = orgNames.size();
-        if (numberOrgs != 0) {
+        int numberOrg = orgNames.size();
+        if (numberOrg != 0) {
 
-            organizers.setLayout(new GridLayout(numberOrgs, 0, 10, 10));
+            organizers.setLayout(new GridLayout(numberOrg, 0, 10, 10));
 
             int x = 0;
             int y = 0;
@@ -74,7 +77,7 @@ public class ParSearchOrgResultsPage extends JFrame {
                 orgName.setVisible(true);
 
 
-               if (this.followedList.contains(nextOrg)) {
+                if (this.followedList.contains(nextOrg)) {
                     JButton unfollow = new JButton("Unfollow");
                     unfollow.setActionCommand("Unfollow "+nextOrg);
                     unfollow.addActionListener(new ParSearchOrgResultsPageActionListener(this, nextOrg));
@@ -82,16 +85,16 @@ public class ParSearchOrgResultsPage extends JFrame {
                     organizers.add(unfollow);
                     unfollow.setVisible(true);
 
-               } else {
-                   JButton follow = new JButton("Follow "+nextOrg);
-                   follow.setActionCommand("Follow "+nextOrg);
-                   follow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
-                   follow.setBounds(x, y, 250, 30);
-                   organizers.add(follow);
-                   follow.setVisible(true);
-               }
+                } else {
+                    JButton follow = new JButton("Follow "+nextOrg);
+                    follow.setActionCommand("Follow "+nextOrg);
+                    follow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
+                    follow.setBounds(x, y, 250, 30);
+                    organizers.add(follow);
+                    follow.setVisible(true);
+                }
 
-               y += 100;
+                y += 100;
             }
 
             JScrollPane orgScroll = new JScrollPane(organizers);

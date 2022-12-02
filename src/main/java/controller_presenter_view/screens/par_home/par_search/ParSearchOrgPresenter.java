@@ -13,9 +13,10 @@ public class ParSearchOrgPresenter implements ParSearchOrgOutputBoundary {
      *
      * @param responseModel A response model containing information to show success view
      * @return Returns the response model
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
-    public ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel responseModel) {
+    public ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel responseModel) throws ClassNotFoundException {
         ArrayList<String> orgNames = responseModel.getSearchResults();
         String parUserName = responseModel.getParUserName();
         new ParSearchOrgResultsPage(orgNames, parUserName);
