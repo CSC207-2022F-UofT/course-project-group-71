@@ -40,6 +40,10 @@ There is no caps of number of people attending for all events.
 
 The starter file launches the Login Page.
 
+`src/main/java/database/JDBCUtils`
+
+The class stores important data for using the database.
+
 There are 3 static variables in the class:
 
 - databaseUrl = "jdbc:mysql://localhost:3306/db2"
