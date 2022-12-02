@@ -3,13 +3,12 @@ package use_cases.par_search_event_use_case;
 import database.EventDsGateway;
 
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
 
-    EventDsGateway eventDsGateway;
-    ParSearchEventOutputBoundary userOutput;
+    final EventDsGateway eventDsGateway;
+    final ParSearchEventOutputBoundary userOutput;
 
     /**Constructor
      *
@@ -29,7 +28,7 @@ public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
      * @return userOutput representing whether the event search is successful
      */
     @Override
-    public ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel userInput) throws SQLException, ClassNotFoundException {
+    public ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel userInput) throws ClassNotFoundException {
         ArrayList<String> searchResults = eventDsGateway.eventSearch(userInput.getQuery());
         if (searchResults.isEmpty()) {
             return userOutput.prepareFailView("No event found.");

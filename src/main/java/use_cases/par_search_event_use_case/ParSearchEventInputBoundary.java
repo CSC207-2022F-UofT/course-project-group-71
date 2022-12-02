@@ -1,7 +1,5 @@
 package use_cases.par_search_event_use_case;
 
-import java.sql.SQLException;
-
 /** Interface implements by interactor.
  * The interactor who implement the interface must have eventSearch() method.
  */
@@ -11,5 +9,5 @@ public interface ParSearchEventInputBoundary {
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the search for event is successful
      */
-    ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel requestModel) throws ClassNotFoundException;
 }

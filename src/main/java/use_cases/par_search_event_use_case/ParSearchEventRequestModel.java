@@ -5,8 +5,8 @@ package use_cases.par_search_event_use_case;
  */
 public class ParSearchEventRequestModel {
 
-    private String query;
-    private String parUserName;
+    private final String query;
+    private final String parUserName;
 
     /**A request model sent the interactor to search for event.
      *
@@ -34,15 +34,5 @@ public class ParSearchEventRequestModel {
         return parUserName;
     }
 
-    /**A method to set the name of the participant.
-     */
-    public void setParUserName(String parUserName) {
-        this.parUserName = parUserName;
-    }
 
-    /**A method to set the string to be searched.
-     */
-    public void setQuery(String query) {
-        this.query = query;
-    }
 }

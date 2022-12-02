@@ -11,16 +11,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static tutorial.HelloWorld.getConstantX;
-import static tutorial.HelloWorld.getConstantY;
+import static controller_presenter_view.screens.screen_constants.getConstantX;
+import static controller_presenter_view.screens.screen_constants.getConstantY;
+
 
 public class ParSearchEventResultsPage extends JFrame {
 
-    ArrayList<String> eventNames;
-    String parUsername;
-    ParDsGateway p = new ParFileUser();
+    final ArrayList<String> eventNames;
+    final String parUsername;
+    final ParDsGateway p = new ParFileUser();
 
-    /**A getter for the event names dispayed on the search page.
+    /**A getter for the event names displayed on the search page.
      *
      * @return An array list containing event names
      */
@@ -32,8 +33,9 @@ public class ParSearchEventResultsPage extends JFrame {
      *
      * @param eventNames An array list containing all the search results
      * @param parUserName The username of the participant
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) {
+    public ParSearchEventResultsPage(ArrayList<String> eventNames, String parUserName) throws ClassNotFoundException {
 
         this.eventNames = eventNames;
         this.parUsername = parUserName;
@@ -50,11 +52,13 @@ public class ParSearchEventResultsPage extends JFrame {
 
         this.setLocationRelativeTo(null);
 
+        //This is the title
         JLabel title = new JLabel("Event Search Results");
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
 
+        //This is the "Back" button
         JButton back = new JButton("Back");
         back.addActionListener(new ParSearchEventResultsPageActionListener(this,"none"));
         back.setBounds(0, 100, 150, 30);
@@ -62,6 +66,8 @@ public class ParSearchEventResultsPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
 
+        //if there are events related with the string the participant searched,
+        //The following for loop will loop through and display the event in the search page.
         int numberEvents = this.eventNames.size();
         if (numberEvents != 0) {
 
@@ -79,6 +85,9 @@ public class ParSearchEventResultsPage extends JFrame {
                 eventName.setVisible(true);
 
 
+                //Leave and Join button for each event won't appear at same time, when the Participant was joined
+                //the event already, there will be leave; similarly, if the participant haven't joined the event,
+                //There will be "Join" button.
                 if (eventFollowed.contains(nextEvent)) {
                     JButton join = new JButton("Leave");
                     join.setActionCommand("Leave "+nextEvent);

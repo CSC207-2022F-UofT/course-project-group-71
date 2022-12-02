@@ -4,8 +4,6 @@ import use_cases.par_search_event_use_case.ParSearchEventInputBoundary;
 import use_cases.par_search_event_use_case.ParSearchEventRequestModel;
 import use_cases.par_search_event_use_case.ParSearchEventResponseModel;
 
-import java.sql.SQLException;
-
 public class ParSearchEventController {
 
 
@@ -27,10 +25,9 @@ public class ParSearchEventController {
      * @param query The search query
      * @param parUserName The username of the participant
      * @return Returns the response model, which is a data structure containing the search results
-     * @throws SQLException This exception handles mistakes in SQL
-     * @throws ClassNotFoundException This exception handles missing classes
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ParSearchEventResponseModel eventSearch(String query, String parUserName) throws SQLException, ClassNotFoundException {
+    public ParSearchEventResponseModel eventSearch(String query, String parUserName) throws ClassNotFoundException {
         ParSearchEventRequestModel requestModel = new ParSearchEventRequestModel(query,parUserName);
         return userInput.eventSearch(requestModel);
     }

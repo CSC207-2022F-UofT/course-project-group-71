@@ -1,6 +1,5 @@
 package use_cases.par_search_event_use_case;
 
-import java.sql.SQLException;
 
 /** Class used to prepare failure or success view.
  */
@@ -11,7 +10,7 @@ public interface ParSearchEventOutputBoundary {
      * @param results A response model containing information to show success view
      * @return A response model showing failure view
      */
-    ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results ) throws SQLException, ClassNotFoundException;
+    ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results ) throws ClassNotFoundException;
 
     /**A method used to show failure view to the user
      *

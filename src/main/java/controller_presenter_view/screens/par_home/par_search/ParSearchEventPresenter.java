@@ -4,7 +4,6 @@ import use_cases.par_search_event_use_case.ParSearchEventOutputBoundary;
 import use_cases.par_search_event_use_case.ParSearchEventResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ParSearchEventPresenter implements ParSearchEventOutputBoundary {
@@ -13,11 +12,10 @@ public class ParSearchEventPresenter implements ParSearchEventOutputBoundary {
      *
      * @param results A response model containing information to show success view
      * @return Returns the response model
-     * @throws SQLException This exception handles mistakes in SQL
-     * @throws ClassNotFoundException This exception handles missing classes
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
-    public ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results) throws SQLException, ClassNotFoundException {
+    public ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results) throws ClassNotFoundException {
         ArrayList<String> eventNames= results.getSearchResults();
         String parUserName= results.getParUserName();
         new ParSearchEventResultsPage(eventNames,parUserName);
