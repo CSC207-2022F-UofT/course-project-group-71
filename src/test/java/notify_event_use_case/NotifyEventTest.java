@@ -1,17 +1,19 @@
 package notify_event_use_case;
-import database.*;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
+import database.EventDsGateway;
+import database.EventFileUser;
+import database.ParDsGateway;
+import database.ParFileUser;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
 import use_cases.notify_event_use_case.NotifyEventResponseModel;
 
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Need to create "TeamMeeting1", "TeamMeeting2", "TeamMeeting3", "TeamMeeting4" in eventfile
@@ -60,8 +62,8 @@ public class NotifyEventTest {
         try {
             responseModel = controller.sendNotification("Past", "TeamMeeting3");
             assertEquals("Event TeamMeeting3 was over.", responseModel.getMessage());
-            TimeUnit.SECONDS.sleep(20);
-            assertEquals("Event TeamMeeting3 was over at 11-12 0:0.", parDsGateway.getNotifications("654321").get(0));
+            //TimeUnit.SECONDS.sleep(20);
+            assert(parDsGateway.getNotifications("654321").contains("Event TeamMeeting3 was over at 1-1 1:1."));
         } catch (Exception e) {
             assert(false);
         }
@@ -73,8 +75,8 @@ public class NotifyEventTest {
         try {
             responseModel = controller.sendNotification("Future", "TeamMeeting4");
             assertEquals("Notification sent for TeamMeeting4!", responseModel.getMessage());
-            TimeUnit.SECONDS.sleep(20);
-            assertEquals("Event TeamMeeting4 is about to happen at 11-30 0:0.", parDsGateway.getNotifications("654321").get(1));
+            //TimeUnit.SECONDS.sleep(20);
+            assert(parDsGateway.getNotifications("654321").contains("Event TeamMeeting4 is about to happen at 1-1 1:1!"));
             parDsGateway.clearNotifications("654321");
         } catch (Exception e) {
             assert(false);
