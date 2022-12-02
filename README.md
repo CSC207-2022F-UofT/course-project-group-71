@@ -287,6 +287,7 @@ expected to never happen.
 - For this situation, we have no better solution but replacing all identify name in the sql file by Intellij auto replacement function.
 - If the problem is about utf8mb4_0900_ai_ci, replace it with utf8_unicode_ci.
 - If the problem is about utf8_unicode_ci, replace it with utf8mb4_0900_ai_ci.
+- Reference links: https://stackoverflow.com/questions/54885178/whats-the-difference-between-utf8-unicode-ci-and-utf8mb4-0900-ai-ci
 
 ![](images/DatabaseTestingExplanation3.png)
 
