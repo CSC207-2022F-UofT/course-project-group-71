@@ -41,11 +41,14 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
         String orgUsername = this.orgUnpublishedEventPage.getOrgUsername();
 
         if (actionCommand.equals("Back")) {
+            //Back to home page
             this.orgUnpublishedEventPage.dispose();
             new OrgHomePage(orgUsername);
         }
         else if (actionCommand.contains("Delete")) {
+            //initialize the controller
             OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
+            //delete the event
             String eventName = actionCommand.substring(0,actionCommand.length()-6);
             OrgDeleteEventResponseModel responseModel;
             try {
@@ -53,7 +56,9 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+            //show success message
             JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
+            //renew the unpublished event page
             this.orgUnpublishedEventPage.dispose();
             try {
                 new OrgUnpublishedEventPage(orgUsername);
@@ -62,6 +67,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             }
         }
         else if (actionCommand.contains("Publish")){
+            //try to publish the event
             EventDsGateway eventDsGateway = new EventFileUser();
             OrgDsGateway orgDsGateway = new OrgFileUser();
             ParDsGateway parDsGateway = new ParFileUser();
@@ -74,19 +80,22 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             try {
                 responseModel = orgPublishEventController.publish(eventName, orgUsername);
                 JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, responseModel.getMessage());
+                //if no exception found, renew the unpublished event page
+                this.orgUnpublishedEventPage.dispose();
+                try {
+                    new OrgUnpublishedEventPage(orgUsername);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (RuntimeException e) {
+                //if publish is not successful, show fail message
                 JOptionPane.showMessageDialog(this.orgUnpublishedEventPage, e.getMessage());
-            }
-            this.orgUnpublishedEventPage.dispose();
-            try {
-                new OrgUnpublishedEventPage(orgUsername);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
             }
         }
         else if (actionCommand.equals("Create An Event")){
+            //Generate Create Event Page
             EventDsGateway eventDsGateway = new EventFileUser();
             OrgDsGateway orgDsGateway= new OrgFileUser();
             OrgCreateEventOutputBoundary orgCreateEventOutputBoundary = new OrgCreateEventPresenter();
@@ -95,6 +104,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             new OrgCreateEventPage(orgCreateEventController, this.orgUnpublishedEventPage);
         }
         else if (actionCommand.contains("Edit")){
+            //Generate Edit Event Page
             EventDsGateway eventDsGateway = new EventFileUser();
             OrgDsGateway orgDsGateway= new OrgFileUser();
             OrgEditEventOutputBoundary orgEditEventOutputBoundary = new OrgEditEventPresenter();
@@ -107,7 +117,8 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
                 throw new RuntimeException(e);
             }
         }
-        else {//Generate Event Detail Page
+        else {
+            //Generate Event Detail Page
             try {
                 new EventDetailsPage(actionCommand);
             } catch (ClassNotFoundException e) {

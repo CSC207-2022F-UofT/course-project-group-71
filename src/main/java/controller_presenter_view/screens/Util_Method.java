@@ -18,6 +18,11 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
+import javax.swing.*;
+
+import static controller_presenter_view.screens.screen_constants.getConstantX;
+import static controller_presenter_view.screens.screen_constants.getConstantY;
+
 public class Util_Method {
 
     public static void convertAndNotify(String userType, String orgUsername){
@@ -63,5 +68,45 @@ public class Util_Method {
                 parDsGateway, orgDeleteEventOutputBoundary);
 
         return new OrgDeleteEventController(interactor);
+    }
+
+    public static JScrollPane generateJScrollPane(JPanel jPanel){
+        JScrollPane jScrollPane = new JScrollPane(jPanel);
+        jScrollPane.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
+        jScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        return jScrollPane;
+    }
+
+    /**
+     * This is the function to generate a label text panel
+     * @param text the text we want to show
+     * @param J the JPasswordField
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return a text panel
+     */
+    public static LabelTextPanel create_text_panel(String text, JPasswordField J, int x, int y, int width, int height){
+        LabelTextPanel output = new LabelTextPanel(new JLabel(text), J);
+        output.setBounds (x,y, width, height);
+        return output;
+    }
+
+    /**
+     * This is the function to generate a JLabel
+     * @param text the text we want to show
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return a text panel
+     */
+    public static JLabel create_JLabel(String text, int x, int y, int width, int height){
+        JLabel output = new JLabel(text);
+        output.setBounds(x, y, width, height);
+        output.setHorizontalAlignment(JLabel.CENTER);
+        return output;
     }
 }

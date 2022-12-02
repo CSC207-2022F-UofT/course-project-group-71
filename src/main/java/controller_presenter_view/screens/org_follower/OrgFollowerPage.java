@@ -1,6 +1,7 @@
 package controller_presenter_view.screens.org_follower;
 
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
+import controller_presenter_view.screens.Util_Method;
 import database.*;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
@@ -38,30 +39,54 @@ public class OrgFollowerPage extends JFrame {
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-        //Add a button "Back", clicking it will come back to last page
-        JButton back = new JButton("Back");
-        back.addActionListener(new OrgFollowerActionListener(this));
-        back.setBounds(0, 100, 150, 30);
-
         //Create a JPanel to store followers
         JPanel followers = new JPanel();
         followers.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
-        //Obtain OrgDsGateway and followers
-        OrgDsGateway orgDsGateway = new OrgFileUser();
+        //generate followers' username in the JPanel followers, and return the number of follower
+        int numberOfFollower = generateFollowers(followers);
 
-
-        ExtractInfoInputBoundary interactor = new ExtractInfoInteractor(orgDsGateway);
-        ExtractInfoController extractInfoController = new ExtractInfoController(interactor);
-        ExtractInfoResponseModel<String> responseModel = extractInfoController.extractOrg("getFollowers", this.orgUsername);
-        ArrayList<String> Followers = responseModel.getAl();
-
-
-        int numberOfFollower = Followers.size();
+        //
         JLabel number = new JLabel("Total Number of Followers: " + numberOfFollower);
         JPanel followerN = new JPanel();
         followerN.add(number);
         followerN.setBounds(0,50, getConstantX(),40);
+
+        //Add the buttons to the screen
+        this.add(title);
+        this.add(followerN);
+        this.add(create_JButton("Back", 0, 100, 150, 30));
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
+    /**This method will be called in OrgFollowerActionListener.
+     * @return it will return a string which is organization's username.
+     */
+    public String getOrgUsername(){
+        //Obtain the username of the organizer
+        return orgUsername;
+    }
+
+    /**This method will generate events to fit into the JPanel events
+     *
+     * @param followers A JPanel that is designed to contain events
+     */
+    public int generateFollowers(JPanel followers) {
+        //Obtain OrgDsGateway and followers
+        OrgDsGateway orgDsGateway = new OrgFileUser();
+        ExtractInfoInputBoundary interactor = new ExtractInfoInteractor(orgDsGateway);
+        ExtractInfoController extractInfoController = new ExtractInfoController(interactor);
+        ExtractInfoResponseModel<String> responseModel;
+        try {
+            responseModel = extractInfoController.extractOrg("getFollowers", this.orgUsername);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        ArrayList<String> Followers = responseModel.getAl();
+
+        int numberOfFollower = Followers.size();
+
 
         //If there are events, there's going to be a scrolling bar with information in it
         if (numberOfFollower != 0) {
@@ -77,29 +102,29 @@ public class OrgFollowerPage extends JFrame {
                 followers.add(f);
                 y += 100;
             }
-            //Set the followerScroll as the container of followers JPanel
-            JScrollPane followerScroll = new JScrollPane(followers);
-            followerScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
-            followerScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-            followerScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+            //Put the JPanel into a JScrollPane
+            JScrollPane followerScroll = Util_Method.generateJScrollPane(followers);
             followerScroll.setVisible(true);
-            //Add the followerScroll back to the screen
             this.add(followerScroll);
         }
-
-        //Add the buttons to the screen
-        this.add(title);
-        this.add(followerN);
-        this.add(back);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+        return numberOfFollower;
     }
 
-    /**This method will be called in OrgFollowerActionListener.
-     * @return it will return a string which is organization's username.
+
+    /**
+     * This function returns a JButton with the input as set bounds
+     * @param text string of the button showing
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return return the JButton
      */
-    public String getOrgUsername(){
-        //Obtain the username of the organizer
-        return orgUsername;
+    public JButton create_JButton(String text, int x, int y, int width, int height){
+        JButton output = new JButton(text);
+        output.addActionListener(new OrgFollowerActionListener(this));
+        output.setBounds (x, y, width, height);
+        return output;
     }
 }

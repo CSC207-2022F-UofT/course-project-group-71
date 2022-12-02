@@ -1,6 +1,7 @@
 package controller_presenter_view.screens.org_past_event;
 
 
+import controller_presenter_view.screens.Util_Method;
 import database.EventDsGateway;
 import database.EventFileUser;
 import database.OrgDsGateway;
@@ -55,9 +56,9 @@ public class OrgPastEventPage extends JFrame {
         EventDsGateway e = new EventFileUser();
 
 
-        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(o);
-        ExtractInfoController controller1= new ExtractInfoController(interactor1);
-        ExtractInfoResponseModel<String> response1= controller1.extractOrg("getPastEvents",this.orgUsername);
+        ExtractInfoInputBoundary interactor1 = new ExtractInfoInteractor(o);
+        ExtractInfoController controller1 = new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1 = controller1.extractOrg("getPastEvents",this.orgUsername);
 
         ArrayList<String> pastEvents = response1.getAl();
 
@@ -91,7 +92,7 @@ public class OrgPastEventPage extends JFrame {
                 eventTime.setBounds(x + 20, y + 40, 250, 30);
                 eventTime.setVisible(true);
 
-                //Prepare teh interactor, controller and controller for extracting information of each past events
+                //Prepare the interactor, controller and controller for extracting information of each past events
                 ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
                 ExtractInfoController controller3= new ExtractInfoController(interactor3);
                 ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
@@ -110,17 +111,13 @@ public class OrgPastEventPage extends JFrame {
             }
 
             //Set parameters for JScrollPane
-            JScrollPane eventScroll = new JScrollPane(events);
-            eventScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
-            eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-            eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            JScrollPane eventScroll = Util_Method.generateJScrollPane(events);
             eventScroll.setVisible(true);
             this.add(eventScroll);
         }
         //Add title and back button to the page
         this.add(title);
         this.add(back);
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
