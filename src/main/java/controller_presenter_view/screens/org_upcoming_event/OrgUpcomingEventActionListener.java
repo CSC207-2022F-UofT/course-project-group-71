@@ -36,50 +36,53 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             this.orgUpcomingEventPage.dispose();
             new OrgHomePage(this.orgUpcomingEventPage.getOrgUsername());
         }
-        else if (actionCommand.contains("Notify")) {
-            EventDsGateway eventDsGateway = new EventFileUser();
-
-            ParDsGateway parDsGateway = new ParFileUser();
-
-            NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
-
-            NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway, notifyEventOutputBoundary);
-
-            NotifyEventController notifyEventController = new NotifyEventController(interactor);
-
-            String eventName = actionCommand.substring(0,actionCommand.length()-6);
-
-            try {
-                NotifyEventResponseModel responseModel =
-                        notifyEventController.sendNotification("Future", eventName);
-                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
-            }
-        }
-        else if (actionCommand.contains("Delete")) {
-            OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
-
-            String eventName = actionCommand.substring(0,actionCommand.length()-6);
-
-            try{
-                OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
-                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
-            } catch(Exception e) {
-                JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
-            }
-            this.orgUpcomingEventPage.dispose();
-            try {
-                new OrgUpcomingEventPage(this.orgUsername);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
         else {
-            try {
-                new EventDetailsPage(actionCommand);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+            final String substring = actionCommand.substring(0, actionCommand.length() - 6);
+            if (actionCommand.contains("Notify")) {
+                EventDsGateway eventDsGateway = new EventFileUser();
+    
+                ParDsGateway parDsGateway = new ParFileUser();
+    
+                NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
+    
+                NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway, notifyEventOutputBoundary);
+    
+                NotifyEventController notifyEventController = new NotifyEventController(interactor);
+    
+                String eventName = substring;
+    
+                try {
+                    NotifyEventResponseModel responseModel =
+                            notifyEventController.sendNotification("Future", eventName);
+                    JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
+                }
+            }
+            else if (actionCommand.contains("Delete")) {
+                OrgDeleteEventController orgDeleteEventController = Util_Method.utilGetDeleteEventControllerHelper();
+    
+                String eventName = substring;
+    
+                try{
+                    OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
+                    JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
+                } catch(Exception e) {
+                    JOptionPane.showMessageDialog(this.orgUpcomingEventPage, e.getMessage());
+                }
+                this.orgUpcomingEventPage.dispose();
+                try {
+                    new OrgUpcomingEventPage(this.orgUsername);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else {
+                try {
+                    new EventDetailsPage(actionCommand);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

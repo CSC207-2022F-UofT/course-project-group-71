@@ -8,7 +8,7 @@ public interface UserResetPasswordInputBoundary {
     /** Use the information contained in the request model can let user reset their password and response model.
      *
      * @param requestModel The request model sent to the input boundary
-     * @return A responsemodel representing whether the user resetPassword is successful.
+     * @return A response model representing whether the user resetPassword is successful.
      */
     UserResetPasswordResponseModel resetPassword(UserResetPasswordRequestModel requestModel) throws ClassNotFoundException;
 }

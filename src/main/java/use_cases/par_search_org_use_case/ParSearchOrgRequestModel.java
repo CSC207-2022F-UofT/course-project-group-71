@@ -26,8 +26,6 @@ public class ParSearchOrgRequestModel {
         return this.query;
     }
 
-    /**A method to set the string to be searched.
-     */
 
     /**A method to get the name of the participant from the request model.
      *

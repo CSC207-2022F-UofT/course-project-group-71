@@ -26,8 +26,7 @@ public class Util_Method {
         UpcomingToPastOutputBoundary upcomingToPastOutputBoundary = new UpcomingToPastPresenter();
         UpcomingToPastInputBoundary interactor = new UpcomingToPastInteractor(parDsGateway, orgDsGateway,
                 eventDsGateway, upcomingToPastOutputBoundary);
-        UpcomingToPastController controller = new UpcomingToPastController(interactor);
-        return controller;
+        return new UpcomingToPastController(interactor);
     }
 
     public static void utilNotifyEventHelper(UpcomingToPastResponseModel responseModel){
@@ -56,7 +55,6 @@ public class Util_Method {
         OrgDeleteEventInputBoundary interactor = new OrgDeleteEventInteractor(eventDsGateway,
                 parDsGateway, orgDeleteEventOutputBoundary);
 
-        OrgDeleteEventController orgDeleteEventController = new OrgDeleteEventController(interactor);
-        return orgDeleteEventController;
+        return new OrgDeleteEventController(interactor);
     }
 }

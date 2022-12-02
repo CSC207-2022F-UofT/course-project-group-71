@@ -230,33 +230,14 @@ public class EventFileUser implements EventDsGateway{
             l.add(rs.getInt("day"));
             l.add(rs.getInt("hour"));
             l.add(rs.getInt("minute"));
-            };
+            }
         } catch (ClassNotFoundException e) {
             throw new ClassNotFoundException();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if(stmt != null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            JDBCUtils.close_rs(rs);
+            JDBCUtils.close(stmt,conn);
         }
         return l;
     }

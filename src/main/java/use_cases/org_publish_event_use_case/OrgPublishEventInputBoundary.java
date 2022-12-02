@@ -8,7 +8,7 @@ public interface OrgPublishEventInputBoundary {
     /**Use the information contained in the request model to publish an event and respond a response model.
      *
      * @param requestModel The request model sent to the input boundary
-     * @return A responsemodel representing whether the event publishing is successful
+     * @return A response model representing whether the event publishing is successful
      */
     OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws ClassNotFoundException;
 }

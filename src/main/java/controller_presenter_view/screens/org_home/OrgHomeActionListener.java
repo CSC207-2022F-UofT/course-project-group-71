@@ -1,21 +1,12 @@
 package controller_presenter_view.screens.org_home;
 
-import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
-import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
 import controller_presenter_view.screens.org_account.OrgAccountPage;
 import controller_presenter_view.screens.org_follower.OrgFollowerPage;
 import controller_presenter_view.screens.org_past_event.OrgPastEventPage;
 import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
 import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventPage;
-import database.EventDsGateway;
-import database.EventFileUser;
-import database.ParDsGateway;
-import database.ParFileUser;
 import use_cases.Util_Method;
-import use_cases.notify_event_use_case.NotifyEventInputBoundary;
-import use_cases.notify_event_use_case.NotifyEventInteractor;
-import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 import javax.swing.*;
@@ -87,19 +78,10 @@ public class OrgHomeActionListener implements ActionListener {
                 }
                 if (!responseModel.getEventsToPast().isEmpty()) {
                     JOptionPane.showMessageDialog(this.orgHomePage, responseModel.getMessage());
-                    NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
-                    EventDsGateway eventDsGateway = new EventFileUser();
-                    ParDsGateway parDsGateway = new ParFileUser();
-                    NotifyEventInputBoundary interactor2 = new NotifyEventInteractor(eventDsGateway, parDsGateway,
-                            orgNotifyEventOutputBoundary);
-                    NotifyEventController notifyEventController = new NotifyEventController(interactor2);
-                    for (String event : responseModel.getEventsToPast()) {
-                        try {
-                            notifyEventController.sendNotification("Past", event);
-                        } catch (ClassNotFoundException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
+//                    NotifyEventOutputBoundary orgNotifyEventOutputBoundary = new NotifyEventPresenter();
+//                    EventDsGateway eventDsGateway = new EventFileUser();
+//                    ParDsGateway parDsGateway = new ParFileUser();
+                    Util_Method.utilNotifyEventHelper(responseModel);
                 }
                 break;
             }

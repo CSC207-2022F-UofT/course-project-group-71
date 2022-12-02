@@ -29,9 +29,6 @@ public class ParSearchOrgResponseModel {
         return searchResults;
     }
 
-    /**This is a method to set searchResults.
-     */
-
 
     /**This is a method to get the returned participant username.
      *

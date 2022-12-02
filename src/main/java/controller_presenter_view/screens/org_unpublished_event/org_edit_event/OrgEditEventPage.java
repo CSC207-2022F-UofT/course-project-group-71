@@ -52,9 +52,9 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
      * @return a text panel
      */
     public JPanel create_J_panel(String text, int x, int y, int width, int height){
-        JLabel oldtext = new JLabel(text);
+        JLabel oldText = new JLabel(text);
         JPanel oldTextInfo = new JPanel();
-        oldTextInfo.add(oldtext);
+        oldTextInfo.add(oldText);
         oldTextInfo.setBounds(x, y, width, height);
         return oldTextInfo;
     }
@@ -111,7 +111,7 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
 //        descriptionInfo.setBounds (0,180, x, 50);
 //
         //Obtain the event time from the database
-        ArrayList<Integer> times = eventDsGateway.getTime(eventName);
+        ArrayList<Integer> times = this.eventDsGateway.getTime(eventName);
 
         //Show year on the page
 //        JLabel oldYear = new JLabel();
