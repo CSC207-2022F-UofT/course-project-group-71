@@ -6,6 +6,17 @@ package use_cases.org_create_event_use_case;
  */
 public class OrgCreateEventRequestModel {
 
+<<<<<<< HEAD
+    String orgUsername;
+    String title;
+    String description;
+    String location;
+    String year;
+    String month;
+    String day;
+    String hour;
+    String minute;
+=======
     final String orgUsername;
     final String title;
     final String description;
@@ -15,6 +26,7 @@ public class OrgCreateEventRequestModel {
     final String day;
     final String hour;
     final String minute;
+>>>>>>> main
 
     public OrgCreateEventRequestModel(String orgUsername,
                                       String title,

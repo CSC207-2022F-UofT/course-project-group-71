@@ -1,6 +1,10 @@
 package use_cases.org_create_event_use_case;
 
+<<<<<<< HEAD
+/** Class used to prepare failure or success view for creating an evnet.
+=======
 /** Class used to prepare failure or success view for creating an event.
+>>>>>>> main
  */
 public interface OrgCreateEventOutputBoundary {
     /**A method used to show a success view to the user
