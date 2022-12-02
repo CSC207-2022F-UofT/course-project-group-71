@@ -180,7 +180,7 @@ Installation Guide of MYSQL: https://www.javatpoint.com/how-to-install-mysql.
 
 When the installation is finished, our project require the mysql account and password to be remembered.
 The JDBC require them to access the data from MYSQL.
-The username and password should be updated at the src/main/java/tutorial/HelloWorld Line 18, 19.
+The username and password should be updated at the src/main/java/database/JDBCUtils.java Line 7,8,9.
 
 <!--suppress ALL -->
 
@@ -228,6 +228,7 @@ The whole table would be imported.
 <img height="400" src="images/DatabaseExplanation_7.png" width="400"/>
 <img height="400" src="images/DatabaseExplanation_8.png" width="400"/>
 
+The whole table would be imported.
 
 ## SOLID Principles and Design Patterns
 
@@ -267,11 +268,26 @@ It has multiple possible reasons: wrong username and password, non-existence Dat
 method in Interactor that check if each variable used in JDBC command is correct. If other part of the program have no bugs, SQLExceptions are
 expected to never happen. 
 
+### Testing Database Import
+- For each tests of use case, we have a SQL file allocated for them. 
+- For each test, we need to create a new database in DataGrip, changing the username and password stored in JDBCUtils.java.
+- And then we need to restore the sql file through MysqlDump.
+  
+<img height="300" src="images/DatabaseTestingExplanation1.png"/>
+
+- After successfully imported, click the test button to test them.
+
+<img height="100" src="images/DatabaseTestingExplanation2.png"/>
+
+### Potential Bug for testing datbase importing
+- Every computer may use a different encoding scheme, when importing the .sql file, we might meet problems of character sets.
+- For this situation, we have no better solution but replacing all identify name in the sql file by Intellij auto replacement function.
+- If the problem is about utf8mb4_0900_ai_ci, replace it with utf8_unicode_ci.
+- If the problem is about utf8_unicode_ci, replace it with utf8mb4_0900_ai_ci.
+
+<img height="300" src="images/DatabaseTestingExplanation3.png"/>
 
 
-
-
-The whole table would be imported. 
 
 
 
