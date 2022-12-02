@@ -1,6 +1,7 @@
 package controller_presenter_view.screens.par_past_event;
 
 
+import controller_presenter_view.screens.Util_Method;
 import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;
@@ -47,13 +48,31 @@ public class ParPastEventPage extends JFrame {
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
 
+        generateEvents(events);
+
+        this.add(title);
+        this.add(back);
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.setVisible(true);
+    }
+
+    /**A getter for the participant's username.
+     *
+     * @return The participant's username
+     */
+    public String getParUsername() {
+        return parUsername;
+    }
+
+    public void generateEvents(JPanel events) throws ClassNotFoundException {
         ParDsGateway p = new ParFileUser();
         EventDsGateway e = new EventFileUser();
 
-
         ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(p);
         ExtractInfoController controller1= new ExtractInfoController(interactor1);
-        ExtractInfoResponseModel<String> response1= controller1.extractPar("getPastEvents",parUsername);
+        ExtractInfoResponseModel<String> response1 = controller1.extractPar("getPastEvents",parUsername);
 
         ArrayList<String> pastEvents = response1.getAl();
 
@@ -85,8 +104,8 @@ public class ParPastEventPage extends JFrame {
                 eventTime.setBounds(x + 20, y + 40, 250, 30);
                 eventTime.setVisible(true);
 
-                ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
-                ExtractInfoController controller3= new ExtractInfoController(interactor3);
+                ExtractInfoInputBoundary interactor3 = new ExtractInfoInteractor(e);
+                ExtractInfoController controller3 = new ExtractInfoController(interactor3);
                 ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
                         unpublishedEventTitle);
 
@@ -101,28 +120,10 @@ public class ParPastEventPage extends JFrame {
 
                 y += 100;
             }
-
-            JScrollPane eventScroll = new JScrollPane(events);
-            eventScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
-            eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-            eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+            //Set parameters for JScrollPane
+            JScrollPane eventScroll = Util_Method.generateJScrollPane(events);
             eventScroll.setVisible(true);
             this.add(eventScroll);
         }
-
-        this.add(title);
-        this.add(back);
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.setVisible(true);
-    }
-
-    /**A getter for the participant's username.
-     *
-     * @return The participant's username
-     */
-    public String getParUsername() {
-        return parUsername;
     }
 }

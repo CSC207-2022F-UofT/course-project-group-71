@@ -2,8 +2,6 @@ package controller_presenter_view.screens.org_unpublished_event;
 
 
 import controller_presenter_view.screens.Util_Method;
-import database.EventDsGateway;
-import database.EventFileUser;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
@@ -90,35 +88,21 @@ public class OrgUnpublishedEventPage extends JFrame {
      *
      * @param events A JPanel that is designed to contain events
      */
-    public void generateEvents(JPanel events){
-        //Initialise the DsGateways
+    public void generateEvents(JPanel events) throws ClassNotFoundException {
+        //Get events' title from database
         OrgDsGateway o = new OrgFileUser();
-        EventDsGateway e = new EventFileUser();
-
         ExtractInfoInputBoundary interactor1 = new ExtractInfoInteractor(o);
         ExtractInfoController controller1 = new ExtractInfoController(interactor1);
-        ExtractInfoResponseModel<String> response1;
-        try {
-            response1 = controller1.extractOrg("getUnpublishedEvents",
+        ExtractInfoResponseModel<String> response1= controller1.extractOrg("getUnpublishedEvents",
                     this.orgUsername);
-        } catch (ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
-
-
         ArrayList<String> unpublishedEvents = response1.getAl();
 
         int numberOfEvent = unpublishedEvents.size();
-
-        //Branch with more than 1 event, it will show an information fragment with a scrolling bar
         if (numberOfEvent != 0) {
-
             events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
-
             //Initialise the parameters
             int x = 0;
             int y = 0;
-
             //Generate information cards for each unpublished events
             for (String unpublishedEventTitle : unpublishedEvents) {
                 //Prepare the event title
@@ -127,82 +111,39 @@ public class OrgUnpublishedEventPage extends JFrame {
                 eventTitle.addActionListener(new OrgUnpublishedEventActionListener(this));
                 eventTitle.setBounds(x, y, 250, 30);
                 eventTitle.setVisible(true);
-
-                ExtractInfoInputBoundary interactor2 = new ExtractInfoInteractor(e);
-                ExtractInfoController controller2 = new ExtractInfoController(interactor2);
-                ExtractInfoResponseModel<Integer> response2;
-                try {
-                    response2 = controller2.extractEventTime(unpublishedEventTitle);
-                } catch (ClassNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                //Obtain the times
-                ArrayList<Integer> times = response2.getAl();
-                String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
-                        times.get(3) + ":" + times.get(4);
-
-                //Get the time to show on the screen
-                JLabel eventTime = new JLabel(time);
-                eventTime.setBounds(x + 20, y + 40, 250, 30);
-                eventTime.setVisible(true);
-
-                //Prepare the interactor, controller and response model
-                ExtractInfoInputBoundary interactor3 = new ExtractInfoInteractor(e);
-                ExtractInfoController controller3 = new ExtractInfoController(interactor3);
-                ExtractInfoResponseModel<String> response3;
-                try {
-                    response3 = controller3.extractEvent("getLocation",
-                            unpublishedEventTitle);
-                } catch (ClassNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                //Get and show the information of location
-                String location = response3.getStr();
-                JLabel eventLocation = new JLabel(location);
-                eventLocation.setBounds(x + 20, y + 70, 250, 30);
-                eventLocation.setVisible(true);
-
-                //Add a button for "Publish"
-                JButton publish = new JButton("Publish");
-                publish.setActionCommand(unpublishedEventTitle + "Publish");
-                //Set the action listener to respond when user clicks "Publish" for this event
-                publish.addActionListener(new OrgUnpublishedEventActionListener(this));
-                publish.setBounds(x + 250, y + 15, 100, 30);
-                publish.setVisible(true);
-
-                //Add a button for "Edit"
-                JButton notify = new JButton("Edit");
-                notify.setActionCommand(unpublishedEventTitle + "Edit");
-                //Set the action listener to respond when user clicks "Edit" for this event
-                notify.addActionListener(new OrgUnpublishedEventActionListener(this));
-                notify.setBounds(x + 250, y + 15, 100, 30);
-                notify.setVisible(true);
-
-                //Add a button for "Delete"
-                JButton delete = new JButton("Delete");
-                delete.setActionCommand(unpublishedEventTitle + "Delete");
-                //Set the action listener to respond when user clicks "Delete" for this event
-                delete.addActionListener(new OrgUnpublishedEventActionListener(this));
-                delete.setBounds(x + 250, y + 55, 100, 30);
-                delete.setVisible(true);
-
+                JLabel eventTime = Util_Method.setEventTime(unpublishedEventTitle, x, y);
+                JLabel eventLocation = Util_Method.setEventLocation(unpublishedEventTitle, x, y);
                 //Add the above events on the page
                 events.add(eventTitle);
                 events.add(eventTime);
                 events.add(eventLocation);
-                events.add(publish);
-                events.add(notify);
-                events.add(delete);
+                events.add(create_JButton(unpublishedEventTitle,"Publish", x + 250, y + 15, 100, 30));
+                events.add(create_JButton(unpublishedEventTitle,"Notify", x + 250, y + 15, 100, 30));
+                events.add(create_JButton(unpublishedEventTitle,"Delete", x + 250, y + 55, 100, 30));
                 y += 100;
             }
-
             //Put the JPanel into a JScrollPane
             JScrollPane eventScroll = Util_Method.generateJScrollPane(events);
-            eventScroll.setVisible(true);
             this.add(eventScroll);
         }
+    }
 
+
+    /**This function returns a JButton with the input as set bounds
+     *
+     * @param eventTitle the event's title
+     * @param text string of the button showing
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return return the JButton
+     */
+    public JButton create_JButton(String eventTitle, String text, int x, int y, int width, int height){
+        JButton output = new JButton(text);
+        output.setActionCommand(eventTitle + text);
+        output.addActionListener(new OrgUnpublishedEventActionListener(this));
+        output.setBounds (x, y, width, height);
+        return output;
     }
 }

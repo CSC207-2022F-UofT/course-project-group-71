@@ -1,5 +1,6 @@
 package controller_presenter_view.screens;
 
+import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
 import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
 import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
@@ -7,6 +8,9 @@ import controller_presenter_view.common_controller_presenter.org_delete_event.Or
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastController;
 import controller_presenter_view.common_controller_presenter.upcoming_to_past.UpcomingToPastPresenter;
 import database.*;
+import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
+import use_cases.extract_information_use_case.ExtractInfoInteractor;
+import use_cases.extract_information_use_case.ExtractInfoResponseModel;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
@@ -19,6 +23,8 @@ import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;
 
 import javax.swing.*;
+
+import java.util.ArrayList;
 
 import static controller_presenter_view.screens.screen_constants.getConstantX;
 import static controller_presenter_view.screens.screen_constants.getConstantY;
@@ -75,6 +81,7 @@ public class Util_Method {
         jScrollPane.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
         jScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setVisible(true);
         return jScrollPane;
     }
 
@@ -90,7 +97,7 @@ public class Util_Method {
      */
     public static LabelTextPanel create_text_panel(String text, JPasswordField J, int x, int y, int width, int height){
         LabelTextPanel output = new LabelTextPanel(new JLabel(text), J);
-        output.setBounds (x,y, width, height);
+        output.setBounds(x,y, width, height);
         return output;
     }
 
@@ -108,5 +115,38 @@ public class Util_Method {
         output.setBounds(x, y, width, height);
         output.setHorizontalAlignment(JLabel.CENTER);
         return output;
+    }
+
+    public static JLabel setEventTime(String eventTitle, int x, int y) throws ClassNotFoundException {
+        EventDsGateway e = new EventFileUser();
+        ExtractInfoInputBoundary interactor2 = new ExtractInfoInteractor(e);
+        ExtractInfoController controller2 = new ExtractInfoController(interactor2);
+        ExtractInfoResponseModel<Integer> response2 = controller2.extractEventTime(eventTitle);
+
+        //Obtain the times
+        ArrayList<Integer> times = response2.getAl();
+        String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
+                times.get(3) + ":" + times.get(4);
+
+        //Get the time to show on the screen
+        JLabel eventTime = new JLabel(time);
+        eventTime.setBounds(x + 20, y + 40, 250, 30);
+        eventTime.setVisible(true);
+        return eventTime;
+    }
+
+    public static JLabel setEventLocation(String eventTitle, int x, int y) throws ClassNotFoundException{
+        EventDsGateway e = new EventFileUser();
+        //Prepare the interactor, controller and response model
+        ExtractInfoInputBoundary interactor3 = new ExtractInfoInteractor(e);
+        ExtractInfoController controller3 = new ExtractInfoController(interactor3);
+        ExtractInfoResponseModel<String> response3 = controller3.extractEvent("getLocation", eventTitle);
+
+        //Get and show the information of location
+        String location = response3.getStr();
+        JLabel eventLocation = new JLabel(location);
+        eventLocation.setBounds(x + 20, y + 70, 250, 30);
+        eventLocation.setVisible(true);
+        return eventLocation;
     }
 }

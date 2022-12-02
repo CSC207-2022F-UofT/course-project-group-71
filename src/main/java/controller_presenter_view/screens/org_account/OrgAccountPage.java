@@ -1,9 +1,7 @@
 package controller_presenter_view.screens.org_account;
 
 import controller_presenter_view.screens.Util_Method;
-
 import javax.swing.*;
-
 import static controller_presenter_view.screens.screen_constants.getConstantX;
 import static controller_presenter_view.screens.screen_constants.getConstantY;
 

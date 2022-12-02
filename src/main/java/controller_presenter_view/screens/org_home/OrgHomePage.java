@@ -29,7 +29,7 @@ public class OrgHomePage extends JFrame {
 
         this.setLayout(null);
 
-        this.setSize(getConstantX(),getConstantY());
+        this.setSize(getConstantX(), getConstantY());
 
         this.setLocationRelativeTo(null);
 
