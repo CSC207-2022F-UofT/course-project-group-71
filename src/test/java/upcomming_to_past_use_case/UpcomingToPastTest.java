@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /** Need to create a participant "allyson" in parfile, organizations "UofT" and "UBC" in orgfile
  *  Need to create events "PHL295" and "ECO225" in eventfile, set time in past
- *  Need to link "allyson" and "PHL295" in upcoming_events_for_par
+ *  Need to link "allyson" and "ECO225" in upcoming_events_for_par
  *  Need to link "UofT" and "PHL295" in upcoming_events_for_org
  *  Need to link "UBC" and "ECO225" in upcoming_events_for_org
  */

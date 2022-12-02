@@ -6,9 +6,6 @@ import static database.JDBCUtils.utilQueryArrayListString;
 import static database.JDBCUtils.utilUpdateVoid;
 
 public class OrgFileUser implements OrgDsGateway {
-    public static void main(String[] args) throws ClassNotFoundException {
-    }
-
 
     /**This is a tool method to store the username and password of the organization to database.
      *
@@ -136,6 +133,7 @@ public class OrgFileUser implements OrgDsGateway {
      */
     public ArrayList<String> utilGetUpcomingEvents(String org_username) throws ClassNotFoundException {
         String sql = "select event_title from upcoming_events_for_org where org_username = '" + org_username + "';";
+        System.out.println(sql);
         return utilQueryArrayListString(sql);
     }
 

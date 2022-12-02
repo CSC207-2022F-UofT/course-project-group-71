@@ -2,11 +2,13 @@ package org_delete_event_use_case;
 
 
 import database.*;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.Order;
 import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventController;
 import controller_presenter_view.common_controller_presenter.org_delete_event.OrgDeleteEventPresenter;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import use_cases.org_delete_event_use_case.OrgDeleteEventInteractor;
 import use_cases.org_delete_event_use_case.OrgDeleteEventOutputBoundary;
@@ -14,6 +16,8 @@ import use_cases.org_delete_event_use_case.OrgDeleteEventResponseModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 /**Need to create 2 events "CSC207", "MAT137" in eventfile
  * Need to create a participant "allyson" in parfile, create an organization "UofT" in orgfile
@@ -42,6 +46,7 @@ public class OrgDeleteEventTest {
     void testEventHasParticipant() {
         try {
             responseModel = orgDeleteEventController.delete("CSC207");
+            System.out.println(responseModel.getMessage());
             assertEquals("Event CSC207 is deleted.", responseModel.getMessage());
             assertFalse(orgDsGateway.getUpcomingEvents("UofT").contains("CSC207"));
             assertEquals("Event CSC207 is cancelled.", parDsGateway.getNotifications("allyson").get(0));
