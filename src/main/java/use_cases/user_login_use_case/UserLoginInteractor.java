@@ -39,7 +39,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) throws ClassNotFoundException {
         if (requestModel.getUserType().equals("P")) {
             String username = requestModel.getUsername();
-            System.out.println("Fuck");
+            System.out.println("Hi");
             if (!parDsGateway.checkIfUsernameExist(username)) {
                 System.out.println("e");
                 return userLoginOutputBoundary.prepareFailView("Participant does not exist.");
