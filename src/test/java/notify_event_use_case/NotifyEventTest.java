@@ -62,7 +62,6 @@ public class NotifyEventTest {
         try {
             responseModel = controller.sendNotification("Past", "TeamMeeting3");
             assertEquals("Event TeamMeeting3 was over.", responseModel.getMessage());
-            //TimeUnit.SECONDS.sleep(20);
             assert(parDsGateway.getNotifications("654321").contains("Event TeamMeeting3 was over at 1-1 1:1."));
         } catch (Exception e) {
             assert(false);
@@ -75,7 +74,6 @@ public class NotifyEventTest {
         try {
             responseModel = controller.sendNotification("Future", "TeamMeeting4");
             assertEquals("Notification sent for TeamMeeting4!", responseModel.getMessage());
-            //TimeUnit.SECONDS.sleep(20);
             assert(parDsGateway.getNotifications("654321").contains("Event TeamMeeting4 is about to happen at 1-1 1:1!"));
             parDsGateway.clearNotifications("654321");
         } catch (Exception e) {

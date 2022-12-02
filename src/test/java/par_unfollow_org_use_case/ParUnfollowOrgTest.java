@@ -34,7 +34,6 @@ public class ParUnfollowOrgTest {
         String orgUsername = "UofT";
         try {
             responseModel = controller.unfollow(parUsername,orgUsername);
-            System.out.println(responseModel.getMessage());
             assertEquals("You have unfollowed UofT.", responseModel.getMessage());
 
             OrgDsGateway orgDsGateway = new OrgFileUser();

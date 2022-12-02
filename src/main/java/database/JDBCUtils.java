@@ -63,6 +63,7 @@ public class JDBCUtils {
             conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             stmt.executeUpdate(sql);
+            System.out.println(sql);
         } catch (ClassNotFoundException e) {
             throw new ClassNotFoundException();
         } catch (SQLException e) {
@@ -77,22 +78,17 @@ public class JDBCUtils {
         Connection conn = null;
         ResultSet rs = null;
         ArrayList<String> l = new ArrayList<>(0);
-        System.out.println("Start");
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = JDBCUtils.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            System.out.println("HHH");
             while (rs.next()){
                 l.add(rs.getString(1));
-                System.out.println(l);
             }
         } catch (ClassNotFoundException e) {
-            System.out.println("Class");
             throw new ClassNotFoundException();
         } catch (SQLException e) {
-            System.out.println("SQL");
             throw new RuntimeException(e);
         } finally {
             JDBCUtils.close_rs(rs);

@@ -88,7 +88,6 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
 
             //checks if the time is set in the future.
             if (time.isBefore(now)){
-                System.out.println("5");
                 return orgEditEventOutputBoundary.prepareFailView("Time must be in future.");
             }
 

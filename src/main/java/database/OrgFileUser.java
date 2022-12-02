@@ -7,8 +7,6 @@ import static database.JDBCUtils.utilUpdateVoid;
 
 public class OrgFileUser implements OrgDsGateway {
     public static void main(String[] args) throws ClassNotFoundException {
-        OrgFileUser b = new OrgFileUser();
-        System.out.println(b.getPassword("P2"));
     }
 
 
@@ -148,8 +146,7 @@ public class OrgFileUser implements OrgDsGateway {
      */
     public String utilGetPassword(String org_username) throws ClassNotFoundException {
         String sql = "select password from orgfile where username = '" + org_username + "'";
-        System.out.println(sql);
-        System.out.println(utilQueryArrayListString(sql));
+
         return utilQueryArrayListString(sql).get(0);
     }
 

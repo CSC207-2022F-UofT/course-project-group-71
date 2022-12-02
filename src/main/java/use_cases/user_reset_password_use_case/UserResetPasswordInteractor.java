@@ -29,72 +29,59 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
      * @return A responseModel representing whether the user resetPassword is successful.
      */
     public UserResetPasswordResponseModel resetPassword(UserResetPasswordRequestModel requestModel) throws ClassNotFoundException {
-        System.out.println(requestModel.isWhether_org());
         if (requestModel.isWhether_org()) {
             //Organization
             //Check if the old password of organization is entered correctly
             if (!requestModel.getPassword().equals(orgDsGateway.getPassword(requestModel.getUsername()))) {
-                System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
             }
 
-            System.out.println(2);
             if (requestModel.getNewPassword().isEmpty()) {
                 return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
             }
-            System.out.println(3);
+
             if (requestModel.getPassword().length() > 20) {
                 return userResetPasswordOutputBoundary.prepareFailureView("Password should be no longer than 20 characters.");
             }
-            System.out.println(4);
+
             if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
                 return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
             }
-            System.out.println(5);
+
             //Check if the new password and the retyped new password of organizer are same
             if (!requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
-                System.out.println("New Passwords do not match.");
                 return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
 
             }
 
             //If the above two error don't occur, show the successful view
             orgDsGateway.setPassword(requestModel.getUsername(), requestModel.getNewPassword());
-            System.out.println("Password reset successfully!");
             UserResetPasswordResponseModel responseModel = new UserResetPasswordResponseModel("Password reset successfully!");
             return userResetPasswordOutputBoundary.prepareSuccessView(responseModel);
         } else {
             //Participant
             //Check if the old password of participant is correct
-            System.out.println("At least checking");
 
             if (!requestModel.getPassword().equals(parDsGateway.getPassword(requestModel.getUsername()))) {
-                System.out.println("Old password is not correct.");
                 return userResetPasswordOutputBoundary.prepareFailureView("Old password is not correct.");
             }
 
-            System.out.println(2);
             if (requestModel.getNewPassword().isEmpty()) {
                 return userResetPasswordOutputBoundary.prepareFailureView("Password cannot be empty.");
             }
-            System.out.println(3);
             if (requestModel.getPassword().length() > 20) {
                 return userResetPasswordOutputBoundary.prepareFailureView("Password should be no longer than 20 characters.");
             }
-            System.out.println(4);
             if (requestModel.getNewPassword().equals(requestModel.getPassword())) {
                 return userResetPasswordOutputBoundary.prepareFailureView("New password cannot be the same as old one.");
             }
-            System.out.println(5);
             //Check if the new password and the retyped new password of organizer are same
             if (!requestModel.getNewPassword().equals(requestModel.getReNewPassword())) {
-                System.out.println("New Passwords do not match.");
                 return userResetPasswordOutputBoundary.prepareFailureView("New Passwords do not match.");
 
             }
 
             //If the above two error don't occur, show the successful view
-            System.out.println("Password reset successfully!");
             parDsGateway.setPassword(requestModel.getUsername(), requestModel.getNewPassword());
             UserResetPasswordResponseModel responseModel = new UserResetPasswordResponseModel("Password reset successfully!");
             return userResetPasswordOutputBoundary.prepareSuccessView(responseModel);

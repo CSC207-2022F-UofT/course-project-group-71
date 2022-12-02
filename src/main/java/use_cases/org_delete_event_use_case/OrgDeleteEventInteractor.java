@@ -43,7 +43,9 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
 
         //send out notification to all participants that joined the event
         ArrayList<String> parUsernames = eventDsGateway.getParticipants(eventName);
+        System.out.println(parUsernames);
         String newNotification = "Event " + eventName + " is cancelled.";
+        System.out.println(newNotification);
         if (!parUsernames.isEmpty()) {
             for (String username : parUsernames) {
                 parDsGateway.leaveEvent(username, eventName);
