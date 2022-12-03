@@ -19,7 +19,6 @@ public class ParSearchEventResultsPage extends JFrame {
 
     private final ArrayList<String> eventNames;
     private final String parUsername;
-    private final ParDsGateway p = new ParFileUser();
 
     /**A getter for the event names displayed on the search page.
      *
@@ -39,6 +38,7 @@ public class ParSearchEventResultsPage extends JFrame {
 
         this.eventNames = eventNames;
         this.parUsername = parUserName;
+        ParDsGateway p = new ParFileUser();
         ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(p);
         ExtractInfoController controller1= new ExtractInfoController(interactor1);
         ExtractInfoResponseModel<String> response1= controller1.extractPar("getUpcomingEvents",parUserName);
