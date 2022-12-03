@@ -46,7 +46,6 @@ public class OrgDeleteEventTest {
     void testEventHasParticipant() {
         try {
             responseModel = orgDeleteEventController.delete("CSC207");
-            System.out.println(responseModel.getMessage());
             assertEquals("Event CSC207 is deleted.", responseModel.getMessage());
             assertFalse(orgDsGateway.getUpcomingEvents("UofT").contains("CSC207"));
             assertEquals("Event CSC207 is cancelled.", parDsGateway.getNotifications("allyson").get(0));

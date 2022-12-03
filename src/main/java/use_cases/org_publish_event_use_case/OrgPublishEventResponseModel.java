@@ -11,7 +11,6 @@ public class OrgPublishEventResponseModel {
     public OrgPublishEventResponseModel(String eventName, boolean hasFollower) {
         this.eventName = eventName;
         this.hasFollower = hasFollower;
-        System.out.println(14);
     }
 
     public void setMessage(String message) {

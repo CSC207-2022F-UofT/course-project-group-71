@@ -18,7 +18,6 @@ public class OrgPublishEventPresenter implements OrgPublishEventOutputBoundary {
     @Override
     public OrgPublishEventResponseModel prepareFailView(String error) {
         //Prepare a failed view
-        System.out.println(error);
         throw new ShowMessageView(error);
     }
 }

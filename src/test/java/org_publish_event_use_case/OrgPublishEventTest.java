@@ -55,7 +55,6 @@ public class OrgPublishEventTest {
     public void TestPrepareSuccessViewNoFollower() {
         try {
             responseModel = controller.publish("C", "UBC");
-            System.out.println(responseModel.getMessage());
             assertEquals("Event C is published!", responseModel.getMessage());
         } catch (Exception e) {
             assert (false);

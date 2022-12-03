@@ -15,7 +15,6 @@ public class OrgPublishEventController {
     public OrgPublishEventResponseModel publish(String eventTitle, String orgUsername) throws ClassNotFoundException {
         //Generate a new request model by the given information
         OrgPublishEventRequestModel requestModel = new OrgPublishEventRequestModel(eventTitle, orgUsername);
-        System.out.println(3);
         return userInput.publish(requestModel);
     }
 

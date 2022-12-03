@@ -37,17 +37,11 @@ public class OrgUpcomingEventActionListener implements ActionListener {
         else {
             if (actionCommand.contains("Notify")) {
                 EventDsGateway eventDsGateway = new EventFileUser();
-    
                 ParDsGateway parDsGateway = new ParFileUser();
-    
                 NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
-    
                 NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway, notifyEventOutputBoundary);
-    
                 NotifyEventController notifyEventController = new NotifyEventController(interactor);
-
                 String eventName = actionCommand.substring(0,actionCommand.length()-6);
-
                 try {
                     NotifyEventResponseModel responseModel =
                             notifyEventController.sendNotification("Future", eventName);
@@ -58,12 +52,8 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             }
             else if (actionCommand.contains("Delete")) {
                 OrgDeleteEventController orgDeleteEventController = CommonMethod.utilGetDeleteEventControllerHelper();
-
                 String eventName = actionCommand.substring(0,actionCommand.length()-6);
-
-
                 try{
-                    System.out.println("temp1");
                     OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());
                 } catch(ClassNotFoundException e) {
