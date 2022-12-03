@@ -17,7 +17,7 @@ import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 public class EventDetailsPage extends JFrame {
 
-    final String EVENT_TITLE;
+    private final String EVENT_TITLE;
 
     /** When this constructor is called it will generate an event details page for the event of interest using the
      * EVENT_TITLE parameter. The page will contain information such as the event's name, description, time, and location.

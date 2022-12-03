@@ -22,11 +22,11 @@ public class ParHomePage extends JFrame implements ActionListener {
     final JRadioButton org;
     final JRadioButton eve;
     final JTextField searchBox;
-    final ParShowNotificationOutputBoundary parShowNotificationPresenter =  new ParShowNotificationPresenter();
-    final ParDsGateway parDsGateway = new ParFileUser();
-    final ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(parShowNotificationPresenter,
+    private final ParShowNotificationOutputBoundary parShowNotificationPresenter =  new ParShowNotificationPresenter();
+    private final ParDsGateway parDsGateway = new ParFileUser();
+    private final ParShowNotificationInputBoundary interactor = new ParShowNotificationInteractor(parShowNotificationPresenter,
             parDsGateway);
-    final ParShowNotificationController parShowNotificationController = new ParShowNotificationController(interactor);
+    private final ParShowNotificationController parShowNotificationController = new ParShowNotificationController(interactor);
 
     /**Take the username of the participant, and generate a homepage for this participant.
      * The Page contains notifications, account page, upcoming event, past event and followed Org.

@@ -23,8 +23,8 @@ import java.awt.event.ActionListener;
 
 public class ParSearchEventResultsPageActionListener implements ActionListener {
 
-    final ParSearchEventResultsPage parSearchEventResultsPage;
-    final String eventName;
+    private final ParSearchEventResultsPage parSearchEventResultsPage;
+    private final String eventName;
 
     /**Constructor of the event search results page action listener.
      * It takes a search results page and an event name as inputs

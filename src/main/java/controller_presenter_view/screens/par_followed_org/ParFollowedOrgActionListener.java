@@ -14,8 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ParFollowedOrgActionListener implements ActionListener {
-    final ParFollowedOrgPage parFollowerPage;
-    final String orgName;
+    private final ParFollowedOrgPage parFollowerPage;
+    private final String orgName;
 
     /**Constructor for the action listener of the page appearing after the participant
      * follows an organizer.

@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OrgAccountActionListener implements ActionListener {
-    final public OrgAccountPage orgAccountPage;
+    private final OrgAccountPage orgAccountPage;
 
     public OrgAccountActionListener(OrgAccountPage orgAccountPage){
         this.orgAccountPage = orgAccountPage;

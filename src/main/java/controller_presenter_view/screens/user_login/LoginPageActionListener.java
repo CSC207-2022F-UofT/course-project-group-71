@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginPageActionListener implements ActionListener {
-    final public LoginPage LOGIN_PAGE;
+    private final LoginPage LOGIN_PAGE;
     public LoginPageActionListener(LoginPage LOGIN_PAGE){
         this.LOGIN_PAGE = LOGIN_PAGE;
     }

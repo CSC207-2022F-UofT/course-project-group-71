@@ -89,7 +89,7 @@ Only for demonstration purposes, each of those has the following attributes:
   - *editable* ArrayList<String\> followedOrganizations: the usernames of the participant's followed Organizations. The participant can choose to unfollow any of them.
 
 
-*"*editable*" means the value of attribute can be changed by the user through means provided on UI.*
+*"editable" means the value of attribute can be changed by the user through means provided by UI.*
 
 
 ## Use Cases
@@ -103,9 +103,12 @@ If the naming starts with par_, then the use case is specifically responsible fo
 If the naming starts with org_, then the use case is specifically responsible for a functionality belongs to organization.
 
 There are a few special use cases that are used in more than one place in the project, usually across the user types:
-- `src/main/java/extract_information_use_case`: This is designed to assist views to show information stored in the database for Clean Architecture purposes. It is not tied to any specific type of user or screen.
-- `src/main/java/upcoming_to_past_use_case`: This is an auto-triggered use case that do not need the user to explicitly demand for it. It will convert the user's all relevant upcoming events whose time is in the past (comparing with system time by LocalDateTime) to past events.
-- `src/main/java/notify_event_use_case`: This is used to notify the user about changes or updates of relevant events. It can be called in various places in the project as the function is so commonly used.
+- `src/main/java/extract_information_use_case`: This is designed to assist views to show information stored in the database for Clean Architecture purposes. 
+It is not tied to any specific type of user or screen.
+- `src/main/java/upcoming_to_past_use_case`: This is an auto-triggered use case that do not need the user to explicitly demand for it.
+It will convert the user's all relevant upcoming events whose time is in the past (comparing with the system time by LocalDateTime) to past events.
+- `src/main/java/notify_event_use_case`: This is used to notify the user about changes or updates of relevant events.
+It can be called in various places in the project as the function is so commonly used.
 
 ## Database
 `src/main/java/database`
@@ -292,7 +295,8 @@ expected to never happen.
 ![](images/DatabaseTestingExplanation3.png)
 
 
-
-
-
-
+## Important Tip
+If the program starts prompting messages that are not a normal part of the output, such as:
+![](images/ErrorMessage.png)
+You should double-check your database to make sure your test data is not conflicting.
+One way to prevent it is to clear all existing data and start over again (or reimport the test data we provided).

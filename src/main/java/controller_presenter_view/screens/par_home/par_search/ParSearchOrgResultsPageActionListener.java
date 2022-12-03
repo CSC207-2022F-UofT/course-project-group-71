@@ -23,8 +23,8 @@ import java.awt.event.ActionListener;
 
 public class ParSearchOrgResultsPageActionListener implements ActionListener {
 
-    final ParSearchOrgResultsPage parSearchOrgResultsPage;
-    final String orgName;
+    private final ParSearchOrgResultsPage parSearchOrgResultsPage;
+    private final String orgName;
 
     /**Constructor for the organizer search results page action listener.
      * It takes a search results page and an organizer name as inputs

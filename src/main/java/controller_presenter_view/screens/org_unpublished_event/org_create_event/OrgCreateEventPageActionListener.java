@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class OrgCreateEventPageActionListener implements ActionListener {
 
-    final public OrgCreateEventPage ORG_CREATE_EVENT_PAGE;
+    private final OrgCreateEventPage ORG_CREATE_EVENT_PAGE;
 
     public OrgCreateEventPageActionListener(OrgCreateEventPage ORG_CREATE_EVENT_PAGE){
         //Store the input page as an instance

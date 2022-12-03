@@ -19,9 +19,9 @@ import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 public class ParSearchOrgResultsPage extends JFrame {
 
-    final ArrayList<String> orgNames;
+    private final ArrayList<String> orgNames;
     final ArrayList<String> followedList;
-    final String parUsername;
+    private final String parUsername;
     final ParDsGateway p = new ParFileUser();
 
     /**The main method for creating the search results page.

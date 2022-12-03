@@ -10,7 +10,7 @@ import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class ParAccountPage extends JFrame {
-    final String parUsername;
+    private final String parUsername;
     final JPasswordField oldPassword = new JPasswordField(15);
     final JPasswordField newPassword = new JPasswordField(15);
     final JPasswordField retypeNewPassword = new JPasswordField(15);

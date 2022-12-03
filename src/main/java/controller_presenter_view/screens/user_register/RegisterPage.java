@@ -11,17 +11,12 @@ import static controller_presenter_view.screens.user_register.RegisterPageBuilde
 
 public class RegisterPage extends JFrame implements ActionListener {
 
-    final JTextField username = new JTextField(15);
-
-    final JPasswordField password = new JPasswordField(15);
-    
-    final JPasswordField retypePassword = new JPasswordField(15);
-
-    final UserRegisterController userRegisterController;
-
-    boolean P = false;
-    boolean O = false;
-
+    private final JTextField username = new JTextField(15);
+    private final JPasswordField password = new JPasswordField(15);
+    private final JPasswordField retypePassword = new JPasswordField(15);
+    private final UserRegisterController userRegisterController;
+    private boolean P = false;
+    private boolean O = false;
     final int x = 500;
     final int y = 500;
 

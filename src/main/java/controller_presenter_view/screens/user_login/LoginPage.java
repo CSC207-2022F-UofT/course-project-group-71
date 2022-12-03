@@ -11,13 +11,13 @@ import java.awt.event.ActionListener;
 
 public class LoginPage extends JFrame implements ActionListener {
 
-    final JTextField USERNAME = new JTextField(15);
-    final JPasswordField PASSWORD = new JPasswordField(15);
-    final UserLoginController USER_LOGIN_CONTROLLER;
-    boolean P = false;
-    boolean O = false;
-    final int X = 500;
-    final int Y = 500;
+    private final JTextField USERNAME = new JTextField(15);
+    private final JPasswordField PASSWORD = new JPasswordField(15);
+    private final UserLoginController USER_LOGIN_CONTROLLER;
+    private boolean P = false;
+    private boolean O = false;
+    private final int X = 500;
+    private final int Y = 500;
 
     /**The method generate a login page.
      * It contains button to choose the user type for login.
@@ -29,11 +29,8 @@ public class LoginPage extends JFrame implements ActionListener {
     public LoginPage(UserLoginController controller) {
 
         this.setLayout(null);
-
         this.setSize(X, Y);
-
         this.setLocationRelativeTo(null);
-
         this.USER_LOGIN_CONTROLLER = controller;
         JLabel title = new JLabel("Login Screen");
         title.setBounds (0,0, X, 50);

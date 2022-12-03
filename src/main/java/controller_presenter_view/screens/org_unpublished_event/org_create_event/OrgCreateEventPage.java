@@ -10,18 +10,18 @@ import java.awt.event.ActionListener;
 
 public class OrgCreateEventPage extends JFrame implements ActionListener {
 
-    final OrgCreateEventController CONTROLLER;
-    final OrgUnpublishedEventPage ORGUNPUBLISHEDEVENTPAGE;
+    private final OrgCreateEventController CONTROLLER;
+    private final OrgUnpublishedEventPage ORGUNPUBLISHEDEVENTPAGE;
 
     //The input bar for all sorts of information
-    final JTextField EVENT_TITLE = new JTextField(15);
-    final JTextField DESCRIPTION = new JTextField(15);
-    final JTextField YEAR = new JTextField(4);
-    final JTextField MONTH = new JTextField(2);
-    final JTextField DAY = new JTextField(2);
-    final JTextField HOUR = new JTextField(2);
-    final JTextField MINUTE = new JTextField(2);
-    final JTextField LOCATION = new JTextField(15);
+    private final JTextField EVENT_TITLE = new JTextField(15);
+    private final JTextField DESCRIPTION = new JTextField(15);
+    private final JTextField YEAR = new JTextField(4);
+    private final JTextField MONTH = new JTextField(2);
+    private final JTextField DAY = new JTextField(2);
+    private final JTextField HOUR = new JTextField(2);
+    private final JTextField MINUTE = new JTextField(2);
+    private final JTextField LOCATION = new JTextField(15);
 
     /**
      * This method creates a label text panel for organizer to input data

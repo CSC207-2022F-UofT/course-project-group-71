@@ -17,9 +17,9 @@ import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 public class ParSearchEventResultsPage extends JFrame {
 
-    final ArrayList<String> eventNames;
-    final String parUsername;
-    final ParDsGateway p = new ParFileUser();
+    private final ArrayList<String> eventNames;
+    private final String parUsername;
+    private final ParDsGateway p = new ParFileUser();
 
     /**A getter for the event names displayed on the search page.
      *

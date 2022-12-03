@@ -30,7 +30,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OrgUnpublishedEventActionListener implements ActionListener {
-    final OrgUnpublishedEventPage orgUnpublishedEventPage;
+    private final OrgUnpublishedEventPage orgUnpublishedEventPage;
 
     public OrgUnpublishedEventActionListener(OrgUnpublishedEventPage orgUnpublishedEventPage){
         this.orgUnpublishedEventPage = orgUnpublishedEventPage;

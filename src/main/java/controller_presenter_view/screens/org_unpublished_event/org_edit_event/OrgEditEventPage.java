@@ -13,18 +13,16 @@ import java.util.ArrayList;
 public class OrgEditEventPage extends JFrame implements ActionListener {
 
     final EventDsGateway eventDsGateway;
-    final OrgEditEventController controller;
-    final OrgUnpublishedEventPage orgUnpublishedEventPage;
-
-    final String eventName;
-
-    final JTextField description = new JTextField(15);
-    final JTextField year = new JTextField(4);
-    final JTextField month = new JTextField(2);
-    final JTextField day = new JTextField(2);
-    final JTextField hour = new JTextField(2);
-    final JTextField minute = new JTextField(2);
-    final JTextField location = new JTextField(15);
+    private final OrgEditEventController controller;
+    private final OrgUnpublishedEventPage orgUnpublishedEventPage;
+    private final String eventName;
+    private final JTextField description = new JTextField(15);
+    private final JTextField year = new JTextField(4);
+    private final JTextField month = new JTextField(2);
+    private final JTextField day = new JTextField(2);
+    private final JTextField hour = new JTextField(2);
+    private final JTextField minute = new JTextField(2);
+    private final JTextField location = new JTextField(15);
 
     /**
      * This method creates a label text panel for organizer to input data

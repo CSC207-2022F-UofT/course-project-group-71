@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OrgUpcomingEventActionListener implements ActionListener {
-    public final OrgUpcomingEventPage orgUpcomingEventPage;
+    private final OrgUpcomingEventPage orgUpcomingEventPage;
 
     public OrgUpcomingEventActionListener(OrgUpcomingEventPage orgUpcomingEventPage){
         this.orgUpcomingEventPage = orgUpcomingEventPage;
@@ -71,7 +71,7 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                 }
                 this.orgUpcomingEventPage.dispose();
                 try {
-                    new OrgUpcomingEventPage(this.orgUpcomingEventPage.orgUsername);
+                    new OrgUpcomingEventPage(this.orgUpcomingEventPage.getOrgUsername());
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }

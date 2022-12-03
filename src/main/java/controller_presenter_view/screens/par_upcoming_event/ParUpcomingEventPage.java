@@ -16,7 +16,7 @@ import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class ParUpcomingEventPage extends JFrame {
-    final String parUsername;
+    private final String parUsername;
 
     /**The constructor of the Participant upcoming event page.
      * It takes a parUsername to obtain necessary information from the database.

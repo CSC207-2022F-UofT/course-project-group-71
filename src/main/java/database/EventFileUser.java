@@ -203,8 +203,6 @@ public class EventFileUser implements EventDsGateway{
         return status;
     }
 
-
-
     /**A tool method used to get the time of the method.
      * The time is returned as an Arraylist.
      *
@@ -261,7 +259,6 @@ public class EventFileUser implements EventDsGateway{
         return utilQueryArrayListString(sql).get(0);
     }
 
-
     /**A tool method that returned the participant list of the event.
      *
      * @param title The title of the event that need all the participants returned
@@ -276,7 +273,6 @@ public class EventFileUser implements EventDsGateway{
         return l;
     }
 
-
     /**This is a tool method returning whether the event exist.
      * If not found, returned false, which is the default value of the boolean stored in the method.
      *
@@ -287,9 +283,6 @@ public class EventFileUser implements EventDsGateway{
         String sql = "select title from eventfile where title = '" + eventName + "';";
         return !utilQueryArrayListString(sql).isEmpty();
     }
-
-
-
 
     /**This is a method used to get the current status of the event(upcoming, past or unpublished).
      * It calls a tool method calls utilGetStatus.
@@ -405,7 +398,6 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param event_title The title of the event that need to be deleted
      */
-
     public void deleteEvent(String event_title) throws ClassNotFoundException {
         OrgFileUser temp_orgFileUser = new OrgFileUser();
         ParFileUser temp_parFileUser = new ParFileUser();
@@ -417,15 +409,12 @@ public class EventFileUser implements EventDsGateway{
         for (String all_upcoming_participant : All_upcoming_participants) {
             temp_parFileUser.utilDeleteParUpcomingEvent(all_upcoming_participant, event_title);
         }
-
-
         String organization = utilGetOrganization(event_title);
         temp_orgFileUser.utilDeleteOrgPastEvent(organization,event_title);
         temp_orgFileUser.utilDeleteOrgUnpublishedEvent(organization,event_title);
         temp_orgFileUser.utilDeleteOrgUpcomingEvent(organization,event_title);
 
         utilDeleteEvent(event_title);
-
     }
 
     @Override

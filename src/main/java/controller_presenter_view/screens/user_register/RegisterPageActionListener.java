@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
 public class RegisterPageActionListener implements ActionListener {
-    public final RegisterPage registerPage;
+    private final RegisterPage registerPage;
 
     /**The constructor of the RegisterPageActionListener.
      * It takes an input RegisterPage and store as instance.
