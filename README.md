@@ -295,8 +295,8 @@ expected to never happen.
 ![](images/DatabaseTestingExplanation3.png)
 
 
-## Important Tip
-### Bizarre message
+## Important Tips
+### Bizarre Message
 If the program starts prompting messages that are not a normal part of the output, such as:
 ![](images/ErrorMessage.png)
 You should double-check your database to make sure your test data is not conflicting.
