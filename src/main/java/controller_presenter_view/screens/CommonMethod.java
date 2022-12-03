@@ -13,6 +13,8 @@ import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEve
 import controller_presenter_view.screens.org_unpublished_event.OrgUnpublishedEventPage;
 import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventActionListener;
 import controller_presenter_view.screens.org_upcoming_event.OrgUpcomingEventPage;
+import controller_presenter_view.screens.par_past_event.ParPastEventActionListener;
+import controller_presenter_view.screens.par_past_event.ParPastEventPage;
 import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventActionListener;
 import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventPage;
 import database.*;
@@ -142,7 +144,7 @@ public class CommonMethod {
                 eventTitle.addActionListener(new ParUpcomingEventActionListener((ParUpcomingEventPage) page));
                 break;
             case "ParPastEvent":
-
+                eventTitle.addActionListener(new ParPastEventActionListener((ParPastEventPage) page));
                 break;
         }
         eventTitle.setBounds(x, y, 250, 30);
