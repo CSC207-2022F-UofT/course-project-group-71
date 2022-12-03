@@ -296,7 +296,14 @@ expected to never happen.
 
 
 ## Important Tip
+### Bizarre message
 If the program starts prompting messages that are not a normal part of the output, such as:
 ![](images/ErrorMessage.png)
 You should double-check your database to make sure your test data is not conflicting.
 One way to prevent it is to clear all existing data and start over again (or reimport the test data we provided).
+
+### Location of Presenter and Controller
+Most presenters and controllers are located in the package `src/main/java/controller_presenter_view/screens`, which is subdivided by different screens.
+For example, presenter and controller of par_follow_org is located in `src/main/java/controller_presenter_view/screens/par_home/par_search/par_follow_org`, because the follow function is only used by the search function located in participant's home page.
+
+Other presenters and controllers are at `src/main/java/controller_presenter_view/common_controller_presenter`, as they can used by different screens.
