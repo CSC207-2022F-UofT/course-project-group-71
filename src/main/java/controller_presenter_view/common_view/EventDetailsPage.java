@@ -17,8 +17,6 @@ import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 public class EventDetailsPage extends JFrame {
 
-    private final String EVENT_TITLE;
-
     /** When this constructor is called it will generate an event details page for the event of interest using the
      * EVENT_TITLE parameter. The page will contain information such as the event's name, description, time, and location.
      *
@@ -28,7 +26,6 @@ public class EventDetailsPage extends JFrame {
     public EventDetailsPage(String EVENT_TITLE) throws ClassNotFoundException {
 
         EventDsGateway e= new EventFileUser();
-        this.EVENT_TITLE = EVENT_TITLE;
         this.setSize(getConstantX() - 300, getConstantY() - 500);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
@@ -42,16 +39,16 @@ public class EventDetailsPage extends JFrame {
         //Adds text for event name
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        JLabel eventName = new JLabel("Event Title: " + this.EVENT_TITLE);
+        JLabel eventName = new JLabel("Event Title: " + EVENT_TITLE);
 
         ExtractInfoInputBoundary interactor = new ExtractInfoInteractor(e);
         ExtractInfoController controller = new ExtractInfoController(interactor);
-        ExtractInfoResponseModel<String> response1= controller.extractEvent("getDescription",this.EVENT_TITLE);
+        ExtractInfoResponseModel<String> response1= controller.extractEvent("getDescription", EVENT_TITLE);
 
         //Adds text for event description
         JLabel description = new JLabel("Description: " + response1.getStr());
 
-        ExtractInfoResponseModel<Integer> response2= controller.extractEventTime(this.EVENT_TITLE);
+        ExtractInfoResponseModel<Integer> response2= controller.extractEventTime(EVENT_TITLE);
 
         //Adds text for event time
         ArrayList<Integer> times = response2.getAl();
@@ -60,7 +57,7 @@ public class EventDetailsPage extends JFrame {
 
         ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
         ExtractInfoController controller3= new ExtractInfoController(interactor3);
-        ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",this.EVENT_TITLE);
+        ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation", EVENT_TITLE);
 
         //Adds text for event location
         JLabel location = new JLabel("Location: "+response3.getStr());

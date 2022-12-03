@@ -18,7 +18,6 @@ import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 public class OrgDetailsPage extends JFrame {
 
-    private final String orgName;
     final OrgDsGateway o = new OrgFileUser();
 
     /** When this constructor is called it will generate an organizers details page that will include the organizer's
@@ -29,7 +28,6 @@ public class OrgDetailsPage extends JFrame {
      */
     public OrgDetailsPage(String orgName) throws ClassNotFoundException {
 
-        this.orgName = orgName;
         this.setSize(getConstantX() - 300, getConstantY() - 500);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
@@ -40,10 +38,10 @@ public class OrgDetailsPage extends JFrame {
         title.setHorizontalAlignment(JLabel.CENTER);
 
         //Adds text for organizer name
-        JLabel orgTitle = new JLabel("Organization Name: " + this.orgName);
+        JLabel orgTitle = new JLabel("Organization Name: " + orgName);
         orgTitle.setBounds(0, 50, getConstantX() - 300, 50);
         orgTitle.setHorizontalAlignment(JLabel.CENTER);
-        JLabel upcoming = new JLabel("Upcoming Events for " + this.orgName);
+        JLabel upcoming = new JLabel("Upcoming Events for " + orgName);
         upcoming.setBounds(0, 100, getConstantX() - 300, 50);
         upcoming.setHorizontalAlignment(JLabel.CENTER);
 

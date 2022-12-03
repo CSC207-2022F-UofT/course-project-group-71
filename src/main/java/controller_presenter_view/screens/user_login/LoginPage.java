@@ -16,8 +16,6 @@ public class LoginPage extends JFrame implements ActionListener {
     private final UserLoginController USER_LOGIN_CONTROLLER;
     private boolean P = false;
     private boolean O = false;
-    private final int X = 500;
-    private final int Y = 500;
 
     /**The method generate a login page.
      * It contains button to choose the user type for login.
@@ -29,11 +27,13 @@ public class LoginPage extends JFrame implements ActionListener {
     public LoginPage(UserLoginController controller) {
 
         this.setLayout(null);
-        this.setSize(X, Y);
+        int x = 500;
+        int y = 500;
+        this.setSize(x, y);
         this.setLocationRelativeTo(null);
         this.USER_LOGIN_CONTROLLER = controller;
         JLabel title = new JLabel("Login Screen");
-        title.setBounds (0,0, X, 50);
+        title.setBounds (0,0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
         JRadioButton parButton = new JRadioButton("Participant");
@@ -61,22 +61,22 @@ public class LoginPage extends JFrame implements ActionListener {
         JPanel typeInfo = new JPanel();
         typeInfo.add(parButton);
         typeInfo.add(orgButton);
-        typeInfo.setBounds (0,50, X, 50);
+        typeInfo.setBounds (0,50, x, 50);
 
         LabelTextPanel USERNAMEInfo = new LabelTextPanel(
                 new JLabel("Username"), USERNAME);
-        USERNAMEInfo.setBounds (0,100, X, 50);
+        USERNAMEInfo.setBounds (0,100, x, 50);
 
         LabelTextPanel PASSWORDInfo = new LabelTextPanel(
                 new JLabel("Password"), PASSWORD);
-        PASSWORDInfo.setBounds (0,150, X, 50);
+        PASSWORDInfo.setBounds (0,150, x, 50);
 
         JPanel buttons = new JPanel();
 
         buttons.add(register);
         buttons.add(logIn);
         buttons.add(cancel);
-        buttons.setBounds (0,200, X, 50);
+        buttons.setBounds (0,200, x, 50);
 
         register.addActionListener(new LoginPageActionListener(this));
 
