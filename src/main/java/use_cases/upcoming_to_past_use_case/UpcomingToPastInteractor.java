@@ -35,6 +35,7 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the user creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public UpcomingToPastResponseModel convertToPast(UpcomingToPastRequestModel requestModel) throws ClassNotFoundException {

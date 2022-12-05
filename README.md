@@ -89,7 +89,7 @@ Only for demonstration purposes, each of those has the following attributes:
   - *editable* ArrayList<String\> followedOrganizations: the usernames of the participant's followed Organizations. The participant can choose to unfollow any of them.
 
 
-*"*editable*" means the value of attribute can be changed by the user through means provided on UI.*
+*"editable" means the value of attribute can be changed by the user through means provided by UI.*
 
 
 ## Use Cases
@@ -103,9 +103,12 @@ If the naming starts with par_, then the use case is specifically responsible fo
 If the naming starts with org_, then the use case is specifically responsible for a functionality belongs to organization.
 
 There are a few special use cases that are used in more than one place in the project, usually across the user types:
-- `src/main/java/extract_information_use_case`: This is designed to assist views to show information stored in the database for Clean Architecture purposes. It is not tied to any specific type of user or screen.
-- `src/main/java/upcoming_to_past_use_case`: This is an auto-triggered use case that do not need the user to explicitly demand for it. It will convert the user's all relevant upcoming events whose time is in the past (comparing with system time by LocalDateTime) to past events.
-- `src/main/java/notify_event_use_case`: This is used to notify the user about changes or updates of relevant events. It can be called in various places in the project as the function is so commonly used.
+- `src/main/java/extract_information_use_case`: This is designed to assist views to show information stored in the database for Clean Architecture purposes. 
+It is not tied to any specific type of user or screen.
+- `src/main/java/upcoming_to_past_use_case`: This is an auto-triggered use case that do not need the user to explicitly demand for it.
+It will convert the user's all relevant upcoming events whose time is in the past (comparing with the system time by LocalDateTime) to past events.
+- `src/main/java/notify_event_use_case`: This is used to notify the user about changes or updates of relevant events.
+It can be called in various places in the project as the function is so commonly used.
 
 ## Database
 `src/main/java/database`
@@ -240,8 +243,8 @@ The whole table would be imported.
 - Single Responsibility: The modular approach we used ensures the workflow 
 is separated into use cases with each class only having one
 functionality and one reason to change.
-- Open Closed Principle: We did not really use inheritance in our project, which is why
-this principle does not really apply i.e. no extending other classes.
+- Open Closed Principle: Although we did not make it apparent where we are using this principle, 
+the use of interfaces in our code make it possible to add new features without having to modify existing ones.
 - Liskov Substitution Principle: This principle can be seen in our input and output
 boundaries, the interactor and presenter implements input and output boundaries and are
 subtypes of the input and output boundaries. Therefore, we substituted them in our program.
@@ -287,11 +290,20 @@ expected to never happen.
 - For this situation, we have no better solution but replacing all identify name in the sql file by Intellij auto replacement function.
 - If the problem is about utf8mb4_0900_ai_ci, replace it with utf8_unicode_ci.
 - If the problem is about utf8_unicode_ci, replace it with utf8mb4_0900_ai_ci.
+- Reference links: https://stackoverflow.com/questions/54885178/whats-the-difference-between-utf8-unicode-ci-and-utf8mb4-0900-ai-ci
 
 ![](images/DatabaseTestingExplanation3.png)
 
 
+## Important Tips
+### Bizarre Message
+If the program starts prompting messages that are not a normal part of the output, such as:
+![](images/ErrorMessage.png)
+You should double-check your database to make sure your test data is not conflicting.
+One way to prevent it is to clear all existing data and start over again (or reimport the test data we provided).
 
+### Location of Presenter and Controller
+Most presenters and controllers are located in the package `src/main/java/controller_presenter_view/screens`, which is subdivided by different screens.
+For example, presenter and controller of par_follow_org is located in `src/main/java/controller_presenter_view/screens/par_home/par_search/par_follow_org`, because the follow function is only used by the search function located in participant's home page.
 
-
-
+Other presenters and controllers are at `src/main/java/controller_presenter_view/common_controller_presenter`, as they can used by different screens.

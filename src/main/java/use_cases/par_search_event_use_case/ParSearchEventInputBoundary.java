@@ -8,6 +8,7 @@ public interface ParSearchEventInputBoundary {
      *
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the search for event is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel requestModel) throws ClassNotFoundException;
 }

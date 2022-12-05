@@ -1,8 +1,7 @@
 package controller_presenter_view.screens.org_past_event;
 
 
-import database.EventDsGateway;
-import database.EventFileUser;
+import controller_presenter_view.screens.CommonMethod;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
@@ -14,8 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class OrgPastEventPage extends JFrame {
@@ -31,6 +30,7 @@ public class OrgPastEventPage extends JFrame {
      */
     public OrgPastEventPage(String orgUsername) throws ClassNotFoundException {
         this.orgUsername = orgUsername;
+
         //Initialize the page
         this.setLayout(null);
         this.setSize(getConstantX(), getConstantY());
@@ -46,81 +46,12 @@ public class OrgPastEventPage extends JFrame {
         back.addActionListener(new OrgPastEventActionListener(this));
         back.setBounds(0, 100, 150, 30);
 
-        //Generate a JPanel to put events
-        JPanel events = new JPanel();
-        events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
+        //Generate a JScrollPane of events and add it to the page
+        generateEvents();
 
-        //Initialize the DsGateways
-        OrgDsGateway o = new OrgFileUser();
-        EventDsGateway e = new EventFileUser();
-
-
-        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(o);
-        ExtractInfoController controller1= new ExtractInfoController(interactor1);
-        ExtractInfoResponseModel<String> response1= controller1.extractOrg("getPastEvents",this.orgUsername);
-
-        ArrayList<String> pastEvents = response1.getAl();
-
-        int numberOfEvent = pastEvents.size();
-
-        if (numberOfEvent != 0) {
-            //Initialise a part of page to show the information of one past event
-            events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
-            int x = 0;
-            int y = 0;
-
-            //Add all cards of past events to the page
-            for (String unpublishedEventTitle : pastEvents) {
-                //Prepare the event title
-                JButton eventTitle = new JButton(unpublishedEventTitle);
-                eventTitle.addActionListener(new OrgPastEventActionListener(this));
-                eventTitle.setBounds(x, y, 250, 30);
-                eventTitle.setVisible(true);
-                //Prepare the interactor, controller and response model for each past events
-                ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
-                ExtractInfoController controller2= new ExtractInfoController(interactor2);
-                ExtractInfoResponseModel<Integer> response2= controller2.extractEventTime(unpublishedEventTitle);
-
-                //Obtain the time
-                ArrayList<Integer> times = response2.getAl();
-                String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
-                        times.get(3) + ":" + times.get(4);
-
-                //Prepare the time label
-                JLabel eventTime = new JLabel(time);
-                eventTime.setBounds(x + 20, y + 40, 250, 30);
-                eventTime.setVisible(true);
-
-                //Prepare teh interactor, controller and controller for extracting information of each past events
-                ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
-                ExtractInfoController controller3= new ExtractInfoController(interactor3);
-                ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
-                        unpublishedEventTitle);
-
-                String location = response3.getStr();
-                JLabel eventLocation = new JLabel(location);
-                eventLocation.setBounds(x + 20, y + 70, 250, 30);
-                eventLocation.setVisible(true);
-
-                //Add all the prepared events back to the page
-                events.add(eventTitle);
-                events.add(eventTime);
-                events.add(eventLocation);
-                y += 100;
-            }
-
-            //Set parameters for JScrollPane
-            JScrollPane eventScroll = new JScrollPane(events);
-            eventScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
-            eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-            eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            eventScroll.setVisible(true);
-            this.add(eventScroll);
-        }
         //Add title and back button to the page
         this.add(title);
         this.add(back);
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
@@ -131,5 +62,37 @@ public class OrgPastEventPage extends JFrame {
     public String getOrgUsername() {
         //Return the username of the organizer
         return orgUsername;
+    }
+
+    /**This method will generate events in a JScrollPane and add the JScrollPane into the page.
+     */
+    public void generateEvents() throws ClassNotFoundException {
+        //Get events' title from database
+        JPanel events = new JPanel();
+        events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
+        OrgDsGateway o = new OrgFileUser();
+        ExtractInfoInputBoundary interactor1 = new ExtractInfoInteractor(o);
+        ExtractInfoController controller1 = new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1 = controller1.extractOrg("getPastEvents", this.orgUsername);
+        ArrayList<String> pastEvents = response1.getAl();
+
+        int numberOfEvent = pastEvents.size();
+        if (numberOfEvent != 0) {
+            //Initialise a part of page to show the information of one past event
+            events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
+            int x = 0;
+            int y = 0;
+            //Add all cards of past events to the page
+            for (String pastEventTitle : pastEvents) {
+                CommonMethod.setEventInfo(this, events, pastEventTitle, x, y, "OrgPastEvent");
+                y += 100;
+            }
+            //Set parameters for JScrollPane
+            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
+            this.add(eventScroll);
+        }
+        else {
+            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
+        }
     }
 }

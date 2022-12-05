@@ -4,10 +4,12 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgController;
 import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgPresenter;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.par_follow_org_use_case.ParFollowOrgInputBoundary;
 import use_cases.par_follow_org_use_case.ParFollowOrgInteractor;
 import use_cases.par_follow_org_use_case.ParFollowOrgOutputBoundary;
@@ -17,6 +19,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**Need to create "allyson" as a participant in parfile and "UBC" as an organization in orgfile
+ */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ParFollowOrgTest {
     final ParDsGateway par = new ParFileUser();
     final ParFollowOrgOutputBoundary presenter = new ParFollowOrgPresenter();
@@ -24,8 +29,6 @@ public class ParFollowOrgTest {
     final ParFollowOrgController controller = new ParFollowOrgController(interactor);
     ParFollowOrgResponseModel responseModel;
 
-    /**Need to create "allyson" as a participant in parfile and "UBC" as an organization in orgfile
-     */
     @Test
     @Order(1)
     void testParFollowOrg() {

@@ -28,6 +28,7 @@ public class UserRegisterInteractor implements UserRegisterInputBoundary {
      *
      * @param requestModel The request model sent to the Interactor
      * @return A responseModel representing whether the user creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws ClassNotFoundException {
         //If getUserType() == "O", it means the user is an organizer

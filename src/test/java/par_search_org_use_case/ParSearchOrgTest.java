@@ -1,9 +1,11 @@
 package par_search_org_use_case;
 import database.*;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgController;
 import controller_presenter_view.screens.par_home.par_search.ParSearchOrgPresenter;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.par_search_org_use_case.ParSearchOrgInputBoundary;
 import use_cases.par_search_org_use_case.ParSearchOrgInteractor;
 import use_cases.par_search_org_use_case.ParSearchOrgResponseModel;
@@ -15,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**Need to create "654321" as a participant in parFile
  * Need to create organization "1", "12", "123", .... , "12345678", and "4321" in orgFile
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ParSearchOrgTest {
     final OrgDsGateway orgDsGateway = new OrgFileUser();
     final ParSearchOrgPresenter presenter = new ParSearchOrgPresenter();

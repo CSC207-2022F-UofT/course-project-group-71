@@ -1,10 +1,12 @@
 package org_create_event_use_case;
 
 import database.*;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventController;
 import controller_presenter_view.screens.org_unpublished_event.org_create_event.OrgCreateEventPresenter;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
 import use_cases.org_create_event_use_case.OrgCreateEventInteractor;
 import use_cases.org_create_event_use_case.OrgCreateEventOutputBoundary;
@@ -14,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**Need to create an organization called "UofT" in orgfile
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrgCreateEventTest {
     final EventDsGateway eventDsGateway = new EventFileUser();
     final OrgDsGateway orgDsGateway = new OrgFileUser();

@@ -6,8 +6,10 @@ import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.user_register_use_case.UserRegisterInputBoundary;
 import use_cases.user_register_use_case.UserRegisterInteractor;
 import use_cases.user_register_use_case.UserRegisterResponseModel;
@@ -16,8 +18,9 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**Do not need prior data
+/**Do not need prior data, an empty mysql file is the best
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserRegisterTest {
     final ParDsGateway par = new ParFileUser();
     final OrgDsGateway org = new OrgFileUser();
@@ -90,7 +93,6 @@ public class UserRegisterTest {
         try {
             responseModel = userRegisterController.create("P", "",
                     "1", "12345", "12345");
-            TimeUnit.SECONDS.sleep(3);
             assertEquals("1, you can login now!", responseModel.getMessage());
         } catch (Exception e) {
             assert(false);
@@ -100,6 +102,7 @@ public class UserRegisterTest {
     @Order(7)
     void testPrepareFailView_ParticipantExists(){
         try {
+            TimeUnit.SECONDS.sleep(10);
             responseModel = userRegisterController.create("P", "",
                     "1", "12345", "12345");
             TimeUnit.SECONDS.sleep(10);

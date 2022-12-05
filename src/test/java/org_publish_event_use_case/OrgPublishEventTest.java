@@ -2,8 +2,10 @@ package org_publish_event_use_case;
 
 import controller_presenter_view.screens.org_unpublished_event.org_publish_event.*;
 import database.*;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.org_publish_event_use_case.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Need to link "UofT" with "A" and "B" in unpublished_events_for_org
  * Need to link "UBC" with "C" in unpublished_events_for_org
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrgPublishEventTest {
     final EventDsGateway eventDsGateway = new EventFileUser();
     final OrgDsGateway orgDsGateway = new OrgFileUser();

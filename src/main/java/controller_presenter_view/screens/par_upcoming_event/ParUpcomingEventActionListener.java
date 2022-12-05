@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ParUpcomingEventActionListener implements ActionListener {
-    public final ParUpcomingEventPage parUpcomingEventPage;
+    private final ParUpcomingEventPage parUpcomingEventPage;
 
     /**Constructor of the upcoming event page.
      * It gets an upcoming event page as input and store it as instance.

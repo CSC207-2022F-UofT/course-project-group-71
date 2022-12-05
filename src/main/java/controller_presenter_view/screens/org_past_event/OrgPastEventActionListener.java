@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class OrgPastEventActionListener implements ActionListener {
-    public final OrgPastEventPage orgPastEventPage;
+    private final OrgPastEventPage orgPastEventPage;
 
     public OrgPastEventActionListener(OrgPastEventPage orgPastEventPage){
         this.orgPastEventPage = orgPastEventPage;

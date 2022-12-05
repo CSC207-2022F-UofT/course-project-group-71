@@ -1,8 +1,7 @@
 package controller_presenter_view.screens.org_unpublished_event;
 
 
-import database.EventDsGateway;
-import database.EventFileUser;
+import controller_presenter_view.screens.CommonMethod;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import controller_presenter_view.common_controller_presenter.extract_information.ExtractInfoController;
@@ -14,19 +13,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
-public class OrgUnpublishedEventPage extends JFrame {
+public class
+OrgUnpublishedEventPage extends JFrame {
     private final String orgUsername;
-    /**The method generate a page of organization's unpublished event.
+
+    /**
+     * The method generate a page of organization's unpublished event.
      * It let the organization create new an unpublished event and contains all unpublished events held by this
-     *       organization and let the organization publish, edit or delete specific events.
+     * organization and let the organization publish, edit or delete specific events.
      * There is a button "create new events" on the top which will pop up a window of create event.
      * After each of the event, there are three buttons.
      * -First is a "Publish" button, which the organization can publish the event and let participants join it.
-     *  The event will disappear in this unpublished page and appear in the published page.
+     * The event will disappear in this unpublished page and appear in the published page.
      * -Second is an "Edit" button, which the organization can keep editing this event, and it will switch to the edit event page.
      * -Third is a "Delete" button, which the organization can delete the event and event will no longer be inside the unpublished page.
      * There is a button "back" which directed the Organization back to the home page.
@@ -58,128 +60,83 @@ public class OrgUnpublishedEventPage extends JFrame {
 
         JPanel button = new JPanel();
         button.add(create);
-        button.setBounds(0,50, getConstantX(),40);
+        button.setBounds(0, 50, getConstantX(), 40);
 
-        //Prepare the JPanel for showing events
-        JPanel events = new JPanel();
-        events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
-
-        //Initialise the DsGateways
-        OrgDsGateway o = new OrgFileUser();
-        EventDsGateway e = new EventFileUser();
-
-        ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(o);
-        ExtractInfoController controller1= new ExtractInfoController(interactor1);
-        ExtractInfoResponseModel<String> response1= controller1.extractOrg("getUnpublishedEvents",
-                this.orgUsername);
-
-
-        ArrayList<String> unpublishedEvents = response1.getAl();
-
-        int numberOfEvent = unpublishedEvents.size();
-
-        //Branch with more than 1 event, it will show an information fragment with a scrolling bar
-        if (numberOfEvent != 0) {
-
-            events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
-
-            //Initialise the parameters
-            int x = 0;
-            int y = 0;
-
-            //Generate information cards for each unpublished events
-            for (String unpublishedEventTitle : unpublishedEvents) {
-                //Prepare the event title
-                JButton eventTitle = new JButton(unpublishedEventTitle);
-                //Set the action listener to show the detailed event information when clicking the event title
-                eventTitle.addActionListener(new OrgUnpublishedEventActionListener(this));
-                eventTitle.setBounds(x, y, 250, 30);
-                eventTitle.setVisible(true);
-
-                ExtractInfoInputBoundary interactor2= new ExtractInfoInteractor(e);
-                ExtractInfoController controller2= new ExtractInfoController(interactor2);
-                ExtractInfoResponseModel<Integer> response2= controller2.extractEventTime(unpublishedEventTitle);
-
-                //Obtain the times
-                ArrayList<Integer> times = response2.getAl();
-                String time = times.get(0) + " " + times.get(1) + "-" + times.get(2) + " " +
-                        times.get(3) + ":" + times.get(4);
-
-                //Get the time to show on the screen
-                JLabel eventTime = new JLabel(time);
-                eventTime.setBounds(x + 20, y + 40, 250, 30);
-                eventTime.setVisible(true);
-
-                //Prepare the interactor, controller and response model
-                ExtractInfoInputBoundary interactor3= new ExtractInfoInteractor(e);
-                ExtractInfoController controller3= new ExtractInfoController(interactor3);
-                ExtractInfoResponseModel<String> response3= controller3.extractEvent("getLocation",
-                        unpublishedEventTitle);
-
-                //Get and show the information of location
-                String location = response3.getStr();
-                JLabel eventLocation = new JLabel(location);
-                eventLocation.setBounds(x + 20, y + 70, 250, 30);
-                eventLocation.setVisible(true);
-
-                //Add a button for "Publish"
-                JButton publish = new JButton("Publish");
-                publish.setActionCommand(unpublishedEventTitle + "Publish");
-                //Set the action listener to respond when user clicks "Publish" for this event
-                publish.addActionListener(new OrgUnpublishedEventActionListener(this));
-                publish.setBounds(x + 250, y + 15, 100, 30);
-                publish.setVisible(true);
-
-                //Add a button for "Edit"
-                JButton notify = new JButton("Edit");
-                notify.setActionCommand(unpublishedEventTitle + "Edit");
-                //Set the action listener to respond when user clicks "Edit" for this event
-                notify.addActionListener(new OrgUnpublishedEventActionListener(this));
-                notify.setBounds(x + 250, y + 15, 100, 30);
-                notify.setVisible(true);
-
-                //Add a button for "Delete"
-                JButton delete = new JButton("Delete");
-                delete.setActionCommand(unpublishedEventTitle + "Delete");
-                //Set the action listener to respond when user clicks "Delete" for this event
-                delete.addActionListener(new OrgUnpublishedEventActionListener(this));
-                delete.setBounds(x + 250, y + 55, 100, 30);
-                delete.setVisible(true);
-
-                //Add the above events on the page
-                events.add(eventTitle);
-                events.add(eventTime);
-                events.add(eventLocation);
-                events.add(publish);
-                events.add(notify);
-                events.add(delete);
-                y += 100;
-            }
-
-            //Make and set parameters for the JScrollPane
-            JScrollPane eventScroll = new JScrollPane(events);
-            eventScroll.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
-            eventScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-            eventScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-            eventScroll.setVisible(true);
-            this.add(eventScroll);
-        }
+        //Generate a JScrollPane of events and add it to the page
+        generateEvents();
 
         //Add title and buttons on the page
         this.add(title);
         this.add(back);
         this.add(button);
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         this.setVisible(true);
     }
 
-    /**This method will be called in OrgUnpublishedEventActionListener.
+    /**
+     * This method will be called in OrgUnpublishedEventActionListener.
+     *
      * @return it will return a string which is organization's username.
      */
     public String getOrgUsername() {
         //Return the username of the organizer
         return orgUsername;
+    }
+
+    /**This method will generate events in a JScrollPane and add the JScrollPane into the page.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
+     */
+    public void generateEvents() throws ClassNotFoundException {
+        //Prepare the JPanel for showing events
+        JPanel events = new JPanel();
+        events.setBounds(150, 100, getConstantX() - 170, getConstantY() - 150);
+        //Get events' title from database
+        OrgDsGateway o = new OrgFileUser();
+        ExtractInfoInputBoundary interactor1 = new ExtractInfoInteractor(o);
+        ExtractInfoController controller1 = new ExtractInfoController(interactor1);
+        ExtractInfoResponseModel<String> response1= controller1.extractOrg("getUnpublishedEvents",
+                    this.orgUsername);
+        ArrayList<String> unpublishedEvents = response1.getAl();
+
+        int numberOfEvent = unpublishedEvents.size();
+        if (numberOfEvent != 0) {
+            events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
+            //Initialise the parameters
+            int x = 0;
+            int y = 0;
+            //Generate information cards for each unpublished events
+            for (String unpublishedEventTitle : unpublishedEvents) {
+                CommonMethod.setEventInfo(this, events, unpublishedEventTitle, x, y, "OrgUnpublishedEvent");
+                events.add(create_JButton(unpublishedEventTitle,"Publish", x + 250, y + 15, 100, 30));
+                events.add(create_JButton(unpublishedEventTitle,"Edit", x + 250, y + 15, 100, 30));
+                events.add(create_JButton(unpublishedEventTitle,"Delete", x + 250, y + 55, 100, 30));
+                y += 100;
+            }
+            //Put the JPanel into a JScrollPane
+            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
+            this.add(eventScroll);
+        }
+        else {
+            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
+        }
+    }
+
+
+    /**This function returns a JButton with the input as set bounds
+     *
+     * @param eventTitle the event's title
+     * @param text string of the button showing
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return return the JButton
+     */
+    public JButton create_JButton(String eventTitle, String text, int x, int y, int width, int height){
+        JButton output = new JButton(text);
+        output.setActionCommand(eventTitle + text);
+        output.addActionListener(new OrgUnpublishedEventActionListener(this));
+        output.setBounds (x, y, width, height);
+        return output;
     }
 }

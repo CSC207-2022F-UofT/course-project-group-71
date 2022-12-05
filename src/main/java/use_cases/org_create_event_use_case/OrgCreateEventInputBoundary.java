@@ -8,6 +8,7 @@ public interface OrgCreateEventInputBoundary {
      *
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the event creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     OrgCreateEventResponseModel create(OrgCreateEventRequestModel requestModel) throws ClassNotFoundException;
 }

@@ -12,13 +12,12 @@ import javax.swing.*;
 
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class OrgDetailsPage extends JFrame {
 
-    final String orgName;
     final OrgDsGateway o = new OrgFileUser();
 
     /** When this constructor is called it will generate an organizers details page that will include the organizer's
@@ -29,7 +28,6 @@ public class OrgDetailsPage extends JFrame {
      */
     public OrgDetailsPage(String orgName) throws ClassNotFoundException {
 
-        this.orgName = orgName;
         this.setSize(getConstantX() - 300, getConstantY() - 500);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
@@ -40,11 +38,11 @@ public class OrgDetailsPage extends JFrame {
         title.setHorizontalAlignment(JLabel.CENTER);
 
         //Adds text for organizer name
-        JLabel orgTitle = new JLabel("Organization Name: " + this.orgName);
-        orgTitle.setBounds(0, 50, getConstantX() - 300, 50);
+        JLabel orgTitle = new JLabel("Organization: " + orgName);
+        orgTitle.setBounds(0, 50, getConstantX() - 300, 30);
         orgTitle.setHorizontalAlignment(JLabel.CENTER);
-        JLabel upcoming = new JLabel("Upcoming Events for " + this.orgName);
-        upcoming.setBounds(0, 100, getConstantX() - 300, 50);
+        JLabel upcoming = new JLabel("Upcoming Events");
+        upcoming.setBounds(0, 80, getConstantX() - 300, 30);
         upcoming.setHorizontalAlignment(JLabel.CENTER);
 
         ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(o);
@@ -55,7 +53,7 @@ public class OrgDetailsPage extends JFrame {
         ArrayList<String> orgUpcomingEvents = response1.getAl();
 
         JPanel panel = new JPanel();
-        panel.setBounds(100, 150, 200, 100);
+        panel.setBounds(100, 110, 200, 140);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         //loops through all the upcoming events for organizer and adds them to the page
@@ -68,7 +66,7 @@ public class OrgDetailsPage extends JFrame {
         scroll.setLayout(new ScrollPaneLayout());
         scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scroll.setBounds(100, 150, 300, 100);
+        scroll.setBounds(100, 110, 300, 140);
 
         this.add(title);
         this.add(orgTitle);

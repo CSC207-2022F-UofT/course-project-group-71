@@ -17,9 +17,9 @@ public class ParSearchEventPresenter implements ParSearchEventOutputBoundary {
      */
     @Override
     public ParSearchEventResponseModel prepareSuccessView(ParSearchEventResponseModel results) throws ClassNotFoundException {
-        ArrayList<String> eventNames= results.getSearchResults();
-        String parUserName= results.getParUserName();
-        new ParSearchEventResultsPage(eventNames,parUserName);
+        ArrayList<String> eventNames = results.getSearchResults();
+        String parUserName = results.getParUserName();
+        new ParSearchEventResultsPage(eventNames, parUserName);
         return results;
     }
 

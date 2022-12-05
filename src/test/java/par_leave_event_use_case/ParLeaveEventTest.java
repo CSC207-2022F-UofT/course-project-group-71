@@ -4,8 +4,10 @@ import controller_presenter_view.common_controller_presenter.par_leave_event.Par
 import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.par_leave_event_use_case.ParLeaveEventInputBoundary;
 import use_cases.par_leave_event_use_case.ParLeaveEventInteractor;
 import use_cases.par_leave_event_use_case.ParLeaveEventOutputBoundary;
@@ -18,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Need to add "P10" and "E6" in upcoming_events_for_par
  * Need to add the organization and "E6" in upcoming_events_for_org
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ParLeaveEventTest {
     final ParDsGateway parDsGateway = new ParFileUser();
     final ParLeaveEventOutputBoundary presenter = new ParLeaveEventPresenter();

@@ -10,35 +10,19 @@ import java.awt.event.ActionListener;
 
 public class OrgCreateEventPage extends JFrame implements ActionListener {
 
-    final OrgCreateEventController CONTROLLER;
-    final OrgUnpublishedEventPage ORGUNPUBLISHEDEVENTPAGE;
+    private final OrgCreateEventController CONTROLLER;
+    private final OrgUnpublishedEventPage ORGUNPUBLISHEDEVENTPAGE;
 
     //The input bar for all sorts of information
-    final JTextField EVENT_TITLE = new JTextField(15);
-    final JTextField DESCRIPTION = new JTextField(15);
-    final JTextField YEAR = new JTextField(4);
-    final JTextField MONTH = new JTextField(2);
-    final JTextField DAY = new JTextField(2);
-    final JTextField HOUR = new JTextField(2);
-    final JTextField MINUTE = new JTextField(2);
-    final JTextField LOCATION = new JTextField(15);
+    private final JTextField EVENT_TITLE = new JTextField(15);
+    private final JTextField DESCRIPTION = new JTextField(15);
+    private final JTextField YEAR = new JTextField(4);
+    private final JTextField MONTH = new JTextField(2);
+    private final JTextField DAY = new JTextField(2);
+    private final JTextField HOUR = new JTextField(2);
+    private final JTextField MINUTE = new JTextField(2);
+    private final JTextField LOCATION = new JTextField(15);
 
-    /**
-     * This method creates a label text panel for organizer to input data
-     * @param text the text we want to show
-     * @param J The JTextField
-     * @param x the integer x for set bounds
-     * @param y the integer y for set bounds
-     * @param width the integer representing the width for set bounds
-     * @param height the integer representing the height for set bounds
-     * @return a text panel
-     */
-    public LabelTextPanel create_text_panel(String text, JTextField J, int x, int y, int width, int height){
-        LabelTextPanel output = new LabelTextPanel(
-                new JLabel(text), J);
-        output.setBounds (x, y, width, height);
-        return output;
-    }
 
     /**The method generate a create event window and allowed the organization to create a new event by input details.
      * It allows user to input title, DESCRIPTION, YEAR, MONTH, DAY, HOUR, MINUTEEs and LOCATION,
@@ -65,46 +49,6 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
         title.setBounds(0, 0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-//        //Generate the panel to show title information
-//        LabelTextPanel EVENT_TITLEInfo = new LabelTextPanel(
-//                new JLabel("Title"), EVENT_TITLE);
-//        EVENT_TITLEInfo.setBounds (0,100, x, 50);
-//
-//        //Generate the panel to show DESCRIPTION information
-//        LabelTextPanel DESCRIPTIONInfo = new LabelTextPanel(
-//                new JLabel("Description"), DESCRIPTION);
-//        DESCRIPTIONInfo.setBounds (0,150, x, 50);
-//
-//        //Generate the panel to show YEAR information
-//        LabelTextPanel YEARInfo = new LabelTextPanel(
-//                new JLabel("Year"), YEAR);
-//        YEARInfo.setBounds (0,200, x/5, 50);
-//
-//        //Generate the panel to show MONTH information
-//        LabelTextPanel MONTHInfo = new LabelTextPanel(
-//                new JLabel("Month"), MONTH);
-//        MONTHInfo.setBounds (x/5,200, x/5, 50);
-//
-//        //Generate the panel to show DAY information
-//        LabelTextPanel DAYInfo = new LabelTextPanel(
-//                new JLabel("Day"), DAY);
-//        DAYInfo.setBounds (2*x/5,200, x/5, 50);
-//
-//        //Generate the panel to show HOUR information
-//        LabelTextPanel HOURInfo = new LabelTextPanel(
-//                new JLabel("Hour"), HOUR);
-//        HOURInfo.setBounds (3*x/5,200, x/5, 50);
-//
-//        //Generate the panel to show MINUTE information
-//        LabelTextPanel MINUTEInfo = new LabelTextPanel(
-//                new JLabel("Minute"), MINUTE);
-//        MINUTEInfo.setBounds (4*x/5,200, x/5, 50);
-//
-//        //Generate the panel to show LOCATION information
-//        LabelTextPanel LOCATIONInfo = new LabelTextPanel(
-//                new JLabel("Location"), LOCATION);
-//        LOCATIONInfo.setBounds (0,250, x, 50);
-//
         //Generate a cancel button
         JButton cancel = new JButton("Cancel");
         //Set the action listener for user clicking "Cancel"
@@ -137,11 +81,6 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
 
     }
 
-    /**The method returns organization's Username.
-     * @return it will return a string which is organization's username.
-     */
-    public String getOrgUsername() { return this.ORGUNPUBLISHEDEVENTPAGE.getOrgUsername(); }
-
     /**The action listener for button "Create", which will intake the information of the typed strings and send it to
      * the OrgCreateEvent use case.
      * If succeeds, the OrgCreateEventPage will dispose and the OrgUnpublishedEventPage will be renewed.
@@ -164,6 +103,28 @@ public class OrgCreateEventPage extends JFrame implements ActionListener {
             //If the trying above meet some exception, it goes here
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }
+    }
+
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
+    public String getOrgUsername() { return this.ORGUNPUBLISHEDEVENTPAGE.getOrgUsername(); }
+
+    /**
+     * This method creates a label text panel for organizer to input data
+     * @param text the text we want to show
+     * @param J The JTextField
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return a text panel
+     */
+    public LabelTextPanel create_text_panel(String text, JTextField J, int x, int y, int width, int height){
+        LabelTextPanel output = new LabelTextPanel(
+                new JLabel(text), J);
+        output.setBounds (x, y, width, height);
+        return output;
     }
 }
 

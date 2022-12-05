@@ -23,7 +23,7 @@ import java.awt.event.ActionListener;
 import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
 public class ParHomeActionListener implements ActionListener {
-    public final ParHomePage parHomePage;
+    private final ParHomePage parHomePage;
 
     /**The constructor of the par homepage listener
      *

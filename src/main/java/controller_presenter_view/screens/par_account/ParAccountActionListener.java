@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ParAccountActionListener implements ActionListener {
-    public final ParAccountPage parAccountPage;
+    private final ParAccountPage parAccountPage;
 
     /**The constructor class for action listener, it's going to take a page and listen to the change from the page.
      *

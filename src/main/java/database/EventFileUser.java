@@ -48,6 +48,7 @@ public class EventFileUser implements EventDsGateway{
      * @param day The time (day) of the event
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
 
     public void utilEditEvent(String title, String description, String location, int year, int month,
@@ -65,6 +66,7 @@ public class EventFileUser implements EventDsGateway{
      * It should not return anything.
      *
      * @param title The title of the event that need to be deleted
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeleteEvent(String title) throws ClassNotFoundException {
         String sql = "delete from eventfile where title = '" + title + "';";
@@ -77,6 +79,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need the name of the organization who created it
      * @return the name of the organization who created the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String utilGetOrganization(String title) throws ClassNotFoundException {
         String organization = null;
@@ -101,6 +104,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event(which is a past event) that need the list of all participants
      * @return The list containing all participants of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetAllPastEventParticipant(String title) throws ClassNotFoundException {
         String sql = "select par_username from past_events_for_par where event_title = '" + title + "';";
@@ -114,6 +118,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event(which is an upcoming event) that need the list of all participants
      * @return The list containing all participants of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetAllUpcomingEventParticipant(String title) throws ClassNotFoundException {
         String sql = "select par_username from upcoming_events_for_par where event_title = '" + title + "';";
@@ -127,6 +132,7 @@ public class EventFileUser implements EventDsGateway{
      * If the event is not unpublished, it should not do anything and the error would be dealt with an exception.
      *
      * @param title The title of the event that need to change the status
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilUnpublishedToUpcomingForOrg(String title) throws ClassNotFoundException {
         String orgName = utilGetOrganization(title);
@@ -143,6 +149,7 @@ public class EventFileUser implements EventDsGateway{
      * If the event is not upcoming, it should not do anything and the error would be dealt with an exception.
      *
      * @param title The title of the event that need to change the status
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     private void utilUpcomingToPastForOrg(String title) throws ClassNotFoundException {
         String orgName = utilGetOrganization(title);
@@ -156,6 +163,7 @@ public class EventFileUser implements EventDsGateway{
      * If the event is not an upcoming event, it would meet an error which would be dealt with exception.
      *
      * @param title The title of the event that need to change the status
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     private void utilUpcomingToPastForPar(String title) throws ClassNotFoundException {
         ArrayList<String> ParticipantList = getParticipants(title);
@@ -171,6 +179,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param about_name The keyword entered by user to search relevant event name
      * @return An arraylist containing all relevant event names
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilEventSearch(String about_name) throws ClassNotFoundException {
         String sql = "select title from eventfile where title like \"%" + about_name + "%\";";
@@ -184,6 +193,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need to know the status
      * @return The status of the input event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String utilGetStatus(String title) throws ClassNotFoundException {
         String status = null;
@@ -203,13 +213,12 @@ public class EventFileUser implements EventDsGateway{
         return status;
     }
 
-
-
     /**A tool method used to get the time of the method.
      * The time is returned as an Arraylist.
      *
      * @param title The title of the event that need the time returned
      * @return The time of the event as [year,month,day,hour,minute]
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<Integer> utilGetTime(String title) throws ClassNotFoundException {
         Statement stmt = null;
@@ -244,6 +253,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of event that need the description returned
      * @return The description of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String utilGetDescription(String title) throws ClassNotFoundException {
         String sql = "select description from eventfile where title = '" + title + "';";
@@ -255,17 +265,18 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need the location returned
      * @return The location of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String utilGetLocation(String title) throws ClassNotFoundException {
         String sql = "select location from eventfile where title = '" + title + "';";
         return utilQueryArrayListString(sql).get(0);
     }
 
-
     /**A tool method that returned the participant list of the event.
      *
      * @param title The title of the event that need all the participants returned
      * @return An Arraylist containing all the participants
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetParticipants(String title) throws ClassNotFoundException {
         ArrayList<String> l1 = utilGetAllPastEventParticipant(title);
@@ -276,26 +287,24 @@ public class EventFileUser implements EventDsGateway{
         return l;
     }
 
-
     /**This is a tool method returning whether the event exist.
      * If not found, returned false, which is the default value of the boolean stored in the method.
      *
      * @param eventName The event name that need to be used to check existence
      * @return Whether the event exists
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public boolean utilCheckIfEventNameExist(String eventName) throws ClassNotFoundException {
         String sql = "select title from eventfile where title = '" + eventName + "';";
         return !utilQueryArrayListString(sql).isEmpty();
     }
 
-
-
-
     /**This is a method used to get the current status of the event(upcoming, past or unpublished).
      * It calls a tool method calls utilGetStatus.
      *
      * @param title The title of the event that need to know the status
      * @return The status of the input event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String getStatus(String title) throws ClassNotFoundException {
         return utilGetStatus(title);
@@ -306,6 +315,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of event that need the description returned
      * @return The description of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String getDescription(String title) throws ClassNotFoundException {
         return utilGetDescription(title);
@@ -317,6 +327,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need the location returned
      * @return The location of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String getLocation(String title) throws ClassNotFoundException {
         return utilGetLocation(title);
@@ -328,6 +339,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need the time returned
      * @return The time of the event as [year,month,day,hour,minute]
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<Integer> getTime(String title) throws ClassNotFoundException {
         return utilGetTime(title);
@@ -338,6 +350,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need all the participants returned
      * @return An Arraylist containing all the participants
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> getParticipants(String title) throws ClassNotFoundException {
         return utilGetParticipants(title);
@@ -348,6 +361,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param title The title of the event that need the organization who create the event returned
      * @return The organization of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String getOrganization(String title) throws ClassNotFoundException {
         return utilGetOrganization(title);
@@ -358,6 +372,7 @@ public class EventFileUser implements EventDsGateway{
      * the event must be unpublished and should only have one status
      *
      * @param title The title of the event that's unpublished and need to turn to upcoming
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void unPublishedToUpcoming(String title) throws ClassNotFoundException {
         utilUnpublishedToUpcomingForOrg(title);
@@ -367,6 +382,7 @@ public class EventFileUser implements EventDsGateway{
      * The event should only have one state and must be upcoming
      *
      * @param title The title of the event that's upcoming and need to turn to past
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void upcomingToPast(String title) throws ClassNotFoundException {
         utilUpcomingToPastForOrg(title);
@@ -380,6 +396,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param about_name The keyword entered by user to search relevant event name
      * @return An arraylist containing all relevant event names
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> eventSearch(String about_name) throws ClassNotFoundException {
         return utilEventSearch(about_name);
@@ -391,6 +408,7 @@ public class EventFileUser implements EventDsGateway{
      *
      * @param eventName The event name that need to be used to check existence
      * @return Whether the event exists
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public boolean checkIfEventNameExist(String eventName) throws ClassNotFoundException {
         return utilCheckIfEventNameExist(eventName);
@@ -404,8 +422,8 @@ public class EventFileUser implements EventDsGateway{
      * The existence of the event should be wiped out of the database.
      *
      * @param event_title The title of the event that need to be deleted
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-
     public void deleteEvent(String event_title) throws ClassNotFoundException {
         OrgFileUser temp_orgFileUser = new OrgFileUser();
         ParFileUser temp_parFileUser = new ParFileUser();
@@ -417,41 +435,16 @@ public class EventFileUser implements EventDsGateway{
         for (String all_upcoming_participant : All_upcoming_participants) {
             temp_parFileUser.utilDeleteParUpcomingEvent(all_upcoming_participant, event_title);
         }
-
-
         String organization = utilGetOrganization(event_title);
         temp_orgFileUser.utilDeleteOrgPastEvent(organization,event_title);
         temp_orgFileUser.utilDeleteOrgUnpublishedEvent(organization,event_title);
         temp_orgFileUser.utilDeleteOrgUpcomingEvent(organization,event_title);
 
         utilDeleteEvent(event_title);
-
     }
 
     @Override
     public void editEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
         utilEditEvent(title,description,location,year,month,day,hour,minute);
     }
-
-//    public Event getEvent(String title) throws ClassNotFoundException {
-//        return new Event(title, getDescription(title), getLocation(title), getTime(title).get(0), getTime(title).get(1),getTime(title).get(2),getTime(title).get(3),getTime(title).get(4),getParticipants(title),getOrganization(title));
-//    }
-
-//    public Event saveEvent(Event event_to_save) throws ClassNotFoundException {
-//        String event_status = getStatus(event_to_save.getTitle());
-//        int event_status_int = 0;
-//        if (event_status == "Unpublished"){
-//            event_status_int = 0;
-//        }
-//        if (event_status == "Past"){
-//            event_status_int = 2;
-//        }
-//        if (event_status == "Upcoming"){
-//            event_status_int = 1;
-//        }
-//        deleteEvent(event_to_save.getTitle());
-//        OrgDsGateway orgDsGateway = new OrgFileUser();
-//        orgDsGateway.createAnEvent(event_to_save.getOrganization(), event_to_save.getTitle(), event_status_int, event_to_save.getDescription(),event_to_save.getLocation(), event_to_save.getYear(), event_to_save.getMonth(),event_to_save.get(3),getTime(title).get(4));
-//    }
-
 }

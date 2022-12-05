@@ -6,8 +6,10 @@ import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
@@ -24,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *                      stored in database by time we try to retrieve them. You can modify the time a bit longer
  *                      depending on your hardware.
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NotifyEventTest {
     final ParDsGateway parDsGateway = new ParFileUser();
     final EventDsGateway eventDsGateway = new EventFileUser();

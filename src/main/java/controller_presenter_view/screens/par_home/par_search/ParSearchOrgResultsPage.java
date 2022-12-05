@@ -13,15 +13,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller_presenter_view.screens.screen_constants.getConstantX;
-import static controller_presenter_view.screens.screen_constants.getConstantY;
+import static controller_presenter_view.screens.ScreenConstants.getConstantX;
+import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
 public class ParSearchOrgResultsPage extends JFrame {
 
-    final ArrayList<String> orgNames;
+    private final ArrayList<String> orgNames;
     final ArrayList<String> followedList;
-    final String parUsername;
+    private final String parUsername;
     final ParDsGateway p = new ParFileUser();
 
     /**The main method for creating the search results page.
@@ -79,15 +79,15 @@ public class ParSearchOrgResultsPage extends JFrame {
 
                 if (this.followedList.contains(nextOrg)) {
                     JButton unfollow = new JButton("Unfollow");
-                    unfollow.setActionCommand("Unfollow "+nextOrg);
+                    unfollow.setActionCommand("Unfollow " + nextOrg);
                     unfollow.addActionListener(new ParSearchOrgResultsPageActionListener(this, nextOrg));
                     unfollow.setBounds(x, y, 250, 30);
                     organizers.add(unfollow);
                     unfollow.setVisible(true);
 
                 } else {
-                    JButton follow = new JButton("Follow "+nextOrg);
-                    follow.setActionCommand("Follow "+nextOrg);
+                    JButton follow = new JButton("Follow");
+                    follow.setActionCommand("Follow " + nextOrg);
                     follow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
                     follow.setBounds(x, y, 250, 30);
                     organizers.add(follow);

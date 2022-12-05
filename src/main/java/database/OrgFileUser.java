@@ -6,9 +6,6 @@ import static database.JDBCUtils.utilQueryArrayListString;
 import static database.JDBCUtils.utilUpdateVoid;
 
 public class OrgFileUser implements OrgDsGateway {
-    public static void main(String[] args) throws ClassNotFoundException {
-    }
-
 
     /**This is a tool method to store the username and password of the organization to database.
      *
@@ -50,6 +47,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeleteOrgPastEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from past_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
@@ -61,6 +59,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilAddOrgUnpublishedEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "insert into unpublished_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
@@ -72,6 +71,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeleteOrgUnpublishedEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from unpublished_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
@@ -83,6 +83,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilAddOrgUpcomingEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "insert into upcoming_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
@@ -94,6 +95,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilDeleteOrgUpcomingEvent(String org_username, String event_title) throws ClassNotFoundException {
         String sql = "delete from upcoming_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
@@ -104,6 +106,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @return All followers of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetAllFollowers(String org_username) throws ClassNotFoundException {
         String sql = "select par_username from follow_org_par where org_username = '" + org_username + "';";
@@ -113,6 +116,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @return All unpublished events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetUnpublishedEvents(String org_username) throws ClassNotFoundException {
         String sql = "select event_title from unpublished_events_for_org where org_username = '" + org_username + "';";
@@ -123,6 +127,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @return All past events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetPastEvents(String org_username) throws ClassNotFoundException {
         String sql = "select event_title from past_events_for_org where org_username = '" + org_username + "';";
@@ -133,6 +138,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @return All upcoming events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilGetUpcomingEvents(String org_username) throws ClassNotFoundException {
         String sql = "select event_title from upcoming_events_for_org where org_username = '" + org_username + "';";
@@ -143,6 +149,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @return The password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String utilGetPassword(String org_username) throws ClassNotFoundException {
         String sql = "select password from orgfile where username = '" + org_username + "'";
@@ -154,6 +161,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param new_password The new password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void utilPasswordUpdating(String org_username, String new_password) throws ClassNotFoundException {
         String sql = "update orgfile set password = '" + new_password + "' where username = '" + org_username + "';";
@@ -164,6 +172,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param about_name The keyword that used for search for relevant organization
      * @return An ArrayList containing the name of all relevant organizations
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> utilOrganizationSearch(String about_name) throws ClassNotFoundException {
         String sql = "select username from orgfile where username like \"%" + about_name + "%\";";
@@ -175,6 +184,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public boolean utilCheckIfUsernameExist(String username) throws ClassNotFoundException {
         String sql = "select username from orgfile where username = '" + username + "';";
@@ -188,6 +198,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @param password The password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void createOrg(String username, String password) throws ClassNotFoundException {
         utilStoreOrg(username,password);
@@ -199,6 +210,7 @@ public class OrgFileUser implements OrgDsGateway {
      * utilGetUnpublishedEvents, utilGetPastEvents, utilGetUpcomingEvents and utilGetAllFollowers.
      *
      * @param username The username of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void deleteOrg(String username) throws ClassNotFoundException {
         ParFileUser temp_parFileUser = new ParFileUser();
@@ -236,6 +248,7 @@ public class OrgFileUser implements OrgDsGateway {
      * @param day The time (day) of the event
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
         EventFileUser temp_eventFileUser = new EventFileUser();
@@ -260,6 +273,7 @@ public class OrgFileUser implements OrgDsGateway {
      * and the organization and the participants.
      *
      * @param title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void deleteAnEvent(String title) throws ClassNotFoundException {
         EventFileUser temp_eventFileUser = new EventFileUser();
@@ -271,6 +285,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The name of the organization
      * @return THe password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public String getPassword(String username) throws ClassNotFoundException {
         return utilGetPassword(username);
@@ -281,6 +296,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The name of the organization
      * @param new_password The new password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void setPassword(String username, String new_password) throws ClassNotFoundException {
         utilPasswordUpdating(username, new_password);
@@ -291,6 +307,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param about_name The keyword that used for search for relevant organization
      * @return An ArrayList containing the name of all relevant organizations
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> organizationSearch(String about_name) throws ClassNotFoundException {
         return utilOrganizationSearch(about_name);
@@ -301,6 +318,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @return The arraylist containing all unpublished events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> getUnpublishedEvents(String username) throws ClassNotFoundException {
         return utilGetUnpublishedEvents(username);
@@ -311,6 +329,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @return The arraylist containing all past events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> getPastEvents(String username) throws ClassNotFoundException {
         return utilGetPastEvents(username);
@@ -321,6 +340,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @return The arraylist containing all upcoming events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> getUpcomingEvents(String username) throws ClassNotFoundException {
         return utilGetUpcomingEvents(username);
@@ -331,6 +351,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @return The arraylist containing all followers of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ArrayList<String> getFollowers(String username) throws ClassNotFoundException {
         return utilGetAllFollowers(username);
@@ -342,6 +363,7 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public boolean checkIfUsernameExist(String username) throws ClassNotFoundException {
         return utilCheckIfUsernameExist(username);

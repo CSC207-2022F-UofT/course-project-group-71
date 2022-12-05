@@ -26,6 +26,7 @@ public class ParSearchEventInteractor implements ParSearchEventInputBoundary {
      *
      * @param userInput The request model sent to the interactor
      * @return userOutput representing whether the event search is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ParSearchEventResponseModel eventSearch(ParSearchEventRequestModel userInput) throws ClassNotFoundException {
