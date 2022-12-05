@@ -94,6 +94,9 @@ public class ParFollowedOrgPage extends JFrame {
             JScrollPane followerScroll = CommonMethod.generateJScrollPane(followedOrganization);
             this.add(followerScroll);
         }
+        else {
+            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
+        }
         return numberOfOrg;
     }
 }

@@ -79,11 +79,10 @@ public class ParSearchEventResultsPage extends JFrame {
             for (String nextEvent : this.eventNames) {
 
                 JButton eventName = new JButton(nextEvent);
-                eventName.addActionListener(new ParSearchEventResultsPageActionListener(this,nextEvent));
+                eventName.addActionListener(new ParSearchEventResultsPageActionListener(this, nextEvent));
                 eventName.setBounds(x, y, 250, 30);
                 events.add(eventName);
                 eventName.setVisible(true);
-
 
                 //Leave and Join button for each event won't appear at same time, when the Participant was joined
                 //the event already, there will be leave; similarly, if the participant haven't joined the event,
@@ -91,7 +90,7 @@ public class ParSearchEventResultsPage extends JFrame {
                 if (eventFollowed.contains(nextEvent)) {
                     JButton join = new JButton("Leave");
                     join.setActionCommand("Leave "+nextEvent);
-                    join.addActionListener(new ParSearchEventResultsPageActionListener(this,nextEvent));
+                    join.addActionListener(new ParSearchEventResultsPageActionListener(this, nextEvent));
                     join.setBounds(x, y, 250, 30);
                     events.add(join);
                     join.setVisible(true);

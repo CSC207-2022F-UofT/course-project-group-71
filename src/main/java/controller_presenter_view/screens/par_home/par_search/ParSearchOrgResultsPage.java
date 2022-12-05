@@ -79,15 +79,15 @@ public class ParSearchOrgResultsPage extends JFrame {
 
                 if (this.followedList.contains(nextOrg)) {
                     JButton unfollow = new JButton("Unfollow");
-                    unfollow.setActionCommand("Unfollow "+nextOrg);
+                    unfollow.setActionCommand("Unfollow " + nextOrg);
                     unfollow.addActionListener(new ParSearchOrgResultsPageActionListener(this, nextOrg));
                     unfollow.setBounds(x, y, 250, 30);
                     organizers.add(unfollow);
                     unfollow.setVisible(true);
 
                 } else {
-                    JButton follow = new JButton("Follow "+nextOrg);
-                    follow.setActionCommand("Follow "+nextOrg);
+                    JButton follow = new JButton("Follow");
+                    follow.setActionCommand("Follow " + nextOrg);
                     follow.addActionListener(new ParSearchOrgResultsPageActionListener(this,nextOrg));
                     follow.setBounds(x, y, 250, 30);
                     organizers.add(follow);

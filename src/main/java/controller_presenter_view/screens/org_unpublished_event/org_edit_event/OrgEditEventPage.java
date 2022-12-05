@@ -24,40 +24,6 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
     private final JTextField minute = new JTextField(2);
     private final JTextField location = new JTextField(15);
 
-    /**
-     * This method creates a label text panel for organizer to input data
-     * @param text the text we want to show
-     * @param J The JTextField
-     * @param x the integer x for set bounds
-     * @param y the integer y for set bounds
-     * @param width the integer representing the width for set bounds
-     * @param height the integer representing the height for set bounds
-     * @return a text panel
-     */
-    public LabelTextPanel create_text_panel(String text, JTextField J, int x, int y, int width, int height){
-        LabelTextPanel output = new LabelTextPanel(
-                new JLabel(text), J);
-        output.setBounds (x, y, width, height);
-        return output;
-    }
-    /**
-     * This method creates a JPanel for organizer to input data
-     * @param text the text we want to show
-     * @param x the integer x for set bounds
-     * @param y the integer y for set bounds
-     * @param width the integer representing the width for set bounds
-     * @param height the integer representing the height for set bounds
-     * @return a text panel
-     */
-    public JPanel create_J_panel(String text, int x, int y, int width, int height){
-        JLabel oldText = new JLabel(text);
-        JPanel oldTextInfo = new JPanel();
-        oldTextInfo.add(oldText);
-        oldTextInfo.setBounds(x, y, width, height);
-        return oldTextInfo;
-    }
-
-
     /**The method generate an edit event window and allowed the organization to edit the unpublished event by input details.
      * It allows user to input title, description, year, month, day, hour, minutes and location,
      * with two buttons called "Cancel" and "Edit".
@@ -88,98 +54,8 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
         title.setBounds(0, 0, x, 50);
         title.setHorizontalAlignment(JLabel.CENTER);
 
-//        //Prepare the title of the event which are edited
-//        JLabel eventTitle = new JLabel("Title:   " + eventName);
-//        JPanel eventTitleInfo = new JPanel();
-//        eventTitleInfo.add(eventTitle);
-//        eventTitleInfo.setBounds(0,100,x,30);
-//
-
-
-        //Prepare the description that need to be shown
-//        JLabel oldDescription = new JLabel("Description:   " + eventDsGateway.getDescription(eventName));
-//        JPanel oldDescriptionInfo = new JPanel();
-//        oldDescriptionInfo.add(oldDescription);
-//        oldDescriptionInfo.setBounds(0,150,x,30);
-//
-
-//        //Obtain the new description inputted
-//        LabelTextPanel descriptionInfo = new LabelTextPanel(
-//                new JLabel("Description"), description);
-//        descriptionInfo.setBounds (0,180, x, 50);
-//
         //Obtain the event time from the database
         ArrayList<Integer> times = this.eventDsGateway.getTime(eventName);
-
-        //Show year on the page
-//        JLabel oldYear = new JLabel();
-//        JPanel oldYearInfo = new JPanel();
-//        oldYearInfo.add(oldYear);
-//        oldYearInfo.setBounds(0,230,x/5,30);
-
-//        //Give the edit window for YEAR on the page
-//        LabelTextPanel yearInfo = new LabelTextPanel(
-//                new JLabel("Year"), year);
-//        yearInfo.setBounds (0,260, x/5, 50);
-
-        //Show month on the page
-//        JLabel oldMonth = new JLabel("Month:   " + times.get(1));
-//        JPanel oldMonthInfo = new JPanel();
-//        oldMonthInfo.add(oldMonth);
-//        oldMonthInfo.setBounds(x/5,230,x/5,30);
-
-
-//        //Give the edit window for MONTH on the page
-//        LabelTextPanel monthInfo = new LabelTextPanel(
-//                new JLabel("Month"), month);
-//        monthInfo.setBounds (x/5,260, x/5, 50);
-//
-        //Show the day on the page
-//        JLabel oldDay = new JLabel("Day:   " + times.get(2));
-//        JPanel oldDayInfo = new JPanel();
-//        oldDayInfo.add(oldDay);
-//        oldDayInfo.setBounds(2*x/5,230,x/5,30);
-//
-
-//        //Give the edit window for DAY on the page
-//        LabelTextPanel dayInfo = new LabelTextPanel(
-//                new JLabel("Day"), day);
-//        dayInfo.setBounds (2*x/5,260, x/5, 50);
-//
-
-//        //Show the hour on the page
-//        JLabel oldHour = new JLabel();
-//        JPanel oldHourInfo = new JPanel();
-//        oldHourInfo.add(oldHour);
-//        oldHourInfo.setBounds(3*x/5,230,x/5,30);
-//
-//        //Give the edit window for HOUR on the page
-//        LabelTextPanel hourInfo = new LabelTextPanel(
-//                new JLabel("Hour"), hour);
-//        hourInfo.setBounds (3*x/5,260, x/5, 50);
-//
-//        //Show the minute on the page
-//        JLabel oldMinute = new JLabel("Minute:   " + times.get(4));
-//        JPanel oldMinuteInfo = new JPanel();
-//        oldMinuteInfo.add(oldMinute);
-//        oldMinuteInfo.setBounds(4*x/5,230,x/5,30);
-//
-//        //Give the edit window for MINUTE on the page
-//        LabelTextPanel minuteInfo = new LabelTextPanel(
-//                new JLabel("Minute"), minute);
-//        minuteInfo.setBounds (4*x/5,260, x/5, 50);
-//
-        //Show the location on the page
-//        JLabel oldLocation = new JLabel("Location:   " + eventDsGateway.getLocation(eventName));
-//        JPanel oldLocationInfo = new JPanel();
-//        oldLocationInfo.add(oldLocation);
-//        oldLocationInfo.setBounds(0,310, x,30);
-//
-//        //Give the edit window for LOCATION on the page
-//        LabelTextPanel locationInfo = new LabelTextPanel(
-//                new JLabel("Location"), location);
-//        locationInfo.setBounds (0,340, x, 50);
-//
         //Prepare a cancel button
         JButton cancel = new JButton("Cancel");
         //Set an action listener for the "Cancel" clicking
@@ -220,11 +96,6 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
 
     }
 
-    /**The method returns organization's Username.
-     * @return it will return a string which is organization's username.
-     */
-    public String getOrgUsername() { return this.orgUnpublishedEventPage.getOrgUsername(); }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         //Try to dispose the current page and show the new page
@@ -240,6 +111,44 @@ public class OrgEditEventPage extends JFrame implements ActionListener {
             //If catch an error, it shows a message
             JOptionPane.showMessageDialog(this, exception.getMessage());
         }
+    }
+
+    /**The method returns organization's Username.
+     * @return it will return a string which is organization's username.
+     */
+    public String getOrgUsername() { return this.orgUnpublishedEventPage.getOrgUsername(); }
+
+    /**
+     * This method creates a label text panel for organizer to input data
+     * @param text the text we want to show
+     * @param J The JTextField
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return a text panel
+     */
+    public LabelTextPanel create_text_panel(String text, JTextField J, int x, int y, int width, int height){
+        LabelTextPanel output = new LabelTextPanel(
+                new JLabel(text), J);
+        output.setBounds (x, y, width, height);
+        return output;
+    }
+    /**
+     * This method creates a JPanel for organizer to input data
+     * @param text the text we want to show
+     * @param x the integer x for set bounds
+     * @param y the integer y for set bounds
+     * @param width the integer representing the width for set bounds
+     * @param height the integer representing the height for set bounds
+     * @return a text panel
+     */
+    public JPanel create_J_panel(String text, int x, int y, int width, int height){
+        JLabel oldText = new JLabel(text);
+        JPanel oldTextInfo = new JPanel();
+        oldTextInfo.add(oldText);
+        oldTextInfo.setBounds(x, y, width, height);
+        return oldTextInfo;
     }
 }
 

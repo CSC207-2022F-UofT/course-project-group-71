@@ -29,10 +29,9 @@ public class ParPastEventPage extends JFrame {
     public ParPastEventPage(String parUsername) throws ClassNotFoundException {
         this.parUsername = parUsername;
 
+        //Initialize the page
         this.setLayout(null);
-
         this.setSize(getConstantX(), getConstantY());
-
         this.setLocationRelativeTo(null);
 
         JLabel title = new JLabel(this.parUsername + "'s Past Event Page");
@@ -48,9 +47,7 @@ public class ParPastEventPage extends JFrame {
 
         this.add(title);
         this.add(back);
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         this.setVisible(true);
     }
 
@@ -62,11 +59,12 @@ public class ParPastEventPage extends JFrame {
         return parUsername;
     }
 
+    /**This method will generate events in a JScrollPane and add the JScrollPane into the page.
+     */
     public void generateEvents() throws ClassNotFoundException {
-
+        //Get events' title from database
         JPanel events = new JPanel();
         events.setBounds(150,100,getConstantX()-170,getConstantY()-150);
-
         ParDsGateway p = new ParFileUser();
         ExtractInfoInputBoundary interactor1= new ExtractInfoInteractor(p);
         ExtractInfoController controller1= new ExtractInfoController(interactor1);
@@ -74,18 +72,21 @@ public class ParPastEventPage extends JFrame {
         ArrayList<String> pastEvents = response1.getAl();
 
         int numberOfEvent = pastEvents.size();
-
         if (numberOfEvent != 0) {
+            //Initialise a part of page to show the information of one past event
             events.setLayout(new GridLayout(numberOfEvent, 0, 10, 10));
             int x = 0;
             int y = 0;
             for (String pastEventTitle : pastEvents) {
-                CommonMethod.setEventInfo(this, events, pastEventTitle, x, y, "OrgUpcomingEvent");
+                CommonMethod.setEventInfo(this, events, pastEventTitle, x, y, "ParPastEvent");
                 y += 100;
             }
             //Set parameters for JScrollPane
             JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
             this.add(eventScroll);
+        }
+        else {
+            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
         }
     }
 }
