@@ -47,7 +47,6 @@ public class OrgUpcomingEventPage extends JFrame {
         JLabel title = new JLabel(this.orgUsername + "'s Upcoming Event Page");
         title.setBounds(0, 0, getConstantX(), 50);
         title.setHorizontalAlignment(JLabel.CENTER);
-
         //This is the back button
         JButton back = new JButton("Back");
         back.addActionListener(new OrgUpcomingEventActionListener(this));
@@ -55,7 +54,6 @@ public class OrgUpcomingEventPage extends JFrame {
 
         //Generate a JScrollPane of events and add it to the page
         generateEvents();
-
         this.add(title);
         this.add(back);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -77,7 +77,7 @@ public class ParUpcomingEventPage extends JFrame {
             int y = 0;
 
             for (String upcomingEventTitle : upcomingEvents) {
-                CommonMethod.setEventInfo(this, events, upcomingEventTitle, x, y, "OrgUpcomingEvent");
+                CommonMethod.setEventInfo(this, events, upcomingEventTitle, x, y, "ParUpcomingEvent");
                 JButton leave = new JButton("Leave");
                 leave.setActionCommand(upcomingEventTitle + "Leave");
                 leave.addActionListener(new ParUpcomingEventActionListener(this));
