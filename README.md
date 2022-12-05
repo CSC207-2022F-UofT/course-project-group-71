@@ -243,8 +243,8 @@ The whole table would be imported.
 - Single Responsibility: The modular approach we used ensures the workflow 
 is separated into use cases with each class only having one
 functionality and one reason to change.
-- Open Closed Principle: We did not really use inheritance in our project, which is why
-this principle does not really apply i.e. no extending other classes.
+- Open Closed Principle: Although we did not make it apparent where we are using this principle, 
+the use of interfaces in our code make it possible to add new features without having to modify existing ones.
 - Liskov Substitution Principle: This principle can be seen in our input and output
 boundaries, the interactor and presenter implements input and output boundaries and are
 subtypes of the input and output boundaries. Therefore, we substituted them in our program.
