@@ -108,7 +108,7 @@ OrgUnpublishedEventPage extends JFrame {
             for (String unpublishedEventTitle : unpublishedEvents) {
                 CommonMethod.setEventInfo(this, events, unpublishedEventTitle, x, y, "OrgUnpublishedEvent");
                 events.add(create_JButton(unpublishedEventTitle,"Publish", x + 250, y + 15, 100, 30));
-                events.add(create_JButton(unpublishedEventTitle,"Notify", x + 250, y + 15, 100, 30));
+                events.add(create_JButton(unpublishedEventTitle,"Edit", x + 250, y + 15, 100, 30));
                 events.add(create_JButton(unpublishedEventTitle,"Delete", x + 250, y + 55, 100, 30));
                 y += 100;
             }
