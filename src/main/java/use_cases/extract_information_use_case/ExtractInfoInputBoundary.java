@@ -7,6 +7,7 @@ public interface ExtractInfoInputBoundary {
      * @param requestModel A request model containing the event title
      *                     and which information to extract
      * @return A response model containing the desired information
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     ExtractInfoResponseModel<String> extractEventInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException;
 
@@ -15,6 +16,7 @@ public interface ExtractInfoInputBoundary {
      * @param requestModel A request model containing the organization username
      *                     and which information to extract
      * @return A response model containing the desired information
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     ExtractInfoResponseModel<String> extractOrgInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException;
 
@@ -23,6 +25,7 @@ public interface ExtractInfoInputBoundary {
      * @param requestModel A request model containing the participant username
      *                     and which information to extract
      * @return A response model containing the desired information
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     ExtractInfoResponseModel<String> extractParInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException;
 
@@ -30,6 +33,7 @@ public interface ExtractInfoInputBoundary {
      *
      * @param requestModel A request model containing the event title
      * @return A response model containing the event time
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     ExtractInfoResponseModel<Integer> extractTimeInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException;
 }

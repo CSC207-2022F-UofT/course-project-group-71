@@ -27,6 +27,7 @@ public class UserResetPasswordInteractor implements UserResetPasswordInputBounda
      *
      * @param requestModel The request model sent to the input boundary
      * @return A responseModel representing whether the user resetPassword is successful.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public UserResetPasswordResponseModel resetPassword(UserResetPasswordRequestModel requestModel) throws ClassNotFoundException {
         if (requestModel.isWhether_org()) {

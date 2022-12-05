@@ -21,6 +21,7 @@ public class ParUnfollowOrgInteractor implements ParUnfollowOrgInputBoundary {
      *
      * @param requestModel The request model sent to this interactor.
      * @return A responseModel representing the user unfollowed an organizer successfully by the presenter.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public ParUnfollowOrgResponseModel unfollow(ParUnfollowOrgRequestModel requestModel) throws ClassNotFoundException {
         parDsGateway.unfollowOrg(requestModel.getPar_username(),requestModel.getOrg_username());

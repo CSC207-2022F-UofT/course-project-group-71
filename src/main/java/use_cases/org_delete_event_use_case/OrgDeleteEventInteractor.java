@@ -34,6 +34,7 @@ public class OrgDeleteEventInteractor implements OrgDeleteEventInputBoundary {
      *
      * @param orgDeleteEventRequestModel The request model sent to the interactor
      * @return orgDeleteEventResponseModel representing whether event deletion is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public OrgDeleteEventResponseModel delete(OrgDeleteEventRequestModel orgDeleteEventRequestModel) throws ClassNotFoundException {

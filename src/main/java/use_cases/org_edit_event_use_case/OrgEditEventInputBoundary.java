@@ -8,6 +8,7 @@ public interface OrgEditEventInputBoundary {
      *
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the event editing is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) throws ClassNotFoundException;
 }

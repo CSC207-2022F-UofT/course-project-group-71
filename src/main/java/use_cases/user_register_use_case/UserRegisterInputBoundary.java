@@ -8,6 +8,7 @@ public interface UserRegisterInputBoundary {
      *
      * @param requestModel The request model sent to the input boundary
      * @return A responseModel representing whether the user creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws ClassNotFoundException;
 }

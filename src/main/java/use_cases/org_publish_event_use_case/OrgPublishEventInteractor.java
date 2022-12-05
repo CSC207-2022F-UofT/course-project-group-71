@@ -29,6 +29,7 @@ public class OrgPublishEventInteractor implements OrgPublishEventInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the event publishing is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public OrgPublishEventResponseModel publish(OrgPublishEventRequestModel requestModel) throws ClassNotFoundException {

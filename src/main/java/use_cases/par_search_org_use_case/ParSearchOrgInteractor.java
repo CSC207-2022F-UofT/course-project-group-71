@@ -24,6 +24,7 @@ public class ParSearchOrgInteractor implements ParSearchOrgInputBoundary {
      *
      * @param userInput The request model sent to the interactor
      * @return userOutput representing whether the org search is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ParSearchOrgResponseModel orgSearch(ParSearchOrgRequestModel userInput) throws ClassNotFoundException {

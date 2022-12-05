@@ -22,6 +22,7 @@ public class ParJoinEventInteractor implements ParJoinEventInputBoundary {
      *
      * @param requestModel The request model sent to this interactor.
      * @return A responseModel representing the user registered for the event successfully by the presenter.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ParJoinEventResponseModel join(ParJoinEventRequestModel requestModel) throws ClassNotFoundException {

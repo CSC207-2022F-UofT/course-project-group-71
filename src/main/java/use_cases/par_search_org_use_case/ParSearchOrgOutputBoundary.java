@@ -8,6 +8,7 @@ public interface ParSearchOrgOutputBoundary {
      *
      * @param results A response model containing information to show success view
      * @return A response model showing failure view
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     ParSearchOrgResponseModel prepareSuccessView(ParSearchOrgResponseModel results ) throws ClassNotFoundException;
 

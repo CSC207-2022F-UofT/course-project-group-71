@@ -31,6 +31,7 @@ public class OrgEditEventInteractor implements OrgEditEventInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the event editing is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public OrgEditEventResponseModel edit(OrgEditEventRequestModel requestModel) throws ClassNotFoundException {

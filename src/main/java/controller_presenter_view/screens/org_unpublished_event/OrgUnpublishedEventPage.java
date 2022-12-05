@@ -17,7 +17,8 @@ import static controller_presenter_view.screens.ScreenConstants.getConstantX;
 import static controller_presenter_view.screens.ScreenConstants.getConstantY;
 
 
-public class OrgUnpublishedEventPage extends JFrame {
+public class
+OrgUnpublishedEventPage extends JFrame {
     private final String orgUsername;
 
     /**
@@ -83,6 +84,7 @@ public class OrgUnpublishedEventPage extends JFrame {
     }
 
     /**This method will generate events in a JScrollPane and add the JScrollPane into the page.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public void generateEvents() throws ClassNotFoundException {
         //Prepare the JPanel for showing events

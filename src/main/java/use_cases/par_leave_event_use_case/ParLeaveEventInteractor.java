@@ -24,6 +24,7 @@ public class ParLeaveEventInteractor implements ParLeaveEventInputBoundary {
      *
      * @param requestModel The request model sent to this interactor.
      * @return A responseModel representing the user leave the event successfully by the output boundary.
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ParLeaveEventResponseModel leave(ParLeaveEventRequestModel requestModel) throws ClassNotFoundException {

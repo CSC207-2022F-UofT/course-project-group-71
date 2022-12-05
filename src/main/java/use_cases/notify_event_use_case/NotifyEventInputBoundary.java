@@ -8,6 +8,7 @@ public interface NotifyEventInputBoundary {
      *
      * @param requestModel The request model sent to the input boundary
      * @return A response model representing whether the notification is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     NotifyEventResponseModel sendNotification(NotifyEventRequestModel requestModel) throws ClassNotFoundException;
 }

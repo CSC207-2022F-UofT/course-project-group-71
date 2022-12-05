@@ -76,6 +76,7 @@ public class OrgFollowerPage extends JFrame {
     /**This method will generate events to fit into the JPanel events
      *
      * @param followers A JPanel that is designed to contain events
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     public int generateFollowers(JPanel followers) throws ClassNotFoundException {
         //Obtain OrgDsGateway and followers

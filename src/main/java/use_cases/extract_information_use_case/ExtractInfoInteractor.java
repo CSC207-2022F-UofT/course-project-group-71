@@ -39,6 +39,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the event creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ExtractInfoResponseModel<String> extractEventInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException {
@@ -68,6 +69,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the event creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ExtractInfoResponseModel<String> extractOrgInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException {
@@ -96,6 +98,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the event creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ExtractInfoResponseModel<String> extractParInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException {
@@ -122,6 +125,7 @@ public class ExtractInfoInteractor implements ExtractInfoInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the event creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
     public ExtractInfoResponseModel<Integer> extractTimeInfo(ExtractInfoRequestModel requestModel) throws ClassNotFoundException {
