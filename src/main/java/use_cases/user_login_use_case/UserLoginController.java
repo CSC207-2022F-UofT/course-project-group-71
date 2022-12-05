@@ -1,4 +1,4 @@
-package controller_presenter_view.screens.user_login;
+package use_cases.user_login_use_case;
 
 import use_cases.user_login_use_case.UserLoginInputBoundary;
 import use_cases.user_login_use_case.UserLoginRequestModel;

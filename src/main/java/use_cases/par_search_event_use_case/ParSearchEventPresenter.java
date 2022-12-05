@@ -1,5 +1,6 @@
-package controller_presenter_view.screens.par_home.par_search;
+package use_cases.par_search_event_use_case;
 
+import controller_presenter_view.screens.par_home.par_search.ParSearchEventResultsPage;
 import use_cases.par_search_event_use_case.ParSearchEventOutputBoundary;
 import use_cases.par_search_event_use_case.ParSearchEventResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;

@@ -1,7 +1,7 @@
 package controller_presenter_view.screens.user_register;
 
 import controller_presenter_view.screens.user_login.LoginPage;
-import controller_presenter_view.screens.user_login.UserLoginController;
+import use_cases.user_login_use_case.UserLoginController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

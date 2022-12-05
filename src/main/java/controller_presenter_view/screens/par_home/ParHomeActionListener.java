@@ -2,10 +2,10 @@ package controller_presenter_view.screens.par_home;
 
 import controller_presenter_view.screens.par_account.ParAccountPage;
 import controller_presenter_view.screens.par_followed_org.ParFollowedOrgPage;
-import controller_presenter_view.screens.par_home.par_search.ParSearchEventController;
-import controller_presenter_view.screens.par_home.par_search.ParSearchEventPresenter;
-import controller_presenter_view.screens.par_home.par_search.ParSearchOrgController;
-import controller_presenter_view.screens.par_home.par_search.ParSearchOrgPresenter;
+import use_cases.par_search_event_use_case.ParSearchEventController;
+import use_cases.par_search_event_use_case.ParSearchEventPresenter;
+import use_cases.par_search_org_use_case.ParSearchOrgController;
+import use_cases.par_search_org_use_case.ParSearchOrgPresenter;
 import controller_presenter_view.screens.par_past_event.ParPastEventPage;
 import controller_presenter_view.screens.par_upcoming_event.ParUpcomingEventPage;
 import database.*;

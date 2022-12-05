@@ -1,4 +1,4 @@
-package controller_presenter_view.screens.par_home.par_search;
+package use_cases.par_search_org_use_case;
 
 import use_cases.par_search_org_use_case.ParSearchOrgInputBoundary;
 import use_cases.par_search_org_use_case.ParSearchOrgRequestModel;

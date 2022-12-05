@@ -1,5 +1,6 @@
-package controller_presenter_view.screens.par_home.par_search;
+package use_cases.par_search_org_use_case;
 
+import controller_presenter_view.screens.par_home.par_search.ParSearchOrgResultsPage;
 import use_cases.par_search_org_use_case.ParSearchOrgOutputBoundary;
 import use_cases.par_search_org_use_case.ParSearchOrgResponseModel;
 import controller_presenter_view.common_view.ShowMessageView;

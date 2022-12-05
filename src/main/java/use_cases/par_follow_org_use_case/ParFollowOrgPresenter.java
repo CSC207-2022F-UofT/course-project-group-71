@@ -1,4 +1,4 @@
-package controller_presenter_view.screens.par_home.par_search.par_follow_org;
+package use_cases.par_follow_org_use_case;
 
 import use_cases.par_follow_org_use_case.ParFollowOrgOutputBoundary;
 import use_cases.par_follow_org_use_case.ParFollowOrgResponseModel;

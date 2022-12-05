@@ -4,8 +4,8 @@ import controller_presenter_view.common_controller_presenter.par_unfollow_org.Pa
 import controller_presenter_view.common_controller_presenter.par_unfollow_org.ParUnfollowOrgPresenter;
 import controller_presenter_view.common_view.OrgDetailsPage;
 import controller_presenter_view.screens.par_home.ParHomePage;
-import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgController;
-import controller_presenter_view.screens.par_home.par_search.par_follow_org.ParFollowOrgPresenter;
+import use_cases.par_follow_org_use_case.ParFollowOrgController;
+import use_cases.par_follow_org_use_case.ParFollowOrgPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
 import use_cases.par_follow_org_use_case.ParFollowOrgInputBoundary;
