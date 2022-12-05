@@ -105,6 +105,9 @@ public class OrgFollowerPage extends JFrame {
             followerScroll.setVisible(true);
             this.add(followerScroll);
         }
+        else {
+            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
+        }
         return numberOfFollower;
     }
 }

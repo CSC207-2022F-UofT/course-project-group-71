@@ -99,6 +99,9 @@ public class OrgUpcomingEventPage extends JFrame {
             JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
             this.add(eventScroll);
         }
+        else {
+            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
+        }
     }
 
     /**This function returns a JButton with the input as set bounds

@@ -30,6 +30,7 @@ public class OrgPastEventPage extends JFrame {
      */
     public OrgPastEventPage(String orgUsername) throws ClassNotFoundException {
         this.orgUsername = orgUsername;
+
         //Initialize the page
         this.setLayout(null);
         this.setSize(getConstantX(), getConstantY());
@@ -89,6 +90,9 @@ public class OrgPastEventPage extends JFrame {
             //Set parameters for JScrollPane
             JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
             this.add(eventScroll);
+        }
+        else {
+            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
         }
     }
 }
