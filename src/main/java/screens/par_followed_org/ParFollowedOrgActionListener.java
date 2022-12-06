@@ -1,7 +1,7 @@
 package screens.par_followed_org;
 
 import controllers.ParUnfollowOrgController;
-import presenters.ParUnfollowOrgPresenter;
+import presenters.use_case_presenters.ParUnfollowOrgPresenter;
 import screens.common_view.OrgDetailsPage;
 import screens.par_home.ParHomePage;
 import database.ParDsGateway;

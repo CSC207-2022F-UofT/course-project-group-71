@@ -1,4 +1,4 @@
-package presenters;
+package presenters.use_case_presenters;
 
 import use_cases.org_delete_event_use_case.OrgDeleteEventOutputBoundary;
 import use_cases.org_delete_event_use_case.OrgDeleteEventResponseModel;

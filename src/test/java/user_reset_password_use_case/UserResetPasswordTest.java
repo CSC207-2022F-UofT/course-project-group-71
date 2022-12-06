@@ -1,9 +1,9 @@
 package user_reset_password_use_case;
 
 import controllers.OrgResetPasswordController;
-import presenters.OrgResetPasswordPresenter;
+import presenters.use_case_presenters.OrgResetPasswordPresenter;
 import controllers.ParResetPasswordController;
-import presenters.ParResetPasswordPresenter;
+import presenters.use_case_presenters.ParResetPasswordPresenter;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;

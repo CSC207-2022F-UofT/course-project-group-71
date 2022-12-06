@@ -1,4 +1,4 @@
-package presenters;
+package presenters.use_case_presenters;
 
 import use_cases.par_join_event_use_case.ParJoinEventOutputBoundary;
 import use_cases.par_join_event_use_case.ParJoinEventResponseModel;

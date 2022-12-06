@@ -9,9 +9,9 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import presenters.OrgHomePresenter;
-import presenters.ParHomePresenter;
-import presenters.UserLoginPresenter;
+import presenters.page_presenters.OrgHomePresenter;
+import presenters.page_presenters.ParHomePresenter;
+import presenters.use_case_presenters.UserLoginPresenter;
 import use_cases.user_login_use_case.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

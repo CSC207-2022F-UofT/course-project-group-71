@@ -1,4 +1,4 @@
-package presenters;
+package presenters.use_case_presenters;
 
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
 import use_cases.notify_event_use_case.NotifyEventResponseModel;

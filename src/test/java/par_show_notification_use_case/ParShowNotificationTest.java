@@ -4,7 +4,7 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controllers.ParShowNotificationController;
-import presenters.ParShowNotificationPresenter;
+import presenters.use_case_presenters.ParShowNotificationPresenter;
 import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.par_show_notification_use_case.ParShowNotificationInputBoundary;
 import use_cases.par_show_notification_use_case.ParShowNotificationInteractor;

@@ -1,4 +1,4 @@
-package presenters;
+package presenters.use_case_presenters;
 
 import use_cases.par_show_notification_use_case.ParShowNotificationOutputBoundary;
 import use_cases.par_show_notification_use_case.ParShowNotificationResponseModel;

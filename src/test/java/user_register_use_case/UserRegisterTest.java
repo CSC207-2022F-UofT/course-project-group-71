@@ -1,7 +1,7 @@
 package user_register_use_case;
 
 import controllers.UserRegisterController;
-import presenters.UserRegisterPresenter;
+import presenters.use_case_presenters.UserRegisterPresenter;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;

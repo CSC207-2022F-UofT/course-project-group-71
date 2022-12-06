@@ -1,7 +1,7 @@
 package screens.par_upcoming_event;
 
 import controllers.ParLeaveEventController;
-import presenters.ParLeaveEventPresenter;
+import presenters.use_case_presenters.ParLeaveEventPresenter;
 import screens.common_view.EventDetailsPage;
 import screens.par_home.ParHomePage;
 import database.ParDsGateway;

@@ -1,7 +1,7 @@
 package screens.org_account;
 
 import controllers.OrgResetPasswordController;
-import presenters.OrgResetPasswordPresenter;
+import presenters.use_case_presenters.OrgResetPasswordPresenter;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;

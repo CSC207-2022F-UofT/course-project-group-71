@@ -5,7 +5,7 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controllers.UpcomingToPastController;
-import presenters.UpcomingToPastPresenter;
+import presenters.use_case_presenters.UpcomingToPastPresenter;
 import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastInputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastInteractor;

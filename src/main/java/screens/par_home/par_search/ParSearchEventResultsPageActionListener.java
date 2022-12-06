@@ -1,11 +1,11 @@
 package screens.par_home.par_search;
 
 import controllers.ParLeaveEventController;
-import presenters.ParLeaveEventPresenter;
+import presenters.use_case_presenters.ParLeaveEventPresenter;
 import screens.common_view.EventDetailsPage;
 import screens.par_home.ParHomePage;
 import controllers.ParJoinEventController;
-import presenters.ParJoinEventPresenter;
+import presenters.use_case_presenters.ParJoinEventPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
 import use_cases.par_join_event_use_case.ParJoinEventInputBoundary;

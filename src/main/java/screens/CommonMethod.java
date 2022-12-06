@@ -2,11 +2,11 @@ package screens;
 
 import controllers.ExtractInfoController;
 import controllers.NotifyEventController;
-import presenters.NotifyEventPresenter;
+import presenters.use_case_presenters.NotifyEventPresenter;
 import controllers.OrgDeleteEventController;
-import presenters.OrgDeleteEventPresenter;
+import presenters.use_case_presenters.OrgDeleteEventPresenter;
 import controllers.UpcomingToPastController;
-import presenters.UpcomingToPastPresenter;
+import presenters.use_case_presenters.UpcomingToPastPresenter;
 import screens.org_past_event.OrgPastEventActionListener;
 import screens.org_past_event.OrgPastEventPage;
 import screens.org_unpublished_event.OrgUnpublishedEventActionListener;

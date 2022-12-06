@@ -1,4 +1,4 @@
-package presenters;
+package presenters.use_case_presenters;
 
 import use_cases.upcoming_to_past_use_case.UpcomingToPastOutputBoundary;
 import use_cases.upcoming_to_past_use_case.UpcomingToPastResponseModel;

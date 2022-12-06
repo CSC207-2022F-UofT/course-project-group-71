@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.Order;
 import controllers.OrgDeleteEventController;
-import presenters.OrgDeleteEventPresenter;
+import presenters.use_case_presenters.OrgDeleteEventPresenter;
 import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.org_delete_event_use_case.OrgDeleteEventInputBoundary;
 import use_cases.org_delete_event_use_case.OrgDeleteEventInteractor;

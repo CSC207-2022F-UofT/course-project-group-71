@@ -5,7 +5,7 @@ import screens.common_view.EventDetailsPage;
 import screens.org_home.OrgHomePage;
 import controllers.OrgCreateEventController;
 import screens.org_unpublished_event.org_create_event.OrgCreateEventPage;
-import presenters.OrgCreateEventPresenter;
+import presenters.use_case_presenters.OrgCreateEventPresenter;
 import controllers.OrgEditEventController;
 import screens.org_unpublished_event.org_edit_event.OrgEditEventPage;
 import screens.org_unpublished_event.org_edit_event.OrgEditEventPresenter;

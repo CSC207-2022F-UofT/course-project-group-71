@@ -1,7 +1,7 @@
 package screens.par_home;
 
 import controllers.ParShowNotificationController;
-import presenters.ParShowNotificationPresenter;
+import presenters.use_case_presenters.ParShowNotificationPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
 import use_cases.par_show_notification_use_case.ParShowNotificationInputBoundary;

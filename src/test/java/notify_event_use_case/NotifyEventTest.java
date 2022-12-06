@@ -1,7 +1,7 @@
 package notify_event_use_case;
 
 import controllers.NotifyEventController;
-import presenters.NotifyEventPresenter;
+import presenters.use_case_presenters.NotifyEventPresenter;
 import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;

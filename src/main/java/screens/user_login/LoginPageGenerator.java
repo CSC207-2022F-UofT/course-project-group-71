@@ -1,9 +1,9 @@
 package screens.user_login;
 
-import presenters.OrgHomePresenter;
-import presenters.ParHomePresenter;
+import presenters.page_presenters.OrgHomePresenter;
+import presenters.page_presenters.ParHomePresenter;
 import controllers.UserLoginController;
-import presenters.UserLoginPresenter;
+import presenters.use_case_presenters.UserLoginPresenter;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;

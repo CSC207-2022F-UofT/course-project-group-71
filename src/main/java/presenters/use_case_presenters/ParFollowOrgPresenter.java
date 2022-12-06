@@ -1,4 +1,4 @@
-package presenters;
+package presenters.use_case_presenters;
 
 import use_cases.par_follow_org_use_case.ParFollowOrgOutputBoundary;
 import use_cases.par_follow_org_use_case.ParFollowOrgResponseModel;

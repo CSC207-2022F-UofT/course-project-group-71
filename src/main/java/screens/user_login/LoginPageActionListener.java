@@ -2,7 +2,7 @@ package screens.user_login;
 
 import screens.user_register.RegisterPage;
 import controllers.UserRegisterController;
-import presenters.UserRegisterPresenter;
+import presenters.use_case_presenters.UserRegisterPresenter;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import database.ParDsGateway;

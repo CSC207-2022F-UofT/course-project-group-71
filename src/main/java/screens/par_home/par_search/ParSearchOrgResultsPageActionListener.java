@@ -1,11 +1,11 @@
 package screens.par_home.par_search;
 
 import controllers.ParUnfollowOrgController;
-import presenters.ParUnfollowOrgPresenter;
+import presenters.use_case_presenters.ParUnfollowOrgPresenter;
 import screens.common_view.OrgDetailsPage;
 import screens.par_home.ParHomePage;
 import controllers.ParFollowOrgController;
-import presenters.ParFollowOrgPresenter;
+import presenters.use_case_presenters.ParFollowOrgPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
 import use_cases.par_follow_org_use_case.ParFollowOrgInputBoundary;

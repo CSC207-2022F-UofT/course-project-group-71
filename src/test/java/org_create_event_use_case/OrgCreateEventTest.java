@@ -5,7 +5,7 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controllers.OrgCreateEventController;
-import presenters.OrgCreateEventPresenter;
+import presenters.use_case_presenters.OrgCreateEventPresenter;
 import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
 import use_cases.org_create_event_use_case.OrgCreateEventInteractor;

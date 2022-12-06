@@ -1,7 +1,7 @@
 package screens.org_upcoming_event;
 
 import controllers.NotifyEventController;
-import presenters.NotifyEventPresenter;
+import presenters.use_case_presenters.NotifyEventPresenter;
 import controllers.OrgDeleteEventController;
 import screens.common_view.EventDetailsPage;
 import screens.org_home.OrgHomePage;

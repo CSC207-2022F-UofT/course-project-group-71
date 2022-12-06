@@ -8,7 +8,7 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import controllers.ParUnfollowOrgController;
-import presenters.ParUnfollowOrgPresenter;
+import presenters.use_case_presenters.ParUnfollowOrgPresenter;
 import org.junit.jupiter.api.TestMethodOrder;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInputBoundary;
 import use_cases.par_unfollow_org_use_case.ParUnfollowOrgInteractor;
