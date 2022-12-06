@@ -1,12 +1,9 @@
 package controller_presenter_view.screens.user_register;
 
-import controller_presenter_view.screens.user_login.LoginPage;
-import use_cases.user_login_use_case.UserLoginController;
+import controller_presenter_view.screens.user_login.LoginPageGenerator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
 
 public class RegisterPageActionListener implements ActionListener {
     private final RegisterPage registerPage;
@@ -30,11 +27,8 @@ public class RegisterPageActionListener implements ActionListener {
         String page = actionEvent.getActionCommand();
 
         if (page.equals("To Login Page")) {
-            UserLoginController userLoginController = generateLoginPage();
-
             this.registerPage.dispose();
-
-            new LoginPage(userLoginController);
+            LoginPageGenerator.generateLoginPage();
         }
         else {
             this.registerPage.dispose();

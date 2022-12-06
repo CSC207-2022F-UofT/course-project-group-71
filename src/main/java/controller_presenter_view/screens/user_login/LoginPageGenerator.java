@@ -1,8 +1,7 @@
-package controller_presenter_view.screens.user_register;
+package controller_presenter_view.screens.user_login;
 
 import controller_presenter_view.screens.org_home.OrgHomePresenter;
 import controller_presenter_view.screens.par_home.ParHomePresenter;
-import controller_presenter_view.screens.user_login.LoginPage;
 import use_cases.user_login_use_case.UserLoginController;
 import use_cases.user_login_use_case.UserLoginPresenter;
 import database.OrgDsGateway;
@@ -11,8 +10,8 @@ import database.ParDsGateway;
 import database.ParFileUser;
 import use_cases.user_login_use_case.*;
 
-public class RegisterPageBuilder {
-    public static UserLoginController generateLoginPage() {
+public class LoginPageGenerator {
+    public static void generateLoginPage() {
         UserLoginOutputBoundary userLoginOutputBoundary =  new UserLoginPresenter();
 
         ParDsGateway parDsGateway = new ParFileUser();
@@ -29,7 +28,5 @@ public class RegisterPageBuilder {
         UserLoginController userLoginController = new UserLoginController(interactor);
 
         new LoginPage(userLoginController);
-
-        return userLoginController;
     }
 }

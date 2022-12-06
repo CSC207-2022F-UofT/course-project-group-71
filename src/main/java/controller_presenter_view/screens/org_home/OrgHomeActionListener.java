@@ -10,7 +10,7 @@ import controller_presenter_view.screens.CommonMethod;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
+import static controller_presenter_view.screens.user_login.LoginPageGenerator.generateLoginPage;
 
 public class OrgHomeActionListener implements ActionListener {
     private final OrgHomePage orgHomePage;

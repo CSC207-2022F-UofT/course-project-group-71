@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static controller_presenter_view.screens.user_register.RegisterPageBuilder.generateLoginPage;
+import static controller_presenter_view.screens.user_login.LoginPageGenerator.generateLoginPage;
 
 public class RegisterPage extends JFrame implements ActionListener {
 
