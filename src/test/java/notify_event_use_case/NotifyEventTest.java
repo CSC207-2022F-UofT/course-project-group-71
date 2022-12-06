@@ -1,7 +1,7 @@
 package notify_event_use_case;
 
-import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventController;
-import controller_presenter_view.common_controller_presenter.notify_event.NotifyEventPresenter;
+import controllers.NotifyEventController;
+import presenters.NotifyEventPresenter;
 import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;

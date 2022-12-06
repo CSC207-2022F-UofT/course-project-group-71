@@ -1,11 +1,12 @@
 package org_publish_event_use_case;
 
-import controller_presenter_view.screens.org_unpublished_event.org_publish_event.*;
+import controllers.OrgPublishEventController;
 import database.*;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import screens.org_unpublished_event.org_publish_event.OrgPublishEventPresenter;
 import use_cases.org_publish_event_use_case.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

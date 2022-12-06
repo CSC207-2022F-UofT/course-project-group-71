@@ -1,7 +1,7 @@
 package par_leave_event_use_case;
 
-import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventController;
-import controller_presenter_view.common_controller_presenter.par_leave_event.ParLeaveEventPresenter;
+import controllers.ParLeaveEventController;
+import presenters.ParLeaveEventPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.MethodOrderer;

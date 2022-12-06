@@ -1,7 +1,7 @@
 package org_edit_event_use_case;
 
-import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventController;
-import controller_presenter_view.screens.org_unpublished_event.org_edit_event.OrgEditEventPresenter;
+import controllers.OrgEditEventController;
+import screens.org_unpublished_event.org_edit_event.OrgEditEventPresenter;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import org.junit.jupiter.api.MethodOrderer;

@@ -1,7 +1,7 @@
 package par_join_event_use_case;
 
-import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJoinEventController;
-import controller_presenter_view.screens.par_home.par_search.par_join_event.ParJoinEventPresenter;
+import controllers.ParJoinEventController;
+import presenters.ParJoinEventPresenter;
 import database.ParDsGateway;
 import database.ParFileUser;
 import org.junit.jupiter.api.MethodOrderer;
