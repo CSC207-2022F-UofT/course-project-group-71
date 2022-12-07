@@ -3,7 +3,7 @@ package use_cases.upcoming_to_past_use_case;
 import java.util.ArrayList;
 
 public class UpcomingToPastResponseModel {
-    ArrayList<String> eventsToPast;
+    final ArrayList<String> eventsToPast;
     String message;
 
     public UpcomingToPastResponseModel(ArrayList<String> eventsToPast) {

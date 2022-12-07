@@ -2,16 +2,15 @@ package use_cases.upcoming_to_past_use_case;
 
 import database.*;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
 
-    ParDsGateway parDsGateway;
-    OrgDsGateway orgDsGateway;
-    EventDsGateway eventDsGateway;
-    UpcomingToPastOutputBoundary upcomingToPastOutputBoundary;
+    final ParDsGateway parDsGateway;
+    final OrgDsGateway orgDsGateway;
+    final EventDsGateway eventDsGateway;
+    final UpcomingToPastOutputBoundary upcomingToPastOutputBoundary;
 
     /**Constructor
      *
@@ -36,9 +35,10 @@ public class UpcomingToPastInteractor implements UpcomingToPastInputBoundary {
      *
      * @param requestModel The request model sent to the interactor
      * @return A responseModel representing whether the user creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
     @Override
-    public UpcomingToPastResponseModel convertToPast(UpcomingToPastRequestModel requestModel) throws SQLException, ClassNotFoundException {
+    public UpcomingToPastResponseModel convertToPast(UpcomingToPastRequestModel requestModel) throws ClassNotFoundException {
 
         String username = requestModel.getUsername();
 
