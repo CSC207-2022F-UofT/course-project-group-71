@@ -1,50 +1,21 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-public class OrgFileUser implements OrgDsGateway {
+import static database.JDBCUtils.utilQueryArrayListString;
+import static database.JDBCUtils.utilUpdateVoid;
 
+public class OrgFileUser implements OrgDsGateway {
 
     /**This is a tool method to store the username and password of the organization to database.
      *
      * @param username The username of the organization that need to be stored
      * @param password The password of the organization that need to be stored
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilStoreOrg(String username, String password) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into orgfile(username, password) values('" + username + "','" + password + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
-        }
-
+    public void utilStoreOrg(String username, String password) throws ClassNotFoundException {
+        String sql = "insert into orgfile(username, password) values('" + username + "','" + password + "');" ;
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method to delete an organization from the database.
@@ -52,35 +23,11 @@ public class OrgFileUser implements OrgDsGateway {
      * if not exists, then it won't show anything and won't change anything
      *
      * @param username The username of the organization that need to be deleted
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilDeleteOrg(String username) throws SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from orgfile where username = '" + username + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
-        }
+    public void utilDeleteOrg(String username) throws ClassNotFoundException {
+        String sql = "delete from orgfile where username = '" + username + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to add a relationship from the database.
@@ -88,39 +35,11 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilAddOrgPastEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into past_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
-        }
-
-
+    public void utilAddOrgPastEvent(String org_username, String event_title) throws ClassNotFoundException {
+        String sql = "insert into past_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to delete a relationship from the database.
@@ -128,37 +47,11 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilDeleteOrgPastEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from past_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
-        }
-
+    public void utilDeleteOrgPastEvent(String org_username, String event_title) throws ClassNotFoundException {
+        String sql = "delete from past_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to add a relationship to the database.
@@ -166,39 +59,11 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilAddOrgUnpublishedEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into unpublished_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
-        }
-
-
+    public void utilAddOrgUnpublishedEvent(String org_username, String event_title) throws ClassNotFoundException {
+        String sql = "insert into unpublished_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to delete a relationship from the database.
@@ -206,37 +71,11 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilDeleteOrgUnpublishedEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from unpublished_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-
-        }
-
+    public void utilDeleteOrgUnpublishedEvent(String org_username, String event_title) throws ClassNotFoundException {
+        String sql = "delete from unpublished_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to add a relationship to the database.
@@ -244,39 +83,11 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilAddOrgUpcomingEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "insert into upcoming_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0 ){
-                System.out.println("Success");
-            }
-            else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            if (stmt != null){
-                stmt.close();
-            }
-            if (conn != null){
-                conn.close();
-            }
-
-        }
-
-
+    public void utilAddOrgUpcomingEvent(String org_username, String event_title) throws ClassNotFoundException {
+        String sql = "insert into upcoming_events_for_org(org_username, event_title) values('" + org_username + "','" + event_title + "');" ;
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to delete a relationship from the database.
@@ -284,263 +95,88 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param org_username The username of the organization
      * @param event_title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilDeleteOrgUpcomingEvent(String org_username, String event_title) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "delete from upcoming_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-        }
-
+    public void utilDeleteOrgUpcomingEvent(String org_username, String event_title) throws ClassNotFoundException {
+        String sql = "delete from upcoming_events_for_org where org_username = '" + org_username + "' and event_title = '" + event_title + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to get all followers' name of the organization.
      *
      * @param org_username The username of the organization
      * @return All followers of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> utilGetAllFollowers(String org_username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select par_username from follow_org_par where org_username = '" + org_username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            System.out.println(sql);
-//            rs.next();
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
-
-
-
+    public ArrayList<String> utilGetAllFollowers(String org_username) throws ClassNotFoundException {
+        String sql = "select par_username from follow_org_par where org_username = '" + org_username + "';";
+        return utilQueryArrayListString(sql);
     }
     /**This is a tool method used to get all unpublished events of the organization.
      *
      * @param org_username The username of the organization
      * @return All unpublished events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> utilGetUnpublishedEvents(String org_username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select event_title from unpublished_events_for_org where org_username = '" + org_username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            System.out.println(sql);
-//            rs.next();
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
-
-
-
+    public ArrayList<String> utilGetUnpublishedEvents(String org_username) throws ClassNotFoundException {
+        String sql = "select event_title from unpublished_events_for_org where org_username = '" + org_username + "';";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method used to get all past events of the organization.
      *
      * @param org_username The username of the organization
      * @return All past events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> utilGetPastEvents(String org_username) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select event_title from past_events_for_org where org_username = '" + org_username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            System.out.println(sql);
-//            rs.next();
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
-
-
-
+    public ArrayList<String> utilGetPastEvents(String org_username) throws ClassNotFoundException {
+        String sql = "select event_title from past_events_for_org where org_username = '" + org_username + "';";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method used to get all upcoming events of the organization.
      *
      * @param org_username The username of the organization
      * @return All upcoming events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> utilGetUpcomingEvents(String org_username) throws ClassNotFoundException, SQLException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select event_title from upcoming_events_for_org where org_username = '" + org_username + "';";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            System.out.println(sql);
-//            rs.next();
-            while (rs.next()){
-                l.add(rs.getString(1));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
-
-
-
+    public ArrayList<String> utilGetUpcomingEvents(String org_username) throws ClassNotFoundException {
+        String sql = "select event_title from upcoming_events_for_org where org_username = '" + org_username + "';";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method used to get the password of the organization.
      *
      * @param org_username The username of the organization
      * @return The password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public String utilGetPassword(String org_username) throws SQLException, ClassNotFoundException {
-        //Return the password of the entered organization user
-        //Used for login password check
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String password;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("select password from orgfile where username = '" + org_username + "';");
-            rs.next();
-            password = rs.getString("password");
-            System.out.println(password);
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return password;
+    public String utilGetPassword(String org_username) throws ClassNotFoundException {
+        String sql = "select password from orgfile where username = '" + org_username + "'";
+
+        return utilQueryArrayListString(sql).get(0);
     }
 
     /**This is a tool method used to change the password of the organization.
      *
      * @param org_username The username of the organization
      * @param new_password The new password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void utilPasswordUpdating(String org_username, String new_password) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "update orgfile set password = '" + new_password + "' where username = '" + org_username + "';";
-            stmt = conn.createStatement();
-            int count = stmt.executeUpdate(sql);
-            System.out.println(sql);
-            if (count > 0) {
-                System.out.println("Success");
-            } else {
-                System.out.println("Failure");
-            }
-
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close(stmt,conn);
-
-        }
+    public void utilPasswordUpdating(String org_username, String new_password) throws ClassNotFoundException {
+        String sql = "update orgfile set password = '" + new_password + "' where username = '" + org_username + "';";
+        utilUpdateVoid(sql);
     }
 
     /**This is a tool method used to obtain all the organizations relevant to the input keyword.
      *
      * @param about_name The keyword that used for search for relevant organization
      * @return An ArrayList containing the name of all relevant organizations
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> utilOrganizationSearch(String about_name) throws SQLException, ClassNotFoundException {
-        //This is method is used for searching method of the website
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        ArrayList<String> l = new ArrayList<>(0);
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("select username from orgfile where username like \"%" + about_name + "%\";");
-            while (rs.next()) {
-                l.add(rs.getString("username"));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        } finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return l;
+    public ArrayList<String> utilOrganizationSearch(String about_name) throws ClassNotFoundException {
+        String sql = "select username from orgfile where username like \"%" + about_name + "%\";";
+        return utilQueryArrayListString(sql);
     }
 
     /**This is a tool method returning whether the username exist.
@@ -548,32 +184,11 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public boolean utilCheckIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
-        Statement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        boolean WhetherExist = false;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = JDBCUtils.getConnection();
-            String sql = "select exists(select * from orgfile where username = '" + username + "');";
-            System.out.println(sql);
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            rs.next();
-            if (rs.getInt(1) == 1){
-                WhetherExist = true;
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException();
-        } catch (SQLException e) {
-            throw new SQLException();
-        }finally {
-            JDBCUtils.close_rs(rs);
-            JDBCUtils.close(stmt,conn);
-        }
-        return WhetherExist;
+    public boolean utilCheckIfUsernameExist(String username) throws ClassNotFoundException {
+        String sql = "select username from orgfile where username = '" + username + "';";
+        return !utilQueryArrayListString(sql).isEmpty();
     }
 
 
@@ -583,8 +198,9 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @param password The password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void createOrg(String username, String password) throws SQLException, ClassNotFoundException {
+    public void createOrg(String username, String password) throws ClassNotFoundException {
         utilStoreOrg(username,password);
     }
 
@@ -594,8 +210,9 @@ public class OrgFileUser implements OrgDsGateway {
      * utilGetUnpublishedEvents, utilGetPastEvents, utilGetUpcomingEvents and utilGetAllFollowers.
      *
      * @param username The username of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void deleteOrg(String username) throws SQLException, ClassNotFoundException {
+    public void deleteOrg(String username) throws ClassNotFoundException {
         ParFileUser temp_parFileUser = new ParFileUser();
         ArrayList<String> All_Unpublished = utilGetUnpublishedEvents(username);
         for (String s : All_Unpublished) {
@@ -631,8 +248,9 @@ public class OrgFileUser implements OrgDsGateway {
      * @param day The time (day) of the event
      * @param hour The time (hour) of the event
      * @param minute The time (minute) of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
+    public void createAnEvent(String org_username, String title, int status, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
         EventFileUser temp_eventFileUser = new EventFileUser();
         temp_eventFileUser.utilStoreEvent(title, description, location, year, month, day, hour, minute);
         if (status == 0){
@@ -655,8 +273,9 @@ public class OrgFileUser implements OrgDsGateway {
      * and the organization and the participants.
      *
      * @param title The title of the event
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void deleteAnEvent(String title) throws SQLException, ClassNotFoundException {
+    public void deleteAnEvent(String title) throws ClassNotFoundException {
         EventFileUser temp_eventFileUser = new EventFileUser();
         temp_eventFileUser.deleteEvent(title);
     }
@@ -666,8 +285,9 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The name of the organization
      * @return THe password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public String getPassword(String username) throws SQLException, ClassNotFoundException {
+    public String getPassword(String username) throws ClassNotFoundException {
         return utilGetPassword(username);
     }
 
@@ -676,8 +296,9 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The name of the organization
      * @param new_password The new password of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public void setPassword(String username, String new_password) throws SQLException, ClassNotFoundException {
+    public void setPassword(String username, String new_password) throws ClassNotFoundException {
         utilPasswordUpdating(username, new_password);
     }
 
@@ -686,8 +307,9 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param about_name The keyword that used for search for relevant organization
      * @return An ArrayList containing the name of all relevant organizations
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> organizationSearch(String about_name) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> organizationSearch(String about_name) throws ClassNotFoundException {
         return utilOrganizationSearch(about_name);
     }
 
@@ -696,8 +318,9 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @return The arraylist containing all unpublished events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> getUnpublishedEvents(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getUnpublishedEvents(String username) throws ClassNotFoundException {
         return utilGetUnpublishedEvents(username);
     }
 
@@ -706,8 +329,9 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @return The arraylist containing all past events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> getPastEvents(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getPastEvents(String username) throws ClassNotFoundException {
         return utilGetPastEvents(username);
     }
 
@@ -716,8 +340,9 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @return The arraylist containing all upcoming events of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> getUpcomingEvents(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getUpcomingEvents(String username) throws ClassNotFoundException {
         return utilGetUpcomingEvents(username);
     }
 
@@ -726,8 +351,9 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username of the organization
      * @return The arraylist containing all followers of the organization
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public ArrayList<String> getFollowers(String username) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> getFollowers(String username) throws ClassNotFoundException {
         return utilGetAllFollowers(username);
     }
 
@@ -737,15 +363,44 @@ public class OrgFileUser implements OrgDsGateway {
      *
      * @param username The username that need to be used to check existence
      * @return Whether the username exists
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    public boolean checkIfUsernameExist(String username) throws SQLException, ClassNotFoundException {
+    public boolean checkIfUsernameExist(String username) throws ClassNotFoundException {
         return utilCheckIfUsernameExist(username);
     }
 
-    public void editAnEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws SQLException, ClassNotFoundException {
-        EventFileUser eventFileUser = new EventFileUser();
+    public void editAnEvent(String title, String description, String location, int year, int month, int day, int hour, int minute) throws ClassNotFoundException {
+        EventDsGateway eventFileUser = new EventFileUser();
         eventFileUser.editEvent(title,description,location,year,month,day,hour,minute);
 
     }
+
+// --Commented out by Inspection START (2022-11-29 3:42 p.m.):
+//    public Organization getOrganization(String username) throws SQLException, ClassNotFoundException {
+//        Organization org_to_return = new Organization(username, getPassword(username), getUnpublishedEvents(username),getPastEvents(username),getUpcomingEvents(username), getFollowers(username));
+//        return org_to_return;
+//    }
+// --Commented out by Inspection STOP (2022-11-29 3:42 p.m.)
+
+// --Commented out by Inspection START (2022-11-29 3:42 p.m.):
+//    public void saveOrganization(Organization org_to_save) throws SQLException, ClassNotFoundException {
+//        deleteOrg(org_to_save.getUsername());
+//        createOrg(org_to_save.getUsername(), org_to_save.getPassword());
+//        for (String unpublished_event: org_to_save.getUnpublished_events()){
+//            utilAddOrgUnpublishedEvent(org_to_save.getUsername(), unpublished_event);
+//        }
+//        for (String past_event: org_to_save.getPast_events()){
+//            utilAddOrgPastEvent(org_to_save.getUsername(), past_event);
+//        }
+//        for (String upcoming_events: org_to_save.getUpcoming_events()){
+//            utilAddOrgUpcomingEvent(org_to_save.getUsername(), upcoming_events);
+//        }
+//        for (String follower: org_to_save.getFollowers()){
+//            ParDsGateway parDsGateway = new ParFileUser();
+//            parDsGateway.followOrg(follower, org_to_save.getUsername());
+//        }
+//    }
+// --Commented out by Inspection STOP (2022-11-29 3:42 p.m.)
+
 
 }

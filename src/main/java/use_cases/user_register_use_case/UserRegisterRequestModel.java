@@ -5,11 +5,11 @@ package use_cases.user_register_use_case;
  */
 public class UserRegisterRequestModel {
 
-    String isParticipant;
-    String isOrganization;
-    String username;
-    String password;
-    String re_password;
+    final String isParticipant;
+    final String isOrganization;
+    final String username;
+    final String password;
+    final String re_password;
 
     /**A request model sent the interactor to create a user.
      *

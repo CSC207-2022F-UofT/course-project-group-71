@@ -4,7 +4,7 @@ package use_cases.user_register_use_case;
  *  Containing the username and the message.
  */
 public class UserRegisterResponseModel {
-    String username;
+    final String username;
     String message;
 
     public UserRegisterResponseModel(String username){
@@ -15,9 +15,6 @@ public class UserRegisterResponseModel {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public void setMessage(String message) {
         this.message = message;

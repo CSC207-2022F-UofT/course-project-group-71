@@ -1,7 +1,5 @@
 package use_cases.user_register_use_case;
 
-import java.sql.SQLException;
-
 /** Interface implements by interactor.
  * The interactor who implement the interface must have create() method.
  */
@@ -10,6 +8,7 @@ public interface UserRegisterInputBoundary {
      *
      * @param requestModel The request model sent to the input boundary
      * @return A responseModel representing whether the user creation is successful
+     * @throws ClassNotFoundException when JDBC or MySQL class is not found.
      */
-    UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws SQLException, ClassNotFoundException;
+    UserRegisterResponseModel create(UserRegisterRequestModel requestModel) throws ClassNotFoundException;
 }
