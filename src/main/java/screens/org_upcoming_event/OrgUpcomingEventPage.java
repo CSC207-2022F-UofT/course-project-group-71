@@ -1,10 +1,10 @@
 package screens.org_upcoming_event;
 
 import controllers.ExtractInfoController;
-import screens.CommonMethod;
 import database.OrgDsGateway;
 import database.OrgFileUser;
 import screens.ScreenConstants;
+import screens.UICreatorAssistant;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
 import use_cases.extract_information_use_case.ExtractInfoResponseModel;
@@ -86,17 +86,17 @@ public class OrgUpcomingEventPage extends JFrame {
             //When these code is running, there will be at least 1 event so this for loop will add the upcoming events, one
             //event at each loop.
             for (String upcomingEventTitle : upcomingEvents) {
-                CommonMethod.setEventInfo(this, events, upcomingEventTitle, x, y, "OrgUpcomingEvent");
+                UICreatorAssistant.setEventInfo(this, events, upcomingEventTitle, x, y, "OrgUpcomingEvent");
                 events.add(create_JButton(upcomingEventTitle,"Notify", x + 250, y + 15, 100, 30));
                 events.add(create_JButton(upcomingEventTitle,"Delete", x + 250, y + 55, 100, 30));
                 y += 100;
             }
             //Put the JPanel into a JScrollPane
-            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
+            JScrollPane eventScroll = UICreatorAssistant.generateJScrollPane(events);
             this.add(eventScroll);
         }
         else {
-            this.add(CommonMethod.create_JLabel("None", 0,100, ScreenConstants.getConstantX(),30));
+            this.add(UICreatorAssistant.create_JLabel("None", 0,100, ScreenConstants.getConstantX(),30));
         }
     }
 

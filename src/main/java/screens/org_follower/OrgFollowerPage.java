@@ -1,13 +1,13 @@
 package screens.org_follower;
 
 import controllers.ExtractInfoController;
-import screens.CommonMethod;
-import database.*;
+import database.OrgDsGateway;
+import database.OrgFileUser;
 import screens.ScreenConstants;
+import screens.UICreatorAssistant;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
 import use_cases.extract_information_use_case.ExtractInfoResponseModel;
-
 
 import javax.swing.*;
 import java.awt.*;
@@ -100,12 +100,12 @@ public class OrgFollowerPage extends JFrame {
                 y += 100;
             }
             //Put the JPanel into a JScrollPane
-            JScrollPane followerScroll = CommonMethod.generateJScrollPane(followers);
+            JScrollPane followerScroll = UICreatorAssistant.generateJScrollPane(followers);
             followerScroll.setVisible(true);
             this.add(followerScroll);
         }
         else {
-            this.add(CommonMethod.create_JLabel("None", 0,100, ScreenConstants.getConstantX(),30));
+            this.add(UICreatorAssistant.create_JLabel("None", 0,100, ScreenConstants.getConstantX(),30));
         }
         return numberOfFollower;
     }

@@ -1,8 +1,9 @@
 package screens.par_followed_org;
 
-import screens.CommonMethod;
-import database.*;
 import controllers.ExtractInfoController;
+import database.ParDsGateway;
+import database.ParFileUser;
+import screens.UICreatorAssistant;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
 import use_cases.extract_information_use_case.ExtractInfoResponseModel;
@@ -91,11 +92,11 @@ public class ParFollowedOrgPage extends JFrame {
                 y += 100;
             }
             //Put the JPanel into a JScrollPane
-            JScrollPane followerScroll = CommonMethod.generateJScrollPane(followedOrganization);
+            JScrollPane followerScroll = UICreatorAssistant.generateJScrollPane(followedOrganization);
             this.add(followerScroll);
         }
         else {
-            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
+            this.add(UICreatorAssistant.create_JLabel("None", 0,100, getConstantX(),30));
         }
         return numberOfOrg;
     }

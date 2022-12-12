@@ -1,10 +1,10 @@
 package screens.org_unpublished_event;
 
 
-import screens.CommonMethod;
+import controllers.ExtractInfoController;
 import database.OrgDsGateway;
 import database.OrgFileUser;
-import controllers.ExtractInfoController;
+import screens.UICreatorAssistant;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
 import use_cases.extract_information_use_case.ExtractInfoResponseModel;
@@ -106,18 +106,18 @@ OrgUnpublishedEventPage extends JFrame {
             int y = 0;
             //Generate information cards for each unpublished events
             for (String unpublishedEventTitle : unpublishedEvents) {
-                CommonMethod.setEventInfo(this, events, unpublishedEventTitle, x, y, "OrgUnpublishedEvent");
+                UICreatorAssistant.setEventInfo(this, events, unpublishedEventTitle, x, y, "OrgUnpublishedEvent");
                 events.add(create_JButton(unpublishedEventTitle,"Publish", x + 250, y + 15, 100, 30));
                 events.add(create_JButton(unpublishedEventTitle,"Edit", x + 250, y + 15, 100, 30));
                 events.add(create_JButton(unpublishedEventTitle,"Delete", x + 250, y + 55, 100, 30));
                 y += 100;
             }
             //Put the JPanel into a JScrollPane
-            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
+            JScrollPane eventScroll = UICreatorAssistant.generateJScrollPane(events);
             this.add(eventScroll);
         }
         else {
-            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
+            this.add(UICreatorAssistant.create_JLabel("None", 0,100, getConstantX(),30));
         }
     }
 

@@ -1,18 +1,18 @@
 package screens.org_unpublished_event;
 
+import controllers.OrgCreateEventController;
 import controllers.OrgDeleteEventController;
+import controllers.OrgEditEventController;
+import controllers.OrgPublishEventController;
+import database.*;
+import presenters.use_case_presenters.OrgCreateEventPresenter;
+import screens.CommonMethod;
 import screens.common_view.EventDetailsPage;
 import screens.org_home.OrgHomePage;
-import controllers.OrgCreateEventController;
 import screens.org_unpublished_event.org_create_event.OrgCreateEventPage;
-import presenters.use_case_presenters.OrgCreateEventPresenter;
-import controllers.OrgEditEventController;
 import screens.org_unpublished_event.org_edit_event.OrgEditEventPage;
 import screens.org_unpublished_event.org_edit_event.OrgEditEventPresenter;
-import controllers.OrgPublishEventController;
 import screens.org_unpublished_event.org_publish_event.OrgPublishEventPresenter;
-import database.*;
-import screens.CommonMethod;
 import use_cases.org_create_event_use_case.OrgCreateEventInputBoundary;
 import use_cases.org_create_event_use_case.OrgCreateEventInteractor;
 import use_cases.org_create_event_use_case.OrgCreateEventOutputBoundary;
@@ -49,7 +49,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             //initialize the controller
             OrgDeleteEventController orgDeleteEventController = CommonMethod.utilGetDeleteEventControllerHelper();
             //delete the event
-            String eventName = actionCommand.substring(0,actionCommand.length()-6);
+            String eventName = CommonMethod.keywordTaker(actionCommand, 6);
             OrgDeleteEventResponseModel responseModel;
             try {
                 responseModel = orgDeleteEventController.delete(eventName);
@@ -75,7 +75,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             OrgPublishEventInputBoundary interactor = new OrgPublishEventInteractor(eventDsGateway, orgDsGateway,
                     parDsGateway, orgPublishEventOutputBoundary);
             OrgPublishEventController orgPublishEventController = new OrgPublishEventController(interactor);
-            String eventName = actionCommand.substring(0,actionCommand.length()-7);
+            String eventName = CommonMethod.keywordTaker(actionCommand, 7);
             OrgPublishEventResponseModel responseModel;
             try {
                 responseModel = orgPublishEventController.publish(eventName, orgUsername);
@@ -110,7 +110,7 @@ public class OrgUnpublishedEventActionListener implements ActionListener {
             OrgEditEventOutputBoundary orgEditEventOutputBoundary = new OrgEditEventPresenter();
             OrgEditEventInputBoundary interactor = new OrgEditEventInteractor(orgDsGateway, orgEditEventOutputBoundary);
             OrgEditEventController orgEditEventController = new OrgEditEventController(interactor);
-            String eventName = actionCommand.substring(0,actionCommand.length()-4);
+            String eventName = CommonMethod.keywordTaker(actionCommand, 4);
             try {
                 new OrgEditEventPage(orgEditEventController, this.orgUnpublishedEventPage, eventName, eventDsGateway);
             } catch (ClassNotFoundException e) {

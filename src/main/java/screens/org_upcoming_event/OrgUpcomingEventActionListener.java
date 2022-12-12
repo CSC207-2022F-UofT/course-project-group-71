@@ -1,15 +1,15 @@
 package screens.org_upcoming_event;
 
 import controllers.NotifyEventController;
-import presenters.use_case_presenters.NotifyEventPresenter;
 import controllers.OrgDeleteEventController;
-import screens.common_view.EventDetailsPage;
-import screens.org_home.OrgHomePage;
 import database.EventDsGateway;
 import database.EventFileUser;
 import database.ParDsGateway;
 import database.ParFileUser;
+import presenters.use_case_presenters.NotifyEventPresenter;
 import screens.CommonMethod;
+import screens.common_view.EventDetailsPage;
+import screens.org_home.OrgHomePage;
 import use_cases.notify_event_use_case.NotifyEventInputBoundary;
 import use_cases.notify_event_use_case.NotifyEventInteractor;
 import use_cases.notify_event_use_case.NotifyEventOutputBoundary;
@@ -41,7 +41,7 @@ public class OrgUpcomingEventActionListener implements ActionListener {
                 NotifyEventOutputBoundary notifyEventOutputBoundary = new NotifyEventPresenter();
                 NotifyEventInputBoundary interactor = new NotifyEventInteractor(eventDsGateway, parDsGateway, notifyEventOutputBoundary);
                 NotifyEventController notifyEventController = new NotifyEventController(interactor);
-                String eventName = actionCommand.substring(0,actionCommand.length()-6);
+                String eventName = CommonMethod.keywordTaker(actionCommand, 6);
                 try {
                     NotifyEventResponseModel responseModel =
                             notifyEventController.sendNotification("Future", eventName);
@@ -52,7 +52,7 @@ public class OrgUpcomingEventActionListener implements ActionListener {
             }
             else if (actionCommand.contains("Delete")) {
                 OrgDeleteEventController orgDeleteEventController = CommonMethod.utilGetDeleteEventControllerHelper();
-                String eventName = actionCommand.substring(0,actionCommand.length()-6);
+                String eventName = CommonMethod.keywordTaker(actionCommand, 6);
                 try{
                     OrgDeleteEventResponseModel responseModel = orgDeleteEventController.delete(eventName);
                     JOptionPane.showMessageDialog(this.orgUpcomingEventPage, responseModel.getMessage());

@@ -1,10 +1,10 @@
 package screens.org_past_event;
 
 
-import screens.CommonMethod;
+import controllers.ExtractInfoController;
 import database.OrgDsGateway;
 import database.OrgFileUser;
-import controllers.ExtractInfoController;
+import screens.UICreatorAssistant;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
 import use_cases.extract_information_use_case.ExtractInfoResponseModel;
@@ -84,15 +84,15 @@ public class OrgPastEventPage extends JFrame {
             int y = 0;
             //Add all cards of past events to the page
             for (String pastEventTitle : pastEvents) {
-                CommonMethod.setEventInfo(this, events, pastEventTitle, x, y, "OrgPastEvent");
+                UICreatorAssistant.setEventInfo(this, events, pastEventTitle, x, y, "OrgPastEvent");
                 y += 100;
             }
             //Set parameters for JScrollPane
-            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
+            JScrollPane eventScroll = UICreatorAssistant.generateJScrollPane(events);
             this.add(eventScroll);
         }
         else {
-            this.add(CommonMethod.create_JLabel("None", 0,100, getConstantX(),30));
+            this.add(UICreatorAssistant.create_JLabel("None", 0,100, getConstantX(),30));
         }
     }
 }

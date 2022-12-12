@@ -1,9 +1,10 @@
 package screens.par_upcoming_event;
 
-import screens.CommonMethod;
-import database.*;
 import controllers.ExtractInfoController;
+import database.ParDsGateway;
+import database.ParFileUser;
 import screens.ScreenConstants;
+import screens.UICreatorAssistant;
 import use_cases.extract_information_use_case.ExtractInfoInputBoundary;
 import use_cases.extract_information_use_case.ExtractInfoInteractor;
 import use_cases.extract_information_use_case.ExtractInfoResponseModel;
@@ -75,7 +76,7 @@ public class ParUpcomingEventPage extends JFrame {
             int y = 0;
 
             for (String upcomingEventTitle : upcomingEvents) {
-                CommonMethod.setEventInfo(this, events, upcomingEventTitle, x, y, "ParUpcomingEvent");
+                UICreatorAssistant.setEventInfo(this, events, upcomingEventTitle, x, y, "ParUpcomingEvent");
                 JButton leave = new JButton("Leave");
                 leave.setActionCommand(upcomingEventTitle + "Leave");
                 leave.addActionListener(new ParUpcomingEventActionListener(this));
@@ -85,11 +86,11 @@ public class ParUpcomingEventPage extends JFrame {
                 y += 100;
             }
             //Set parameters for JScrollPane
-            JScrollPane eventScroll = CommonMethod.generateJScrollPane(events);
+            JScrollPane eventScroll = UICreatorAssistant.generateJScrollPane(events);
             this.add(eventScroll);
         }
         else {
-            this.add(CommonMethod.create_JLabel("None", 0,100, ScreenConstants.getConstantX(),30));
+            this.add(UICreatorAssistant.create_JLabel("None", 0,100, ScreenConstants.getConstantX(),30));
         }
     }
 }

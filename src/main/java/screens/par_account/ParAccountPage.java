@@ -1,7 +1,7 @@
 package screens.par_account;
 
-import screens.CommonMethod;
 import screens.ScreenConstants;
+import screens.UICreatorAssistant;
 
 import javax.swing.*;
 
@@ -35,13 +35,13 @@ public class ParAccountPage extends JFrame {
         back.setBounds(0, 100, 150, 30);
 
         //Add the buttons and text panels to the page
-        this.add(CommonMethod.create_JLabel(this.parUsername + "'s Account Page", 0, 0, ScreenConstants.getConstantX(), 50));
+        this.add(UICreatorAssistant.create_JLabel(this.parUsername + "'s Account Page", 0, 0, ScreenConstants.getConstantX(), 50));
         this.add(back);
-        this.add(CommonMethod.create_JLabel("Username                      " + this.parUsername + "                "
+        this.add(UICreatorAssistant.create_JLabel("Username                      " + this.parUsername + "                "
                 , 150, 100, 500,30));
-        this.add(CommonMethod.create_text_panel("Old Password", oldPassword, 150, 130, 500, 50));
-        this.add(CommonMethod.create_text_panel("New Password",  newPassword, 150, 180, 500, 50));
-        this.add(CommonMethod.create_text_panel("Retype New Password", retypeNewPassword, 150, 230, 500, 50));
+        this.add(UICreatorAssistant.create_text_panel("Old Password", oldPassword, 150, 130, 500, 50));
+        this.add(UICreatorAssistant.create_text_panel("New Password",  newPassword, 150, 180, 500, 50));
+        this.add(UICreatorAssistant.create_text_panel("Retype New Password", retypeNewPassword, 150, 230, 500, 50));
         this.add(button);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

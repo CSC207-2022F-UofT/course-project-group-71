@@ -1,11 +1,12 @@
 package screens.par_upcoming_event;
 
 import controllers.ParLeaveEventController;
-import presenters.use_case_presenters.ParLeaveEventPresenter;
-import screens.common_view.EventDetailsPage;
-import screens.par_home.ParHomePage;
 import database.ParDsGateway;
 import database.ParFileUser;
+import presenters.use_case_presenters.ParLeaveEventPresenter;
+import screens.CommonMethod;
+import screens.common_view.EventDetailsPage;
+import screens.par_home.ParHomePage;
 import use_cases.par_leave_event_use_case.ParLeaveEventInputBoundary;
 import use_cases.par_leave_event_use_case.ParLeaveEventInteractor;
 import use_cases.par_leave_event_use_case.ParLeaveEventOutputBoundary;
@@ -40,17 +41,13 @@ public class ParUpcomingEventActionListener implements ActionListener {
             this.parUpcomingEventPage.dispose();
             new ParHomePage(this.parUpcomingEventPage.getParUsername());
         } else if (actionCommand.contains("Leave")) {
+            //Leave the event
             ParDsGateway parDsGateway = new ParFileUser();
-
             ParLeaveEventOutputBoundary parLeaveEventOutputBoundary = new ParLeaveEventPresenter();
-
             ParLeaveEventInputBoundary interactor = new ParLeaveEventInteractor(parDsGateway,
                     parLeaveEventOutputBoundary);
-
             ParLeaveEventController parLeaveEventController = new ParLeaveEventController(interactor);
-
-            String eventName = actionCommand.substring(0, actionCommand.length() - 5);
-
+            String eventName = CommonMethod.keywordTaker(actionCommand, 5);
             ParLeaveEventResponseModel responseModel;
             try {
                 responseModel = parLeaveEventController.leave(
@@ -58,9 +55,9 @@ public class ParUpcomingEventActionListener implements ActionListener {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-
+            //Show success message of leaving
             JOptionPane.showMessageDialog(this.parUpcomingEventPage, responseModel.getMessage());
-
+            //refresh the page
             this.parUpcomingEventPage.dispose();
             try {
                 new ParUpcomingEventPage(this.parUpcomingEventPage.getParUsername());
